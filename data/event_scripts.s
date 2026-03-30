@@ -53,6 +53,7 @@
 #include "constants/pokeball.h"
 #include "constants/pokedex.h"
 #include "constants/pokemon.h"
+#include "constants/pssicons.h"
 #include "constants/rtc.h"
 #include "constants/roulette.h"
 #include "constants/script_menu.h"
@@ -1245,7 +1246,7 @@ Common_EventScript_OutOfCenterPartyHeal::
 
 EventScript_RegionMap::
 	lockall
-	msgbox Common_Text_LookCloserAtMap, MSGBOX_DEFAULT
+	msgbox gText_LookCloserAtMap, MSGBOX_DEFAULT
 	fadescreen FADE_TO_BLACK
 	special FieldShowRegionMap
 	waitstate
@@ -1692,6 +1693,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/text/cable_club.inc"
 	.include "data/scripts/contest_hall.inc"
 	.include "data/scripts/tv.inc"
+	.include "data/scripts/tv2.inc"
 	.include "data/text/tv.inc"
 	.include "data/scripts/interview.inc"
 	.include "data/scripts/gabby_and_ty.inc"
@@ -1738,3 +1740,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/apricorn_tree.inc"
 
 	.include "data/maps/StartMap/scripts.inc"
+
+	.include "data/maps/PineveilTown_House_3/scripts.inc"

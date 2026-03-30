@@ -21,6 +21,7 @@
 #include "event_scripts.h"
 #include "fake_rtc.h"
 #include "field_message_box.h"
+#include "field_name_box.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
 #include "field_specials.h"
@@ -3351,5 +3352,22 @@ bool8 ScrCmd_getbraillestringwidth(struct ScriptContext * ctx)
         msg = (u8 *)ctx->data[0];
 
     gSpecialVar_0x8004 = GetStringWidth(FONT_BRAILLE, msg, -1);
+    return FALSE;
+}
+
+bool8 ScrCmd_ShowPssIcon(struct ScriptContext *ctx)
+{
+    u8 id = ScriptReadByte(ctx);
+
+    ShowPssIconFromTable(id);
+    return FALSE;
+}
+
+bool8 ScrCmd_showmonmugshot(struct ScriptContext *ctx)
+{
+    u16 species = VarGet(ScriptReadHalfword(ctx));
+    u8 position = ScriptReadByte(ctx);
+
+    ShowMonMugshot(species, position);
     return FALSE;
 }

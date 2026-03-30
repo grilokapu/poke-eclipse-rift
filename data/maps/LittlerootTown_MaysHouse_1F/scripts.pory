@@ -1,0 +1,106 @@
+mapscripts LittlerootTown_MaysHouse_1F_MapScripts {
+
+}
+
+script PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile {
+    lockall
+    playse(SE_PIN)
+    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_ExclamationMark)
+    waitse
+    delay(30)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    copyvar(VAR_RESULT, VAR_TEMP_0)
+    if (var(VAR_RESULT) == 11) {
+        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_GoToPlayer0)
+    }
+    else {
+        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_GoToPlayer1)
+    }
+    delay(30)
+    switch (var(VAR_LANGUAGE)) {
+        case PORTUGUESE_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mamäe", "Ah, você finalmente acordou!\pEu já estava começando a ficar\npreocupada com o horário…\pVocê nunca perdeu esse hábito de\nacordar tarde, né?\pIgualzinho no começo da sua\njornada em Seafood!\pAh, e o {RIVAL} passou aqui mais\ncedo.\lEle disse para você näo se atrasar\lno seu primeiro dia em Aetheris.\lParecia estar com muita pressa!\pBem, näo vou te segurar mais.\pSe cuide, alimente-se direito…\nE näo se esqueça de ligar para sua\lmäe de vez em quando, está bem?", MSGBOX_AUTOCLOSE)
+        case ENGLISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mom", "Ah, you're finally awake!\pI was starting to get worried\nabout the time…\pYou never lost that habit of\nsleeping in, huh?\pJust like at the start of your\njourney in Seafood!\pOh, and {RIVAL} stopped by\nearlier.\lHe told me to remind you not to be\llate for your first day in\lAetheris. He seemed to be in quite\la hurry!\pWell, I won't keep you any longer.\pTake care, make sure you eat\nproperly…\lAnd don't forget to call your mom\lfrom time to time, okay?", MSGBOX_AUTOCLOSE)
+        case SPANISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mami", "¡Ah, por fin despertaste!\pYa estaba empezando a preocuparme\npor la hora…\pNunca perdiste ese hábito de\ndespertarte tarde, ¿verdad?\p¡Igual que al comienzo de tu\naventura en Seafood!\pAh, y {RIVAL} pasó por aquí hace\nun rato.\lMe pidió que te recordara que no\lllegues tarde en tu primer día en\lAetheris. ¡Parecía tener mucha\lprisa!\pBueno, no voy a detenerte más.\pCuídate, aliméntate bien…\nY no olvides llamar a tu mamá de\lvez en cuando, ¿de acuerdo?", MSGBOX_AUTOCLOSE)
+    }
+    if (var(VAR_RESULT) == 11) {
+        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_ReturnToTV0)
+    }
+    else {
+        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_ReturnToTV1)
+    }
+    setvar(VAR_PLAYER_MOM_HOUSE_STATE, 1)
+    releaseall
+    end
+}
+
+script PineveilTown_PlayerHouse_1F_Mom_Talk {
+    lock
+    faceplayer
+    switch (var(VAR_LANGUAGE)) {
+        case PORTUGUESE_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mamäe", "Essa novela está ficando täo\nintensa… A Paola acabou de revelar\lque é a gêmea má!\pVocê acredita?\pE a pobre Paulina ainda nem sabe o\nque a espera…", MSGBOX_AUTOCLOSE)
+        case ENGLISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mom", "This soap opera is getting so\nintense… Paola just revealed that\lshe's the evil twin!\pCan you believe it?\pAnd poor Paulina still has no idea\nwhat's waiting for her…", MSGBOX_AUTOCLOSE)
+        case SPANISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mami", "Esta telenovela se está poniendo\nmuy intensa… ¡Paola acaba de\lrevelar que es la gemela malvada!\p¿Puedes creerlo?\pY la pobre Paulina todavía no\ntiene idea de lo que le espera…", MSGBOX_AUTOCLOSE)
+    }
+    call_if_set(FLAG_SYS_POKEMON_GET, PineveilTown_PlayerHouse_1F_Mom_Talk_HealParty)
+    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_FaceUp)
+    release
+    end
+}
+
+script PineveilTown_PlayerHouse_1F_Mom_Talk_HealParty {
+    switch (var(VAR_LANGUAGE)) {
+        case PORTUGUESE_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mamäe", "{PLAYER}!\nPor que näo descansa um pouco?", MSGBOX_AUTOCLOSE)
+        case ENGLISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mom", "{PLAYER}!\nWhy don't you take a quick rest?", MSGBOX_AUTOCLOSE)
+        case SPANISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mami", "{PLAYER}\n¿Por qué no descansas un poco?", MSGBOX_AUTOCLOSE)
+    }
+    call(Common_EventScript_OutOfCenterPartyHeal)
+    switch (var(VAR_LANGUAGE)) {
+        case PORTUGUESE_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mamäe", "Seus Pokémon já estäo totalmente\nrecuperados!\pBoa sorte, {PLAYER}!\nSeus Pokémon estäo contando com\lvocê!", MSGBOX_AUTOCLOSE)
+        case ENGLISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mom", "Your Pokémon are all healed up!\pGood luck, {PLAYER}!\nYour Pokémon are counting on you!", MSGBOX_AUTOCLOSE)
+        case SPANISH_LANGUAGE:
+            msgminibox(PSS_ICON_MOM, "Mami", "¡Tus Pokémon ya están\ncompletamente recuperados!\p¡Buena suerte, {PLAYER}!\n¡Tus Pokémon cuentan contigo!", MSGBOX_AUTOCLOSE)
+    }
+    return
+}
+
+script PineveilTown_PlayerHouse_1F_Mom_Later_Talk_Tile {
+    release
+    end
+}
+
+movement Movement_Mom_GoToPlayer0 {
+    walk_up
+    walk_right * 4
+    walk_up
+    face_up
+}
+
+movement Movement_Mom_GoToPlayer1 {
+    walk_up
+    walk_right * 3
+    walk_up
+    face_up
+}
+
+movement Movement_Mom_ReturnToTV0 {
+    walk_down * 2
+    walk_left * 4
+    face_up
+}
+
+movement Movement_Mom_ReturnToTV1 {
+    walk_down * 2
+    walk_left * 3
+    face_up
+}

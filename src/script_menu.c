@@ -943,7 +943,7 @@ void GetLilycoveSSTidalSelection(void)
 #define tWindowY     data[4]
 #define tWindowId    data[5]
 
-static void Task_PokemonPicWindow(u8 taskId)
+void Task_PokemonPicWindow(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 

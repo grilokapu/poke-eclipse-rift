@@ -4576,13 +4576,43 @@ void EnterCode(void)
     DoNamingScreen(NAMING_SCREEN_CODE, gStringVar2, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
+const u8 sText_Password_UnlockDexnav[] = _("Nav4ll");
+const u8 sText_Password_GiveBalls[] = _("EzCatch");
+const u8 sText_Password_GiveRepel[] = _("Repel4ll");
+const u8 sText_Password_GiveRareCandy[] = _("CandyNoob");
+const u8 sText_Password_BattlePack[] = _("EzPack");
+
+struct SlowpokePass
+{
+	const u8* password;
+};
+
+const struct SlowpokePass gGiftPasses[] = 
+{
+	{ .password = sText_Password_GiveBalls, },
+	{ .password = sText_Password_GiveRepel, },
+	{ .password = sText_Password_GiveRareCandy, },
+	{. password = sText_Password_BattlePack, },
+};
+
 void GetCodeFeedback(void)
 {
-    static const u8 sText_SampleCode[] = _("SampleCode");
-    if (!StringCompare(gStringVar2, sText_SampleCode))
-        gSpecialVar_Result = 1;
-    else
-        gSpecialVar_Result = 0;
+    u8 i;
+    gSpecialVar_Result = 0;
+
+    for (i = 0; i < ARRAY_COUNT(gGiftPasses); i++)
+    {
+        struct SlowpokePass gift = gGiftPasses[i];
+        if (StringCompare(gift.password, gStringVar1) == 0)
+        {
+            gSpecialVar_Result = i;
+            return;
+        }
+    }
+    //if (!StringCompare(gStringVar2, sText_SampleCode))
+    //    gSpecialVar_Result = 1;
+    //else
+    //    gSpecialVar_Result = 0;
 }
 
 void SetHiddenNature(void)

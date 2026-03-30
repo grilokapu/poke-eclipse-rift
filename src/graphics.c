@@ -2012,6 +2012,17 @@ const u32 gNamingScreenKeyboardUpper_Tilemap[]   = INCBIN_U32("graphics/naming_s
 const u32 gNamingScreenKeyboardLower_Tilemap[]   = INCBIN_U32("graphics/naming_screen/keyboard_lower.bin.smolTM");
 const u32 gNamingScreenKeyboardSymbols_Tilemap[] = INCBIN_U32("graphics/naming_screen/keyboard_symbols.bin.smolTM");
 
+//New Naming Screen BW
+const u32 gNamingScreenBGTiles[] = INCBIN_U32("graphics/naming_screen/tiles.4bpp.smol");
+const u32 gNamingScreenBGMap[] = INCBIN_U32("graphics/naming_screen/bg.bin.smolTM");
+const u32 gNamingScreenCharUpperMap[] = INCBIN_U32("graphics/naming_screen/letters_uppers.bin.smolTM");
+const u32 gNamingScreenCharLowerMap[] = INCBIN_U32("graphics/naming_screen/letters_lowers.bin.smolTM");
+const u32 gNamingScreenButtonsEng[] = INCBIN_U32("graphics/naming_screen/buttons_eng.bin.smol");
+const u16 gNamingScreenPal[] = INCBIN_U16("graphics/naming_screen/bg.gbapal");
+const u16 gNamingScreenSelPal[] = INCBIN_U16("graphics/naming_screen/button_selected.gbapal");
+const u16 gNamingScreenTextPal[] = INCBIN_U16("graphics/naming_screen/text.gbapal");
+const u32 gNamingScreenCharOtherMap[] = INCBIN_U32("graphics/naming_screen/symbols.bin.smolTM");
+
 // union room chat
 const u16 gUnionRoomChat_Background_Pal[] = INCBIN_U16("graphics/union_room_chat/background.gbapal");
 const u32 gUnionRoomChat_Background_Gfx[] = INCBIN_U32("graphics/union_room_chat/background.4bpp.smol");

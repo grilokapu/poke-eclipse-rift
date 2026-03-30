@@ -1,0 +1,88 @@
+mapscripts LittlerootTown_BrendansHouse_1F_MapScripts {
+}
+
+script PineveilTown_RivalMom_talk {
+    lock
+    faceplayer
+    if(var(VAR_LITTLEROOT_TOWN_STATE)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Nossa chegada em Aetheris tem sido\nincrível até agora.\pEspero que a gente se acostume\nrápido com a nova vida por aqui.", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Our arrival in Aetheris has been\nwonderful so far.\pI hope we can settle into our new\nlife here soon.", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("Nuestra llegada a Aetheris ha sido\nmaravillosa hasta ahora.\pEspero que podamos adaptarnos\nrápido a nuestra nueva vida aquí.", MSGBOX_AUTOCLOSE)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Ah, você está procurando o\n{RIVAL}?\pEle está lá em cima, no quarto\ndele.\lPode subir e falar com ele!", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Oh, are you looking for {RIVAL}?\pHe's upstairs in his room.\nYou can go up and talk to him!", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("Ah, ¿estás buscando a {RIVAL}?\pEstá arriba, en su habitación.\n¡Puedes subir a hablar con él!", MSGBOX_AUTOCLOSE)
+        }
+    }
+    release
+    end
+}
+
+script PineveilTown_RivalHouse_Mom_Tile {
+    if (!flag(FLAG_RIVAL_LEAVE_HOUSE)) {
+        release
+        end
+    } else {
+        lock
+        playse(SE_PIN)
+        movenpc(LOCALID_RIVAL_MOM, Common_Movement_ExclamationMark)
+        waitse
+        delay(30)
+        moveplayer(Common_Movement_FaceUp)
+        getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+        copyvar(VAR_RESULT, VAR_TEMP_0)
+        if (var(VAR_RESULT) == 5) {
+            movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GotoPlayer_0)
+        } else {
+            movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GotoPlayer_1)
+        }
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Ah, {PLAYER}!\nO {RIVAL} saiu às pressas!\pEle acabou esquecendo o Mapa da\nRegiäo…\pSabe de uma coisa? Pode ficar com\nele!", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Oh, {PLAYER}!\n{RIVAL} rushed out in a hurry!\pHe ended up forgetting the Region\nMap…\pYou know what? You can keep it!", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("¡Ah, {PLAYER}!\n¡{RIVAL} salió con mucha prisa!\pTerminó olvidando el Mapa de la\nRegión…\p¿Sabes qué? ¡Puedes quedártelo!", MSGBOX_AUTOCLOSE)
+        }
+        giveitem(ITEM_TOWN_MAP)
+        waitfanfare
+        delay(20)
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Cuide-se na sua jornada, {PLAYER}!\nE, por favor, fique de olho no\l{RIVAL} de vez em quando.\pEspero ver vocês dois novamente em\nbreve!", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Take care on your journey,\n{PLAYER}!\lAnd please, keep an eye on {RIVAL}\levery now and then.\pI hope to see you both again soon!", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("¡Cuídate en tu aventura, {PLAYER}!\nY, por favor, cuida de {RIVAL} de\lvez en cuando.\p¡Espero verlos a los dos otra vez\nmuy pronto!", MSGBOX_AUTOCLOSE)
+        }
+        if (var(VAR_RESULT) == 5) {
+            movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GoAwayPlayer_0)
+        } else {
+            movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GoAwayPlayer_1)
+        }
+        setvar(VAR_PLAYER_MOM_HOUSE_STATE, 2)
+        release
+        end
+    }
+}
+
+movement Movement_RivalMom_GotoPlayer_0 {
+    walk_right
+    walk_down
+    face_down
+}
+
+movement Movement_RivalMom_GotoPlayer_1 {
+    walk_right * 2
+    walk_down
+    face_down
+}
+
+movement Movement_RivalMom_GoAwayPlayer_0 {
+    walk_up
+    walk_left
+    face_up
+}
+
+movement Movement_RivalMom_GoAwayPlayer_1 {
+    walk_up
+    walk_left * 2
+    face_up
+}

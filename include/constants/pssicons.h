@@ -1,0 +1,10 @@
+#ifndef GUARD_PSS_ICONS_CONST_H
+#define GUARD_PSS_ICONS_CONST_H
+
+#define PSS_NONE 0
+#define PSS_ICON_BARRY 1
+#define PSS_ICON_HIKARI 2
+#define PSS_ICON_REPORTER 3
+#define PSS_ICON_MOM 4
+
+#endif // GUARD_PSS_ICONS_CONST_H

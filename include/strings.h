@@ -222,14 +222,32 @@ extern const u8 gText_YesNo[];
 
 // main menu/birch speech text
 extern const u8 gText_Birch_Welcome[];
+extern const u8 gText_Birch_WelcomePt[];
+extern const u8 gText_Birch_WelcomeEs[];
 extern const u8 gText_ThisIsAPokemon[];
+extern const u8 gText_ThisIsAPokemonPt[];
+extern const u8 gText_ThisIsAPokemonEs[];
 extern const u8 gText_Birch_MainSpeech[];
+extern const u8 gText_Birch_MainSpeechPt[];
+extern const u8 gText_Birch_MainSpeechEs[];
 extern const u8 gText_Birch_AndYouAre[];
+extern const u8 gText_Birch_AndYouArePt[];
+extern const u8 gText_Birch_AndYouAreEs[];
 extern const u8 gText_Birch_BoyOrGirl[];
+extern const u8 gText_Birch_BoyOrGirlPt[];
+extern const u8 gText_Birch_BoyOrGirlEs[];
 extern const u8 gText_Birch_WhatsYourName[];
+extern const u8 gText_Birch_WhatsYourNamePt[];
+extern const u8 gText_Birch_WhatsYourNameEs[];
 extern const u8 gText_Birch_SoItsPlayer[];
+extern const u8 gText_Birch_SoItsPlayerPt[];
+extern const u8 gText_Birch_SoItsPlayerEs[];
 extern const u8 gText_Birch_YourePlayer[];
+extern const u8 gText_Birch_YourePlayerPt[];
+extern const u8 gText_Birch_YourePlayerEs[];
 extern const u8 gText_Birch_AreYouReady[];
+extern const u8 gText_Birch_AreYouReadyPt[];
+extern const u8 gText_Birch_AreYouReadyEs[];
 
 extern const u8 gText_BirchInTrouble[];
 extern const u8 gText_ConfirmStarterChoice[];
@@ -2201,6 +2219,14 @@ extern const u8 gText_OakThisIsListOfPokemon[];
 
 extern const u8 gText_Boy[];
 extern const u8 gText_Girl[];
+extern const u8 gText_BoyPt[];
+extern const u8 gText_GirlPt[];
+extern const u8 gText_BoyEs[];
+extern const u8 gText_GirlEs[];
 
+extern const u8 gText_PtLang[];
+extern const u8 gText_SpLang[];
+extern const u8 gText_EngLang[];
+extern const u8 gText_SelectLang[];
 
 #endif // GUARD_STRINGS_H

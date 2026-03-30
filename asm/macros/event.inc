@@ -2854,3 +2854,40 @@
 	getbraillestringwidth \text
 	call EventScript_BrailleCursorWaitButton
 	.endm
+
+	@ Show Pss Icons by ID.
+	.macro showpssicon id:req
+    .byte SCR_OP_SHOWPSSICON, \id
+	.endm
+
+	@ Show Namebox + Pss Icon
+	.macro msgminibox id:req name:req text:req, type=MSGBOX_DEFAULT
+	showpssicon \id
+	setspeaker \name
+	msgbox \text \type
+	callnative ClosePssIconPic
+	.endm
+
+	.macro moveplayer movement:req
+	applymovement LOCALID_PLAYER \movement
+	waitmovement LOCALID_PLAYER
+	.endm
+
+	.macro movenpc id:req movement:req
+	applymovement \id \movement
+	waitmovement \id
+	.endm
+
+	.macro checkgenderstr
+	callnative CheckGenderString
+	.endm
+
+	.macro showmonmugshot species:req position:req
+	.byte SCR_OP_SHOWMONMUGSHOT
+	.2byte \species
+	.byte \position
+	.endm
+
+	.macro hidemonmugshot
+	callnative RemoveMonMugshot
+	.endm

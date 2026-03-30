@@ -1774,6 +1774,9 @@ extern const u16 gItemIconPalette_TwiceSpicedRadish[];
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u16 gItemIconPalette_ReturnToFieldArrow[];
 
+extern const u32 gItemIcon_UltraRepel[];
+extern const u16 gItemIconPalette_UltraRepel[];
+
 //menu graphics
 extern const u16 gMenuInfoElements1_Pal[16];
 extern const u16 gMenuInfoElements2_Pal[16];
@@ -2051,6 +2054,17 @@ extern const u32 gNamingScreenCursorSquished_Gfx[];
 extern const u32 gNamingScreenCursorFilled_Gfx[];
 extern const u32 gNamingScreenInputArrow_Gfx[];
 extern const u32 gNamingScreenUnderscore_Gfx[];
+
+//New Naming Screen BW
+extern const u32 gNamingScreenBGTiles[];
+extern const u32 gNamingScreenBGMap[];
+extern const u32 gNamingScreenCharUpperMap[];
+extern const u32 gNamingScreenCharLowerMap[];
+extern const u32 gNamingScreenButtonsEng[];
+extern const u16 gNamingScreenPal[];
+extern const u16 gNamingScreenSelPal[];
+extern const u16 gNamingScreenTextPal[];
+extern const u32 gNamingScreenCharOtherMap[];
 
 extern const u32 gPokeblockFeedBg_Tilemap[];
 
@@ -3387,6 +3401,9 @@ extern const u16 gObjectEventPal_Brendan[];
 extern const u16 gObjectEventPal_May[];
 extern const u16 gObjectEventPal_RubySapphireBrendan[];
 extern const u16 gObjectEventPal_RubySapphireMay[];
+extern const u16 gObjectEventPal_Barry[];
+extern const u16 gObjectEventPal_Hikari[];
+extern const u16 gObjectEventPal_Cameraman[];
 
 // Mail
 extern const u16 gMailPalette_Orange[];

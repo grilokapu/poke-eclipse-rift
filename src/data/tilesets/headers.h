@@ -489,7 +489,7 @@ const struct Tileset gTileset_BrendansMaysHouse =
     .palettes = gTilesetPalettes_BrendansMaysHouse,
     .metatiles = gMetatiles_BrendansMaysHouse,
     .metatileAttributes = gMetatileAttributes_BrendansMaysHouse,
-    .callback = NULL,
+    .callback = InitTilesetAnim_PlayerHouseInside,
 };
 
 const struct Tileset gTileset_Lab =

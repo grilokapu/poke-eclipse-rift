@@ -1,0 +1,31 @@
+script EventScript_TV2 {
+    lock
+    callnative(GetMapTVScript)
+    switch(var(VAR_RESULT)) {
+        case 0:
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("A TV está desligada.")
+                case EN: msgbox("The TV is turned off.")
+                case ES: msgbox("La TV está apagada.")
+            }
+            goto(End_Script)
+        case 1:
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("A TV está ligada.\pEstá passando uma novela na TV…\n“Eu näo sou a Paulina… sou a irmä\lgêmea dela, Paola!”\pA mulher dá um tapa estonteante no\nhomem!\pA mäe parece hipnotizada pela TV…\nMelhor näo atrapalhar agora.")
+                case EN: msgbox("The TV is on.\pThere's a soap opera playing on\nTV…\l'I am not Paulina… I'm her twin\lsister, Paola!'\pThe woman slaps the man across the\nface!\pMom seems completely hypnotized by\nthe TV…\lBetter not interrupt her now.")
+                case ES: msgbox("La TV está encendida.\pEstán pasando una telenovela en la\nTV…\l'¡Yo no soy Paulina… soy su\lhermana gemela, Paola!'\p¡La mujer le da una fuerte\nbofetada al hombre!\pMamá parece completamente\nhipnotizada por la TV…\lSerá mejor no interrumpirla ahora.")
+            }
+        case 2:
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("A TV está ligada.\p“Näo deixe que o que ele quer faça\num eclipse no que você precisa.\lEle é dos seus sonhos, mas näo é o\lsol. Você é!”\pParece que a mäe do {RIVAL} está\nassistindo “Grey's Anathomy”.\pEstá completamente vidrada.")
+                case EN: msgbox("The TV is on.\p“Don't let what he wants eclipse\nwhat you need.\lHe may be the man of your dreams,\lbut he's not the sun. You are!”\pIt looks like {RIVAL}'s mom is\nwatching Grey's Anatomy.\pShe's completely absorbed in it.")
+                case ES: msgbox("La TV está encendida.\p“No dejes que lo que él quiere\neclipse lo que tú necesitas.\lPuede ser el hombre de tus sueños,\lpero no es el sol. ¡Tú lo eres!”\pParece que la mamá de {RIVAL} está\nviendo Grey's Anatomy.\pEstá completamente absorta.")
+            }
+            goto(End_Script)
+    }
+}
+
+script End_Script {
+    release
+    end
+}

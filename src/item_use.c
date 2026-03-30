@@ -1636,4 +1636,28 @@ void ItemUseOutOfBattle_TownMap(u8 taskId)
     }
 }
 
+// DW Custom Scripts
+
+extern const u8 SystemScript_Infinite_Repel_Off[];
+extern const u8 SystemScript_Infinite_Repel_On[];
+
+static void Task_UltraRepelField(u8 taskId)
+{
+    if (FlagGet(FLAG_NO_RANDOM_WILD_ENCOUNTERS))
+    {
+        ScriptContext_SetupScript(SystemScript_Infinite_Repel_Off);
+    }
+    else
+    {
+        ScriptContext_SetupScript(SystemScript_Infinite_Repel_On);
+    }
+    DestroyTask(taskId);
+}
+
+void FieldUseFunc_UltraRepel(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_UltraRepelField;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
 #undef tUsingRegisteredKeyItem

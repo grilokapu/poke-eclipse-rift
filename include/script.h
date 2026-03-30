@@ -66,6 +66,9 @@ void InitRamScript_NoObjectEvent(u8 *script, u16 scriptSize);
 
 bool32 Script_MatchesCallNative(const u8 *script, void *funcPtr, bool32 requestEffects);
 bool32 Script_MatchesSpecial(const u8 *script, void *funcPtr);
+bool8 ShowPssIconFromTable(u8 index);
+bool8 ShowMonMugshot(u16 species, u8 position);
+void Task_PokemonPicWindow(u8 taskId);
 
 // srccmd.h
 void SetMovingNpcId(u16 npcId);

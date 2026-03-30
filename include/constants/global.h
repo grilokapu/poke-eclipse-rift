@@ -230,6 +230,15 @@ enum Connection
 #define ENGLISH_LANGUAGE 2
 #define SPANISH_LANGUAGE 3
 
+#define PT PORTUGUESE_LANGUAGE
+#define EN ENGLISH_LANGUAGE
+#define ES SPANISH_LANGUAGE
+
+#define MUGSHOT_DOWN_LEFT 0
+#define MUGSHOT_CENTER 1
+
+#define GET_LANGUAGE() (gSaveBlock2Ptr->gInitialLanguage)
+
 #if TESTING
 #include "config/test.h"
 #endif

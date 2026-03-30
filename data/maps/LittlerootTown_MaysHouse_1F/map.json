@@ -25,7 +25,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PlayersHouse_1F_EventScript_Mom",
+      "script": "PineveilTown_PlayerHouse_1F_Mom_Talk",
       "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM"
     }
   ],
@@ -58,36 +58,36 @@
       "x": 6,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
       "var_value": "4",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom"
+      "script": "PineveilTown_PlayerHouse_1F_Mom_Later_Talk_Tile"
     },
     {
       "type": "trigger",
       "x": 10,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
-      "var_value": "2",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival0"
+      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
+      "var_value": "0",
+      "script": "PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile"
     },
     {
       "type": "trigger",
       "x": 5,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
       "var_value": "2",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival1"
+      "script": "PineveilTown_PlayerHouse_1F_Mom_Later_Talk_Tile"
     },
     {
       "type": "trigger",
       "x": 11,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
-      "var_value": "2",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival2"
+      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
+      "var_value": "0",
+      "script": "PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile"
     }
   ],
   "bg_events": []

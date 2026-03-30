@@ -145,7 +145,7 @@ void InitMapFromSavedGame(void)
     SetOccupiedSecretBaseEntranceMetatiles(gMapHeader.events);
     LoadSavedMapView();
     RunOnLoadMapScript();
-    UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
+    //UpdateTVScreensOnMap(gBackupMapLayout.width, gBackupMapLayout.height);
 }
 
 void InitBattlePyramidMap(bool8 setPlayerPosition)

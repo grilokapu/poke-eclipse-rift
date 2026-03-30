@@ -216,6 +216,14 @@ const u16 gTilesetAnims_Mauville_Flower2_Frame3[] = INCBIN_U16("data/tilesets/se
 const u16 gTilesetAnims_Mauville_Flower2_Frame4[] = INCBIN_U16("data/tilesets/secondary/mauville/anim/flower_2/4.4bpp");
 const u16 tileset_anims_space_1[16] = {};
 
+const u16 gTilesetAnims_InsideTV_Frame0[] = INCBIN_U16("data/tilesets/primary/building/anim/tv_turned_on/housetv.4bpp");
+const u16 gTilesetAnims_InsideTV_Frame1[] = INCBIN_U16("data/tilesets/primary/building/anim/tv_turned_on/housetv1.4bpp");
+
+const u16 *const gTilesetAnims_InsideTV[] = {
+    gTilesetAnims_InsideTV_Frame0,
+    gTilesetAnims_InsideTV_Frame1
+};
+
 u16 *const gTilesetAnims_Mauville_Flower1_VDests[] = {
     (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 96)),
     (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(NUM_TILES_IN_PRIMARY + 100)),
@@ -671,6 +679,24 @@ static void QueueAnimTiles_General_Waterfall(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_General_Waterfall);
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Waterfall[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(496)), 6 * TILE_SIZE_4BPP);
+}
+
+static void QueueAnimTiles_Inside_TV(u16 timer)
+{
+    AppendTilesetAnimToBuffer(gTilesetAnims_InsideTV[timer % ARRAY_COUNT(gTilesetAnims_InsideTV)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(707)), 8 * TILE_SIZE_4BPP);
+}
+
+void TilesetAnim_Generic_Inside(u16 timer)
+{
+    if (timer % 8 == 0)
+        QueueAnimTiles_Inside_TV(timer / 8);
+}
+
+void InitTilesetAnim_PlayerHouseInside(void)
+{
+    sPrimaryTilesetAnimCounter = 0;
+    sPrimaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sPrimaryTilesetAnimCallback = TilesetAnim_Generic_Inside;
 }
 
 void InitTilesetAnim_Petalburg(void)

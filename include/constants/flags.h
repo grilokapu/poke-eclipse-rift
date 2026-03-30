@@ -51,18 +51,18 @@
 
 #else
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
-#define FLAG_UNUSED_0x021    0x21 // Unused Flag
-#define FLAG_UNUSED_0x022    0x22 // Unused Flag
-#define FLAG_UNUSED_0x023    0x23 // Unused Flag
-#define FLAG_UNUSED_0x024    0x24 // Unused Flag
-#define FLAG_UNUSED_0x025    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
-#define FLAG_UNUSED_0x02A    0x2A // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2B // Unused Flag
+#define FLAG_LAB_POKE_BALL_1    0x20 // New Added Flag
+#define FLAG_LAB_POKE_BALL_2    0x21 // New Added Flag
+#define FLAG_LAB_POKE_BALL_3    0x22 // New Added Flag
+#define FLAG_STARTER_KANTO      0x23 // New Added Flag
+#define FLAG_STARTER_JOHTO      0x24 // New Added Flag
+#define FLAG_STARTER_HOENN      0x25 // New Added Flag
+#define FLAG_STARTER_SINNOH     0x26 // New Added Flag
+#define FLAG_STARTER_UNOVA      0x27 // New Added Flag
+#define FLAG_STARTER_KALOS      0x28 // New Added Flag
+#define FLAG_STARTER_ALOLA      0x29 // New Added Flag
+#define FLAG_STARTER_GALAR      0x2A // New Added Flag
+#define FLAG_STARTER_PALDEA     0x2B // New Added Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag
 #define FLAG_UNUSED_0x02D    0x2D // Unused Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
@@ -676,23 +676,18 @@
 
 //Egg Move Relearner
 #define FLAG_UNUSED_0x26A  0x26A // New Added Flag
-
-//Spawn Invisible
 #define FLAG_SPAWN_INVISIBLE  0x26B // New Added Flag
-
-//Caps
 #define FLAG_LEVEL_CAP_ENABLED  0x26C // New Added Flag
 #define FLAG_MINIMALGRIND_ENABLED  0x26D // New Added Flag
-
-#define FLAG_UNUSED_0x26E  0x26E // Unused Flag
-#define FLAG_UNUSED_0x26F  0x26F // Unused Flag
-#define FLAG_UNUSED_0x270  0x270 // Unused Flag
-#define FLAG_UNUSED_0x271  0x271 // Unused Flag
-#define FLAG_UNUSED_0x272  0x272 // Unused Flag
-#define FLAG_UNUSED_0x273  0x273 // Unused Flag
-#define FLAG_UNUSED_0x274  0x274 // Unused Flag
-#define FLAG_UNUSED_0x275  0x275 // Unused Flag
-#define FLAG_UNUSED_0x276  0x276 // Unused Flag
+#define FLAG_SHAKE_PSSICON  0x26E // New Added Flag
+#define FLAG_NO_RANDOM_WILD_ENCOUNTERS  0x26F // New Added Flag
+#define FLAG_RECEIVED_ULTRA_REPEL       0x270 // New Added Flag
+#define FLAG_STARTER_PACK  0x271 // New Added Flag
+#define FLAG_INTERVIEW_HIKARI_DONE  0x272 // New Added Flag
+#define FLAG_BARRY_IS_RIVAL  0x273 // New Added Flag
+#define FLAG_RIVAL_LEAVE_HOUSE  0x274 // New Added Flag
+#define FLAG_OBTAIN_EGG  0x275 // New Added Flag
+#define FLAG_REMOVE_RIVAL_LAB  0x276 // Unused Flag
 #define FLAG_UNUSED_0x277  0x277 // Unused Flag
 #define FLAG_UNUSED_0x278  0x278 // Unused Flag
 #define FLAG_UNUSED_0x279  0x279 // Unused Flag

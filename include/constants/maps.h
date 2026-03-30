@@ -14,6 +14,7 @@ enum
 
 #define MAP_GROUP(map) (map >> 8)
 #define MAP_NUM(map) (map & 0xFF)
+#define MAP_IS(map) (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(map) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(map))
 
 // IDs for dynamic warps. Both are used in the dest_warp_id field for warp events, but they
 // are never read in practice. A dest_map of MAP_DYNAMIC is used to indicate that a

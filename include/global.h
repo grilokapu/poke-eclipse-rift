@@ -619,6 +619,7 @@ struct SaveBlock2
 #endif //FREE_RECORD_MIXING_HALL_RECORDS
     /*0x624*/ u16 contestLinkResults[CONTEST_CATEGORIES_COUNT][CONTESTANT_COUNT];
     /*0x64C*/ struct BattleFrontier frontier;
+    /*0x64D*/ u8 gInitialLanguage;
 }; // sizeof=0xF2C
 
 extern struct SaveBlock2 *gSaveBlock2Ptr;
@@ -1200,8 +1201,8 @@ struct SaveBlock1
     u32 towerChallengeId;
     struct TrainerTower trainerTower[NUM_TOWER_CHALLENGE_TYPES];
 #endif //FREE_TRAINER_TOWER
-#if IS_FRLG
     u8 rivalName[PLAYER_NAME_LENGTH + 1];
+#if IS_FRLG
     struct DaycareMon route5DayCareMon;
 #endif
     // sizeof: 0x3???

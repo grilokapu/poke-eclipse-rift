@@ -1,0 +1,14 @@
+mapscripts PineveilTown_House_3_MapScripts {
+}
+
+script PineveilTown_House_3_Girl {
+    lock
+    faceplayer
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estou esperando minha mäe… ela\nsempre se atrasa um pouquinho.\pAcho que puxei isso dela!")
+        case EN: msgbox("I'm waiting for my mom… she's\nalways a little late.\pI guess I got that from her!")
+        case ES: msgbox("Estoy esperando a mi mamá… siempre\nllega un poco tarde.\p¡Creo que saqué eso de ella!")
+    }
+    release
+    end
+}

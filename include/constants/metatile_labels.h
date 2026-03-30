@@ -1058,6 +1058,10 @@
 #define METATILE_ViridianForest_HugeTreeTopMiddle_Mowed  0x281
 
 // Other
+#define METATILE_DW_PlayerHouse_TV_1                 0x342
+#define METATILE_DW_PlayerHouse_TV_2                 0x343
+#define METATILE_DW_PlayerHouse_TV_3                 0x34A
+#define METATILE_DW_PlayerHouse_TV_4                 0x34B
 #define METATILE_GeneralFrlg_CalmWater               0x12B
 #define METATILE_GeneralFrlg_Door                    0x03D
 #define METATILE_GeneralFrlg_Plain_Grass             0x00D
@@ -1070,6 +1074,7 @@
 #define METATILE_GeneralFrlg_WideTreeTopLeft_Mowed   0x00E
 #define METATILE_GeneralFrlg_WideTreeTopRight_Grass  0x00C
 #define METATILE_GeneralFrlg_WideTreeTopRight_Mowed  0x00F
+#define METATILE_PineveilTown_LabDoor                0x2E2
 #define METATILE_RSCave_CrackedFloor                 0x22F
 #define METATILE_RSCave_CrackedFloor_Hole            0x206
 #define METATILE_RSMossdeepGym_RedArrow_Down         0x205

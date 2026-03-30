@@ -15828,6 +15828,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+
+    [ITEM_ULTRA_REPEL] =
+    {
+        .name = ITEM_NAME("Ultra Repel"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Prevents weak\n"
+            "wild Pokémon\n"
+            "from appearing."),
+        .pocket = POCKET_KEY_ITEMS,
+        .sortType = ITEM_TYPE_FIELD_USE,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = FieldUseFunc_UltraRepel,
+        .iconPic = gItemIcon_UltraRepel,
+        .iconPalette = gItemIconPalette_UltraRepel,
+    },
 };
 
 #undef ITEM_NAME

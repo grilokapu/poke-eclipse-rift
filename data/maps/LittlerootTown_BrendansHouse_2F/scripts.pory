@@ -1,0 +1,54 @@
+mapscripts LittlerootTown_BrendansHouse_2F_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_LITTLEROOT_TOWN_STATE, 0: PineveilTown_RivalRoom_RivalConversation_Frame
+    ]
+}
+
+script PineveilTown_RivalRoom_RivalConversation_Frame {
+    moveplayer(Movement_PlayerGotoRival)
+    delay(20)
+    movenpc(LOCALID_BARRY_ROOM, Common_Movement_FaceLeft)
+    delay(20)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Ah, {PLAYER}! É você!\pEu estava aqui dando uma olhada\nnos meus e-mails.\pTambém vim pegar algumas coisas\npra näo faltar nada na minha\ljornada em Aetheris.\pNäo posso perder tempo - já estou\nansioso pra começar!\pVamos até a Professora Hikari,\n{PLAYER}.\pTe encontro lá!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Oh, {PLAYER}! It's you!\pI was just checking my emails.\pI also came to grab a few things\nso I won't be missing anything on\lmy journey in Aetheris.\pI can't waste any time-I'm excited\nto get started!\pLet's go see Professor Hikari,\n{PLAYER}.\pI'll meet you there!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "¡Ah, {PLAYER}! ¡Eres tú!\pEstaba revisando mis correos.\pTambién vine a recoger algunas\ncosas para no olvidar nada en mi\laventura en Aetheris.\pNo puedo perder tiempo… ¡Estoy\nansioso por empezar!\pVamos a ver a la Profesora Hikari,\n{PLAYER}.\p¡Te espero allí!", MSGBOX_AUTOCLOSE)
+    }
+    delay(30)
+    movenpc(LOCALID_BARRY_ROOM, Movement_RivalGoOutsideRoom)
+    delay(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_BARRY_ROOM, Common_Movement_ExclamationMark)
+    waitse
+    delay(20)
+    moveplayer(Common_Movement_FaceLeft)
+    delay(20)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Estou com uma estranha sensaçäo de\nque estou esquecendo alguma coisa…\pAh, deixa pra lá!\nNäo deve ser nada importante!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "I've got this strange feeling like\nI'm forgetting something…\pAh, whatever!\nIt can't be anything important!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Tengo una extraña sensación de que\nestoy olvidando algo…\pAh, ¡da igual!\n¡Seguro que no es nada importante!", MSGBOX_AUTOCLOSE)
+    }
+    delay(30)
+    movenpc(LOCALID_BARRY_ROOM, Common_Movement_WalkLeft)
+    removeobject(LOCALID_BARRY_ROOM)
+    setflag(FLAG_RIVAL_LEAVE_HOUSE)
+    setvar(VAR_LITTLEROOT_TOWN_STATE, 1)
+    release
+    end
+}
+
+movement Movement_PlayerGotoRival {
+    walk_right
+    walk_down
+    walk_right * 3
+    face_right
+}
+
+movement Movement_RivalGoOutsideRoom {
+    walk_down
+    walk_left * 3
+    walk_up
+    walk_left
+    walk_up
+    face_left
+}

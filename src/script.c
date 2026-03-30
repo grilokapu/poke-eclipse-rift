@@ -1,15 +1,36 @@
 #include "global.h"
 #include "script.h"
 #include "event_data.h"
+#include "event_object_movement.h"
+#include "fieldmap.h"
+#include "field_weather.h"
+#include "menu.h"
+#include "metaprogram.h"
 #include "mystery_gift.h"
+#include "naming_screen.h"
+#include "overworld.h"
+#include "palette.h"
 #include "random.h"
+#include "sound.h"
+#include "sprite.h"
+#include "string_util.h"
+#include "task.h"
+#include "text.h"
 #include "trainer_see.h"
+#include "trainer_pokemon_sprites.h"
 #include "util.h"
+#include "window.h"
+#include "constants/characters.h"
 #include "constants/event_objects.h"
+#include "constants/event_object_movement.h"
 #include "constants/flags.h"
+#include "constants/maps.h"
 #include "constants/map_scripts.h"
 #include "constants/script_commands.h"
+#include "constants/species.h"
 #include "field_message_box.h"
+
+#include "gba/types.h"
 
 #include "dexnav.h"
 
@@ -39,6 +60,14 @@ EWRAM_DATA u8 gMsgBoxIsCancelable = FALSE;
 extern ScrCmdFunc gScriptCmdTable[];
 extern ScrCmdFunc gScriptCmdTableEnd[];
 extern void *const gNullScriptPtr;
+
+void ClearMiniBox(void);
+static void SpriteCB_Sparkle(struct Sprite *sprite);
+u8 CreateMonSprite_PicBox2(u16 species, bool8 isShiny, s16 x, s16 y, u8 subpriority);
+void SpriteCB_ShakePokemonPic(struct Sprite *sprite);
+
+const u16 gSprite_SparkleGfx[] = INCBIN_U16("graphics/field_effects/pics/sparkle2.4bpp");
+const u16 gSprite_SparklePal[] = INCBIN_U16("graphics/field_effects/palettes/sparkle2.gbapal");
 
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd)
 {
@@ -689,3 +718,498 @@ void SetWalkingIntoSignVars(void)
     // gWalkAwayFromSignInhibitTimer = 6;
     // sMsgBoxIsCancelable = TRUE;
 }
+
+// DW Scripts Start
+
+const u8 gText_Name_Barry[] = _("Barry");
+
+void EnterRivalName(void)
+{
+    StringCopy(gSaveBlock1Ptr->rivalName, gText_Name_Barry);
+    
+    DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock1Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScript);
+}
+
+const u8 gText_Letter_O[] = _("o");
+const u8 gText_Letter_A[] = _("a");
+
+void CheckGenderString(void)
+{
+    u8 gender = gPlayerAvatar.gender;
+
+    StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_O : gText_Letter_A);
+}
+
+void GetMapTVScript(void)
+{
+    gSpecialVar_Result = 0;
+
+    if (MAP_IS(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F)) {
+        gSpecialVar_Result = 1;
+    }
+    else if (MAP_IS(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F)) {
+        gSpecialVar_Result = 2;
+    }
+}
+
+static const struct OamData sSparkleOamData =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_NORMAL,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = ST_OAM_SQUARE,
+    .x = 0,
+    .matrixNum = 0,
+    .size = ST_OAM_SIZE_2,
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sSparkleAnim0[] =
+{
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(16, 5),
+    ANIMCMD_FRAME(32, 5),
+    ANIMCMD_FRAME(48, 5),
+    ANIMCMD_FRAME(64, 5),
+    ANIMCMD_FRAME(80, 5),
+    ANIMCMD_END,
+};
+
+static const union AffineAnimCmd sSparkleAffineAnim0[] =
+{
+    AFFINEANIMCMD_FRAME(256, 256, 0, 0),
+    AFFINEANIMCMD_FRAME(4, 4, 8, 30),
+    AFFINEANIMCMD_END,
+};
+
+static const union AnimCmd *const sSparkleAnimTable[] =
+{
+    sSparkleAnim0,
+};
+
+static const union AffineAnimCmd *const sSparkleAffineAnimTable[] =
+{
+    sSparkleAffineAnim0,
+};
+
+static const struct SpriteSheet sSparkleTileData =
+{
+    .data = gSprite_SparkleGfx,
+    .size = (192 * 32) / 2,
+    .tag = 12,
+};
+
+static const struct SpritePalette sSparklePalData =
+{
+    .data = gSprite_SparklePal,
+    .tag = 12,
+};
+
+static const struct SpriteTemplate sSparkleTemplate =
+{
+    .tileTag = 12,
+    .paletteTag = 12,
+    .oam = &sSparkleOamData,
+    .anims = sSparkleAnimTable,
+    .images = NULL,
+    .affineAnims = sSparkleAffineAnimTable,
+    .callback = SpriteCB_Sparkle,
+};
+
+static void SpriteCB_Sparkle(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+        DestroySprite(sprite);
+    FreeSpritePaletteByTag(12);
+    FreeSpriteTilesByTag(12);
+}
+
+void CreateStarterSparkle(u8 localId)
+{
+    u16 objId = GetObjectEventIdByLocalId(localId);
+    if (objId == OBJECT_EVENTS_COUNT) return;
+
+    u16 spriteId = gObjectEvents[objId].spriteId;
+    u16 x = gSprites[spriteId].x - 16;
+    u16 y = gSprites[spriteId].y - 10;
+
+    LoadSpriteSheet(&sSparkleTileData);
+    LoadSpritePalette(&sSparklePalData);
+
+    u8 sparkleId = CreateSprite(&sSparkleTemplate, x, y, 0);
+    if (sparkleId != MAX_SPRITES)
+    {
+        gSprites[sparkleId].data[0] = 0;
+        gSprites[sparkleId].centerToCornerVecX = 0;
+        gSprites[sparkleId].centerToCornerVecY = 0;
+        gSprites[sparkleId].coordOffsetEnabled = TRUE;
+    }
+}
+
+u16 GetGrassStarterSprite(void)
+{
+    switch (gSpecialVar_0x8000)
+    {
+        case 0: return OBJ_EVENT_GFX_SPECIES(BULBASAUR);   // Gen 1
+        case 1: return OBJ_EVENT_GFX_SPECIES(CHIKORITA);   // Gen 2
+        case 2: return OBJ_EVENT_GFX_SPECIES(TREECKO);     // Gen 3
+        case 3: return OBJ_EVENT_GFX_SPECIES(TURTWIG);     // Gen 4
+        case 4: return OBJ_EVENT_GFX_SPECIES(SNIVY);       // Gen 5
+        case 5: return OBJ_EVENT_GFX_SPECIES(CHESPIN);     // Gen 6
+        case 6: return OBJ_EVENT_GFX_SPECIES(ROWLET);      // Gen 7
+        case 7: return OBJ_EVENT_GFX_SPECIES(GROOKEY);     // Gen 8
+        case 8: return OBJ_EVENT_GFX_SPECIES(SPRIGATITO);  // Gen 9
+
+        default:
+            return OBJ_EVENT_GFX_POKE_BALL;
+    }
+}
+
+u16 GetFireStarterSprite(void)
+{
+    switch (gSpecialVar_0x8000)
+    {
+        case 0: return OBJ_EVENT_GFX_SPECIES(CHARMANDER); // Gen 1
+        case 1: return OBJ_EVENT_GFX_SPECIES(CYNDAQUIL);  // Gen 2
+        case 2: return OBJ_EVENT_GFX_SPECIES(TORCHIC);    // Gen 3
+        case 3: return OBJ_EVENT_GFX_SPECIES(CHIMCHAR);   // Gen 4
+        case 4: return OBJ_EVENT_GFX_SPECIES(TEPIG);      // Gen 5
+        case 5: return OBJ_EVENT_GFX_SPECIES(FENNEKIN);   // Gen 6
+        case 6: return OBJ_EVENT_GFX_SPECIES(LITTEN);     // Gen 7
+        case 7: return OBJ_EVENT_GFX_SPECIES(SCORBUNNY);  // Gen 8
+        case 8: return OBJ_EVENT_GFX_SPECIES(FUECOCO);    // Gen 9
+
+        default:
+            return OBJ_EVENT_GFX_POKE_BALL;
+    }
+}
+
+u16 GetWaterStarterSprite(void)
+{
+    switch (gSpecialVar_0x8000)
+    {
+        case 0: return OBJ_EVENT_GFX_SPECIES(SQUIRTLE);  // Gen 1
+        case 1: return OBJ_EVENT_GFX_SPECIES(TOTODILE);  // Gen 2
+        case 2: return OBJ_EVENT_GFX_SPECIES(MUDKIP);    // Gen 3
+        case 3: return OBJ_EVENT_GFX_SPECIES(PIPLUP);    // Gen 4
+        case 4: return OBJ_EVENT_GFX_SPECIES(OSHAWOTT);  // Gen 5
+        case 5: return OBJ_EVENT_GFX_SPECIES(FROAKIE);   // Gen 6
+        case 6: return OBJ_EVENT_GFX_SPECIES(POPPLIO);   // Gen 7
+        case 7: return OBJ_EVENT_GFX_SPECIES(SOBBLE);    // Gen 8
+        case 8: return OBJ_EVENT_GFX_SPECIES(QUAXLY);    // Gen 9
+
+        default:
+            return OBJ_EVENT_GFX_POKE_BALL;
+    }
+}
+
+void CreateGrassStarterEventObject(void)
+{
+    u16 sprite = GetGrassStarterSprite();
+
+    if (sprite == 0)
+        return;
+
+    struct ObjectEventTemplate obj =
+    {
+        .localId = LOCALID_LAB_BALL_1,
+        .graphicsId = sprite,
+        .kind = OBJ_KIND_NORMAL,
+        .x = 1,
+        .y = 4,
+        .elevation = 3,
+        .movementType = MOVEMENT_TYPE_WALK_IN_PLACE_DOWN,
+        .movementRangeX = 0,
+        .movementRangeY = 0,
+        .trainerType = 0,
+        .trainerRange_berryTreeId = 0,
+        .script = NULL,
+        .flagId = 0,
+    };
+    
+    SpawnSpecialObjectEvent(&obj);
+}
+
+void CreateFireStarterEventObject(void)
+{
+    u16 sprite = GetFireStarterSprite();
+
+    if (sprite == 0)
+        return;
+
+    struct ObjectEventTemplate obj =
+    {
+        .localId = LOCALID_LAB_BALL_2,
+        .graphicsId = sprite,
+        .kind = OBJ_KIND_NORMAL,
+        .x = 2,
+        .y = 4,
+        .elevation = 3,
+        .movementType = MOVEMENT_TYPE_WALK_IN_PLACE_DOWN,
+        .movementRangeX = 0,
+        .movementRangeY = 0,
+        .trainerType = 0,
+        .trainerRange_berryTreeId = 0,
+        .script = NULL,
+        .flagId = 0,
+    };
+    
+    SpawnSpecialObjectEvent(&obj);
+}
+
+void CreateWaterStarterEventObject(void)
+{
+    u16 sprite = GetWaterStarterSprite();
+
+    if (sprite == 0)
+        return;
+
+    struct ObjectEventTemplate obj =
+    {
+        .localId = LOCALID_LAB_BALL_3,
+        .graphicsId = sprite,
+        .kind = OBJ_KIND_NORMAL,
+        .x = 3,
+        .y = 4,
+        .elevation = 3,
+        .movementType = MOVEMENT_TYPE_WALK_IN_PLACE_DOWN,
+        .movementRangeX = 0,
+        .movementRangeY = 0,
+        .trainerType = 0,
+        .trainerRange_berryTreeId = 0,
+        .script = NULL,
+        .flagId = 0,
+    };
+    
+    SpawnSpecialObjectEvent(&obj);
+}
+
+void ShowMonInsidePokeball(void)
+{
+    u16 map = MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB;
+
+    RemoveObjectEventByLocalIdAndMap(LOCALID_LAB_BALL_1, MAP_NUM(map), MAP_GROUP(map));
+    RemoveObjectEventByLocalIdAndMap(LOCALID_LAB_BALL_2, MAP_NUM(map), MAP_GROUP(map));
+    RemoveObjectEventByLocalIdAndMap(LOCALID_LAB_BALL_3, MAP_NUM(map), MAP_GROUP(map));
+
+    CreateGrassStarterEventObject();
+    CreateFireStarterEventObject();
+    CreateWaterStarterEventObject();
+
+    CreateStarterSparkle(LOCALID_LAB_BALL_1);
+    CreateStarterSparkle(LOCALID_LAB_BALL_2);
+    CreateStarterSparkle(LOCALID_LAB_BALL_3);
+}
+
+const u8 gText_LabKanto[]  = _("KANTO");
+const u8 gText_LabJohto[]  = _("JOHTO");
+const u8 gText_LabHoenn[]  = _("HOENN");
+const u8 gText_LabSinnoh[] = _("SINNOH");
+const u8 gText_LabUnova[]  = _("UNOVA");
+const u8 gText_LabKalos[]  = _("KALOS");
+const u8 gText_LabAlola[]  = _("ALOLA");
+const u8 gText_LabGalar[]  = _("GALAR");
+const u8 gText_LabPaldea[] = _("PALDEA");
+const u8 gText_LabUnknown[] = _("UNKNOWN");
+
+const u8 *GetRegionNameIntoLab(void)
+{
+    if (FlagGet(FLAG_STARTER_KANTO))
+        return gText_LabKanto;
+    else if (FlagGet(FLAG_STARTER_JOHTO))
+        return gText_LabJohto;
+    else if (FlagGet(FLAG_STARTER_HOENN))
+        return gText_LabHoenn;
+    else if (FlagGet(FLAG_STARTER_SINNOH))
+        return gText_LabSinnoh;
+    else if (FlagGet(FLAG_STARTER_UNOVA))
+        return gText_LabUnova;
+    else if (FlagGet(FLAG_STARTER_KALOS))
+        return gText_LabKalos;
+    else if (FlagGet(FLAG_STARTER_ALOLA))
+        return gText_LabAlola;
+    else if (FlagGet(FLAG_STARTER_GALAR))
+        return gText_LabGalar;
+    else if (FlagGet(FLAG_STARTER_PALDEA))
+        return gText_LabPaldea;
+
+    return gText_LabUnknown;
+}
+
+void SetHikariLabRegionName(void)
+{
+    const u8 *name = GetRegionNameIntoLab();
+    StringCopy(gStringVar1, name);
+}
+
+#define tState        data[0]
+#define tSpecies      data[1]
+#define tSpriteId     data[2]
+#define tWindowId     data[5]
+
+bool8 ShowMonMugshot(u16 species, u8 position)
+{
+    struct Pokemon* mon = &gPlayerParty[0];
+    bool8 isShiny = IsMonShiny(mon);
+    u8 spriteId;
+    u8 taskId;
+	
+	u8 x = 0;
+	u8 y = 0;
+
+	if (position == MUGSHOT_CENTER)
+	{
+		x = 10;
+		y = 3;
+	}
+    else if (position == MUGSHOT_DOWN_LEFT)
+    {
+        x = 18;
+		y = 6;
+    }
+
+    if (FindTaskIdByFunc(Task_PokemonPicWindow) != TASK_NONE)
+	{
+        return FALSE;
+	}
+    else
+    {
+        if (isShiny == TRUE && FlagGet(FLAG_SYS_POKEMON_GET))
+            spriteId = CreateMonSprite_PicBox2(species, TRUE, 8 * x + 40, 8 * y + 40, 0);
+        else
+            spriteId = CreateMonSprite_PicBox2(species, FALSE, 8 * x + 40, 8 * y + 40, 0);
+        taskId = CreateTask(Task_PokemonPicWindow, 80);
+
+        gTasks[taskId].tState = 0;
+        gTasks[taskId].tSpecies = species;
+        gTasks[taskId].tSpriteId = spriteId;
+        gSprites[spriteId].callback = SpriteCB_ShakePokemonPic;
+        gSprites[spriteId].oam.priority = 0;
+        ScheduleBgCopyTilemapToVram(0);
+        if (!FlagGet(FLAG_OBTAIN_EGG))
+            PlayCry_Normal(species, 0);
+        return TRUE;
+    }
+}
+
+void RemoveMonMugshot(void)
+{
+    u8 taskId = FindTaskIdByFunc(Task_PokemonPicWindow);
+    
+    if (taskId != TASK_NONE)
+    {
+        u8 spriteId = gTasks[taskId].tSpriteId;
+
+        if (spriteId < MAX_SPRITES)
+        {
+            struct Sprite *sprite = &gSprites[spriteId];
+
+            FreeSpriteOamMatrix(sprite);
+            DestroySprite(sprite);
+            FreeSpriteTiles(sprite);
+            FreeSpritePalette(sprite);
+        }
+        DestroyTask(taskId);
+    }
+}
+
+static const union AffineAnimCmd sAffineAnim_ShakePokemon[] =
+{
+    AFFINEANIMCMD_FRAME(0, 0, 128, 1), //Start rotated left
+	AFFINEANIMCMD_FRAME(16, 16, -8, 16), //Double sprite size + rotate right
+	AFFINEANIMCMD_FRAME(0, 0, -3, 8), //End at right 24
+	AFFINEANIMCMD_FRAME(0, 0, 3, 16), //End at left 24
+	AFFINEANIMCMD_FRAME(0, 0, -3, 16), //End at right 24
+	AFFINEANIMCMD_FRAME(0, 0, 3, 16), //End at left 24
+	AFFINEANIMCMD_FRAME(0, 0, -3, 8), //End at 0
+	AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd* const sAffineAnimTable_ShakePokemon[] =
+{
+    sAffineAnim_ShakePokemon,
+};
+
+void StartShakeAffineAnimForPokemon(struct Sprite* sprite)
+{
+    sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
+    sprite->oam.matrixNum = AllocOamMatrix();
+    sprite->affineAnims = sAffineAnimTable_ShakePokemon;
+    StartSpriteAffineAnim(sprite, 0);
+}
+
+void SpriteCB_ShakePokemonPic(struct Sprite *sprite)
+{
+	if (FlagGet(FLAG_OBTAIN_EGG))
+	{
+		StartShakeAffineAnimForPokemon(sprite);
+		sprite->callback = SpriteCallbackDummy;
+	}
+	else
+	{
+		if (sprite->data[0] < 30)
+		{
+			sprite->x2 = (sprite->data[0] % 6) - 3;
+			sprite->data[0]++;
+		}
+		else
+		{
+			sprite->x2 = 0;
+			sprite->callback = SpriteCallbackDummy;
+		}
+	}
+}
+
+u8 CreateMonSprite_PicBox2(u16 species, bool8 isShiny, s16 x, s16 y, u8 subpriority)
+{
+    s32 spriteId = CreateMonPicSprite(species, isShiny, 0x8000, TRUE, x, y, 0, species);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
+    if (spriteId == 0xFFFF)
+        return MAX_SPRITES;
+    else
+        return spriteId;
+}
+
+const u8 gText_TypeGrass[] = _("Grass-Type");
+const u8 gText_TypeFire[] = _("Fire-Type");
+const u8 gText_TypeWater[] = _("Water-Type");
+const u8 gText_TypeGrama[] = _("Tipo Grama");
+const u8 gText_TypeFogo[] = _("Tipo Fogo");
+const u8 gText_TypeAgua[] = _("Tipo Água");
+const u8 gText_TypePlanta[] = _("Tipo Planta");
+const u8 gText_TypeFuego[]  = _("Tipo Fuego");
+const u8 gText_TypeAguaEs[] = _("Tipo Agua");
+
+const u8 *const gTypeNames[3][3] =
+{
+    { gText_TypeGrama, gText_TypeGrass, gText_TypePlanta },
+    { gText_TypeFogo,  gText_TypeFire,  gText_TypeFuego  },
+    { gText_TypeAgua,  gText_TypeWater, gText_TypeAguaEs }
+};
+
+void BufferTypeName(void)
+{
+    u8 typeVar = VarGet(VAR_STORE_FIST_MON_TYPE);
+    u8 langVar = VarGet(VAR_LANGUAGE);
+
+    u8 typeIndex;
+
+    switch (typeVar)
+    {
+        case TYPE_GRASS: typeIndex = 0; break;
+        case TYPE_FIRE:  typeIndex = 1; break;
+        case TYPE_WATER: typeIndex = 2; break;
+        default:         typeIndex = 0; break;
+    }
+
+    if (langVar > 2)
+        langVar = EN; // fallback
+
+    StringCopy(gStringVar1, gTypeNames[typeIndex][langVar]);
+}
+// DW Scripts End

@@ -217,6 +217,10 @@ static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8);
 static void Task_NewGameBirchSpeech_ChooseGender(u8);
 static void NewGameBirchSpeech_ShowGenderMenu(void);
 static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void);
+static void Task_NewGameBirchSpeech_WaitToShowLanguageMenu(u8);
+static void Task_NewGameBirchSpeech_ChooseLanguage(u8);
+static void NewGameBirchSpeech_ShowLanguageMenu(void);
+static s8 NewGameBirchSpeech_ProcessLanguageMenuInput(void);
 static void NewGameBirchSpeech_ClearGenderWindow(u8, u8);
 static void Task_NewGameBirchSpeech_WhatsYourName(u8);
 static void Task_NewGameBirchSpeech_SlideOutOldGenderSprite(u8);
@@ -419,6 +423,15 @@ static const struct WindowTemplate sNewGameBirchSpeechTextWindows[] =
         .paletteNum = 15,
         .baseBlock = 0x85
     },
+    {
+        .bg = 0,
+        .tilemapLeft = 3,
+        .tilemapTop = 5,
+        .width = 9,
+        .height = 6,
+        .paletteNum = 15,
+        .baseBlock = 0x6D
+    },
     DUMMY_WIN_TEMPLATE
 };
 
@@ -476,50 +489,66 @@ static const struct MenuAction sMenuActions_Gender[] = {
     {gText_Girl, {NULL}}
 };
 
+static const struct MenuAction sMenuActions_GenderPt[] = {
+    {gText_BoyPt, {NULL}},
+    {gText_GirlPt, {NULL}}
+};
+
+static const struct MenuAction sMenuActions_GenderEs[] = {
+    {gText_BoyEs, {NULL}},
+    {gText_GirlEs, {NULL}}
+};
+
+static const struct MenuAction sMenuActions_Language[] = {
+    {gText_PtLang, {NULL}},
+    {gText_EngLang, {NULL}},
+    {gText_SpLang, {NULL}}
+};
+
 static const u8 *const sMalePresetNames[] = {
-    COMPOUND_STRING("STU"),
-    COMPOUND_STRING("MILTON"),
-    COMPOUND_STRING("TOM"),
-    COMPOUND_STRING("KENNY"),
-    COMPOUND_STRING("REID"),
-    COMPOUND_STRING("JUDE"),
-    COMPOUND_STRING("JAXSON"),
-    COMPOUND_STRING("EASTON"),
-    COMPOUND_STRING("WALKER"),
-    COMPOUND_STRING("TERU"),
-    COMPOUND_STRING("JOHNNY"),
-    COMPOUND_STRING("BRETT"),
-    COMPOUND_STRING("SETH"),
-    COMPOUND_STRING("TERRY"),
-    COMPOUND_STRING("CASEY"),
-    COMPOUND_STRING("DARREN"),
-    COMPOUND_STRING("LANDON"),
-    COMPOUND_STRING("COLLIN"),
-    COMPOUND_STRING("STANLEY"),
-    COMPOUND_STRING("QUINCY")
+    COMPOUND_STRING("Albert"),
+    COMPOUND_STRING("Flavio"),
+    COMPOUND_STRING("Enzo"),
+    COMPOUND_STRING("Noah"),
+    COMPOUND_STRING("George"),
+    COMPOUND_STRING("Jordan"),
+    COMPOUND_STRING("Lucas"),
+    COMPOUND_STRING("Jair"),
+    COMPOUND_STRING("Gyro"),
+    COMPOUND_STRING("Toguro"),
+    COMPOUND_STRING("Tarcio"),
+    COMPOUND_STRING("Bryce"),
+    COMPOUND_STRING("Thor"),
+    COMPOUND_STRING("Gabiel"),
+    COMPOUND_STRING("Patrick"),
+    COMPOUND_STRING("Daryl"),
+    COMPOUND_STRING("Rick"),
+    COMPOUND_STRING("André"),
+    COMPOUND_STRING("Rocky"),
+    COMPOUND_STRING("Jean")
 };
 
 static const u8 *const sFemalePresetNames[] = {
-    COMPOUND_STRING("KIMMY"),
-    COMPOUND_STRING("TIARA"),
-    COMPOUND_STRING("BELLA"),
-    COMPOUND_STRING("JAYLA"),
-    COMPOUND_STRING("ALLIE"),
-    COMPOUND_STRING("LIANNA"),
-    COMPOUND_STRING("SARA"),
-    COMPOUND_STRING("MONICA"),
-    COMPOUND_STRING("CAMILA"),
-    COMPOUND_STRING("AUBREE"),
-    COMPOUND_STRING("RUTHIE"),
-    COMPOUND_STRING("HAZEL"),
-    COMPOUND_STRING("NADINE"),
-    COMPOUND_STRING("TANJA"),
-    COMPOUND_STRING("YASMIN"),
-    COMPOUND_STRING("NICOLA"),
-    COMPOUND_STRING("LILLIE"),
-    COMPOUND_STRING("TERRA"),
-    COMPOUND_STRING("LUCY"),
-    COMPOUND_STRING("HALIE")
+    COMPOUND_STRING("Tammy"),
+    COMPOUND_STRING("Sofia"),
+    COMPOUND_STRING("Bella"),
+    COMPOUND_STRING("Samira"),
+    COMPOUND_STRING("Milka"),
+    COMPOUND_STRING("Sora"),
+    COMPOUND_STRING("Maria"),
+    COMPOUND_STRING("Mia"),
+    COMPOUND_STRING("Paula"),
+    COMPOUND_STRING("Helena"),
+    COMPOUND_STRING("Alice"),
+    COMPOUND_STRING("Emma"),
+    COMPOUND_STRING("Aurora"),
+    COMPOUND_STRING("Janja"),
+    COMPOUND_STRING("Michele"),
+    COMPOUND_STRING("Liz"),
+    COMPOUND_STRING("Ayla"),
+    COMPOUND_STRING("Olívia"),
+    COMPOUND_STRING("Laura"),
+    COMPOUND_STRING("Romeika")
 };
 
 // The number of male vs. female names is assumed to be the same.
@@ -1317,7 +1346,7 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     AddBirchSpeechObjects(taskId);
     BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     gTasks[taskId].tBG1HOFS = 0;
-    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowLanguageMenu;
     gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
     gTasks[taskId].data[3] = 0xFF;
     gTasks[taskId].tTimer = 0xD8;
@@ -1366,7 +1395,18 @@ static void Task_NewGameBirchSpeech_WaitForSpriteFadeInWelcome(u8 taskId)
             PutWindowTilemap(0);
             CopyWindowToVram(0, COPYWIN_GFX);
             NewGameBirchSpeech_ClearWindow(0);
-            StringExpandPlaceholders(gStringVar4, gText_Birch_Welcome);
+            switch (VarGet(VAR_LANGUAGE))
+            {
+                case PORTUGUESE_LANGUAGE:
+                    StringExpandPlaceholders(gStringVar4, gText_Birch_WelcomePt);
+                    break;    
+                case ENGLISH_LANGUAGE:
+                    StringExpandPlaceholders(gStringVar4, gText_Birch_Welcome);
+                    break;
+                case SPANISH_LANGUAGE:
+                    StringExpandPlaceholders(gStringVar4, gText_Birch_WelcomeEs);
+                    break;
+            }
             AddTextPrinterForMessage(TRUE);
             gTasks[taskId].func = Task_NewGameBirchSpeech_ThisIsAPokemon;
         }
@@ -1378,7 +1418,17 @@ static void Task_NewGameBirchSpeech_ThisIsAPokemon(u8 taskId)
     if (!gPaletteFade.active && !RunTextPrintersAndIsPrinter0Active())
     {
         gTasks[taskId].func = Task_NewGameBirchSpeech_MainSpeech;
-        StringExpandPlaceholders(gStringVar4, gText_ThisIsAPokemon);
+        switch (VarGet(VAR_LANGUAGE))
+        {   case PORTUGUESE_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_ThisIsAPokemonPt);
+                break;
+            case ENGLISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_ThisIsAPokemon);
+                break;
+            case SPANISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_ThisIsAPokemonEs);
+                break;
+        }
         AddTextPrinterWithCallbackForMessage(TRUE, NewGameBirchSpeech_WaitForThisIsPokemonText);
         sBirchSpeechMainTaskId = taskId;
     }
@@ -1387,8 +1437,18 @@ static void Task_NewGameBirchSpeech_ThisIsAPokemon(u8 taskId)
 static void Task_NewGameBirchSpeech_MainSpeech(u8 taskId)
 {
     if (!RunTextPrintersAndIsPrinter0Active())
-    {
-        StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeech);
+    {   
+        switch (VarGet(VAR_LANGUAGE))
+        {   case PORTUGUESE_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeechPt);
+                break;
+            case ENGLISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeech);
+                break;
+            case SPANISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_MainSpeechEs);
+                break;
+        }
         AddTextPrinterForMessage(TRUE);
         gTasks[taskId].func = Task_NewGameBirchSpeech_AndYouAre;
     }
@@ -1443,7 +1503,17 @@ static void Task_NewGameBirchSpeech_AndYouAre(u8 taskId)
     if (!RunTextPrintersAndIsPrinter0Active())
     {
         sStartedPokeBallTask = FALSE;
-        StringExpandPlaceholders(gStringVar4, gText_Birch_AndYouAre);
+        switch (VarGet(VAR_LANGUAGE))
+        {   case PORTUGUESE_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_AndYouArePt);
+                break;
+            case ENGLISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_AndYouAre);
+                break;
+            case SPANISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_AndYouAreEs);
+                break;
+        }
         AddTextPrinterForMessage(TRUE);
         gTasks[taskId].func = Task_NewGameBirchSpeech_StartBirchLotadPlatformFade;
     }
@@ -1515,9 +1585,78 @@ static void Task_NewGameBirchSpeech_WaitForPlayerFadeIn(u8 taskId)
 static void Task_NewGameBirchSpeech_BoyOrGirl(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
-    StringExpandPlaceholders(gStringVar4, gText_Birch_BoyOrGirl);
+    switch (VarGet(VAR_LANGUAGE))
+    {   case PORTUGUESE_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_BoyOrGirlPt);
+            break;
+        case ENGLISH_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_BoyOrGirl);
+            break;
+        case SPANISH_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_BoyOrGirlEs);
+            break;
+    }
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowGenderMenu;
+}
+
+static void Task_NewGameBirchSpeech_WaitToShowLanguageMenu(u8 taskId)
+{
+    // wait for the palette fade to complete
+    if (!gPaletteFade.active)
+    {
+        // initialize windows/text for both the prompt and menu
+        InitWindows(sNewGameBirchSpeechTextWindows);
+        LoadMainMenuWindowFrameTiles(0, 0xF3);
+        LoadMessageBoxGfx(0, BIRCH_DLG_BASE_TILE_NUM, BG_PLTT_ID(15));
+        DrawDialogFrameWithCustomTile(0, TRUE, BIRCH_DLG_BASE_TILE_NUM);
+        PutWindowTilemap(0);
+        CopyWindowToVram(0, COPYWIN_GFX);
+
+        // print title text in window0
+        NewGameBirchSpeech_ClearWindow(0);
+        AddTextPrinterParameterized(0, FONT_NORMAL, gText_SelectLang, 0, 1, TEXT_SKIP_DRAW, NULL);
+
+        // display menu in window1
+        NewGameBirchSpeech_ShowLanguageMenu();
+
+        // discard any lingering buttons (player held A from New Game)
+        gMain.newKeys = 0;
+        gMain.heldKeys = 0;
+
+        gTasks[taskId].func = Task_NewGameBirchSpeech_ChooseLanguage;
+    }
+}
+
+static void Task_NewGameBirchSpeech_ChooseLanguage(u8 taskId)
+{
+    s8 selection = NewGameBirchSpeech_ProcessLanguageMenuInput();
+
+    // Menu_ProcessInputNoWrap returns:
+    //   0..n-1: chosen option
+    //   MENU_B_PRESSED (-1) if B was hit
+    //   MENU_NOTHING_CHOSEN (-2) if nothing pressed
+    // Only proceed when the user actually selects an entry (>=0)
+    if (selection >= 0)
+    {
+        switch (selection)
+        {
+        case 0:
+            gSaveBlock2Ptr->gInitialLanguage = PORTUGUESE_LANGUAGE;
+            break;
+        case 1:
+            gSaveBlock2Ptr->gInitialLanguage = ENGLISH_LANGUAGE;
+            break;
+        case 2:
+            gSaveBlock2Ptr->gInitialLanguage = SPANISH_LANGUAGE;
+            break;
+        }
+        VarSet(VAR_LANGUAGE, gSaveBlock2Ptr->gInitialLanguage);
+
+        NewGameBirchSpeech_ClearGenderWindow(3, 1);
+        ClearDialogWindowAndFrame(0, TRUE);
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowBirch;
+    }
 }
 
 static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8 taskId)
@@ -1607,7 +1746,18 @@ static void Task_NewGameBirchSpeech_SlideInNewGenderSprite(u8 taskId)
 static void Task_NewGameBirchSpeech_WhatsYourName(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
-    StringExpandPlaceholders(gStringVar4, gText_Birch_WhatsYourName);
+    switch (VarGet(VAR_LANGUAGE))
+    {   
+        case PORTUGUESE_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_WhatsYourNamePt);
+            break;
+        case SPANISH_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_WhatsYourNameEs);
+            break;
+        default:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_WhatsYourName);
+            break;
+    }
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint;
 }
@@ -1642,7 +1792,18 @@ static void Task_NewGameBirchSpeech_StartNamingScreen(u8 taskId)
 static void Task_NewGameBirchSpeech_SoItsPlayerName(u8 taskId)
 {
     NewGameBirchSpeech_ClearWindow(0);
-    StringExpandPlaceholders(gStringVar4, gText_Birch_SoItsPlayer);
+    switch (VarGet(VAR_LANGUAGE))
+    {   
+        case PORTUGUESE_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_SoItsPlayerPt);
+            break;
+        case SPANISH_LANGUAGE:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_SoItsPlayerEs);
+            break;
+        default:
+            StringExpandPlaceholders(gStringVar4, gText_Birch_SoItsPlayer);
+            break;
+    }
     AddTextPrinterForMessage(TRUE);
     gTasks[taskId].func = Task_NewGameBirchSpeech_CreateNameYesNo;
 }
@@ -1708,7 +1869,18 @@ static void Task_NewGameBirchSpeech_ReshowBirchLotad(u8 taskId)
         NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
         NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
         NewGameBirchSpeech_ClearWindow(0);
-        StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
+        switch (VarGet(VAR_LANGUAGE))
+        {   
+            case PORTUGUESE_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayerPt);
+                break;
+            case ENGLISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayer);
+                break;
+            case SPANISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_YourePlayerEs);
+                break;
+        }
         AddTextPrinterForMessage(TRUE);
         gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForSpriteFadeInAndTextPrinter;
     }
@@ -1756,7 +1928,18 @@ static void Task_NewGameBirchSpeech_AreYouReady(u8 taskId)
         gTasks[taskId].tPlayerSpriteId = spriteId;
         NewGameBirchSpeech_StartFadeInTarget1OutTarget2(taskId, 2);
         NewGameBirchSpeech_StartFadePlatformOut(taskId, 1);
-        StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReady);
+        switch (VarGet(VAR_LANGUAGE))
+        {
+            case PORTUGUESE_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReadyPt);
+                break;
+            case ENGLISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReady);
+                break;
+            case SPANISH_LANGUAGE:
+                StringExpandPlaceholders(gStringVar4, gText_Birch_AreYouReadyEs);
+                break;
+        }
         AddTextPrinterForMessage(TRUE);
         gTasks[taskId].func = Task_NewGameBirchSpeech_ShrinkPlayer;
     }
@@ -2121,11 +2304,37 @@ static void NewGameBirchSpeech_StartFadePlatformOut(u8 taskId, u8 delay)
 #undef tDelay
 #undef tDelayTimer
 
+static void NewGameBirchSpeech_ShowLanguageMenu(void)
+{
+    DrawMainMenuWindowBorder(&sNewGameBirchSpeechTextWindows[3], 0xF3);
+    FillWindowPixelBuffer(3, PIXEL_FILL(1));
+    PrintMenuTable(3, ARRAY_COUNT(sMenuActions_Language), sMenuActions_Language);
+    InitMenuInUpperLeftCornerNormal(3, ARRAY_COUNT(sMenuActions_Language), 0);
+    PutWindowTilemap(3);
+    CopyWindowToVram(3, COPYWIN_FULL);
+}
+
+static s8 NewGameBirchSpeech_ProcessLanguageMenuInput(void)
+{
+    return Menu_ProcessInputNoWrap();
+}
+
 static void NewGameBirchSpeech_ShowGenderMenu(void)
 {
     DrawMainMenuWindowBorder(&sNewGameBirchSpeechTextWindows[1], 0xF3);
     FillWindowPixelBuffer(1, PIXEL_FILL(1));
-    PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Gender), sMenuActions_Gender);
+    switch (VarGet(VAR_LANGUAGE))
+    {
+        case PORTUGUESE_LANGUAGE:
+            PrintMenuTable(1, ARRAY_COUNT(sMenuActions_GenderPt), sMenuActions_GenderPt);
+            break;
+        case ENGLISH_LANGUAGE:
+            PrintMenuTable(1, ARRAY_COUNT(sMenuActions_Gender), sMenuActions_Gender);
+            break;
+        case SPANISH_LANGUAGE:
+            PrintMenuTable(1, ARRAY_COUNT(sMenuActions_GenderEs), sMenuActions_GenderEs);
+            break;
+    }
     InitMenuInUpperLeftCornerNormal(1, ARRAY_COUNT(sMenuActions_Gender), 0);
     PutWindowTilemap(1);
     CopyWindowToVram(1, COPYWIN_FULL);
