@@ -707,6 +707,16 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
             break;
         }
     }
+
+    if (FlagGet(FLAG_MINIMALGRIND_ENABLED)){
+			u8 perfect = 31;
+			SetMonData(egg, MON_DATA_HP_IV, &perfect);
+			SetMonData(egg, MON_DATA_ATK_IV, &perfect);
+			SetMonData(egg, MON_DATA_DEF_IV, &perfect);
+			SetMonData(egg, MON_DATA_SPATK_IV, &perfect);
+			SetMonData(egg, MON_DATA_SPDEF_IV, &perfect);
+			SetMonData(egg, MON_DATA_SPEED_IV, &perfect);
+	}
 }
 
 static void InheritPokeball(struct Pokemon *egg, struct BoxPokemon *father, struct BoxPokemon *mother)
@@ -1127,6 +1137,17 @@ void CreateEgg(struct Pokemon *mon, u16 species, bool8 setHotSpringsLocation)
 
     isEgg = TRUE;
     SetMonData(mon, MON_DATA_IS_EGG, &isEgg);
+    
+    if (FlagGet(FLAG_MINIMALGRIND_ENABLED))
+	{
+        u8 maxIV = 31;
+		SetMonData(mon, MON_DATA_HP_IV, &maxIV);
+		SetMonData(mon, MON_DATA_ATK_IV, &maxIV);
+		SetMonData(mon, MON_DATA_DEF_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPATK_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPDEF_IV, &maxIV);
+		SetMonData(mon, MON_DATA_SPEED_IV, &maxIV);
+	}
 }
 
 static void SetInitialEggData(struct Pokemon *mon, u16 species, struct DayCare *daycare)

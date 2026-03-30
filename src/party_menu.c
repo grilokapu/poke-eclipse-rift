@@ -4788,6 +4788,17 @@ void ItemUseCB_BattleChooseMove(u8 taskId, TaskFunc task)
     gTasks[taskId].func = Task_HandleWhichMoveInput;
 }
 
+static bool8 IsItemVitaminOrWing(u16 item)
+{
+	if (item == ITEM_PROTEIN || item == ITEM_IRON || item == ITEM_CARBOS || item == ITEM_CALCIUM 
+				|| item == ITEM_HP_UP || item == ITEM_ZINC || item == ITEM_HEALTH_WING || item == ITEM_MUSCLE_WING || item == ITEM_RESIST_WING
+				|| item == ITEM_GENIUS_WING || item == ITEM_CLEVER_WING || item == ITEM_SWIFT_WING)
+	{
+		return TRUE;
+	}
+	return FALSE; 
+}
+
 void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
 {
     u16 hp = 0;
@@ -4795,6 +4806,11 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     enum Item item = gSpecialVar_ItemId;
     bool8 canHeal, cannotUse;
     u32 oldStatus = GetMonData(mon, MON_DATA_STATUS);
+
+    if (FlagGet(FLAG_MINIMALGRIND_ENABLED) && IsItemVitaminOrWing(item))
+    {
+        cannotUse = TRUE;
+    }
 
     if (NotUsingHPEVItemOnShedinja(mon, item) == FALSE)
     {

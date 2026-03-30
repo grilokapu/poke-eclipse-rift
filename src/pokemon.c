@@ -1457,6 +1457,17 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u32 personal
     //using gen 3-4 ability formula, it was changed in later gens
     if (GetSpeciesAbility(species, 1))
         SetBoxMonData(boxMon, MON_DATA_ABILITY_NUM, &value);
+
+    if (FlagGet(FLAG_MINIMALGRIND_ENABLED))
+    {
+        u8 perfect = 31;
+        SetBoxMonData(boxMon, MON_DATA_HP_IV, &perfect);
+        SetBoxMonData(boxMon, MON_DATA_ATK_IV, &perfect);
+        SetBoxMonData(boxMon, MON_DATA_DEF_IV, &perfect);
+        SetBoxMonData(boxMon, MON_DATA_SPEED_IV, &perfect);
+        SetBoxMonData(boxMon, MON_DATA_SPATK_IV, &perfect);
+        SetBoxMonData(boxMon, MON_DATA_SPDEF_IV, &perfect);
+    }
 }
 
 static bool32 IsValidGender(u32 gender)

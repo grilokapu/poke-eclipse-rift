@@ -226,6 +226,10 @@ enum Connection
     CONNECTION_EMERGE
 };
 
+#define PORTUGUESE_LANGUAGE 1
+#define ENGLISH_LANGUAGE 2
+#define SPANISH_LANGUAGE 3
+
 #if TESTING
 #include "config/test.h"
 #endif

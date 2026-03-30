@@ -71,6 +71,7 @@ const u32 gObjectEventPic_Twin[] = INCBIN_U32("graphics/object_events/pics/peopl
 const u32 gObjectEventPic_Boy1[] = INCBIN_U32("graphics/object_events/pics/people/boy_1.4bpp");
 const u32 gObjectEventPic_Girl1[] = INCBIN_U32("graphics/object_events/pics/people/girl_1.4bpp");
 const u32 gObjectEventPic_Boy2[] = INCBIN_U32("graphics/object_events/pics/people/boy_2.4bpp");
+const u16 gObjectEventPal_Boy2[] = INCBIN_U16("graphics/object_events/palettes/boy_2.gbapal");
 const u32 gObjectEventPic_Girl2[] = INCBIN_U32("graphics/object_events/pics/people/girl_2.4bpp");
 const u32 gObjectEventPic_LittleBoy[] = INCBIN_U32("graphics/object_events/pics/people/little_boy.4bpp");
 const u32 gObjectEventPic_LittleGirl[] = INCBIN_U32("graphics/object_events/pics/people/little_girl.4bpp");
@@ -86,6 +87,7 @@ const u32 gObjectEventPic_ExpertM[] = INCBIN_U32("graphics/object_events/pics/pe
 const u32 gObjectEventPic_ExpertF[] = INCBIN_U32("graphics/object_events/pics/people/expert_f.4bpp");
 const u32 gObjectEventPic_Man2[] = INCBIN_U32("graphics/object_events/pics/people/man_2.4bpp");
 const u32 gObjectEventPic_Woman3[] = INCBIN_U32("graphics/object_events/pics/people/woman_3.4bpp");
+const u16 gObjectEventPal_Woman3[] = INCBIN_U16("graphics/object_events/palettes/woman_3.gbapal");
 const u32 gObjectEventPic_PokefanM[] = INCBIN_U32("graphics/object_events/pics/people/pokefan_m.4bpp");
 const u32 gObjectEventPic_Woman4[] = INCBIN_U32("graphics/object_events/pics/people/woman_4.4bpp");
 const u32 gObjectEventPic_Cook[] = INCBIN_U32("graphics/object_events/pics/people/cook.4bpp");
@@ -164,6 +166,7 @@ const u32 gObjectEventPic_Regi[] = INCBIN_U32("graphics/object_events/pics/pokem
 const u32 gObjectEventPic_RayquazaStill[] = INCBIN_U32("graphics/object_events/pics/pokemon_old/rayquaza_still.4bpp");
 const u32 gObjectEventPic_TuberMSwimming[] = INCBIN_U32("graphics/object_events/pics/people/tuber_m_swimming.4bpp");
 const u32 gObjectEventPic_Mom[] = INCBIN_U32("graphics/object_events/pics/people/mom.4bpp");
+const u16 gObjectEventPal_Mom[] = INCBIN_U16("graphics/object_events/palettes/mom.gbapal");
 const u16 gObjectEventPal_Kyogre[] = INCBIN_U16("graphics/object_events/palettes/kyogre.gbapal");
 const u16 gObjectEventPal_KyogreReflection[] = INCBIN_U16("graphics/object_events/palettes/kyogre_reflection.gbapal");
 const u16 gObjectEventPal_Groudon[] = INCBIN_U16("graphics/object_events/palettes/groudon.gbapal");
@@ -468,12 +471,21 @@ const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effe
 
 const u32 gObjectEventPic_ApricornTree[] = INCBIN_U32("graphics/object_events/pics/misc/apricorn_tree.4bpp");
 
-#if IS_FRLG
-
 const u16 gObjectEventPic_RedNormal[] = INCBIN_U16("graphics/object_events/pics/people/red/red_normal.4bpp");
+const u16 gObjectEventPic_RedSurfRun[] = INCBIN_U16("graphics/object_events/pics/people/red/red_surf_run.4bpp");
+const u16 gObjectEventPic_Barry[] = INCBIN_U16("graphics/object_events/pics/people/barry.4bpp");
+const u16 gObjectEventPal_Barry[] = INCBIN_U16("graphics/object_events/palettes/barry.gbapal");
+const u16 gObjectEventPic_Hikari[] = INCBIN_U16("graphics/object_events/pics/people/hikari.4bpp");
+const u16 gObjectEventPal_Hikari[] = INCBIN_U16("graphics/object_events/palettes/hikari.gbapal");
+const u16 gObjectEventPal_Cameraman[] = INCBIN_U16("graphics/object_events/palettes/cameraman.gbapal");
+const u16 gObjectEventPal_Man_5[] = INCBIN_U16("graphics/object_events/palettes/man_5.gbapal");
+const u16 gObjectEventPal_Girl1[] = INCBIN_U16("graphics/object_events/palettes/girl_1.gbapal");
+const u16 gObjectEventPal_Scientist_1[] = INCBIN_U16("graphics/object_events/palettes/scientist_1.gbapal");
+const u16 gObjectEventPal_Girl_2[] = INCBIN_U16("graphics/object_events/palettes/girl_2.gbapal");
+
+#if IS_FRLG
 const u16 gObjectEventPic_RedBike[] = INCBIN_U16("graphics/object_events/pics/people/red/red_bike.4bpp");
 const u16 gObjectEventPic_RedSurf[] = INCBIN_U16("graphics/object_events/pics/people/red/red_surf.4bpp");
-const u16 gObjectEventPic_RedSurfRun[] = INCBIN_U16("graphics/object_events/pics/people/red/red_surf_run.4bpp");
 const u16 gObjectEventPic_RedFish[] = INCBIN_U16("graphics/object_events/pics/people/red/red_fish.4bpp");
 const u16 gObjectEventPic_RedItem[] = INCBIN_U16("graphics/object_events/pics/people/red/red_item.4bpp");
 const u16 gObjectEventPic_RedVSSeekerBike[] = INCBIN_U16("graphics/object_events/pics/people/red/red_vs_seeker_bike.4bpp");

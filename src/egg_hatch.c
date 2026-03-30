@@ -964,6 +964,9 @@ u8 GetEggCyclesToSubtract(void)
                 return 2;
         }
     }
+    if (FlagGet(FLAG_MINIMALGRIND_ENABLED)){
+        return 100;
+    }
     return 1;
 }
 

@@ -46,7 +46,7 @@ u32 GetSoftLevelCapExpValue(u32 level, u32 expValue)
     u32 levelDifference;
     u32 currentLevelCap = GetCurrentLevelCap();
 
-    if (B_EXP_CAP_TYPE == EXP_CAP_NONE)
+    if (B_EXP_CAP_TYPE == EXP_CAP_NONE || !FlagGet(FLAG_LEVEL_CAP_ENABLED))
         return expValue;
 
     if (level < currentLevelCap)
@@ -109,7 +109,7 @@ u32 GetCurrentEVCap(void)
     {
         return VarGet(B_EV_CAP_VARIABLE);
     }
-    else if (B_EV_CAP_TYPE == EV_CAP_NO_GAIN)
+    else if (B_EV_CAP_TYPE == EV_CAP_NO_GAIN || !FlagGet(FLAG_MINIMALGRIND_ENABLED))
     {
         return 0;
     }
