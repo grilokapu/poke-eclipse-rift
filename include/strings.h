@@ -2229,4 +2229,73 @@ extern const u8 gText_SpLang[];
 extern const u8 gText_EngLang[];
 extern const u8 gText_SelectLang[];
 
+// PT-BR
+extern const u8 gText_ChoosePokemonPt[];
+extern const u8 gText_ChoosePokemonCancelPt[];
+extern const u8 gText_ChoosePokemonConfirmPt[];
+extern const u8 gText_MoveToWherePt[];
+extern const u8 gText_TeachWhichPokemon2Pt[];
+extern const u8 gText_UseOnWhichPokemonPt[];
+extern const u8 gText_GiveToWhichPokemonPt[];
+extern const u8 gText_NothingToCutPt[];
+extern const u8 gText_CantSurfHerePt[];
+extern const u8 gText_AlreadySurfingPt[];
+extern const u8 gText_CurrentIsTooFastPt[];
+extern const u8 gText_EnjoyCyclingPt[];
+extern const u8 gText_InUseAlready_Pt[];
+extern const u8 gText_CantUseHerePt[];
+extern const u8 gText_NoPokemonForBattlePt[];
+extern const u8 gText_ChoosePokemon2Pt[];
+extern const u8 gText_NotEnoughHpPt[];
+extern const u8 gText_PokemonAreNeededPt[];
+extern const u8 gText_PokemonCantBeSamePt[];
+extern const u8 gText_NoIdenticalHoldItemsPt[];
+extern const u8 gText_EmptyString2Pt[];
+extern const u8 gText_DoWhatWithPokemonPt[];
+extern const u8 gText_RestoreWhichMovePt[];
+extern const u8 gText_BoostPpPt[];
+extern const u8 gText_DoWhatWithItemPt[];
+extern const u8 gText_DoWhatWithMailPt[];
+extern const u8 gText_AlreadyHoldingOnePt[];
+extern const u8 gText_WhichAppliancePt[];
+extern const u8 gText_NextFusionMonPt[];
+extern const u8 gText_YouHaveNoPokemonPt[];
+extern const u8 gText_SendWhichMonToPCPt[];
+extern const u8 gText_MoveItemWherePt[];
+
+
+// ESPAÑOL
+extern const u8 gText_ChoosePokemonSpa[];
+extern const u8 gText_ChoosePokemonCancelSpa[];
+extern const u8 gText_ChoosePokemonConfirmSpa[];
+extern const u8 gText_MoveToWhereSpa[];
+extern const u8 gText_TeachWhichPokemon2Spa[];
+extern const u8 gText_UseOnWhichPokemonSpa[];
+extern const u8 gText_GiveToWhichPokemonSpa[];
+extern const u8 gText_NothingToCutSpa[];
+extern const u8 gText_CantSurfHereSpa[];
+extern const u8 gText_AlreadySurfingSpa[];
+extern const u8 gText_CurrentIsTooFastSpa[];
+extern const u8 gText_EnjoyCyclingSpa[];
+extern const u8 gText_InUseAlready_Spa[];
+extern const u8 gText_CantUseHereSpa[];
+extern const u8 gText_NoPokemonForBattleSpa[];
+extern const u8 gText_ChoosePokemon2Spa[];
+extern const u8 gText_NotEnoughHpSpa[];
+extern const u8 gText_PokemonAreNeededSpa[];
+extern const u8 gText_PokemonCantBeSameSpa[];
+extern const u8 gText_NoIdenticalHoldItemsSpa[];
+extern const u8 gText_EmptyString2Spa[];
+extern const u8 gText_DoWhatWithPokemonSpa[];
+extern const u8 gText_RestoreWhichMoveSpa[];
+extern const u8 gText_BoostPpSpa[];
+extern const u8 gText_DoWhatWithItemSpa[];
+extern const u8 gText_DoWhatWithMailSpa[];
+extern const u8 gText_AlreadyHoldingOneSpa[];
+extern const u8 gText_WhichApplianceSpa[];
+extern const u8 gText_NextFusionMonSpa[];
+extern const u8 gText_YouHaveNoPokemonSpa[];
+extern const u8 gText_SendWhichMonToPCSpa[];
+extern const u8 gText_MoveItemWhereSpa[];
+
 #endif // GUARD_STRINGS_H

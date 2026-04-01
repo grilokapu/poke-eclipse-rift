@@ -63,8 +63,8 @@
 #define FLAG_STARTER_ALOLA      0x29 // New Added Flag
 #define FLAG_STARTER_GALAR      0x2A // New Added Flag
 #define FLAG_STARTER_PALDEA     0x2B // New Added Flag
-#define FLAG_UNUSED_0x02C    0x2C // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D // Unused Flag
+#define FLAG_UNUSED_0x02C    0x2C // Inverse Battle Flag
+#define FLAG_UNUSED_0x02D    0x2D // Smart Wild AI Flag
 #define FLAG_UNUSED_0x02E    0x2E // Unused Flag
 #define FLAG_UNUSED_0x02F    0x2F // Unused Flag
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
@@ -73,7 +73,7 @@
 #define FLAG_UNUSED_0x033    0x33 // Unused Flag
 #define FLAG_UNUSED_0x034    0x34 // Unused Flag
 #define FLAG_UNUSED_0x035    0x35 // Unused Flag
-#define FLAG_UNUSED_0x036    0x36 // Unused Flag
+#define FLAG_UNUSED_0x036    0x36 // Battle Flag End
 #define FLAG_UNUSED_0x037    0x37 // Unused Flag
 #define FLAG_UNUSED_0x038    0x38 // Unused Flag
 #define FLAG_UNUSED_0x039    0x39 // Unused Flag

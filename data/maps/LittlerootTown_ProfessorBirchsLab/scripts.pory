@@ -97,6 +97,7 @@ script PineveilTown_ProfessorHikariLab_ChooseStarterRegion {
         addobject(LOCALID_LAB_BALL_1)
         addobject(LOCALID_LAB_BALL_2)
         addobject(LOCALID_LAB_BALL_3)
+        call(PineveilTown_ProfessorHikariLab_ClearAllFlags)
         goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
     }
     switch (var(VAR_LANGUAGE)) {
