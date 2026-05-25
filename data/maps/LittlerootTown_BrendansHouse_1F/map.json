@@ -58,8 +58,8 @@
       "x": 5,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
-      "var_value": "1",
+      "var": "VAR_RIVAL_HOUSE_STATE",
+      "var_value": "0",
       "script": "PineveilTown_RivalHouse_Mom_Tile"
     },
     {
@@ -67,8 +67,8 @@
       "x": 6,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
-      "var_value": "1",
+      "var": "VAR_RIVAL_HOUSE_STATE",
+      "var_value": "0",
       "script": "PineveilTown_RivalHouse_Mom_Tile"
     }
   ],

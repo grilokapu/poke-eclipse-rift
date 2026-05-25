@@ -1,4 +1,6 @@
 #include "global.h"
+#include "graphics.h"
+#include "gpu_regs.h"
 #include "script.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -24,12 +26,15 @@
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 #include "constants/flags.h"
+#include "constants/vars.h"
 #include "constants/maps.h"
 #include "constants/map_scripts.h"
 #include "constants/script_commands.h"
 #include "constants/species.h"
 #include "field_message_box.h"
 
+#include "gba/io_reg.h"
+#include "gba/syscall.h"
 #include "gba/types.h"
 
 #include "dexnav.h"
@@ -66,8 +71,8 @@ static void SpriteCB_Sparkle(struct Sprite *sprite);
 u8 CreateMonSprite_PicBox2(u16 species, bool8 isShiny, s16 x, s16 y, u8 subpriority);
 void SpriteCB_ShakePokemonPic(struct Sprite *sprite);
 
-const u16 gSprite_SparkleGfx[] = INCBIN_U16("graphics/field_effects/pics/sparkle2.4bpp");
-const u16 gSprite_SparklePal[] = INCBIN_U16("graphics/field_effects/palettes/sparkle2.gbapal");
+static const u16 gSprite_SparkleGfx[] = INCBIN_U16("graphics/field_effects/pics/sparkle2.4bpp");
+static const u16 gSprite_SparklePal[] = INCBIN_U16("graphics/field_effects/palettes/sparkle2.gbapal");
 
 void InitScriptContext(struct ScriptContext *ctx, void *cmdTable, void *cmdTableEnd)
 {
@@ -721,11 +726,17 @@ void SetWalkingIntoSignVars(void)
 
 // DW Scripts Start
 
-const u8 gText_Name_Barry[] = _("Barry");
+static const u8 *const sRivalNames[] = {
+    COMPOUND_STRING("Lucien"),
+    COMPOUND_STRING("Marcel"),
+    COMPOUND_STRING("Knox"),
+    COMPOUND_STRING("Freddy"),
+    COMPOUND_STRING("Stan"),
+};
 
 void EnterRivalName(void)
 {
-    StringCopy(gSaveBlock1Ptr->rivalName, gText_Name_Barry);
+    StringCopy(gSaveBlock1Ptr->rivalName, sRivalNames[Random() % ARRAY_COUNT(sRivalNames)]);
     
     DoNamingScreen(NAMING_SCREEN_RIVAL, gSaveBlock1Ptr->rivalName, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 }
@@ -738,6 +749,50 @@ void CheckGenderString(void)
     u8 gender = gPlayerAvatar.gender;
 
     StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_O : gText_Letter_A);
+}
+
+const u8 gText_Letter_Him[] = _("him");
+const u8 gText_Letter_Her[] = _("her");
+const u8 gText_Letter_El[] = _("el");
+const u8 gText_Letter_Ella[] = _("ella");
+const u8 gText_Letter_E[] = _("e");
+const u8 gText_Letter_He[] = _("He");
+const u8 gText_Letter_She[] = _("She");
+
+void CheckGenderString2(void)
+{
+    u8 gender = gPlayerAvatar.gender;
+    bool8 language = GET_LANGUAGE();
+
+    if (language == PT)
+        StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_E : gText_Letter_A);
+    else if (language == ES)
+        StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_El : gText_Letter_Ella);
+    else
+        StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_Him : gText_Letter_Her);
+}
+
+void CheckGenderString3(void)
+{
+    u8 gender = gPlayerAvatar.gender;
+    bool8 language = GET_LANGUAGE();
+
+    if (language == PT)
+        StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_E : gText_Letter_A);
+    else if (language == ES)
+        StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_El : gText_Letter_Ella);
+    else
+        StringCopy(gStringVar1, (gender == MALE) ? gText_Letter_He : gText_Letter_She);
+}
+
+static const u8 gText_Minha[] = _("Minha");
+static const u8 gText_Meu[] = _("Meu");
+
+void CheckGenderString4(void)
+{
+    u8 gender = gPlayerAvatar.gender;
+
+    StringCopy(gStringVar2, (gender == MALE) ? gText_Meu : gText_Minha);
 }
 
 void GetMapTVScript(void)
@@ -851,66 +906,9 @@ void CreateStarterSparkle(u8 localId)
     }
 }
 
-u16 GetGrassStarterSprite(void)
-{
-    switch (gSpecialVar_0x8000)
-    {
-        case 0: return OBJ_EVENT_GFX_SPECIES(BULBASAUR);   // Gen 1
-        case 1: return OBJ_EVENT_GFX_SPECIES(CHIKORITA);   // Gen 2
-        case 2: return OBJ_EVENT_GFX_SPECIES(TREECKO);     // Gen 3
-        case 3: return OBJ_EVENT_GFX_SPECIES(TURTWIG);     // Gen 4
-        case 4: return OBJ_EVENT_GFX_SPECIES(SNIVY);       // Gen 5
-        case 5: return OBJ_EVENT_GFX_SPECIES(CHESPIN);     // Gen 6
-        case 6: return OBJ_EVENT_GFX_SPECIES(ROWLET);      // Gen 7
-        case 7: return OBJ_EVENT_GFX_SPECIES(GROOKEY);     // Gen 8
-        case 8: return OBJ_EVENT_GFX_SPECIES(SPRIGATITO);  // Gen 9
-
-        default:
-            return OBJ_EVENT_GFX_POKE_BALL;
-    }
-}
-
-u16 GetFireStarterSprite(void)
-{
-    switch (gSpecialVar_0x8000)
-    {
-        case 0: return OBJ_EVENT_GFX_SPECIES(CHARMANDER); // Gen 1
-        case 1: return OBJ_EVENT_GFX_SPECIES(CYNDAQUIL);  // Gen 2
-        case 2: return OBJ_EVENT_GFX_SPECIES(TORCHIC);    // Gen 3
-        case 3: return OBJ_EVENT_GFX_SPECIES(CHIMCHAR);   // Gen 4
-        case 4: return OBJ_EVENT_GFX_SPECIES(TEPIG);      // Gen 5
-        case 5: return OBJ_EVENT_GFX_SPECIES(FENNEKIN);   // Gen 6
-        case 6: return OBJ_EVENT_GFX_SPECIES(LITTEN);     // Gen 7
-        case 7: return OBJ_EVENT_GFX_SPECIES(SCORBUNNY);  // Gen 8
-        case 8: return OBJ_EVENT_GFX_SPECIES(FUECOCO);    // Gen 9
-
-        default:
-            return OBJ_EVENT_GFX_POKE_BALL;
-    }
-}
-
-u16 GetWaterStarterSprite(void)
-{
-    switch (gSpecialVar_0x8000)
-    {
-        case 0: return OBJ_EVENT_GFX_SPECIES(SQUIRTLE);  // Gen 1
-        case 1: return OBJ_EVENT_GFX_SPECIES(TOTODILE);  // Gen 2
-        case 2: return OBJ_EVENT_GFX_SPECIES(MUDKIP);    // Gen 3
-        case 3: return OBJ_EVENT_GFX_SPECIES(PIPLUP);    // Gen 4
-        case 4: return OBJ_EVENT_GFX_SPECIES(OSHAWOTT);  // Gen 5
-        case 5: return OBJ_EVENT_GFX_SPECIES(FROAKIE);   // Gen 6
-        case 6: return OBJ_EVENT_GFX_SPECIES(POPPLIO);   // Gen 7
-        case 7: return OBJ_EVENT_GFX_SPECIES(SOBBLE);    // Gen 8
-        case 8: return OBJ_EVENT_GFX_SPECIES(QUAXLY);    // Gen 9
-
-        default:
-            return OBJ_EVENT_GFX_POKE_BALL;
-    }
-}
-
 void CreateGrassStarterEventObject(void)
 {
-    u16 sprite = GetGrassStarterSprite();
+    u16 sprite = VarGet(VAR_BUFFER_GRASS_MON) + OBJ_EVENT_MON;
 
     if (sprite == 0)
         return;
@@ -937,7 +935,7 @@ void CreateGrassStarterEventObject(void)
 
 void CreateFireStarterEventObject(void)
 {
-    u16 sprite = GetFireStarterSprite();
+    u16 sprite = VarGet(VAR_BUFFER_FIRE_MON) + OBJ_EVENT_MON;
 
     if (sprite == 0)
         return;
@@ -964,7 +962,7 @@ void CreateFireStarterEventObject(void)
 
 void CreateWaterStarterEventObject(void)
 {
-    u16 sprite = GetWaterStarterSprite();
+    u16 sprite = VarGet(VAR_BUFFER_WATER_MON) + OBJ_EVENT_MON;
 
     if (sprite == 0)
         return;
@@ -1006,47 +1004,6 @@ void ShowMonInsidePokeball(void)
     CreateStarterSparkle(LOCALID_LAB_BALL_3);
 }
 
-const u8 gText_LabKanto[]  = _("KANTO");
-const u8 gText_LabJohto[]  = _("JOHTO");
-const u8 gText_LabHoenn[]  = _("HOENN");
-const u8 gText_LabSinnoh[] = _("SINNOH");
-const u8 gText_LabUnova[]  = _("UNOVA");
-const u8 gText_LabKalos[]  = _("KALOS");
-const u8 gText_LabAlola[]  = _("ALOLA");
-const u8 gText_LabGalar[]  = _("GALAR");
-const u8 gText_LabPaldea[] = _("PALDEA");
-const u8 gText_LabUnknown[] = _("UNKNOWN");
-
-const u8 *GetRegionNameIntoLab(void)
-{
-    if (FlagGet(FLAG_STARTER_KANTO))
-        return gText_LabKanto;
-    else if (FlagGet(FLAG_STARTER_JOHTO))
-        return gText_LabJohto;
-    else if (FlagGet(FLAG_STARTER_HOENN))
-        return gText_LabHoenn;
-    else if (FlagGet(FLAG_STARTER_SINNOH))
-        return gText_LabSinnoh;
-    else if (FlagGet(FLAG_STARTER_UNOVA))
-        return gText_LabUnova;
-    else if (FlagGet(FLAG_STARTER_KALOS))
-        return gText_LabKalos;
-    else if (FlagGet(FLAG_STARTER_ALOLA))
-        return gText_LabAlola;
-    else if (FlagGet(FLAG_STARTER_GALAR))
-        return gText_LabGalar;
-    else if (FlagGet(FLAG_STARTER_PALDEA))
-        return gText_LabPaldea;
-
-    return gText_LabUnknown;
-}
-
-void SetHikariLabRegionName(void)
-{
-    const u8 *name = GetRegionNameIntoLab();
-    StringCopy(gStringVar1, name);
-}
-
 #define tState        data[0]
 #define tSpecies      data[1]
 #define tSpriteId     data[2]
@@ -1067,7 +1024,7 @@ bool8 ShowMonMugshot(u16 species, u8 position)
 		x = 10;
 		y = 3;
 	}
-    else if (position == MUGSHOT_DOWN_LEFT)
+    else if (position == MUGSHOT_DOWN_RIGHT)
     {
         x = 18;
 		y = 6;
@@ -1192,24 +1149,369 @@ const u8 *const gTypeNames[3][3] =
     { gText_TypeAgua,  gText_TypeWater, gText_TypeAguaEs }
 };
 
-void BufferTypeName(void)
+void SetMsgBoxTransparency(void)
 {
-    u8 typeVar = VarGet(VAR_STORE_FIST_MON_TYPE);
-    u8 langVar = VarGet(VAR_LANGUAGE);
+    FlagSet(FLAG_TRANSPARENT_MESSAGE_BOX);
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, 240));
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(112, 160));
+    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
 
-    u8 typeIndex;
+    SetGpuReg(REG_OFFSET_WININ, 0x1F3F);
 
-    switch (typeVar)
-    {
-        case TYPE_GRASS: typeIndex = 0; break;
-        case TYPE_FIRE:  typeIndex = 1; break;
-        case TYPE_WATER: typeIndex = 2; break;
-        default:         typeIndex = 0; break;
-    }
+    // FORA da window precisa continuar visível
+    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_ALL);
 
-    if (langVar > 2)
-        langVar = EN; // fallback
-
-    StringCopy(gStringVar1, gTypeNames[typeIndex][langVar]);
+    SetGpuReg(REG_OFFSET_BLDCNT, 0x3F41);
+    SetGpuReg(REG_OFFSET_BLDALPHA, 0x080F);
 }
+
+void DisableMsgBoxTransparency(void)
+{
+    // Restore the overworld window/blend state so semi-transparent sprites
+    // like shadows and reflections keep using the current weather blend.
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
+    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
+    SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN1_BG_ALL | WININ_WIN1_OBJ);
+    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG0 | WINOUT_WINOBJ_BG0);
+    SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT2_BG1 | BLDCNT_TGT2_BG2 | BLDCNT_TGT2_BG3 | BLDCNT_TGT2_OBJ | BLDCNT_EFFECT_BLEND);
+    SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(gWeatherPtr->currBlendEVA, gWeatherPtr->currBlendEVB));
+    FlagClear(FLAG_TRANSPARENT_MESSAGE_BOX);
+}
+
+static const u16 gSprite_MagPortalGfx[] = INCBIN_U16("graphics/field_effects/pics/magnect_portal.4bpp");
+static const u16 gSprite_MagPortalPal[] = INCBIN_U16("graphics/field_effects/pics/magnect_portal.gbapal");
+
+static const struct OamData sMagPortalOamData =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(32x32),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(32x32),
+    .tileNum = 0,
+    .priority = 0,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sMagPortalAnim0[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_FRAME(48, 8),
+    ANIMCMD_FRAME(64, 8),
+    ANIMCMD_FRAME(80, 8),
+    ANIMCMD_LOOP(2),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sMagPortalAnimTable[] =
+{
+    sMagPortalAnim0,
+};
+
+static const struct SpriteSheet sMagPortalTileData =
+{
+    .data = gSprite_MagPortalGfx,
+    .size = sizeof(gSprite_MagPortalGfx),
+    .tag = 12,
+};
+
+static const struct SpritePalette sMagPortalPalData =
+{
+    .data = gSprite_MagPortalPal,
+    .tag = 12,
+};
+
+static void SpriteCB_MagPortal(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+    {
+        FreeSpritePaletteByTag(12);
+        FreeSpriteTilesByTag(12);
+        DestroySprite(sprite);
+    }
+}
+
+static const struct SpriteTemplate sMagPortalTemplate =
+{
+    .tileTag = 12,
+    .paletteTag = 12,
+    .oam = &sMagPortalOamData,
+    .anims = sMagPortalAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_MagPortal,
+};
+
+void CreateStarterMagPortal(u8 localId)
+{
+    u16 objId = GetObjectEventIdByLocalId(localId);
+    if (objId == OBJECT_EVENTS_COUNT) return;
+
+    u16 spriteId = gObjectEvents[objId].spriteId;
+    u16 x = gSprites[spriteId].x - 16;
+    u16 y = gSprites[spriteId].y - 10;
+
+    LoadSpriteSheet(&sMagPortalTileData);
+    LoadSpritePalette(&sMagPortalPalData);
+
+    u8 MagPortalId = CreateSprite(&sMagPortalTemplate, x, y, 0);
+    if (MagPortalId != MAX_SPRITES)
+    {
+        gSprites[MagPortalId].data[0] = 0;
+        gSprites[MagPortalId].centerToCornerVecX = 0;
+        gSprites[MagPortalId].centerToCornerVecY = 0;
+        gSprites[MagPortalId].coordOffsetEnabled = TRUE;
+        gSprites[MagPortalId].oam.priority = 2;
+        gSprites[MagPortalId].subpriority = 0;
+    }
+}
+
+void CreateMagnectPortal(void)
+{
+    CreateStarterMagPortal(LOCALID_PLAYER);
+}
+
+static const u16 gSprite_PlayerBrightMGfx[] = INCBIN_U16("graphics/field_effects/pics/player_bright_m.4bpp");
+static const u16 gSprite_PlayerBrightPal[] = INCBIN_U16("graphics/field_effects/pics/magnect_portal.gbapal");
+static const u16 gSprite_PlayerBrightFGfx[] = INCBIN_U16("graphics/field_effects/pics/player_bright_f.4bpp");
+
+static const struct SpriteSheet sPlayerBrightMTileData =
+{
+    .data = gSprite_PlayerBrightMGfx,
+    .size = sizeof(gSprite_PlayerBrightMGfx),
+    .tag = 12,
+};
+
+static const struct SpriteSheet sPlayerBrightFTileData =
+{
+    .data = gSprite_PlayerBrightFGfx,
+    .size = sizeof(gSprite_PlayerBrightFGfx),
+    .tag = 12,
+};
+
+static const struct SpritePalette sPlayerBrightPalData =
+{
+    .data = gSprite_PlayerBrightPal,
+    .tag = 12,
+};
+
+static const union AnimCmd sPlayerBrightAnim0[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_LOOP(5),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sPlayerBrightAnimTable[] =
+{
+    sPlayerBrightAnim0,
+};
+
+static const struct SpriteTemplate sPlayerBrightTemplate =
+{
+    .tileTag = 12,
+    .paletteTag = 12,
+    .oam = &sMagPortalOamData,
+    .anims = sPlayerBrightAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_MagPortal,
+};
+
+void CreatePlayerBright(void)
+{
+    u16 objId = GetObjectEventIdByLocalId(LOCALID_PLAYER);
+    if (objId == OBJECT_EVENTS_COUNT) return;
+
+    u16 spriteId = gObjectEvents[objId].spriteId;
+    u16 x = gSprites[spriteId].x - 16;
+    u16 y = gSprites[spriteId].y - 16;
+
+    u8 gender = gPlayerAvatar.gender;
+
+    if (gender == FEMALE)
+        LoadSpriteSheet(&sPlayerBrightFTileData);
+    else
+        LoadSpriteSheet(&sPlayerBrightMTileData);
+    LoadSpritePalette(&sPlayerBrightPalData);
+
+    u8 MagPortalId = CreateSprite(&sPlayerBrightTemplate, x, y, 0);
+    if (MagPortalId != MAX_SPRITES)
+    {
+        gSprites[MagPortalId].data[0] = 0;
+        gSprites[MagPortalId].centerToCornerVecX = 0;
+        gSprites[MagPortalId].centerToCornerVecY = 0;
+        gSprites[MagPortalId].coordOffsetEnabled = TRUE;
+        gSprites[MagPortalId].oam.priority = 2;
+        gSprites[MagPortalId].subpriority = 0;
+    }
+}
+
+void CreateSpecialObjectEvent(u16 sprite, u8 objId, u8 posX, u8 posY, u8 movetype)
+{
+    if (sprite == 0)
+        return;
+
+    struct ObjectEventTemplate SpecialObj =
+    {
+        .localId = objId,
+        .graphicsId = sprite,
+        .kind = OBJ_KIND_NORMAL,
+        .x = posX,
+        .y = posY,
+        .elevation = 3,
+        .movementType = movetype,
+        .movementRangeX = 0,
+        .movementRangeY = 0,
+        .trainerType = 0,
+        .trainerRange_berryTreeId = 0,
+        .script = NULL,
+        .flagId = 0,
+    };
+    
+    SpawnSpecialObjectEvent(&SpecialObj);
+}
+
+static const u16 gSprite_IceCrystalCurseGfx[] = INCBIN_U16("graphics/field_effects/pics/icecurse.4bpp");
+static const u16 gSprite_IceCrystalCursePal[] = INCBIN_U16("graphics/field_effects/pics/icecurse.gbapal");
+static const u16 gSprite_StoneEdgeGfx[] = INCBIN_U16("graphics/field_effects/pics/stoneedge.4bpp");
+static const u16 gSprite_StoneEdgePal[] = INCBIN_U16("graphics/field_effects/pics/stoneedge.gbapal");
+
+static const struct SpriteSheet sIcecrystalCurseTileData =
+{
+    .data = gSprite_IceCrystalCurseGfx,
+    .size = sizeof(gSprite_IceCrystalCurseGfx),
+    .tag = 12,
+};
+
+static const struct SpritePalette sIcecrystalCursePalData =
+{
+    .data = gSprite_IceCrystalCursePal,
+    .tag = 12,
+};
+
+static const union AnimCmd sIcecrystalCurseAnim0[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_LOOP(3),
+    ANIMCMD_FRAME(48, 8),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sIcecrystalCurseAnimTable[] =
+{
+    sIcecrystalCurseAnim0,
+};
+
+static const struct SpriteTemplate sIcecrystalCurseTemplate =
+{
+    .tileTag = 12,
+    .paletteTag = 12,
+    .oam = &sMagPortalOamData,
+    .anims = sIcecrystalCurseAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_MagPortal,
+};
+
+void CreateIcecrystalCurse(u16 localId)
+{
+
+    u16 objId = GetObjectEventIdByLocalId(localId);
+    if (objId == OBJECT_EVENTS_COUNT) return;
+
+    u16 spriteId = gObjectEvents[objId].spriteId;
+    u16 posX = gSprites[spriteId].x - 16;
+    u16 posY = gSprites[spriteId].y - 16;
+
+    LoadSpriteSheet(&sIcecrystalCurseTileData);
+    LoadSpritePalette(&sIcecrystalCursePalData);
+
+    u8 IceCrystalId = CreateSprite(&sIcecrystalCurseTemplate, posX, posY, 0);
+    if (IceCrystalId != MAX_SPRITES)
+    {
+        gSprites[IceCrystalId].data[0] = 0;
+        gSprites[IceCrystalId].centerToCornerVecX = 0;
+        gSprites[IceCrystalId].centerToCornerVecY = 0;
+        gSprites[IceCrystalId].coordOffsetEnabled = TRUE;
+        gSprites[IceCrystalId].oam.priority = 2;
+        gSprites[IceCrystalId].subpriority = 0;
+    }
+}
+
+static const struct SpriteSheet sStoneEdgeTileData =
+{
+    .data = gSprite_StoneEdgeGfx,
+    .size = sizeof(gSprite_StoneEdgeGfx),
+    .tag = 12,
+};
+
+static const struct SpritePalette sStoneEdgePalData =
+{
+    .data = gSprite_StoneEdgePal,
+    .tag = 12,
+};
+
+static const union AnimCmd sStoneEdgeAnim0[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_FRAME(48, 8),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sStoneEdgeAnimTable[] =
+{
+    sStoneEdgeAnim0,
+};
+
+static const struct SpriteTemplate sStoneEdgeTemplate =
+{
+    .tileTag = 12,
+    .paletteTag = 12,
+    .oam = &sMagPortalOamData,
+    .anims = sStoneEdgeAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_MagPortal,
+};
+
+void CreateStoneEdge(void)
+{
+    u16 localId = VarGet(VAR_0x8000);
+    u16 objId = GetObjectEventIdByLocalId(localId);
+    if (objId == OBJECT_EVENTS_COUNT) return;
+
+    u16 spriteId = gObjectEvents[objId].spriteId;
+    u16 posX = gSprites[spriteId].x - 16;
+    u16 posY = gSprites[spriteId].y - 16;
+
+    LoadSpriteSheet(&sStoneEdgeTileData);
+    LoadSpritePalette(&sStoneEdgePalData);
+
+    u8 StoneEdgeId = CreateSprite(&sStoneEdgeTemplate, posX, posY, 0);
+    if (StoneEdgeId != MAX_SPRITES)
+    {
+        gSprites[StoneEdgeId].data[0] = 0;
+        gSprites[StoneEdgeId].centerToCornerVecX = 0;
+        gSprites[StoneEdgeId].centerToCornerVecY = 0;
+        gSprites[StoneEdgeId].coordOffsetEnabled = TRUE;
+        gSprites[StoneEdgeId].oam.priority = 2;
+        gSprites[StoneEdgeId].subpriority = 0;
+    }
+}
+
 // DW Scripts End

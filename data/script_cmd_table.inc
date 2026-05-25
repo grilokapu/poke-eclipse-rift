@@ -255,6 +255,11 @@ gScriptCmdTable::
 	script_cmd_table_entry SCR_OP_GETBRAILLESTRINGWIDTH         ScrCmd_getbraillestringwidth,       requests_effects=1  @ 0xe6
 	script_cmd_table_entry SCR_OP_SHOWPSSICON					ScrCmd_ShowPssIcon, 				requests_effects=1  @ 0xe7
 	script_cmd_table_entry SCR_OP_SHOWMONMUGSHOT				ScrCmd_showmonmugshot, 				requests_effects=1  @ 0xe8
+	script_cmd_table_entry SCR_OP_CREATESPECIALOBJECT           ScrCmd_createspecialobjectevent,	requests_effects=1  @ 0xe9
+	script_cmd_table_entry SCR_OP_SETICECRYSTALCURSE			ScrCmd_SetIceScrystalCurse,			requests_effects=1  @ 0xea
+	script_cmd_table_entry SCR_OP_SETHEALINGPLACEHACK			ScrCmd_HealingPlaceHack,			requests_effects=1  @ 0xeb
+	script_cmd_table_entry SCR_OP_BLACKMESSAGE					ScrCmd_blackmessage,				requests_effects=1  @ 0xec
+	script_cmd_table_entry SCR_OP_BLACKMESSAGEOUT				ScrCmd_blackmessageout,				requests_effects=1  @ 0xed
 
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::

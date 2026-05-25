@@ -879,6 +879,18 @@
 	.4byte \text
 	.endm
 
+	@ Fades to black, prints a white message like the whiteout recovery text,
+	@ waits for the text to finish, then fades back in.
+	.macro blackmessage text:req
+	.byte SCR_OP_BLACKMESSAGE
+	.4byte \text
+	.endm
+
+	@ Fades back in from a black screen.
+	.macro blackmessageout
+	.byte SCR_OP_BLACKMESSAGEOUT
+	.endm
+
 	@ Closes the current message box.
 	.macro closemessage
 	.byte SCR_OP_CLOSEMESSAGE
@@ -2890,4 +2902,65 @@
 
 	.macro hidemonmugshot
 	callnative RemoveMonMugshot
+	.endm
+
+	.macro transbox text:req, type=MSGBOX_DEFAULT
+	callnative SetMsgBoxTransparency
+	msgbox \text \type
+	callnative DisableMsgBoxTransparency
+	.endm
+	
+	@ Shows the message box containing the help window and its header and description.
+	.macro showhelpwindow id:req
+	callnative ShowHelpInfoWindow, requests_effects=1
+	.2byte \id
+	.endm
+	
+	@ Destroys the help window.
+	.macro hidehelpwindow
+	callnative HideHelpInfoWindow
+	.endm
+
+	@ Creates a help window.
+	.macro helpwindow id:req
+	showhelpwindow \id
+	waitbuttonpress
+	hidehelpwindow
+	closemessage
+	.endm
+
+	.macro pause frames:req
+	delay \frames
+	.endm
+
+	.macro createspobject graphicsId:req, id:req, x:req, y:req, movetype=MOVEMENT_TYPE_NONE
+	.byte SCR_OP_CREATESPECIALOBJECT
+	.2byte \graphicsId
+	.byte \id
+	.byte \x
+	.byte \y
+	.byte \movetype
+	.endm
+
+	.macro seticescrystalcurse localId:req
+	.byte SCR_OP_SETICECRYSTALCURSE
+	.2byte \localId
+	.endm
+
+	HEAL_LOCATION_MOM = 1
+	HEAL_LOCATION_POKEMON_CENTER = 2
+	HEAL_LOCATION_PC = HEAL_LOCATION_POKEMON_CENTER
+
+	@ Sets a custom healing location used by white-out and Teleport.
+	.macro sethealingplacehack map:req, x:req, y:req, type:req
+	.byte SCR_OP_SETHEALINGPLACEHACK
+	map \map
+	.2byte \x
+	.2byte \y
+	.byte \type
+	.endm
+
+	.macro movecamera movement:req
+	applymovement LOCALID_CAMERA \movement
+	waitmovement LOCALID_CAMERA
 	.endm

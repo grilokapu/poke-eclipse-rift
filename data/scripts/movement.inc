@@ -5,8 +5,41 @@ Common_Movement_QuestionMark:
 	emote_question_mark
 	step_end
 
+Common_Movement_QuestionMarkFacingUp:
+	emote_question_mark
+	face_up
+	step_end
+
 Common_Movement_ExclamationMark:
 	emote_exclamation_mark
+	step_end
+
+Common_Movement_EmoteHeart:
+	emote_heart
+	step_end
+
+Common_Movement_EmoteSmile:
+	emote_smile
+	step_end
+
+Common_Movement_ExclaimFacingDown:
+	emote_exclamation_mark
+	face_down
+	step_end
+
+Common_Movement_ExclaimFacingUp:
+	emote_exclamation_mark
+	face_up
+	step_end
+
+Common_Movement_ExclaimFacingRight:
+	emote_exclamation_mark
+	face_right
+	step_end
+
+Common_Movement_ExclaimFacingLeft:
+	emote_exclamation_mark
+	face_left
 	step_end
 
 Common_Movement_Delay48:
@@ -57,6 +90,10 @@ Common_Movement_FaceDown::
 
 Common_Movement_FaceUp::
 	face_up
+	step_end
+
+Common_Movement_WalkInPlaceUp:
+	walk_in_place_up
 	step_end
 
 Common_Movement_WalkInPlaceDown:
@@ -173,4 +210,88 @@ Common_Movement_WalkRightFaster::
 
 Common_Movement_WalkLeftFaster::
 	walk_faster_left
+	step_end
+
+Common_Movement_EmojiAngry::
+	emoji_angry
+	step_end
+
+Common_Movement_EmojiBlush::
+	emoji_blush
+	step_end
+
+Common_Movement_EmojiConfiant::
+	emoji_confiant
+	step_end
+
+Common_Movement_EmojiConfident::
+	emoji_confident
+	step_end
+
+Common_Movement_EmojiConfidentSmiling::
+	emoji_confident_smiling
+	step_end
+
+Common_Movement_EmojiDoubt::
+	emoji_doubt
+	step_end
+
+Common_Movement_EmojiGrin::
+	emoji_grin
+	step_end
+
+Common_Movement_EmojiHeartEyes::
+	emoji_heart_eyes
+	step_end
+
+Common_Movement_EmojiInnocent::
+	emoji_innocent
+	step_end
+
+Common_Movement_EmojiJoy::
+	emoji_joy
+	step_end
+
+Common_Movement_EmojiKissing::
+	emoji_kissing
+	step_end
+
+Common_Movement_EmojiRelaxed::
+	emoji_relaxed
+	step_end
+
+Common_Movement_EmojiRelivied::
+	emoji_relivied
+	step_end
+
+Common_Movement_EmojiScream::
+	emoji_scream
+	step_end
+
+Common_Movement_EmojiSlithly::
+	emoji_slithly
+	step_end
+
+Common_Movement_EmojiSmiley::
+	emoji_smiley
+	step_end
+
+Common_Movement_EmojiSob::
+	emoji_sob
+	step_end
+
+Common_Movement_EmojiThinking::
+	emoji_thinking
+	step_end
+
+Common_Movement_EmojiTongueWinking::
+	emoji_tongue_winking
+	step_end
+
+Common_Movement_EmojiWink::
+	emoji_wink
+	step_end
+
+Common_Movement_EmojiYum::
+	emoji_yum
 	step_end

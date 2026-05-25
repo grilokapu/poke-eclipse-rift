@@ -118,12 +118,12 @@
 #define VAR_BUFFER_GRASS_MON                             0x4060 // New Added Var
 #define VAR_BUFFER_FIRE_MON                              0x4061 // New Added Var
 #define VAR_BUFFER_WATER_MON                             0x4062 // New Added Var
-#define VAR_ROUTE104_STATE                               0x4063
-#define VAR_ROUTE101_STATE                               0x4064
-#define VAR_ROUTE106_STATE                               0x4065 // Unused Var
-#define VAR_ROUTE107_STATE                               0x4066 // Unused Var
-#define VAR_ROUTE108_STATE                               0x4067 // Unused Var
-#define VAR_ROUTE109_STATE                               0x4068 // Unused Var
+#define VAR_PLAYER_ROOM_STATE                            0x4063 // New Added Var
+#define VAR_SILENT_FOREST_STATE                          0x4064 // New Added Var
+#define VAR_FOREST_WHISPER_STATE                         0x4065 // New Added Var
+#define VAR_DEFAULT_WALKING_SCRIPT                       0x4066 // New Added Var
+#define VAR_RIVAL_HOUSE_STATE                            0x4067 // New Added Var
+#define VAR_ROUTE1_HIKARI_EVENT                          0x4068 // New Added Var
 #define VAR_ROUTE110_STATE                               0x4069
 #define VAR_ROUTE111_STATE                               0x406A // Unused Var
 #define VAR_ROUTE112_STATE                               0x406B // Unused Var

@@ -32,6 +32,7 @@
 #include "battle_message.h"
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
+#include "difficulty.h"
 #include "event_data.h"
 #include "link.h"
 #include "malloc.h"
@@ -9871,6 +9872,9 @@ void TryDeactivateSleepClause(enum BattleSide battlerSide, u32 indexInParty)
 
 bool32 IsSleepClauseActiveForSide(enum BattleSide battlerSide)
 {
+    if (GetCurrentDifficultyLevel() == DIFFICULTY_LUNATIC && battlerSide == B_SIDE_PLAYER)
+        return FALSE;
+
     // If monCausingSleepClause[battlerSide] == PARTY_SIZE, Sleep Clause is not active for the given side.
     // If monCausingSleepClause[battlerSide] < PARTY_SIZE, it means it is storing the index of the mon that is causing Sleep Clause to be active,
     // from which it follows that Sleep Clause is active.
@@ -10498,7 +10502,12 @@ u32 GetTotalAccuracy(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum 
         calc = (calc * 90) / 100;
 
     if (HasWeatherEffect() && gBattleWeather & B_WEATHER_FOG)
-        calc = (calc * 60) / 100; // modified by 3/5
+    {
+        if (GetCurrentDifficultyLevel() == DIFFICULTY_EASY)
+            calc = (calc * 80) / 100; // 1.33x accuracy in fog on easy
+        else
+            calc = (calc * 60) / 100; // modified by 3/5
+    }
 
     return calc;
 }
@@ -10741,7 +10750,7 @@ bool32 IsBattlerInvalidForSpreadMove(enum BattlerId battlerAtk, enum BattlerId b
 
 bool32 IsAllowedToUseBag(void)
 {
-    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && VarGet(B_VAR_DIFFICULTY) == DIFFICULTY_HARD)
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER) && (GetCurrentDifficultyLevel() == DIFFICULTY_HARD || GetCurrentDifficultyLevel() == DIFFICULTY_LUNATIC))
         return FALSE;
         
     switch (VarGet(B_VAR_NO_BAG_USE))

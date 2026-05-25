@@ -666,7 +666,7 @@
 
 //Dexnav flags
 #define FLAG_UNUSED_0x264  0x264 // New Added Flag
-#define FLAG_UNUSED_0x265  0x265 // New Added Flag
+#define FLAG_DEXNAV_GET  0x265 // New Added Flag
 #define FLAG_UNUSED_0x266  0x266 // New Added Flag
 
 //Follower
@@ -687,18 +687,18 @@
 #define FLAG_BARRY_IS_RIVAL  0x273 // New Added Flag
 #define FLAG_RIVAL_LEAVE_HOUSE  0x274 // New Added Flag
 #define FLAG_OBTAIN_EGG  0x275 // New Added Flag
-#define FLAG_REMOVE_RIVAL_LAB  0x276 // Unused Flag
-#define FLAG_UNUSED_0x277  0x277 // Unused Flag
-#define FLAG_UNUSED_0x278  0x278 // Unused Flag
-#define FLAG_UNUSED_0x279  0x279 // Unused Flag
-#define FLAG_UNUSED_0x27A  0x27A // Unused Flag
-#define FLAG_UNUSED_0x27B  0x27B // Unused Flag
-#define FLAG_UNUSED_0x27C  0x27C // Unused Flag
-#define FLAG_UNUSED_0x27D  0x27D // Unused Flag
-#define FLAG_UNUSED_0x27E  0x27E // Unused Flag
-#define FLAG_UNUSED_0x27F  0x27F // Unused Flag
-#define FLAG_UNUSED_0x280  0x280 // Unused Flag
-#define FLAG_UNUSED_0x281  0x281 // Unused Flag
+#define FLAG_REMOVE_RIVAL_LAB  0x276 // New Added Flag
+#define FLAG_ROUTE_1_POTION_GET  0x277 // Unused Flag
+#define FLAG_TRANSPARENT_MESSAGE_BOX  0x278 // No Encounter Flag
+#define FLAG_UNUSED_0x279  0x279 // Poke Rider Flag
+#define FLAG_MSGBOXONMIDDLE  0x27A // New Added Flag
+#define FLAG_DARK_SORCERERS  0x27B // New Added Flag
+#define FLAG_SET_SYMBOL_ANIM  0x27C // New Added Flag
+#define FLAG_HIKARI_ROUTE_1  0x27D // New Added Flag
+#define FLAG_ROUTE_1_ANTIDOTE_GET  0x27E // New Added Flag
+#define FLAG_PENDANT_FOREST_REPEL_GET  0x27F // New Added Flag
+#define FLAG_PENDANT_FOREST_TM11_GET  0x280 // New Added Flag
+#define FLAG_PENDANT_FOREST_ANTIDOTE_GET  0x281 // New Added Flag
 #define FLAG_UNUSED_0x282  0x282 // Unused Flag
 #define FLAG_UNUSED_0x283  0x283 // Unused Flag
 #define FLAG_UNUSED_0x284  0x284 // Unused Flag
@@ -2453,5 +2453,11 @@
 #define TESTING_FLAG_UNUSED_7                   (TESTING_FLAGS_START + 0x7)
 #endif // TESTING
 
+//DW Hidden Items
+#define FLAG_HIDDEN_ITEM_ROUTE_1_LAX_MINT             (FLAG_HIDDEN_ITEMS_START + 0x00)
+#define FLAG_HIDDEN_ITEM_PENDANT_FOREST_EXPCANDY_S    (FLAG_HIDDEN_ITEMS_START + 0x01)
+#define FLAG_HIDDEN_ITEM_SYLVARA_TOWN_TINY_MUSHROOM   (FLAG_HIDDEN_ITEMS_START + 0x02)
+
+//DW Hidden Items End (FLAG_HIDDEN_ITEMS_START + 0x6F)
 
 #endif // GUARD_CONSTANTS_FLAGS_H

@@ -40,6 +40,7 @@
 #include "constants/item.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
+#include "constants/help_window.h"
 #include "constants/layouts.h"
 #include "constants/lilycove_lady.h"
 #include "constants/map_scripts.h"
@@ -1083,12 +1084,44 @@ EventScript_AfterWhiteOutMomHeal::
 	lockall
 	applymovement LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
-	msgbox gText_HadQuiteAnExperienceTakeRest
+	switch VAR_LANGUAGE
+	case PT, EventScript_AfterWhiteOutMomHealMsgPT
+	case EN, EventScript_AfterWhiteOutMomHealMsgEN
+	case ES, EventScript_AfterWhiteOutMomHealMsgES
+EventScript_AfterWhiteOutMomHealContinue::
 	call Common_EventScript_OutOfCenterPartyHeal
-	msgbox gText_MomExplainHPGetPotions
+	switch VAR_LANGUAGE
+	case PT, EventScript_AfterWhiteOutMomHealMsgPT2
+	case EN, EventScript_AfterWhiteOutMomHealMsgEN2
+	case ES, EventScript_AfterWhiteOutMomHealMsgES2
+EventScript_AfterWhiteOutMomHealContinue2::
 	fadedefaultbgm
 	releaseall
 	end
+
+EventScript_AfterWhiteOutMomHealMsgPT::
+	msgminibox PSS_ICON_MOM, gText_Name_Mae, gText_HadQuiteAnExperienceTakeRestPt
+	goto EventScript_AfterWhiteOutMomHealContinue
+
+EventScript_AfterWhiteOutMomHealMsgEN::
+	msgminibox PSS_ICON_MOM, gText_Name_Mom, gText_HadQuiteAnExperienceTakeRest
+	goto EventScript_AfterWhiteOutMomHealContinue
+
+EventScript_AfterWhiteOutMomHealMsgES::
+	msgminibox PSS_ICON_MOM, gText_Name_Mami, gText_HadQuiteAnExperienceTakeRestEs
+	goto EventScript_AfterWhiteOutMomHealContinue
+
+EventScript_AfterWhiteOutMomHealMsgPT2::
+	msgminibox PSS_ICON_MOM, gText_Name_Mae, gText_MomExplainHPGetPotionsPt
+	goto EventScript_AfterWhiteOutMomHealContinue2
+
+EventScript_AfterWhiteOutMomHealMsgEN2::
+	msgminibox PSS_ICON_MOM, gText_Name_Mom, gText_MomExplainHPGetPotions
+	goto EventScript_AfterWhiteOutMomHealContinue2
+
+EventScript_AfterWhiteOutMomHealMsgES2::
+	msgminibox PSS_ICON_MOM, gText_Name_Mami, gText_MomExplainHPGetPotionsEs
+	goto EventScript_AfterWhiteOutMomHealContinue2
 
 EventScript_ResetMrBriney::
 	goto_if_eq VAR_BRINEY_LOCATION, 1, EventScript_MoveMrBrineyToHouse
@@ -1422,19 +1455,43 @@ gText_MonsHealed::
 	.string "to perfect health.\p"
 	.string "We hope you excel!$"
 
+gText_Name_Mom::
+	.string "Mom$"
+
+gText_Name_Mae::
+	.string "Mãe$"
+
+gText_Name_Mami::
+	.string "Mami$"
+
 gText_HadQuiteAnExperienceTakeRest::
-	.string "MOM: {PLAYER}!\n"
+	.string "{PLAYER}!\n"
 	.string "Welcome home.\p"
 	.string "It sounds like you had quite\n"
 	.string "an experience.\p"
 	.string "Maybe you should take a quick\n"
 	.string "rest.$"
 
+gText_HadQuiteAnExperienceTakeRestPt::
+	.string "{PLAYER}!\n"
+	.string "Bem-vindo de volta.\p"
+	.string "Parece que você passou por uma\n"
+	.string "grande experiência.\p"
+	.string "Talvez devesse descansar um pouco.$"
+
+gText_HadQuiteAnExperienceTakeRestEs::
+	.string "¡{PLAYER}!\n"
+	.string "Bienvenido a casa.\p"
+	.string "Parece que tuviste una gran\n"
+	.string "experiencia.\p"
+	.string "Tal vez deberías descansar un\n"
+	.string "poco.$"
+
 gText_MomExplainHPGetPotions::
-	.string "MOM: Oh, good! You and your\n"
+	.string "Oh, good! You and your\n"
 	.string "POKéMON are looking great.\p"
-	.string "I just heard from PROF. BIRCH.\p"
-	.string "He said that POKéMON's energy is\n"
+	.string "I just heard from Prof. Hikari.\p"
+	.string "She said that POKéMON's energy is\n"
 	.string "measured in HP.\p"
 	.string "If your POKéMON lose their HP,\n"
 	.string "you can restore them at any\l"
@@ -1444,6 +1501,39 @@ gText_MomExplainHPGetPotions::
 	.string "POTIONS at the POKéMON MART.\p"
 	.string "Make me proud, honey!\p"
 	.string "Take care!$"
+
+gText_MomExplainHPGetPotionsPt::
+	.string "Ah, ótimo! Você e seus POKéMON\n"
+	.string "estäo ótimos.\p"
+	.string "Acabei de receber notícias da\n"
+	.string "Profª Hikari.\p"
+	.string "Ela disse que a energia dos\n"
+	.string "POKéMON é medida em HP.\p"
+	.string "Se os seus POKéMON perderem HP,\n"
+	.string "você pode restaurá-los em qualquer\l"
+	.string "CENTRO POKéMON.\p"
+	.string "Se for viajar para longe, um\n"
+	.string "TREINADOR esperto sempre leva\l"
+	.string "algumas POTIONS da LOJA POKéMON.\p"
+	.string "Me deixe orgulhosa, querido!\n"
+	.string "Se cuide!$"
+
+gText_MomExplainHPGetPotionsEs::
+	.string "¡Oh, genial! Tú y tus POKéMON se\n"
+	.string "ven muy bien.\p"
+	.string "Acabo de recibir noticias de la\n"
+	.string "Prof. Hikari.\p"
+	.string "Ella dijo que la energía de los\n"
+	.string "POKéMON se mide en HP.\p"
+	.string "Si tus POKéMON pierden HP, puedes\n"
+	.string "recuperarlos en cualquier CENTRO\l"
+	.string "POKéMON.\p"
+	.string "Si vas a viajar lejos, un\n"
+	.string "ENTRENADOR inteligente siempre\l"
+	.string "lleva algunas POTIONS de la TIENDA\l"
+	.string "POKéMON.\p"
+	.string "¡Hazme sentir orgullosa, cariño!\n"
+	.string "¡Cuídate!$"
 
 gText_RegisteredTrainerinPokeNav::
 	.string "Registered {STR_VAR_1} {STR_VAR_2}\n"
@@ -1742,3 +1832,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/StartMap/scripts.inc"
 
 	.include "data/maps/PineveilTown_House_3/scripts.inc"
+
+	.include "data/maps/SILENT_FOREST/scripts.inc"
+
+	.include "data/maps/PendantForest/scripts.inc"

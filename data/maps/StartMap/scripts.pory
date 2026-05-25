@@ -17,132 +17,211 @@ script Story_Start_ChooseDifficulty {
     waitmessage
     switch (var(VAR_LANGUAGE)) {
         case SPANISH_LANGUAGE:
-        case PORTUGUESE_LANGUAGE: dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Fácil", "Normal", "Difícil")
-        case ENGLISH_LANGUAGE: dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "Easy", "Normal", "Hard")
+        case PORTUGUESE_LANGUAGE: dynmultichoice(0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "FÁCIL", "NORMAL", "DIFÍCIL", "LUNÁTICO")
+        case ENGLISH_LANGUAGE: dynmultichoice(0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "EASY", "NORMAL", "HARD", "LUNATIC")
     }
     switch (var(VAR_RESULT)) {
         case 0: goto(Story_Start_EasyMode_Choosed)
         case 1: goto(Story_Start_NormalMode_Choosed)
         case 2: goto(Story_Start_HardMode_Choosed)
+        case 3: goto(Story_Start_LunaticMode_Choosed)
     }
+}
+
+text Text_WantToChooseDifficultyPt {
+    "Deseja escolher essa dificuldade?"
+}
+
+text Text_WantToChooseDifficultyEn {
+    "Would you like to choose this
+    difficulty?"
+}
+
+text Text_WantToChooseDifficultyEs {
+    "¿Quieres elegir esta dificultad?"
+}
+
+script Story_Start_WantToChooseDifficulty {
+    switch (var(VAR_LANGUAGE)) {
+        case PORTUGUESE_LANGUAGE:
+            message(Text_WantToChooseDifficultyPt)
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "SIM", "NÃO", "INFO")
+
+        case ENGLISH_LANGUAGE:
+            message(Text_WantToChooseDifficultyEn)
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "YES", "NO", "INFO")
+        case SPANISH_LANGUAGE:
+            message(Text_WantToChooseDifficultyEs)
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "SI", "NO", "INFO")
+    }
+    return
 }
 
 script Story_Start_EasyMode_Choosed {
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE: msgbox("No modo fácil, você terá uma\naventura mais tranquila e\lacessível.\pTreinadores e Pokémon selvagens\nseguem níveis mais baixos,\ltornando a experiência ideal para\liniciantes ou quem deseja uma\ljornada mais leve.\pDeseja escolher essa dificuldade?", MSGBOX_YESNO)
-        case ENGLISH_LANGUAGE: msgbox("In Easy Mode, you'll enjoy a more\nrelaxed and accessible adventure.\pTrainers and wild Pokémon follow\nlower levels, making it ideal for\lbeginners or those seeking a\llighter journey.\pWould you like to choose this\ndifficulty?", MSGBOX_YESNO)
-        case SPANISH_LANGUAGE: msgbox("En modo fácil, tendrás una\naventura más relajada y accesible.\pLos entrenadores y los Pokémon\nsalvajes siguen niveles más bajos,\lhaciendo que sea ideal para\lprincipiantes o aquellos que\lbuscan una aventura más ligera.\p¿Quieres elegir esta dificultad?", MSGBOX_YESNO)
+    call(Story_Start_WantToChooseDifficulty)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 0:
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Modo fácil escolhido!")
+                case ENGLISH_LANGUAGE: msgbox("Easy mode chosen!")
+                case SPANISH_LANGUAGE: msgbox("Modo fácil elegido!")
+            }
+        case 1: goto(Story_Start_ChooseDifficulty)
+        case 2:
+                helpwindow(HELP_EASY_MODE)
+                goto(Story_Start_EasyMode_Choosed)
     }
-    compare(VAR_RESULT, TRUE)
-    if (var(VAR_RESULT) == TRUE) {
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Modo fácil escolhido!")
-            case ENGLISH_LANGUAGE: msgbox("Easy mode chosen!")
-            case SPANISH_LANGUAGE: msgbox("Modo fácil elegido!")
-        }
-        setvar(VAR_DIFFICULTY, 0)
-        setvar(VAR_DIFFICULTY, DIFFICULTY_EASY)
-        goto(Story_Start_ChooseLevelCap)
-    }
-    else {
-        goto(Story_Start_ChooseDifficulty)
-    }
+    setvar(VAR_DIFFICULTY, 0)
+    setvar(VAR_DIFFICULTY, DIFFICULTY_EASY)
+    goto(Story_Start_ChooseLevelCap)
 }
 
 script Story_Start_NormalMode_Choosed {
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE: msgbox("No modo normal, você terá uma\naventura equilibrada e justa.\pTreinadores e Pokémon selvagens\nseguem níveis padräo, oferecendo a\lexperiência clássica sem grandes\lsurpresas.\pDeseja escolher essa dificuldade?", MSGBOX_YESNO)
-        case ENGLISH_LANGUAGE: msgbox("In Normal Mode, you'll enjoy a\nbalanced and fair adventure.\pTrainers and wild Pokémon follow\nstandard levels, providing the\lclassic experience without major\lsurprises.\pDo you want to choose this\ndifficulty?", MSGBOX_YESNO)
-        case SPANISH_LANGUAGE: msgbox("En modo normal, tendrás una\naventura equilibrada y justa.\pLos entrenadores y los Pokémon\nsalvajes siguen niveles estándar,\lofreciendo la experiencia clásica\lsin grandes sorpresas.\p¿Quieres elegir esta dificultad?", MSGBOX_YESNO)
+    call(Story_Start_WantToChooseDifficulty)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 0:
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Modo Normal escolhido!")
+                case ENGLISH_LANGUAGE: msgbox("Normal Mode chosen!")
+                case SPANISH_LANGUAGE: msgbox("Modo Normal elegido!")
+            }
+        case 1: goto(Story_Start_ChooseDifficulty)
+        case 2:
+            closemessage
+            helpwindow(HELP_NORMAL_MODE)
+            goto(Story_Start_EasyMode_Choosed)
     }
-    compare(VAR_RESULT, TRUE)
-    if (var(VAR_RESULT) == TRUE) {
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Modo normal escolhido!")
-            case ENGLISH_LANGUAGE: msgbox("Normal mode chosen!")
-            case SPANISH_LANGUAGE: msgbox("Modo normal elegido!")
-        }
-        setvar(VAR_DIFFICULTY, 0)
-        setvar(VAR_DIFFICULTY, DIFFICULTY_NORMAL)
-        goto(Story_Start_ChooseLevelCap)
-    }
-    else {
-        goto(Story_Start_ChooseDifficulty)
-    }
+    setvar(VAR_DIFFICULTY, 0)
+    setvar(VAR_DIFFICULTY, DIFFICULTY_NORMAL)
+    goto(Story_Start_NormalMode_Choosed)
 }
 
 script Story_Start_HardMode_Choosed {
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE: msgbox("No modo difícil, todas as batalhas\nse tornam significativamente mais\ldesafiadoras.\pA Inteligência Artificial estará\nno nível máximo, e você só poderá\lusar quatro itens por batalha.\pNeste modo, o Level Cap será\nobrigatório.\pO Level Cap limita o nível máximo\nque seus Pokémon podem alcançar em\lcada etapa do jogo.\pIsso evita que você fique\nsuperlevelado e mantém as batalhas\lequilibradas e desafiadoras ao\llongo da aventura.\pDeseja ativar este modo?", MSGBOX_YESNO)
-        case ENGLISH_LANGUAGE: msgbox("In Hard Mode, every battle becomes\nsignificantly more challenging.\pThe AI is set to its highest\nlevel, and you will be limited to\lusing only four items per battle.\pIn this mode, the Level Cap is\nstrictly enforced.\pThe Level Cap limits the maximum\nlevel your Pokémon can reach at\leach stage of the game.\pThis prevents overleveling and\nkeeps battles balanced and\lchallenging throughout your\ladventure.\pDo you want to activate this mode?", MSGBOX_YESNO)
-        case SPANISH_LANGUAGE: msgbox("En modo difícil, todas las batallas\nse vuelven significativamente más\ldesafiantes.\pLa Inteligencia Artificial estará\nen su nivel máximo, y solo podrás\lusar cuatro objetos por batalla.\pEn este modo, el Level Cap será\nestrictamente aplicado.\pEl Level Cap limita el nivel máximo\nque tus Pokémon pueden alcanzar en\lcada etapa del juego.\pEsto evita que te sobrenivelés y\nmantiene las batallas equilibradas y\ldesafiadoras durante toda tu\laventura.\p¿Quieres activar este modo?", MSGBOX_YESNO)
+    call(Story_Start_WantToChooseDifficulty)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 0:
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Modo Difícil escolhido!")
+                case ENGLISH_LANGUAGE: msgbox("Hard Mode chosen!")
+                case SPANISH_LANGUAGE: msgbox("Modo Difícil elegido!")
+            }
+        case 1: goto(Story_Start_ChooseDifficulty)
+        case 2:
+            closemessage
+            helpwindow(HELP_HARD_MODE)
+            goto(Story_Start_HardMode_Choosed)
     }
-    compare(VAR_RESULT, TRUE)
-    if (var(VAR_RESULT) == TRUE) {
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Modo difícil escolhido!")
-            case ENGLISH_LANGUAGE: msgbox("Hard mode chosen!")
-            case SPANISH_LANGUAGE: msgbox("Modo difícil elegido!")
-        }
-        setvar(VAR_DIFFICULTY, DIFFICULTY_HARD)
-        setflag(FLAG_LEVEL_CAP_ENABLED)
-        goto(Story_Start_MinimalGrinding)
-    }
+    setvar(VAR_DIFFICULTY, 0)
+    setvar(VAR_DIFFICULTY, DIFFICULTY_HARD)
+    setflag(FLAG_LEVEL_CAP_ENABLED)
+    goto(Story_Start_MinimalGrinding)
 }
 
 script Story_Start_ChooseLevelCap {
     switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE: msgbox("O Level Cap limita o nível máximo\nque seus Pokémon podem alcançar em\lcada etapa do jogo.\pIsso evita que você fique\nsuperlevelado e mantém as batalhas\lequilibradas e desafiadoras ao\llongo da aventura.\pDeseja ativar o Level Cap?", MSGBOX_YESNO)
-        case ENGLISH_LANGUAGE: msgbox("The Level Cap limits the maximum\nlevel your Pokémon can reach at\leach stage of the game.\pThis prevents overleveling and\nkeeps battles balanced and\lchallenging throughout your\ladventure.\pDo you want to activate the\nLevel Cap?", MSGBOX_YESNO)
-        case SPANISH_LANGUAGE: msgbox("El Level Cap limita el nivel máximo\nque tus Pokémon pueden alcanzar en\lcada etapa del juego.\pEsto evita que te sobrenivelés y\nmantiene las batallas equilibradas\ly desafiadoras durante toda tu\laventura.\p¿Quieres activar el Level Cap?", MSGBOX_YESNO)
+        case PORTUGUESE_LANGUAGE:
+            message("Deseja ativar o Level Cap?")
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "SIM", "NÃO", "INFO")
+        case ENGLISH_LANGUAGE:
+            message("Do you want to activate the\nLevel Cap?")
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "YES", "NO", "INFO")
+        case SPANISH_LANGUAGE:
+            message("¿Quieres activar el Level Cap?")
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "SI", "NO", "INFO")
     }
-    compare(VAR_RESULT, TRUE)
-    if (var(VAR_RESULT) == TRUE) {
-        setflag(FLAG_LEVEL_CAP_ENABLED)
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Level Cap ativado!")
-            case ENGLISH_LANGUAGE: msgbox("Level Cap enabled!")
-            case SPANISH_LANGUAGE: msgbox("Level Cap activado!")
-        }
-    }
-    else {
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Level Cap desativado!")
-            case ENGLISH_LANGUAGE: msgbox("Level Cap disabled!")
-            case SPANISH_LANGUAGE: msgbox("Level Cap desactivado!")
-        }
+    switch (var(VAR_RESULT)) {
+        case 0:
+            setflag(FLAG_LEVEL_CAP_ENABLED)
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Level Cap ativado!")
+                case ENGLISH_LANGUAGE: msgbox("Level Cap enabled!")
+                case SPANISH_LANGUAGE: msgbox("Level Cap activado!")
+            }
+        case 1:
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Level Cap desativado!")
+                case ENGLISH_LANGUAGE: msgbox("Level Cap disabled!")
+                case SPANISH_LANGUAGE: msgbox("Level Cap desactivado!")
+            }
+        case 2:
+            closemessage
+            helpwindow(HELP_LEVEL_CAP)
+            goto(Story_Start_ChooseLevelCap)
     }
     goto(Story_Start_MinimalGrinding)
 }
 
 script Story_Start_MinimalGrinding {
     switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE: msgbox("O Modo Minimal Grind reduz a\nnecessidade de batalhas\lrepetitivas e longas sessöes de\ltreinamento.\pOs ganhos de experiência säo\najustados para que sua equipe\levolua em um ritmo estável, sem\lprecisar grindar demais.\pNeste modo, todos os Pokémon teräo\nIVs perfeitos (31), e näo haverá\lnecessidade de treinar EVs.\pDeseja ativar o Modo Minimal\nGrind?", MSGBOX_YESNO)
-        case ENGLISH_LANGUAGE: msgbox("Minimal Grind Mode reduces the\nneed for repeated battles and long\ltraining sessions.\pExperience gains are adjusted so\nyour team grows at a steady pace\lwithout excessive grinding.\pIn this mode, all Pokémon will\nhave perfect IVs (31), and EV\ltraining is no longer required.\pDo you want to activate Minimal\nGrind Mode?", MSGBOX_YESNO)
-        case SPANISH_LANGUAGE: msgbox("El Modo Minimal Grind reduce la\nnecesidad de batallas repetitivas\ny largas sesiones de entrenamiento.\pLas ganancias de experiencia se\najustan para que tu equipo evolucione\na un ritmo estable sin necesidad de grindar en exceso.\pEn este modo, todos los Pokémon tendrán IVs perfectos (31), y ya no será necesario entrenar EVs.\p¿Quieres activar el Modo Minimal Grind?", MSGBOX_YESNO)
+        case PORTUGUESE_LANGUAGE:
+            message("Deseja ativar o Modo Minimal\nGrind?")
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "SIM", "NÃO", "INFO")
+        case ENGLISH_LANGUAGE:
+            message("Do you want to activate Minimal\nGrind Mode?")
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "YES", "NO", "INFO")
+        case SPANISH_LANGUAGE:
+            message("¿Quieres activar el Modo Minimal\nGrind?")
+            waitmessage
+            dynmultichoice(0, 0, TRUE, 3, 0, DYN_MULTICHOICE_CB_NONE, "SI", "NO", "INFO")
     }
-    compare(VAR_RESULT, TRUE)
-    if (var(VAR_RESULT) == TRUE) {
-        setflag(FLAG_MINIMALGRIND_ENABLED)
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Modo Minimal Grind ativado!")
-            case ENGLISH_LANGUAGE: msgbox("Minimal Grind Mode enabled!")
-            case SPANISH_LANGUAGE: msgbox("Modo Minimal Grind activado!")
-        }
-    }
-    else {
-        switch (var(VAR_LANGUAGE)) {
-            case PORTUGUESE_LANGUAGE: msgbox("Modo Minimal Grind desativado!")
-            case ENGLISH_LANGUAGE: msgbox("Minimal Grind Mode disabled!")
-            case SPANISH_LANGUAGE: msgbox("Modo Minimal Grind desactivado!")
-        }
+    switch (var(VAR_RESULT)) {
+        case 0:
+            setflag(FLAG_MINIMALGRIND_ENABLED)
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Modo Minimal Grind ativado!")
+                case ENGLISH_LANGUAGE: msgbox("Minimal Grind Mode enabled!")
+                case SPANISH_LANGUAGE: msgbox("Modo Minimal Grind activado!")
+            }
+        case 1:
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Modo Minimal Grind desativado!")
+                case ENGLISH_LANGUAGE: msgbox("Minimal Grind Mode disabled!")
+                case SPANISH_LANGUAGE: msgbox("Modo Minimal Grind desactivado!")
+            }
+        case 2:
+            closemessage
+            helpwindow(HELP_MINIMAL_GRIND_MODE)
+            goto(Story_Start_MinimalGrinding)
     }
     goto(Story_Start_WarpToHouse)
 }
 
 script Story_Start_WarpToHouse {
     setvar(VAR_DW_START_STORY, 1)
-    clearflag(FLAG_SPAWN_INVISIBLE)
     warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 7, 6)
     waitstate
+}
+
+script Story_Start_LunaticMode_Choosed {
+    call(Story_Start_WantToChooseDifficulty)
+    closemessage
+    switch (var(VAR_RESULT)) {
+        case 0:
+            switch (var(VAR_LANGUAGE)) {
+                case PORTUGUESE_LANGUAGE: msgbox("Modo Lunático escolhido!")
+                case ENGLISH_LANGUAGE: msgbox("Lunatic Mode chosen!")
+                case SPANISH_LANGUAGE: msgbox("Modo Lunático elegido!")
+            }
+        case 1: goto(Story_Start_ChooseDifficulty)
+        case 2:
+            closemessage
+            helpwindow(HELP_LUNATIC_MODE)
+            goto(Story_Start_LunaticMode_Choosed)
+    }
+    setvar(VAR_DIFFICULTY, 0)
+    setvar(VAR_DIFFICULTY, DIFFICULTY_LUNATIC)
+    setflag(FLAG_LEVEL_CAP_ENABLED)
+    setflag(FLAG_MINIMALGRIND_ENABLED)
+    goto(Story_Start_WarpToHouse)
 }

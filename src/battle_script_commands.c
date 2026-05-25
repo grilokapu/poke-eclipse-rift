@@ -11,6 +11,7 @@
 #include "battle_environment.h"
 #include "battle_z_move.h"
 #include "battle_move_resolution.h"
+#include "bw_summary_screen.h"
 #include "item.h"
 #include "util.h"
 #include "pokemon.h"
@@ -50,6 +51,7 @@
 #include "pokenav.h"
 #include "menu_specialized.h"
 #include "data.h"
+#include "difficulty.h"
 #include "generational_changes.h"
 #include "move.h"
 #include "constants/abilities.h"
@@ -3684,6 +3686,29 @@ static bool32 CanApplyAdditionalEffect(const struct AdditionalEffect *additional
     if (additionalEffect->preAttackEffect)
         return FALSE;
 
+    if (GetCurrentDifficultyLevel() == DIFFICULTY_LUNATIC && IsMaxMove(gCurrentMove))
+    {
+        switch (additionalEffect->moveEffect)
+        {
+        case MOVE_EFFECT_RAISE_TEAM_ATTACK:
+        case MOVE_EFFECT_RAISE_TEAM_DEFENSE:
+        case MOVE_EFFECT_RAISE_TEAM_SPEED:
+        case MOVE_EFFECT_RAISE_TEAM_SP_ATK:
+        case MOVE_EFFECT_RAISE_TEAM_SP_DEF:
+        case MOVE_EFFECT_SUN:
+        case MOVE_EFFECT_RAIN:
+        case MOVE_EFFECT_SANDSTORM:
+        case MOVE_EFFECT_HAIL:
+        case MOVE_EFFECT_MISTY_TERRAIN:
+        case MOVE_EFFECT_GRASSY_TERRAIN:
+        case MOVE_EFFECT_ELECTRIC_TERRAIN:
+        case MOVE_EFFECT_PSYCHIC_TERRAIN:
+            return FALSE;
+        default:
+            break;
+        }
+    }
+
     // If Toxic Chain will activate it blocks all other non volatile effects
     if (gBattleStruct->toxicChainPriority && additionalEffect->moveEffect <= MOVE_EFFECT_FROSTBITE)
         return FALSE;
@@ -5996,7 +6021,10 @@ static void Cmd_yesnoboxlearnmove(void)
         if (!gPaletteFade.active)
         {
             FreeAllWindowBuffers();
-            ShowSelectMovePokemonSummaryScreen(gPlayerParty, gBattleStruct->expGetterMonId, ReshowBattleScreenAfterMenu, gMoveToLearn);
+            if (BW_SUMMARY_SCREEN == TRUE)
+                ShowSelectMovePokemonSummaryScreen_BW(gPlayerParty, gBattleStruct->expGetterMonId, ReshowBattleScreenAfterMenu, gMoveToLearn);
+            else
+                ShowSelectMovePokemonSummaryScreen(gPlayerParty, gBattleStruct->expGetterMonId, ReshowBattleScreenAfterMenu, gMoveToLearn);
             gBattleScripting.learnMoveState++;
         }
         break;
@@ -6962,7 +6990,7 @@ static void Cmd_useitemonopponent(void)
     CMD_ARGS();
 
     gBattlerInMenuId = gBattlerAttacker;
-    PokemonUseItemEffects(GetBattlerMon(gBattlerAttacker), gLastUsedItem, gBattlerPartyIndexes[gBattlerAttacker], 0, TRUE);
+    PokemonUseItemEffects(GetBattlerMon(gBattlerAttacker), gLastUsedItem, gBattlerPartyIndexes[gBattlerAttacker], 0, TRUE, 1, 1);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

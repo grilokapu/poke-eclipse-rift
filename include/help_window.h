@@ -1,0 +1,26 @@
+#ifndef GUARD_HELP_WINDOW_H
+#define GUARD_HELP_WINDOW_H
+
+#include "global.h"
+#include "script.h"
+#include "text.h"
+#include "constants/help_window.h"
+
+struct HelpWindow
+{
+    const u8 *header;
+    const u8 *headerPt;
+    const u8 *headerEs;
+    const u8 *desc;
+    const u8 *descPt;
+    const u8 *descEs;
+    u8 headerFont;
+    u8 descFont;
+};
+
+extern const struct HelpWindow gHelpWindowInfo[];
+
+void ShowHelpInfoWindow(struct ScriptContext *ctx);
+void HideHelpInfoWindow(void);
+
+#endif //GUARD_HELP_WINDOW_H

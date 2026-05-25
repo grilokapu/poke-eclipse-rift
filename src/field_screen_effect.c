@@ -61,7 +61,11 @@ static void Task_StairWarp(u8);
 static void ForceStairsMovement(u32, s16*, s16*);
 
 static const u8 sText_PlayerScurriedToCenter[] = _("{PLAYER} scurried to a POKéMON CENTER,\nprotecting the exhausted and fainted\nPOKéMON from further harm…\p");
+static const u8 sText_PlayerScurriedToCenterPt[] = _("{PLAYER} correu até um CENTRO POKéMON,\nprotegendo os POKéMON exaustos e\ndesmaiados de mais perigos…\p");
+static const u8 sText_PlayerScurriedToCenterEs[] = _("{PLAYER} corrió hacia un CENTRO POKéMON,\nprotegiendo a los POKéMON exhaustos y\ndebilitados de más daños…\p");
 static const u8 sText_PlayerScurriedBackHome[] = _("{PLAYER} scurried back home, protecting\nthe exhausted and fainted POKéMON from\nfurther harm…\p");
+static const u8 sText_PlayerScurriedBackHomePt[] = _("{PLAYER} correu de volta para casa,\nprotegendo os POKéMON exaustos e\ndesmaiados de mais perigos…\p");
+static const u8 sText_PlayerScurriedBackHomeEs[] = _("{PLAYER} corrió de regreso a casa,\nprotegiendo a los POKéMON exhaustos y\ndebilitados de más daños…\p");
 static const u8 sText_PlayerRegroupCenter[] = _("{PLAYER} scurried to a POKéMON CENTER,\nto regroup and reconsider the battle\nstrategy…\p");
 static const u8 sText_PlayerRegroupHome[] = _("{PLAYER} scurried back home, to regroup\nand reconsider the battle strategy…\p");
 
@@ -1152,7 +1156,7 @@ static void LoadOrbEffectPalette(bool8 blueOrb)
     u16 color[1];
 
     if (!blueOrb)
-        color[0] = RGB_RED;
+        color[0] = RGB_DARK_PURPLE;
     else
         color[0] = RGB_BLUE;
 
@@ -1407,8 +1411,16 @@ static const u8 *GenerateRecoveryMessage(u8 taskId)
         return sText_PlayerRegroupHome;
     else if (forfeitTrainer && !destinationIsPlayersHouse)
         return sText_PlayerRegroupCenter;
+    else if (!forfeitTrainer && destinationIsPlayersHouse && GET_LANGUAGE() == PT)
+        return sText_PlayerScurriedBackHomePt;
+    else if (!forfeitTrainer && destinationIsPlayersHouse && GET_LANGUAGE() == ES)
+        return sText_PlayerScurriedBackHomeEs;
     else if (!forfeitTrainer && destinationIsPlayersHouse)
         return sText_PlayerScurriedBackHome;
+    else if (GET_LANGUAGE() == PT)
+        return sText_PlayerScurriedToCenterPt;
+    else if (GET_LANGUAGE() == ES)
+        return sText_PlayerScurriedToCenterEs;
     else
         return sText_PlayerScurriedToCenter;
 }

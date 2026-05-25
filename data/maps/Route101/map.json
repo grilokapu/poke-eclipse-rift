@@ -16,188 +16,157 @@
     {
       "map": "MAP_OLDALE_TOWN",
       "offset": 0,
-      "direction": "right"
+      "direction": "down"
     },
     {
       "map": "MAP_LITTLEROOT_TOWN",
       "offset": -16,
-      "direction": "left"
+      "direction": "right"
     }
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "local_id": "LOCALID_POTION_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
       "x": 16,
-      "y": 8,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "y": 6,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route101_EventScript_Youngster",
+      "script": "Route1_PokeBall_Potion_Get",
+      "flag": "FLAG_ROUTE_1_POTION_GET"
+    },
+    {
+      "local_id": "LOCALID_ROUTE1_YOUNGSTER",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "x": 13,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route1_Youngster_battle",
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_ROUTE101_BIRCH",
-      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
-      "x": 9,
-      "y": 13,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_RIGHT",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_BIRCHS_BAG",
-      "x": 7,
+      "local_id": "LOCALID_ROUTE1_HIKARI",
+      "graphics_id": "OBJ_EVENT_GFX_HIKARI",
+      "x": 22,
       "y": 14,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route101_EventScript_BirchsBag",
-      "flag": "FLAG_HIDE_ROUTE_101_BIRCH_STARTERS_BAG"
-    },
-    {
-      "local_id": "LOCALID_ROUTE101_ZIGZAGOON",
-      "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_1",
-      "x": 10,
-      "y": 13,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_JOG_IN_PLACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_101_ZIGZAGOON"
+      "script": "NULL",
+      "flag": "FLAG_HIKARI_ROUTE_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
-      "x": 5,
-      "y": 11,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "local_id": "LOCALID_ROUTE1_ABSOL",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABSOL)",
+      "x": 20,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "ProfBirch_EventScript_RatePokedexOrRegister",
-      "flag": "FLAG_HIDE_ROUTE_101_BIRCH"
+      "script": "NULL",
+      "flag": "FLAG_HIKARI_ROUTE_1"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
-      "x": 2,
-      "y": 13,
-      "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "local_id": "LOCALID_ANTIDOTE_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "x": 4,
+      "y": 21,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route101_EventScript_Boy",
-      "flag": "FLAG_HIDE_ROUTE_101_BOY"
+      "script": "Route1_PokeBall_Antidote_Get",
+      "flag": "FLAG_ROUTE_1_ANTIDOTE_GET"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "warp_id": "WARP_ID_IN_PENDANT_FOREST_2",
+      "x": 10,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_PENDANT_FOREST",
+      "dest_warp_id": "WARP_ID_OUT_PENDANT_FOREST_1"
+    },
+    {
+      "warp_id": "WARP_ID_IN_PENDANT_FOREST_1",
+      "x": 11,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_PENDANT_FOREST",
+      "dest_warp_id": "WARP_ID_OUT_PENDANT_FOREST_2"
+    }
+  ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 10,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "1",
-      "script": "Route101_EventScript_StartBirchRescue"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "1",
-      "script": "Route101_EventScript_StartBirchRescue"
-    },
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 18,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitSouth"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 18,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitSouth"
-    },
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 16,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitWest"
-    },
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 15,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitWest"
-    },
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 17,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitWest"
-    },
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 18,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitWest"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
+      "x": 26,
       "y": 13,
-      "elevation": 3,
-      "var": "VAR_ROUTE101_STATE",
-      "var_value": "2",
-      "script": "Route101_EventScript_PreventExitNorth"
+      "elevation": 0,
+      "var": "VAR_ROUTE1_HIKARI_EVENT",
+      "var_value": "0",
+      "script": "Route1_EncounterHikariWildBattle_Tile"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 14,
+      "elevation": 0,
+      "var": "VAR_ROUTE1_HIKARI_EVENT",
+      "var_value": "0",
+      "script": "Route1_EncounterHikariWildBattle_Tile"
+    },
+    {
+      "type": "trigger",
+      "x": 26,
+      "y": 15,
+      "elevation": 0,
+      "var": "VAR_ROUTE1_HIKARI_EVENT",
+      "var_value": "0",
+      "script": "Route1_EncounterHikariWildBattle_Tile"
     }
   ],
   "bg_events": [
     {
       "type": "sign",
-      "x": 5,
-      "y": 9,
+      "x": 17,
+      "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route101_EventScript_RouteSign"
+      "script": "Route1_TrainerTips_Sign"
+    },
+    {
+      "type": "sign",
+      "x": 26,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route1_Sign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 16,
+      "y": 27,
+      "elevation": 0,
+      "item": "ITEM_LAX_MINT",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_1_LAX_MINT"
     }
   ]
 }

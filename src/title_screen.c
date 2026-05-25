@@ -60,11 +60,17 @@ static void SpriteCB_PokemonLogoShine(struct Sprite *sprite);
 // const rom data
 static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unused.gbapal");
 
+#ifdef OLD_TITLE_SCREEN
 static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.smol");
 static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.smolTM");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.smol");
 static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.smol");
-
+#else
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/zygarde.4bpp.smol");
+static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/zygarde.bin.smolTM");
+static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.smol");
+static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/Zclouds.4bpp.smol");
+#endif
 
 
 // Used to blend "Emerald Version" as it passes over over the Pokémon banner.

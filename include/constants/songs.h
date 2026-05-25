@@ -555,5 +555,6 @@
 #define NUM_PHONEME_SONGS           (LAST_PHONEME_SONG - FIRST_PHONEME_SONG + 1)
 #define PHONEME_ID(song)            ((song) - FIRST_PHONEME_SONG)
 #define PHONEME_ID_NONE             0xFF
+#define SE_HEART_BEAT               SE_CONTEST_HEART
 
 #endif  // GUARD_CONSTANTS_SONGS_H

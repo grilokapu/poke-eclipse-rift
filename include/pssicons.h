@@ -20,6 +20,12 @@ static const u16 gPssIcon_ReporterGfx[] = INCBIN_U16("graphics/pss_icons/reporte
 static const u16 gPssIcon_ReporterPal[] = INCBIN_U16("graphics/pss_icons/reporter.gbapal");
 static const u16 gPssIcon_MomGfx[] = INCBIN_U16("graphics/pss_icons/mom.4bpp");
 static const u16 gPssIcon_MomPal[] = INCBIN_U16("graphics/pss_icons/mom.gbapal");
+static const u16 gPssIcon_SorcererGfx[] = INCBIN_U16("graphics/pss_icons/sorcerer.4bpp");
+static const u16 gPssIcon_SorcererPal[] = INCBIN_U16("graphics/pss_icons/sorcerer.gbapal");
+static const u16 gPssIcon_LucienGfx[] = INCBIN_U16("graphics/pss_icons/lucien.4bpp");
+static const u16 gPssIcon_LucienPal[] = INCBIN_U16("graphics/pss_icons/lucien.gbapal");
+static const u16 gPssIcon_ScientistGfx[] = INCBIN_U16("graphics/pss_icons/scientist.4bpp");
+static const u16 gPssIcon_ScientistPal[] = INCBIN_U16("graphics/pss_icons/scientist.gbapal");
 
 #define GFXTAG_PSSICON 0x7000
 

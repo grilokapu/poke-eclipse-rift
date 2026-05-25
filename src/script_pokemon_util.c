@@ -392,11 +392,21 @@ static u32 ScriptGiveMonParameterized(u8 side, u8 slot, u16 species, u8 level, e
     for (i = 0; i < NUM_STATS; i++)
     {
         // EV
-        if (evs[i] <= MAX_PER_STAT_EVS)
+        if (FlagGet(FLAG_MINIMALGRIND_ENABLED))
+        {
+            u8 baseev = 0;
+            SetMonData(&mon, MON_DATA_HP_EV + i, &baseev);
+        }
+        else if (evs[i] <= MAX_PER_STAT_EVS)
             SetMonData(&mon, MON_DATA_HP_EV + i, &evs[i]);
 
         // IV
-        if (ivs[i] <= MAX_PER_STAT_IVS)
+        if (FlagGet(FLAG_MINIMALGRIND_ENABLED))
+        {
+            u8 baseiv = 31;
+            SetMonData(&mon, MON_DATA_HP_IV + i, &baseiv);
+        }
+        else if (ivs[i] <= MAX_PER_STAT_IVS)
             SetMonData(&mon, MON_DATA_HP_IV + i, &ivs[i]);
     }
     CalculateMonStats(&mon);

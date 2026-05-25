@@ -71,6 +71,28 @@ static const u8 sEmotion_DoubleExclamationMarkGfx[] = INCBIN_U8("graphics/field_
 static const u8 sEmotion_XGfx[] = INCBIN_U8("graphics/field_effects/pics/emote_x.4bpp");
 // HGSS emote graphics ripped by Lemon on The Spriters Resource: https://www.spriters-resource.com/ds_dsi/pokemonheartgoldsoulsilver/sheet/30497/
 static const u8 sEmotion_Gfx[] = INCBIN_U8("graphics/misc/emotes.4bpp");
+static const u8 sEmotion_SmileGfx[] = INCBIN_U8("graphics/field_effects/pics/emotion_smile.4bpp");
+static const u8 sEmotion_EmojiAngryGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_angry.4bpp");
+static const u8 sEmotion_EmojiBlushGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_blush.4bpp");
+static const u8 sEmotion_EmojiConfiantGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_confiant.4bpp");
+static const u8 sEmotion_EmojiConfidentGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_confident.4bpp");
+static const u8 sEmotion_EmojiConfidentSmilingGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_confidentsmiley.4bpp");
+static const u8 sEmotion_EmojiDoubtGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_doubt.4bpp");
+static const u8 sEmotion_EmojiGrinGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_grin.4bpp");
+static const u8 sEmotion_EmojiHeartEyesGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_hearteyes.4bpp");
+static const u8 sEmotion_EmojiInnocentGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_innocent.4bpp");
+static const u8 sEmotion_EmojiJoyGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_joy.4bpp");
+static const u8 sEmotion_EmojiKissingGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_kissing.4bpp");
+static const u8 sEmotion_EmojiRelaxedGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_relaxed.4bpp");
+static const u8 sEmotion_EmojiRelievedGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_relieved.4bpp");
+static const u8 sEmotion_EmojiScreamGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_scream.4bpp");
+static const u8 sEmotion_EmojiSlithlyGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_slightly_smile.4bpp");
+static const u8 sEmotion_EmojiSmileyGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_smiley.4bpp");
+static const u8 sEmotion_EmojiSobGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_sob.4bpp");
+static const u8 sEmotion_EmojiThinkingGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_thinking.4bpp");
+static const u8 sEmotion_EmojiTongueWinkingGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_tonguewinking.4bpp");
+static const u8 sEmotion_EmojiWinkGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_wink.4bpp");
+static const u8 sEmotion_EmojiYumGfx[] = INCBIN_U8("graphics/field_effects/pics/emojis/emoji_yum.4bpp");
 
 static u8 (*const sDirectionalApproachDistanceFuncs[])(struct ObjectEvent *trainerObj, s16 range, s16 x, s16 y) =
 {
@@ -239,6 +261,182 @@ static const struct SpriteFrameImage sSpriteImageTable_HeartIcon[] =
     }
 };
 
+static const struct SpriteFrameImage sSpriteImageTable_SmileIcon[] =
+{
+    {
+        .data = sEmotion_SmileGfx,
+        .size = sizeof(sEmotion_SmileGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiAngry[] =
+{
+    {
+        .data = sEmotion_EmojiAngryGfx,
+        .size = sizeof(sEmotion_EmojiAngryGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiBlush[] =
+{
+    {
+        .data = sEmotion_EmojiBlushGfx,
+        .size = sizeof(sEmotion_EmojiBlushGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiConfiant[] =
+{
+    {
+        .data = sEmotion_EmojiConfiantGfx,
+        .size = sizeof(sEmotion_EmojiConfiantGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiConfident[] =
+{
+    {
+        .data = sEmotion_EmojiConfidentGfx,
+        .size = sizeof(sEmotion_EmojiConfidentGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiConfidentSmiling[] =
+{
+    {
+        .data = sEmotion_EmojiConfidentSmilingGfx,
+        .size = sizeof(sEmotion_EmojiConfidentSmilingGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiDoubt[] =
+{
+    {
+        .data = sEmotion_EmojiDoubtGfx,
+        .size = sizeof(sEmotion_EmojiDoubtGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiGrin[] =
+{
+    {
+        .data = sEmotion_EmojiGrinGfx,
+        .size = sizeof(sEmotion_EmojiGrinGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiHeartEyes[] =
+{
+    {
+        .data = sEmotion_EmojiHeartEyesGfx,
+        .size = sizeof(sEmotion_EmojiHeartEyesGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiInnocent[] =
+{
+    {
+        .data = sEmotion_EmojiInnocentGfx,
+        .size = sizeof(sEmotion_EmojiInnocentGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiJoy[] =
+{
+    {
+        .data = sEmotion_EmojiJoyGfx,
+        .size = sizeof(sEmotion_EmojiJoyGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiKissing[] =
+{
+    {
+        .data = sEmotion_EmojiKissingGfx,
+        .size = sizeof(sEmotion_EmojiKissingGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiRelaxed[] =
+{
+    {
+        .data = sEmotion_EmojiRelaxedGfx,
+        .size = sizeof(sEmotion_EmojiRelaxedGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiRelieved[] =
+{
+    {
+        .data = sEmotion_EmojiRelievedGfx,
+        .size = sizeof(sEmotion_EmojiRelievedGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiScream[] =
+{
+    {
+        .data = sEmotion_EmojiScreamGfx,
+        .size = sizeof(sEmotion_EmojiScreamGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiSlithly[] =
+{
+    {
+        .data = sEmotion_EmojiSlithlyGfx,
+        .size = sizeof(sEmotion_EmojiSlithlyGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiSmiley[] =
+{
+    {
+        .data = sEmotion_EmojiSmileyGfx,
+        .size = sizeof(sEmotion_EmojiSmileyGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiSob[] =
+{
+    {
+        .data = sEmotion_EmojiSobGfx,
+        .size = sizeof(sEmotion_EmojiSobGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiThinking[] =
+{
+    {
+        .data = sEmotion_EmojiThinkingGfx,
+        .size = sizeof(sEmotion_EmojiThinkingGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiTongueWinking[] =
+{
+    {
+        .data = sEmotion_EmojiTongueWinkingGfx,
+        .size = sizeof(sEmotion_EmojiTongueWinkingGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiWink[] =
+{
+    {
+        .data = sEmotion_EmojiWinkGfx,
+        .size = sizeof(sEmotion_EmojiWinkGfx)
+    }
+};
+
+static const struct SpriteFrameImage sSpriteImageTable_EmojiYum[] =
+{
+    {
+        .data = sEmotion_EmojiYumGfx,
+        .size = sizeof(sEmotion_EmojiYumGfx)
+    }
+};
+
 static const struct SpriteFrameImage sSpriteImageTable_Emotes[] =
 {
     overworld_frame(sEmotion_Gfx, 2, 2, 0), // FOLLOWER_EMOTION_HAPPY
@@ -404,7 +602,7 @@ static const union AnimCmd *const sSpriteAnimTable_Emotes[] =
 static const struct SpriteTemplate sSpriteTemplate_ExclamationQuestionMark =
 {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_MAY,
+    .paletteTag = OBJ_EVENT_PAL_TAG_QUESTION,
     .oam = &sOamData_Icons,
     .anims = sSpriteAnimTable_Icons,
     .images = sSpriteImageTable_ExclamationQuestionMark,
@@ -421,6 +619,16 @@ static const struct SpriteTemplate sSpriteTemplate_HeartIcon =
     .callback = SpriteCB_TrainerIcons
 };
 
+static const struct SpriteTemplate sSpriteTemplate_SmileIcon =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_1,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_SmileIcon,
+    .callback = SpriteCB_TrainerIcons
+};
+
 static const struct SpriteTemplate sSpriteTemplate_Emote =
 {
     .tileTag = TAG_NONE,
@@ -428,6 +636,216 @@ static const struct SpriteTemplate sSpriteTemplate_Emote =
     .oam = &sOamData_Icons,
     .anims = sSpriteAnimTable_Emotes,
     .images = sSpriteImageTable_Emotes,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiAngry =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiAngry,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiBlush =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiBlush,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiConfiant =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiConfiant,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiConfident =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiConfident,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiConfidentSmiling =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiConfidentSmiling,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiDoubt =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiDoubt,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiGrin =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiGrin,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiHeartEyes =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiHeartEyes,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiInnocent =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiInnocent,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiJoy =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiJoy,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiKissing =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiKissing,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiRelaxed =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiRelaxed,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiRelieved =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiRelieved,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiScream =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiScream,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiSlithly =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiSlithly,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiSmiley =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiSmiley,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiSob =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiSob,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiThinking =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiThinking,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiTongueWinking =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiTongueWinking,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiWink =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiWink,
+    .callback = SpriteCB_TrainerIcons
+};
+
+static const struct SpriteTemplate sSpriteTemplate_EmojiYum =
+{
+    .tileTag = TAG_NONE,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EMOJIS,
+    .oam = &sOamData_Icons,
+    .anims = sSpriteAnimTable_Icons,
+    .images = sSpriteImageTable_EmojiYum,
     .callback = SpriteCB_TrainerIcons
 };
 
@@ -1210,4 +1628,334 @@ void PlayerFaceTrainerAfterBattle(void)
     }
 
     SetMovingNpcId(LOCALID_PLAYER);
+}
+
+u8 FldEff_SmileIcon(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_SmileIcon, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_SMILE_ICON, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_SmileIcon, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiAngry(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiAngry, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_ANGRY, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiAngry, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiBlush(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiBlush, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_BLUSH, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiBlush, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiConfiant(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiConfiant, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_CONFIANT, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiConfiant, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiConfident(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiConfident, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_CONFIDENT, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiConfident, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiConfidentSmiling(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiConfidentSmiling, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_CONFIDENT_SMILING, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiConfidentSmiling, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiDoubt(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiDoubt, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_DOUBT, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiDoubt, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiGrin(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiGrin, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_GRIN, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiGrin, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiHeartEyes(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiHeartEyes, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_HEART_EYES, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiHeartEyes, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiInnocent(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiInnocent, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_INNOCENT, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiInnocent, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiJoy(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiJoy, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_JOY, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiJoy, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiKissing(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiKissing, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_KISSING, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiKissing, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiRelaxed(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiRelaxed, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_RELAXED, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiRelaxed, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiRelieved(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiRelieved, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_RELIEVED, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiRelieved, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiScream(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiScream, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_SCREAM, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiScream, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiSlithly(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiSlithly, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_SLITHLY, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiSlithly, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiSmiley(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiSmiley, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_SMILEY, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiSmiley, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiSob(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiSob, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_SOB, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiSob, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiThinking(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiThinking, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_THINKING, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiThinking, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiTongueWinking(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiTongueWinking, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_TONGUE_WINKING, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiTongueWinking, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiWink(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiWink, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_WINK, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiWink, sprite);
+    }
+
+    return 0;
+}
+
+u8 FldEff_EmojiYum(void)
+{
+    u8 spriteId = CreateSpriteAtEnd(&sSpriteTemplate_EmojiYum, 0, 0, 0x52);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        SetIconSpriteData(sprite, FLDEFF_EMOJI_YUM, 0);
+        UpdateSpritePaletteByTemplate(&sSpriteTemplate_EmojiYum, sprite);
+    }
+
+    return 0;
 }

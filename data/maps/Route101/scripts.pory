@@ -1,0 +1,337 @@
+mapscripts Route101_MapScripts {
+
+}
+
+script Route1_Youngster_battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "Essa é minha primeira batalha de\nverdade com um Pokémon!", "Poxa vida!\nEu achei que tava pronto!")
+            msgbox("Tenho treinado muito!\nDa próxima vez, eu vou vencer!")
+        case EN:
+            trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "This is my first real\nPokemon battle!", "Aw man!\nI thought I was ready!")
+            msgbox("I've been training hard!\nNext time, I'll win!")
+        case ES:
+            trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "¡Esta es mi primera batalla\nde verdad con un Pokémon!", "¡Rayos!\n¡Creí que estaba listo!")
+            msgbox("¡He estado entrenando duro!\n¡La próxima vez, ganaré!")
+    }
+    release
+    end
+}
+
+script Route1_PokeBall_Potion_Get {
+    finditem(ITEM_POTION, 1)
+    end
+}
+
+script Route1_PokeBall_Antidote_Get {
+    finditem(ITEM_ANTIDOTE, 1)
+    end
+}
+
+script Route1_TrainerTips_Sign {
+    helpwindow(HELP_POKE_BALL)
+    end
+}
+
+script Route1_Sign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Rota 1\nVila Pineveil {RIGHT_ARROW_2}\lFloresta Pendant {UP_ARROW_2}", MSGBOX_SIGN)
+        case EN: msgbox("Route 1\nPineveil Town {RIGHT_ARROW_2}\lPendant Forest {UP_ARROW_2}", MSGBOX_SIGN)
+        case ES: msgbox("Ruta 1\nPueblo Pineveil {RIGHT_ARROW_2}\lBosque Pendant {UP_ARROW_2}", MSGBOX_SIGN)
+    }
+    end
+}
+
+const LOCALID_ROUTE1_LYCANROC = 5
+const LOCALID_ROUTE1_POKEBALL = 6
+
+script Route1_EncounterHikariWildBattle_Tile {
+    lockall
+    playbgm(MUS_ENCOUNTER_SUSPICIOUS, 0)
+    special(SpawnCameraObject)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if (var(VAR_TEMP_1) == 13) {
+        movecamera(Movement_Camera_GotoHikari_1)
+    } elif (var(VAR_TEMP_1) == 14) {
+        movecamera(Movement_Camera_GotoHikari_2)
+    } else {
+        movecamera(Movement_Camera_GotoHikari_3)
+    }
+    special(RemoveCameraObject)
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "...calma.\nEu não quero machucar você.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "...calm down.\nI don't want to hurt you.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "...tranquilo.\nNo quiero hacerte daño.", MSGBOX_AUTOCLOSE)
+    }
+    pause(30)
+    movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_MovesAngry)
+    showmonmugshot(SPECIES_ABSOL, MUGSHOT_DOWN_RIGHT)
+    setspeaker("Absol")
+    msgbox("Grrrrrrr!", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    pause(20)
+    movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_MovesAngry_Clockwise)
+    showmonmugshot(SPECIES_ABSOL, MUGSHOT_DOWN_RIGHT)
+    setspeaker("Absol")
+    msgbox("Grrrrrrr!", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    pause(30)
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_ExclaimFacingRight)
+    waitse
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hm?\pVocê não deveria estar aqui\nsozinho.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hm?\pYou shouldn't be here alone.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¿Hm?\pNo deberías estar aquí solo.", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_ExclaimFacingLeft)
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Fique atrás de mim.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Stay behind me.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Quedate detrás de mí.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_ROUTE1_HIKARI, Movement_HikariStepsBackwards)
+    if (var(VAR_TEMP_1) == 13) {
+        moveplayer(Common_Movement_WalkDown)
+    } elif (var(VAR_TEMP_1) == 15) {
+        moveplayer(Common_Movement_WalkUp)
+    }
+    moveplayer(Movement_PlayerStepsForwards)
+    createspobject(OBJ_EVENT_GFX_SPECIES(LYCANROC_MIDNIGHT), LOCALID_ROUTE1_LYCANROC, 22, 14, MOVEMENT_TYPE_WALK_IN_PLACE_LEFT)
+    movenpc(LOCALID_ROUTE1_LYCANROC, Movement_Lycanroc_ExitBall)
+    pause(20)
+    setspeaker("Lycanroc")
+    showmonmugshot(SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_DOWN_RIGHT)
+    msgbox("awooooo!", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Vai, Lycanroc!\pUse {COLOR}{RED}Mastigada{COLOR}{DARK_GRAY}.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Go, Lycanroc!\pUse {COLOR}{RED}Crunch{COLOR}{DARK_GRAY}.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Vamos, Lycanroc!\pUsa {COLOR}{RED}Triturar{COLOR}{DARK_GRAY}.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    movenpc(LOCALID_ROUTE1_LYCANROC, Movement_LycanrocAttack)
+    playse(SE_M_BITE)
+    waitse
+    playse(SE_NOT_EFFECTIVE)
+    movenpc(LOCALID_ROUTE1_LYCANROC, Movement_LycanrocBack)
+    waitse
+    pause(20)
+    movenpc(LOCALID_ROUTE1_ABSOL, Movement_AbsolAttack)
+    playse(SE_M_CUT)
+    waitse
+    playse(SE_EFFECTIVE)
+    movenpc(LOCALID_ROUTE1_ABSOL, Movement_AbsolBack)
+    waitse
+    pause(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE1_ABSOL, Common_Movement_EmojiAngry)
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Agora use {COLOR}{RED}Gume de Pedra{COLOR}{DARK_GRAY}, Lycanroc!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Now use {COLOR}{RED}Stone Edge{COLOR}{DARK_GRAY}, Lycanroc!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Ahora usa {COLOR}{RED}Roca Afilada{COLOR}{DARK_GRAY}, Lycanroc!", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    playmoncry(SPECIES_LYCANROC_MIDNIGHT, 0)
+    waitmoncry
+    movenpc(LOCALID_ROUTE1_LYCANROC, Movement_LycanrocStoneAttack)
+    playse(SE_M_ROCK_THROW)
+    setvar(VAR_0x8000, LOCALID_ROUTE1_ABSOL)
+    callnative(CreateStoneEdge)
+    playse(SE_EFFECTIVE)
+    pause(30)
+    movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_Hurt_AfterStoneEdge)
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Volte, Lycanroc!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Go back, Lycanroc!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Vuelve, Lycanroc!", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_ROUTE1_LYCANROC, Movement_Lycanroc_EnterBall)
+    removeobject(LOCALID_ROUTE1_LYCANROC)
+    pause(20)
+    movenpc(LOCALID_ROUTE1_HIKARI, Movement_HikariStepsForwards)
+    createspobject(OBJ_EVENT_GFX_POKE_BALL, LOCALID_ROUTE1_POKEBALL, 22, 14, MOVEMENT_TYPE_NONE)
+    movenpc(LOCALID_ROUTE1_POKEBALL, Movement_Pokeball_Bounce_Againt_Absol)
+    playse(SE_BALL_THROW)
+    waitse
+    removeobject(LOCALID_ROUTE1_ABSOL)
+    playse(SE_BALL_BOUNCE_1)
+    waitse
+    playse(SE_BALL_BOUNCE_2)
+    waitse
+    playse(SE_BALL_BOUNCE_3)
+    waitse
+    playse(SE_BALL_BOUNCE_4)
+    waitse
+    playse(MUS_RG_CAUGHT_INTRO)
+    waitse
+    movenpc(LOCALID_ROUTE1_HIKARI, Movement_HikariStepsForwards)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Você quase matou a gente de susto,\nsabia?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "You almost scared us to death, you\nknow?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Casi nos matas del susto, ¿sabías?", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    removeobject(LOCALID_ROUTE1_POKEBALL)
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Um Absol aparecendo tão perto da\nvila…\pIsso não é normal.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "An Absol showing up so close to\nthe village…\pThat's not normal.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Un Absol apareciendo tan cerca de\nla aldea…\pEso no es normal.", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_FaceRight)
+    special(SpawnCameraObject)
+    movecamera(Movement_Camera_BackToPlayer)
+    special(RemoveCameraObject)
+    playbgm(MUS_ROUTE101, 0)
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiThinking)
+    waitse
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "E então ele começou a agir\nestranho quando viu você.\pCurioso...", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "And then it started acting\nstrangely when it saw you.\pCurious...", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Y entonces comenzó a actuar de\nforma extraña cuando te vio.\pCurioso...", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    movenpc(LOCALID_ROUTE1_HIKARI, Movement_HikariGoNextPlayer)  
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, certo.\pVocê deve ser um dos novos\ntreinadores.\pEu sou a Professora Hikari.\pDesculpe por fazê-los esperar no\nlaboratório.\pEu estava investigando relatos\nsobre Pokémon agindo de forma\lincomum nesta rota.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, right.\pYou must be one of the new\nTrainers.\pI'm Professor Hikari.\pSorry for making you wait at the\nlaboratory.\pI was investigating reports of\nPokémon behaving strangely on this\lroute.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, cierto.\pDebes ser uno de los nuevos\nentrenadores.\pSoy la Profesora Hikari.\pPerdón por hacerlos esperar en el\nlaboratorio.\pEstaba investigando reportes sobre\nPokémon comportándose de forma\lextraña en esta ruta.", MSGBOX_AUTOCLOSE)
+    }
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiSlithly)
+    waitse
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ultimamente… coisas estranhas têm\nacontecido em Aetheris.\p...\pMas esse não é o melhor lugar para\nconversar.\pVamos voltar para o laboratório.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Lately… strange things have been\nhappening in Aetheris.\p...\pBut this isn't the best place to\ntalk.\pLet's head back to the laboratory.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Últimamente… cosas extrañas han\nestado ocurriendo en Aetheris.\p...\pPero este no es el mejor lugar\npara hablar.\pVolvamos al laboratorio.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_ROUTE1_HIKARI, Movement_WalkBackToLab)
+    removeobject(LOCALID_ROUTE1_HIKARI)
+    setvar(VAR_ROUTE1_HIKARI_EVENT, 1)
+    setvar(VAR_BIRCH_LAB_STATE, 1)
+    setflag(FLAG_HIKARI_ROUTE_1)
+    moveplayer(Movement_PlayerGoBackToLab)
+    warpsilent(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 14)
+    release
+    end
+}
+
+movement Movement_PlayerGoBackToLab {
+    walk_right * 4
+    walk_down * 2
+}
+
+movement Movement_Absol_Hurt_AfterStoneEdge {
+    walk_faster_left_backwards
+    delay_16
+    walk_right
+    face_right
+}
+
+movement Movement_WalkBackToLab {
+    walk_down
+    walk_right * 5
+    walk_down * 2
+    walk_right * 5
+}
+
+movement Movement_HikariGoNextPlayer {
+    walk_right * 2
+    face_right
+}
+
+movement Movement_Pokeball_Bounce_Againt_Absol {
+    jump_2_left
+}
+
+movement Movement_HikariStepsForwards {
+    walk_left
+    face_left
+}
+
+movement Movement_LycanrocStoneAttack {
+    jump_in_place_left * 2
+}
+
+movement Movement_AbsolAttack {
+    walk_faster_right * 2
+}
+
+movement Movement_LycanrocAttack {
+    walk_faster_left * 2
+}
+
+movement Movement_LycanrocBack {
+    jump_right_backwards
+    walk_right
+    face_left
+}
+
+movement Movement_AbsolBack {
+    jump_left_backwards * 2
+    face_right
+}
+
+movement Movement_Lycanroc_ExitBall {
+    exit_pokeball
+}
+
+movement Movement_Lycanroc_EnterBall {
+    enter_pokeball
+}
+
+movement Movement_PlayerStepsForwards {
+    walk_left * 2
+    face_left
+}
+
+movement Movement_HikariStepsBackwards {
+    walk_slow_right_backwards
+    face_left
+}
+
+movement Movement_Absol_MovesAngry_Clockwise {
+    walk_fast_right
+    walk_fast_up
+    walk_fast_left
+    walk_fast_down
+    jump_in_place_right
+    jump_in_place_right
+}
+
+movement Movement_Absol_MovesAngry {
+    jump_in_place_right
+    jump_in_place_right
+}
+
+movement Movement_Camera_GotoHikari_1 {
+    walk_down
+    walk_left * 4
+}
+
+movement Movement_Camera_GotoHikari_2 {
+    walk_left * 4
+}
+
+movement Movement_Camera_GotoHikari_3 {
+    walk_up
+    walk_left * 4
+}
+
+movement Movement_Camera_BackToPlayer {
+    walk_right * 4
+}

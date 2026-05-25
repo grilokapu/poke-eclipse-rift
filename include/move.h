@@ -3,8 +3,11 @@
 
 #include "generational_changes.h"
 #include "contest_effect.h"
+#include "event_data.h"
 #include "constants/battle.h"
 #include "constants/battle_factory.h"
+#include "constants/flags.h"
+#include "constants/global.h"
 #include "constants/battle_move_effects.h"
 #include "constants/battle_string_ids.h"
 #include "constants/battle_z_move_effects.h"
@@ -75,7 +78,10 @@ enum TerrainGroundCheck
 struct MoveInfo
 {
     const u8 *name;
+    const u8 *nameEs;
     const u8 *description;
+    const u8 *descriptionPt;
+    const u8 *descriptionEs;
     enum BattleMoveEffects effect;
     enum Type type:5;     // Up to 32
     enum DamageCategory category:2;
@@ -219,7 +225,21 @@ static inline enum Move SanitizeMoveId(enum Move moveId)
 
 static inline const u8 *GetMoveName(enum Move moveId)
 {
-    return gMovesInfo[SanitizeMoveId(moveId)].name;
+    const struct MoveInfo *moveInfo;
+    const u8 *name;
+
+    moveId = SanitizeMoveId(moveId);
+    moveInfo = &gMovesInfo[moveId];
+
+    if (GET_LANGUAGE() == ES)
+        name = moveInfo->nameEs;
+    else
+        name = moveInfo->name;
+
+    if (name == NULL)
+        name = moveInfo->name;
+
+    return name;
 }
 
 static inline enum BattleMoveEffects GetMoveEffect(enum Move moveId)
@@ -229,10 +249,29 @@ static inline enum BattleMoveEffects GetMoveEffect(enum Move moveId)
 
 static inline const u8 *GetMoveDescription(enum Move moveId)
 {
+    const u8 *description;
+
     moveId = SanitizeMoveId(moveId);
     if (GetMoveEffect(moveId) == EFFECT_PLACEHOLDER)
         return gNotDoneYetDescription;
-    return gMovesInfo[moveId].description;
+
+    switch (GET_LANGUAGE())
+    {
+    case PT:
+        description = gMovesInfo[moveId].descriptionPt;
+        break;
+    case ES:
+        description = gMovesInfo[moveId].descriptionEs;
+        break;
+    default:
+        description = gMovesInfo[moveId].description;
+        break;
+    }
+
+    if (description == NULL)
+        description = gMovesInfo[moveId].description;
+
+    return description;
 }
 
 static inline enum Type GetMoveType(enum Move moveId)

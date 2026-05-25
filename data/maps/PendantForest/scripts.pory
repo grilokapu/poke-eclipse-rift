@@ -1,0 +1,73 @@
+mapscripts PendantForest_MapScripts {
+}
+
+script PendantForest_TrainerBattle_BugCatcher_Leonel {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_BUG_CATCHER_LEONEL, "Você vai se ver comigo!", "Não estou com sorte hoje…")
+            msgbox("Meus insetos são muito especiais!")
+        case EN:
+            trainerbattle_single(TRAINER_BUG_CATCHER_LEONEL, "You're going to face me!", "I'm not having any luck today…")
+            msgbox("My bugs are very special!")
+        case ES:
+            trainerbattle_single(TRAINER_BUG_CATCHER_LEONEL, "¡Te vas a enfrentar a mí!", "Hoy no tengo suerte…")
+            msgbox("¡Mis insectos son muy especiales!")
+    }
+    release
+    end
+}
+
+script PendantForest_FatMan_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dizem que caminhar na floresta faz\nbem pra saúde…\pEntão por que eu estou ficando\nMAIS cansado?", MSGBOX_NPC)
+        case EN: msgbox("People say walking through forests\nis good for your health…\pSo why am I getting EVEN more\ntired?", MSGBOX_NPC)
+        case ES: msgbox("Dicen que caminar por el bosque es\nbueno para la salud…\pEntonces, ¿por qué me estoy\ncansando AÚN más?", MSGBOX_NPC)
+    }
+    end       
+}
+
+script PendantForest_FindItem_Repel {
+    finditem(ITEM_REPEL)
+    end
+}
+
+script PendantForest_FindItem_TM11 {
+    finditem(ITEM_TM_ACID_SPRAY)
+    end
+}
+
+script PendantForest_FindItem_Antidote {
+    finditem(ITEM_ANTIDOTE)
+    end
+}
+
+script PendantForest_TrainerBattle_Camper_Dilan {
+    switch(var(VAR_LANGUAGE)) {
+    case PT:
+        trainerbattle_single(TRAINER_CAMPER_DILAN, "Ei! Você também veio explorar a\nPendant Forest?\pDizem que coisas estranhas\nacontecem aqui durante a noite…\pMas eu não tenho medo!\nVamos batalhar!", "A-Ah…\pTalvez eu esteja um pouco\nassustado…")
+        msgbox("Depois da nossa batalha, a\nfloresta parece menos assustadora.\pMas ainda sinto que alguém está\nobservando entre as árvores…")
+    case EN:
+        trainerbattle_single(TRAINER_CAMPER_DILAN, "Hey! Did you come to explore\nPendant Forest too?\pPeople say strange things happen\nhere during the night…\pBut I'm not scared!\nLet's battle!", "W-Whoa…\nMaybe I am a little scared…")
+        msgbox("After our battle, the forest feels\nless scary somehow.\pBut I still feel like something is\nwatching us from the trees…")
+    case ES:
+        trainerbattle_single(TRAINER_CAMPER_DILAN, "¡Oye! ¿Tú también viniste a\nexplorar el Bosque Pendant?\pDicen que cosas extrañas ocurren\naquí durante la noche…\p¡Pero yo no tengo miedo!\n¡Vamos a luchar!", "A-Ah…\nTal vez sí estoy un poco asustado…")
+        msgbox("Después de nuestra batalla, el\nbosque se siente menos aterrador.\pPero todavía siento que algo nos\nobserva entre los árboles…")
+    }
+    end
+}
+
+script PendantForest_TrainerBattle_BugCatcher_Francis {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_BUG_CATCHER_FRANCIS, "Estou treinando para me tornar um\nespecialista em Pokémon Inseto!\pVocê vai me ajudar a praticar!", "Meus insetos ainda precisam\ntreinar mais…")
+            msgbox("Um bom treinador Inseto nunca\ndesiste de estudar!")
+        case EN:
+            trainerbattle_single(TRAINER_BUG_CATCHER_FRANCIS, "I'm training to become a Bug\nPokémon specialist!\pYou'll help me practice!", "My bugs still need more training…")
+            msgbox("A good Bug Trainer never stops\nstudying!")
+        case ES:
+            trainerbattle_single(TRAINER_BUG_CATCHER_FRANCIS, "¡Estoy entrenando para convertirme\nen un especialista en Pokémon\lBicho!\p¡Tú me ayudarás a practicar!", "Mis bichos todavía necesitan más\nentrenamiento…")
+            msgbox("¡Un buen Entrenador Bicho nunca\ndeja de estudiar!")
+    }
+    end
+}
+

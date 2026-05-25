@@ -16,15 +16,15 @@
     {
       "map": "MAP_ROUTE101",
       "offset": 16,
-      "direction": "right"
+      "direction": "left"
     }
   ],
   "object_events": [
     {
       "local_id": "LOCALID_LITTLEROOT_BIDKEEPER",
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
-      "x": 28,
-      "y": 29,
+      "x": 0,
+      "y": 31,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 1,
@@ -124,75 +124,21 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 29,
-      "y": 30,
-      "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "1",
-      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 29,
-      "y": 31,
-      "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "1",
-      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 29,
+      "x": 0,
       "y": 32,
       "elevation": 3,
       "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "1",
-      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 12,
-      "y": 15,
-      "elevation": 0,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
       "var_value": "0",
-      "script": "PineveilTown_BoyGiveRivalWarning"
+      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
     },
     {
       "type": "trigger",
       "x": 13,
-      "y": 15,
+      "y": 13,
       "elevation": 0,
       "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "0",
-      "script": "PineveilTown_BoyGiveRivalWarning"
-    },
-    {
-      "type": "trigger",
-      "x": 29,
-      "y": 32,
-      "elevation": 0,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "0",
-      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 29,
-      "y": 31,
-      "elevation": 0,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "0",
-      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 29,
-      "y": 30,
-      "elevation": 0,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
-      "var_value": "0",
-      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
+      "var_value": "2",
+      "script": "PineveilTown_MomComeToGiveSomeItemsBeforePlayerGone"
     }
   ],
   "bg_events": [

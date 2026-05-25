@@ -50,7 +50,7 @@ const struct TmHmIndexKey gTMHMItemMoveIds[NUM_ALL_MACHINES + 1] =
     /*
      * Expands to the following:
      *
-     * [1] = { ITEM_TM_FOCUS_PUNCH, MOVE_FOCUS_PUNCH },
+     * [1] = { ITEM_TM01, MOVE_FOCUS_PUNCH },
      * [2] = { ITEM_TM_DRAGON_CLAW, MOVE_DRAGON_CLAW },
      * [3] = { ITEM_TM_WATER_PULSE, MOVE_WATER_PULSE },
      * etc etc
@@ -789,7 +789,16 @@ static u16 SanitizeItemId(enum Item itemId)
 
 const u8 *GetItemName(enum Item itemId)
 {
-    const u8 *name = gItemsInfo[SanitizeItemId(itemId)].name;
+    const struct ItemInfo *itemInfo = &gItemsInfo[SanitizeItemId(itemId)];
+    const u8 *name;
+
+    if (GET_LANGUAGE() == ES)
+        name = itemInfo->nombre;
+    else
+        name = itemInfo->name;
+
+    if (name == NULL)
+        name = itemInfo->name;
 
     return name == NULL ? gQuestionMarksItemName : name;
 }
@@ -833,7 +842,26 @@ u32 GetItemHoldEffectParam(enum Item itemId)
 
 const u8 *GetItemDescription(enum Item itemId)
 {
-    return gItemsInfo[SanitizeItemId(itemId)].description;
+    const struct ItemInfo *itemInfo = &gItemsInfo[SanitizeItemId(itemId)];
+    const u8 *description;
+
+    switch (GET_LANGUAGE())
+    {
+    case PT:
+        description = itemInfo->descricao;
+        break;
+    case ES:
+        description = itemInfo->descricion;
+        break;
+    default:
+        description = itemInfo->description;
+        break;
+    }
+
+    if (description == NULL)
+        description = itemInfo->description;
+
+    return description;
 }
 
 u8 GetItemImportance(enum Item itemId)

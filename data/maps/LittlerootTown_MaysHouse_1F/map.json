@@ -59,17 +59,8 @@
       "y": 8,
       "elevation": 0,
       "var": "VAR_PLAYER_MOM_HOUSE_STATE",
-      "var_value": "4",
-      "script": "PineveilTown_PlayerHouse_1F_Mom_Later_Talk_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 3,
-      "elevation": 0,
-      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
-      "var_value": "0",
-      "script": "PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile"
+      "var_value": "2",
+      "script": "PineveilTown_PlayerHouse_Mom_Talk_On1stExit_Tile"
     },
     {
       "type": "trigger",
@@ -78,16 +69,7 @@
       "elevation": 0,
       "var": "VAR_PLAYER_MOM_HOUSE_STATE",
       "var_value": "2",
-      "script": "PineveilTown_PlayerHouse_1F_Mom_Later_Talk_Tile"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 3,
-      "elevation": 0,
-      "var": "VAR_PLAYER_MOM_HOUSE_STATE",
-      "var_value": "0",
-      "script": "PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile"
+      "script": "PineveilTown_PlayerHouse_Mom_Talk_On1stExit_Tile"
     }
   ],
   "bg_events": []

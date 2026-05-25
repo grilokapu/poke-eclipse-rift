@@ -1400,12 +1400,45 @@ static const struct SpriteFrameImage sPicTable_Hikari[] = {
     overworld_frame(gObjectEventPic_Hikari, 2, 4, 0),
     overworld_frame(gObjectEventPic_Hikari, 2, 4, 1),
     overworld_frame(gObjectEventPic_Hikari, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Hikari, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Hikari, 2, 4, 0),
-    overworld_frame(gObjectEventPic_Hikari, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Hikari, 2, 4, 1),
-    overworld_frame(gObjectEventPic_Hikari, 2, 4, 2),
-    overworld_frame(gObjectEventPic_Hikari, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Hikari, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Hikari, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Hikari, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Hikari, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Hikari, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Hikari, 2, 4, 8),
+};
+static const struct SpriteFrameImage sPicTable_Dark_Sorcerer[] = {
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Dark_Sorcerer, 2, 4, 8),
+};
+static const struct SpriteFrameImage sPicTable_Player_M_Sleeping[] = {
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 1),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 2),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 0),
+    overworld_frame(gObjectEventPic_Player_M_Sleeping, 4, 4, 1),
+};
+static const struct SpriteFrameImage sPicTable_Lucien[] = {
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 0),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 1),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 2),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 3),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 4),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 5),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 6),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 7),
+    overworld_frame(gObjectEventPic_Lucien, 2, 4, 8),
 };
 
 #if IS_FRLG
@@ -3053,3 +3086,11 @@ static const struct SpriteFrameImage sPicTable_MomFrlg[] = {
 };
 
 #endif // IS_FRLG
+
+static const struct SpriteFrameImage sPicTable_ParkBall[] = {
+    overworld_ascending_frames(gObjectEventPic_ParkBall, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_Backpacker[] = {
+    overworld_ascending_frames(gObjectEventPic_Backpacker, 4, 4),
+};

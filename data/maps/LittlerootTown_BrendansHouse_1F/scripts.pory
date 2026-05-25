@@ -4,7 +4,7 @@ mapscripts LittlerootTown_BrendansHouse_1F_MapScripts {
 script PineveilTown_RivalMom_talk {
     lock
     faceplayer
-    if(var(VAR_LITTLEROOT_TOWN_STATE)) {
+    if(flag(FLAG_RIVAL_LEAVE_HOUSE)) {
         switch(var(VAR_LANGUAGE)) {
             case PT: msgbox("Nossa chegada em Aetheris tem sido\nincrível até agora.\pEspero que a gente se acostume\nrápido com a nova vida por aqui.", MSGBOX_AUTOCLOSE)
             case EN: msgbox("Our arrival in Aetheris has been\nwonderful so far.\pI hope we can settle into our new\nlife here soon.", MSGBOX_AUTOCLOSE)
@@ -12,9 +12,9 @@ script PineveilTown_RivalMom_talk {
         }
     } else {
         switch(var(VAR_LANGUAGE)) {
-            case PT: msgbox("Ah, você está procurando o\n{RIVAL}?\pEle está lá em cima, no quarto\ndele.\lPode subir e falar com ele!", MSGBOX_AUTOCLOSE)
-            case EN: msgbox("Oh, are you looking for {RIVAL}?\pHe's upstairs in his room.\nYou can go up and talk to him!", MSGBOX_AUTOCLOSE)
-            case ES: msgbox("Ah, ¿estás buscando a {RIVAL}?\pEstá arriba, en su habitación.\n¡Puedes subir a hablar con él!", MSGBOX_AUTOCLOSE)
+            case PT: msgbox("Oh! Você também veio para a\nseleção dos treinadores?\pDesculpe… Achei que meu filho já\ntivesse saído do quarto, mas ele\lainda está lá dentro.\pEsse garoto vive trancado\norganizando livros e anotações...\pEspero que ele não acabe perdendo\no primeiro dia da jornada em\lAetheris.", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Oh! Did you come for the Trainer\nselection too?\pSorry... I thought my son had\nalready left his room, but he's\lstill in there.\pThat boy is always locked away\norganizing books and notes...\pI just hope he doesn't end up\nmissing the first day of the\ljourney in Aetheris.", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("¡Oh! ¿Tú también viniste para la\nselección de entrenadores?\pLo siento... Pensé que mi hijo ya\nhabía salido de su habitación,\lpero todavía sigue allí dentro.\pEse chico vive encerrado\norganizando libros y apuntes...\pSolo espero que no termine\nperdiéndose el primer día de la\laventura en Aetheris.", MSGBOX_AUTOCLOSE)
         }
     }
     release
@@ -40,24 +40,24 @@ script PineveilTown_RivalHouse_Mom_Tile {
             movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GotoPlayer_1)
         }
         switch (var(VAR_LANGUAGE)) {
-            case PT: msgbox("Ah, {PLAYER}!\nO {RIVAL} saiu às pressas!\pEle acabou esquecendo o Mapa da\nRegiäo…\pSabe de uma coisa? Pode ficar com\nele!", MSGBOX_AUTOCLOSE)
-            case EN: msgbox("Oh, {PLAYER}!\n{RIVAL} rushed out in a hurry!\pHe ended up forgetting the Region\nMap…\pYou know what? You can keep it!", MSGBOX_AUTOCLOSE)
-            case ES: msgbox("¡Ah, {PLAYER}!\n¡{RIVAL} salió con mucha prisa!\pTerminó olvidando el Mapa de la\nRegión…\p¿Sabes qué? ¡Puedes quedártelo!", MSGBOX_AUTOCLOSE)
+            case PT: msgbox("Ah, {PLAYER}!\nO meu filho saiu às pressas!\pEle acabou esquecendo o Mapa da\nRegião…\pSabe de uma coisa? Pode ficar com\nele!", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Oh, {PLAYER}!\nMy son rushed out in a hurry!\pHe ended up forgetting the Region\nMap…\pYou know what? You can keep it!", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("¡Ah, {PLAYER}!\n¡Mi hijo salió con mucha prisa!\pTerminó olvidando el Mapa de la\nRegión…\p¿Sabes qué? ¡Puedes quedártelo!", MSGBOX_AUTOCLOSE)
         }
         giveitem(ITEM_TOWN_MAP)
         waitfanfare
         delay(20)
         switch (var(VAR_LANGUAGE)) {
-            case PT: msgbox("Cuide-se na sua jornada, {PLAYER}!\nE, por favor, fique de olho no\l{RIVAL} de vez em quando.\pEspero ver vocês dois novamente em\nbreve!", MSGBOX_AUTOCLOSE)
-            case EN: msgbox("Take care on your journey,\n{PLAYER}!\lAnd please, keep an eye on {RIVAL}\levery now and then.\pI hope to see you both again soon!", MSGBOX_AUTOCLOSE)
-            case ES: msgbox("¡Cuídate en tu aventura, {PLAYER}!\nY, por favor, cuida de {RIVAL} de\lvez en cuando.\p¡Espero verlos a los dos otra vez\nmuy pronto!", MSGBOX_AUTOCLOSE)
+            case PT: msgbox("Cuide-se na sua jornada, {PLAYER}!\nE, por favor, fique de olho no\lmeu filho de vez em quando.\pEspero ver vocês dois novamente em\nbreve!", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Take care on your journey,\n{PLAYER}!\lAnd please, keep an eye on\lmy son every now and then.\pI hope to see you both again soon!", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("¡Cuídate en tu aventura, {PLAYER}!\nY, por favor, cuida de mi hijo\lde vez en cuando.\p¡Espero verlos a los dos otra vez\nmuy pronto!", MSGBOX_AUTOCLOSE)
         }
         if (var(VAR_RESULT) == 5) {
             movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GoAwayPlayer_0)
         } else {
             movenpc(LOCALID_RIVAL_MOM, Movement_RivalMom_GoAwayPlayer_1)
         }
-        setvar(VAR_PLAYER_MOM_HOUSE_STATE, 2)
+        setvar(VAR_RIVAL_HOUSE_STATE, 1)
         release
         end
     }

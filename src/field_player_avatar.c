@@ -62,6 +62,7 @@ static EWRAM_DATA u8 sSpinStartFacingDir = 0;
 EWRAM_DATA struct ObjectEvent gObjectEvents[OBJECT_EVENTS_COUNT] = {};
 EWRAM_DATA struct PlayerAvatar gPlayerAvatar = {};
 EWRAM_DATA struct SpinData gPlayerSpinData = {};
+EWRAM_DATA u8 gSavedFacingDirection = 0;
 
 // static declarations
 static u8 ObjectEventCB2_NoMovement2(void);
@@ -2271,4 +2272,15 @@ bool8 ObjectMovingOnRockStairs(struct ObjectEvent *objectEvent, enum Direction d
     #else
         return FALSE;
     #endif
+}
+
+void SavePlayerFacing(void)
+{
+    gSavedFacingDirection = GetPlayerFacingDirection();
+}
+
+void SetPlayerDirection(void)
+{
+    u8 dir = gSavedFacingDirection;
+    ObjectEventTurnByLocalIdAndMap(LOCALID_PLAYER, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, dir);
 }

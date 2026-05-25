@@ -1,11 +1,15 @@
 #include "global.h"
+#include "event_data.h"
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
 #include "palette.h"
 #include "bg.h"
 #include "graphics.h"
+#include "gpu_regs.h"
 #include "menu.h"
+
+#include "gba/io_reg.h"
 
 static const u16 sStdTextWindow_Gfx[]  = INCBIN_U16("graphics/text_window/std.4bpp");
 
@@ -98,20 +102,34 @@ const struct TilesPal *GetWindowFrameTilesPal(u8 id)
 
 void LoadMessageBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
-    LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
-    LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
+    if (FlagGet(FLAG_TRANSPARENT_MESSAGE_BOX))
+    {
+        LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gTransMsgBox_Gfx, 0x1C0, destOffset);
+        LoadPalette(gTransMsgBox_Pal, palOffset, PLTT_SIZE_4BPP);
+    }
+    else
+    {
+        LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gMessageBox_Gfx, 0x1C0, destOffset);
+        LoadPalette(GetOverworldTextboxPalettePtr(), palOffset, PLTT_SIZE_4BPP);
+    }
 }
 
 void LoadStdWindowGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), sStdTextWindow_Gfx, 0x120, destOffset);
-    LoadPalette(GetTextWindowPalette(3), palOffset, PLTT_SIZE_4BPP);
+    if (FlagGet(FLAG_TRANSPARENT_MESSAGE_BOX))
+        LoadPalette(gTransMsgBox_Pal, palOffset, PLTT_SIZE_4BPP);
+    else
+        LoadPalette(GetTextWindowPalette(3), palOffset, PLTT_SIZE_4BPP);
 }
 
 void LoadSignBoxGfx(u8 windowId, u16 destOffset, u8 palOffset)
 {
     LoadBgTiles(GetWindowAttribute(windowId, WINDOW_BG), gSignpostWindow_Gfx, 0x1C0, destOffset);
-    LoadPalette(GetTextWindowPalette(1), palOffset, PLTT_SIZE_4BPP);
+    if (FlagGet(FLAG_TRANSPARENT_MESSAGE_BOX))
+        LoadPalette(gTransMsgBox_Pal, palOffset, PLTT_SIZE_4BPP);
+    else
+        LoadPalette(GetTextWindowPalette(1), palOffset, PLTT_SIZE_4BPP);
 }
 
 void LoadUserWindowBorderGfx_(u8 windowId, u16 destOffset, u8 palOffset)

@@ -70,8 +70,11 @@ struct ItemInfo
     u16 secondaryId;
     ItemUseFunc fieldUseFunc;
     const u8 *description;
+    const u8 *descricao;
+    const u8 *descricion;
     const u8 *effect;
     const u8 *name;
+    const u8 *nombre;
     const u8 *pluralName;
     u8 holdEffect;
     u8 holdEffectParam;
@@ -116,7 +119,7 @@ static inline enum TMHMIndex GetItemTMHMIndex(enum Item item)
     switch (item)
     {
     /* Expands to:
-        * case ITEM_TM_FOCUS_PUNCH:
+        * case ITEM_TM_TAKE_DOWN:
         *     return 1;
         * case ITEM_TM_DRAGON_CLAW:
         *      return 2;
@@ -133,8 +136,8 @@ static inline enum Move GetItemTMHMMoveId(enum Item item)
     switch (item)
     {
     /* Expands to:
-        * case ITEM_TM_FOCUS_PUNCH:
-        *     return MOVE_FOCUS_PUNCH;
+        * case ITEM_TM_TAKE_DOWN:
+        *     return MOVE_TAKE_DOWN;
         * case ITEM_TM_DRAGON_CLAW:
         *      return MOVE_DRAGON_CLAW;
         * etc */
@@ -150,8 +153,8 @@ static inline enum Item GetTMHMItemIdFromMoveId(enum Move move)
     switch (move)
     {
     /* Expands to:
-        * case MOVE_FOCUS_PUNCH:
-        *     return ITEM_TM_FOCUS_PUNCH;
+        * case MOVE_TAKE_DOWN:
+        *     return ITEM_TM_TAKE_DOWN;
         * case MOVE_DRAGON_CLAW:
         *      return ITEM_TM_DRAGON_CLAW;
         * etc */

@@ -5,6 +5,7 @@
 #include "daycare.h"
 #include "debug.h"
 #include "dexnav.h"
+#include "dppt_start_menu.h"
 #include "faraway_island.h"
 #include "event_data.h"
 #include "event_object_movement.h"
@@ -14,6 +15,7 @@
 #include "field_message_box.h"
 #include "field_move.h"
 #include "field_effect.h"
+#include "help_window.h"
 #include "field_player_avatar.h"
 #include "field_poison.h"
 #include "field_screen_effect.h"
@@ -83,6 +85,21 @@ static void SetMsgSignPostAndVarFacing(enum Direction playerDirection);
 static void SetUpWalkIntoSignScript(const u8 *script, enum Direction playerDirection);
 static u32 GetFacingSignpostType(u16 metatileBehvaior, enum Direction direction);
 static const u8 *GetSignpostScriptAtMapPosition(struct MapPosition *position);
+static const u8* GetCustomWalkingScript(void);
+
+EWRAM_DATA const u8 *gWalkingScript = NULL;
+static u16 sWalkingStepCounter = 0;
+
+#if (defined VAR_DEFAULT_WALKING_SCRIPT && !defined UNBOUND)
+//Table full of pointers to custom walking scripts
+static const u8* const sDefaultWalkingScripts[] =
+{
+	SilentForest_whisper_1,
+	SilentForest_whisper_2,
+	SilentForest_whisper_3,
+	SilentForest_whisper_4,
+};
+#endif
 
 void FieldClearPlayerInput(struct FieldInput *input)
 {
@@ -225,7 +242,11 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
     {
         FlagSet(FLAG_OPENED_START_MENU);
         PlaySE(SE_WIN_OPEN);
+        #if VOL_START_MENU == TRUE
+        HeatStartMenu_Init();
+        #else
         ShowStartMenu();
+        #endif
         return TRUE;
     }
 
@@ -804,6 +825,13 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext_SetupScript(EventScript_VsSeekerChargingDone);
             return TRUE;
         }
+
+        const u8* customWalkingScript = GetCustomWalkingScript();
+		if (customWalkingScript != NULL)
+		{
+			ScriptContext_SetupScript(customWalkingScript);
+			return TRUE;
+		}
     }
 
     if (SafariZoneTakeStep() == TRUE)
@@ -816,6 +844,30 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
     if (TryStartMatchCall())
         return TRUE;
     return FALSE;
+}
+
+static const u8* GetCustomWalkingScript(void)
+{
+	#ifdef VAR_DEFAULT_WALKING_SCRIPT
+
+    sWalkingStepCounter++;
+
+    u16 interval = 22;
+
+    if (sWalkingStepCounter < interval)
+        return NULL;
+
+    sWalkingStepCounter = 0;
+
+	if (gWalkingScript >= (u8*) 0x8000000) //A real script
+		return gWalkingScript;
+
+	u8 scriptInd = VarGet(VAR_DEFAULT_WALKING_SCRIPT);
+	if (scriptInd != 0 && scriptInd <= ARRAY_COUNT(sDefaultWalkingScripts))
+		return sDefaultWalkingScripts[scriptInd - 1];
+	#endif
+
+	return NULL;
 }
 
 static void UNUSED ClearFriendshipStepCounter(void)
@@ -1352,6 +1404,7 @@ void CancelSignPostMessageBox(struct FieldInput *input)
 
     if (IsDpadPushedToTurnOrMovePlayer(input))
     {
+        HideHelpInfoWindow();
         ScriptContext_SetupScript(EventScript_CancelMessageBox);
         LockPlayerFieldControls();
         return;

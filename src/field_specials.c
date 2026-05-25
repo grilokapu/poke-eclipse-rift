@@ -4589,10 +4589,10 @@ struct SlowpokePass
 
 const struct SlowpokePass gGiftPasses[] = 
 {
-	{ .password = sText_Password_GiveBalls, },
-	{ .password = sText_Password_GiveRepel, },
-	{ .password = sText_Password_GiveRareCandy, },
-	{. password = sText_Password_BattlePack, },
+	{.password = sText_Password_GiveBalls},
+	{.password = sText_Password_GiveRepel},
+	{.password = sText_Password_GiveRareCandy},
+	{.password = sText_Password_BattlePack},
 };
 
 void GetCodeFeedback(void)
@@ -4603,7 +4603,7 @@ void GetCodeFeedback(void)
     for (i = 0; i < ARRAY_COUNT(gGiftPasses); i++)
     {
         struct SlowpokePass gift = gGiftPasses[i];
-        if (StringCompare(gift.password, gStringVar1) == 0)
+        if (StringCompare(gift.password, gStringVar2) == 0)
         {
             gSpecialVar_Result = i;
             return;

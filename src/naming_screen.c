@@ -1433,6 +1433,7 @@ static void HandleDpadMovement(struct Task *task)
     s16 cursorY;
     u16 input;
     s16 prevCursorX;
+    s16 prevCursorY;
 
     GetCursorPos(&cursorX, &cursorY);
     input = INPUT_NONE;
@@ -1447,34 +1448,33 @@ static void HandleDpadMovement(struct Task *task)
 
     // Get new cursor position
     prevCursorX = cursorX;
+    prevCursorY = cursorY;
     cursorX += sDpadDeltaX[input];
     cursorY += sDpadDeltaY[input];
 
-    // Wrap cursor position in the X direction
+    // Wrap cursor position in the Y direction
     if (cursorY < 0)
         cursorY = FILE_COUNT - 1;
     if (cursorY > FILE_COUNT - 1)
         cursorY = 0;
 
 
-    // Handle moving on/off the button column
+    // Handle moving on/off the bottom button row
     if (sDpadDeltaY[input] != 0)
     {
-        if (cursorY == FILE_COUNT - 1)
+        if (prevCursorY < FILE_COUNT - 1 && cursorY == FILE_COUNT - 1)
         {
-            // Moved onto button column
-            // Save cursor pos in tButtonId for moving back onto keys
-            task->tButtonId = cursorY;
-            cursorY = sKeyRowToButtonRow[cursorY];
+            // Moved from the keyboard onto the buttons.
+            cursorX = sKeyRowToButtonRow[prevCursorX];
         }
-        else if (prevCursorX == FILE_COUNT - 1)
+        else if (prevCursorY == FILE_COUNT - 1 && cursorY < FILE_COUNT - 1)
         {
             NamingScreen_RedrawOptions();
-            cursorX = sButtonRowToKeyRow[cursorX];
+            cursorX = sButtonRowToKeyRow[prevCursorX];
         }
     }
 
-    // Wrap cursor position in the y direction
+    // Wrap cursor position in the X direction
     if (cursorY == FILE_COUNT - 1)
     {
         // There are only 3 keys in the button column
@@ -2059,8 +2059,7 @@ static const struct SpriteSheet sSpriteSheets[] =
 static const struct SpritePalette sSpritePalettes[] =
 {
     {gNamingScreenMenu_Pal[0], PALTAG_MENU},
-    {gNamingScreenMenu_Pal[1], PALTAG_PAGE_SWAP_OTHERS},
+    {gNamingScreenMenu_Pal[4], PALTAG_PAGE_SWAP_OTHERS},
     {gNamingScreenMenu_Pal[2], PALTAG_CURSOR},
     {NULL}
 };
-

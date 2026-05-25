@@ -103,7 +103,7 @@
     {
       "id": "LAYOUT_LITTLEROOT_TOWN",
       "name": "LittlerootTown_Layout",
-      "width": 30,
+      "width": 36,
       "height": 36,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
@@ -114,8 +114,8 @@
     {
       "id": "LAYOUT_OLDALE_TOWN",
       "name": "OldaleTown_Layout",
-      "width": 20,
-      "height": 20,
+      "width": 24,
+      "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/OldaleTown/border.bin",
@@ -180,8 +180,8 @@
     {
       "id": "LAYOUT_ROUTE101",
       "name": "Route101_Layout",
-      "width": 30,
-      "height": 20,
+      "width": 36,
+      "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route101/border.bin",
@@ -9343,6 +9343,26 @@
       "secondary_tileset": "gTileset_BrendansMaysHouse",
       "border_filepath": "data/layouts/PineveilTown_House_3/border.bin",
       "blockdata_filepath": "data/layouts/PineveilTown_House_3/map.bin"
+    },
+    {
+      "id": "LAYOUT_SILENT_FOREST",
+      "name": "SILENT_FOREST_Layout",
+      "width": 70,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_InsideOfTruck",
+      "border_filepath": "data/layouts/SILENT_FOREST/border.bin",
+      "blockdata_filepath": "data/layouts/SILENT_FOREST/map.bin"
+    },
+    {
+      "id": "LAYOUT_PENDANT_FOREST",
+      "name": "PendantForest_Layout",
+      "width": 40,
+      "height": 34,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianForest",
+      "border_filepath": "data/layouts/PendantForest/border.bin",
+      "blockdata_filepath": "data/layouts/PendantForest/map.bin"
     }
   ]
 }

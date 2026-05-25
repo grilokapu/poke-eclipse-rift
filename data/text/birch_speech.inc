@@ -1,8 +1,7 @@
 gText_Birch_Welcome::
 	.string "Hello, there!\n"
 	.string "It's so very nice to meet you.\p"
-	.string "Welcome to the world of Dark\n"
-	.string "Worship 2!\p"
+	.string "Welcome to Pokémon world!\p"
 	.string "My name is Hikari.\p"
 	.string "However, everyone just calls me\n"
 	.string "the Pokémon Professor.\p"
@@ -15,8 +14,7 @@ gText_Birch_Welcome::
 gText_Birch_WelcomePt::
 	.string "Olá!\n"
 	.string "É um prazer enorme te conhecer.\p"
-	.string "Bem-vindo ao mundo de\n"
-	.string "Dark Worship 2!\p"
+	.string "Bem-vindo ao mundo Pokémon!\p"
 	.string "Meu nome é Hikari.\p"
 	.string "No entanto, todos me chamam de\n"
 	.string "Professora Pokémon.\p"
@@ -29,8 +27,7 @@ gText_Birch_WelcomePt::
 gText_Birch_WelcomeEs::
 	.string "¡Hola!\n"
 	.string "Es un verdadero placer conocerte.\p"
-	.string "¡Bienvenido al mundo de\n"
-	.string "Dark Worship 2!\p"
+	.string "¡Bienvenido al mundo Pokémon!\p"
 	.string "Mi nombre es Hikari.\p"
 	.string "Sin embargo, todos me llaman\n"
 	.string "la Profesora Pokémon.\p"
@@ -94,7 +91,7 @@ gText_Birch_AndYouAre::
 	.string "little bit about yourself?$"
 
 gText_Birch_AndYouArePt::
-	.string "Agora, por que você näo me conta\n"
+	.string "Agora, por que você não me conta\n"
 	.string "um pouco sobre você?$"
 
 gText_Birch_AndYouAreEs::
@@ -129,7 +126,7 @@ gText_Birch_SoItsPlayer::
 	.string "So it's {PLAYER}{KUN}?$"
 
 gText_Birch_SoItsPlayerPt::
-	.string "Entäo é {PLAYER}{KUN}?$"
+	.string "Então é {PLAYER}{KUN}?$"
 
 gText_Birch_SoItsPlayerEs::
 	.string "¿Entonces eres {PLAYER}{KUN}?$"
@@ -143,7 +140,7 @@ gText_Birch_YourePlayer::
 
 gText_Birch_YourePlayerPt::
 	.string "Ah, ok!\p"
-	.string "Entäo você é {PLAYER}{KUN}, que\n"
+	.string "Então você é {PLAYER}{KUN}, que\n"
 	.string "está se mudando para minha cidade\l"
 	.string "natal de PINEVEIL.\l"
 	.string "Agora entendi!\p"

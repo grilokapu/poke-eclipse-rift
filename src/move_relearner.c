@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_util.h"
 #include "bg.h"
+#include "bw_summary_screen.h"
 #include "contest_effect.h"
 #include "data.h"
 #include "decompress.h"
@@ -748,7 +749,10 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_SHOW_MOVE_SUMMARY_SCREEN:
         if (!gPaletteFade.active)
         {
-            ShowSelectMovePokemonSummaryScreen(gPlayerParty, gSpecialVar_0x8004, CB2_InitLearnMoveReturnFromSelectMove, GetCurrentSelectedMove());
+            if (BW_SUMMARY_SCREEN == TRUE)
+                ShowSelectMovePokemonSummaryScreen_BW(gPlayerParty, gSpecialVar_0x8004, CB2_InitLearnMoveReturnFromSelectMove, GetCurrentSelectedMove());
+            else
+                ShowSelectMovePokemonSummaryScreen(gPlayerParty, gSpecialVar_0x8004, CB2_InitLearnMoveReturnFromSelectMove, GetCurrentSelectedMove());
             FreeMoveRelearnerResources();
         }
         break;
@@ -1188,6 +1192,9 @@ static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves)
             if (BoxMonKnowsMove(mon, learnset[i].move))
                 continue;
 
+            if (IsMoveBannedFromLunaticLearnset(learnset[i].move))
+                continue;
+
             bool32 alreadyInList = FALSE;
             for (u32 j = 0; j < numMoves; j++)
             {
@@ -1344,6 +1351,9 @@ static bool32 HasRelearnerLevelUpMoves(struct BoxPokemon *boxMon)
         {
             if (learnset[i].level > level)
                 break;
+
+            if (IsMoveBannedFromLunaticLearnset(learnset[i].move))
+                continue;
 
             if (!BoxMonKnowsMove(boxMon, learnset[i].move))
                 return TRUE;

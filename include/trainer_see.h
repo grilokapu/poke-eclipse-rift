@@ -28,5 +28,27 @@ u8 GetChosenApproachingTrainerObjectEventId(u8 arrayId);
 void PlayerFaceTrainerAfterBattle(void);
 u8 FldEff_DoubleExclMarkIcon(void);
 u8 FldEff_XIcon(void);
+u8 FldEff_SmileIcon(void);
+u8 FldEff_EmojiAngry(void);
+u8 FldEff_EmojiBlush(void);
+u8 FldEff_EmojiConfiant(void);
+u8 FldEff_EmojiConfident(void);
+u8 FldEff_EmojiConfidentSmiling(void);
+u8 FldEff_EmojiDoubt(void);
+u8 FldEff_EmojiGrin(void);
+u8 FldEff_EmojiHeartEyes(void);
+u8 FldEff_EmojiInnocent(void);
+u8 FldEff_EmojiJoy(void);
+u8 FldEff_EmojiKissing(void);
+u8 FldEff_EmojiRelaxed(void);
+u8 FldEff_EmojiRelieved(void);
+u8 FldEff_EmojiScream(void);
+u8 FldEff_EmojiSlithly(void);
+u8 FldEff_EmojiSmiley(void);
+u8 FldEff_EmojiSob(void);
+u8 FldEff_EmojiThinking(void);
+u8 FldEff_EmojiTongueWinking(void);
+u8 FldEff_EmojiWink(void);
+u8 FldEff_EmojiYum(void);
 
 #endif // GUARD_TRAINER_SEE_H

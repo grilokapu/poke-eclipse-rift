@@ -13,6 +13,7 @@
 #include "decoration.h"
 #include "decoration_inventory.h"
 #include "event_data.h"
+#include "heal_location.h"
 #include "field_door.h"
 #include "field_effect.h"
 #include "field_move.h"
@@ -76,6 +77,11 @@ static EWRAM_DATA u16 sMovingNpcId = 0;
 static EWRAM_DATA u16 sMovingNpcMapGroup = 0;
 static EWRAM_DATA u16 sMovingNpcMapNum = 0;
 static EWRAM_DATA u16 sFieldEffectScriptId = 0;
+static EWRAM_DATA const u8 *sBlackMessageText = NULL;
+static EWRAM_DATA u8 sBlackMessageWindowId = 0;
+static EWRAM_DATA u8 sBlackMessageState = 0;
+static EWRAM_DATA bool8 sBlackMessageHasPaletteBackup = FALSE;
+static EWRAM_DATA u16 ALIGNED(4) sBlackMessageUnfadedPalette[PLTT_BUFFER_SIZE] = {0};
 
 static u8 sBrailleWindowId;
 static bool8 sIsScriptedWildDouble;
@@ -86,6 +92,10 @@ extern const u8 *gStdScripts_End[];
 
 static void CloseBrailleWindow(void);
 static void DynamicMultichoiceSortList(struct ListMenuItem *items, u32 count);
+static bool8 RunBlackMessage(void);
+static bool8 IsBlackMessageFadeInFinished(void);
+static void BackupBlackMessagePalettes(void);
+static void RestoreBlackMessagePalettes(void);
 
 // This is defined in here so the optimizer can't see its value when compiling
 // script.c.
@@ -108,6 +118,19 @@ static u8 *const sScriptStringVars[] =
     gStringVar2,
     gStringVar3,
 };
+
+static const struct WindowTemplate sWindowTemplate_BlackMessage =
+{
+    .bg = 0,
+    .tilemapLeft = 0,
+    .tilemapTop = 5,
+    .width = 30,
+    .height = 11,
+    .paletteNum = 15,
+    .baseBlock = 1,
+};
+
+static const u8 sBlackMessageTextColors[] = { TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY };
 
 bool8 ScrCmd_nop(struct ScriptContext *ctx)
 {
@@ -820,6 +843,7 @@ bool8 ScrCmd_fadescreen(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
     FadeScreen(mode, 0);
+
     SetupNativeScript(ctx, IsPaletteNotActive);
     return TRUE;
 }
@@ -1705,6 +1729,118 @@ bool8 ScrCmd_message(struct ScriptContext *ctx)
         msg = (const u8 *)ctx->data[0];
     ShowFieldMessage(msg);
     return FALSE;
+}
+
+enum
+{
+    BLACK_MESSAGE_FADE_OUT,
+    BLACK_MESSAGE_WAIT_FADE_OUT,
+    BLACK_MESSAGE_OPEN_WINDOW,
+    BLACK_MESSAGE_PRINT,
+    BLACK_MESSAGE_WAIT_PRINT,
+    BLACK_MESSAGE_CLOSE_WINDOW,
+    BLACK_MESSAGE_WAIT_FADE_IN,
+};
+
+static bool8 RunBlackMessage(void)
+{
+    switch (sBlackMessageState)
+    {
+    case BLACK_MESSAGE_FADE_OUT:
+        HideFieldMessageBox();
+        BackupBlackMessagePalettes();
+        FadeScreen(FADE_TO_BLACK, 0);
+        sBlackMessageState = BLACK_MESSAGE_WAIT_FADE_OUT;
+        break;
+    case BLACK_MESSAGE_WAIT_FADE_OUT:
+        if (!gPaletteFade.active)
+            sBlackMessageState = BLACK_MESSAGE_OPEN_WINDOW;
+        break;
+    case BLACK_MESSAGE_OPEN_WINDOW:
+        sBlackMessageWindowId = AddWindow(&sWindowTemplate_BlackMessage);
+        Menu_LoadStdPalAt(BG_PLTT_ID(15));
+        FillWindowPixelBuffer(sBlackMessageWindowId, PIXEL_FILL(0));
+        PutWindowTilemap(sBlackMessageWindowId);
+        CopyWindowToVram(sBlackMessageWindowId, COPYWIN_FULL);
+        sBlackMessageState = BLACK_MESSAGE_PRINT;
+        break;
+    case BLACK_MESSAGE_PRINT:
+        FillWindowPixelBuffer(sBlackMessageWindowId, PIXEL_FILL(0));
+        StringExpandPlaceholders(gStringVar4, sBlackMessageText);
+        AddTextPrinterParameterized4(sBlackMessageWindowId, FONT_NORMAL, 2, 8, 1, 0, sBlackMessageTextColors, 1, gStringVar4);
+        gTextFlags.canABSpeedUpPrint = FALSE;
+        sBlackMessageState = BLACK_MESSAGE_WAIT_PRINT;
+        break;
+    case BLACK_MESSAGE_WAIT_PRINT:
+        RunTextPrinters();
+        if (!IsTextPrinterActiveOnWindow(sBlackMessageWindowId))
+            sBlackMessageState = BLACK_MESSAGE_CLOSE_WINDOW;
+        break;
+    case BLACK_MESSAGE_CLOSE_WINDOW:
+        ClearWindowTilemap(sBlackMessageWindowId);
+        CopyWindowToVram(sBlackMessageWindowId, COPYWIN_MAP);
+        RemoveWindow(sBlackMessageWindowId);
+        sBlackMessageWindowId = WINDOW_NONE;
+        RestoreBlackMessagePalettes();
+        FadeInFromBlack();
+        sBlackMessageState = BLACK_MESSAGE_WAIT_FADE_IN;
+        break;
+    case BLACK_MESSAGE_WAIT_FADE_IN:
+        if (IsBlackMessageFadeInFinished())
+        {
+            sBlackMessageText = NULL;
+            sBlackMessageState = BLACK_MESSAGE_FADE_OUT;
+            return TRUE;
+        }
+        break;
+    }
+
+    return FALSE;
+}
+
+static bool8 IsBlackMessageFadeInFinished(void)
+{
+    return !gPaletteFade.active && IsWeatherNotFadingIn();
+}
+
+static void BackupBlackMessagePalettes(void)
+{
+    CpuFastCopy(gPlttBufferUnfaded, sBlackMessageUnfadedPalette, PLTT_BUFFER_SIZE * sizeof(u16));
+    sBlackMessageHasPaletteBackup = TRUE;
+}
+
+static void RestoreBlackMessagePalettes(void)
+{
+    if (!sBlackMessageHasPaletteBackup)
+        return;
+
+    CpuFastCopy(sBlackMessageUnfadedPalette, gPlttBufferUnfaded, PLTT_BUFFER_SIZE * sizeof(u16));
+    sBlackMessageHasPaletteBackup = FALSE;
+}
+
+bool8 ScrCmd_blackmessage(struct ScriptContext *ctx)
+{
+    const u8 *msg = (const u8 *)ScriptReadWord(ctx);
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    if (msg == NULL)
+        msg = (const u8 *)ctx->data[0];
+
+    sBlackMessageText = msg;
+    sBlackMessageState = BLACK_MESSAGE_FADE_OUT;
+    SetupNativeScript(ctx, RunBlackMessage);
+    return TRUE;
+}
+
+bool8 ScrCmd_blackmessageout(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+
+    RestoreBlackMessagePalettes();
+    FadeInFromBlack();
+    SetupNativeScript(ctx, IsBlackMessageFadeInFinished);
+    return TRUE;
 }
 
 bool8 ScrCmd_pokenavcall(struct ScriptContext *ctx)
@@ -3369,5 +3505,39 @@ bool8 ScrCmd_showmonmugshot(struct ScriptContext *ctx)
     u8 position = ScriptReadByte(ctx);
 
     ShowMonMugshot(species, position);
+    return FALSE;
+}
+
+bool8 ScrCmd_createspecialobjectevent(struct ScriptContext *ctx)
+{
+    u16 sprite = ScriptReadHalfword(ctx);
+    u8 objId = ScriptReadByte(ctx);
+    u8 posX = ScriptReadByte(ctx);
+    u8 posY = ScriptReadByte(ctx);
+    u8 movement = ScriptReadByte(ctx);
+
+    CreateSpecialObjectEvent(sprite, objId, posX, posY, movement);
+    return FALSE;
+}
+
+bool8 ScrCmd_SetIceScrystalCurse(struct ScriptContext *ctx)
+{
+    u16 objId = ScriptReadHalfword(ctx);
+
+    CreateIcecrystalCurse(objId);
+    return FALSE;
+}
+
+bool8 ScrCmd_HealingPlaceHack(struct ScriptContext *ctx)
+{
+    u8 mapGroup = ScriptReadByte(ctx);
+    u8 mapNum = ScriptReadByte(ctx);
+    u16 x = VarGet(ScriptReadHalfword(ctx));
+    u16 y = VarGet(ScriptReadHalfword(ctx));
+    u8 type = ScriptReadByte(ctx);
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+
+    SetHealingPlaceLocationHack(mapGroup, mapNum, x, y, type);
     return FALSE;
 }

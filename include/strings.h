@@ -2298,4 +2298,7 @@ extern const u8 gText_YouHaveNoPokemonSpa[];
 extern const u8 gText_SendWhichMonToPCSpa[];
 extern const u8 gText_MoveItemWhereSpa[];
 
+extern const u8 gText_AM[];
+extern const u8 gText_PM[];
+
 #endif // GUARD_STRINGS_H

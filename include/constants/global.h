@@ -112,7 +112,7 @@ enum Language
 #define BAG_ITEMS_COUNT 30
 #define BAG_KEYITEMS_COUNT 30
 #define BAG_POKEBALLS_COUNT 16
-#define BAG_TMHM_COUNT 64
+#define BAG_TMHM_COUNT 128
 #define BAG_BERRIES_COUNT 46
 
 // Number of facilities for Ranking Hall.
@@ -234,10 +234,14 @@ enum Connection
 #define EN ENGLISH_LANGUAGE
 #define ES SPANISH_LANGUAGE
 
-#define MUGSHOT_DOWN_LEFT 0
+#define MUGSHOT_DOWN_RIGHT 0
 #define MUGSHOT_CENTER 1
 
 #define GET_LANGUAGE() (gSaveBlock2Ptr->gInitialLanguage)
+
+#define IS_MOVE_SPECIAL(move) ((gMovesInfo[move].category) == DAMAGE_CATEGORY_SPECIAL)
+#define IS_MOVE_PHYSICAL(move) ((gMovesInfo[move].category) == DAMAGE_CATEGORY_PHYSICAL)
+#define IS_MOVE_STATUS(move) ((gMovesInfo[move].category) == DAMAGE_CATEGORY_STATUS)
 
 #if TESTING
 #include "config/test.h"

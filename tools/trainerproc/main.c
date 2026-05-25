@@ -1772,6 +1772,25 @@ static void fprint_species(FILE *f, const char *prefix, struct String s)
     }
 }
 
+static bool string_ends_with(const char *s, const char *suffix)
+{
+    size_t s_len = strlen(s);
+    size_t suffix_len = strlen(suffix);
+
+    if (s_len < suffix_len)
+        return false;
+
+    return strcmp(s + s_len - suffix_len, suffix) == 0;
+}
+
+static struct String get_default_difficulty(const struct Parsed *parsed)
+{
+    if (parsed->source->path != NULL && string_ends_with(parsed->source->path, "hardtrainers.party"))
+        return literal_string("Hard");
+
+    return literal_string("Normal");
+}
+
 static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *parsed)
 {
     fprintf(f, "//\n");
@@ -1789,7 +1808,7 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
         struct Trainer *trainer = &parsed->trainers[i];
         fprintf(f, "#line %d\n", trainer->id_line);
         if (is_empty_string(trainer->difficulty))
-            trainer->difficulty = literal_string("Normal");
+            trainer->difficulty = get_default_difficulty(parsed);
         else
             fprintf(f, "#line %d\n", trainer->difficulty_line);
         fprint_constant(f, "    [DIFFICULTY",trainer->difficulty);

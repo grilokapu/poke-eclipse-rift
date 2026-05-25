@@ -1,37 +1,94 @@
 mapscripts LittlerootTown_MaysHouse_1F_MapScripts {
-
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_PLAYER_MOM_HOUSE_STATE, 0: PineveilTown_Mom_Talk_After_Player_Leaves_Room
+        VAR_PLAYER_MOM_HOUSE_STATE, 1: PineveilTown_Mom_Continue_Talking_Player_OnTV
+    ]
+    MAP_SCRIPT_ON_LOAD {
+        sethealingplacehack(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 7, 7, HEAL_LOCATION_MOM)
+        end
+    }
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_PLAYERFACING_ROOM) == 2) {
+            end
+        }
+        elif (var(VAR_PLAYERFACING_ROOM) == 1) {
+            setobjectxyperm(LOCALID_PLAYERS_HOUSE_1F_MOM, 6, 5)
+        }
+        end
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_PLAYERFACING_ROOM, 1: PineveilTown_PlayerHouse_Player_LookUp_OnWarp
+    ]
 }
 
-script PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile {
+script PineveilTown_Mom_Talk_After_Player_Leaves_Room {
     lockall
     playse(SE_PIN)
     movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_ExclamationMark)
     waitse
-    delay(30)
-    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
-    copyvar(VAR_RESULT, VAR_TEMP_0)
-    if (var(VAR_RESULT) == 11) {
-        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_GoToPlayer0)
+    pause(20)
+    checkgenderstr
+    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_GoNext_Player)
+    moveplayer(Common_Movement_FaceDown)
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Oh, {PLAYER}! Ainda bem que você\nacordou… Eu já estava começando a\lficar preocupada.\pVocê dormiu muito além do normal\nhoje.\pHm? O que foi?\nVocê parece um pouco estranh{STR_VAR_1}…\lEstá se sentindo bem?\pEspero que sim, porque hoje é um\ndia muito importante.\pA temporada oficial para novos\ntreinadores na região de Aetheris\lfinalmente começou!\pE olha só, a Professora Hikari vai\naparecer ao vivo na TV daqui a\linstantes.\pVenha rápido assistir!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Oh, {PLAYER}! Thank goodness\nyou're awake… I was starting to\lget worried.\pYou slept way longer than usual\ntoday.\pHm? What's wrong?\nYou seem a little off… Are you\lfeeling alright?\pI hope so, because today is a very\nimportant day.\pThe official season for new\nTrainers in the Aetheris region\lhas finally begun!\pAnd look, Professor Hikari is\nabout to appear live on TV any\lmoment now.\pCome quickly and watch!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mami", "¡Oh, {PLAYER}! Menos mal que\ndespertaste… Ya empezaba a\lpreocuparme.\pHoy dormiste mucho más de lo\nnormal.\p¿Hm? ¿Qué ocurre?\nTe ves un poco extrañ{STR_VAR_1}… ¿Te\lsientes bien?\pEso espero, porque hoy es un día\nmuy importante.\p¡La temporada oficial para nuevos\nentrenadores en la región de\lAetheris por fin ha comenzado!\pY mira, la Profesora Hikari\naparecerá en vivo por televisión\len cualquier momento.\p¡Ven rápido a verla!", MSGBOX_AUTOCLOSE)
     }
-    else {
-        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_GoToPlayer1)
-    }
-    delay(30)
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mamäe", "Ah, você finalmente acordou!\pEu já estava começando a ficar\npreocupada com o horário…\pVocê nunca perdeu esse hábito de\nacordar tarde, né?\pIgualzinho no começo da sua\njornada em Seafood!\pAh, e o {RIVAL} passou aqui mais\ncedo.\lEle disse para você näo se atrasar\lno seu primeiro dia em Aetheris.\lParecia estar com muita pressa!\pBem, näo vou te segurar mais.\pSe cuide, alimente-se direito…\nE näo se esqueça de ligar para sua\lmäe de vez em quando, está bem?", MSGBOX_AUTOCLOSE)
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mom", "Ah, you're finally awake!\pI was starting to get worried\nabout the time…\pYou never lost that habit of\nsleeping in, huh?\pJust like at the start of your\njourney in Seafood!\pOh, and {RIVAL} stopped by\nearlier.\lHe told me to remind you not to be\llate for your first day in\lAetheris. He seemed to be in quite\la hurry!\pWell, I won't keep you any longer.\pTake care, make sure you eat\nproperly…\lAnd don't forget to call your mom\lfrom time to time, okay?", MSGBOX_AUTOCLOSE)
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mami", "¡Ah, por fin despertaste!\pYa estaba empezando a preocuparme\npor la hora…\pNunca perdiste ese hábito de\ndespertarte tarde, ¿verdad?\p¡Igual que al comienzo de tu\naventura en Seafood!\pAh, y {RIVAL} pasó por aquí hace\nun rato.\lMe pidió que te recordara que no\lllegues tarde en tu primer día en\lAetheris. ¡Parecía tener mucha\lprisa!\pBueno, no voy a detenerte más.\pCuídate, aliméntate bien…\nY no olvides llamar a tu mamá de\lvez en cuando, ¿de acuerdo?", MSGBOX_AUTOCLOSE)
-    }
-    if (var(VAR_RESULT) == 11) {
-        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_ReturnToTV0)
-    }
-    else {
-        movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_ReturnToTV1)
-    }
+    applymovement(LOCALID_PLAYERS_HOUSE_1F_MOM, Movement_Mom_GoTo_TV)
+    applymovement(LOCALID_PLAYER, Movement_FollowMom_To_TV)
+    waitmovementall
+    pause(20)
+    fadescreen(FADE_TO_BLACK)
     setvar(VAR_PLAYER_MOM_HOUSE_STATE, 1)
+    setflag(FLAG_SPAWN_INVISIBLE)
+    warpsilent(MAP_LITTLEROOT_TOWN, 13, 9)
+    releaseall
+    end
+}
+
+script PineveilTown_PlayerHouse_Mom_Talk_On1stExit_Tile {
+    lockall
+    playse(SE_PIN)
+    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_ExclaimFacingDown)
+    waitse
+    pause(20)
+    moveplayer(Common_Movement_FaceUp)
+    checkgenderstr
+    callnative(CheckGenderString4)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "{STR_VAR_2} querid{STR_VAR_1}, tome cuidado durante\nsua jornada.\pNem todas as pessoas que se\naproximarem de você terão boas\lintenções. O mundo pode ser muito\lmais cruel do que parece.\pNunca perca de vista o seu\nobjetivo... e mostre a todos que\lvocê pode se tornar o maior\ltreinador de Aetheris.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "My dear, be careful on your\njourney.\pNot everyone who approaches you\nwill have good intentions. The\lworld can be far harsher than it\lseems.\pNever lose sight of your goal...\nand show everyone that you can\lbecome the greatest Trainer in\lAetheris.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mami", "Mi querid{STR_VAR_1}, ten cuidado durante tu\nviaje.\pNo todas las personas que se\nacerquen a ti tendrán buenas\lintenciones. El mundo puede ser\lmucho más cruel de lo que parece.\pNunca pierdas de vista tu\nobjetivo... y demuestra a todos\lque puedes convertirte en el mejor\lentrenador de Aetheris.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_FaceUp)
+    setvar(VAR_PLAYER_MOM_HOUSE_STATE, 3)
+    releaseall
+    end
+}
+
+script PineveilTown_PlayerHouse_Player_LookUp_OnWarp {
+    turnobject(LOCALID_PLAYER, DIR_NORTH)
+    setvar(VAR_PLAYERFACING_ROOM, 2)
+    release
+    end
+}
+
+script PineveilTown_Mom_Continue_Talking_Player_OnTV {
+    lockall
+    pause(30)
+    applymovement(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_FaceRight)
+    applymovement(LOCALID_PLAYER, Common_Movement_FaceLeft)
+    waitmovementall
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Hehe… a Professora Hikari sempre\nfala dessas coisas com tanto\lentusiasmo.\pMas é estranho pensar que… hoje\nfinalmente chegou o seu momento.\pParece que foi ontem que você mal\nconseguia segurar uma Poké Ball.\pE agora… vai começar sua própria\njornada.\pAh, antes que eu esqueça!\pA Professora Hikari pediu para\ntodos os novos treinadores irem ao\llaboratório dela hoje.\pEla disse que preparou algo\nespecial para os iniciantes deste\lano.\pEntão não faça a professora\nesperar, certo?\pE… cuide-se lá fora, {PLAYER}.\pAetheris pode ser uma região\nlinda… mas existem lugares que é\lmelhor evitar sozinho.\p...\pBom! Já falei demais.\nVá logo antes que chegue tarde!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Hehe… Professor Hikari always\ntalks about these things with so\lmuch enthusiasm.\pBut it's strange to think that…\ntoday is finally your moment.\pIt feels like just yesterday you\ncould barely hold a Poké Ball.\pAnd now… you're about to begin\nyour very own journey.\pAh, before I forget!\nProfessor Hikari asked all the new\lTrainers to go to her laboratory\ltoday.\pShe said she prepared something\nspecial for this year's beginners.\pSo don't keep the professor\nwaiting, alright?\pAnd… be careful out there,\n{PLAYER}.\pAetheris may be a beautiful\nregion… but there are places\lbetter not explored alone.\p...\pWell! I've talked long enough.\nYou should get going before you're\llate!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mami", "Jeje… La Profesora Hikari siempre\nhabla de estas cosas con tanto\lentusiasmo.\pPero es extraño pensar que… hoy\nfinalmente llegó tu momento.\pParece que fue ayer cuando apenas\npodías sostener una Poké Ball.\pY ahora… estás a punto de comenzar\ntu propia aventura.\p¡Ah, antes de que lo olvide!\nLa Profesora Hikari pidió que\ltodos los nuevos entrenadores\lfueran hoy a su laboratorio.\pDijo que preparó algo especial\npara los principiantes de este\laño.\pAsí que no hagas esperar a la\nprofesora, ¿de acuerdo?\pY… cuídate ahí fuera, {PLAYER}.\pAetheris puede ser una región\nhermosa… pero hay lugares que es\lmejor no explorar solo.\p...\p¡Bueno! Ya hablé demasiado.\nSerá mejor que te vayas antes de\lque llegues tarde!", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_FaceUp)
+    setvar(VAR_PLAYER_MOM_HOUSE_STATE, 2)
     releaseall
     end
 }
@@ -39,68 +96,40 @@ script PineveilTown_PlayerHouse_1F_Mom_InitialScript_Tile {
 script PineveilTown_PlayerHouse_1F_Mom_Talk {
     lock
     faceplayer
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mamäe", "Essa novela está ficando täo\nintensa… A Paola acabou de revelar\lque é a gêmea má!\pVocê acredita?\pE a pobre Paulina ainda nem sabe o\nque a espera…", MSGBOX_AUTOCLOSE)
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mom", "This soap opera is getting so\nintense… Paola just revealed that\lshe's the evil twin!\pCan you believe it?\pAnd poor Paulina still has no idea\nwhat's waiting for her…", MSGBOX_AUTOCLOSE)
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mami", "Esta telenovela se está poniendo\nmuy intensa… ¡Paola acaba de\lrevelar que es la gemela malvada!\p¿Puedes creerlo?\pY la pobre Paulina todavía no\ntiene idea de lo que le espera…", MSGBOX_AUTOCLOSE)
+    checkgenderstr
+    if (!flag(FLAG_SYS_POKEMON_GET)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgminibox(PSS_ICON_MOM, "Mãe", "{PLAYER}, você ainda não foi?\pO laboratório da Professora Hikari\nfica logo ali.\lNão faça ela esperar!", MSGBOX_AUTOCLOSE)
+            case EN: msgminibox(PSS_ICON_MOM, "Mom", "{PLAYER}, you haven't gone yet?\pProfessor Hikari's laboratory is\nright over there.\lDon't make her wait!", MSGBOX_AUTOCLOSE)
+            case ES: msgminibox(PSS_ICON_MOM, "Mami", "{PLAYER}, ¿todavía no has ido?\pEl laboratorio de la Profesora Hikari\nestá justo allí.\lNo la hagas esperar!", MSGBOX_AUTOCLOSE)
+        }
+        release
+        end
     }
-    call_if_set(FLAG_SYS_POKEMON_GET, PineveilTown_PlayerHouse_1F_Mom_Talk_HealParty)
-    movenpc(LOCALID_PLAYERS_HOUSE_1F_MOM, Common_Movement_FaceUp)
-    release
-    end
-}
-
-script PineveilTown_PlayerHouse_1F_Mom_Talk_HealParty {
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mamäe", "{PLAYER}!\nPor que näo descansa um pouco?", MSGBOX_AUTOCLOSE)
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mom", "{PLAYER}!\nWhy don't you take a quick rest?", MSGBOX_AUTOCLOSE)
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mami", "{PLAYER}\n¿Por qué no descansas un poco?", MSGBOX_AUTOCLOSE)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Oh, {PLAYER}! Você voltou?\pVocê parece cansado…\nSua jornada deve estar sendo mais\ldifícil do que imaginava.\pMas eu consigo ver nos seus olhos…\nVocê já está mudando.\pHehe… acho que isso faz parte de\ncrescer como treinador.\pVenha cá por um instante.\nVocê precisa descansar um pouco.\pUma bom cochilo sempre ajuda\na clarear a mente.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Oh, {PLAYER}! You're back?\pYou look exhausted...\nYour journey must be harder than\lyou expected.\pBut I can see it in your eyes...\nYou're already changing.\pHehe... I guess that's part of\ngrowing as a Trainer.\pCome here for a moment.\nYou need to get some rest.\pA good nap always helps clear the\nmind.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mami", "¡Oh, {PLAYER}! ¿Has vuelto?\pPareces cansado…\nTu aventura debe estar siendo más\ldifícil de lo que imaginabas.\pPero puedo verlo en tus ojos…\nYa estás cambiando.\pJeje… supongo que eso forma parte\nde crecer como entrenador.\pVen aquí un momento.\nNecesitas descansar un poco.\pUna buena siesta siempre ayuda a\ndespejar la mente.", MSGBOX_AUTOCLOSE)
     }
     call(Common_EventScript_OutOfCenterPartyHeal)
-    switch (var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mamäe", "Seus Pokémon já estäo totalmente\nrecuperados!\pBoa sorte, {PLAYER}!\nSeus Pokémon estäo contando com\lvocê!", MSGBOX_AUTOCLOSE)
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mom", "Your Pokémon are all healed up!\pGood luck, {PLAYER}!\nYour Pokémon are counting on you!", MSGBOX_AUTOCLOSE)
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_MOM, "Mami", "¡Tus Pokémon ya están\ncompletamente recuperados!\p¡Buena suerte, {PLAYER}!\n¡Tus Pokémon cuentan contigo!", MSGBOX_AUTOCLOSE)
-    }
-    return
-}
-
-script PineveilTown_PlayerHouse_1F_Mom_Later_Talk_Tile {
     release
     end
 }
 
-movement Movement_Mom_GoToPlayer0 {
-    walk_up
-    walk_right * 4
-    walk_up
-    face_up
-}
-
-movement Movement_Mom_GoToPlayer1 {
-    walk_up
+movement Movement_Mom_GoNext_Player {
     walk_right * 3
-    walk_up
+    walk_up * 3
     face_up
 }
 
-movement Movement_Mom_ReturnToTV0 {
+movement Movement_Mom_GoTo_TV {
     walk_down * 2
     walk_left * 4
     face_up
 }
 
-movement Movement_Mom_ReturnToTV1 {
-    walk_down * 2
+movement Movement_FollowMom_To_TV {
+    walk_down * 3
     walk_left * 3
     face_up
 }

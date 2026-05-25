@@ -506,7 +506,7 @@ static const struct MenuAction sMenuActions_Language[] = {
 };
 
 static const u8 *const sMalePresetNames[] = {
-    COMPOUND_STRING("Albert"),
+    COMPOUND_STRING("Kael"),
     COMPOUND_STRING("Flavio"),
     COMPOUND_STRING("Enzo"),
     COMPOUND_STRING("Noah"),
@@ -529,7 +529,7 @@ static const u8 *const sMalePresetNames[] = {
 };
 
 static const u8 *const sFemalePresetNames[] = {
-    COMPOUND_STRING("Tammy"),
+    COMPOUND_STRING("Elara"),
     COMPOUND_STRING("Sofia"),
     COMPOUND_STRING("Bella"),
     COMPOUND_STRING("Samira"),
@@ -2092,7 +2092,7 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *sprite)
 
 static u8 NewGameBirchSpeech_CreateLotadSprite(u8 x, u8 y)
 {
-    return CreateMonPicSprite_Affine(SPECIES_LOTAD, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
+    return CreateMonPicSprite_Affine(SPECIES_GREAVARD, FALSE, 0, MON_PIC_AFFINE_FRONT, x, y, 14, TAG_NONE);
 }
 
 static void AddBirchSpeechObjects(u8 taskId)

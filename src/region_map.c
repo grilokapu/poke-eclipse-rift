@@ -378,7 +378,7 @@ const struct RegionMapInfo gRegionMapInfos[] =
 static const u8 sMapHealLocations[][3] =
 {
     [MAPSEC_LITTLEROOT_TOWN] = {MAP_GROUP(MAP_LITTLEROOT_TOWN), MAP_NUM(MAP_LITTLEROOT_TOWN), HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F},
-    [MAPSEC_OLDALE_TOWN] = {MAP_GROUP(MAP_OLDALE_TOWN), MAP_NUM(MAP_OLDALE_TOWN), HEAL_LOCATION_OLDALE_TOWN},
+    //[MAPSEC_OLDALE_TOWN] = {MAP_GROUP(MAP_OLDALE_TOWN), MAP_NUM(MAP_OLDALE_TOWN), HEAL_LOCATION_OLDALE_TOWN},
     [MAPSEC_DEWFORD_TOWN] = {MAP_GROUP(MAP_DEWFORD_TOWN), MAP_NUM(MAP_DEWFORD_TOWN), HEAL_LOCATION_DEWFORD_TOWN},
     [MAPSEC_LAVARIDGE_TOWN] = {MAP_GROUP(MAP_LAVARIDGE_TOWN), MAP_NUM(MAP_LAVARIDGE_TOWN), HEAL_LOCATION_LAVARIDGE_TOWN},
     [MAPSEC_FALLARBOR_TOWN] = {MAP_GROUP(MAP_FALLARBOR_TOWN), MAP_NUM(MAP_FALLARBOR_TOWN), HEAL_LOCATION_FALLARBOR_TOWN},
@@ -1861,6 +1861,8 @@ void TrySetPlayerIconBlink(void)
 
 u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength)
 {
+    const struct RegionMapLocation *location;
+    const u8 *name;
     u8 *str;
     u16 i;
 
@@ -1870,7 +1872,13 @@ u8 *GetMapName(u8 *dest, mapsec_u16_t regionMapId, u16 padLength)
     }
     else if (regionMapId < MAPSEC_NONE)
     {
-        str = StringCopy(dest, gRegionMapEntries[regionMapId].name);
+        location = &gRegionMapEntries[regionMapId];
+        name = location->name;
+        if (GET_LANGUAGE() == PT && location->namePt != NULL)
+            name = location->namePt;
+        else if (GET_LANGUAGE() == ES && location->nameEs != NULL)
+            name = location->nameEs;
+        str = StringCopy(dest, name);
     }
     else
     {

@@ -1984,15 +1984,35 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
-            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            if (FlagGet(FLAG_MINIMALGRIND_ENABLED))
+            {
+                u8 baseiv = 31;
+                SetMonData(&party[i], MON_DATA_IVS, &baseiv);
+            }
+            else {
+                SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            }
             if (partyData[monIndex].ev != NULL)
             {
-                SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));
-                SetMonData(&party[i], MON_DATA_ATK_EV, &(partyData[monIndex].ev[1]));
-                SetMonData(&party[i], MON_DATA_DEF_EV, &(partyData[monIndex].ev[2]));
-                SetMonData(&party[i], MON_DATA_SPATK_EV, &(partyData[monIndex].ev[3]));
-                SetMonData(&party[i], MON_DATA_SPDEF_EV, &(partyData[monIndex].ev[4]));
-                SetMonData(&party[i], MON_DATA_SPEED_EV, &(partyData[monIndex].ev[5]));
+                if (FlagGet(FLAG_MINIMALGRIND_ENABLED))
+                {
+                    u8 baseev = 0;
+                    SetMonData(&party[i], MON_DATA_HP_EV, &baseev);
+                    SetMonData(&party[i], MON_DATA_ATK_EV, &baseev);
+                    SetMonData(&party[i], MON_DATA_DEF_EV, &baseev);
+                    SetMonData(&party[i], MON_DATA_SPATK_EV, &baseev);
+                    SetMonData(&party[i], MON_DATA_SPDEF_EV, &baseev);
+                    SetMonData(&party[i], MON_DATA_SPEED_EV, &baseev);
+                }
+                else
+                {
+                    SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));
+                    SetMonData(&party[i], MON_DATA_ATK_EV, &(partyData[monIndex].ev[1]));
+                    SetMonData(&party[i], MON_DATA_DEF_EV, &(partyData[monIndex].ev[2]));
+                    SetMonData(&party[i], MON_DATA_SPATK_EV, &(partyData[monIndex].ev[3]));
+                    SetMonData(&party[i], MON_DATA_SPDEF_EV, &(partyData[monIndex].ev[4]));
+                    SetMonData(&party[i], MON_DATA_SPEED_EV, &(partyData[monIndex].ev[5]));
+                }
             }
             if (partyData[monIndex].ability != ABILITY_NONE)
             {
@@ -3043,7 +3063,10 @@ static void ClearSetBScriptingStruct(void)
     memset(&gBattleScripting, 0, sizeof(gBattleScripting));
 
     gBattleScripting.windowsType = temp;
-    gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
+    if (GetCurrentDifficultyLevel() == DIFFICULTY_HARD || GetCurrentDifficultyLevel() == DIFFICULTY_LUNATIC)
+        gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
+    else
+        gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
     #if TESTING
     gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
     #endif

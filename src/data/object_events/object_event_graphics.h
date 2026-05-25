@@ -482,6 +482,14 @@ const u16 gObjectEventPal_Man_5[] = INCBIN_U16("graphics/object_events/palettes/
 const u16 gObjectEventPal_Girl1[] = INCBIN_U16("graphics/object_events/palettes/girl_1.gbapal");
 const u16 gObjectEventPal_Scientist_1[] = INCBIN_U16("graphics/object_events/palettes/scientist_1.gbapal");
 const u16 gObjectEventPal_Girl_2[] = INCBIN_U16("graphics/object_events/palettes/girl_2.gbapal");
+const u16 gObjectEventPal_Youngster[] = INCBIN_U16("graphics/object_events/palettes/youngster.gbapal");
+const u16 gObjectEventPic_Dark_Sorcerer[] = INCBIN_U16("graphics/object_events/pics/people/dark_sorcerer.4bpp");
+const u16 gObjectEventPal_Dark_Sorcerer[] = INCBIN_U16("graphics/object_events/palettes/dark_sorcerer.gbapal");
+const u16 gObjectEventPic_Player_M_Sleeping[] = INCBIN_U16("graphics/object_events/pics/people/brendan/sleeping.4bpp");
+const u16 gObjectEventPal_Question[] = INCBIN_U16("graphics/object_events/palettes/questionmark.gbapal");
+const u16 gObjectEventPic_Lucien[] = INCBIN_U16("graphics/object_events/pics/people/lucien.4bpp");
+const u16 gObjectEventPal_Lucien[] = INCBIN_U16("graphics/object_events/palettes/lucien.gbapal");
+const u16 gObjectEventPal_Emojis[] = INCBIN_U16("graphics/object_events/palettes/emojis.gbapal");
 
 #if IS_FRLG
 const u16 gObjectEventPic_RedBike[] = INCBIN_U16("graphics/object_events/pics/people/red/red_bike.4bpp");
@@ -647,3 +655,7 @@ const u16 gObjectEventPic_PidgeyOld[] = INCBIN_U16("graphics/object_events/pics/
 const u16 gObjectEventPic_ClefairyOld[] = INCBIN_U16("graphics/object_events/pics/pokemon_old/clefairy.4bpp");
 
 #endif // IS_FRLG
+const u16 gObjectEventPal_FatMan[] = INCBIN_U16("graphics/object_events/palettes/fat_man.gbapal");
+const u16 gObjectEventPal_BugCatcher[] = INCBIN_U16("graphics/object_events/palettes/bug_catcher.gbapal");
+const u32 gObjectEventPic_Backpacker[] = INCBIN_U32("graphics/object_events/pics/people/backpacker.4bpp");
+const u16 gObjectEventPal_Backpacker[] = INCBIN_U16("graphics/object_events/palettes/backpacker.gbapal");

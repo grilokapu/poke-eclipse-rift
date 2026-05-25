@@ -1,4 +1,5 @@
 #include "global.h"
+#include "event_data.h"
 #include "graphics.h"
 #include "palette.h"
 #include "util.h"
@@ -73,6 +74,8 @@ static void QueueAnimTiles_MauvilleGym_ElectricGates(u16);
 static void QueueAnimTiles_SootopolisGym_Waterfalls(u16);
 static void QueueAnimTiles_EliteFour_GroundLights(u16);
 static void QueueAnimTiles_EliteFour_WallLights(u16);
+
+#define APPENDTILES(tile, offset) AppendTilesetAnimToBuffer(tile[timer % ARRAY_COUNT(tile)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(offset)), 5 * TILE_SIZE_4BPP);
 
 const u16 gTilesetAnims_General_Flower_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/1.4bpp");
 const u16 gTilesetAnims_General_Flower_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/0.4bpp");
@@ -222,6 +225,61 @@ const u16 gTilesetAnims_InsideTV_Frame1[] = INCBIN_U16("data/tilesets/primary/bu
 const u16 *const gTilesetAnims_InsideTV[] = {
     gTilesetAnims_InsideTV_Frame0,
     gTilesetAnims_InsideTV_Frame1
+};
+
+const u16 gTilesetAnims_DarkForest_Symbol0_Frame0[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol0_0.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol0_Frame1[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol0_1.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol0_Frame2[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol0_2.4bpp");
+
+const u16 gTilesetAnims_DarkForest_Symbol1_Frame0[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol1_0.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol1_Frame1[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol1_1.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol1_Frame2[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol1_2.4bpp");
+
+const u16 gTilesetAnims_DarkForest_Symbol2_Frame0[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol2_0.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol2_Frame1[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol2_1.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol2_Frame2[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol2_2.4bpp");
+
+const u16 gTilesetAnims_DarkForest_Symbol3_Frame0[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol3_0.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol3_Frame1[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol3_1.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol3_Frame2[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol3_2.4bpp");
+
+const u16 gTilesetAnims_DarkForest_Symbol4_Frame0[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol4_0.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol4_Frame1[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol4_1.4bpp");
+const u16 gTilesetAnims_DarkForest_Symbol4_Frame2[] = INCBIN_U16("data/tilesets/secondary/inside_of_truck/anim/symbol4_2.4bpp");
+
+const u16 *const gTilesetAnims_DarkForest_Symbol0[] = {
+    gTilesetAnims_DarkForest_Symbol0_Frame0,
+    gTilesetAnims_DarkForest_Symbol0_Frame1,
+    gTilesetAnims_DarkForest_Symbol0_Frame2,
+    gTilesetAnims_DarkForest_Symbol0_Frame1,
+};
+
+const u16 *const gTilesetAnims_DarkForest_Symbol1[] = {
+    gTilesetAnims_DarkForest_Symbol1_Frame0,
+    gTilesetAnims_DarkForest_Symbol1_Frame1,
+    gTilesetAnims_DarkForest_Symbol1_Frame2,
+    gTilesetAnims_DarkForest_Symbol1_Frame1,
+};
+
+const u16 *const gTilesetAnims_DarkForest_Symbol2[] = {
+    gTilesetAnims_DarkForest_Symbol2_Frame0,
+    gTilesetAnims_DarkForest_Symbol2_Frame1,
+    gTilesetAnims_DarkForest_Symbol2_Frame2,
+    gTilesetAnims_DarkForest_Symbol2_Frame1,
+};
+
+const u16 *const gTilesetAnims_DarkForest_Symbol3[] = {
+    gTilesetAnims_DarkForest_Symbol3_Frame0,
+    gTilesetAnims_DarkForest_Symbol3_Frame1,
+    gTilesetAnims_DarkForest_Symbol3_Frame2,
+    gTilesetAnims_DarkForest_Symbol3_Frame1,
+};
+
+const u16 *const gTilesetAnims_DarkForest_Symbol4[] = {
+    gTilesetAnims_DarkForest_Symbol4_Frame0,
+    gTilesetAnims_DarkForest_Symbol4_Frame1,
+    gTilesetAnims_DarkForest_Symbol4_Frame2,
+    gTilesetAnims_DarkForest_Symbol4_Frame1,
 };
 
 u16 *const gTilesetAnims_Mauville_Flower1_VDests[] = {
@@ -697,6 +755,28 @@ void InitTilesetAnim_PlayerHouseInside(void)
     sPrimaryTilesetAnimCounter = 0;
     sPrimaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
     sPrimaryTilesetAnimCallback = TilesetAnim_Generic_Inside;
+}
+
+static void QueueAnimTiles_DarkForest_Symbol(u16 timer)
+{    
+    APPENDTILES(gTilesetAnims_DarkForest_Symbol0, 584)
+    APPENDTILES(gTilesetAnims_DarkForest_Symbol1, 600)
+    APPENDTILES(gTilesetAnims_DarkForest_Symbol2, 616)
+    APPENDTILES(gTilesetAnims_DarkForest_Symbol3, 632)
+    APPENDTILES(gTilesetAnims_DarkForest_Symbol4, 648)
+}
+
+static void TilesetAnim_DarkForest(u16 timer)
+{
+    if ((timer % 8 == 0) && (FlagGet(FLAG_SET_SYMBOL_ANIM)))
+        QueueAnimTiles_DarkForest_Symbol(timer / 16);
+}
+
+void InitTilesetAnim_DarkForest(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sSecondaryTilesetAnimCallback = TilesetAnim_DarkForest;
 }
 
 void InitTilesetAnim_Petalburg(void)

@@ -1,0 +1,76 @@
+mapscripts OldaleTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag (FLAG_VISITED_OLDALE_TOWN)
+    }
+}
+
+script SylvaraTown_Sign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Vila Sylvara\pUma Vila Guiada pelo Vento e pelas\nFolhas.", MSGBOX_SIGN)
+        case EN: msgbox("Sylvara Town\pA Town Guided by the Wind and\nLeaves.", MSGBOX_SIGN)
+        case ES: msgbox("Aldea Sylvara\pUna Aldea Guiada por el Viento y\nlas Hojas.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script SylvaraTown_PokemonCenter_Sign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Centro Pokémon\pDescanse Sob a Calmaria da\nNatureza.", MSGBOX_SIGN)
+        case EN: msgbox("Pokémon Center\pRest Beneath Nature’s Calm.", MSGBOX_SIGN)
+        case ES: msgbox("Centro Pokémon\pDescansa Bajo la Calma de la\nNaturaleza.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script SylvaraTown_Pokemart_Sign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Loja Pokémon\pTudo que um Treinador precisa para\na jornada.", MSGBOX_SIGN)
+        case EN: msgbox("Pokémart\pEverything a Trainer needs for the\nroad ahead.", MSGBOX_SIGN)
+        case ES: msgbox("Tienda Pokémon\pTodo lo que un Entrenador necesita\npara el camino.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script SylvaraTown_BoyWithRalts_Talk {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu Ralts sempre sabe quando eu\nestou triste…\pO problema é que ele também sabe\nquando eu estou aprontando!")
+        case EN: msgbox("My Ralts always knows when I'm\nfeeling sad…\pThe problem is, it also knows when\nI'm about to do something dumb!")
+        case ES: msgbox("Mi Ralts siempre sabe cuándo estoy\ntriste…\p¡El problema es que también sabe\ncuándo estoy por hacer alguna\ltontería!")
+    }
+    movenpc(VAR_LAST_TALKED, Common_Movement_FaceRight)
+    release
+    end
+}
+
+script SylvaraTown_Ralts_Cry {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_RALTS, MUGSHOT_DOWN_RIGHT)
+    setspeaker("Ralts")
+    msgbox("Ral Ral!")
+    waitmoncry
+    hidemonmugshot
+    movenpc(VAR_LAST_TALKED, Common_Movement_FaceLeft)
+    release
+    end
+}
+
+script SylvaraTown_Girl_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Às vezes eu caminho pela Floresta\nPendant só para ouvir o som\ldas árvores…\pMas quando o sol começa a\ndesaparecer, eu volto correndo pra\lcasa!", MSGBOX_NPC)
+        case EN: msgbox("Sometimes I walk through Pendant\nForest just to hear the sound\lof the trees…\pBut when the sun starts to fade, I\nrun straight back home!", MSGBOX_NPC)
+        case ES: msgbox("A veces camino por el Bosque\nPendant solo para escuchar el\lsonido de los árboles…\p¡Pero cuando el sol empieza a\nocultarse, regreso corriendo a\lcasa!", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_Backpacker_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry, do quê ele ser acertado por\lum tijolo?", MSGBOX_NPC)
+        case EN: msgbox("Did you know it's much healthier\nfor your Pokémon to eat a Sitrus\lBerry than to get hit by a brick?", MSGBOX_NPC)
+        case ES: msgbox("¿Sabías que es mucho más saludable\npara tu Pokémon comer una Baya\lZidra que recibir un ladrillazo?", MSGBOX_NPC)
+    }
+    end
+}

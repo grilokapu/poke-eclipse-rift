@@ -32,6 +32,7 @@ void InitTilesetAnim_EliteFour(void);
 void InitTilesetAnim_BattleDome(void);
 void InitTilesetAnim_BattlePyramid(void);
 void InitTilesetAnim_PlayerHouseInside(void);
+void InitTilesetAnim_DarkForest(void);
 
 // FRLG
 void InitTilesetAnim_General_Frlg(void);

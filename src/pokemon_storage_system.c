@@ -1,6 +1,7 @@
 #include "global.h"
 #include "malloc.h"
 #include "bg.h"
+#include "bw_summary_screen.h"
 #include "data.h"
 #include "decompress.h"
 #include "dma3.h"
@@ -557,6 +558,7 @@ EWRAM_DATA static u8 sMovingMonOrigBoxPos = 0;
 EWRAM_DATA static bool8 sAutoActionOn = 0;
 EWRAM_DATA static bool8 sJustOpenedBag = 0;
 EWRAM_DATA static bool8 sRefreshDisplayMonGfx = FALSE;
+EWRAM_DATA static MainCallback sReturnToPartyCallback = NULL;
 
 // Main tasks
 static void Task_InitPokeStorage(u8);
@@ -1640,6 +1642,34 @@ static void FieldTask_ReturnToPcMenu(void)
     FadeInFromBlack();
 }
 
+static void FieldTask_ReturnToPartyMenu(void)
+{
+    MainCallback vblankCb = gMain.vblankCallback;
+    ResetSpriteData();
+    FreeAllWindowBuffers();
+
+    SetVBlankCallback(NULL);
+    SetMainCallback2(sReturnToPartyCallback != NULL ? sReturnToPartyCallback : CB2_ReturnToFieldWithOpenMenu);
+    sReturnToPartyCallback = NULL;
+    SetVBlankCallback(vblankCb);
+    FadeInFromBlack();
+}
+
+void PokemonPC_SetReturnToPartyCallback(MainCallback cb)
+{
+    sReturnToPartyCallback = cb;
+}
+
+void ShowPokemonPCFromParty(void)
+{
+    EnterPokeStorage(OPTION_MOVE_MONS);
+}
+
+void CB2_ShowPokemonPCFromParty(void)
+{
+    ShowPokemonPCFromParty();
+}
+
 #undef tState
 #undef tSelectedOption
 #undef tInput
@@ -1662,7 +1692,14 @@ static void CreateMainMenu(u8 whichMenu, s16 *windowIdPtr)
 static void CB2_ExitPokeStorage(void)
 {
     sPreviousBoxOption = GetCurrentBoxOption();
-    gFieldCallback = FieldTask_ReturnToPcMenu;
+    if (sReturnToPartyCallback != NULL)
+    {
+        gFieldCallback = FieldTask_ReturnToPartyMenu;
+    }
+    else
+    {
+        gFieldCallback = FieldTask_ReturnToPcMenu;
+    }
     SetMainCallback2(CB2_ReturnToField);
 }
 
@@ -3777,7 +3814,10 @@ static void Task_ChangeScreen(u8 taskId)
         maxMonIndex = sStorage->summaryMaxPos;
         mode = sStorage->summaryScreenMode;
         FreePokeStorageData();
-        ShowPokemonSummaryScreen(mode, boxMons, monIndex, maxMonIndex, CB2_ReturnToPokeStorage);
+        if (BW_SUMMARY_SCREEN == TRUE)
+            ShowPokemonSummaryScreen_BW(mode, boxMons, monIndex, maxMonIndex, CB2_ReturnToPokeStorage);
+        else
+            ShowPokemonSummaryScreen(mode, boxMons, monIndex, maxMonIndex, CB2_ReturnToPokeStorage);
         break;
     case SCREEN_CHANGE_NAME_BOX:
         FreePokeStorageData();

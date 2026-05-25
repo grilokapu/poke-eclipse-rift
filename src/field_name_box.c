@@ -23,6 +23,8 @@ EWRAM_DATA const u8 *gSpeakerName = NULL;
 static const u32 sNameBoxDefaultGfx[] = INCBIN_U32("graphics/text_window/name_box.4bpp");
 static const u32 sNameBoxPokenavGfx[] = INCBIN_U32("graphics/pokenav/name_box.4bpp");
 
+static const u32 sTransNameBoxDefaultGfx[] = INCBIN_U32("graphics/text_window/black_name_box.4bpp");
+
 static void WindowFunc_DrawNamebox(u32, u32, u32, u32, u32, u32, u32);
 static void WindowFunc_ClearNamebox(u8, u8, u8, u8, u8, u8);
 
@@ -73,7 +75,21 @@ void TrySpawnNamebox(u32 tileNum)
     sNameboxWindowId = AddWindow(&template);
     FillNamebox();
 
-    u8 colors[3] = {TEXT_COLOR_TRANSPARENT, OW_NAME_BOX_FOREGROUND_COLOR, OW_NAME_BOX_SHADOW_COLOR};
+    u8 colors[3];
+
+    if (FlagGet(FLAG_TRANSPARENT_MESSAGE_BOX))
+    {
+        colors[0] = TEXT_COLOR_TRANSPARENT;
+        colors[1] = 2;
+        colors[2] = 1;
+    }
+    else
+    {
+        colors[0] = TEXT_COLOR_TRANSPARENT;
+        colors[1] = OW_NAME_BOX_FOREGROUND_COLOR;
+        colors[2] = OW_NAME_BOX_SHADOW_COLOR;
+    }
+
     int strX = GetStringCenterAlignXOffset(fontId, strbuf, (winWidth * 8));
     if (matchCall)
     {
@@ -120,6 +136,8 @@ static const u32 *GetNameboxGraphics(void)
 {
     if (IsMatchCallTaskActive())
         return sNameBoxPokenavGfx;
+    else if (FlagGet(FLAG_TRANSPARENT_MESSAGE_BOX))
+        return sTransNameBoxDefaultGfx;
     else
         return sNameBoxDefaultGfx;
 }

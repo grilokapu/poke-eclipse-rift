@@ -485,7 +485,7 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
         if (searchLevel > 2)
         {
             // ability name
-            StringCopy(gStringVar1, gAbilitiesInfo[GetAbilityBySpecies(species, sDexNavSearchDataPtr->abilityNum)].name);
+            StringCopy(gStringVar1, GetAbilityName(GetAbilityBySpecies(species, sDexNavSearchDataPtr->abilityNum)));
             AddTextPrinterParameterized3(windowId, FONT_SMALL, WINDOW_COL_1 + 16, 12, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
 
             // item name
@@ -1196,11 +1196,11 @@ static void CreateDexNavWildMon(u16 species, u8 potential, u8 level, u8 abilityN
     } while ((iv[1] == iv[0])                   // unique 2nd perfect stat
       || (iv[2] == iv[0] || iv[2] == iv[1]));   // unique 3rd perfect stat
 
-    if (potential > 2 && iv[2] != NUM_STATS)
+    if ((potential > 2 && iv[2] != NUM_STATS) || (FlagGet(FLAG_MINIMALGRIND_ENABLED)))
         SetMonData(mon, MON_DATA_HP_IV + iv[2], &perfectIv);
-    if (potential > 1 && iv[1] != NUM_STATS)
+    if ((potential > 1 && iv[1] != NUM_STATS) || (FlagGet(FLAG_MINIMALGRIND_ENABLED)))
         SetMonData(mon, MON_DATA_HP_IV + iv[1], &perfectIv);
-    if (potential > 0 && iv[0] != NUM_STATS)
+    if ((potential > 0 && iv[0] != NUM_STATS) || (FlagGet(FLAG_MINIMALGRIND_ENABLED)))
         SetMonData(mon, MON_DATA_HP_IV + iv[0], &perfectIv);
 
     //Set ability
@@ -2136,7 +2136,7 @@ static void PrintCurrentSpeciesInfo(void)
     else if (GetSetPokedexFlag(dexNum, FLAG_GET_CAUGHT))
     {
         if (GetSpeciesAbility(species, 2) != ABILITY_NONE)
-            AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[GetSpeciesAbility(species, 2)].name);
+            AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, HA_INFO_Y, sFontColor_Black, 0, GetAbilityName(GetSpeciesAbility(species, 2)));
         else
             AddTextPrinterParameterized3(WINDOW_INFO, FONT_SMALL, 0, HA_INFO_Y, sFontColor_Black, 0, gText_None);
     }

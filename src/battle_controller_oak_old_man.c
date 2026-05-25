@@ -759,14 +759,14 @@ static void OakOldManHandleChooseAction(enum BattlerId battler)
 
     gBattlerControllerFuncs[battler] = HandleChooseActionAfterDma3;
     BattlePutTextOnWindow(gText_EmptyString3, B_WIN_MSG);
-    BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
+    BattlePutTextOnWindow(GetText_BattleMenu(), B_WIN_ACTION_MENU);
     for (i = 0; i < MAX_MON_MOVES; ++i)
         ActionSelectionDestroyCursorAt((u8)i);
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
     if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
     {
         PREPARE_MON_NICK_BUFFER(gBattleTextBuff1, battler, gBattlerPartyIndexes[battler]);
-        BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo);
+        BattleStringExpandPlaceholdersToDisplayedString(GetText_WhatWillPkmnDo());
     }
     else
         BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillOldManDo);

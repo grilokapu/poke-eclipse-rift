@@ -1,0 +1,143 @@
+{
+  "id": "MAP_PENDANT_FOREST",
+  "name": "PendantForest",
+  "layout": "LAYOUT_PENDANT_FOREST",
+  "music": "MUS_RG_VIRIDIAN_FOREST",
+  "region_map_section": "MAPSEC_ABANDONED_SHIP",
+  "requires_flash": false,
+  "weather": "WEATHER_SHADE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_FOREST_BUG_CATCHER_1",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "x": 12,
+      "y": 30,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "PendantForest_TrainerBattle_BugCatcher_Leonel",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_FOREST_FATMAN",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
+      "x": 25,
+      "y": 21,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PendantForest_FatMan_Talk",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_PENDANT_BALL_REPEL",
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "x": 35,
+      "y": 31,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PendantForest_FindItem_Repel",
+      "flag": "FLAG_PENDANT_FOREST_REPEL_GET"
+    },
+    {
+      "local_id": "LOCALID_PENDANT_BALL_TM",
+      "graphics_id": "OBJ_EVENT_GFX_PARK_BALL",
+      "x": 37,
+      "y": 23,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PendantForest_FindItem_TM11",
+      "flag": "FLAG_PENDANT_FOREST_TM11_GET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+      "x": 10,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "PendantForest_TrainerBattle_Camper_Dilan",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "x": 28,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "PendantForest_TrainerBattle_BugCatcher_Francis",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_PENDANT_BALL_2",
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "x": 8,
+      "y": 1,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PendantForest_FindItem_Antidote",
+      "flag": "FLAG_PENDANT_FOREST_ANTIDOTE_GET"
+    }
+  ],
+  "warp_events": [
+    {
+      "warp_id": "WARP_ID_OUT_PENDANT_FOREST_1",
+      "x": 2,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE101",
+      "dest_warp_id": "WARP_ID_IN_PENDANT_FOREST_1"
+    },
+    {
+      "warp_id": "WARP_ID_OUT_PENDANT_FOREST_2",
+      "x": 3,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE101",
+      "dest_warp_id": "WARP_ID_IN_PENDANT_FOREST_2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 33,
+      "y": 4,
+      "elevation": 0,
+      "item": "ITEM_EXP_CANDY_S",
+      "flag": "FLAG_HIDDEN_ITEM_PENDANT_FOREST_EXPCANDY_S"
+    }
+  ]
+}

@@ -69,6 +69,8 @@ bool32 Script_MatchesSpecial(const u8 *script, void *funcPtr);
 bool8 ShowPssIconFromTable(u8 index);
 bool8 ShowMonMugshot(u16 species, u8 position);
 void Task_PokemonPicWindow(u8 taskId);
+void CreateSpecialObjectEvent(u16 sprite, u8 objId, u8 posX, u8 posY, u8 movetype);
+void CreateIcecrystalCurse(u16 localId);
 
 // srccmd.h
 void SetMovingNpcId(u16 npcId);

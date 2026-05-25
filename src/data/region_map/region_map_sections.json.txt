@@ -30,6 +30,12 @@ const struct RegionMapLocation gRegionMapEntries[] = {
 {% else %}
         .name = (const u8[])_(""),
 {% endif %}
+{% if existsIn(map_section, "namePt") %}
+        .namePt = COMPOUND_STRING("{{ map_section.namePt }}"),
+{% endif %}
+{% if existsIn(map_section, "nameEs") %}
+        .nameEs = COMPOUND_STRING("{{ map_section.nameEs }}"),
+{% endif %}
     },
 ## endfor
 };

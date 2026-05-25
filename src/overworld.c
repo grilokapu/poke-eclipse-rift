@@ -9,6 +9,7 @@
 #include "credits_frlg.h"
 #include "clock.h"
 #include "dexnav.h"
+#include "dppt_start_menu.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "event_scripts.h"
@@ -742,7 +743,7 @@ static bool32 IsWhiteoutCutscene(void)
 {
     if (OW_WHITEOUT_CUTSCENE < GEN_4)
         return FALSE;
-    return GetHealNpcLocalId(GetHealLocationIndexByWarpData(&gSaveBlock1Ptr->lastHealLocation)) != LOCALID_NONE;
+    return HasWhiteoutRespawnHealer();
 }
 
 void SetWarpDestinationToLastHealLocation(void)
@@ -762,7 +763,10 @@ void SetLastHealLocationWarp(u8 healLocationId)
 {
     const struct HealLocation *healLocation = GetHealLocation(healLocationId);
     if (healLocation)
+    {
         SetWarpData(&gSaveBlock1Ptr->lastHealLocation, healLocation->mapGroup, healLocation->mapNum, WARP_ID_NONE, healLocation->x, healLocation->y);
+        ClearHealingPlaceRespawnType();
+    }
 }
 
 void UpdateEscapeWarp(s16 x, s16 y)
@@ -3204,7 +3208,11 @@ static void InitLinkPlayerQueueScript(void)
 static void InitLinkRoomStartMenuScript(void)
 {
     PlaySE(SE_WIN_OPEN);
+    #if VOL_START_MENU == TRUE
+    HeatStartMenu_Init();
+    #else
     ShowStartMenu();
+    #endif
     LockPlayerFieldControls();
 }
 

@@ -29,18 +29,18 @@
       "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL"
     },
     {
-      "local_id": "LOCALID_BARRY",
-      "graphics_id": "OBJ_EVENT_GFX_BARRY",
-      "x": 14,
-      "y": -3,
+      "local_id": "LOCALID_KAEL_SLEEPING",
+      "graphics_id": "OBJ_EVENT_GFX_PLAYER_M_SLEEPING",
+      "x": 15,
+      "y": 10,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_BARRY_IS_RIVAL"
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -55,12 +55,21 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 6,
+      "x": 5,
       "y": 3,
       "elevation": 0,
       "var": "VAR_PLAYER_ROOM_2F_TILE",
       "var_value": "0",
-      "script": "PineveilTown_PlayerHouse_2F_Rival_Tile"
+      "script": "PineveilTown_PlayerHouse_2F_Player_Check_Rain_Tile"
+    },
+    {
+      "type": "trigger",
+      "x": 6,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_PLAYER_ROOM_2F_TILE",
+      "var_value": "0",
+      "script": "PineveilTown_PlayerHouse_2F_Player_Check_Rain_Tile"
     }
   ],
   "bg_events": [

@@ -87,6 +87,28 @@ gFieldEffectScriptPointers::
 	.4byte gFldEffScript_SmileyFaceIcon    		        @ FLDEFF_SMILEY_FACE_ICON
 	.4byte gFieldEffectScript_HallOfFameRecordFrlg      @ FLDEFF_HALL_OF_FAME_RECORD_FRLG
 	.4byte gFldEffScript_PhotoFlash      		        @ FLDEFF_PHOTO_FLASH
+	.4byte gFieldEffectScript_SmileIcon                 @ FLDEFF_SMILE_ICON
+	.4byte gFieldEffectScript_EmojiAngry                @ FLDEFF_EMOJI_ANGRY
+    .4byte gFieldEffectScript_EmojiBlush                @ FLDEFF_EMOJI_BLUSH
+    .4byte gFieldEffectScript_EmojiConfiant             @ FLDEFF_EMOJI_CONFIANT
+    .4byte gFieldEffectScript_EmojiConfident            @ FLDEFF_EMOJI_CONFIDENT
+    .4byte gFieldEffectScript_EmojiConfidentSmiling     @ FLDEFF_EMOJI_CONFIDENT_SMILING
+    .4byte gFieldEffectScript_EmojiDoubt                @ FLDEFF_EMOJI_DOUBT
+    .4byte gFieldEffectScript_EmojiGrin                 @ FLDEFF_EMOJI_GRIN
+    .4byte gFieldEffectScript_EmojiHeartEyes            @ FLDEFF_EMOJI_HEART_EYES
+    .4byte gFieldEffectScript_EmojiInnocent             @ FLDEFF_EMOJI_INNOCENT
+    .4byte gFieldEffectScript_EmojiJoy                  @ FLDEFF_EMOJI_JOY
+    .4byte gFieldEffectScript_EmojiKissing              @ FLDEFF_EMOJI_KISSING
+    .4byte gFieldEffectScript_EmojiRelaxed              @ FLDEFF_EMOJI_RELAXED
+    .4byte gFieldEffectScript_EmojiRelieved             @ FLDEFF_EMOJI_RELIEVED
+    .4byte gFieldEffectScript_EmojiScream               @ FLDEFF_EMOJI_SCREAM
+    .4byte gFieldEffectScript_EmojiSlithly              @ FLDEFF_EMOJI_SLITHLY
+    .4byte gFieldEffectScript_EmojiSmiley               @ FLDEFF_EMOJI_SMILEY
+    .4byte gFieldEffectScript_EmojiSob                  @ FLDEFF_EMOJI_SOB
+    .4byte gFieldEffectScript_EmojiThinking             @ FLDEFF_EMOJI_THINKING
+    .4byte gFieldEffectScript_EmojiTongueWinking        @ FLDEFF_EMOJI_TONGUE_WINKING
+    .4byte gFieldEffectScript_EmojiWink                 @ FLDEFF_EMOJI_WINK
+    .4byte gFieldEffectScript_EmojiYum                  @ FLDEFF_EMOJI_YUM
 
 gFieldEffectScript_ExclamationMarkIcon1::
 	field_eff_callnative FldEff_ExclamationMarkIcon
@@ -414,4 +436,92 @@ gFieldEffectScript_HallOfFameRecordFrlg::
 
 gFldEffScript_PhotoFlash::
 	field_eff_callnative FldEff_PhotoFlash
+	field_eff_end
+
+gFieldEffectScript_SmileIcon::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_SmileIcon
+	field_eff_end
+
+gFieldEffectScript_EmojiAngry::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiAngry
+	field_eff_end
+
+gFieldEffectScript_EmojiBlush::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiBlush
+	field_eff_end
+
+gFieldEffectScript_EmojiConfiant::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiConfiant
+	field_eff_end
+
+gFieldEffectScript_EmojiConfident::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiConfident
+	field_eff_end
+
+gFieldEffectScript_EmojiConfidentSmiling::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiConfidentSmiling
+	field_eff_end
+
+gFieldEffectScript_EmojiDoubt::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiDoubt
+	field_eff_end
+
+gFieldEffectScript_EmojiGrin::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiGrin
+	field_eff_end
+
+gFieldEffectScript_EmojiHeartEyes::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiHeartEyes
+	field_eff_end
+
+gFieldEffectScript_EmojiInnocent::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiInnocent
+	field_eff_end
+
+gFieldEffectScript_EmojiJoy::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiJoy
+	field_eff_end
+
+gFieldEffectScript_EmojiKissing::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiKissing
+	field_eff_end
+
+gFieldEffectScript_EmojiRelaxed::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiRelaxed
+	field_eff_end
+
+gFieldEffectScript_EmojiRelieved::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiRelieved
+	field_eff_end
+
+gFieldEffectScript_EmojiScream::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiScream
+	field_eff_end
+
+gFieldEffectScript_EmojiSlithly::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiSlithly
+	field_eff_end
+
+gFieldEffectScript_EmojiSmiley::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiSmiley
+	field_eff_end
+
+gFieldEffectScript_EmojiSob::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiSob
+	field_eff_end
+
+gFieldEffectScript_EmojiThinking::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiThinking
+	field_eff_end
+
+gFieldEffectScript_EmojiTongueWinking::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiTongueWinking
+	field_eff_end
+
+gFieldEffectScript_EmojiWink::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiWink
+	field_eff_end
+
+gFieldEffectScript_EmojiYum::
+	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiYum
 	field_eff_end

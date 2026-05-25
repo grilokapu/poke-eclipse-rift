@@ -3,6 +3,7 @@
 #include "blit.h"
 #include "decompress.h"
 #include "dma3.h"
+#include "dppt_start_menu.h"
 #include "event_data.h"
 #include "field_name_box.h"
 #include "field_weather.h"
@@ -83,6 +84,20 @@ static const struct WindowTemplate sStandardTextBox_WindowTemplates[] =
         .bg = 0,
         .tilemapLeft = 2,
         .tilemapTop = 15,
+        .width = 27,
+        .height = 4,
+        .paletteNum = 15,
+        .baseBlock = 0x194
+    },
+    DUMMY_WIN_TEMPLATE
+};
+
+static const struct WindowTemplate sStandardTextBox_WindowTemplatesMiddle[] =
+{
+    {
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 8,
         .width = 27,
         .height = 4,
         .paletteNum = 15,
@@ -204,6 +219,7 @@ void AddTextPrinterWithCustomSpeedForMessage(bool8 allowSkippingDelayWithButtonP
 
 void LoadMessageBoxAndBorderGfx(void)
 {
+    SetWindowAttribute(0, WINDOW_TILEMAP_TOP, FlagGet(FLAG_MSGBOXONMIDDLE) ? 8 : 15);
     LoadMessageBoxGfx(0, DLG_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(DLG_WINDOW_PALETTE_NUM));
     LoadUserWindowBorderGfx(0, STD_WINDOW_BASE_TILE_NUM, BG_PLTT_ID(STD_WINDOW_PALETTE_NUM));
 }
@@ -393,8 +409,12 @@ void DisplayYesNoMenuWithDefault(u8 initialCursorPos)
 u8 AddStartMenuWindow(u8 numActions)
 {
     if (sStartMenuWindowId == WINDOW_NONE)
+    #if DPPT_START_MENU == TRUE
+        sStartMenuWindowId = AddWindowParameterized(0, 19, 1, 10, (numActions * 2) + 3, 15, 0x139);
+    #else
         sStartMenuWindowId = AddWindowParameterized(0, 22, 1, 7, (numActions * 2) + 2, 15, 0x139);
-    return sStartMenuWindowId;
+    #endif
+        return sStartMenuWindowId;
 }
 
 u8 GetStartMenuWindowId(void)
@@ -699,6 +719,16 @@ void RedrawMenuCursor(u8 oldPos, u8 newPos)
     height = GetMenuCursorDimensionByFont(sMenu.fontId, 1);
     FillWindowPixelRect(sMenu.windowId, PIXEL_FILL(1), sMenu.left, sMenu.optionHeight * oldPos + sMenu.top, width, height);
     AddTextPrinterParameterized(sMenu.windowId, sMenu.fontId, gText_SelectorArrow3, sMenu.left, sMenu.optionHeight * newPos + sMenu.top, 0, 0);
+}
+
+void DrawCursorParamaterized(u8 x, u8 y)
+{
+    u8 width, height;
+
+    width = GetMenuCursorDimensionByFont(sMenu.fontId, 0);
+    height = GetMenuCursorDimensionByFont(sMenu.fontId, 1);
+    FillWindowPixelRect(sMenu.windowId, PIXEL_FILL(1), x, y, width, height);
+    AddTextPrinterParameterized(sMenu.windowId, sMenu.fontId, gText_SelectorArrow3, x, y, 0, 0);
 }
 
 u8 Menu_MoveCursor(s8 cursorDelta)

@@ -14,6 +14,7 @@
 #include "battle_terastal.h"
 #include "data.h"
 #include "debug.h"
+#include "difficulty.h"
 #include "event_data.h"
 #include "item.h"
 #include "math_util.h"
@@ -47,6 +48,7 @@ static bool32 IsPinchBerryItemEffect(enum HoldEffect holdEffect);
 static bool32 DoesAbilityBenefitFromSunOrRain(enum BattlerId battler, enum Ability ability, u32 weather);
 static void AI_CompareDamagingMoves(enum BattlerId battlerAtk, enum BattlerId battlerDef);
 static u32 GetWindAbilityScore(enum BattlerId battlerAtk, enum BattlerId battlerDef, struct AiLogicData *aiData);
+static u64 GetDifficultyAiFlags(u64 flags);
 
 // ewram
 EWRAM_DATA const u8 *gAIScriptPtr = NULL;   // Still used in contests
@@ -218,6 +220,8 @@ static u64 GetAiFlags(u16 trainerId, enum BattlerId battler)
             flags = GetTrainerAIFlagsFromId(trainerId);
     }
 
+    flags = GetDifficultyAiFlags(flags);
+
     if (IsDoubleBattle() && flags != 0)
     {
         flags |= AI_FLAG_DOUBLE_BATTLE;
@@ -235,6 +239,29 @@ static u64 GetAiFlags(u16 trainerId, enum BattlerId battler)
         flags |= AI_FLAG_DYNAMIC_FUNC;
 
     return flags;
+}
+
+static u64 GetDifficultyAiFlags(u64 flags)
+{
+    u64 preservedFlags = flags & (AI_FLAG_DYNAMIC_FUNC | AI_FLAG_ROAMING | AI_FLAG_SAFARI | AI_FLAG_FIRST_BATTLE | AI_FLAG_ATTACKS_PARTNER);
+
+    switch (GetCurrentDifficultyLevel())
+    {
+    case DIFFICULTY_EASY:
+        return AI_FLAG_CHECK_BAD_MOVE | preservedFlags;
+    case DIFFICULTY_HARD:
+    case DIFFICULTY_LUNATIC:
+        return AI_FLAG_SMART_TRAINER
+             | AI_FLAG_PREDICTION
+             | AI_FLAG_ASSUMPTIONS
+             | AI_FLAG_TRY_TO_2HKO
+             | AI_FLAG_HP_AWARE
+             | AI_FLAG_POWERFUL_STATUS
+             | AI_FLAG_KNOW_OPPONENT_PARTY
+             | preservedFlags;
+    default:
+        return flags;
+    }
 }
 
 void BattleAI_SetupFlags(void)

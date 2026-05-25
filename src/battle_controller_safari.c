@@ -249,7 +249,7 @@ static void WaitForMonSelection(enum BattlerId battler)
             {
                 gBattle_BG0_X = 0;
                 gBattle_BG0_Y = 0;
-                BattlePutTextOnWindow(gText_LinkStandby, B_WIN_MSG);
+                BattlePutTextOnWindow(GetText_LinkStandby(), B_WIN_MSG);
             }
         }
 
@@ -303,7 +303,7 @@ static void SafariHandleChooseAction(enum BattlerId battler)
         ActionSelectionDestroyCursorAt(i);
 
     ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
-    BattleStringExpandPlaceholdersToDisplayedString(gText_WhatWillPkmnDo2);
+    BattleStringExpandPlaceholdersToDisplayedString(GetText_WhatWillPkmnDo2());
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
 }
 

@@ -445,7 +445,7 @@ const struct Tileset gTileset_InsideOfTruck =
     .palettes = gTilesetPalettes_InsideOfTruck,
     .metatiles = gMetatiles_InsideOfTruck,
     .metatileAttributes = gMetatileAttributes_InsideOfTruck,
-    .callback = NULL,
+    .callback = InitTilesetAnim_DarkForest,
 };
 
 const struct Tileset gTileset_Unused2 =
@@ -830,6 +830,17 @@ const struct Tileset gTileset_UnionRoom =
     .palettes = gTilesetPalettes_UnionRoom,
     .metatiles = gMetatiles_UnionRoom,
     .metatileAttributes = gMetatileAttributes_UnionRoom,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_ViridianForest =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_ViridianForest,
+    .palettes = gTilesetPalettes_ViridianForest,
+    .metatiles = gMetatiles_ViridianForest,
+    .metatileAttributes = gMetatileAttributes_ViridianForest,
     .callback = NULL,
 };
 

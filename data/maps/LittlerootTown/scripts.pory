@@ -1,22 +1,22 @@
 mapscripts LittlerootTown_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_VISITED_LITTLEROOT_TOWN)
+        if (var(VAR_BIRCH_LAB_STATE) == 2 && var(VAR_LITTLEROOT_TOWN_STATE) <= 1) {
+            setvar(VAR_LITTLEROOT_TOWN_STATE, 2)
+        }
         end
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_PLAYER_ROOM_2F_TILE, 1: PineveilTown_ProffessorHikariInterviwew
+        VAR_PLAYERFACING_ROOM, 0: PineveilTown_ProffessorHikariInterviwew
     ]
 }
-
-const PSS_ICON_HIKARI = 2
-const PSS_ICON_REPORTER = 3
 
 script PineveilTown_ProffessorHikariInterviwew {
     lockall
     playbgm(MUS_RG_TEACHY_TV_SHOW, 0)
     switch(var(VAR_LANGUAGE)) {
         case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_REPORTER, "Rezende", "Interrompemos nossa programaçäo\npara uma entrevista especial com a\lProfessora Hikari, que acaba de\lretornar de uma expediçäo de\lpesquisa à regiäo de Paldea.")
+            msgminibox(PSS_ICON_REPORTER, "Rezende", "Interrompemos nossa programação\npara uma entrevista especial com a\lProfessora Hikari, que acaba de\lretornar de uma expedição de\lpesquisa à região de Paldea.")
         case ENGLISH_LANGUAGE:
             msgminibox(PSS_ICON_REPORTER, "Rezende", "We interrupt our programming for a\nspecial interview with Professor\lHikari, who has just returned from\la research expedition to the\lPaldea region.")
         case SPANISH_LANGUAGE:
@@ -27,7 +27,7 @@ script PineveilTown_ProffessorHikariInterviwew {
     delay(20)
     switch(var(VAR_LANGUAGE)) {
         case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_REPORTER, "Rezende", "Professora Hikari, poderia\ncompartilhar com nossos\ltelespectadores como foi sua\lexpediçäo à regiäo de Paldea?")
+            msgminibox(PSS_ICON_REPORTER, "Rezende", "Professora Hikari, poderia\ncompartilhar com nossos\ltelespectadores como foi sua\lexpedição à região de Paldea?")
         case ENGLISH_LANGUAGE:
             msgminibox(PSS_ICON_REPORTER, "Rezende", "Professor Hikari, could you share\nwith our viewers what your\lexpedition to the Paldea region\lwas like?")
         case SPANISH_LANGUAGE:
@@ -36,7 +36,7 @@ script PineveilTown_ProffessorHikariInterviwew {
     delay(30)
     switch(var(VAR_LANGUAGE)) {
         case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_HIKARI, "Hikari", "Agradeço, Rezende.\pPaldea é uma regiäo fascinante,\ncheia de inovaçäo, tradiçäo e\lnovas formas de Pokémon.\pEstudei a Teracristalizaçäo a\nfundo e seus efeitos nas\lestratégias de batalha.\pMas agora meu foco retorna à\nregiäo de Aetheris.\pTreinadores que almejam a Liga\ndevem treinar duro, estudar\lbastante e nunca desistir.\pAinda há muito a descobrir sobre\nos Pokémon de Aetheris.\pEspero que a nova geraçäo de\ntreinadores nos ajude a desvendar\lesses mistérios.")
+            msgminibox(PSS_ICON_HIKARI, "Hikari", "Agradeço, Rezende.\pPaldea é uma região fascinante,\ncheia de inovação, tradição e\lnovas formas de Pokémon.\pEstudei a Teracristalização a\nfundo e seus efeitos nas\lestratégias de batalha.\pMas agora meu foco retorna à\nregião de Aetheris.\pTreinadores que almejam a Liga\ndevem treinar duro, estudar\lbastante e nunca desistir.\pAinda há muito a descobrir sobre\nos Pokémon de Aetheris.\pEspero que a nova geração de\ntreinadores nos ajude a desvendar\lesses mistérios.")
         case ENGLISH_LANGUAGE:
             msgminibox(PSS_ICON_HIKARI, "Hikari", "Thank you, Rezende.\pPaldea is a fascinating region,\nfull of innovation, tradition, and\lnew forms of Pokémon.\pI studied Terastalization in depth\nand its effects on battle\lstrategies.\pBut now my focus returns to the\nAetheris region.\pTrainers who aspire to challenge\nthe League must train hard, study\lwell, and never give up.\pThere is still much to discover\nabout the Pokémon of Aetheris.\pI hope the next generation of\nTrainers will help us uncover\lthese mysteries.")
         case SPANISH_LANGUAGE:
@@ -61,12 +61,12 @@ script PineveilTown_ProffessorHikariInterviwew {
         case SPANISH_LANGUAGE:
             msgminibox(PSS_ICON_REPORTER, "Rezende", "A todos los Entrenadores\naspirantes:\pEl camino hacia la grandeza\ncomienza ahora.\pEste fue un reportaje exclusivo de\nTV Voltaris.\p¡Sigan en sintonía!")
     }
-    setvar(VAR_PLAYER_ROOM_2F_TILE, 2)
     setvar(VAR_PLAYERFACING_ROOM, 1)
     setflag(FLAG_INTERVIEW_HIKARI_DONE)
     clearflag(FLAG_SPAWN_INVISIBLE)
-    warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 2, 4)
+    warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 7, 5)
     releaseall
+    end
 }
 
 script PineveilTown_PlayerHouseSign {
@@ -91,7 +91,7 @@ script PineveilTown_RivalHouseSign {
 
 script PineveilTown_Boy_Conversation {
     switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE: msgbox("Eu adoro viver aqui em Pineveil!\pÉ tudo täo calmo… e o vento nas\nárvores faz um som täo relaxante.\pÀs vezes fico imaginando como deve\nser viajar pelo mundo…\pMas, pra falar a verdade, acho que\nnäo existe lugar melhor que aqui!", MSGBOX_NPC)
+        case PORTUGUESE_LANGUAGE: msgbox("Eu adoro viver aqui em Pineveil!\pÉ tudo tão calmo… e o vento nas\nárvores faz um som tão relaxante.\pÀs vezes fico imaginando como deve\nser viajar pelo mundo…\pMas, pra falar a verdade, acho que\nnão existe lugar melhor que aqui!", MSGBOX_NPC)
         case ENGLISH_LANGUAGE: msgbox("I love living here in Pineveil!\pEverything is so calm… and the\nsound of the wind through the\ltrees is so relaxing.\pSometimes I wonder what it would\nbe like to travel the world…\pBut honestly, I think there's no\nbetter place than here!", MSGBOX_NPC)
         case SPANISH_LANGUAGE: msgbox("¡Me encanta vivir aquí en\nPineveil!\pTodo es tan tranquilo… y el sonido\ndel viento entre los árboles es\lmuy relajante.\pA veces me pregunto cómo será\nviajar por el mundo…\pPero, sinceramente, ¡creo que no\nhay un lugar mejor que este!", MSGBOX_NPC)
     }
@@ -101,7 +101,7 @@ script PineveilTown_Boy_Conversation {
 script PineveilTown_BirdKeeper_Talk {
     if (!flag(FLAG_SYS_POKEMON_GET)) {
         switch(var(VAR_LANGUAGE)) {
-            case PT: msgbox("Ei, você näo pode passar por aqui\nainda!\pA Rota 1 pode ser perigosa…\nPokémon selvagens aparecem por lá.\pSem um Pokémon ao seu lado, é\nmelhor näo arriscar.\pVolte quando tiver um Pokémon para\nte proteger!", MSGBOX_NPC)
+            case PT: msgbox("Ei, você não pode passar por aqui\nainda!\pA Rota 1 pode ser perigosa…\nPokémon selvagens aparecem por lá.\pSem um Pokémon ao seu lado, é\nmelhor não arriscar.\pVolte quando tiver um Pokémon para\nte proteger!", MSGBOX_NPC)
             case EN: msgbox("Hey, you can't go through here\njust yet!\pRoute 1 can be dangerous… wild\nPokémon appear there.\pWithout a Pokémon by your side,\nit's best not to take the risk.\pCome back when you have a Pokémon\nto protect you!", MSGBOX_NPC)
             case ES: msgbox("¡Oye, aún no puedes pasar por\naquí!\pLa Ruta 1 puede ser peligrosa…\naparecen Pokémon salvajes.\pSin un Pokémon a tu lado, es mejor\nno arriesgarse.\p¡Vuelve cuando tengas un Pokémon\nque te proteja!", MSGBOX_NPC)
         }
@@ -109,7 +109,7 @@ script PineveilTown_BirdKeeper_Talk {
         switch(var(VAR_LANGUAGE)) {
             case PT: 
                 checkgenderstr
-                msgbox("Ah, vejo que você já tem um\nPokémon!\pAgora sim, você está pront{STR_VAR_1} para\nseguir pela Rota 1.\pMas näo baixe a guarda, ok?\nPokémon selvagens podem aparecer a\lqualquer momento.\pBoa sorte na sua jornada!", MSGBOX_NPC)
+                msgbox("Ah, vejo que você já tem um\nPokémon!\pAgora sim, você está pront{STR_VAR_1} para\nseguir pela Rota 1.\pMas não baixe a guarda, ok?\nPokémon selvagens podem aparecer a\lqualquer momento.\pBoa sorte na sua jornada!", MSGBOX_NPC)
             case EN:
                 msgbox("Oh, I see you have a Pokémon now!\pNow you're ready to head onto\nRoute 1.\pBut don't let your guard down,\nokay? Wild Pokémon can appear at\lany time.\pGood luck on your journey!", MSGBOX_NPC)
             case ES:
@@ -124,26 +124,14 @@ script PineveilTown_CantPassUntilHaveAPokemon_Tile {
     playse(SE_PIN)
     movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Common_Movement_ExclamationMark)
     waitse
-    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
-    copyvar(VAR_RESULT, VAR_TEMP_1)
-    switch(var(VAR_RESULT)) {
-        case 30: movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Movement_BirdKeeper_GoToPlayer0)
-        case 31: movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Movement_BirdKeeper_GoToPlayer1)
-        case 32: movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Movement_BirdKeeper_GoToPlayer2)
-    }
-    delay(30)
-    moveplayer(Common_Movement_FaceLeft)
+    pause(20)
+    moveplayer(Common_Movement_FaceUp)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Ei, você näo pode passar por aqui\nainda!\pA Rota 1 pode ser perigosa…\nPokémon selvagens aparecem por lá.\pSem um Pokémon ao seu lado, é\nmelhor näo arriscar.\pVolte quando tiver um Pokémon para\nte proteger!", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Hey, you can't go through here\njust yet!\pRoute 1 can be dangerous… wild\nPokémon appear there.\pWithout a Pokémon by your side,\nit's best not to take the risk.\pCome back when you have a Pokémon\nto protect you!", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("¡Oye, aún no puedes pasar por\naquí!\pLa Ruta 1 puede ser peligrosa…\naparecen Pokémon salvajes.\pSin un Pokémon a tu lado, es mejor\nno arriesgarse.\p¡Vuelve cuando tengas un Pokémon\nque te proteja!", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Ei, você não pode passar por aqui\nainda!\pA Rota 1 pode ser perigosa…\nPokémon selvagens aparecem por lá.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Hey, you can't go through here\njust yet!\pRoute 1 can be dangerous… wild\nPokémon appear there.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("¡Oye, aún no puedes pasar por\naquí!\pLa Ruta 1 puede ser peligrosa…\naparecen Pokémon salvajes.", MSGBOX_AUTOCLOSE)
     }
-    switch(var(VAR_RESULT)) {
-        case 30: movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Movement_BirdKeeper_GoAwayPlayer0)
-        case 31: movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Movement_BirdKeeper_GoAwayPlayer1)
-        case 32: movenpc(LOCALID_LITTLEROOT_BIDKEEPER, Movement_BirdKeeper_GoAwayPlayer2)
-    }
-    moveplayer(Movement_Player_Walk_Left)
+    moveplayer(Movement_Player_Walk_Right)
     releaseall
     end
 }
@@ -166,34 +154,169 @@ script PineveilTown_Lab_Signpost {
     end
 }
 
-script PineveilTown_BoyGiveRivalWarning {
+const LOCALID_PINEVEIL_MOM = 6
+const LOCALID_PINEVEIL_SCIENTIST = 7
+script PineveilTown_MomComeToGiveSomeItemsBeforePlayerGone {
     lockall
-    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
-    copyvar(VAR_RESULT, VAR_TEMP_0)
-    playse(SE_PIN)
-    movenpc(LOCALID_PINEVEIL_BOY, Common_Movement_ExclamationMark)
-    waitse
-    delay(30)
-    if (var(VAR_RESULT) == 12) {
-        movenpc(LOCALID_PINEVEIL_BOY, Movement_PineveilBoy_GotoPlayer_0)
-    } else {
-        movenpc(LOCALID_PINEVEIL_BOY, Movement_PineveilBoy_GotoPlayer_1)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Hey, {PLAYER}!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Hey, {PLAYER}!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "¡Hola, {PLAYER}!", MSGBOX_AUTOCLOSE)
     }
+    delay(20)
+    createspobject(OBJ_EVENT_GFX_MOM, LOCALID_PINEVEIL_MOM, 13, 19, MOVEMENT_TYPE_FACE_UP)
+    special(SpawnCameraObject)
+    movecamera(Movement_PineveilCameraToMom)
+    pause(20)
+    applymovement(LOCALID_CAMERA, Common_Movement_WalkUp6)
+    applymovement(LOCALID_PINEVEIL_MOM, Common_Movement_WalkUp5)
+    waitmovementall
+    special(RemoveCameraObject)
     moveplayer(Common_Movement_FaceDown)
-    checkgenderstr
-    switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("E aí, nov{STR_VAR_1} vizinh{STR_VAR_1}!\nO seu amigo {RIVAL} estava te\lprocurando mais cedo.\pEle disse que vai te esperar lá na\ncasa dele.\lMelhor você passar lá!", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Hey there, new neighbor!\nYour friend {RIVAL} was looking\lfor you earlier.\pHe said he'll be waiting for you\nat his house.\lYou should go check it out!", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("¡Hola, nuev{STR_VAR_1} vecin{STR_VAR_1}!\nTu amigo {RIVAL} estaba buscándote\lhace un rato.\pDijo que te estará esperando en su\ncasa.\l¡Será mejor que vayas a verlo!", MSGBOX_AUTOCLOSE)
+    bufferleadmonspeciesname(STR_VAR_1)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Eu estava ansiosa para conhecer\nseu primeiro Pokémon companheiro.\pEle é lindo e saudável. Que belo\n{STR_VAR_1}.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "I was excited to meet your first\npartner Pokémon.\pIt looks healthy and beautiful.\nWhat a wonderful {STR_VAR_1}.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "Estaba ansiosa por conocer a tu\nprimer Pokémon compañero.\pSe ve saludable y hermoso. Qué\nhermoso {STR_VAR_1}.", MSGBOX_AUTOCLOSE)
     }
-    if (var(VAR_RESULT) == 12) {
-        movenpc(LOCALID_PINEVEIL_BOY, Movement_PineveilBoy_GoAwayFromPlayer_0)
-    } else {
-        movenpc(LOCALID_PINEVEIL_BOY, Movement_PineveilBoy_GoAwayFromPlayer_1)
+    playse(SE_PIN)
+    movenpc(LOCALID_PINEVEIL_MOM, Common_Movement_EmojiKissing)
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Cuide bem do seu {STR_VAR_1} e\nse divirtam muito juntos!\pAh, e não se esqueça de me visitar\nde vez em quando, ok?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Take good care of your {STR_VAR_1}\nand have lots of fun together!\pAh, and don't forget to visit me\nfrom time to time, okay?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "¡Cuida bien de tu {STR_VAR_1} y\ndiviértanse mucho juntos!\pAh, y no olvides visitarme de vez en\ncuando, ¿de acuerdo?", MSGBOX_AUTOCLOSE)
     }
-    moveplayer(Movement_Player_Walk_down)
-    releaseall
+    playse(SE_PIN)
+    movenpc(LOCALID_PINEVEIL_MOM, Common_Movement_EmojiRelaxed)
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Ah, e mais uma coisa. Quero que\nleve isto com você na sua\laventura. Tome!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Oh, and one more thing. I want you\nto take these with you on your\ladventure. Here!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "Ah, y una cosa más. Quiero que\nlleves esto contigo en tu\laventura. ¡Toma!", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    setflag(FLAG_SYS_B_DASH)
+    playfanfare(MUS_OBTAIN_ITEM)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("{PLAYER} recebeu os {COLOR}{BLUE}Tênis de Corrida{COLOR}{DARK_GRAY}\nde presente!")
+        case EN: msgbox("{PLAYER} received {COLOR}{BLUE}Running Shoes{COLOR}{DARK_GRAY}\nas a gift!")
+        case ES: msgbox("¡{PLAYER} recibió los {COLOR}{BLUE}Zapatos de Correr{COLOR}{DARK_GRAY}\ncomo regalo!")
+    }
+    waitfanfare
+    waitbuttonpress
+    closemessage
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Estes são os Tênis de Corrida.\pCom eles, você poderá correr\nsempre que quiser.\pBasta segurar o botão {B_BUTTON} enquanto\nanda.\pEles vão deixar sua aventura muito\nmais rápida e divertida!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "These are the Running Shoes.\pWith them, you'll be able to run\nwhenever you want.\pJust hold the {B_BUTTON} Button while\nwalking.\pThey'll make your adventure much\nfaster and more fun!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "Estos son los Zapatos de Correr.\pCon ellos, podrás correr cuando\nquieras.\pSolo mantén presionado el Botón {B_BUTTON}\nmientras caminas.\p¡Harán que tu aventura sea mucho\nmás rápida y divertida!", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    setflag(FLAG_DEXNAV_GET)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Ah, quase me esqueci!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Oh, I almost forgot!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "¡Ah, casi lo olvido!", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    playfanfare(MUS_OBTAIN_ITEM)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("{PLAYER} recebeu a {COLOR}{BLUE}DexNav{COLOR}{DARK_GRAY} de presente!")
+        case EN: msgbox("{PLAYER} received {COLOR}{BLUE}DexNav{COLOR}{DARK_GRAY} as a gift!")
+        case ES: msgbox("¡{PLAYER} recibió la {COLOR}{BLUE}DexNav{COLOR}{DARK_GRAY} como regalo!")
+    }
+    waitfanfare
+    waitbuttonpress
+    closemessage
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Ah, e isto aqui é a DexNav.\pEla permite localizar Pokémon\nselvagens nas redondezas e até\ldescobrir informações sobre eles\lantes da batalha.\pQuanto mais você usar, melhor\nficará em encontrar Pokémon raros!\pPara acessá-la, basta abrir o menu\n{START_BUTTON}.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Oh, and this here is the DexNav.\pIt allows you to locate wild\nPokémon nearby and even learn\linformation about them before\lbattle.\pThe more you use it, the better\nyou'll become at finding rare\lPokémon!\pTo access it, just open the {START_BUTTON}\nmenu.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "Ah, y esto es la DexNav.\pTe permite localizar Pokémon\nsalvajes cercanos e incluso\ldescubrir información sobre ellos\lantes del combate.\p¡Mientras más la uses, mejor serás\nencontrando Pokémon raros!\pPara acceder a ella, solo abre el\nmenú {START_BUTTON}.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Cuide-se, está bem? O mundo lá\nfora é enorme, e muitas coisas\lincríveis esperam por você.\pTenho certeza de que viverá\ngrandes aventuras ao lado do seu\lPokémon.\pE lembre-se: esta sempre será sua\ncasa.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "Take care of yourself, okay? The\nworld out there is huge, and many\lamazing things are waiting for\lyou.\pI'm sure you'll experience great\nadventures alongside your Pokémon.\pAnd remember: this will always be\nyour home.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "Cuídate, ¿de acuerdo? El mundo\nallá afuera es enorme, y muchas\lcosas increíbles te esperan.\pEstoy segura de que vivirás\ngrandes aventuras junto a tu\lPokémon.\pY recuerda: esta siempre será tu\nhogar.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    createspobject(OBJ_EVENT_GFX_SCIENTIST_1, LOCALID_PINEVEIL_SCIENTIST, 12, 19, MOVEMENT_TYPE_FACE_UP)
+    movenpc(LOCALID_PINEVEIL_SCIENTIST, Movement_Scientist_ComeNextPlayer)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Com licença!\nPreciso passar!\pTenho algo urgente para falar com\na Professora!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Excuse me!\nI need to get through!\pI have something urgent to tell\nthe Professor!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "¡Disculpen!\n¡Necesito pasar!\p¡Tengo algo urgente que hablar con\nla Profesora!", MSGBOX_AUTOCLOSE)
+    }
+    playse(SE_PIN)
+    applymovement(LOCALID_PLAYER, Movement_PineveilHaveDoubtLookingLeft)
+    applymovement(LOCALID_PINEVEIL_MOM, Movement_PineveilHaveDoubtLookingLeft)
+    waitmovementall
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Vamos, rápido!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Come on, hurry!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "¡Vamos, rápido!", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_PINEVEIL_MOM, Movement_PineveilWalkDownLookingUp)
+    moveplayer(Movement_PineveilWalkDownLookingUp)
+    movenpc(LOCALID_PINEVEIL_SCIENTIST, Movement_Pineveil_ScientisRushToLab)
+    removeobject(LOCALID_PINEVEIL_SCIENTIST)
+    playse(SE_DOOR)
+    waitse
+    pause(20)
+    moveplayer(Common_Movement_FaceDown)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_MOM, "Mãe", "Que estranho… Nunca vi alguém tão\ndesesperado assim.\pEspero que não seja nada sério…\nBem, não vou mais atrasar você.\pVá em frente e aproveite sua\naventura!\pEu vou voltar para casa.\nAgora diga tchau!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_MOM, "Mom", "That was strange… I've never seen\nsomeone that desperate before.\pI hope it's nothing serious… Well,\nI won't keep you any longer.\pGo on and enjoy your adventure!\pI'll head back home now.\nSee ya!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_MOM, "Mamá", "Qué extraño… Nunca había visto a\nalguien tan desesperado así.\pEspero que no sea nada grave…\nBueno, no voy a retrasarte más.\p¡Sigue adelante y disfruta tu\naventura!\pYo volveré a casa.\nHasta luego!", MSGBOX_AUTOCLOSE)
+    }
+    playse(SE_PIN)
+    movenpc(LOCALID_PINEVEIL_MOM, Common_Movement_EmojiKissing)
+    waitse
+    pause(10)
+    movenpc(LOCALID_PINEVEIL_MOM, Movement_Pineveil_MomGoBackHome)
+    removeobject(LOCALID_PINEVEIL_MOM)
+    setvar(VAR_LITTLEROOT_TOWN_STATE, 3)
+    pause(30)
+    setflag(FLAG_SPAWN_INVISIBLE)
+    warpsilent(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 6)
+    release
     end
+}
+
+movement Movement_Pineveil_MomGoBackHome {
+    walk_down * 3
+    walk_right *2
+    walk_down * 2
+    walk_right * 4
+}
+
+movement Movement_Pineveil_ScientisRushToLab {
+    walk_fast_right
+    walk_fast_up * 6
+    delay_16
+}
+
+movement Movement_PineveilWalkDownLookingUp {
+    walk_down
+    face_up
+}
+
+movement Movement_PineveilHaveDoubtLookingLeft {
+    emoji_doubt
+    face_left
+}
+
+movement Movement_Scientist_ComeNextPlayer {
+    walk_fast_up * 6
+    face_right
+}
+
+movement Movement_PineveilCameraToMom {
+    walk_down * 6
 }
 
 movement Movement_Interview_1 {
@@ -202,11 +325,6 @@ movement Movement_Interview_1 {
 
 movement Movement_Interview_2 {
     face_down
-}
-
-movement Movement_BirdKeeper_GoToPlayer0 {
-    walk_down
-    face_right
 }
 
 movement Movement_BirdKeeper_GoToPlayer1 {
@@ -219,11 +337,6 @@ movement Movement_BirdKeeper_GoToPlayer2 {
     face_right
 }
 
-movement Movement_BirdKeeper_GoAwayPlayer0 {
-    walk_up
-    face_down
-}
-
 movement Movement_BirdKeeper_GoAwayPlayer1 {
     walk_up * 2
     face_down
@@ -234,35 +347,9 @@ movement Movement_BirdKeeper_GoAwayPlayer2 {
     face_down
 }
 
-movement Movement_Player_Walk_Left {
-    walk_left
-    face_left
-}
-
-movement Movement_PineveilBoy_GotoPlayer_0 {
-    walk_left * 4
-    walk_up * 2
-    face_up
-}
-
-movement Movement_PineveilBoy_GotoPlayer_1 {
-    walk_left * 3
-    walk_up * 2
-    face_up
-}
-
-movement Movement_PineveilBoy_GoAwayFromPlayer_0 {
-    walk_right * 3
-    walk_down * 2
+movement Movement_Player_Walk_Right {
     walk_right
-    face_down
-}
-
-movement Movement_PineveilBoy_GoAwayFromPlayer_1 {
-    walk_right * 2
-    walk_down * 2
-    walk_right
-    face_down
+    face_right
 }
 
 movement Movement_Player_Walk_down {

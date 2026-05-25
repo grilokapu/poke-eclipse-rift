@@ -11,61 +11,235 @@ mapscripts LittlerootTown_ProfessorBirchsLab_MapScripts {
                 clearflag(FLAG_LAB_POKE_BALL_2)
                 addobject(LOCALID_LAB_BALL_2)
         }
+        if (!flag(FLAG_RIVAL_LEAVE_HOUSE)) {
+            setobjectxyperm(LOCALID_RIVAL_LAB, 20, 15)
+        }
+        if (flag(FLAG_HIKARI_ROUTE_1)) {
+            setobjectmovementtype(LOCALID_RIVAL_LAB, MOVEMENT_TYPE_FACE_UP)
+        } else {
+            setobjectxyperm(LOCALID_LAB_BALL_1, 20, 15)
+            setobjectxyperm(LOCALID_LAB_BALL_2, 20, 15)
+            setobjectxyperm(LOCALID_LAB_BALL_3, 20, 15)
+            setobjectxyperm(LOCALID_HIKARI_LAB, 20, 15)
+        }
         end
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_BIRCH_LAB_STATE, 0: PineveilTown_ProfessorHikarisLab_OnFrame
+        VAR_LITTLEROOT_TOWN_STATE, 3: PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf
+        VAR_BIRCH_LAB_STATE, 1: PineveilTown_ProfessorHikarisLab_OnFrame
+    ]
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_ROUTE1_HIKARI_EVENT, 1: PineveilTown_ProfessorHikariLab_OnWarpIntoMap
     ]
 }
 
+script PineveilTown_ProfessorHikariLab_OnWarpIntoMap {
+    turnobject(LOCALID_PLAYER, DIR_NORTH)
+    setvar(VAR_ROUTE1_HIKARI_EVENT, 2)
+    end
+}
+
 script PineveilTown_ProfessorHikarisLab_OnFrame {
+    addobject(LOCALID_RIVAL_LAB)
     moveplayer(Movement_PlayerWalkNextToProfessorAndRival)
     delay(30)
     playse(SE_PIN)
-    movenpc(LOCALID_RIVAL_LAB, Common_Movement_ExclamationMark)
+    movenpc(LOCALID_HIKARI_LAB, Common_Movement_EmojiGrin)
     waitse
-    applymovement(LOCALID_PLAYER, Common_Movement_FaceRight)
-    applymovement(LOCALID_RIVAL_LAB, Common_Movement_FaceLeft)
-    waitmovementall
+    pause(20)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Vamos, {PLAYER}! Anda logo!\nVocê demorou demais!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Come on, {PLAYER}! Hurry up!\nYou took way too long!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "¡Vamos, {PLAYER}! ¡Date prisa!\n¡Te has tardado demasiado!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, ótimo.\nAgora estamos todos aqui.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, great.\nNow we're all here.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, genial.\nAhora estamos todos aquí.", MSGBOX_AUTOCLOSE)
     }
-    applymovement(LOCALID_PLAYER, Common_Movement_FaceUp)
-    applymovement(LOCALID_RIVAL_LAB, Common_Movement_FaceUp)
-    waitmovementall
+    pause(20)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Olá! Vocês devem ser {PLAYER} e\n{RIVAL}, certo?\pDei uma olhada nas fichas de\nvocês… entäo näo säo daqui de\lAetheris, näo é?\p{RIVAL}, você veio da regiäo de\nSinnoh…\lE você, {PLAYER}, é da regiäo de\lSeafood.\pSabiam que sou muito próxima dos\nprofessores das regiöes de vocês?\pTive a oportunidade de aprender\nbastante com o Professor Rowan, em\lminhas visitas a Sinnoh.\pE o Professor Yami… bem, ele é\nninguém menos que meu primo!\pImagino que vocês tenham aprendido\nmuitas coisas com eles, näo é\lmesmo?", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hello! You must be {PLAYER} and\n{RIVAL}, right?\pI took a look at your records… so\nyou're not from Aetheris, correct?\p{RIVAL}, you're from the Sinnoh\nregion…\lAnd you, {PLAYER}, are from the\lSeafood region.\pDid you know I'm quite close to\nthe professors from your regions?\pI learned a great deal from\nProfessor Rowan during my visits\lto Sinnoh.\pAnd Professor Yami… well, he\nhappens to be my cousin!\pI imagine you've both learned\nquite a lot from them, haven't\lyou?", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Hola! Ustedes deben ser {PLAYER}\ny {RIVAL}, ¿verdad?\pHe revisado sus fichas… así que no\nson de Aetheris, ¿correcto?\p{RIVAL}, vienes de la región de\nSinnoh…\lY tú, {PLAYER}, eres de la región\lde Seafood.\p¿Sabían que soy muy cercana a los\nprofesores de sus regiones?\pAprendí muchísimo del Profesor\nRowan durante mis visitas a\lSinnoh.\pY el Profesor Yami… bueno, ¡no es\nnada menos que mi primo!\pImagino que han aprendido mucho de\nellos, ¿no es así?", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Então vocês dois serão os\nrepresentantes iniciais deste ano…\pVamos nos apresentar…\nMeu nome é Hikari!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "So you two will be this year's\nstarting representatives...\pLet's introduce ourselves...\nMy name is Hikari!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Entonces ustedes dos serán los\nrepresentantes iniciales de este\laño...\pVamos a presentarnos...\n¡Mi nombre es Hikari!", MSGBOX_AUTOCLOSE)
     }
-    playse(SE_PIN)
-    movenpc(LOCALID_HIKARI_LAB, Movement_HikariSaySmile)
-    waitse
-    delay(30)
+    movenpc(LOCALID_HIKARI_LAB, Movement_HikariWalkNextPlayer)
+    pause(10)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Deixem-me me apresentar melhor…\nEu sou a Professora Hikari.\pSou a pesquisadora oficial da\nregiäo de Aetheris.\pAlém de estudar os Pokémon, também\ninvestigo raras distorçöes\linterdimensionais que surgem em\lcertos pontos da regiäo.\pHoje marca o início da jornada de\nvocês dois aqui em Aetheris.\pPara chegar até a Liga Pokémon,\nvocês precisaräo desafiar oito\lLíderes de Ginásio…\lE também cumprir algumas missöes\loficiais ao longo do caminho.\pPor isso, fiquem sempre atentos\ndurante a jornada.\pEssas missöes podem surgir a\nqualquer momento.\pE agora…\pO primeiro passo de vocês é\nescolher o seu primeiro Pokémon!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Let me properly introduce myself…\nI am Professor Hikari.\pI am the official researcher of\nthe Aetheris region.\pIn addition to studying Pokémon, I\nalso investigate rare\linterdimensional distortions that\lappear in certain areas across the\lregion.\pToday marks the beginning of your\njourney here in Aetheris.\pTo reach the Pokémon League, you\nwill need to challenge eight Gym\lLeaders…\lAnd complete various official\lmissions along the way.\pSo stay alert throughout your\njourney.\pThese missions can appear at any\ntime.\pAnd now…\pYour first step is to choose your\nvery first Pokémon!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Permítanme presentarme\nadecuadamente…\lSoy la Profesora Hikari.\pSoy la investigadora oficial de la\nregión de Aetheris.\pAdemás de estudiar a los Pokémon,\ntambién investigo raras\ldistorsiones interdimensionales\lque aparecen en ciertos lugares de\lla región.\pHoy marca el comienzo de su\naventura aquí en Aetheris.\pPara llegar a la Liga Pokémon,\ndeberán desafiar a ocho Líderes de\lGimnasio…\lY completar varias misiones\loficiales en el camino.\pAsí que manténganse atentos\ndurante su viaje.\pEstas misiones pueden aparecer en\ncualquier momento.\pY ahora…\p¡Su primer paso es elegir a su\nprimer Pokémon!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Você deve ser o {PLAYER}.\nNão é verdade?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "You must be {PLAYER}.\nIsn't that right?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Tú debes ser {PLAYER}.\n¿No es así?", MSGBOX_AUTOCLOSE)
     }
-    delay(30)
-    movenpc(LOCALID_HIKARI_LAB, Movement_HikariGoesAtBallsFront)
-    applymovement(LOCALID_PLAYER, Movement_PlayerGotoBallsFront)
+    movenpc(LOCALID_HIKARI_LAB, Movement_HikariWalkNextRival)
+    pause(10)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "E você? Qual seu nome?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "And you? What's your name?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Y tú? ¿Cuál es tu nombre?", MSGBOX_AUTOCLOSE)
+    }
+    fadescreen(FADE_TO_BLACK)
+    callnative(EnterRivalName)
+    waitstate
+    pause(20)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Meu nome é {RIVAL}, professora!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "My name is {RIVAL}, professor!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Mi nombre es {RIVAL}, profesora!", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_RIVAL_LAB, Common_Movement_EmojiConfident)
+    pause(10)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Muito bem!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Great!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Muy bien!", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_HIKARI_LAB, Movement_HikariBackToCenter)
+    pause(20)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Os Pokémon que preparei para hoje\nnormalmente seriam enviados para\loutros laboratórios…\pMas depois do que aconteceu\nna rota…\p...\pAcho melhor mudar os planos.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "The Pokémon I prepared for today\nwould normally be sent to other\llaboratories…\pBut after what happened\non the route…\p...\pI think it's better to change\nthe plans.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Los Pokémon que preparé para hoy\nnormalmente serían enviados a\lotros laboratorios…\pPero después de lo que pasó\nen la ruta…\p...\pCreo que será mejor cambiar\nlos planes.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_HIKARI_LAB, Common_Movement_EmojiWink)
+    pause(10)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Venham comigo!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Come with me!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Vengan conmigo!", MSGBOX_AUTOCLOSE)
+    }
+    applymovement(LOCALID_HIKARI_LAB, Movement_HikariGoesAtBallsFront)
     applymovement(LOCALID_RIVAL_LAB, Movement_RivalGotoBallsFront)
+    applymovement(LOCALID_PLAYER, Movement_PlayerGotoBallsFront)
     waitmovementall
-    delay(30)
+    pause(20)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Sobre esta mesa, há três\nPokébolas…\lCada uma contém um Pokémon de tipo\ldiferente: Grama, Fogo e Água.\pVocê pode escolher o Pokémon que\npreferir, levando em conta tanto o\ltipo quanto a regiäo de onde ele\lveio.\pEscolha com cuidado…\nO Pokémon que você selecionar será\lseu parceiro ao longo de toda a\lsua jornada.\pNäo desperdice essa oportunidade.\nEscolha um companheiro que\lcomplemente suas forças - seja\lpelo poder, carisma ou\lhabilidades.\pPrimeiro, {PLAYER}, você fará sua\nescolha.\pEm seguida, {RIVAL} também poderá\nescolher seu próprio parceiro.\pEntendeu?\pEntäo, {PLAYER}…\nEscolha o seu primeiro Pokémon!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "On this table, there are three\nPoké Balls…\lEach one contains a Pokémon of a\ldifferent type: Grass, Fire, and\lWater.\pYou may choose whichever Pokémon\nyou prefer, considering both its\ltype and the region it comes from.\pChoose carefully…\nThe Pokémon you select will be\lyour partner throughout your\lentire journey.\pDon't waste this opportunity.\nPick a companion that complements\lyour strengths-whether through\lpower, charisma, or abilities.\pFirst, {PLAYER}, you will make\nyour choice.\pThen, {RIVAL} will have the chance\nto choose their partner as well.\pUnderstood?\pThen, {PLAYER}…\nChoose your very first Pokémon!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Sobre esta mesa hay tres Poké\nBalls…\lCada una contiene un Pokémon de un\ltipo diferente: Planta, Fuego y\lAgua.\pPuedes elegir el Pokémon que\nprefieras, considerando tanto su\ltipo como la región de donde\lproviene.\pElige con cuidado…\nEl Pokémon que selecciones será tu\lcompañero durante toda tu\laventura.\pNo desperdicies esta oportunidad.\nElige un compañero que complemente\ltus fortalezas, ya sea por su\lpoder, carisma o habilidades.\pPrimero, {PLAYER}, tú harás tu\nelección.\pLuego, {RIVAL} también podrá\nelegir a su compañero.\p¿Entendido?\pEntonces, {PLAYER}…\n¡Elige tu primer Pokémon!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Eu tenho aqui três Pokémon\ndentro dessas Pokébolas.\pVocês terão que escolher um\ndeles para ser seu primeiro\lcompanheiro.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "I have three Pokémon inside these\nPokéballs.\pYou'll have to choose one of them\lto be your first partner.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Tengo aquí tres Pokémon\ndentro de estas Pokébolas.\pTendrán que elegir uno de ellos\lpara ser su primer compañero.", MSGBOX_AUTOCLOSE)
     }
-    goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
+    pause(20)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Primeiro você escolhe, {PLAYER}!\nDepois será a vez do {RIVAL}!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "First you choose, {PLAYER}!\nThen it'll be {RIVAL}'s turn!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Primero tú eliges, {PLAYER}!\n¡Después será el turno de {RIVAL}!", MSGBOX_AUTOCLOSE)
+    }
+    switch (var(VAR_LANGUAGE)) {
+        case PT: message("Você fará monotipo ou quer\nescolher um Pokémon de cada tipo?")
+        case EN: message("Will you make a mono-type team or\nwanna choose a {PKMN} from each type?")
+        case ES: message("¿Harás un equipo monotipo o quieres\nescoger un Pokémon de cada tipo?")
+    }
+    waitmessage
+    switch (var(VAR_LANGUAGE)) {
+        case PT: dynmultichoice(0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, "MONOTIPO", "TRADICIONAL")
+        case EN: dynmultichoice(0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, "MONO-TYPE", "TRADITIONAL")
+        case ES: dynmultichoice(0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, "MONOTIPO", "TRADICIONAL")
+    }
+    if (var(VAR_RESULT) == 0) {
+        goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
+    } else {
+        goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
+    }
+}
+
+script PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion {
+    closemessage
+    call(PineveilTown_ProfessorHikariLab_ClearMonVars)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: message("Qual Tipo você irá escolher para\no seu Pokémon inicial?")
+        case EN: message("Which type will you choose for\nyour starter Pokémon?")
+        case ES: message("¿Qué tipo vas a elegir para\ntu Pokémon inicial?")
+    }
+    switch (var(VAR_LANGUAGE)) {
+        case PT: dynmultichoice(0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "INSETO", "SOMBRIO", "DRAGÃO", "ELÉTRICO", "FADA", "LUTADOR", "FOGO", "VOADOR", "FANTASMA", "GRAMA", "TERRA", "GELO", "NORMAL", "VENENO", "PSIQUICO", "PEDRA", "AÇO", "ÁGUA")
+        case EN: dynmultichoice(0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "BUG", "DARK", "DRAGON", "ELECTRIC", "FAIRY", "FIGHTING", "FIRE", "FLYING", "GHOST", "GRASS", "GROUND", "ICE", "NORMAL", "POISON", "PSYCHIC", "ROCK", "STEEL", "WATER")
+        case ES: dynmultichoice(0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "INSECTO", "NOCTURNO", "DRAGÓN", "ELÉCTRICO", "HADA", "LUCHADOR", "FUEGO", "VOLADOR", "FANTASMA", "PLANTA", "TIERRA", "GELO", "NORMAL", "VENENO", "PSÍQUICO", "ROCA", "ACERO", "AGUA")
+    }
+    copyvar(VAR_0x8000, VAR_RESULT)
+    switch (var(VAR_0x8000)) {
+        case 0:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_SEWADDLE)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_SIZZLIPEDE)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_WIMPOD)
+        case 1:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_IMPIDIMP)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_GRIMER_ALOLA)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_CARVANHA)
+        case 2:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_DRATINI)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_BAGON)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_GIBLE)
+        case 3:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_VOLTORB_HISUI)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_YAMPER)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_CHINCHOU)
+        case 4:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_MORELULL)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_MIME_JR)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_MARILL)
+        case 5:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_SNEASEL_HISUI)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_TYROGUE)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_RIOLU)
+        case 6:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_CHARMANDER)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_TORCHIC)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_FENNEKIN)
+        case 7:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_PIDGEY)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_STARLY)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_ROOKIDEE)
+        case 8:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_POLTCHAGEIST)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_LITWICK)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_FRILLISH)
+        case 9:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_BULBASAUR)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_CHIKORITA)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_TREECKO)
+        case 10:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_TRAPINCH)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_DIGLETT_ALOLA)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_NUMEL)
+        case 11:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_SNOVER)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_SNOM)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_VULPIX_ALOLA)
+        case 12:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_DEERLING)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_LITLEO)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_BIDOOF)
+        case 13:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_BELLSPROUT)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_SALANDIT)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_TENTACOOL)
+        case 14:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_ABRA)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_ESPURR)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_RALTS)
+        case 15:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_LILEEP)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_ROLYCOLY)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_BINACLE)
+        case 16:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_CUFANT)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_ARON)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_BELDUM)
+        case 17:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_SQUIRTLE)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_FROAKIE)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_MUDKIP)
+        case 127:
+            goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
+    }
+    call(PineveilTown_ProfessorHikariLab_AreYouSure)
+    if(var(VAR_RESULT) == FALSE) {
+        call(PineveilTown_ProfessorHikariLab_ReturnBallGraphics)
+        goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
+    } else {
+        goto(PineveilTown_ProfessorHikariLab_WichMonYouChoose)
+    }
 }
 
 script PineveilTown_ProfessorHikariLab_ChooseStarterRegion {
+    closemessage
+    call(PineveilTown_ProfessorHikariLab_ClearMonVars)
     switch (var(VAR_LANGUAGE)) {
-        case PT: message("Entäo… de qual regiäo vem o seu\nPokémon?")
+        case PT: message("Então… de qual região vem o seu\nPokémon?")
         case EN: message("So… which region does your Pokémon\ncome from?")
         case ES: message("Entonces… ¿de qué región proviene\ntu Pokémon?")
     }
@@ -73,59 +247,95 @@ script PineveilTown_ProfessorHikariLab_ChooseStarterRegion {
     dynmultichoice(0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, "KANTO", "JOHTO", "HOENN", "SINNOH", "UNOVA", "KALOS", "ALOLA", "GALAR", "PALDEA")
     copyvar(VAR_0x8000, VAR_RESULT)
     switch (var(VAR_0x8000)) {
-        case 0: setflag(FLAG_STARTER_KANTO)
-        case 1: setflag(FLAG_STARTER_JOHTO)
-        case 2: setflag(FLAG_STARTER_HOENN)
-        case 3: setflag(FLAG_STARTER_SINNOH)
-        case 4: setflag(FLAG_STARTER_UNOVA)
-        case 5: setflag(FLAG_STARTER_KALOS)
-        case 6: setflag(FLAG_STARTER_ALOLA)
-        case 7: setflag(FLAG_STARTER_GALAR)
-        case 8: setflag(FLAG_STARTER_PALDEA)
+        case 0:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_BULBASAUR)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_CHARMANDER)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_SQUIRTLE)
+        case 1:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_CHIKORITA)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_CYNDAQUIL)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_TOTODILE)
+        case 2:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_TREECKO)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_TORCHIC)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_MUDKIP)
+        case 3:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_TURTWIG)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_CHIMCHAR)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_PIPLUP)
+        case 4:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_SNIVY)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_TEPIG)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_OSHAWOTT)
+        case 5:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_CHESPIN)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_FENNEKIN)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_FROAKIE)
+        case 6:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_ROWLET)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_LITTEN)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_POPPLIO)
+        case 7:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_GROOKEY)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_SCORBUNNY)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_SOBBLE)
+        case 8:
+            setvar(VAR_BUFFER_GRASS_MON, SPECIES_SPRIGATITO)
+            setvar(VAR_BUFFER_FIRE_MON, SPECIES_FUECOCO)
+            setvar(VAR_BUFFER_WATER_MON, SPECIES_QUAXLY)
+        case 127:
+            goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
     }
+    call(PineveilTown_ProfessorHikariLab_AreYouSure)
+    if(var(VAR_RESULT) == FALSE) {
+        call(PineveilTown_ProfessorHikariLab_ReturnBallGraphics)
+        goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
+    } else {
+        goto(PineveilTown_ProfessorHikariLab_WichMonYouChoose)
+    }
+}
+
+script PineveilTown_ProfessorHikariLab_ReturnBallGraphics {
+    removeobject(LOCALID_LAB_BALL_1)
+    removeobject(LOCALID_LAB_BALL_2)
+    removeobject(LOCALID_LAB_BALL_3)
+    addobject(LOCALID_LAB_BALL_1)
+    addobject(LOCALID_LAB_BALL_2)
+    addobject(LOCALID_LAB_BALL_3)
+    return
+}
+
+script PineveilTown_ProfessorHikariLab_AreYouSure {
     callnative(ShowMonInsidePokeball)
-    callnative(SetHikariLabRegionName)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("Entäo… você vai escolher um\nPokémon inicial da regiäo de\l{STR_VAR_1}?", MSGBOX_YESNO)
-        case EN: msgbox("So… will you choose a starter\nPokémon from the {STR_VAR_1}\lregion?", MSGBOX_YESNO)
-        case ES: msgbox("Entonces… ¿vas a elegir un Pokémon\ninicial de la región de\l{STR_VAR_1}?", MSGBOX_YESNO)
+        case PT: msgbox("Você tem certeza da sua escolha?", MSGBOX_YESNO)
+        case EN: msgbox("Are you sure about your choice?", MSGBOX_YESNO)
+        case ES: msgbox("¿Estás seguro de tu elección?", MSGBOX_YESNO)
     }
-    if (var(VAR_RESULT) == FALSE) {
-        removeobject(LOCALID_LAB_BALL_1)
-        removeobject(LOCALID_LAB_BALL_2)
-        removeobject(LOCALID_LAB_BALL_3)
-        addobject(LOCALID_LAB_BALL_1)
-        addobject(LOCALID_LAB_BALL_2)
-        addobject(LOCALID_LAB_BALL_3)
-        call(PineveilTown_ProfessorHikariLab_ClearAllFlags)
-        goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
-    }
+    return
+}
+
+script PineveilTown_ProfessorHikariLab_WichMonYouChoose {
     switch (var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Agora… escolha qual desses três\nserá o seu Pokémon!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Now… choose which of these three\nwill be your Pokémon!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ahora… ¡elige cuál de estos tres\nserá tu Pokémon!", MSGBOX_AUTOCLOSE)
     }
-    setvar(VAR_BIRCH_LAB_STATE, 1)
+    setvar(VAR_BIRCH_LAB_STATE, 2)
     release
     end
 }
 
-script PineveilTown_ProfessorHikariLab_ClearAllFlags {
-    clearflag(FLAG_STARTER_KANTO)
-    clearflag(FLAG_STARTER_JOHTO)
-    clearflag(FLAG_STARTER_HOENN)
-    clearflag(FLAG_STARTER_SINNOH)
-    clearflag(FLAG_STARTER_UNOVA)
-    clearflag(FLAG_STARTER_KALOS)
-    clearflag(FLAG_STARTER_ALOLA)
-    clearflag(FLAG_STARTER_GALAR)
-    clearflag(FLAG_STARTER_PALDEA)
+script PineveilTown_ProfessorHikariLab_ClearMonVars {
+    setvar(VAR_BUFFER_GRASS_MON, 0)
+    setvar(VAR_BUFFER_FIRE_MON, 0)
+    setvar(VAR_BUFFER_WATER_MON, 0)
     return
 }
 
 script PineveilTown_ProfessorHikariLab_PC {
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("É um PC usado para pesquisas.\nMelhor näo mexer nele.", MSGBOX_SIGN)
+        case PT: msgbox("É um PC usado para pesquisas.\nMelhor não mexer nele.", MSGBOX_SIGN)
         case EN: msgbox("It's a PC used for research.\nBetter not mess around with it.", MSGBOX_SIGN)
         case ES: msgbox("Es una PC usada para\ninvestigación.\lMejor no tocarla.", MSGBOX_SIGN)
     }
@@ -133,6 +343,10 @@ script PineveilTown_ProfessorHikariLab_PC {
 }
 
 script PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon {
+    if(!flag(FLAG_HIKARI_ROUTE_1)) {
+        release
+        end
+    }
     lock
     switch (var(VAR_LANGUAGE)) {
         case PT: msgbox("Escolha um Pokémon para\nprosseguir!")
@@ -149,86 +363,17 @@ script PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon {
     end
 }
 
-script BufferInitialIntoVar {
-	if (flag(FLAG_STARTER_KANTO))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_BULBASAUR)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_CHARMANDER)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_SQUIRTLE)
-	}
-	elif (flag(FLAG_STARTER_JOHTO))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_CHIKORITA)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_CYNDAQUIL)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_TOTODILE)
-	}
-	elif (flag(FLAG_STARTER_HOENN))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_TREECKO)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_TORCHIC)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_MUDKIP)
-	}
-	elif (flag(FLAG_STARTER_SINNOH))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_TURTWIG)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_CHIMCHAR)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_PIPLUP)
-	}
-	elif (flag(FLAG_STARTER_UNOVA))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_SNIVY)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_TEPIG)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_OSHAWOTT)
-	}
-	elif (flag(FLAG_STARTER_KALOS))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_CHESPIN)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_FENNEKIN)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_FROAKIE)
-	}
-	elif (flag(FLAG_STARTER_ALOLA))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_ROWLET)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_LITTEN)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_POPPLIO)
-	}
-	elif (flag(FLAG_STARTER_GALAR))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_GROOKEY)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_SCORBUNNY)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_SOBBLE)
-	}
-	elif (flag(FLAG_STARTER_PALDEA))
-	{
-		setvar(VAR_BUFFER_GRASS_MON, SPECIES_SPRIGATITO)
-		setvar(VAR_BUFFER_FIRE_MON, SPECIES_FUECOCO)
-		setvar(VAR_BUFFER_WATER_MON, SPECIES_QUAXLY)
-	}
-    return
-}
-
 script PineveilTown_ProfessorHikariLab_GrassPokeball {
     lockall
     if (flag(FLAG_SYS_POKEMON_GET)) {
-        switch (var(VAR_LANGUAGE)) {
-            case PT: msgbox("Há um Pokémon dentro desta\nPokébola.")
-            case EN: msgbox("There's a Pokémon inside this\nPoké Ball.")
-            case ES: msgbox("Hay un Pokémon dentro de esta\nPoké Ball.")
-        }
-        releaseall
-        end
+        goto(PineveilTown_ProfessorHikariLab_AlreadyHaveMon)
     }
     if (var(VAR_FACING) == DIR_EAST) {
         moveplayer(Movement_PlayerFacingUpGrassBall)
     }
-    call(BufferInitialIntoVar)
     showmonmugshot(VAR_BUFFER_GRASS_MON, MUGSHOT_CENTER)
     bufferspeciesname(STR_VAR_1, VAR_BUFFER_GRASS_MON)
-    switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("{COLOR GREEN}Entäo é o {STR_VAR_1}, certo?\pEscolher o tipo Grama mostra que\nvocê é uma pessoa calma e em\lsintonia com a natureza.\pTem certeza de que deseja iniciar\nsua jornada com este Pokémon?", MSGBOX_YESNO)
-        case EN: msgbox("{COLOR GREEN}So, it's {STR_VAR_1}, right?\pChoosing a Grass-type Pokémon\nshows that you are calm and in\ltune with nature.\pAre you sure you want to begin\nyour journey with this Pokémon?", MSGBOX_YESNO)
-        case ES: msgbox("{COLOR GREEN}Entonces, es {STR_VAR_1}, ¿verdad?\pElegir un Pokémon de tipo Planta\ndemuestra que eres una persona\ltranquila y en sintonía con la\lnaturaleza.\p¿Estás seguro de que quieres\ncomenzar tu aventura con este\lPokémon?", MSGBOX_YESNO)
-    }
+    call(PineveilTown_ProfessorHikariLab_WantToChooseThisMon)
     if (var(VAR_RESULT) == FALSE) {
         goto(ReleaseAllScript)
     }
@@ -244,25 +389,33 @@ script PineveilTown_ProfessorHikariLab_GrassPokeball {
     goto(PineveilTown_ProfessorHikariLab_RivalChooseTurn)
 }
 
+script PineveilTown_ProfessorHikariLab_WantToChooseThisMon {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Pense bem e escolha com sabedoria!\pEntão você irá escolher o\n{STR_VAR_1}, certo?", MSGBOX_YESNO)
+        case EN: msgbox("Think carefully and choose wisely!\pSo you'll choose {STR_VAR_1},\nright?", MSGBOX_YESNO)
+        case ES: msgbox("Piensa bien y elige sabiamente!\pEntonces elegirás a {STR_VAR_1},\n¿verdad?", MSGBOX_YESNO)
+    }
+    return
+}
+
+script PineveilTown_ProfessorHikariLab_AlreadyHaveMon {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Há um Pokémon dentro desta\nPokébola.")
+        case EN: msgbox("There's a Pokémon inside this\nPoké Ball.")
+        case ES: msgbox("Hay un Pokémon dentro de esta\nPoké Ball.")
+    }
+    releaseall
+    end
+}
+
 script PineveilTown_ProfessorHikariLab_FirePokeball {
     lockall
     if (flag(FLAG_SYS_POKEMON_GET)) {
-        switch (var(VAR_LANGUAGE)) {
-            case PT: msgbox("Há um Pokémon dentro desta\nPokébola.")
-            case EN: msgbox("There's a Pokémon inside this\nPoké Ball.")
-            case ES: msgbox("Hay un Pokémon dentro de esta\nPoké Ball.")
-        }
-        releaseall
-        end
+        goto(PineveilTown_ProfessorHikariLab_AlreadyHaveMon)
     }
-    call(BufferInitialIntoVar)
     showmonmugshot(VAR_BUFFER_FIRE_MON, MUGSHOT_CENTER)
     bufferspeciesname(STR_VAR_1, VAR_BUFFER_FIRE_MON)
-    switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("{COLOR RED}Entäo você escolheu o {STR_VAR_1}?\pUm tipo Fogo!\pVocê é corajoso e cheio de paixäo,\npronto para trilhar seu caminho.\pTem certeza dessa escolha?", MSGBOX_YESNO)
-        case EN: msgbox("{COLOR RED}So, you chose {STR_VAR_1}?\pA Fire-type!\pYou are brave and full of passion,\nready to forge your own path.\pAre you sure about this choice?", MSGBOX_YESNO)
-        case ES: msgbox("{COLOR RED}Entonces, ¿elegiste a {STR_VAR_1}?\p¡Un Pokémon de tipo Fuego!\pEres valiente y lleno de pasión,\nlisto para forjar tu propio\lcamino.\p¿Estás seguro de esta elección?", MSGBOX_YESNO)
-    }
+    call(PineveilTown_ProfessorHikariLab_WantToChooseThisMon)
     if (var(VAR_RESULT) == FALSE) {
         goto(ReleaseAllScript)
     }
@@ -281,25 +434,14 @@ script PineveilTown_ProfessorHikariLab_FirePokeball {
 script PineveilTown_ProfessorHikariLab_WaterPokeball {
     lockall
     if (flag(FLAG_SYS_POKEMON_GET)) {
-        switch (var(VAR_LANGUAGE)) {
-            case PT: msgbox("Há um Pokémon dentro desta\nPokébola.")
-            case EN: msgbox("There's a Pokémon inside this\nPoké Ball.")
-            case ES: msgbox("Hay un Pokémon dentro de esta\nPoké Ball.")
-        }
-        releaseall
-        end
+        goto(PineveilTown_ProfessorHikariLab_AlreadyHaveMon)
     }
     if (var(VAR_FACING) == DIR_WEST) {
         moveplayer(Movement_PlayerFacingUpWaterBall)
     }
-    call(BufferInitialIntoVar)
     showmonmugshot(VAR_BUFFER_WATER_MON, MUGSHOT_CENTER)
     bufferspeciesname(STR_VAR_1, VAR_BUFFER_WATER_MON)
-    switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("{COLOR BLUE}Vai de {STR_VAR_1}, é isso?\pUm tipo Água combina com quem é\nadaptável e mantém a calma sob\lpressäo.\pQuer seguir com ele?", MSGBOX_YESNO)
-        case EN: msgbox("{COLOR BLUE}Going with {STR_VAR_1}, then?\pA Water-type suits someone who is\nadaptable and stays calm under\lpressure.\pDo you want to go with it?", MSGBOX_YESNO)
-        case ES: msgbox("{COLOR BLUE}¿Vas a elegir a {STR_VAR_1},\nentonces?\pUn Pokémon de tipo Agua es ideal\npara alguien adaptable que\lmantiene la calma bajo presión.\p¿Quieres quedarte con él?", MSGBOX_YESNO)
-    }
+    call(PineveilTown_ProfessorHikariLab_WantToChooseThisMon)
     if (var(VAR_RESULT) == FALSE) {
         goto(ReleaseAllScript)
     }
@@ -355,9 +497,9 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
     waitse
     delay(30)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Muito bem, {PLAYER}!\nÓtima escolha!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Well done, {PLAYER}!\nA great choice!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "¡Muy bien, {PLAYER}!\n¡Una gran elección!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Muito bem, {PLAYER}!\nÓtima escolha!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Well done, {PLAYER}!\nA great choice!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "¡Muy bien, {PLAYER}!\n¡Una gran elección!", MSGBOX_AUTOCLOSE)
     }
     delay(30)
     movenpc(LOCALID_HIKARI_LAB, Movement_HikariWalkInPlaceDown)
@@ -372,14 +514,13 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Es tu turno, {RIVAL}!\pElige el Pokémon que te acompañará\nen tu aventura.", MSGBOX_AUTOCLOSE)
     }
     playse(SE_PIN)
-    movenpc(LOCALID_RIVAL_LAB, Movement_HikariSaySmile)
+    movenpc(LOCALID_RIVAL_LAB, Common_Movement_EmojiTongueWinking)
     waitse
     delay(30)
-    callnative(BufferTypeName)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Legal, {PLAYER}!\pEntäo você escolheu um Pokémon\n{STR_VAR_1}, näo é?", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Nice, {PLAYER}!\pSo, you chose a {STR_VAR_1}\nPokémon, right?", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "¡Genial, {PLAYER}!\pEntonces, elegiste un Pokémon\n{STR_VAR_1}, ¿verdad?", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Legal, {PLAYER}!\pEntão você escolheu este Pokémon,\nnão é?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Nice, {PLAYER}!\pSo, you chose this Pokémon,\nright?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "¡Genial, {PLAYER}!\pEntonces, elegiste este Pokémon,\n¿verdad?", MSGBOX_AUTOCLOSE)
     }
     delay(30)
     switch(var(VAR_STORE_FIST_MON_TYPE)) {
@@ -388,9 +529,9 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
         case TYPE_WATER: movenpc(LOCALID_RIVAL_LAB, Movement_RivalGoesToGrassStarterBall)
     }
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Já sei! Vou escolher este Pokémon!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "I know! I'm going with this\nPokémon!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "¡Ya sé! ¡Me quedo con este\nPokémon!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Já sei!\nVou escolher este Pokémon aqui!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "I know!\nI'm going with this Pokémon!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "¡Ya sé!\n¡Me quedo con este Pokémon!", MSGBOX_AUTOCLOSE)
     }
     switch(var(VAR_STORE_FIST_MON_TYPE)) {
         case TYPE_GRASS:
@@ -413,7 +554,7 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
     waitfanfare
     delay(30)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Quero parabenizar vocês dois pelas\nexcelentes escolhas.\pTenho certeza de que cuidaräo\nmuito bem dos seus novos Pokémon.\pAgora, prestem atençäo!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Quero parabenizar vocês dois pelas\nexcelentes escolhas.\pTenho certeza de que cuidarão\nmuito bem dos seus novos Pokémon.\pAgora, prestem atenção!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "I'd like to congratulate you both\non your excellent choices.\pI'm sure you'll take great care of\nyour new Pokémon.\pNow, pay close attention!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Quiero felicitar a ambos por sus\nexcelentes elecciones.\pEstoy seguro de que cuidarán muy\nbien de sus nuevos Pokémon.\p¡Ahora, presten atención!", MSGBOX_AUTOCLOSE)
     }
@@ -426,7 +567,7 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
     }
     delay(30)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Vocês dois estäo quase prontos\npara iniciar suas jornadas.\pMas antes de partirem, há algo\nmuito importante que preciso\lconfiar a vocês.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Vocês dois estão quase prontos\npara iniciar suas jornadas.\pMas antes de partirem, há algo\nmuito importante que preciso\lconfiar a vocês.", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "You're both almost ready to begin\nyour journeys.\pBut before you set off, there's\nsomething very important I need to\lentrust to you.", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ambos están casi listos para\ncomenzar sus aventuras.\pPero antes de partir, hay algo muy\nimportante que debo confiarles.", MSGBOX_AUTOCLOSE)
     }
@@ -442,7 +583,7 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
     setflag(FLAG_SYS_POKEDEX_GET)
     special(EnableNationalPokedex)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Esta é a Pokédex! Um dispositivo\nde alta tecnologia que registra\lautomaticamente os dados dos\lPokémon que vocês encontrarem ou\lcapturarem.\pAinda há muitos Pokémon no mundo\nque nem mesmo eu tive a chance de\lestudar…\pPor isso, conto com vocês dois\npara me ajudarem a completar essa\limportante pesquisa.\pCada encontro, cada batalha e cada\ndescoberta fará parte da jornada\lde vocês!\pAgora väo, explorem o mundo e\ntornem-se grandes Treinadores\lPokémon!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Esta é a Pokédex! Um dispositivo\nde alta tecnologia que registra\lautomaticamente os dados dos\lPokémon que vocês encontrarem ou\lcapturarem.\pAinda há muitos Pokémon no mundo\nque nem mesmo eu tive a chance de\lestudar…\pPor isso, conto com vocês dois\npara me ajudarem a completar essa\limportante pesquisa.\pCada encontro, cada batalha e cada\ndescoberta fará parte da jornada\lde vocês!\pAgora vão, explorem o mundo e\ntornem-se grandes Treinadores\lPokémon!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "This is the Pokédex! A high-tech\ndevice that automatically records\ldata on the Pokémon you encounter\lor catch.\pThere are still many Pokémon in\nthe world that even I haven't had\lthe chance to study…\pThat's why I'm counting on both of\nyou to help me complete this\limportant research.\pEvery encounter and discovery will\nshape your journey!\pNow go, explore the world and\nbecome great Pokémon Trainers!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Esta es la Pokédex! Un\ndispositivo de alta tecnología que\lregistra automáticamente los datos\lde los Pokémon que encuentren o\lcapturen.\pAún hay muchos Pokémon en el mundo\nque ni siquiera yo he tenido la\loportunidad de estudiar…\pPor eso, cuento con ustedes dos\npara ayudarme a completar esta\limportante investigación.\p¡Cada encuentro y descubrimiento\nformará parte de su aventura!\p¡Ahora vayan y conviértanse en\ngrandes Entrenadores Pokémon!", MSGBOX_AUTOCLOSE)
     }
@@ -451,9 +592,9 @@ script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
     applymovement(LOCALID_PLAYER, Common_Movement_FaceUp)
     waitmovementall
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Uau, isso é incrível! Finalmente\ntenho minha própria Pokédex!\pMal posso esperar para sair por aí\ne capturar um monte de Pokémon!\pEi, {PLAYER}! Aposto que vou\ncompletar a Pokédex antes de você!\pHaha! Tenta näo ficar para trás,\nhein?\pTe vejo por aí!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Wow, this is awesome! I finally\nhave my own Pokédex!\pI can't wait to go out there and\ncatch tons of Pokémon!\pHey, {PLAYER}! I bet I'll complete\nthe Pokédex before you!\pHaha! Try not to fall behind!\pSee you around!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_BARRY, "{RIVAL}", "¡Guau, esto es increíble! ¡Por fin\ntengo mi propia Pokédex!\p¡No puedo esperar para salir y\natrapar un montón de Pokémon!\p¡Oye, {PLAYER}! ¡Apuesto a que\ncompletaré la Pokédex antes que\ltú!\p¡Ja! ¡Intenta no quedarte atrás!\p¡Nos vemos!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Uau, isso é incrível! Finalmente\ntenho minha própria Pokédex!\pMal posso esperar para sair por aí\ne capturar um monte de Pokémon!\pEi, {PLAYER}! Aposto que vou\ncompletar a Pokédex antes de você!\pHaha! Tenta não ficar para trás,\nhein?\pTe vejo por aí!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Wow, this is awesome! I finally\nhave my own Pokédex!\pI can't wait to go out there and\ncatch tons of Pokémon!\pHey, {PLAYER}! I bet I'll complete\nthe Pokédex before you!\pHaha! Try not to fall behind!\pSee you around!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "¡Guau, esto es increíble! ¡Por fin\ntengo mi propia Pokédex!\p¡No puedo esperar para salir y\natrapar un montón de Pokémon!\p¡Oye, {PLAYER}! ¡Apuesto a que\ncompletaré la Pokédex antes que\ltú!\p¡Ja! ¡Intenta no quedarte atrás!\p¡Nos vemos!", MSGBOX_AUTOCLOSE)
     }
     playbgm(MUS_RG_RIVAL_EXIT, 0)
     movenpc(LOCALID_RIVAL_LAB, Movement_RivalGoAwayFromLab)
@@ -467,13 +608,12 @@ script PineveilTown_ProfessorHikariLab_HikariSayGoodBye {
     moveplayer(Movement_PlayerGoesToHikariFront)
     movenpc(LOCALID_HIKARI_LAB, Common_Movement_FaceDown)
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "{PLAYER}, chegou a hora de partir.\pA regiäo de Aetheris está repleta\nde mistérios e descobertas\lesperando por você.\pAo longo da sua jornada, você\nenfrentará desafios, fará novos\lamigos… e crescerá como Treinador.\pNunca se esqueça do vínculo que\nconstrói com seus Pokémon - ele\lserá sua maior força.\pDesejo a você toda a sorte em\nAetheris!\pVá em frente, {PLAYER}, e faça\ndessa jornada algo inesquecível!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "{PLAYER}, chegou a hora de partir.\pA região de Aetheris está repleta\nde mistérios e descobertas\lesperando por você.\pAo longo da sua jornada, você\nenfrentará desafios, fará novos\lamigos… e crescerá como Treinador.\pNunca se esqueça do vínculo que\nconstrói com seus Pokémon - ele\lserá sua maior força.\pDesejo a você toda a sorte em\nAetheris!\pVá em frente, {PLAYER}, e faça\ndessa jornada algo inesquecível!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "{PLAYER}, it's time for you to set\nout.\pThe Aetheris region is filled with\nmysteries and discoveries waiting\lfor you.\pAlong your journey, you'll face\nchallenges, make new friends… and\lgrow as a Trainer.\pNever forget the bond you share\nwith your Pokémon - it will be\lyour greatest strength.\pI wish you the best of luck in\nAetheris!\pGo on, {PLAYER}, and make your\njourney unforgettable!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "{PLAYER}, ha llegado la hora de\npartir.\pLa región de Aetheris está llena\nde misterios y descubrimientos\lesperándote.\pA lo largo de tu aventura,\nenfrentarás desafíos, harás nuevos\lamigos… y crecerás como\lEntrenador.\pNunca olvides el vínculo que\ntienes con tus Pokémon - será tu\lmayor fortaleza.\p¡Te deseo mucha suerte en\nAetheris!\p¡Adelante, {PLAYER}, y haz de tu\naventura algo inolvidable!", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_HIKARI_LAB, Movement_HikariGoToOriginalPosition)
     setvar(VAR_BIRCH_LAB_STATE, 2)
-    setvar(VAR_LITTLEROOT_TOWN_STATE, 2)
     releaseall
     end
 }
@@ -482,7 +622,7 @@ script PineveilTown_ProfessorHikariLab_Hikari_Talk {
     lock
     faceplayer
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, {PLAYER}! Já vai sair?\pEi… acabou de escolher seu\nprimeiro Pokémon, näo foi?\pTente näo se apressar tanto no\ncomeço. Aproveite esse momento,\lconheça melhor seu parceiro…\pCada passo que vocês derem juntos\ndaqui pra frente vai fazer\ldiferença.\pSe precisar de algo, já sabe onde\nme encontrar.\pBoa sorte lá fora!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, {PLAYER}! Já vai sair?\pEi… acabou de escolher seu\nprimeiro Pokémon, não foi?\pTente não se apressar tanto no\ncomeço. Aproveite esse momento,\lconheça melhor seu parceiro…\pCada passo que vocês derem juntos\ndaqui pra frente vai fazer\ldiferença.\pSe precisar de algo, já sabe onde\nme encontrar.\pBoa sorte lá fora!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah, {PLAYER}! Heading out already?\pHey… you just chose your first\nPokémon, didn't you?\pTry not to rush things at the\nstart. Take your time and get to\lknow your partner…\pEvery step you take together from\nhere on will matter.\pIf you need anything, you know\nwhere to find me.\pGood luck out there!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Ah, {PLAYER}! ¿Ya te vas?\pOye… acabas de elegir a tu primer\nPokémon, ¿verdad?\pNo te apresures al principio.\nTómate tu tiempo y conoce mejor a\ltu compañero…\pCada paso que den juntos a partir\nde ahora será importante.\pSi necesitas algo, ya sabes dónde\nencontrarme.\p¡Buena suerte ahí fuera!", MSGBOX_AUTOCLOSE)
     }
@@ -494,7 +634,7 @@ script PineveilTown_ProfessorHikariLab_Aid_1 {
     lock
     faceplayer
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("Ei, você sabia de uma coisa\ncuriosa?\pExistem Pokémon que se parecem\nmuito com outros, mesmo sem terem\lqualquer relaçäo direta entre si.\pNós chamamos isso de “Pokémon\nconvergentes”.\pÉ como se a natureza encontrasse\ndiferentes caminhos… para chegar a\lresultados muito parecidos.\pFascinante, näo é?")
+        case PT: msgbox("Ei, você sabia de uma coisa\ncuriosa?\pExistem Pokémon que se parecem\nmuito com outros, mesmo sem terem\lqualquer relação direta entre si.\pNós chamamos isso de “Pokémon\nconvergentes”.\pÉ como se a natureza encontrasse\ndiferentes caminhos… para chegar a\lresultados muito parecidos.\pFascinante, não é?")
         case EN: msgbox("Hey, did you know something\ninteresting?\pThere are Pokémon that look very\nsimilar to others, even though\lthey aren't directly related at\lall.\pWe call them “convergent Pokémon.”\pIt's as if nature finds different\npaths… to reach very similar\lresults.\pFascinating, isn't it?")
         case ES: msgbox("Oye, ¿sabías algo curioso?\pHay Pokémon que se parecen mucho a\notros, incluso sin tener ninguna\lrelación directa entre ellos.\pA esto lo llamamos “Pokémon\nconvergentes”.\pEs como si la naturaleza\nencontrara distintos caminos… para\lllegar a resultados muy similares.\pFascinante, ¿no?")
     }
@@ -506,7 +646,7 @@ script PineveilTown_ProfessorHikariLab_Aid_2 {
     lock
     faceplayer
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("Você pode comprar Pokébolas em\nlojas Pokémon nas cidades.\pMas também dá pra encontrar\nalgumas durante a sua jornada,\lexplorando e falando com pessoas.\pAh, e näo esqueça de sempre levar\nalgumas com você… nunca se sabe\lquando um Pokémon raro pode\laparecer!")
+        case PT: msgbox("Você pode comprar Pokébolas em\nlojas Pokémon nas cidades.\pMas também dá pra encontrar\nalgumas durante a sua jornada,\lexplorando e falando com pessoas.\pAh, e não esqueça de sempre levar\nalgumas com você… nunca se sabe\lquando um Pokémon raro pode\laparecer!")
         case EN: msgbox("You can buy Poké Balls at Poké\nMarts in towns.\pBut you can also find some along\nyour journey by exploring and\ltalking to people.\pOh, and always carry a few with\nyou… you never know when a rare\lPokémon might appear!")
         case ES: msgbox("Puedes comprar Poké Balls en las\ntiendas Pokémon de las ciudades.\pPero también puedes encontrar\nalgunas durante tu aventura,\lexplorando y hablando con la\lgente.\pAh, y no olvides llevar siempre\nalgunas contigo… ¡nunca sabes\lcuándo puede aparecer un Pokémon\lraro!")
     }
@@ -518,12 +658,101 @@ script PineveilTown_ProfessorHikariLab_Aid_3 {
     lock
     faceplayer
     switch (var(VAR_LANGUAGE)) {
-        case PT: msgbox("Puedes comprar Poké Balls en las\ntiendas Pokémon de las ciudades.\pPero también puedes encontrar\nalgunas durante tu aventura,\lexplorando y hablando con la\lgente.\pAh, y no olvides llevar siempre\nalgunas contigo… ¡nunca sabes\lcuándo puede aparecer un Pokémon\lraro!")
+        case PT: msgbox("Eu sou um dos assistentes do\nProfessor Hikari.\pUltimamente, estamos estudando a\nTeracristalizaçäo!\pA forma como um Pokémon muda de\ntipo e brilha com energia… é\lfascinante!")
         case EN: msgbox("I'm one of Professor Hikari's\nassistants.\pLately, we've been studying\nTerastalization!\pThe way a Pokémon changes its type\nand shines with energy… it's\lfascinating!")
         case ES: msgbox("Soy una de las asistentes de la\nProfesora Hikari.\pÚltimamente, hemos estado\nestudiando la Teracristalización.\pLa forma en que un Pokémon cambia\nde tipo y brilla con energía… ¡es\lfascinante!")
     }
     release
     end
+}
+
+script PineveilTown_ProfessorHikariLab_RivalIsWaiting {
+    lock
+    faceplayer
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_LUCIEN, "????", "...\pVocê demorou.\pA Professora Hikari ainda não\napareceu.\pEstranho...\nEla normalmente chega antes de\ltodo mundo.\pTalvez tenha acontecido alguma\ncoisa.\pEu vou esperar aqui.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "????", "...\pYou took long enough.\pProfessor Hikari still hasn't\nshown up.\pStrange...\nShe's usually here before everyone\lelse.\pMaybe something happened.\pI'll wait here.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "????", "...\pTe demoraste.\pLa Profesora Hikari todavía no ha\naparecido.\pQué extraño...\nNormalmente llega antes que todos.\pTal vez haya ocurrido algo.\pEsperaré aquí.", MSGBOX_AUTOCLOSE)
+    }
+    setvar(VAR_LITTLEROOT_TOWN_STATE, 1)
+    release
+    end
+}
+
+const LOCALID_SCIENTIST_LAB = 9
+
+script PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf {
+    createspobject(OBJ_EVENT_GFX_SCIENTIST_1, LOCALID_SCIENTIST_LAB, 6, 6, MOVEMENT_TYPE_FACE_UP)
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Professora!\pOutro caso foi reportado perto das\nruínas do norte!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Professor!\pAnother case has been reported\nnear the northern ruins!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "¡Profesora!\p¡Otro caso fue reportado cerca de\nlas ruinas del norte!", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_HIKARI_LAB, Common_Movement_EmojiScream)
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Tem certeza de que foi aqui?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Are you sure it was here?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¿Estás seguro de que fue aquí?", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Sim, professora. Os moradores\ndisseram que a névoa apareceu\lnovamente durante a madrugada.\pE não foi só isso…\pAlguns Pokémon começaram a agir de\nforma agressiva sem motivo.\p...igual aos outros casos.\pMas desta vez… encontraram isto\nperto das ruínas.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Yes, Professor. The villagers said\nthe mist appeared again during the\lnight.\pAnd that wasn't all…\pSome Pokémon started acting\naggressively for no reason.\p...just like the other cases.\pBut this time… they found this\nnear the ruins.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Sí, profesora. Los habitantes\ndijeron que la niebla apareció\lnuevamente durante la madrugada.\pY eso no fue todo…\pAlgunos Pokémon comenzaron a\nactuar de forma agresiva sin\lmotivo.\p...igual que en los otros casos.\pPero esta vez… encontraron esto\ncerca de las ruinas.", MSGBOX_AUTOCLOSE)
+    }
+    playfanfare(MUS_RG_OBTAIN_KEY_ITEM)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("{COLOR}{BLUE}-Edwin entrega um fragmento escuro\npara a Professora Hikari.")
+        case EN: msgbox("{COLOR}{BLUE}-Edwin hands a dark fragment to\nProfessor Hikari.")
+        case ES: msgbox("{COLOR}{BLUE}-Edwin le entrega un fragmento\noscuro a la Profesora Hikari.")
+    }
+    waitfanfare
+    waitbuttonpress
+    closemessage
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Isso não deveria existir em\nAetheris.\pProfessora…\pAcha que isso pode estar\nrelacionado às antigas lendas?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "This shouldn't exist in Aetheris.\pProfessor…\pDo you think this could be related\nto the ancient legends?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_SCIENTIST, "Edwin", "Esto no debería existir en\nAetheris.\pProfesora…\p¿Cree que esto podría estar\nrelacionado con las antiguas\lleyendas?", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    playse(SE_PIN)
+    movenpc(LOCALID_HIKARI_LAB, Common_Movement_EmojiThinking)
+    waitse
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Espero que não.\nPorque, se estiver…\pEntão talvez já seja tarde demais.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "I hope not.\nBecause if it is…\pThen it might already be too late.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Espero que no.\nPorque si lo está…\pEntonces quizá ya sea demasiado\ntarde.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_HIKARI_LAB, Movement_Hikari_WalkLeftRightThinking)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Mantenha isso em segredo por\nenquanto.\pNão quero espalhar pânico antes de\nentendermos o que está\lacontecendo.\pEntendido?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Keep this a secret for now.\pI don't want to spread panic\nbefore we understand what's\lhappening.\pUnderstood?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Mantén esto en secreto por ahora.\pNo quiero provocar pánico antes de\nentender qué está ocurriendo.\pEntendido?", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_SCIENTIST_LAB, Movement_EdwinWalkAwayDown)
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_LITTLEROOT_TOWN_STATE, 4)
+    clearflag(FLAG_SPAWN_INVISIBLE)
+    warpsilent(MAP_LITTLEROOT_TOWN, 13, 14)
+    release
+    end
+}
+
+movement Movement_EdwinWalkAwayDown {
+    walk_slow_down * 7
+}
+
+movement Movement_Hikari_WalkLeftRightThinking {
+    walk_slow_left * 2
+    walk_slow_right * 4
+    walk_slow_left * 2
+    face_down
 }
 
 movement Movement_HikariGoToOriginalPosition {
@@ -616,6 +845,7 @@ movement Movement_PlayerWalkNextToProfessorAndRival {
     walk_up * 6
     walk_left
     walk_up
+    face_up
 }
 
 movement Movement_HikariSaySmile {
@@ -657,4 +887,20 @@ movement Movement_PlayerStepDownLookingUp3 {
     walk_right
     walk_down
     face_up
+}
+
+movement Movement_HikariWalkNextPlayer {
+    walk_left
+    walk_down
+    face_down
+}
+
+movement Movement_HikariWalkNextRival {
+    walk_right
+    face_down
+}
+
+movement Movement_HikariBackToCenter {
+    walk_up
+    face_down
 }

@@ -4,6 +4,7 @@
 #include "main.h"
 #include "config/summary_screen.h"
 #include "constants/move_relearner.h"
+#include "bw_summary_screen.h"
 
 extern u8 gLastViewedMonIndex;
 
@@ -34,15 +35,31 @@ enum PokemonSummaryScreenMode
     SUMMARY_MODE_RELEARNER_CONTEST, // returning from move relearner initiated from contest moves page
 };
 
-enum PokemonSummaryScreenPage
+#if BW_SUMMARY_SCREEN == TRUE
+enum BWPSSPage
 {
     PSS_PAGE_INFO,
     PSS_PAGE_SKILLS,
     PSS_PAGE_BATTLE_MOVES,
     PSS_PAGE_CONTEST_MOVES,
     PSS_PAGE_COUNT,
+    PSS_BUFFER_BATTLE_EFFECTS = PSS_PAGE_COUNT,
+    PSS_BUFFER_CONTEST_EFFECTS,
+    PSS_BUFFER_COUNT
 };
-
+#else
+enum PokemonSummaryScreenPage
+{
+    PSS_PAGE_INFO,
+    PSS_PAGE_SKILLS,
+    PSS_PAGE_BATTLE_MOVES,
+    #if SWSH_SUMMARY_SCREEN
+    PSS_PAGE_MEMO,
+    #endif
+    PSS_PAGE_CONTEST_MOVES,
+    PSS_PAGE_COUNT,
+};
+#endif
 enum PokemonSummarySkillsMode
 {
     SUMMARY_SKILLS_MODE_STATS,

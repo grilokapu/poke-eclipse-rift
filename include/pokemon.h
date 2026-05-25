@@ -113,6 +113,11 @@ enum MonData {
     MON_DATA_KNOWN_MOVES,
     MON_DATA_RIBBON_COUNT,
     MON_DATA_RIBBONS,
+    MON_DATA_ATK2,
+    MON_DATA_DEF2,
+    MON_DATA_SPEED2,
+    MON_DATA_SPATK2,
+    MON_DATA_SPDEF2,
     MON_DATA_HYPER_TRAINED_HP,
     MON_DATA_HYPER_TRAINED_ATK,
     MON_DATA_HYPER_TRAINED_DEF,
@@ -533,7 +538,11 @@ struct EggData
 struct AbilityInfo
 {
     u8 name[ABILITY_NAME_LENGTH + 1];
+    u8 nome[ABILITY_NAME_LENGTH + 1];
+    u8 nombre[ABILITY_NAME_LENGTH + 1];
     const u8 *description;
+    const u8 *descricao;
+    const u8 *descripcion;
     s8 aiRating;
     u8 cantBeCopied:1; // cannot be copied by Role Play or Doodle
     u8 cantBeSwapped:1; // cannot be swapped with Skill Swap or Wandering Spirit
@@ -543,6 +552,16 @@ struct AbilityInfo
     u8 breakable:1; // can be bypassed by Mold Breaker and clones
     u8 failsOnImposter:1; // doesn't work on an Imposter mon; when can we actually use this?
 };
+
+static inline enum Ability SanitizeAbilityId(enum Ability abilityId)
+{
+    assertf(abilityId < ABILITIES_COUNT, "invalid ability: %d", abilityId)
+    {
+        return ABILITY_NONE;
+    }
+
+    return abilityId;
+}
 
 enum {
     AFFINE_NONE,
@@ -594,6 +613,8 @@ enum {
 struct NatureInfo
 {
     const u8 *name;
+    const u8 *nome;
+    const u8 *nombre;
     enum Stat statUp;
     enum Stat statDown;
     u8 backAnim;
@@ -759,6 +780,7 @@ void GiveMonInitialMoveset(struct Pokemon *mon);
 void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
 void GiveMonDefaultMove(struct Pokemon *mon, u32 slot);
 void GiveBoxMonDefaultMove(struct BoxPokemon *boxMon, u32 slot);
+bool32 IsMoveBannedFromLunaticLearnset(enum Move move);
 enum Move MonTryLearningNewMoveAtLevel(struct Pokemon *mon, bool32 firstMove, u32 level);
 enum Move MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove);
 void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, enum Move move);
@@ -798,6 +820,7 @@ u8 GetMonsStateToDoubles(void);
 u8 GetMonsStateToDoubles_2(void);
 enum Ability GetAbilityBySpecies(u16 species, u8 abilityNum);
 enum Ability GetMonAbility(struct Pokemon *mon);
+enum Ability LunaticBannedAbilitySwapper(enum Ability ability, u16 species);
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord);
 enum TrainerPicID GetSecretBaseTrainerPicIndex(void);
 enum TrainerClassID GetSecretBaseTrainerClass(void);
@@ -829,8 +852,8 @@ void RemoveBoxMonPPBonus(struct BoxPokemon *mon, u8 moveIndex);
 void RemoveBattleMonPPBonus(struct BattlePokemon *mon, u8 moveIndex);
 void PokemonToBattleMon(struct Pokemon *src, struct BattlePokemon *dst);
 void CopyPartyMonToBattleData(enum BattlerId battler, u32 partyIndex);
-bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, enum Item item, u8 partyIndex, u8 moveIndex);
-bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, u8 moveIndex, u8 usedByAI);
+bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, enum Item item, u8 partyIndex, u8 moveIndex, u8 modifyStats, u16 itemCount);
+bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, u8 moveIndex, u8 usedByAI, u8 modifyStats, u16 itemCount);
 bool8 HealStatusConditions(struct Pokemon *mon, u32 healMask, enum BattlerId battler);
 u8 GetItemEffectParamOffset(enum BattlerId battler, enum Item itemId, u8 effectByte, u8 effectBit);
 u8 *UseStatIncreaseItem(enum Item itemId);
@@ -893,7 +916,7 @@ bool8 IsMonShiny(struct Pokemon *mon);
 const u8 *GetTrainerPartnerName(void);
 void BattleAnimateFrontSprite(struct Sprite *sprite, u16 species, bool8 noCry, u8 panMode);
 void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, u8 panModeAnimFlag);
-void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneFrame);
+void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneFrame, bool32 isShadow);
 void StopPokemonAnimationDelayTask(void);
 void BattleAnimateBackSprite(struct Sprite *sprite, u16 species);
 u8 GetOpposingLinkMultiBattlerId(bool8 rightSide, u8 multiplayerId);
@@ -907,6 +930,7 @@ void DestroyMonSpritesGfxManager(u8 managerId);
 u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
 u16 GetFormSpeciesId(u16 speciesId, u8 formId);
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
+u32 GetFormChangeTargetSpecies(struct Pokemon *mon, enum FormChanges method);
 u32 GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx);
 bool32 DoesSpeciesHaveFormChangeMethod(u16 species, enum FormChanges method);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
@@ -941,5 +965,59 @@ bool32 IsSpeciesOfType(u32 species, enum Type type);
 struct BoxPokemon *GetSelectedBoxMonFromPcOrParty(void);
 u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot);
 void ChangePokemonNicknameWithCallback(void (*callback)(void));
+
+static inline const u8 *GetAbilityName(enum Ability abilityId)
+{
+    const struct AbilityInfo *abilityInfo;
+    const u8 *name;
+
+    abilityId = SanitizeAbilityId(abilityId);
+    abilityInfo = &gAbilitiesInfo[abilityId];
+
+    switch (GET_LANGUAGE())
+    {
+    case PT:
+        name = abilityInfo->nome;
+        break;
+    case ES:
+        name = abilityInfo->nombre;
+        break;
+    default:
+        name = abilityInfo->name;
+        break;
+    }
+
+    if (name == NULL || name[0] == 0xFF)
+        name = abilityInfo->name;
+
+    return name;
+}
+
+static inline const u8 *GetAbilityDescription(enum Ability abilityId)
+{
+    const struct AbilityInfo *abilityInfo;
+    const u8 *description;
+
+    abilityId = SanitizeAbilityId(abilityId);
+    abilityInfo = &gAbilitiesInfo[abilityId];
+
+    switch (GET_LANGUAGE())
+    {
+    case PT:
+        description = abilityInfo->descricao;
+        break;
+    case ES:
+        description = abilityInfo->descripcion;
+        break;
+    default:
+        description = abilityInfo->description;
+        break;
+    }
+
+    if (description == NULL)
+        description = abilityInfo->description;
+
+    return description;
+}
 
 #endif // GUARD_POKEMON_H

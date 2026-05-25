@@ -98,6 +98,14 @@ u8 MovementAction_WalkFasterLeft_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_WalkFasterLeft_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_WalkFasterRight_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_WalkFasterRight_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterDownBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterDownBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterUpBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterUpBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterLeftBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterLeftBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterRightBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkFasterRightBackwards_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_SlideDown_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_SlideDown_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_SlideUp_Step0(struct ObjectEvent *, struct Sprite *);
@@ -301,7 +309,54 @@ u8 MovementAction_SpinLeft_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_SpinLeft_Step1(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_SpinRight_Step0(struct ObjectEvent *, struct Sprite *);
 u8 MovementAction_SpinRight_Step1(struct ObjectEvent *, struct Sprite *);
-
+// Backwards
+u8 MovementAction_WalkNormalDownBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalDownBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalUpBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalUpBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalLeftBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalLeftBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalRightBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkNormalRightBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowDownBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowDownBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowUpBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowUpBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowLeftBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowLeftBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowRightBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_WalkSlowRightBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpDownBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpDownBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpUpBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpUpBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpLeftBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpLeftBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpRightBackwards_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_JumpRightBackwards_Step1(struct ObjectEvent *, struct Sprite *);
+//New emote
+u8 MovementAction_EmoteSmile_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiAngry_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiBlush_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiConfiant_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiConfident_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiConfidentSmiling_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiDoubt_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiGrin_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiHeartEyes_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiInnocent_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiJoy_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiKissing_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiRelaxed_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiRelieved_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiScream_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiSlithly_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiSmiley_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiSob_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiThinking_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiTongueWinking_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiWink_Step0(struct ObjectEvent *, struct Sprite *);
+u8 MovementAction_EmojiYum_Step0(struct ObjectEvent *, struct Sprite *);
 
 u8 (*const gMovementActionFuncs_FaceDown[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_FaceUp[])(struct ObjectEvent *, struct Sprite *);
@@ -354,6 +409,10 @@ u8 (*const gMovementActionFuncs_WalkFasterDown[])(struct ObjectEvent *, struct S
 u8 (*const gMovementActionFuncs_WalkFasterUp[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_WalkFasterLeft[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_WalkFasterRight[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFasterDownBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFasterUpBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFasterLeftBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkFasterRightBackwards[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_SlideDown[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_SlideUp[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_SlideLeft[])(struct ObjectEvent *, struct Sprite *);
@@ -487,6 +546,42 @@ u8 (*const gMovementActionFuncs_SpinDown[])(struct ObjectEvent *, struct Sprite 
 u8 (*const gMovementActionFuncs_SpinUp[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_SpinLeft[])(struct ObjectEvent *, struct Sprite *);
 u8 (*const gMovementActionFuncs_SpinRight[])(struct ObjectEvent *, struct Sprite *);
+// Backwards walking
+u8 (*const gMovementActionFuncs_WalkNormalDownBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkNormalUpBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkNormalLeftBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkNormalRightBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowDownBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowUpBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowLeftBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_WalkSlowRightBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpDownBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpUpBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpLeftBackwards[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_JumpRightBackwards[])(struct ObjectEvent *, struct Sprite *);
+//New emote
+u8 (*const gMovementActionFuncs_EmoteSmile[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiAngry[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiBlush[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiConfiant[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiConfident[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiConfidentSmiling[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiDoubt[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiGrin[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiHeartEyes[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiInnocent[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiJoy[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiKissing[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiRelaxed[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiRelieved[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiScream[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiSlithly[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiSmiley[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiSob[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiThinking[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiTongueWinking[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiWink[])(struct ObjectEvent *, struct Sprite *);
+u8 (*const gMovementActionFuncs_EmojiYum[])(struct ObjectEvent *, struct Sprite *);
 
 u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *) = {
     [MOVEMENT_ACTION_FACE_DOWN] = gMovementActionFuncs_FaceDown,
@@ -672,6 +767,44 @@ u8 (*const *const gMovementActionFuncs[])(struct ObjectEvent *, struct Sprite *)
     [MOVEMENT_ACTION_SPIN_UP]          = gMovementActionFuncs_SpinUp,
     [MOVEMENT_ACTION_SPIN_LEFT]        = gMovementActionFuncs_SpinLeft,
     [MOVEMENT_ACTION_SPIN_RIGHT]       = gMovementActionFuncs_SpinRight,
+    [MOVEMENT_ACTION_WALK_NORMAL_DOWN_BACKWARDS] = gMovementActionFuncs_WalkNormalDownBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_UP_BACKWARDS] = gMovementActionFuncs_WalkNormalUpBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_LEFT_BACKWARDS] = gMovementActionFuncs_WalkNormalLeftBackwards,
+    [MOVEMENT_ACTION_WALK_NORMAL_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkNormalRightBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_DOWN_BACKWARDS] = gMovementActionFuncs_WalkSlowDownBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_UP_BACKWARDS] = gMovementActionFuncs_WalkSlowUpBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_LEFT_BACKWARDS] = gMovementActionFuncs_WalkSlowLeftBackwards,
+    [MOVEMENT_ACTION_WALK_SLOW_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkSlowRightBackwards,
+    [MOVEMENT_ACTION_JUMP_DOWN_BACKWARDS] = gMovementActionFuncs_JumpDownBackwards,
+    [MOVEMENT_ACTION_JUMP_UP_BACKWARDS] = gMovementActionFuncs_JumpUpBackwards,
+    [MOVEMENT_ACTION_JUMP_LEFT_BACKWARDS] = gMovementActionFuncs_JumpLeftBackwards,
+    [MOVEMENT_ACTION_JUMP_RIGHT_BACKWARDS] = gMovementActionFuncs_JumpRightBackwards,
+    [MOVEMENT_ACTION_EMOTE_SMILE] = gMovementActionFuncs_EmoteSmile,
+    [MOVEMENT_ACTION_EMOJI_ANGRY] = gMovementActionFuncs_EmojiAngry,
+    [MOVEMENT_ACTION_EMOJI_BLUSH] = gMovementActionFuncs_EmojiBlush,
+    [MOVEMENT_ACTION_EMOJI_CONFIANT] = gMovementActionFuncs_EmojiConfiant,
+    [MOVEMENT_ACTION_EMOJI_CONFIDENT] = gMovementActionFuncs_EmojiConfident,
+    [MOVEMENT_ACTION_EMOJI_COFIDENT_SMILING] = gMovementActionFuncs_EmojiConfidentSmiling,
+    [MOVEMENT_ACTION_EMOJI_DOUBT] = gMovementActionFuncs_EmojiDoubt,
+    [MOVEMENT_ACTION_EMOJI_GRIN] = gMovementActionFuncs_EmojiGrin,
+    [MOVEMENT_ACTION_EMOJI_HEART_EYES] = gMovementActionFuncs_EmojiHeartEyes,
+    [MOVEMENT_ACTION_EMOJI_INNOCENT] = gMovementActionFuncs_EmojiInnocent,
+    [MOVEMENT_ACTION_EMOJI_JOY] = gMovementActionFuncs_EmojiJoy,
+    [MOVEMENT_ACTION_EMOJI_KISSING] = gMovementActionFuncs_EmojiKissing,
+    [MOVEMENT_ACTION_EMOJI_RELAXED] = gMovementActionFuncs_EmojiRelaxed,
+    [MOVEMENT_ACTION_EMOJI_RELIVIED] = gMovementActionFuncs_EmojiRelieved,
+    [MOVEMENT_ACTION_EMOJI_SCREAM] = gMovementActionFuncs_EmojiScream,
+    [MOVEMENT_ACTION_EMOJI_SLITHLY] = gMovementActionFuncs_EmojiSlithly,
+    [MOVEMENT_ACTION_EMOJI_SMILEY] = gMovementActionFuncs_EmojiSmiley,
+    [MOVEMENT_ACTION_EMOJI_SOB] = gMovementActionFuncs_EmojiSob,
+    [MOVEMENT_ACTION_EMOJI_THINKING] = gMovementActionFuncs_EmojiThinking,
+    [MOVEMENT_ACTION_EMOJI_TONGUE_WINKING] = gMovementActionFuncs_EmojiTongueWinking,
+    [MOVEMENT_ACTION_EMOJI_WINK] = gMovementActionFuncs_EmojiWink,
+    [MOVEMENT_ACTION_EMOJI_YUM] = gMovementActionFuncs_EmojiYum,
+    [MOVEMENT_ACTION_WALK_FASTER_DOWN_BACKWARDS] = gMovementActionFuncs_WalkFasterDownBackwards,
+    [MOVEMENT_ACTION_WALK_FASTER_UP_BACKWARDS] = gMovementActionFuncs_WalkFasterUpBackwards,
+    [MOVEMENT_ACTION_WALK_FASTER_LEFT_BACKWARDS] = gMovementActionFuncs_WalkFasterLeftBackwards,
+    [MOVEMENT_ACTION_WALK_FASTER_RIGHT_BACKWARDS] = gMovementActionFuncs_WalkFasterRightBackwards
 };
 
 u8 (*const gMovementActionFuncs_FaceDown[])(struct ObjectEvent *, struct Sprite *) = {
@@ -1040,6 +1173,30 @@ u8 (*const gMovementActionFuncs_WalkFasterLeft[])(struct ObjectEvent *, struct S
 u8 (*const gMovementActionFuncs_WalkFasterRight[])(struct ObjectEvent *, struct Sprite *) = {
     MovementAction_WalkFasterRight_Step0,
     MovementAction_WalkFasterRight_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFasterDownBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkFasterDownBackwards_Step0,
+    MovementAction_WalkFasterDownBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFasterUpBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkFasterUpBackwards_Step0,
+    MovementAction_WalkFasterUpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFasterLeftBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkFasterLeftBackwards_Step0,
+    MovementAction_WalkFasterLeftBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkFasterRightBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkFasterRightBackwards_Step0,
+    MovementAction_WalkFasterRightBackwards_Step1,
     MovementAction_PauseSpriteAnim,
 };
 
@@ -1757,4 +1914,186 @@ u8 (*const gMovementActionFuncs_SpinRight[])(struct ObjectEvent *, struct Sprite
     MovementAction_SpinRight_Step0,
     MovementAction_SpinRight_Step1,
     MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkNormalDownBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkNormalDownBackwards_Step0,
+    MovementAction_WalkNormalDownBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkNormalUpBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkNormalUpBackwards_Step0,
+    MovementAction_WalkNormalUpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkNormalLeftBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkNormalLeftBackwards_Step0,
+    MovementAction_WalkNormalLeftBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkNormalRightBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkNormalRightBackwards_Step0,
+    MovementAction_WalkNormalRightBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowDownBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkSlowDownBackwards_Step0,
+    MovementAction_WalkSlowDownBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowUpBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkSlowUpBackwards_Step0,
+    MovementAction_WalkSlowUpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowLeftBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkSlowLeftBackwards_Step0,
+    MovementAction_WalkSlowLeftBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_WalkSlowRightBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_WalkSlowRightBackwards_Step0,
+    MovementAction_WalkSlowRightBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpDownBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_JumpDownBackwards_Step0,
+    MovementAction_JumpDownBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpUpBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_JumpUpBackwards_Step0,
+    MovementAction_JumpUpBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpLeftBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_JumpLeftBackwards_Step0,
+    MovementAction_JumpLeftBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_JumpRightBackwards[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_JumpRightBackwards_Step0,
+    MovementAction_JumpRightBackwards_Step1,
+    MovementAction_PauseSpriteAnim,
+};
+
+u8 (*const gMovementActionFuncs_EmoteSmile[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmoteSmile_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiAngry[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiAngry_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiBlush[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiBlush_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiConfiant[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiConfiant_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiConfident[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiConfident_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiConfidentSmiling[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiConfidentSmiling_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiDoubt[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiDoubt_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiGrin[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiGrin_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiHeartEyes[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiHeartEyes_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiInnocent[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiInnocent_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiJoy[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiJoy_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiKissing[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiKissing_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiRelaxed[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiRelaxed_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiRelieved[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiRelieved_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiScream[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiScream_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiSlithly[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiSlithly_Step0,
+    MovementAction_Finish,
+};
+
+u8 (*const gMovementActionFuncs_EmojiSmiley[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiSmiley_Step0,
+    MovementAction_Finish
+};
+
+u8 (*const gMovementActionFuncs_EmojiSob[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiSob_Step0,
+    MovementAction_Finish
+};
+
+u8 (*const gMovementActionFuncs_EmojiThinking[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiThinking_Step0,
+    MovementAction_Finish
+};
+
+u8 (*const gMovementActionFuncs_EmojiTongueWinking[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiTongueWinking_Step0,
+    MovementAction_Finish
+};
+
+u8 (*const gMovementActionFuncs_EmojiWink[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiWink_Step0,
+    MovementAction_Finish
+};
+
+u8 (*const gMovementActionFuncs_EmojiYum[])(struct ObjectEvent *, struct Sprite *) = {
+    MovementAction_EmojiYum_Step0,
+    MovementAction_Finish
 };

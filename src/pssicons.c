@@ -25,6 +25,9 @@ static const struct PssIcons gCustomPicTable[] =
     [PSS_ICON_HIKARI] = {gPssIcon_HikariGfx, gPssIcon_HikariPal},
     [PSS_ICON_REPORTER] = {gPssIcon_ReporterGfx, gPssIcon_ReporterPal},
     [PSS_ICON_MOM] = {gPssIcon_MomGfx, gPssIcon_MomPal},
+    [PSS_ICON_SORCERER] = {gPssIcon_SorcererGfx, gPssIcon_SorcererPal},
+    [PSS_ICON_LUCIEN] = {gPssIcon_LucienGfx, gPssIcon_LucienPal},
+    [PSS_ICON_SCIENTIST] = {gPssIcon_ScientistGfx, gPssIcon_ScientistPal},
 };
 
 static const struct OamData sOamData_PssIcon =

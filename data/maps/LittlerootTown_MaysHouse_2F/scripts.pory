@@ -1,72 +1,56 @@
 mapscripts LittlerootTown_MaysHouse_2F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-        if (var(VAR_PLAYERFACING_ROOM) >= 1) {
-            setobjectxyperm(LOCALID_BARRY, 3, 4)
-            setobjectmovementtype(LOCALID_BARRY, MOVEMENT_TYPE_FACE_UP)
-            end
-        }      
+        if (var(VAR_PLAYER_ROOM_STATE) != 1) {
+            checkplayergender
+            if(var(VAR_RESULT) == MALE)
+            {
+                setobjectxyperm(LOCALID_KAEL_SLEEPING, 7, 6)
+            }
+        }
     }
-    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        VAR_PLAYERFACING_ROOM, 1: PineveilTown_PlayerRoom_TurnPlayerFaceUp_OnWarp
-    ]
     MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_PLAYER_ROOM_2F_TILE, 2: PineveilTown_PlayerRoom_Continue_RivalConversation
+        VAR_PLAYER_ROOM_STATE, 0: PineveilTown_PlayerRoom_Start_Story
+        VAR_SILENT_FOREST_STATE, 1: PineveilTown_PlayerRoom_After_Story
     ]
 }
 
-const PSS_ICON_BARRY = 1
-
-script PineveilTown_PlayerHouse_2F_Rival_Tile {
+script PineveilTown_PlayerRoom_After_Story {
     lockall
-    playse(SE_PIN)
-    moveplayer(Movement_PlayerStopsLookingBarry)
-    waitse
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Aquilo foi só um sonho… ou não?", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("That was just a dream… or not?", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Eso fue solo un sueño… o no?", MSGBOX_AUTOCLOSE)
+    }
+    setvar(VAR_SILENT_FOREST_STATE, 2)
+    releaseall
+    end
+}
+
+script PineveilTown_PlayerRoom_Start_Story {
+    playbgm(MUS_RG_SEVII_45, 0)
+    delay(400)
+    special(SpawnCameraObject)
+    applymovement(LOCALID_CAMERA, Movement_Camera_Goes_Up)
+    waitmovement(LOCALID_CAMERA)
+    special(RemoveCameraObject)
     fadescreen(FADE_TO_BLACK)
-    playse(SE_EXIT)
-    setobjectxy(LOCALID_BARRY, 7, 3)
-    fadescreen(FADE_FROM_BLACK)
-    applymovement(LOCALID_BARRY, Movement_BarryMovesToPlayersBed)
-    applymovement(LOCALID_PLAYER, Movement_PlayerStepbackwards)
-    waitmovementall
     delay(30)
-    callnative(CheckGenderString)
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "Nossa, {PLAYER}! Ainda bem que\nvocê já está acordad{STR_VAR_1}!\pFiquei sabendo que você também\ntinha chegado à regiäo de\lAetheris.\pDepois que saí da regiäo de\nSeafood, fui para Sinnoh. Porém,\llogo descobri que em Aetheris\ltambém iria começar a Liga Pokémon\lda regiäo.\pCoincidentemente, também ouvi\ndizer que você estaria por aqui.", MSGBOX_AUTOCLOSE)
-
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "Wow, {PLAYER}! I'm glad you're\nalready awake!\pI heard that you had also arrived\nin the Aetheris region.\pAfter leaving the Seafood region,\nI went to Sinnoh. But soon after,\lI found out that the Pokémon\lLeague in Aetheris was about to\lbegin as well.\pCoincidentally, I also heard that\nyou would be here.", MSGBOX_AUTOCLOSE)
-
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "¡Vaya, {PLAYER}! ¡Qué bueno que ya\nestés despierto!\pEscuché que tú también habías\nllegado a la región de Aetheris.\pDespués de salir de la región de\nSeafood, fui a Sinnoh. Pero poco\ldespués me enteré de que la Liga\lPokémon de Aetheris también estaba\lpor comenzar.\pCoincidentemente, también escuché\nque estarías por aquí.", MSGBOX_AUTOCLOSE)
+    setflag(FLAG_MSGBOXONMIDDLE)
+    switch (var(VAR_LANGUAGE))
+    {
+        case PT: transbox("…algo está chamando.")
+        case EN: transbox("…something is calling.")
+        case ES: transbox("…algo está llamando.")
     }
-    playse(SE_PIN)
-    movenpc(LOCALID_BARRY, Movement_BarrySmileToPlayer)
+    waitbuttonpress
+    closemessage
+    clearflag(FLAG_MSGBOXONMIDDLE)
+    clearflag(FLAG_SPAWN_INVISIBLE)
+    playse(SE_M_NIGHTMARE)
     waitse
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "A propósito, a professora Hikari\nvai entrar ao vivo na TV agora\lmesmo.\pVamos assistir um pouco. Acho que\nvai ser interessante.", MSGBOX_AUTOCLOSE)
-
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "By the way, Professor Hikari is\nabout to appear live on TV right\lnow.\pLet's watch for a bit. I think it\nwill be interesting.", MSGBOX_AUTOCLOSE)
-        
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "Por cierto, la profesora Hikari\nestá a punto de aparecer en la TV\len vivo ahora mismo.\pVamos a ver un poco. Creo que será\ninteresante.", MSGBOX_AUTOCLOSE)
-    }
-    applymovement(LOCALID_PLAYER, Movement_PlayerGotoTV)
-    applymovement(LOCALID_BARRY, Movement_BarryGotoTV)
-    waitmovementall
-    playse(SE_CLICK)
-    setmetatile(2, 2, METATILE_DW_PlayerHouse_TV_1, 1)
-    setmetatile(3, 2, METATILE_DW_PlayerHouse_TV_2, 1)
-    setmetatile(2, 3, METATILE_DW_PlayerHouse_TV_3, 1)
-    setmetatile(3, 3, METATILE_DW_PlayerHouse_TV_4, 1)
-    special(DrawWholeMapView)
-    waitse
-    delay(45)
-    setvar(VAR_PLAYER_ROOM_2F_TILE, 1)
-    setflag(FLAG_SPAWN_INVISIBLE)
-    warpsilent(MAP_LITTLEROOT_TOWN, 13, 8)
+    setvar(VAR_PLAYER_ROOM_STATE, 1)
+    setvar(VAR_DEFAULT_WALKING_SCRIPT, 1)
+    warpsilent(MAP_SILENT_FOREST, 68, 27)
     release
     end
 }
@@ -233,7 +217,7 @@ script PineveilTown_PlayerVideoGamePassword_AlreadyReceived {
     playse(SE_FAILURE)
     switch(var(VAR_LANGUAGE)) {
         case PORTUGUESE_LANGUAGE:
-            msgbox("Você já recebeu este prêmio antes.\nNäo pode receber novamente!", MSGBOX_DEFAULT)
+            msgbox("Você já recebeu este prêmio antes.\nNão pode receber novamente!", MSGBOX_DEFAULT)
 
         case ENGLISH_LANGUAGE:
             msgbox("You have already received this\nprize. You can't receive it again!", MSGBOX_DEFAULT)
@@ -348,7 +332,7 @@ script PineveilTown_PlayerRoom_Slowpoke_Doll {
     lockall
     switch(var(VAR_LANGUAGE)) {
         case PORTUGUESE_LANGUAGE:
-            msgbox("É um Slowpoke de pelúcia.\nEle é täo fofinho!", MSGBOX_DEFAULT)
+            msgbox("É um Slowpoke de pelúcia.\nEle é tão fofinho!", MSGBOX_DEFAULT)
 
         case ENGLISH_LANGUAGE:
             msgbox("It's a Slowpoke plush doll.\nIt's so cute!", MSGBOX_DEFAULT)
@@ -362,105 +346,33 @@ script PineveilTown_PlayerRoom_Slowpoke_Doll {
     end
 }
 
-script PineveilTown_PlayerRoom_TurnPlayerFaceUp_OnWarp {
-    turnobject(LOCALID_PLAYER, DIR_NORTH)
-    setvar(VAR_PLAYERFACING_ROOM, 2)
-    end
+movement Movement_Camera_Goes_Up {
+    walk_up * 7
+    delay_16
 }
 
-script PineveilTown_PlayerRoom_Continue_RivalConversation {
+script PineveilTown_PlayerHouse_2F_Player_Check_Rain_Tile {
     lockall
-    applymovement(LOCALID_PLAYER, Common_Movement_FaceRight)
-    applymovement(LOCALID_BARRY, Common_Movement_FaceLeft)
-    waitmovementall
-    delay(30)
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "Você ouviu o que a Professora\nHikari acabou de dizer?\pAgora eu estou ainda mais animado\npara começar a nossa jornada!\pVou passar em casa rapidinho para\nme despedir da minha mäe e depois\lseguir para o laboratório da\lProfessora Hikari.\pTe encontro lá, {PLAYER}!", MSGBOX_AUTOCLOSE)
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "Did you hear what Professor Hikari\njust said?\pNow I'm even more excited to start\nour journey!\pI'm going to stop by my house real\nquick to say goodbye to my mom,\land then head to Professor\lHikari's lab.\pI'll meet you there, {PLAYER}!", MSGBOX_AUTOCLOSE)
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "¿Escuchaste lo que acaba de decir\nla profesora Hikari?\p¡Ahora estoy aún más emocionado\npor comenzar nuestra aventura!\pVoy a pasar por mi casa un momento\npara despedirme de mi mamá y luego\liré al laboratorio de la profesora\lHikari.\p¡Te veo allí, {PLAYER}!", MSGBOX_AUTOCLOSE)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if (var(VAR_TEMP_0) == 5) {
+        moveplayer(Common_Movement_FaceUp)
+    } else {
+        moveplayer(Movement_Player_GoTo_Window)
     }
-    movenpc(LOCALID_BARRY, Movement_BarryLeaveRoom)
-    playse(SE_PIN)
-    movenpc(LOCALID_BARRY, Common_Movement_ExclamationMark)
-    waitse
-    delay(30)
-    movenpc(LOCALID_BARRY, Movement_BarryGobackToPlayer)
-    delay(30)
     switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "A propósito, {PLAYER}…\pO seu amigo e rival de Seafood näo\nveio com você para Aetheris, veio?\pIsso significa que você vai\nprecisar de um novo rival!\pJá que nos conhecemos há bastante\ntempo, eu posso ser o seu rival\laqui.\pMas, como todo rival digno de ser\nlembrado, você deve me chamar pelo\lnome que escolher!\pEntäo… qual será o meu nome na\nsua jornada?")
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "By the way, {PLAYER}…\pYour friend and rival from Seafood\ndidn't come with you to Aetheris,\ldid they?\pThat means you'll need a new\nrival!\pSince we've known each other for a\nlong time, I can be your rival\lhere.\pBut every rival worth remembering\nneeds a proper name!\pSo… what will you call me on\nyour journey?")
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "Barry", "Por cierto, {PLAYER}…\pTu amigo y rival de Seafood no\nvino contigo a Aetheris, ¿verdad?\p¡Eso significa que necesitarás un\nnuevo rival!\pComo nos conocemos desde hace\nbastante tiempo, yo puedo ser tu\lrival aquí.\pPero todo rival digno de ser\nrecordado necesita un buen nombre.\pEntonces… ¿cómo quieres llamarme\nen tu aventura?")
+        case PT: msgbox("A chuva parou há pouco tempo.")
+        case EN: msgbox("The rain stopped not long ago.")
+        case ES: msgbox("La lluvia paró hace poco.")
     }
-    callnative(EnterRivalName)
-    waitstate
-    delay(30)
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Hmm…\pEntäo esse é o meu nome agora?\p{RIVAL}… Gostei! Tem um som\nforte.\pPode ter certeza, {PLAYER}!\pUm dia todo mundo na regiäo de\nAetheris vai conhecer esse nome!\pE quando isso acontecer…\pEles também väo lembrar que você\nfoi o treinador que teve a honra\lde ser meu rival!", MSGBOX_AUTOCLOSE)
-        case ENGLISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Hmm…\pSo that's my name now?\p{RIVAL}… I like it! It has a\nstrong ring to it.\pJust wait and see, {PLAYER}!\pOne day everyone in the Aetheris\nregion will know that name!\pAnd when that happens…\pThey'll also remember that you\nwere the trainer who had the honor\lof being my rival!", MSGBOX_AUTOCLOSE)
-        case SPANISH_LANGUAGE:
-            msgminibox(PSS_ICON_BARRY, "{RIVAL}", "Mmm…\p¿Así que ese es mi nombre ahora?\p{RIVAL}… ¡Me gusta! Suena\nfuerte.\p¡Ya verás, {PLAYER}!\p¡Un día todos en la región de\nAetheris conocerán ese nombre!\pY cuando eso pase…\p¡También recordarán que tú fuiste\nel entrenador que tuvo el honor de\lser mi rival!", MSGBOX_AUTOCLOSE)
-    }
-    movenpc(LOCALID_BARRY, Movement_BarryLeaveRoom)
-    delay(30)
-    removeobject(LOCALID_BARRY)
-    setflag(FLAG_BARRY_IS_RIVAL)
-    setvar(VAR_PLAYER_ROOM_2F_TILE, 3)
+    pause(30)
+    moveplayer(Common_Movement_FaceRight)
+    setvar(VAR_PLAYER_ROOM_2F_TILE, 1)
     releaseall
     end
 }
 
-movement Movement_BarryMovesToPlayersBed {
+movement Movement_Player_GoTo_Window {
     walk_left
-    face_left
-}
-
-movement Movement_PlayerLookBarry {
-    face_left
-}
-
-movement Movement_PlayerStopsLookingBarry {
-    face_right
-    emote_exclamation_mark
-}
-
-movement Movement_PlayerStepbackwards {
-    walk_left
-    face_right
-}
-
-movement Movement_BarrySmileToPlayer {
-    emote_heart
-}
-
-movement Movement_PlayerGotoTV {
-    walk_down
-    walk_left * 3
-    face_up
-}
-
-movement Movement_BarryGotoTV {
-    walk_left
-    walk_down
-    walk_left * 2
-    face_up
-}
-
-movement Movement_BarryLeaveRoom {
-    walk_right * 3
     walk_up
-    face_right
-}
-
-movement Movement_BarryGobackToPlayer {
-    walk_down
-    walk_left * 3
-    face_left
+    face_up
 }

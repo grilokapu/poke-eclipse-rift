@@ -285,6 +285,9 @@
 #define OBJ_EVENT_GFX_GREEN_VS_SEEKER_BIKE       257
 #define OBJ_EVENT_GFX_BARRY                      258
 #define OBJ_EVENT_GFX_HIKARI                     259
+#define OBJ_EVENT_GFX_LUCIEN                     392
+#define OBJ_EVENT_GFX_PLAYER_M_SLEEPING          391
+#define OBJ_EVENT_GFX_DARK_SORCERER              390
 
 //FRLG
 #define OBJ_EVENT_GFX_BATTLE_GIRL                260
@@ -428,7 +431,9 @@
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-#define NUM_OBJ_EVENT_GFX                        390
+#define OBJ_EVENT_GFX_PARK_BALL                     393
+#define OBJ_EVENT_GFX_BACKPACKER                    394
+#define NUM_OBJ_EVENT_GFX                        395
 
 
 // These are dynamic object gfx ids.
@@ -583,6 +588,11 @@
 #define OBJ_EVENT_PAL_TAG_GIRL1                   0x1141
 #define OBJ_EVENT_PAL_TAG_SCIENTIST_1             0x1142
 #define OBJ_EVENT_PAL_TAG_GIRL_2                  0x1143
+#define OBJ_EVENT_PAL_TAG_DARK_SORCERER           0x1145
+#define OBJ_EVENT_PAL_TAG_YOUNGSTER               0x1144
+#define OBJ_EVENT_PAL_TAG_LUCIEN                  0x1147
+#define OBJ_EVENT_PAL_TAG_QUESTION                0x1146
+#define OBJ_EVENT_PAL_TAG_EMOJIS                  0x1148
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla
@@ -619,6 +629,10 @@
 // Gen VIII
 #define OBJ_EVENT_PAL_TAG_BALL_STRANGE            0x116A
 #endif //OW_FOLLOWERS_POKEBALLS
+#define OBJ_EVENT_PAL_TAG_FAT_MAN                   0x116B
+#define OBJ_EVENT_PAL_TAG_BUG_CATCHER               0x116C
+#define OBJ_EVENT_PAL_TAG_PARK_BALL                 0x116D
+#define OBJ_EVENT_PAL_TAG_BACKPACKER                0x116E
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001
