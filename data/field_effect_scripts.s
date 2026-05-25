@@ -109,6 +109,7 @@ gFieldEffectScriptPointers::
     .4byte gFieldEffectScript_EmojiTongueWinking        @ FLDEFF_EMOJI_TONGUE_WINKING
     .4byte gFieldEffectScript_EmojiWink                 @ FLDEFF_EMOJI_WINK
     .4byte gFieldEffectScript_EmojiYum                  @ FLDEFF_EMOJI_YUM
+	.4byte gFieldEffectScript_OWE_SpawnAnim				@ FLDEFF_OW_ENCOUNTER_SPAWN_ANIM
 
 gFieldEffectScript_ExclamationMarkIcon1::
 	field_eff_callnative FldEff_ExclamationMarkIcon
@@ -524,4 +525,8 @@ gFieldEffectScript_EmojiWink::
 
 gFieldEffectScript_EmojiYum::
 	field_eff_loadfadedpal_callnative gSpritePalette_GeneralFieldEffect0, FldEff_EmojiYum
+	field_eff_end
+
+gFieldEffectScript_OWE_SpawnAnim::
+	field_eff_callnative FldEff_OWE_SpawnAnim
 	field_eff_end

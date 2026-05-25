@@ -109,6 +109,8 @@ SylvaraTown_BoyWithRalts_Talk::
 SylvaraTown_BoyWithRalts_Talk_1:
 # 42 "data/maps/OldaleTown/scripts.pory"
 	movenpc VAR_LAST_TALKED, Common_Movement_FaceRight
+# 43 "data/maps/OldaleTown/scripts.pory"
+	release
 	end
 
 SylvaraTown_BoyWithRalts_Talk_3:
@@ -128,79 +130,79 @@ SylvaraTown_BoyWithRalts_Talk_5:
 
 
 SylvaraTown_Ralts_Cry::
-# 47 "data/maps/OldaleTown/scripts.pory"
-	lock
 # 48 "data/maps/OldaleTown/scripts.pory"
-	faceplayer
+	lock
 # 49 "data/maps/OldaleTown/scripts.pory"
-	showmonmugshot SPECIES_RALTS, MUGSHOT_DOWN_RIGHT
+	faceplayer
 # 50 "data/maps/OldaleTown/scripts.pory"
-	setspeaker SylvaraTown_Ralts_Cry_Text_0
+	showmonmugshot SPECIES_RALTS, MUGSHOT_DOWN_RIGHT
 # 51 "data/maps/OldaleTown/scripts.pory"
-	msgbox SylvaraTown_Ralts_Cry_Text_1
+	setspeaker SylvaraTown_Ralts_Cry_Text_0
 # 52 "data/maps/OldaleTown/scripts.pory"
-	waitmoncry
+	msgbox SylvaraTown_Ralts_Cry_Text_1
 # 53 "data/maps/OldaleTown/scripts.pory"
-	hidemonmugshot
+	waitmoncry
 # 54 "data/maps/OldaleTown/scripts.pory"
-	movenpc VAR_LAST_TALKED, Common_Movement_FaceLeft
+	hidemonmugshot
 # 55 "data/maps/OldaleTown/scripts.pory"
+	movenpc VAR_LAST_TALKED, Common_Movement_FaceLeft
+# 56 "data/maps/OldaleTown/scripts.pory"
 	release
 	end
 
 
 SylvaraTown_Girl_Talk::
-# 60 "data/maps/OldaleTown/scripts.pory"
-	switch VAR_LANGUAGE
 # 61 "data/maps/OldaleTown/scripts.pory"
-	case PT, SylvaraTown_Girl_Talk_3
+	switch VAR_LANGUAGE
 # 62 "data/maps/OldaleTown/scripts.pory"
-	case EN, SylvaraTown_Girl_Talk_4
+	case PT, SylvaraTown_Girl_Talk_3
 # 63 "data/maps/OldaleTown/scripts.pory"
+	case EN, SylvaraTown_Girl_Talk_4
+# 64 "data/maps/OldaleTown/scripts.pory"
 	case ES, SylvaraTown_Girl_Talk_5
 SylvaraTown_Girl_Talk_1:
 	end
 
 SylvaraTown_Girl_Talk_3:
-# 61 "data/maps/OldaleTown/scripts.pory"
+# 62 "data/maps/OldaleTown/scripts.pory"
 	msgbox SylvaraTown_Girl_Talk_Text_0, MSGBOX_NPC
 	goto SylvaraTown_Girl_Talk_1
 
 SylvaraTown_Girl_Talk_4:
-# 62 "data/maps/OldaleTown/scripts.pory"
+# 63 "data/maps/OldaleTown/scripts.pory"
 	msgbox SylvaraTown_Girl_Talk_Text_1, MSGBOX_NPC
 	goto SylvaraTown_Girl_Talk_1
 
 SylvaraTown_Girl_Talk_5:
-# 63 "data/maps/OldaleTown/scripts.pory"
+# 64 "data/maps/OldaleTown/scripts.pory"
 	msgbox SylvaraTown_Girl_Talk_Text_2, MSGBOX_NPC
 	goto SylvaraTown_Girl_Talk_1
 
 
 SylvaraTown_Backpacker_Talk::
-# 69 "data/maps/OldaleTown/scripts.pory"
-	switch VAR_LANGUAGE
 # 70 "data/maps/OldaleTown/scripts.pory"
-	case PT, SylvaraTown_Backpacker_Talk_3
+	switch VAR_LANGUAGE
 # 71 "data/maps/OldaleTown/scripts.pory"
-	case EN, SylvaraTown_Backpacker_Talk_4
+	case PT, SylvaraTown_Backpacker_Talk_3
 # 72 "data/maps/OldaleTown/scripts.pory"
+	case EN, SylvaraTown_Backpacker_Talk_4
+# 73 "data/maps/OldaleTown/scripts.pory"
 	case ES, SylvaraTown_Backpacker_Talk_5
 SylvaraTown_Backpacker_Talk_1:
 	end
 
 SylvaraTown_Backpacker_Talk_3:
-# 70 "data/maps/OldaleTown/scripts.pory"
+# 71 "data/maps/OldaleTown/scripts.pory"
 	msgbox SylvaraTown_Backpacker_Talk_Text_0, MSGBOX_NPC
 	goto SylvaraTown_Backpacker_Talk_1
 
 SylvaraTown_Backpacker_Talk_4:
-# 71 "data/maps/OldaleTown/scripts.pory"
+# 72 "data/maps/OldaleTown/scripts.pory"
 	msgbox SylvaraTown_Backpacker_Talk_Text_1, MSGBOX_NPC
 	goto SylvaraTown_Backpacker_Talk_1
 
 SylvaraTown_Backpacker_Talk_5:
-# 72 "data/maps/OldaleTown/scripts.pory"
+# 73 "data/maps/OldaleTown/scripts.pory"
 	msgbox SylvaraTown_Backpacker_Talk_Text_2, MSGBOX_NPC
 	goto SylvaraTown_Backpacker_Talk_1
 
@@ -254,33 +256,33 @@ SylvaraTown_BoyWithRalts_Talk_Text_2:
 	.string "Mi Ralts siempre sabe cuándo estoy\ntriste…\p¡El problema es que también sabe\ncuándo estoy por hacer alguna\ltontería!$"
 
 SylvaraTown_Ralts_Cry_Text_0:
-# 50 "data/maps/OldaleTown/scripts.pory"
+# 51 "data/maps/OldaleTown/scripts.pory"
 	.string "Ralts$"
 
 SylvaraTown_Ralts_Cry_Text_1:
-# 51 "data/maps/OldaleTown/scripts.pory"
+# 52 "data/maps/OldaleTown/scripts.pory"
 	.string "Ral Ral!$"
 
 SylvaraTown_Girl_Talk_Text_0:
-# 61 "data/maps/OldaleTown/scripts.pory"
+# 62 "data/maps/OldaleTown/scripts.pory"
 	.string "Às vezes eu caminho pela Floresta\nPendant só para ouvir o som\ldas árvores…\pMas quando o sol começa a\ndesaparecer, eu volto correndo pra\lcasa!$"
 
 SylvaraTown_Girl_Talk_Text_1:
-# 62 "data/maps/OldaleTown/scripts.pory"
+# 63 "data/maps/OldaleTown/scripts.pory"
 	.string "Sometimes I walk through Pendant\nForest just to hear the sound\lof the trees…\pBut when the sun starts to fade, I\nrun straight back home!$"
 
 SylvaraTown_Girl_Talk_Text_2:
-# 63 "data/maps/OldaleTown/scripts.pory"
+# 64 "data/maps/OldaleTown/scripts.pory"
 	.string "A veces camino por el Bosque\nPendant solo para escuchar el\lsonido de los árboles…\p¡Pero cuando el sol empieza a\nocultarse, regreso corriendo a\lcasa!$"
 
 SylvaraTown_Backpacker_Talk_Text_0:
-# 70 "data/maps/OldaleTown/scripts.pory"
+# 71 "data/maps/OldaleTown/scripts.pory"
 	.string "Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry, do quê ele ser acertado por\lum tijolo?$"
 
 SylvaraTown_Backpacker_Talk_Text_1:
-# 71 "data/maps/OldaleTown/scripts.pory"
+# 72 "data/maps/OldaleTown/scripts.pory"
 	.string "Did you know it's much healthier\nfor your Pokémon to eat a Sitrus\lBerry than to get hit by a brick?$"
 
 SylvaraTown_Backpacker_Talk_Text_2:
-# 72 "data/maps/OldaleTown/scripts.pory"
+# 73 "data/maps/OldaleTown/scripts.pory"
 	.string "¿Sabías que es mucho más saludable\npara tu Pokémon comer una Baya\lZidra que recibir un ladrillazo?$"

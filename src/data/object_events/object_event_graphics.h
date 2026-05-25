@@ -471,6 +471,8 @@ const u16 gFieldEffectObjectPalette_CaveDust[] = INCBIN_U16("graphics/field_effe
 
 const u32 gObjectEventPic_ApricornTree[] = INCBIN_U32("graphics/object_events/pics/misc/apricorn_tree.4bpp");
 
+const u32 gFieldEffectObjectPic_ShinySparkle[] = INCBIN_U32("graphics/field_effects/pics/shiny_sparkle.4bpp");
+
 const u16 gObjectEventPic_RedNormal[] = INCBIN_U16("graphics/object_events/pics/people/red/red_normal.4bpp");
 const u16 gObjectEventPic_RedSurfRun[] = INCBIN_U16("graphics/object_events/pics/people/red/red_surf_run.4bpp");
 const u16 gObjectEventPic_Barry[] = INCBIN_U16("graphics/object_events/pics/people/barry.4bpp");

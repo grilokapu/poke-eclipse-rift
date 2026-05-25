@@ -105,6 +105,7 @@
 #define FLDEFF_EMOJI_TONGUE_WINKING      100
 #define FLDEFF_EMOJI_WINK                101
 #define FLDEFF_EMOJI_YUM                 102
+#define FLDEFF_OW_ENCOUNTER_SPAWN_ANIM   103
 
 #define FLDEFFOBJ_SHADOW_S              0
 #define FLDEFFOBJ_SHADOW_M              1
@@ -151,6 +152,7 @@
 #define FLDEFFOBJ_ROCK_CLIMB_DUST       42
 #define FLDEFFOBJ_ORAS_DOWSE_BRENDAN    43
 #define FLDEFFOBJ_ORAS_DOWSE_MAY        44
+#define FLDEFFOBJ_SHINY_SPARKLE         45
 
 #define FLDEFF_PAL_TAG_CUT_GRASS          0x1000
 #define FLDEFF_PAL_TAG_SECRET_POWER_TREE  0x1003
