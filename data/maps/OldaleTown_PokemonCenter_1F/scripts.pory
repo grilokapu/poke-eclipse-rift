@@ -1,0 +1,42 @@
+mapscripts OldaleTown_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script SylvaraTown_PokemonCenter_1F_EventScript_Nurse {
+	setvar(VAR_0x800B, LOCALID_SYLVARA_NURSE)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+	end
+}
+
+script SylvaraTown_PokemonCenter_1F_EventScript_Gentleman {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ouvi dizer que metade dos\nTREINADORES que passam por Sylvara\lTown vêm só pelo famoso chá de\lervas daqui.\pA outra metade vem porque ouviu\nfalar do chá… e acabou se perdendo\lna floresta!", MSGBOX_NPC)
+        case EN: msgbox("I heard that half the TRAINERS\npassing through Sylvara Town come\lhere just for the famous herbal\ltea.\pThe other half come because they\nheard about the tea… and end up\lgetting lost in the forest!", MSGBOX_NPC)
+        case ES: msgbox("Escuché que la mitad de los\nENTRENADORES que pasan por Sylvara\lTown vienen solo por el famoso té\lde hierbas.\p¡La otra mitad viene por el té… y\ntermina perdiéndose en el bosque!", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_PokemonCenter_1F_EventScript_Girl {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Acabei de terminar meu treino!\pMeus POKéMON ficaram exaustos,\nentão vim correndo direto para o\lCENTRO POKéMON!", MSGBOX_NPC)
+        case EN: msgbox("I just finished my training!\pMy POKéMON were exhausted, so I\nrushed straight to the POKéMON\lCENTER!", MSGBOX_NPC)
+        case ES: msgbox("¡Acabo de terminar mi\nentrenamiento!\pMis POKéMON quedaron agotados, así\nque vine corriendo directo al\lCENTRO POKéMON!", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_PokemonCenter_1F_EventScript_Boy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Sabe aquela vontade de acordar\ncedo e ir correr na estrada?\pEntão…\nNunca tive!", MSGBOX_NPC)
+        case EN: msgbox("You know that urge to wake up\nearly and go for a run on the\lroad?\pYeah…\nI've never had it!", MSGBOX_NPC)
+        case ES: msgbox("¿Sabes esas ganas de despertarse\ntemprano e ir a correr por el\lcamino?\pPues…\n¡Nunca las tuve!", MSGBOX_NPC)
+    }
+    end
+}
+
+
+

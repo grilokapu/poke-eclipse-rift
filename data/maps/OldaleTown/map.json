@@ -14,11 +14,6 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE103",
-      "offset": 0,
-      "direction": "up"
-    },
-    {
       "map": "MAP_ROUTE101",
       "offset": 0,
       "direction": "up"
@@ -27,6 +22,11 @@
       "map": "MAP_ROUTE102",
       "offset": 0,
       "direction": "left"
+    },
+    {
+      "map": "MAP_SYLVARA_BEACH",
+      "offset": -10,
+      "direction": "down"
     }
   ],
   "object_events": [
@@ -47,7 +47,7 @@
     {
       "local_id": "LOCALID_SYLVARA_BOY",
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
-      "x": 8,
+      "x": 9,
       "y": 20,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -60,7 +60,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(RALTS)",
-      "x": 9,
+      "x": 10,
       "y": 20,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_LEFT",
@@ -84,6 +84,46 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SylvaraTown_Backpacker_Talk",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
+      "x": 5,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "LIGHT_TYPE_PKMN_CENTER_SIGN",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
+      "x": 22,
+      "y": 16,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "LIGHT_TYPE_POKE_MART_SIGN",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_SYLVARA_GIRL_2",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_2",
+      "x": 2,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SylvaraTown_EventScript_Girl2_Talk",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -103,28 +143,50 @@
       "dest_warp_id": "0"
     },
     {
+      "warp_id": "WARP_ID_SYLVARA_HOUSE1",
       "x": 15,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_OLDALE_TOWN_HOUSE1",
+      "dest_warp_id": "WARP_ID_SYLVARA_HOUSE1_0"
     },
     {
+      "warp_id": "WARP_ID_SYLVARA_HOUSE2",
       "x": 3,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
+      "dest_map": "MAP_OLDALE_TOWN_HOUSE2",
       "dest_warp_id": "0"
     },
     {
+      "warp_id": "WARP_ID_SYLVARA_HOUSE3",
       "x": 7,
       "y": 18,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_SYLVARA_TOWN_HOUSE3",
+      "dest_warp_id": "WARP_ID_SYLVARA_HOUSE3_0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_OLDALE_TOWN_STATE",
+      "var_value": "0",
+      "script": "SylvaraTown_EventScript_Girl_Trigger"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_OLDALE_TOWN_STATE",
+      "var_value": "0",
+      "script": "SylvaraTown_EventScript_Girl_Trigger"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

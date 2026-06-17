@@ -19,7 +19,17 @@ EventScript_EmptyTrashCan::
 	end
 
 EventScript_ShopShelf::
+	goto_if_eq VAR_LANGUAGE, PT, EventScript_ShopShelfPt
+	goto_if_eq VAR_LANGUAGE, ES, EventScript_ShopShelfEs
 	msgbox Text_ShopShelf, MSGBOX_SIGN
+	end
+
+EventScript_ShopShelfPt:
+	msgbox Text_ShopShelfPt, MSGBOX_SIGN
+	end
+
+EventScript_ShopShelfEs:
+	msgbox Text_ShopShelfEs, MSGBOX_SIGN
 	end
 
 EventScript_Blueprint::

@@ -1,6 +1,18 @@
 EventScript_Questionnaire::
 	lockall
+	switch VAR_LANGUAGE
+	case PT, Questionnaire_EventScript_FillOutPt
+	case ES, Questionnaire_EventScript_FillOutEs
+	case EN, Questionnaire_EventScript_FillOutEn
+Questionnaire_EventScript_FillOutEn:
 	msgbox Questionnaire_Text_FillOut, MSGBOX_YESNO
+	goto Questionnaire_EventScript_AfterFillOut
+Questionnaire_EventScript_FillOutPt:
+	msgbox Questionnaire_Text_FillOutPt, MSGBOX_YESNO
+	goto Questionnaire_EventScript_AfterFillOut
+Questionnaire_EventScript_FillOutEs:
+	msgbox Questionnaire_Text_FillOutEs, MSGBOX_YESNO
+Questionnaire_EventScript_AfterFillOut:
 	goto_if_eq VAR_RESULT, NO, Questionnaire_EventScript_Release
 	setvar VAR_0x8004, EASY_CHAT_TYPE_QUESTIONNAIRE
 	call Common_ShowEasyChatScreen
@@ -23,9 +35,33 @@ Questionnaire_EventScript_PlayerInputMysteryEventPhrase::
 	waitmovement 0
 	applymovement VAR_0x8008, Common_Movement_Delay48
 	waitmovement 0
+	switch VAR_LANGUAGE
+	case PT, Questionnaire_EventScript_YouKnowThoseWordsEventPt
+	case ES, Questionnaire_EventScript_YouKnowThoseWordsEventEs
+	case EN, Questionnaire_EventScript_YouKnowThoseWordsEventEn
+Questionnaire_EventScript_YouKnowThoseWordsEventEn:
 	msgbox Questionnaire_Text_YouKnowThoseWordsEvent, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouKnowThoseWordsEvent
+Questionnaire_EventScript_YouKnowThoseWordsEventPt:
+	msgbox Questionnaire_Text_YouKnowThoseWordsEventPt, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouKnowThoseWordsEvent
+Questionnaire_EventScript_YouKnowThoseWordsEventEs:
+	msgbox Questionnaire_Text_YouKnowThoseWordsEventEs, MSGBOX_DEFAULT
+Questionnaire_EventScript_AfterYouKnowThoseWordsEvent:
 	setflag FLAG_SYS_MYSTERY_EVENT_ENABLE
+	switch VAR_LANGUAGE
+	case PT, Questionnaire_EventScript_YouCanAccessMysteryEventPt
+	case ES, Questionnaire_EventScript_YouCanAccessMysteryEventEs
+	case EN, Questionnaire_EventScript_YouCanAccessMysteryEventEn
+Questionnaire_EventScript_YouCanAccessMysteryEventEn:
 	msgbox Questionnaire_Text_YouCanAccessMysteryEvent, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouCanAccessMysteryEvent
+Questionnaire_EventScript_YouCanAccessMysteryEventPt:
+	msgbox Questionnaire_Text_YouCanAccessMysteryEventPt, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouCanAccessMysteryEvent
+Questionnaire_EventScript_YouCanAccessMysteryEventEs:
+	msgbox Questionnaire_Text_YouCanAccessMysteryEventEs, MSGBOX_DEFAULT
+Questionnaire_EventScript_AfterYouCanAccessMysteryEvent:
 	releaseall
 	end
 
@@ -39,9 +75,33 @@ Questionnaire_EventScript_PlayerInputMysteryGiftPhrase::
 	waitmovement 0
 	applymovement VAR_0x8008, Common_Movement_Delay48
 	waitmovement 0
+	switch VAR_LANGUAGE
+	case PT, Questionnaire_EventScript_YouKnowThoseWordsGiftPt
+	case ES, Questionnaire_EventScript_YouKnowThoseWordsGiftEs
+	case EN, Questionnaire_EventScript_YouKnowThoseWordsGiftEn
+Questionnaire_EventScript_YouKnowThoseWordsGiftEn:
 	msgbox Questionnaire_Text_YouKnowThoseWordsGift, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouKnowThoseWordsGift
+Questionnaire_EventScript_YouKnowThoseWordsGiftPt:
+	msgbox Questionnaire_Text_YouKnowThoseWordsGiftPt, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouKnowThoseWordsGift
+Questionnaire_EventScript_YouKnowThoseWordsGiftEs:
+	msgbox Questionnaire_Text_YouKnowThoseWordsGiftEs, MSGBOX_DEFAULT
+Questionnaire_EventScript_AfterYouKnowThoseWordsGift:
 	setflag FLAG_SYS_MYSTERY_GIFT_ENABLE
+	switch VAR_LANGUAGE
+	case PT, Questionnaire_EventScript_YouCanAccessMysteryGiftPt
+	case ES, Questionnaire_EventScript_YouCanAccessMysteryGiftEs
+	case EN, Questionnaire_EventScript_YouCanAccessMysteryGiftEn
+Questionnaire_EventScript_YouCanAccessMysteryGiftEn:
 	msgbox Questionnaire_Text_YouCanAccessMysteryGift, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouCanAccessMysteryGift
+Questionnaire_EventScript_YouCanAccessMysteryGiftPt:
+	msgbox Questionnaire_Text_YouCanAccessMysteryGiftPt, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterYouCanAccessMysteryGift
+Questionnaire_EventScript_YouCanAccessMysteryGiftEs:
+	msgbox Questionnaire_Text_YouCanAccessMysteryGiftEs, MSGBOX_DEFAULT
+Questionnaire_EventScript_AfterYouCanAccessMysteryGift:
 	releaseall
 	end
 
@@ -52,6 +112,18 @@ Questionnaire_EventScript_Release::
 Questionnaire_EventScript_ThankYou::
 	applymovement VAR_0x8008, Common_Movement_FaceDown
 	waitmovement 0
+	switch VAR_LANGUAGE
+	case PT, Questionnaire_EventScript_ThankYouPt
+	case ES, Questionnaire_EventScript_ThankYouEs
+	case EN, Questionnaire_EventScript_ThankYouEn
+Questionnaire_EventScript_ThankYouEn:
 	msgbox Questionnaire_Text_ThankYou, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterThankYou
+Questionnaire_EventScript_ThankYouPt:
+	msgbox Questionnaire_Text_ThankYouPt, MSGBOX_DEFAULT
+	goto Questionnaire_EventScript_AfterThankYou
+Questionnaire_EventScript_ThankYouEs:
+	msgbox Questionnaire_Text_ThankYouEs, MSGBOX_DEFAULT
+Questionnaire_EventScript_AfterThankYou:
 	releaseall
 	end

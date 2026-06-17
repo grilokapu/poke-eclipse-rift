@@ -191,8 +191,8 @@
     {
       "id": "LAYOUT_ROUTE102",
       "name": "Route102_Layout",
-      "width": 50,
-      "height": 20,
+      "width": 56,
+      "height": 34,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/Route102/border.bin",
@@ -224,8 +224,8 @@
     {
       "id": "LAYOUT_ROUTE105",
       "name": "Route105_Layout",
-      "width": 40,
-      "height": 80,
+      "width": 70,
+      "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Dewford",
       "border_filepath": "data/layouts/Route105/border.bin",
@@ -664,8 +664,8 @@
     {
       "id": "LAYOUT_POKEMON_CENTER_1F",
       "name": "PokemonCenter_1F_Layout",
-      "width": 14,
-      "height": 9,
+      "width": 16,
+      "height": 10,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_PokemonCenter",
       "border_filepath": "data/layouts/PokemonCenter_1F/border.bin",
@@ -9363,6 +9363,26 @@
       "secondary_tileset": "gTileset_ViridianForest",
       "border_filepath": "data/layouts/PendantForest/border.bin",
       "blockdata_filepath": "data/layouts/PendantForest/map.bin"
+    },
+    {
+      "id": "LAYOUT_SYLVARA_TOWN_HOUSE3",
+      "name": "SylvaraTown_House3_Layout",
+      "width": 11,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/SylvaraTown_House3/border.bin",
+      "blockdata_filepath": "data/layouts/SylvaraTown_House3/map.bin"
+    },
+    {
+      "id": "LAYOUT_SYLVARA_BEACH",
+      "name": "SylvaraBeach_Layout",
+      "width": 50,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Slateport",
+      "border_filepath": "data/layouts/SylvaraBeach/border.bin",
+      "blockdata_filepath": "data/layouts/SylvaraBeach/map.bin"
     }
   ]
 }

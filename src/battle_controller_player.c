@@ -718,6 +718,8 @@ void HandleInputChooseMove(enum BattlerId battler)
 
         if (isUserOrAlly)
             gMultiUsePlayerCursor = battler;
+        else if (moveTarget == TARGET_ALLY)
+            gMultiUsePlayerCursor = BATTLE_PARTNER(battler);
         else
             gMultiUsePlayerCursor = GetOpposingSideBattler(battler);
 
@@ -1098,7 +1100,7 @@ void HandleMoveSwitching(enum BattlerId battler)
             }
         }
 
-        if (gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
+        if (IS_FRLG && gBattleTypeFlags & BATTLE_TYPE_FIRST_BATTLE)
             gBattlerControllerFuncs[battler] = OakOldManHandleInputChooseMove;
         else
             gBattlerControllerFuncs[battler] = HandleInputChooseMove;
@@ -1896,14 +1898,7 @@ enum TrainerPicID LinkPlayerGetTrainerPicId(u32 multiplayerId)
 
 static enum TrainerPicID PlayerGetTrainerBackPicId(void)
 {
-    enum TrainerPicID trainerPicId;
-
-    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
-        trainerPicId = LinkPlayerGetTrainerPicId(GetMultiplayerId());
-    else
-        trainerPicId = gSaveBlock2Ptr->playerGender == FEMALE ? TRAINER_BACK_PIC_PLAYER_FEMALE : TRAINER_BACK_PIC_PLAYER_MALE;
-
-    return trainerPicId;
+    return GetBackspriteId();
 }
 
 // In emerald it's possible to have a tag battle in the battle frontier facilities with AI
@@ -2001,8 +1996,6 @@ static void HandleChooseActionAfterDma3(enum BattlerId battler)
         gBattle_BG0_Y = DISPLAY_HEIGHT;
         if (gBattleStruct->aiDelayTimer != 0)
         {
-            gBattleStruct->aiDelayFrames = gMain.vblankCounter1 - gBattleStruct->aiDelayTimer;
-            gBattleStruct->aiDelayTimer = 0;
             if (DEBUG_AI_DELAY_TIMER)
             {
                 static const u8 sFramesText[] = _(" frames thinking\n");
@@ -2015,6 +2008,8 @@ static void HandleChooseActionAfterDma3(enum BattlerId battler)
                 StringAppend(gDisplayedStringBattle, sCyclesText);
                 BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_ACTION_PROMPT);
             }
+            gBattleStruct->aiDelayTimer = 0;
+            gBattleStruct->aiDelayFrames = 0;
         }
         gBattlerControllerFuncs[battler] = HandleInputChooseAction;
     }

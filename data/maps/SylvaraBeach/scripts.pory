@@ -1,0 +1,150 @@
+mapscripts SylvaraBeach_MapScripts {
+    
+}
+
+script SylvaraBeach_EventScript_Psychic_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_PSYCHIC_M_LAWRENCE, "Você é um pouco psicodélico\nigual a mim?\pVem fazer o teste!", "Parece que você me venceu na\npsicodelia!")
+            msgbox("Será que um psicodélico pode\nevoluir para um psicopata?")
+        case EN:
+            trainerbattle_single(TRAINER_PSYCHIC_M_LAWRENCE, "Are you a little psychedelic\nlike me?\pCome take the test!", "It looks like you beat me at\npsychedelia!")
+            msgbox("Can a psychedelic\nbecome a psychopath?")
+        case ES:
+            trainerbattle_single(TRAINER_PSYCHIC_M_LAWRENCE, "¿Eres un poco psicodélico\ncomo yo?\p¡Ven a hacer la prueba!", "¡Parece que me venciste en\npsicodelia!")
+            msgbox("¿Puede un psicodélico\nconvertirse en psicópata?")
+    }
+    release
+    end
+}
+
+script SylvaraBeach_EventScript_Rival_Battle {
+    lock
+    faceplayer
+    playbgm(MUS_RG_ENCOUNTER_RIVAL, 1)
+    playse(SE_PIN)
+    movenpc(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    waitse
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Ei, {PLAYER}, ainda bem que você\nchegou!\pEu estava aproveitando a vista da\nPraia Sylvara antes de seguir em\lfrente.\pÉ um lugar tranquilo… perfeito\npara colocar os pensamentos em\lordem.\pPara ser sincero, tive alguns\npressentimentos estranhos ontem.\pNão sei explicar muito bem, mas\nparecia que algo importante estava\lprestes a acontecer.\pAinda assim, não quero deixar isso\nme distrair.\pNossa jornada está apenas\ncomeçando, e quero aproveitar cada\lmomento dela.\pQuero me tornar mais forte,\nconhecer novos Pokémon e descobrir\ltudo o que Aetheris tem a\loferecer.\pE acho que existe uma ótima\nmaneira de dar o primeiro passo.\pQue tal uma batalha entre nós\ndois?\pVamos ver o quanto aprendemos até\nagora!", MSGBOX_AUTOCLOSE)
+            goto(SylvaraBeach_EventScript_Rival_Battle_PT)
+        case EN:
+            msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Hey, {PLAYER}, I'm glad you made\nit!\pI was taking a moment to enjoy the\nview of Sylvara Beach before\lmoving on.\pIt's a peaceful place… perfect for\nclearing your thoughts.\pTo be honest, I had some strange\nfeelings yesterday.\pI can't really explain them, but\nit felt like something important\lwas about to happen.\pEven so, I don't want to let that\ndistract me.\pOur journey is only beginning, and\nI want to make the most of every\lmoment.\pI want to grow stronger, meet new\nPokémon, and discover everything\lAetheris has to offer.\pAnd I think there's a great way to\ntake the first step.\pHow about a battle between the two\nof us?\pLet's see how much we've learned\nso far!", MSGBOX_AUTOCLOSE)
+            goto(SylvaraBeach_EventScript_Rival_Battle_EN)
+        case ES:
+            msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "¡Hola, {PLAYER}! ¡Qué bueno que\nllegaste!\pEstaba disfrutando la vista de la\nPlaya Sylvara antes de continuar\lmi camino.\pEs un lugar tranquilo… perfecto\npara ordenar los pensamientos.\pPara ser sincero, ayer tuve\nalgunos presentimientos extraños.\pNo sabría explicarlo, pero sentía\nque algo importante estaba por\lsuceder.\pAun así, no quiero dejar que eso\nme distraiga.\pNuestra aventura apenas está\ncomenzando, y quiero aprovechar\lcada instante.\pQuiero volverme más fuerte,\nconocer nuevos Pokémon y descubrir\ltodo lo que Aetheris tiene para\lofrecer.\pY creo que hay una excelente forma\nde dar el primer paso.\p¿Qué te parece una batalla entre\nnosotros?\p¡Veamos cuánto hemos aprendido\nhasta ahora!", MSGBOX_AUTOCLOSE)
+            goto(SylvaraBeach_EventScript_Rival_Battle_ES)
+    }
+    release
+    end
+}
+
+script SylvaraBeach_EventScript_Rival_Battle_PT {
+    if (flag(FLAG_ADVENTURE_IS_MONOTYPE)) {
+        trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH, "Impressionante… você está ficando\ncada vez mais forte!", "Heh, desta vez eu levei a melhor!", SylvaraBeach_EventScript_Rival_Continue)
+    }
+    switch(var(VAR_STORE_FIST_MON_TYPE)) {
+        case TYPE_WATER:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_GRASS, "Impressionante… você está ficando\ncada vez mais forte!", "Heh, desta vez eu levei a melhor!", SylvaraBeach_EventScript_Rival_Continue)
+        case TYPE_FIRE:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_WATER, "Impressionante… você está ficando\ncada vez mais forte!", "Heh, desta vez eu levei a melhor!", SylvaraBeach_EventScript_Rival_Continue)
+        case TYPE_GRASS:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_FIRE, "Impressionante… você está ficando\ncada vez mais forte!", "Heh, desta vez eu levei a melhor!", SylvaraBeach_EventScript_Rival_Continue)
+    }
+    trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH, "Impressionante… você está ficando\ncada vez mais forte!", "Heh, desta vez eu levei a melhor!", SylvaraBeach_EventScript_Rival_Continue)
+    release
+    end
+}
+
+script SylvaraBeach_EventScript_Rival_Battle_EN {
+    if (flag(FLAG_ADVENTURE_IS_MONOTYPE)) {
+        trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH, "Impressive… you're getting stronger\nevery time!", "Heh, looks like I got the better\nof you this time!", SylvaraBeach_EventScript_Rival_Continue)
+    }
+    switch(var(VAR_STORE_FIST_MON_TYPE)) {
+        case TYPE_WATER:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_GRASS, "Impressive… you're getting stronger\nevery time!", "Heh, looks like I got the better\nof you this time!", SylvaraBeach_EventScript_Rival_Continue)
+        case TYPE_FIRE:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_WATER, "Impressive… you're getting stronger\nevery time!", "Heh, looks like I got the better\nof you this time!", SylvaraBeach_EventScript_Rival_Continue)
+        case TYPE_GRASS:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_FIRE, "Impressive… you're getting stronger\nevery time!", "Heh, looks like I got the better\nof you this time!", SylvaraBeach_EventScript_Rival_Continue)
+    }
+    trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH, "Impressive… you're getting stronger\nevery time!", "Heh, looks like I got the better\nof you this time!", SylvaraBeach_EventScript_Rival_Continue)
+    release
+    end
+}
+
+script SylvaraBeach_EventScript_Rival_Battle_ES {
+    if (flag(FLAG_ADVENTURE_IS_MONOTYPE)) {
+        trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH, "Impresionante… ¡cada vez te haces\nmás fuerte!", "Je, esta vez yo salí victorioso.", SylvaraBeach_EventScript_Rival_Continue)
+    }
+    switch(var(VAR_STORE_FIST_MON_TYPE)) {
+        case TYPE_WATER:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_GRASS, "Impresionante… ¡cada vez te haces\nmás fuerte!", "Je, esta vez yo salí victorioso.", SylvaraBeach_EventScript_Rival_Continue)
+        case TYPE_FIRE:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_WATER, "Impresionante… ¡cada vez te haces\nmás fuerte!", "Je, esta vez yo salí victorioso.", SylvaraBeach_EventScript_Rival_Continue)
+        case TYPE_GRASS:
+            trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH_FIRE, "Impresionante… ¡cada vez te haces\nmás fuerte!", "Je, esta vez yo salí victorioso.", SylvaraBeach_EventScript_Rival_Continue)
+    }
+    trainerbattle_continue_lost(TRAINER_RIVAL_SYLVARA_BEACH, "Impresionante… ¡cada vez te haces\nmás fuerte!", "Je, esta vez yo salí victorioso.", SylvaraBeach_EventScript_Rival_Continue)
+    release
+    end
+}
+
+script SylvaraBeach_EventScript_Rival_Continue {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Uau… essa batalha foi ainda melhor\ndo que eu imaginava.\pVocê é realmente incrível,\n{PLAYER}.\pSe esta foi a nossa primeira\nbatalha, mal posso esperar pelas\lpróximas.\pAcho que nós dois temos um longo\ncaminho pela frente.\pHá muitos lugares para conhecer,\nmuitos Pokémon para encontrar…\pE muitos desafios esperando por\nnós.\pVou seguir em frente e continuar\ntreinando.\pEntão trate de não ficar para\ntrás, certo?\pAté a próxima batalha!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Wow… that battle was even better\nthan I imagined.\pYou're really amazing, {PLAYER}.\pIf this was our first battle, I\ncan't wait for the next ones.\pI think both of us have a long\nroad ahead.\pThere are so many places to\nexplore, so many Pokémon to meet…\pAnd so many challenges waiting for\nus.\pI'll keep moving forward and\ntraining.\pSo don't fall behind, alright?\pUntil our next battle!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Vaya… esta batalla fue incluso\nmejor de lo que imaginaba.\pDe verdad eres increíble,\n{PLAYER}.\pSi esta fue nuestra primera\nbatalla, no puedo esperar a las\lpróximas.\pCreo que ambos tenemos un largo\ncamino por delante.\pHay muchos lugares por conocer,\nmuchos Pokémon por encontrar…\pY muchos desafíos esperándonos.\pSeguiré adelante y continuaré\nentrenando.\pAsí que no te quedes atrás, ¿de\nacuerdo?\p¡Hasta nuestra próxima batalla!", MSGBOX_AUTOCLOSE)
+    }
+    playse(SE_PIN)
+    movenpc(VAR_LAST_TALKED, Common_Movement_EmojiConfident)
+    waitse
+    pause(10)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Outra coisa…\pTome cuidado com as pessoas que\nencontrar pelo caminho.\pNem todo sorriso é sincero.\pE nem toda mão estendida está\ntentando ajudar.\pEscolha bem quem vai caminhar ao\nseu lado.\pAs decisões que tomamos podem\nmudar mais do que imaginamos.\pAté a próxima, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "One more thing…\pBe careful with the people you\nmeet along the way.\pNot every smile is genuine.\pAnd not every outstretched hand is\ntrying to help.\pChoose carefully who you walk\nbeside.\pThe choices we make can change\nmore than we realize.\pUntil next time, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Una cosa más…\pTen cuidado con las personas que\nencuentres en tu camino.\pNo todas las sonrisas son\nsinceras.\pY no todas las manos extendidas\nintentan ayudar.\pElige bien quién caminará a tu\nlado.\pLas decisiones que tomamos pueden\ncambiar más de lo que imaginamos.\pHasta la próxima, {PLAYER}.", MSGBOX_AUTOCLOSE)
+    }
+    if(var(VAR_FACING) == DIR_WEST) {
+        movenpc(VAR_LAST_TALKED, Movement_SylvaraBeach_Rival_GoAway_2)
+    } else {
+        movenpc(VAR_LAST_TALKED, Movement_SylvaraBeach_Rival_GoAway_1)
+    }
+    setflag(FLAG_SYLVARA_TOWN_RIVAL_DONE)
+    removeobject(LOCALID_BEACH_RIVAL)
+    fadedefaultbgm
+    special(HealPlayerParty)
+    release
+    end
+}
+
+movement Movement_SylvaraBeach_Rival_GoAway_1 {
+    walk_right * 4
+    walk_up * 8
+    delay_16
+}
+
+movement Movement_SylvaraBeach_Rival_GoAway_2 {
+    walk_left
+    walk_up * 2
+    walk_right * 5
+    walk_up * 5
+    delay_16
+}
+
+script SylvaraBeach_EventScript_Tuber_M_Talk {
+    callnative(MissorMisterString)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Brincar aqui na Praia Sylvara é\nmuito divertido, {STR_VAR_1}!", MSGBOX_NPC)
+        case EN: msgbox("Playing here on Sylvara Beach is\nreally fun, {STR_VAR_1}!", MSGBOX_NPC)
+        case ES: msgbox("¡Jugar aquí en la Playa Sylvara es\nmuy divertido, {STR_VAR_1}!", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraBeach_EventScript_Item_Potion {
+    finditem(ITEM_POTION)
+    end
+}

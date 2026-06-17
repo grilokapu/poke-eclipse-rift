@@ -127,6 +127,20 @@
       "elevation": 0,
       "dest_map": "MAP_ROUTE101",
       "dest_warp_id": "WARP_ID_IN_PENDANT_FOREST_2"
+    },
+    {
+      "x": 26,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE105",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 27,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE105",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [],

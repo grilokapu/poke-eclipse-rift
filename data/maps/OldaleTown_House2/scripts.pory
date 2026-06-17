@@ -1,0 +1,21 @@
+mapscripts OldaleTown_House2_MapScripts {
+    
+}
+
+script SylvaraTown_EventScript_Woman_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Se você quer que seus POKéMON\nfiquem mais fortes, não tenha medo\lde batalhar!\pToda batalha é uma chance de\nganhar experiência.", MSGBOX_NPC)
+        case EN: msgbox("If you want your POKéMON to grow\nstronger, don't be afraid to\lbattle!\pEvery battle is a chance to gain\nexperience.", MSGBOX_NPC)
+        case ES: msgbox("¡Si quieres que tus POKéMON se\nvuelvan más fuertes, no tengas\lmiedo de combatir!\pCada batalla es una oportunidad\npara ganar experiencia.", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_EventScript_Man_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Alguns POKéMON evoluem apenas com\no tempo, mas outros precisam\lacumular experiência em batalha.\pQuanto mais eles aprendem, mais\nperto ficam de alcançar seu\lverdadeiro potencial!", MSGBOX_NPC)
+        case EN: msgbox("Some POKéMON evolve with time, but\nothers need to gain experience\lthrough battles.\pThe more they learn, the closer\nthey get to reaching their true\lpotential!", MSGBOX_NPC)
+        case ES: msgbox("Algunos POKéMON evolucionan con el\ntiempo, pero otros necesitan ganar\lexperiencia en combate.\p¡Cuanto más aprenden, más cerca\nestán de alcanzar su verdadero\lpotencial!", MSGBOX_NPC)
+    }
+    end
+}

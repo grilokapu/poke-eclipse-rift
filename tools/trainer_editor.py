@@ -27,6 +27,8 @@ ITEMS_HEADER = ROOT / "include/constants/items.h"
 SPECIES_HEADER = ROOT / "include/constants/species.h"
 ABILITIES_HEADER = ROOT / "include/constants/abilities.h"
 POKEMON_HEADER = ROOT / "include/constants/pokemon.h"
+TRAINERS_HEADER = ROOT / "include/constants/trainers.h"
+BATTLE_AI_HEADER = ROOT / "include/constants/battle_ai.h"
 SPECIES_INFO_DIR = ROOT / "src/data/pokemon/species_info"
 SPECIES_INFO_MAIN = ROOT / "src/data/pokemon/species_info.h"
 
@@ -342,6 +344,48 @@ def load_ball_choices(item_choices: list[str]) -> list[str]:
     return [item for item in item_choices if item.endswith(" Ball")]
 
 
+def load_party_field_choices(field: str) -> list[str]:
+    choices: list[str] = []
+    for path in (NORMAL_PARTY, HARD_PARTY):
+        if not path.exists():
+            continue
+        for value in re.findall(rf"^\s*{re.escape(field)}:\s*(.+?)\s*$", path.read_text(), re.M):
+            value = value.strip()
+            if value and value not in choices:
+                choices.append(value)
+    return choices
+
+
+def load_music_choices() -> list[str]:
+    choices: list[str] = []
+    if TRAINERS_HEADER.exists():
+        text = strip_comments(TRAINERS_HEADER.read_text())
+        for symbol in re.findall(r"\b(TRAINER_ENCOUNTER_MUSIC_[A-Z0-9_]+)\b", text):
+            name = symbol_to_display_name(symbol, "TRAINER_ENCOUNTER_MUSIC_")
+            if name not in choices:
+                choices.append(name)
+    for name in load_party_field_choices("Music"):
+        if name not in choices:
+            choices.append(name)
+    return choices
+
+
+def load_ai_choices() -> list[str]:
+    choices: list[str] = []
+    if BATTLE_AI_HEADER.exists():
+        text = strip_comments(BATTLE_AI_HEADER.read_text())
+        for symbol in re.findall(r"^\s*#define\s+(AI_FLAG_[A-Z0-9_]+)\b", text, re.M):
+            if symbol == "AI_FLAG":
+                continue
+            name = symbol_to_display_name(symbol, "AI_FLAG_")
+            if name not in choices:
+                choices.append(name)
+    for name in load_party_field_choices("AI"):
+        if name not in choices:
+            choices.append(name)
+    return choices
+
+
 def load_type_choices() -> list[str]:
     if not POKEMON_HEADER.exists():
         return []
@@ -443,6 +487,17 @@ def format_stat_spread(values: dict[str, str]) -> str:
     return " / ".join(parts)
 
 
+def find_opponent_header_clone(trainer_id: str) -> str | None:
+    if not OPPONENTS_HEADER.exists():
+        return None
+    text = strip_comments(OPPONENTS_HEADER.read_text())
+    pattern = re.compile(r"^\s*#define\s+(TRAINER_[A-Z0-9_]+)\s+(TRAINER_[A-Z0-9_]+)\b", re.M)
+    for clone_header, source_header in pattern.findall(text):
+        if source_header == trainer_id and clone_header != trainer_id:
+            return clone_header
+    return None
+
+
 def pokemon_preview_path(species: str) -> Path | None:
     folder = POKEMON_DIR / snake_name(species)
     for name in ("anim_front.png", "front.png", "icon.png"):
@@ -501,7 +556,7 @@ class PartyRepository:
 
 
 class PartyTab(ttk.Frame):
-    def __init__(self, parent: ttk.Notebook, title: str, path: Path, trainer_pics: dict[str, Path], pic_choices: list[str], species_choices: list[str], move_choices: list[str], item_choices: list[str], ability_choices: list[str], species_ability_choices: dict[str, list[str]], type_choices: list[str], nature_choices: list[str], ball_choices: list[str]) -> None:
+    def __init__(self, parent: ttk.Notebook, title: str, path: Path, trainer_pics: dict[str, Path], pic_choices: list[str], species_choices: list[str], move_choices: list[str], item_choices: list[str], ability_choices: list[str], species_ability_choices: dict[str, list[str]], type_choices: list[str], nature_choices: list[str], ball_choices: list[str], music_choices: list[str], ai_choices: list[str]) -> None:
         super().__init__(parent)
         self.repo = PartyRepository(path)
         self.trainer_pics = trainer_pics
@@ -514,6 +569,8 @@ class PartyTab(ttk.Frame):
         self.type_choices = type_choices
         self.nature_choices = nature_choices
         self.ball_choices = ball_choices
+        self.music_choices = music_choices
+        self.ai_choices = ai_choices
         self.current: TrainerBlock | None = None
         self.current_mon_index: int | None = None
         self.trainer_vars: dict[str, tk.StringVar] = {}
@@ -573,7 +630,8 @@ class PartyTab(ttk.Frame):
         trainer_controls = ttk.Frame(top)
         trainer_controls.grid(row=0, column=0, columnspan=3, sticky="ew", padx=8, pady=(6, 2))
         ttk.Button(trainer_controls, text="Save trainer", command=self.save_current).pack(side=tk.LEFT)
-        ttk.Button(trainer_controls, text="Clone", command=self.clone_opponent_header).pack(side=tk.LEFT, padx=6)
+        self.clone_button = ttk.Button(trainer_controls, text="Clone", command=self.clone_opponent_header)
+        self.clone_button.pack(side=tk.LEFT, padx=6)
 
         basics = ttk.LabelFrame(top, text="Basics")
         basics.grid(row=1, column=0, sticky="nsew", padx=8, pady=6)
@@ -606,9 +664,9 @@ class PartyTab(ttk.Frame):
         options = ttk.LabelFrame(top, text="Options")
         options.grid(row=1, column=2, sticky="nsew", padx=8, pady=6)
         ttk.Label(options, text="Music:").grid(row=0, column=0, sticky="w")
-        ttk.Entry(options, textvariable=self.trainer_vars["Music"], width=16).grid(row=0, column=1, sticky="ew", pady=2)
+        ttk.Combobox(options, textvariable=self.trainer_vars["Music"], values=self.music_choices, width=16).grid(row=0, column=1, sticky="ew", pady=2)
         ttk.Label(options, text="AI:").grid(row=1, column=0, sticky="w")
-        ttk.Entry(options, textvariable=self.trainer_vars["AI"], width=16).grid(row=1, column=1, sticky="ew", pady=2)
+        ttk.Combobox(options, textvariable=self.trainer_vars["AI"], values=self.ai_choices, width=16).grid(row=1, column=1, sticky="ew", pady=2)
         ttk.Checkbutton(options, text="Double Battle", variable=self.trainer_vars["Double Battle"], onvalue="Yes", offvalue="No").grid(row=2, column=0, columnspan=2, sticky="w")
         for row, key in enumerate(["Battle Type", "Mugshot", "Starting Status", "Difficulty"], start=3):
             ttk.Label(options, text=f"{key}:").grid(row=row, column=0, sticky="w")
@@ -724,6 +782,7 @@ class PartyTab(ttk.Frame):
     def reload(self) -> None:
         self.repo.load()
         self.refresh_trainers()
+        self.update_clone_button()
         messagebox.showinfo("Trainer Party Editor", "Arquivo recarregado.")
 
     def on_trainer_select(self, _event: object | None = None) -> None:
@@ -738,6 +797,17 @@ class PartyTab(ttk.Frame):
             var.set(items[index] if index < len(items) else "")
         self.refresh_party()
         self.update_trainer_preview()
+        self.update_clone_button()
+
+    def update_clone_button(self) -> None:
+        if self.current is None:
+            self.clone_button.configure(text="Clone", state=tk.DISABLED)
+            return
+        clone_header = find_opponent_header_clone(self.current.trainer_id)
+        if clone_header is None:
+            self.clone_button.configure(text="Clone", state=tk.NORMAL)
+        else:
+            self.clone_button.configure(text=f"Cloned: {clone_header}", state=tk.DISABLED)
 
     def refresh_party(self) -> None:
         self.party_list.delete(0, tk.END)
@@ -757,10 +827,6 @@ class PartyTab(ttk.Frame):
         self.held_item_var.set("")
         for var in self.mon_vars.values():
             var.set("")
-        if "Shiny" in self.mon_vars:
-            self.mon_vars["Shiny"].set("No")
-        if "Gigantamax" in self.mon_vars:
-            self.mon_vars["Gigantamax"].set("No")
         for var in self.iv_vars.values():
             var.set("")
         for var in self.ev_vars.values():
@@ -784,8 +850,6 @@ class PartyTab(ttk.Frame):
         self.held_item_var.set(mon.held_item)
         for key in MON_SIMPLE_FIELDS:
             value = get_field_case_insensitive(mon.fields, key)
-            if key in {"Shiny", "Gigantamax"} and not value:
-                value = "No"
             self.mon_vars[key].set(value)
         ivs = parse_stat_spread(get_field_case_insensitive(mon.fields, "IVs"))
         evs = parse_stat_spread(get_field_case_insensitive(mon.fields, "EVs"))
@@ -860,6 +924,11 @@ class PartyTab(ttk.Frame):
         if self.current is None:
             messagebox.showwarning("Trainer Party Editor", "Selecione um trainer primeiro.")
             return
+        clone_header = find_opponent_header_clone(self.current.trainer_id)
+        if clone_header is not None:
+            self.update_clone_button()
+            messagebox.showinfo("Clone", f"{self.current.trainer_id} ja foi clonado como {clone_header}.")
+            return
         new_header = simpledialog.askstring(
             "Clone",
             f"Novo HEADER para clonar {self.current.trainer_id}:",
@@ -883,10 +952,11 @@ class PartyTab(ttk.Frame):
         marker = "#endif  // GUARD_CONSTANTS_OPPONENTS_H"
         backup(OPPONENTS_HEADER)
         if marker in text:
-            text = text.replace(marker, line + "\n" + marker, 1)
+            text = re.sub(rf"\n*\s*{re.escape(marker)}", "\n" + line + marker, text, count=1)
         else:
-            text = text.rstrip() + "\n\n" + line
+            text = text.rstrip() + "\n" + line
         OPPONENTS_HEADER.write_text(text)
+        self.update_clone_button()
         messagebox.showinfo("Clone", f"Adicionado em opponents.h:\n{line.strip()}")
 
     def add_pokemon(self) -> None:
@@ -1091,11 +1161,13 @@ class TrainerPartyEditor(tk.Tk):
         type_choices = load_type_choices()
         nature_choices = load_nature_choices()
         ball_choices = load_ball_choices(item_choices)
+        music_choices = load_music_choices()
+        ai_choices = load_ai_choices()
         notebook = ttk.Notebook(self)
         notebook.pack(fill=tk.BOTH, expand=True)
-        notebook.add(PartyTab(notebook, "Trainers", NORMAL_PARTY, trainer_pics, pic_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices), text="Trainers")
+        notebook.add(PartyTab(notebook, "Trainers", NORMAL_PARTY, trainer_pics, pic_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices, music_choices, ai_choices), text="Trainers")
         if HARD_PARTY.exists():
-            notebook.add(PartyTab(notebook, "Hard Trainers", HARD_PARTY, trainer_pics, pic_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices), text="Hard Trainers")
+            notebook.add(PartyTab(notebook, "Hard Trainers", HARD_PARTY, trainer_pics, pic_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices, music_choices, ai_choices), text="Hard Trainers")
 
 
 if __name__ == "__main__":

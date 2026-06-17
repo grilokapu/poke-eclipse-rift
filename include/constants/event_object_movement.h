@@ -92,6 +92,7 @@
 #define MOVEMENT_TYPE_WATCH_PLAYER_OWE                 0x57
 #define MOVEMENT_TYPE_APPROACH_PLAYER_OWE              0x58
 #define MOVEMENT_TYPE_DESPAWN_OWE                      0x59
+//#define MOVEMENT_TYPE_EXCLAMATION					   0x5A
 #define NUM_MOVEMENT_TYPES                             0x5A
 
 #define MOVEMENT_ACTION_FACE_DOWN                       0x0

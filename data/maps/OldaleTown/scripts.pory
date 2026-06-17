@@ -1,6 +1,9 @@
 mapscripts OldaleTown_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag (FLAG_VISITED_OLDALE_TOWN)
+        if (flag(FLAG_SYLVARA_TOWN_RIVAL_DONE) && var(VAR_OLDALE_TOWN_STATE) == 0) {
+            setvar(VAR_OLDALE_TOWN_STATE, 1)
+        }
     }
 }
 
@@ -49,7 +52,7 @@ script SylvaraTown_Ralts_Cry {
     faceplayer
     showmonmugshot(SPECIES_RALTS, MUGSHOT_DOWN_RIGHT)
     setspeaker("Ralts")
-    msgbox("Ral Ral!")
+    msgbox("Tiii-rii!")
     waitmoncry
     hidemonmugshot
     movenpc(VAR_LAST_TALKED, Common_Movement_FaceLeft)
@@ -71,6 +74,72 @@ script SylvaraTown_Backpacker_Talk {
         case PT: msgbox("Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry, do quê ele ser acertado por\lum tijolo?", MSGBOX_NPC)
         case EN: msgbox("Did you know it's much healthier\nfor your Pokémon to eat a Sitrus\lBerry than to get hit by a brick?", MSGBOX_NPC)
         case ES: msgbox("¿Sabías que es mucho más saludable\npara tu Pokémon comer una Baya\lZidra que recibir un ladrillazo?", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_EventScript_Girl_Trigger {
+    lockall
+    playse(SE_PIN)
+    movenpc(LOCALID_SYLVARA_GIRL_2, Common_Movement_ExclamationMark)
+    waitse
+    pause(20)
+    moveplayer(Common_Movement_FaceRight)
+    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
+    if(var(VAR_TEMP_0) == 9) {
+        movenpc(LOCALID_SYLVARA_GIRL_2, Movement_Girl_GoNextPlayer_1)
+    } else {
+        movenpc(LOCALID_SYLVARA_GIRL_2, Movement_Girl_GoNextPlayer_2) 
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Espere um instante!\pTem certeza de que não está\nesquecendo algo antes de\lcontinuar?\pUma jornada é feita de muitos\npassos… e deixar algo inacabado\lpara trás pode trazer\larrependimentos depois.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Wait a moment!\pAre you sure you're not forgetting\nsomething before moving on?\pA journey is made of many steps…\nand leaving something unfinished\lbehind may lead to regrets later.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("¡Espera un momento!\p¿Estás seguro de que no estás\nolvidando algo antes de continuar?\pUn viaje está formado por muchos\npasos… y dejar algo sin terminar\lpuede traer arrepentimientos más\ladelante.", MSGBOX_AUTOCLOSE)
+    }
+    if(var(VAR_TEMP_0) == 9) {
+        movenpc(LOCALID_SYLVARA_GIRL_2, Movement_Girl_GoAway_AfterTalk_1)
+    } else {
+        movenpc(LOCALID_SYLVARA_GIRL_2, Movement_Girl_GoAway_AfterTalk_2)
+    }
+    moveplayer(Movement_PlayerWalk_RightFacingRight)
+    releaseall
+    end
+}
+
+movement Movement_PlayerWalk_RightFacingRight {
+    walk_right
+    face_right
+}
+
+movement Movement_Girl_GoNextPlayer_1 {
+    walk_up * 3
+    walk_left
+    face_left
+}
+
+movement Movement_Girl_GoNextPlayer_2 {
+    walk_up * 2
+    walk_left
+    face_left
+}
+
+movement Movement_Girl_GoAway_AfterTalk_1 {
+    walk_right
+    walk_down * 3
+    face_up
+}
+
+movement Movement_Girl_GoAway_AfterTalk_2 {
+    walk_right
+    walk_down * 2
+    face_up
+}
+
+script SylvaraTown_EventScript_Girl2_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dê sempre o seu melhor.\pE se o seu melhor de hoje for\napenas tirar uma soneca…\pTudo bem também.", MSGBOX_NPC)
+        case EN: msgbox("Always do your best.\pAnd if your best today is simply\ntaking a nap…\pThat's okay too.", MSGBOX_NPC)
+        case ES: msgbox("Da siempre lo mejor de ti.\pY si hoy lo mejor que puedes hacer\nes tomar una siesta…\pTambién está bien.", MSGBOX_NPC)
     }
     end
 }

@@ -1,0 +1,147 @@
+/*
+Hard/Lunatic trainer overrides.
+
+This file uses the same trainer syntax as src/data/trainers.party.
+Entries here default to Difficulty: Hard, so a trainer only needs the
+same identifier to override the Normal party when the current difficulty
+is DIFFICULTY_HARD or DIFFICULTY_LUNATIC.
+
+If a trainer is not listed here, the game falls back to src/data/trainers.party.
+
+Example:
+
+=== TRAINER_OLIVIA ===
+Name: OLIVIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Clamperl
+Level: 40
+- Water Pulse
+- Rain Dance
+- Whirlpool
+- Iron Defense
+*/
+
+=== TRAINER_RIVAL_SYLVARA_BEACH ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Viability
+
+Frigibax
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Naughty
+- Tackle
+- Icy Wind
+- Dragon Breath
+- Leer
+
+Starly
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Jolly
+- Growl
+- Tackle
+- Gust
+- Sand Attack
+
+
+=== TRAINER_RIVAL_SYLVARA_BEACH_GRASS ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Viability
+
+Chikorita
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Naughty
+- Tackle
+- Razor Leaf
+- Synthesis
+- Growl
+
+Starly
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Jolly
+- Growl
+- Tackle
+- Gust
+- Sand Attack
+
+=== TRAINER_RIVAL_SYLVARA_BEACH_WATER ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Viability
+
+Frigibax
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Naughty
+- Tackle
+- Icy Wind
+- Dragon Breath
+- Leer
+
+Starly
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Jolly
+- Growl
+- Tackle
+- Gust
+- Sand Attack
+
+
+=== TRAINER_RIVAL_SYLVARA_BEACH_FIRE ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Viability
+
+Frigibax
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Naughty
+- Tackle
+- Icy Wind
+- Dragon Breath
+- Leer
+
+Starly
+Level: 11
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+Nature: Jolly
+- Growl
+- Tackle
+- Gust
+- Sand Attack
+

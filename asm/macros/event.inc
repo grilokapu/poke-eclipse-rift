@@ -770,6 +770,16 @@
 	.endif
 	.endm
 
+	@ Starts a single trainer battle without intro text that continues to event_script even if the player loses.
+	@ The player's party is not healed automatically after losing.
+	.macro trainerbattle_continue_lost trainer:req, win_text:req, lose_text:req, event_script:req, music=TRUE
+	.if \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, NULL, FALSE, TRUE, FALSE, FALSE
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, NULL, FALSE, FALSE, FALSE, FALSE
+	.endif
+	.endm
+
 	@ Starts a double trainer battle. Takes a trainer, intro text, loss text, text for when you have too few pokemon
 	@ and an optional event script. When used with an event script you can pass in an optional flag to disable music
 	.macro trainerbattle_double trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req, event_script=FALSE, music=TRUE
@@ -779,6 +789,16 @@
 	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
 	.else
 	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC, LOCALID_NONE, \trainer, \intro_text, \lose_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, NULL, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE
+	.endif
+	.endm
+
+	@ Starts a double trainer battle without intro text that continues to event_script even if the player loses.
+	@ The player's party is not healed automatically after losing.
+	.macro trainerbattle_double_continue_lost trainer:req, win_text:req, lose_text:req, not_enough_pkmn_text:req, event_script:req, music=TRUE
+	.if \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE
 	.endif
 	.endm
 
@@ -2989,4 +3009,12 @@
 	.macro movecamera movement:req
 	applymovement LOCALID_CAMERA \movement
 	waitmovement LOCALID_CAMERA
+	.endm
+
+	.macro setemoji localId:req emoji:req
+	pause 20
+    playse SE_PIN
+    movenpc \localId, \emoji
+    waitse
+    pause 20
 	.endm

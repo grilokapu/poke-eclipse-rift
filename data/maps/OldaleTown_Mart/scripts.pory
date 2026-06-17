@@ -1,0 +1,58 @@
+mapscripts OldaleTown_Mart_MapScripts {
+    
+}
+
+script SylvaraTown_EventScript_Mart {
+    lock
+	faceplayer
+	switch(var(VAR_LANGUAGE)) {
+        case PT: message(gText_HowMayIServeYouPt)
+        case EN: message(gText_HowMayIServeYou)
+        case ES: message(gText_HowMayIServeYouEs)
+    }
+	waitmessage
+    if(flag(FLAG_ADVENTURE_STARTED)) {
+        pokemart(SylvaraTown_Mart_Pokemart_Expanded)
+    }
+    pokemart(SylvaraTown_Mart_Pokemart_Basic)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox(gText_PleaseComeAgainPt)
+        case EN: msgbox(gText_PleaseComeAgain)
+        case ES: msgbox(gText_PleaseComeAgainEs)
+    }
+	release
+	end
+}
+
+script SylvaraTown_EventScript_Mart_Woman {
+        switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma boa TREINADORA nunca sai do\nMART sem algumas POTIONS.\pVocê nunca sabe quando seu POKéMON\nvai precisar de ajuda no meio da\lestrada!", MSGBOX_NPC)
+        case EN: msgbox("A good TRAINER never leaves the\nMART without a few POTIONS.\pYou never know when your POKéMON\nmight need help out on the road!", MSGBOX_NPC)
+        case ES: msgbox("Una buena ENTRENADORA nunca sale\ndel MART sin algunas POTIONS.\p¡Nunca sabes cuándo tu POKéMON\nnecesitará ayuda en medio del\lcamino!", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_EventScript_Mart_Boy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Seu POKéMON já foi envenenado no\nmeio de uma caverna?\pAcredite, voltar correndo até um\nCENTRO POKéMON não é nada\ldivertido.\pPor isso eu sempre carrego alguns\nANTIDOTES comigo!", MSGBOX_NPC)
+        case EN: msgbox("Has your POKéMON ever been\npoisoned in the middle of a cave?\pTrust me, rushing back to a\nPOKéMON CENTER isn't fun at all.\pThat's why I always carry a few\nANTIDOTES with me!", MSGBOX_NPC)
+        case ES: msgbox("¿Alguna vez tu POKéMON ha sido\nenvenenado en medio de una cueva?\pCréeme, correr de vuelta a un\nCENTRO POKéMON no es nada\ldivertido.\p¡Por eso siempre llevo algunos\nANTIDOTES conmigo!", MSGBOX_NPC)
+    }
+    end
+}
+
+mart SylvaraTown_Mart_Pokemart_Basic {
+    ITEM_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+}
+
+mart SylvaraTown_Mart_Pokemart_Expanded {
+    ITEM_POKE_BALL
+    ITEM_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+}

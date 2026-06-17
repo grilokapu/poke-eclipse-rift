@@ -35,6 +35,7 @@
 #include "constants/moves.h"
 #include "constants/songs.h"
 #include "constants/trainer_types.h"
+#include "constants/vars.h"
 
 #define NUM_FORCED_MOVEMENTS 22
 #define NUM_ACRO_BIKE_COLLISIONS 5
@@ -1586,8 +1587,40 @@ u16 GetRivalAvatarGraphicsIdByStateIdAndGender(u8 state, enum Gender gender)
         return sRivalAvatarGfxIds[state][gender];
 }
 
+static u16 GetCustomGraphicsIdByState(u8 state)
+{
+    switch (state)
+    {
+    case PLAYER_AVATAR_STATE_NORMAL:
+        return VarGet(VAR_PLAYER_WALKRUN);
+    case PLAYER_AVATAR_STATE_MACH_BIKE:
+        return VarGet(VAR_PLAYER_BIKING);
+    case PLAYER_AVATAR_STATE_ACRO_BIKE:
+        return VarGet(VAR_PLAYER_ACRO_BIKING);
+    case PLAYER_AVATAR_STATE_SURFING:
+        return VarGet(VAR_PLAYER_SURFING);
+    case PLAYER_AVATAR_STATE_UNDERWATER:
+        return VarGet(VAR_PLAYER_UNDERWATER);
+    case PLAYER_AVATAR_STATE_FIELD_MOVE:
+        return VarGet(VAR_PLAYER_HM_USE);
+    case PLAYER_AVATAR_STATE_FISHING:
+        return VarGet(VAR_PLAYER_FISHING);
+    case PLAYER_AVATAR_STATE_WATERING:
+        return VarGet(VAR_PLAYER_WATERING);
+    case PLAYER_AVATAR_STATE_VSSEEKER:
+        return VarGet(VAR_PLAYER_VS_SEEKER);
+    default:
+        return 0;
+    }
+}
+
 u16 GetPlayerAvatarGraphicsIdByStateIdAndGender(u8 state, enum Gender gender)
 {
+    u16 graphicsId = GetCustomGraphicsIdByState(state);
+
+    if (graphicsId != 0)
+        return graphicsId;
+
     return sPlayerAvatarGfxIds[state][gender];
 }
 
@@ -1685,9 +1718,20 @@ void SetPlayerAvatarStateMask(u8 flags)
 static u8 GetPlayerAvatarStateTransitionByGraphicsId(u16 graphicsId, u8 gender)
 {
     u8 i;
+    static const u8 sPlayerAvatarStates[] =
+    {
+        PLAYER_AVATAR_STATE_NORMAL,
+        PLAYER_AVATAR_STATE_MACH_BIKE,
+        PLAYER_AVATAR_STATE_ACRO_BIKE,
+        PLAYER_AVATAR_STATE_SURFING,
+        PLAYER_AVATAR_STATE_UNDERWATER,
+    };
 
     for (i = 0; i < ARRAY_COUNT(sPlayerAvatarGfxToStateFlag[0]); i++)
     {
+        if (GetCustomGraphicsIdByState(sPlayerAvatarStates[i]) == graphicsId)
+            return sPlayerAvatarGfxToStateFlag[gender][i].playerFlag;
+
         if (sPlayerAvatarGfxToStateFlag[gender][i].graphicsId == graphicsId)
             return sPlayerAvatarGfxToStateFlag[gender][i].playerFlag;
     }
@@ -1702,7 +1746,14 @@ u16 GetPlayerAvatarGraphicsIdByCurrentState(void)
     for (i = 0; i < ARRAY_COUNT(sPlayerAvatarGfxToStateFlag[0]); i++)
     {
         if (sPlayerAvatarGfxToStateFlag[gPlayerAvatar.gender][i].playerFlag & flags)
+        {
+            u16 graphicsId = GetCustomGraphicsIdByState(i);
+
+            if (graphicsId != 0)
+                return graphicsId;
+
             return sPlayerAvatarGfxToStateFlag[gPlayerAvatar.gender][i].graphicsId;
+        }
     }
     return 0;
 }

@@ -1,0 +1,38 @@
+/*
+Hard/Lunatic trainer overrides.
+
+This file uses the same trainer syntax as src/data/trainers.party.
+Entries here default to Difficulty: Hard, so a trainer only needs the
+same identifier to override the Normal party when the current difficulty
+is DIFFICULTY_HARD or DIFFICULTY_LUNATIC.
+
+If a trainer is not listed here, the game falls back to src/data/trainers.party.
+
+Example:
+
+=== TRAINER_OLIVIA ===
+Name: OLIVIA
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Clamperl
+Level: 40
+- Water Pulse
+- Rain Dance
+- Whirlpool
+- Iron Defense
+*/
+
+=== TRAINER_RIVAL_SYLVARA_BEACH ===
+Name: RIVAL SYLVAR
+Class: Pkmn Trainer
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+

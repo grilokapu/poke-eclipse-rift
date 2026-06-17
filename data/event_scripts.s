@@ -1836,3 +1836,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 
 	.include "data/maps/PendantForest/scripts.inc"
 	.include "data/scripts/wild_encounter.inc"
+
+	.include "data/maps/SylvaraTown_House3/scripts.inc"
+
+	.include "data/maps/SylvaraBeach/scripts.inc"

@@ -126,7 +126,7 @@
 #define VAR_ROUTE1_HIKARI_EVENT                          0x4068 // New Added Var
 #define VAR_ROUTE110_STATE                               0x4069
 #define VAR_ROUTE111_STATE                               0x406A // Unused Var
-#define VAR_ROUTE112_STATE                               0x406B // Unused Var
+#define VAR_ROUTE2_MEETING_GIOVANNI_STATE                0x406B // Unused Var
 #define VAR_ROUTE113_STATE                               0x406C // Unused Var
 #define VAR_ROUTE114_STATE                               0x406D // Unused Var
 #define VAR_ROUTE115_STATE                               0x406E // Unused Var
@@ -238,8 +238,8 @@
 #define VAR_SOOTOPOLIS_WALLACE_STATE                     0x40D8
 #define VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0x40D9
 #define VAR_REGISTER_BIRCH_STATE                         0x40DA
-#define VAR_UNUSED_0x40DB                                0x40DB // Unused Var
-#define VAR_UNUSED_0x40DC                                0x40DC // Unused Var
+#define VAR_TRAINERCARD_MALE                             0x40DB // Custom male front trainer pic
+#define VAR_TRAINERCARD_FEMALE                           0x40DC // Custom female front trainer pic
 #define VAR_GIFT_PICHU_SLOT                              0x40DD
 #define VAR_GIFT_UNUSED_1                                0x40DE // Var is written to, but never read
 #define VAR_GIFT_UNUSED_2                                0x40DF // Var is written to, but never read
@@ -248,7 +248,7 @@
 #define VAR_GIFT_UNUSED_5                                0x40E2 // Var is written to, but never read
 #define VAR_GIFT_UNUSED_6                                0x40E3 // Var is written to, but never read
 #define VAR_GIFT_UNUSED_7                                0x40E4 // var is written to, but never read
-#define VAR_UNUSED_0x40E5                                0x40E5 // Unused Var
+#define VAR_BACKSPRITE_SWITCH                            0x40E5 // Custom player battle backsprite
 #define VAR_DAILY_SLOTS                                  0x40E6
 #define VAR_DAILY_WILDS                                  0x40E7
 #define VAR_DAILY_BLENDER                                0x40E8
@@ -266,15 +266,15 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
+#define VAR_PLAYER_WALKRUN                               0x40F7 // Custom player walking/running sprite
+#define VAR_PLAYER_BIKING                                0x40F8 // Custom player Mach Bike sprite
+#define VAR_PLAYER_ACRO_BIKING                           0x40F9 // Custom player Acro Bike sprite
+#define VAR_PLAYER_SURFING                               0x40FA // Custom player surfing sprite
+#define VAR_PLAYER_HM_USE                                0x40FB // Custom player field move sprite
+#define VAR_PLAYER_FISHING                               0x40FC // Custom player fishing sprite
+#define VAR_PLAYER_WATERING                              0x40FD // Custom player watering sprite
+#define VAR_PLAYER_VS_SEEKER                             0x40FE // Custom player Vs. Seeker sprite
+#define VAR_PLAYER_UNDERWATER                            0x40FF // Custom player underwater sprite
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)

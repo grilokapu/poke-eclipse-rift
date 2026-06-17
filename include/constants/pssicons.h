@@ -10,6 +10,8 @@ enum pssicons {
     PSS_ICON_SORCERER,
     PSS_ICON_LUCIEN,
     PSS_ICON_SCIENTIST,
+    PSS_ICON_JOY,
+    PSS_ICON_GIOVANNI,
 };
 
 #endif // GUARD_PSS_ICONS_CONST_H

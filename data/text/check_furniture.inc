@@ -22,6 +22,14 @@ Text_ShopShelf:
 	.string "The shelves brim with all sorts of\n"
 	.string "POKéMON merchandise.$"
 
+Text_ShopShelfPt:
+	.string "As prateleiras estão repletas de\n"
+	.string "todo tipo de mercadorias POKéMON.$"
+
+Text_ShopShelfEs:
+	.string "Las estanterías están llenas de\n"
+	.string "toda clase de productos POKéMON.$"
+
 Text_Blueprint:
 	.string "A blueprint of some sort?\n"
 	.string "It's too complicated!$"

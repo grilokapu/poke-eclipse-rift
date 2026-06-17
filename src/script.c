@@ -5,6 +5,7 @@
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "fieldmap.h"
+#include "field_screen_effect.h"
 #include "field_weather.h"
 #include "menu.h"
 #include "metaprogram.h"
@@ -109,6 +110,7 @@ void SetupNativeScript(struct ScriptContext *ctx, bool8 (*ptr)(void))
 
 void StopScript(struct ScriptContext *ctx)
 {
+    assertf(!FuncIsActiveTask(Task_WarpAndLoadMap), "Leaving script while a warp is in progress: try adding a waitstate");
     ctx->mode = SCRIPT_MODE_STOPPED;
     ctx->scriptPtr = NULL;
 }
@@ -1512,6 +1514,52 @@ void CreateStoneEdge(void)
         gSprites[StoneEdgeId].oam.priority = 2;
         gSprites[StoneEdgeId].subpriority = 0;
     }
+}
+
+static const u8 gText_Moco[] = _("Moço");
+static const u8 gText_Moca[] = _("Moça");
+static const u8 gText_Mister[] = _("Mister");
+static const u8 gText_Miss[] = _("Miss");
+static const u8 gText_Senor[] = _("Señor");
+static const u8 gText_Senora[] = _("Señora");
+
+void MissorMisterString(void)
+{
+    u8 gender = gPlayerAvatar.gender;
+    bool8 language = GET_LANGUAGE();
+    const u8 *mister;
+    const u8 *miss;
+
+    if (language == PT)
+    {
+        mister = gText_Moco;
+        miss = gText_Moca;
+    }
+    else if (language == ES)
+    {
+        mister = gText_Senor;
+        miss = gText_Senora;
+    }
+    else
+    {
+        mister = gText_Mister;
+        miss = gText_Miss;
+    }
+
+    StringCopy(gStringVar1, (gender == MALE) ? mister : miss);
+}
+
+void GetFirstPartyMonGraphicsId(void)
+{
+    struct Pokemon *mon = &gPlayerParty[0];
+
+    gSpecialVar_0x8000 = GetMonData(mon, MON_DATA_SPECIES) + OBJ_EVENT_MON;
+
+    if (GetMonData(mon, MON_DATA_IS_SHINY))
+        gSpecialVar_0x8000 += OBJ_EVENT_MON_SHINY;
+
+    if (GetMonGender(mon) == MON_FEMALE)
+        gSpecialVar_0x8000 += OBJ_EVENT_MON_FEMALE;
 }
 
 // DW Scripts End

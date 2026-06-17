@@ -430,9 +430,10 @@ generated: $(AUTO_GEN_TARGETS)
 
 %.s:   ;
 %.png: ;
-%.pal: ;
 %.wav: ;
 %.pory: ;
+%.pal: %.pla
+	@touch $@
 
 %.1bpp:     %.png  ; $(GFX) $< $@
 %.4bpp:     %.png  ; $(GFX) $< $@

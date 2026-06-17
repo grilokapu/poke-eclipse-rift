@@ -231,6 +231,7 @@ script PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion {
         call(PineveilTown_ProfessorHikariLab_ReturnBallGraphics)
         goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
     } else {
+        setflag(FLAG_ADVENTURE_IS_MONOTYPE)
         goto(PineveilTown_ProfessorHikariLab_WichMonYouChoose)
     }
 }
@@ -458,6 +459,7 @@ script PineveilTown_ProfessorHikariLab_WaterPokeball {
 
 script PineveilTown_ProfessorHikariLab_MonChoosed {
     setflag(FLAG_SYS_POKEMON_GET)
+    call(PineveilTown_ProfessorHikariLab_ReturnBallGraphics)
     playfanfare(MUS_LEVEL_UP)
     switch (var(VAR_LANGUAGE)) {
         case PT: msgbox("Parabéns!\p{STR_VAR_1} agora é o seu Pokémon\ninicial!")
@@ -492,6 +494,7 @@ script ReleaseAllScript {
 }
 
 script PineveilTown_ProfessorHikariLab_RivalChooseTurn {
+    call(PineveilTown_ProfessorHikariLab_ReturnBallGraphics)
     playse(SE_PIN)
     movenpc(LOCALID_RIVAL_LAB, Movement_RivalExclaimToPlayer)
     waitse

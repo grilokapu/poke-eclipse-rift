@@ -111,8 +111,6 @@ Ability: Swarm
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 EVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 8 Spe
-Shiny: No
-Gigantamax: No
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_2 ===
 Name: Dilan
@@ -143,129 +141,115 @@ AI: Check Bad Move
 Paras
 Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Shiny: No
-Gigantamax: No
 
 Paras
 Level: 5
-Shiny: No
-Gigantamax: No
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_4 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Name: Lawrence
+Class: Psychic
+Pic: Psychic M
 Gender: Male
-Music: Aqua
+Music: Suspicious
 Double Battle: No
 AI: Check Bad Move
 
-Carvanha
-Level: 32
+Wynaut
+Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shiny: No
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_1 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Name: Lucien
+Class: Rival
+Pic: Lucien
 Gender: Male
-Music: Aqua
+Music: Male
 Double Battle: No
 AI: Check Bad Move
+Mugshot: Blue
 
-Poochyena
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_SEAFLOOR_CAVERN_2 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Carvanha
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_SEAFLOOR_CAVERN_3 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GABRIELLE_1 ===
-Name: GABRIELLE
-Class: Pkmn Breeder
-Pic: Pokemon Breeder F
-Gender: Female
-Music: Female
-Double Battle: No
-AI: Check Bad Move
-
-Skitty
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Poochyena
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Zigzagoon
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Lotad
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Seedot
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Taillow
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_PETALBURG_WOODS ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
+Frigibax
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_MARCEL ===
-Name: MARCEL
-Class: Cooltrainer
-Pic: Cooltrainer M
+=== TRAINER_GRUNT_SEAFLOOR_CAVERN_2 ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
 Gender: Male
-Music: Cool
-Items: Hyper Potion
+Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Check Bad Move
+Mugshot: Blue
 
-Manectric
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Chikorita
+Level: 9
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Shiftry
-Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+=== TRAINER_GRUNT_SEAFLOOR_CAVERN_3 ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+Mugshot: Blue
+
+Quaxly
+Level: 9
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_GABRIELLE_1 ===
+Name: Lucien
+Class: Rival
+Pic: Lucien
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+Mugshot: Blue
+
+Tepig
+Level: 9
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_GRUNT_PETALBURG_WOODS ===
+Name: Giovanni
+Class: Pkmn Trainer 1
+Pic: Young Giovanni
+Gender: Male
+Music: Suspicious
+Double Battle: No
+AI: Check Bad Move
+Mugshot: Blue
+
+Meowth
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Nidoran m
+Level: 12
+
+=== TRAINER_MARCEL ===
+Name: Mariana
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Items: Poke Ball
+Double Battle: No
+AI: Check Bad Move
+
+Snubbull
+Level: 10
+
+Snubbull
+Level: 10
+
+Lechonk
+Level: 10
 
 === TRAINER_ALBERTO ===
 Name: ALBERTO

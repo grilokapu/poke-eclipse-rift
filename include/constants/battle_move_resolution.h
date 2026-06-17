@@ -57,6 +57,7 @@ enum CancelerState
     CANCELER_MOVE_EFFECT_FAILURE_TARGET,
     CANCELER_POWDER_STATUS,
     CANCELER_PRIORITY_BLOCK,
+    CANCELER_INTERRUPTIBLE_MOVES,
     CANCELER_PROTEAN,
     CANCELER_EXPLODING_DAMP,
     CANCELER_EXPLOSION,
@@ -105,7 +106,8 @@ enum MoveEndState
     MOVEEND_HP_THRESHOLD_ITEMS_TARGET, // Activation only during a multi hit move / ability (Parental Bond)
     MOVEEND_MULTIHIT_MOVE,
     MOVEEND_DEFROST,
-    MOVEEND_SHEER_FORCE, // If move is Sheer Force affected, skip to Hit Escape + One
+    MOVEEND_MOVE_BLOCK_RECOIL, // Recoil effects should still happen even if Sheer Force applies
+    MOVEEND_SHEER_FORCE, // If move is Sheer Force affected, jump to effects that are not suppressed
     MOVEEND_MOVE_BLOCK,
     MOVEEND_ITEM_EFFECTS_ATTACKER_2,
     MOVEEND_ABILITY_EFFECT_FOES_FAINTED, // Moxie-like abilities / Battle Bond / Magician

@@ -1,0 +1,24 @@
+mapscripts OldaleTown_House1_MapScripts {
+    
+}
+
+script SylvaraTown_House2_EventScript_Woman_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu Arcanine adorava lutar, mas\nficava furioso quando reduziam\lseus atributos.\pEntão dei a ele um {COLOR}{BLUE}CLEAR AMULET{COLOR}{DARK_GRAY}.\pAgora ele ignora essas truques e\ncontinua atacando com tudo!", MSGBOX_NPC)
+        case EN: msgbox("My Arcanine loved battling, but it\nhated having its stats lowered.\pSo I gave it a {COLOR}{BLUE}CLEAR AMULET{COLOR}{DARK_GRAY}.\pNow it ignores those tricks and\nkeeps fighting at full strength!", MSGBOX_NPC)
+        case ES: msgbox("A mi Arcanine le encantaba\ncombatir, pero odiaba que\lredujeran sus estadísticas.\pAsí que le di un {COLOR}{BLUE}AMULETO CLARO{COLOR}{DARK_GRAY}.\p¡Ahora ignora esos trucos y sigue\nluchando con toda su fuerza!", MSGBOX_NPC)
+    }
+    end
+}
+
+script SylvaraTown_EventScript_Arcanine {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_ARCANINE, MUGSHOT_DOWN_RIGHT)
+    setspeaker("Arcanine")
+    msgbox("Grrrraaaooouu!")
+    waitmoncry
+    hidemonmugshot
+    release
+    end
+}

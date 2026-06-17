@@ -1761,7 +1761,15 @@
     "es::G-max Centiskorch attack. Traps foes in flames.": "Ataque G-max Centiskorch. Atrapa enemigos en llamas.",
     "es::G-max Duraludon attack. Reduces target's PP.": "Ataque G-max Duraludon. Reduce los PP del objetivo.",
     "es::G-max Copperajah attack. Scatters sharp spikes.": "Ataque G-max Copperajah. Esparce púas afiladas.",
-    "es::G-max Urshifu attack. Ignores Max Guard.": "Ataque G-max Urshifu. Ignora a Max Guard."
+    "es::G-max Urshifu attack. Ignores Max Guard.": "Ataque G-max Urshifu. Ignora a Max Guard.",
+    "pt::Hits and scatters Spikes around foes.": "Atinge e espalha Spikes ao redor dos inimigos.",
+    "pt::May poison, paralyze, or put the foe to sleep.": "Pode envenenar, paralisar ou colocar o inimigo para dormir.",
+    "pt::Evades damage, reducing Attack if struck.": "Evita o dano, reduzindo o Ataque se for atingido.",
+    "pt::Hits and sets floating stones around foes.": "Atinge e coloca pedras flutuantes ao redor dos inimigos.",
+    "es::Hits and sets floating stones around foes.": "Golpea y coloca piedras flotantes alrededor de los enemigos.",
+    "es::Hits and scatters Spikes around foes.": "Golpea y dispersa púas alrededor de los enemigos.",
+    "es::Evades damage, reducing Attack if struck.": "Evade el daño y reduce el ataque si es golpeado.",
+    "es::May poison, paralyze, or put the foe to sleep.": "Puede envenenar, paralizar o dormir al enemigo."
   },
   "pokeapi_moves": {
     "pound": "Destructor",

@@ -1,0 +1,230 @@
+mapscripts Route102_MapScripts {
+    
+}
+
+script Route2_EventScript_Lass_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_LASS_MARIANA, "Caçar Pokémon é uma ótima desculpa\npara adiar outras coisas, não\lacha?", "Eu tentei procrastinar hoje…\pMas parece que algumas coisas\nsimplesmente não podem esperar.")
+            msgbox("Sabe o que é realmente\nsurpreendente?\pEu sempre planejo procrastinar\nmais tarde.")
+        case EN:
+            trainerbattle_single(TRAINER_LASS_MARIANA, "Hunting Pokémon is a great excuse\nto put other things off, don't you\lthink?", "I tried procrastinating today…\pBut it seems some things just\ncan't wait.")
+            msgbox("You know what's really surprising?\pI always plan to procrastinate\nlater.")
+        case ES:
+            trainerbattle_single(TRAINER_LASS_MARIANA, "Cazar Pokémon es una gran excusa\npara dejar otras cosas para\ldespués, ¿no crees?", "Intenté procrastinar hoy…\pPero parece que hay cosas que\nsimplemente no pueden esperar.")
+            msgbox("¿Sabes qué es realmente\nsorprendente?\pSiempre planeo procrastinar más\ntarde.")
+    }
+    release
+    end
+}
+
+const PLAYER_X_POS = VAR_0x8004
+const PLAYER_Y_POS = VAR_0x8005
+
+script Route2_EventScript_Meeting_Giovanni {
+    lockall
+    moveplayer(Common_Movement_FaceLeft)
+    special(SpawnCameraObject)
+    getplayerxy(PLAYER_X_POS, PLAYER_Y_POS)
+    if(var(PLAYER_Y_POS) == 13) {
+        movecamera(moves(walk_left * 7, walk_up))
+    } else {
+        movecamera(moves(walk_left * 7, walk_up * 2))
+    }
+    special(RemoveCameraObject)
+    pause(30)
+    playmoncry(SPECIES_MEOWTH, 0)
+    movenpc(LOCALID_ROUTE2_MEOWTH, moves(walk_fast_up * 2, jump_up))
+    playse(SE_EFFECTIVE)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meowth usou {COLOR}{BLUE}Scratch{COLOR}{DARK_GRAY}.")
+        case EN: msgbox("Meowth used {COLOR}{BLUE}Scratch{COLOR}{DARK_GRAY}.")
+        case ES: msgbox("Meowth usó {COLOR}{BLUE}Arañazo{COLOR}{DARK_GRAY}.")
+    }
+    movenpc(LOCALID_ROUTE2_MEOWTH, moves(walk_faster_down_backwards * 3))
+    waitmessage
+    closemessage
+    pause(20)
+    playmoncry(SPECIES_NIDORAN_M, 0)
+    movenpc(LOCALID_ROUTE2_NIDORAN, moves(walk_fast_down * 2, jump_down))
+    playse(SE_EFFECTIVE)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Nidoran usou {COLOR}{BLUE}Peck{COLOR}{DARK_GRAY}.")
+        case EN: msgbox("Nidoran used {COLOR}{BLUE}Peck{COLOR}{DARK_GRAY}.")
+        case ES: msgbox("Nidoran usó {COLOR}{BLUE}Picotazo{COLOR}{DARK_GRAY}.")
+    }
+    movenpc(LOCALID_ROUTE2_NIDORAN, moves(walk_faster_up_backwards * 3))
+    waitmessage
+    closemessage
+    pause(20)
+    applymovement(LOCALID_ROUTE2_MEOWTH, moves(walk_up))
+    applymovement(LOCALID_ROUTE2_NIDORAN, moves(walk_down))
+    waitmovementall
+    movenpc(LOCALID_ROUTE2_MEOWTH, moves(jump_up, jump_down_backwards))
+    movenpc(LOCALID_ROUTE2_NIDORAN, moves(jump_down, jump_up_backwards))
+    movenpc(LOCALID_ROUTE2_MEOWTH, moves(jump_up, jump_down_backwards, walk_faster_down_backwards))
+    movenpc(LOCALID_ROUTE2_NIDORAN, moves(jump_down, jump_up_backwards, walk_faster_up_backwards))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Não.\pDe novo.\pAtaques rápidos não servem para\nnada se forem previsíveis.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "No.\pNot again.\pFast attacks don't help if they're\npredictable.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "No.\pOtra vez.\pLos ataques rápidos no sirven para\nnada si son previsibles.", MSGBOX_AUTOCLOSE)
+    }
+    special(SpawnCameraObject)
+    movecamera(moves(walk_left * 2))
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_left * 2, face_up))
+    special(RemoveCameraObject)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Você precisa pensar antes de agir.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "You need to think before you act.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Necesitas pensar antes de actuar.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    showmonmugshot(SPECIES_NIDORAN_M, MUGSHOT_DOWN_RIGHT)
+    setspeaker("Nidoran$")
+    msgbox("Nee-doh!\p", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    pause(20)
+    special(SpawnCameraObject)
+    movecamera(moves(walk_down))
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_down, face_down))
+    special(RemoveCameraObject)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "E você…\pPare de brincar e leve isso a\nsério.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "And you…\pStop messing around and take this\nseriously.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Y tú…\pDeja de jugar y tómate esto en\nserio.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    showmonmugshot(SPECIES_MEOWTH, MUGSHOT_DOWN_RIGHT)
+    setspeaker("Meowth$")
+    msgbox("Meeow!\p", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    pause(20)
+    special(SpawnCameraObject)
+    if(var(PLAYER_Y_POS) == 13) {
+        movecamera(moves(walk_right * 9))
+    } else {
+        movecamera(moves(walk_right * 9, walk_down))
+    }
+    special(RemoveCameraObject)
+    goto(Route2_EventScript_Meeting_Giovanni_Continue)
+}
+
+const LOCALID_PLAYER_MON = 11
+
+script Route2_EventScript_Meeting_Giovanni_Continue {
+    if(var(PLAYER_Y_POS) == 13) {
+        moveplayer(moves(walk_left * 2, walk_down, walk_left * 5, walk_up, face_left))
+    } else {
+        moveplayer(moves(walk_left * 7, walk_up, face_left))
+    }
+    pause(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(emote_exclamation_mark, face_right))
+    waitse
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Hm?\pVocê está aí faz tempo?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Hm?\pHave you been there for a while?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "¿Hm?\p¿Llevas mucho tiempo ahí?", MSGBOX_AUTOCLOSE)
+    }
+    pause(30)
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_right, face_right))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Então estava assistindo.\nO que achou?\pEles ainda cometem erros demais.\pMas eu vou transformá-los nos\nPokémon mais fortes de Aetheris.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "So I was watching.\nWhat did you think?\pThey still make too many mistakes.\pBut I will turn them into the\nstrongest Pokémon in Aetheris.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Entonces estaba mirando.\n¿Qué te pareció?\pTodavía cometen demasiados\nerrores.\pPero yo los convertiré en los\nPokémon más fuertes de Aetheris.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(emoji_confident_smiling))
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Aliás…\pVocê também é um treinador, não é?\pÓtimo.\pEu preciso testar algumas\nestratégias.\pQue tal uma batalha?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "By the way…\pYou're a trainer too, aren't you?\pGreat.\pI need to test some strategies.\pHow about a battle?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Por cierto…\pTú también eres un entrenador,\n¿no?\pGenial.\pNecesito probar algunas\nestrategias.\p¿Qué tal un combate?", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_ROUTE2_NIDORAN, moves(enter_pokeball))
+    movenpc(LOCALID_ROUTE2_MEOWTH, moves(enter_pokeball))
+    removeobject(LOCALID_ROUTE2_NIDORAN)
+    removeobject(LOCALID_ROUTE2_MEOWTH)
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_left, walk_up * 2, face_down))
+    moveplayer(moves(walk_left * 2, walk_down, face_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Me mostre o que você e seus\nPokémon conseguem fazer!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Show me what you and your Pokémon\ncan do!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "¡Muéstrame lo que tú y tus Pokémon\npueden hacer!", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    addobject(LOCALID_ROUTE2_MEOWTH)
+    setobjectxy(LOCALID_ROUTE2_MEOWTH, 25, 12)
+    movenpc(LOCALID_ROUTE2_MEOWTH, moves(exit_pokeball,face_down))
+    callnative(GetFirstPartyMonGraphicsId)
+    createspobject(VAR_0x8000, LOCALID_PLAYER_MON, 25, 13, MOVEMENT_TYPE_FACE_UP)
+    goto(Route2_EventScript_Meeting_Giovanni_Battle)
+}
+
+const TRAINER_GIOVANNI = TRAINER_ROUTE2_YOUNG_GIOVANNI
+script Route2_EventScript_Meeting_Giovanni_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_continue_lost(TRAINER_GIOVANNI, "Heh…\pEntão foi você quem me\nsurpreendeu.\pGostei disso.", "Interessante.\pVocê tem potencial.\pMas potencial sozinho não vence\nbatalhas.\pContinue treinando.", Route2_EventScript_Meeting_Giovanni_End)
+        case EN: trainerbattle_continue_lost(TRAINER_GIOVANNI, "Heh…\pSo it was you who surprised me.\pI liked that.", "Interesting.\pYou have potential.\pBut potential alone doesn't win\nbattles.\pKeep training.", Route2_EventScript_Meeting_Giovanni_End)
+        case ES: trainerbattle_continue_lost(TRAINER_GIOVANNI, "Je…\pAsí que fuiste tú quien me\nsorprendió.\pMe gustó eso.", "Interesante.\pTienes potencial.\pPero el potencial solo no gana\ncombates.\pSigue entrenando.", Route2_EventScript_Meeting_Giovanni_End)
+    }
+    release
+    end
+}
+
+script Route2_EventScript_Meeting_Giovanni_End {
+    applymovement(LOCALID_ROUTE2_MEOWTH, moves(enter_pokeball))
+    applymovement(LOCALID_PLAYER_MON, moves(enter_pokeball))
+    waitmovementall
+    removeobject(LOCALID_ROUTE2_MEOWTH)
+    removeobject(LOCALID_PLAYER_MON)
+        switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Foi divertido.\pA maioria dos treinadores só pensa\nem força.\pVocê parece pensar também.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "That was fun.\pMost trainers only think about\nstrength.\pYou seem to think as well.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Fue divertido.\pLa mayoría de los entrenadores\nsolo piensan en la fuerza.\pTú pareces pensar también.", MSGBOX_AUTOCLOSE)
+    }
+    applymovement(LOCALID_ROUTE2_GIOVANNI, moves(walk_down, face_down))
+    applymovement(LOCALID_PLAYER, moves(walk_up, face_up))
+    waitmovementall
+    pause(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(emoji_confiant))
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Meu nome é Giovanni.\nPrazer em conhecê-lo.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "My name is Giovanni.\nNice to meet you.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Mi nombre es Giovanni.\nUn placer conocerte.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    playse(SE_PIN)
+    movenpc(LOCALID_PLAYER, moves(emoji_wink))
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Vou me tornar alguém importante um\ndia.\pPode soar arrogante…\pMas eu sei exatamente onde quero\nchegar.\pE não pretendo parar até\nconseguir.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "I'm going to become someone\nimportant someday.\pIt might sound arrogant…\pBut I know exactly where I want to\ngo.\pAnd I don't plan on stopping until\nI get there.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Voy a convertirme en alguien\nimportante algún día.\pPuede sonar arrogante…\pPero sé exactamente a dónde quiero\nllegar.\pY no pienso detenerme hasta\nlograrlo.", MSGBOX_AUTOCLOSE)
+    }
+    setemoji(LOCALID_ROUTE2_GIOVANNI, moves(emoji_confident))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Pokémon fortes.\pTreinadores fortes.\pUm mundo forte.\pÉ isso que eu quero construir.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Strong Pokémon.\pStrong trainers.\pA strong world.\pThat's what I want to build.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Pokémon fuertes.\pEntrenadores fuertes.\pUn mundo fuerte.\pEso es lo que quiero construir.", MSGBOX_AUTOCLOSE)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Espero que a gente se encontre de\nnovo, {PLAYER}.\pDa próxima vez, eu vou vencer.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "I hope we meet again, {PLAYER}.\pNext time, I'll win.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Espero que nos volvamos a\nencontrar, {PLAYER}.\pLa próxima vez, ganaré yo.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_left * 12))
+    setflag(FLAG_ROUTE2_GIOVANNI)
+    setvar(VAR_ROUTE2_MEETING_GIOVANNI_STATE, 1)
+    release
+    end
+}

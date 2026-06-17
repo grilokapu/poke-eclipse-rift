@@ -352,6 +352,7 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WATCH_PLAYER_OWE] = MovementType_OverworldWildEncounter_WatchPlayer,
     [MOVEMENT_TYPE_APPROACH_PLAYER_OWE] = MovementType_OverworldWildEncounter_ApproachPlayer,
     [MOVEMENT_TYPE_DESPAWN_OWE] = MovementType_OverworldWildEncounter_Despawn,
+    //[MOVEMENT_TYPE_EXCLAMATION] = 
 };
 
 static const bool8 sMovementTypeHasRange[NUM_MOVEMENT_TYPES] = {
@@ -488,6 +489,7 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
     [MOVEMENT_TYPE_WATCH_PLAYER_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_APPROACH_PLAYER_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_DESPAWN_OWE] = DIR_SOUTH,
+    //[MOVEMENT_TYPE_EXCLAMATION] = DIR_SOUTH,
 };
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -500,6 +502,17 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #include "data/object_events/object_event_graphics_info_followers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
+    {gObjectEventPal_Lass,                  OBJ_EVENT_PAL_TAG_LASS},
+    {gObjectEventPal_YoungGiovanni,         OBJ_EVENT_PAL_TAG_YOUNG_GIOVANNI},
+    {gObjectEventPal_PsychicM,              OBJ_EVENT_PAL_TAG_PSYCHIC_M},
+    {gObjectEventPal_Woman5,                OBJ_EVENT_PAL_TAG_WOMAN_5},
+    {gObjectEventPal_MartEmployee,          OBJ_EVENT_PAL_TAG_MART_EMPLOYEE},
+    {gObjectEventPal_PokefanF,              OBJ_EVENT_PAL_TAG_POKEFAN_F},
+    {gObjectEventPal_Woman2,                OBJ_EVENT_PAL_TAG_WOMAN_2},
+    {gObjectEventPal_Nurse,                 OBJ_EVENT_PAL_TAG_NURSE},
+    {gObjectEventPal_Girl3,                 OBJ_EVENT_PAL_TAG_GIRL_3},
+    {gObjectEventPal_Gentleman,             OBJ_EVENT_PAL_TAG_GENTLEMAN},
+    {gObjectEventPal_Boy1,                  OBJ_EVENT_PAL_TAG_BOY1},
     {gObjectEventPal_Backpacker,            OBJ_EVENT_PAL_TAG_BACKPACKER},
     {gObjectEventPal_ParkBall,              OBJ_EVENT_PAL_TAG_PARK_BALL},
     {gObjectEventPal_BugCatcher,            OBJ_EVENT_PAL_TAG_BUG_CATCHER},
@@ -2882,7 +2895,10 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
         sprite->oam.objMode = ST_OAM_OBJ_BLEND;
         sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
         sprite->x += 8;
-        sprite->y += 22 + sprite->centerToCornerVecY;
+        if(MAP_IS(MAP_SYLVARA_BEACH))
+            sprite->y += 16 + sprite->centerToCornerVecY;
+        else
+            sprite->y += 22 + sprite->centerToCornerVecY;
         break;
     case LIGHT_TYPE_PKMN_CENTER_SIGN:
     case LIGHT_TYPE_POKE_MART_SIGN:

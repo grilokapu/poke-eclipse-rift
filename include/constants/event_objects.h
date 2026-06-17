@@ -433,7 +433,8 @@
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
 #define OBJ_EVENT_GFX_PARK_BALL                     393
 #define OBJ_EVENT_GFX_BACKPACKER                    394
-#define NUM_OBJ_EVENT_GFX                        395
+#define OBJ_EVENT_GFX_YOUNG_GIOVANNI                395
+#define NUM_OBJ_EVENT_GFX                        396
 
 
 // These are dynamic object gfx ids.
@@ -634,6 +635,17 @@
 #define OBJ_EVENT_PAL_TAG_BUG_CATCHER               0x116C
 #define OBJ_EVENT_PAL_TAG_PARK_BALL                 0x116D
 #define OBJ_EVENT_PAL_TAG_BACKPACKER                0x116E
+#define OBJ_EVENT_PAL_TAG_BOY1                      0x116F
+#define OBJ_EVENT_PAL_TAG_GENTLEMAN                 0x1170
+#define OBJ_EVENT_PAL_TAG_GIRL_3                    0x1171
+#define OBJ_EVENT_PAL_TAG_NURSE                     0x1172
+#define OBJ_EVENT_PAL_TAG_WOMAN_2                   0x1173
+#define OBJ_EVENT_PAL_TAG_POKEFAN_F                 0x1174
+#define OBJ_EVENT_PAL_TAG_MART_EMPLOYEE             0x1175
+#define OBJ_EVENT_PAL_TAG_WOMAN_5                   0x1176
+#define OBJ_EVENT_PAL_TAG_PSYCHIC_M                 0x1177
+#define OBJ_EVENT_PAL_TAG_YOUNG_GIOVANNI            0x1178
+#define OBJ_EVENT_PAL_TAG_LASS                      0x1179
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001

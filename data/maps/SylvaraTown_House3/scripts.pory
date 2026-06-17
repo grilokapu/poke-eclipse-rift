@@ -1,0 +1,26 @@
+mapscripts SylvaraTown_House3_MapScripts {
+    
+}
+
+script SylvaraTown_House3_Gentleman_EventScript {
+    lock
+    faceplayer
+    if(flag(FLAG_SYLVARA_TOWN_RARE_CANDY)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Como está aquele DOCE RARO que te\ndei?\pEspero que tenha ajudado algum\nPOKéMON a dar o próximo grande\lpasso!\pEu ainda guardo alguns comigo… só\npor precaução.", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("How's that RARE CANDY I gave you?\pI hope it helped one of your\nPOKéMON take the next big step!\pI still keep a few with me… just\nin case.", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("¿Qué tal ese CARAMELO RARO que te\ndi?\p¡Espero que haya ayudado a uno de\ntus POKéMON a dar el siguiente\lgran paso!\pYo todavía llevo algunos conmigo…\npor si acaso.", MSGBOX_AUTOCLOSE)
+        }
+        release
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Às vezes ficamos ansiosos quando\nnosso POKéMON está prestes a\levoluir.\pPor isso, eu sempre carrego alguns\nDOCES RAROS comigo.\pAqui, pegue um para você!", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Sometimes we get excited when our\nPOKéMON is just about to evolve.\pThat's why I always carry a few\nRARE CANDIES with me.\pHere, take one for yourself!", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("A veces nos emocionamos cuando\nnuestro POKéMON está a punto de\levolucionar.\pPor eso siempre llevo algunos\nCARAMELOS RAROS conmigo.\p¡Toma uno para ti!", MSGBOX_AUTOCLOSE)
+    }
+    giveitem(ITEM_RARE_CANDY, 1)
+    setflag(FLAG_SYLVARA_TOWN_RARE_CANDY)
+    release
+    end
+}

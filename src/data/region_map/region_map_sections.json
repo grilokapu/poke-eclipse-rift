@@ -6,7 +6,9 @@
       "x": 4,
       "y": 11,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "nameEs": "Vila Pineveil",
+      "namePt": "Aldea Pineveil"
     },
     {
       "id": "MAPSEC_OLDALE_TOWN",
@@ -14,7 +16,9 @@
       "x": 4,
       "y": 9,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "nameEs": "Vila Sylvara",
+      "namePt": "Aldea Sylvara"
     },
     {
       "id": "MAPSEC_DEWFORD_TOWN",
@@ -134,15 +138,19 @@
       "x": 4,
       "y": 10,
       "width": 1,
-      "height": 1
+      "height": 1,
+      "nameEs": "Rota 1",
+      "namePt": "Ruta 1"
     },
     {
       "id": "MAPSEC_ROUTE_102",
-      "name": "ROUTE 102",
+      "name": "Route 2",
       "x": 2,
       "y": 9,
       "width": 2,
-      "height": 1
+      "height": 1,
+      "nameEs": "Rota 2",
+      "namePt": "Ruta 2"
     },
     {
       "id": "MAPSEC_ROUTE_103",

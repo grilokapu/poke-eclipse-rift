@@ -1132,9 +1132,15 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
     case TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC:
         SetMapVarsToTrainerA();
         return EventScript_TryDoNormalTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_LOST:
+        SetMapVarsToTrainerA();
+        return EventScript_DoNoIntroTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE:
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC:
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE:
         SetMapVarsToTrainerA();
+        if (TRAINER_BATTLE_PARAM.mode == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE)
+            return EventScript_DoNoIntroTrainerBattle;
         return EventScript_TryDoDoubleTrainerBattle;
 #if FREE_MATCH_CALL == FALSE
     case TRAINER_BATTLE_REMATCH_DOUBLE:
@@ -1465,6 +1471,13 @@ static void CB2_EndTrainerBattle(void)
         SetBattledTrainerFlag();
     }
     else if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
+    {
+        DowngradeBadPoison();
+        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
+    }
+    else if ((GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST
+           || GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE)
+          && IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
         DowngradeBadPoison();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
@@ -2132,4 +2145,3 @@ void SetMultiTrainerBattle(struct ScriptContext *ctx)
     TRAINER_BATTLE_PARAM.defeatTextB = (u8*)ScriptReadWord(ctx);
     gPartnerTrainerId = TRAINER_PARTNER(ScriptReadHalfword(ctx));
 };
-
