@@ -65,6 +65,7 @@ script PineveilTown_ProffessorHikariInterviwew {
     setflag(FLAG_INTERVIEW_HIKARI_DONE)
     clearflag(FLAG_SPAWN_INVISIBLE)
     warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 7, 5)
+    waitstate
     releaseall
     end
 }
@@ -283,6 +284,7 @@ script PineveilTown_MomComeToGiveSomeItemsBeforePlayerGone {
     pause(30)
     setflag(FLAG_SPAWN_INVISIBLE)
     warpsilent(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 6)
+    waitstate
     release
     end
 }

@@ -255,7 +255,7 @@ COMMON_DATA u8 gNumberOfMovesToChoose = 0;
 
 static const struct ScanlineEffectParams sIntroScanlineParams16Bit =
 {
-    &REG_BG3HOFS, SCANLINE_EFFECT_DMACNT_16BIT, 1
+    &gSpecialVar_Result, SCANLINE_EFFECT_DMACNT_16BIT, 1
 };
 
 // unused

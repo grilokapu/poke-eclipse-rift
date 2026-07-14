@@ -38,7 +38,7 @@ AI: Check Viability
 Mugshot: Blue
 
 Frigibax
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Naughty
@@ -48,7 +48,7 @@ Nature: Naughty
 - Leer
 
 Starly
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Jolly
@@ -68,7 +68,7 @@ AI: Check Viability
 Mugshot: Blue
 
 Chikorita
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Naughty
@@ -78,7 +78,7 @@ Nature: Naughty
 - Growl
 
 Starly
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Jolly
@@ -98,7 +98,7 @@ AI: Check Viability
 Mugshot: Blue
 
 Quaxly
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Timid
@@ -108,7 +108,7 @@ Nature: Timid
 - Work Up
 
 Starly
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Jolly
@@ -128,7 +128,7 @@ AI: Check Viability
 Mugshot: Blue
 
 Tepig
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Naughty
@@ -138,7 +138,7 @@ Nature: Naughty
 - Flame Charge
 
 Starly
-Level: 11
+Level: 8
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Jolly
@@ -158,7 +158,7 @@ AI: Check Viability
 Mugshot: Blue
 
 Meowth
-Level: 14
+Level: 9
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Jolly
@@ -168,7 +168,7 @@ Nature: Jolly
 - Tail Whip
 
 Nidoran m
-Level: 14
+Level: 9
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 Nature: Impish
@@ -178,10 +178,56 @@ Nature: Impish
 - Leer
 
 Nidoran f
-Level: 14
+Level: 8
 Nature: Brave
 - Shock Wave
 - Poison Sting
 - Round
 - Attract
+
+
+=== TRAINER_PICNICKER_SARAH ===
+Name: Sarah
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Check Viability
+
+Shroomish @ Miracle Seed
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Sleep Powder
+- Mega Drain
+- Rock Throw
+- Synthesis
+
+Zigzagoon @ Sitrus Berry
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Tidy Up
+- Headbutt
+- Quick Attack
+- Thief
+
+Glimmet @ Black Sludge
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Mortal Spin
+- Sludge
+- Rock Tomb
+- Spiky Shield
+
+Panpour @ Mystic Water
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
+- Water Pulse
+- Work Up
+- Play Nice
+- Icy Wind
 

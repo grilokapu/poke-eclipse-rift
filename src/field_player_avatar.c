@@ -1357,8 +1357,40 @@ void PlayerTurnInPlace(enum Direction direction)
     PlayerSetAnimId(GetWalkInPlaceFastMovementAction(direction), COPY_MOVE_FACE);
 }
 
+bool8 ShouldPlayerRun(u16 heldKeys)
+{
+	if (IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior))
+		return FALSE;
+
+	//if (IsDexNavHudActive())
+	//	return FALSE; //Prevent running while DexNav is open. People are just too stupid to realize they can't run
+
+	#ifdef FLAG_AUTO_RUN
+	if (FlagGet(FLAG_AUTO_RUN))
+	{
+		if (heldKeys & B_BUTTON)
+			return FALSE; //Walk when holding B while auto-run is on
+		else
+			return TRUE;
+	}
+	else
+	#endif
+	{
+		if (heldKeys & B_BUTTON)
+			return TRUE;
+		else
+			return FALSE;
+	}
+}
+
 void PlayerJumpLedge(enum Direction direction)
 {
+    u8 movementAction = GetJump2MovementAction(direction);
+ 
+	if (!TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_BIKE | PLAYER_AVATAR_FLAG_SURFING) //Player is not biking/surfing
+	&& ShouldPlayerRun(gMain.heldKeys)) //Player is running
+		movementAction += 0x70;
+
     PlaySE(SE_LEDGE);
     PlayerSetAnimId(GetJump2MovementAction(direction), COPY_MOVE_JUMP2);
 }

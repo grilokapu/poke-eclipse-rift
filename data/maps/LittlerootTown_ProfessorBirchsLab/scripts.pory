@@ -118,10 +118,14 @@ script PineveilTown_ProfessorHikarisLab_OnFrame {
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "First you choose, {PLAYER}!\nThen it'll be {RIVAL}'s turn!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Primero tú eliges, {PLAYER}!\n¡Después será el turno de {RIVAL}!", MSGBOX_AUTOCLOSE)
     }
+    goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot)
+}
+
+script PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot {
     switch (var(VAR_LANGUAGE)) {
-        case PT: message("Você fará monotipo ou quer\nescolher um Pokémon de cada tipo?")
-        case EN: message("Will you make a mono-type team or\nwanna choose a {PKMN} from each type?")
-        case ES: message("¿Harás un equipo monotipo o quieres\nescoger un Pokémon de cada tipo?")
+        case PT: message("Você fará monotipo ou quer\numa aventura tradicional?")
+        case EN: message("Will you make a mono-type team or\na traditional adventure?")
+        case ES: message("¿Harás un equipo monotipo o quieres\nuna aventura tradicional?")
     }
     waitmessage
     switch (var(VAR_LANGUAGE)) {
@@ -130,9 +134,27 @@ script PineveilTown_ProfessorHikarisLab_OnFrame {
         case ES: dynmultichoice(0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, "MONOTIPO", "TRADICIONAL")
     }
     if (var(VAR_RESULT) == 0) {
-        goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Você quer mesmo fazer um desafio\nMONOTIPO?", MSGBOX_YESNO)
+            case EN: msgbox("Do you really want to do a\nMONOTYPE challenge?", MSGBOX_YESNO)
+            case ES: msgbox("¿De verdad quieres hacer un\ndesafío MONOTIPO?", MSGBOX_YESNO)
+        }
+        if (var(VAR_RESULT) == FALSE) {
+            goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot)
+        } else {
+            goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion)
+        }
     } else {
-        goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Você quer mesmo seguir\na aventura tradicional?", MSGBOX_YESNO)
+            case EN: msgbox("Do you really want to continue\nwith the traditional adventure?", MSGBOX_YESNO)
+            case ES: msgbox("¿De verdad quieres continuar\ncon la aventura tradicional?", MSGBOX_YESNO)
+        }
+        if (var(VAR_RESULT) == FALSE) {
+            goto(PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot)
+        } else {
+            goto(PineveilTown_ProfessorHikariLab_ChooseStarterRegion)
+        }
     }
 }
 
@@ -743,6 +765,7 @@ script PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf {
     setvar(VAR_LITTLEROOT_TOWN_STATE, 4)
     clearflag(FLAG_SPAWN_INVISIBLE)
     warpsilent(MAP_LITTLEROOT_TOWN, 13, 14)
+    waitstate
     release
     end
 }

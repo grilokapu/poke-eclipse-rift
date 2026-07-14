@@ -14,7 +14,7 @@ script SylvaraTown_House2_EventScript_Woman_Talk {
 script SylvaraTown_EventScript_Arcanine {
     lock
     faceplayer
-    showmonmugshot(SPECIES_ARCANINE, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_ARCANINE, MUGSHOT_SOUTHEAST)
     setspeaker("Arcanine")
     msgbox("Grrrraaaooouu!")
     waitmoncry

@@ -1,5 +1,9 @@
 mapscripts OldaleTown_PokemonCenter_1F_MapScripts {
     MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+    MAP_SCRIPT_ON_LOAD {
+        sethealingplacePC(MAP_OLDALE_TOWN_POKEMON_CENTER_1F)
+        end
+    }
 }
 
 script SylvaraTown_PokemonCenter_1F_EventScript_Nurse {
@@ -38,5 +42,12 @@ script SylvaraTown_PokemonCenter_1F_EventScript_Boy {
     end
 }
 
-
+script SylvaraTown_PokemonCenter_1F_EventScript_Teala_BlockStairs {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Sinto muito.\pEstamos trabalhando no subsolo\nagora.\pO acesso ao público está proibido.\pPor favor, tente novamente mais\ntarde.", MSGBOX_NPC)
+        case EN: msgbox("Sorry.\pWe are working in the basement\nnow.\pPublic access is prohibited.\pPlease try again later.", MSGBOX_NPC)
+        case ES: msgbox("Lo siento.\pEstamos trabajando en el sótano\nahora.\pEl acceso al público está\nprohibido.\pPor favor, inténtelo de nuevo más\ntarde.", MSGBOX_NPC)
+    }
+    end
+}
 

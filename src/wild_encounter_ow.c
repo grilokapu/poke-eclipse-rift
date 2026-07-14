@@ -2173,6 +2173,11 @@ static bool32 CheckValidOWESpecies(u16 speciesId)
     return TRUE;
 }
 
+void RemoveOWEFromMap(void)
+{
+    DespawnAllOverworldWildEncounters(OWE_GENERATED, 0);
+}
+
 #undef sOverworldEncounterLevel
 #undef sOverworldEncounterAge
 #undef sOverworldEncounterCategory

@@ -66,10 +66,10 @@ static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_scre
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.smol");
 static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.smol");
 #else
-static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/zygarde.4bpp.smol");
-static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/zygarde.bin.smolTM");
+static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rift.4bpp.smol");
+static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rift.bin.smolTM");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.smol");
-static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/Zclouds.4bpp.smol");
+static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.smol");
 #endif
 
 
@@ -687,11 +687,11 @@ static void MainCB2(void)
 static void Task_TitleScreenPhase1(u8 taskId)
 {
     // Skip to next phase when A, B, Start, or Select is pressed
-    if (JOY_NEW(A_B_START_SELECT) || gTasks[taskId].tSkipToNext)
-    {
+    //if (JOY_NEW(A_B_START_SELECT) || gTasks[taskId].tSkipToNext)
+    //{
         gTasks[taskId].tSkipToNext = TRUE;
         gTasks[taskId].tCounter = 0;
-    }
+    //}
 
     if (gTasks[taskId].tCounter != 0)
     {
@@ -862,9 +862,9 @@ static void UpdateLegendaryMarkingColor(u8 frameNum)
     if ((frameNum % 4) == 0) // Change color every 4th frame
     {
         s32 intensity = Cos(frameNum, Q_8_8(0.5)) + Q_8_8(0.5);
-        u32 r = 31 - Q_8_8_TO_INT(intensity * 31);
-        u32 g = 31 - Q_8_8_TO_INT(intensity * 22);
-        u32 b = 12;
+        u32 r = 12 - Q_8_8_TO_INT(intensity * 11);
+        u32 g = 2 - Q_8_8_TO_INT(intensity * 2);
+        u32 b = 9;
 
         u16 color = RGB(r, g, b);
         LoadPalette(&color, BG_PLTT_ID(14) + 15, sizeof(color));

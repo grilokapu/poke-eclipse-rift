@@ -235,7 +235,7 @@ enum Connection
 #define EN ENGLISH_LANGUAGE
 #define ES SPANISH_LANGUAGE
 
-#define MUGSHOT_DOWN_RIGHT 0
+#define MUGSHOT_SOUTHEAST 0
 #define MUGSHOT_CENTER 1
 
 #define GET_LANGUAGE() (gSaveBlock2Ptr->gInitialLanguage)

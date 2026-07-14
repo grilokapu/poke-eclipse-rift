@@ -1,0 +1,53 @@
+mapscripts Route103_MapScripts {
+
+}
+
+script Route103_EventScript_RouteSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Rota 3\nCaverna Sussuro {RIGHT_ARROW_2}\lCaverna Sussuro {LEFT_ARROW_2}", MSGBOX_SIGN)
+        case EN: msgbox("Route 3\nWhispering Cave {RIGHT_ARROW_2}\lWhispering Cave {LEFT_ARROW_2}", MSGBOX_SIGN)
+        case ES: msgbox("Ruta 3\nCueva Susurro {RIGHT_ARROW_2}\lCueva Susurro {LEFT_ARROW_2}", MSGBOX_SIGN)
+    }
+}
+
+script Route103_EventScript_Lass_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu sonho é encontrar o Pokémon\nSupremo de Aetheris…\pSerá que esse dia vai chegar?", MSGBOX_NPC)
+        case EN: msgbox("My dream is to find Aetheris's\nSupreme Pokémon…\pI wonder if that day will ever\ncome.", MSGBOX_NPC)
+        case ES: msgbox("Mi sueño es encontrar al Pokémon\nSupremo de Aetheris…\p¿Llegará ese día alguna vez?", MSGBOX_NPC)
+    }
+    end
+}
+
+script Route103_EventScript_Pokemon_Tips {
+    helpwindow(HELP_MATCH_STATS)
+    end
+}
+
+script Route103_EventScript_Water_Gem_Get {
+    finditem(ITEM_WATER_GEM)
+    end
+}
+
+const NOAH = TRAINER_YOUNGSTER_NOAH
+
+script Route103_EventScript_Youngster_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(NOAH, "Vamos batalhar um pouco!", "Essa derrota não estava nos meus\nplanos…")
+            msgbox("A vida é como fazer um bolo.\pÀs vezes a receita não sai como\nvocê queria… mas um pouco de\lchantilly faz milagres!")
+        case EN:
+            trainerbattle_single(NOAH, "Let's have a battle!", "I wasn't planning on losing…")
+            msgbox("Life is just like baking a cake.\pSometimes the recipe doesn't turn\nout the way you wanted… but a\llittle whipped cream works\lwonders!")
+        case ES:
+            trainerbattle_single(NOAH, "¡Vamos a combatir!", "No pensaba perder…")
+            msgbox("La vida es como preparar un\npastel.\pA veces la receta no sale como\nesperabas… ¡pero un poco de crema\lbatida hace maravillas!")
+    }
+    release
+    end
+}
+
+script Route103_EventScript_TM_PoisonTail_Get {
+    finditem(ITEM_TM23)
+    end
+}

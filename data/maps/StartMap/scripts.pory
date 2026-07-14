@@ -98,7 +98,7 @@ script Story_Start_NormalMode_Choosed {
     }
     setvar(VAR_DIFFICULTY, 0)
     setvar(VAR_DIFFICULTY, DIFFICULTY_NORMAL)
-    goto(Story_Start_NormalMode_Choosed)
+    goto(Story_Start_ChooseLevelCap)
 }
 
 script Story_Start_HardMode_Choosed {

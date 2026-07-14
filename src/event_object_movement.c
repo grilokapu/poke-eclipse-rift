@@ -502,6 +502,10 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #include "data/object_events/object_event_graphics_info_followers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
+    {gObjectEventPal_Teala,                 OBJ_EVENT_PAL_TAG_TEALA},
+    {gObjectEventPal_Fisherman,             OBJ_EVENT_PAL_TAG_FISHERMAN},
+    {gObjectEventPal_Camper,                OBJ_EVENT_PAL_TAG_CAMPER},
+    {gObjectEventPal_Hiker,                 OBJ_EVENT_PAL_TAG_HIKER},
     {gObjectEventPal_Lass,                  OBJ_EVENT_PAL_TAG_LASS},
     {gObjectEventPal_YoungGiovanni,         OBJ_EVENT_PAL_TAG_YOUNG_GIOVANNI},
     {gObjectEventPal_PsychicM,              OBJ_EVENT_PAL_TAG_PSYCHIC_M},
@@ -10641,6 +10645,13 @@ enum Direction GetLedgeJumpDirection(s16 x, s16 y, enum Direction direction)
         [DIR_EAST - 1]  = MetatileBehavior_IsJumpEast,
     };
 
+    static bool8 (*const steppingstonesBehaviorFuncs[])(u8) = {
+        [DIR_SOUTH - 1] = MetatileBehavior_IsSteppingStoneUpDown,
+        [DIR_NORTH - 1] = MetatileBehavior_IsSteppingStoneUpDown,
+        [DIR_WEST - 1]  = MetatileBehavior_IsSteppingStoneLeftRight,
+        [DIR_EAST - 1]  = MetatileBehavior_IsSteppingStoneLeftRight,
+    };
+
     u8 behavior;
     enum Direction index = direction;
 
@@ -10653,6 +10664,10 @@ enum Direction GetLedgeJumpDirection(s16 x, s16 y, enum Direction direction)
     behavior = MapGridGetMetatileBehaviorAt(x, y);
 
     if (ledgeBehaviorFuncs[index](behavior) == TRUE)
+        return index + 1;
+    else if (MetatileBehavior_IsOmniDirectionalJumpable(behavior) == TRUE)
+        return index + 1;
+    else if (steppingstonesBehaviorFuncs[index](behavior) == TRUE)
         return index + 1;
 
     return DIR_NONE;

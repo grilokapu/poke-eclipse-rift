@@ -3737,6 +3737,11 @@ u8 CalculateEnemyPartyCountInSide(enum BattlerId battler)
     return CalculatePartyCountOfSide(battler, gEnemyParty);
 }
 
+u8 CalculatePartnerPartyCount(void)
+{
+    return CalculatePartyCount(GetBattlerParty(BATTLE_PARTNER(gBattlerAttacker)));
+}
+
 u8 GetMonsStateToDoubles(void)
 {
     s32 aliveCount = 0;

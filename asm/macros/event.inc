@@ -3006,6 +3006,10 @@
 	.byte \type
 	.endm
 
+	.macro sethealingplacePC map:req
+	sethealingplacehack \map, 8, 5, HEAL_LOCATION_POKEMON_CENTER
+	.endm
+
 	.macro movecamera movement:req
 	applymovement LOCALID_CAMERA \movement
 	waitmovement LOCALID_CAMERA
@@ -3017,4 +3021,12 @@
     movenpc \localId, \emoji
     waitse
     pause 20
+	.endm
+
+	.macro updateowe
+	callnative UpdateOverworldWildEncounter
+	.endm
+
+	.macro removeowe
+	callnative RemoveOWEFromMap
 	.endm

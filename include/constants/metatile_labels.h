@@ -301,6 +301,31 @@
 #define METATILE_GenericBuilding1_PlayersPCOn   0x28A
 
 // gTileset_InsideOfTruck
+#define METATILE_InsideOfTruck_Chien_Symbol_0          0x240
+#define METATILE_InsideOfTruck_Chien_Symbol_1          0x241
+#define METATILE_InsideOfTruck_Chien_Symbol_10         0x250
+#define METATILE_InsideOfTruck_Chien_Symbol_11         0x251
+#define METATILE_InsideOfTruck_Chien_Symbol_12         0x252
+#define METATILE_InsideOfTruck_Chien_Symbol_13         0x253
+#define METATILE_InsideOfTruck_Chien_Symbol_14         0x254
+#define METATILE_InsideOfTruck_Chien_Symbol_15         0x258
+#define METATILE_InsideOfTruck_Chien_Symbol_16         0x259
+#define METATILE_InsideOfTruck_Chien_Symbol_17         0x25A
+#define METATILE_InsideOfTruck_Chien_Symbol_18         0x25B
+#define METATILE_InsideOfTruck_Chien_Symbol_19         0x25C
+#define METATILE_InsideOfTruck_Chien_Symbol_2          0x242
+#define METATILE_InsideOfTruck_Chien_Symbol_20         0x260
+#define METATILE_InsideOfTruck_Chien_Symbol_21         0x261
+#define METATILE_InsideOfTruck_Chien_Symbol_22         0x262
+#define METATILE_InsideOfTruck_Chien_Symbol_23         0x263
+#define METATILE_InsideOfTruck_Chien_Symbol_24         0x264
+#define METATILE_InsideOfTruck_Chien_Symbol_3          0x243
+#define METATILE_InsideOfTruck_Chien_Symbol_4          0x244
+#define METATILE_InsideOfTruck_Chien_Symbol_5          0x248
+#define METATILE_InsideOfTruck_Chien_Symbol_6          0x249
+#define METATILE_InsideOfTruck_Chien_Symbol_7          0x24A
+#define METATILE_InsideOfTruck_Chien_Symbol_8          0x24B
+#define METATILE_InsideOfTruck_Chien_Symbol_9          0x24C
 #define METATILE_InsideOfTruck_DoorClosedFloor_Bottom  0x21D
 #define METATILE_InsideOfTruck_DoorClosedFloor_Mid     0x215
 #define METATILE_InsideOfTruck_DoorClosedFloor_Top     0x20D

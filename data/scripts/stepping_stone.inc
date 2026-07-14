@@ -1,0 +1,3 @@
+EventScript_SteppingStone::
+	return
+

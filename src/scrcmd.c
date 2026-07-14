@@ -3510,7 +3510,7 @@ bool8 ScrCmd_showmonmugshot(struct ScriptContext *ctx)
 
 bool8 ScrCmd_createspecialobjectevent(struct ScriptContext *ctx)
 {
-    u16 sprite = VarGet(ScriptReadHalfword(ctx));
+    u16 sprite = ScriptReadHalfword(ctx);
     u8 objId = ScriptReadByte(ctx);
     u8 posX = ScriptReadByte(ctx);
     u8 posY = ScriptReadByte(ctx);

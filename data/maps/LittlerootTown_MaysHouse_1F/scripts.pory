@@ -1,5 +1,5 @@
 mapscripts LittlerootTown_MaysHouse_1F_MapScripts {
-    MAP_SCRIPT_ON_FRAME_TABLE[
+    MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_PLAYER_MOM_HOUSE_STATE, 0: PineveilTown_Mom_Talk_After_Player_Leaves_Room
         VAR_PLAYER_MOM_HOUSE_STATE, 1: PineveilTown_Mom_Continue_Talking_Player_OnTV
     ]
@@ -44,6 +44,7 @@ script PineveilTown_Mom_Talk_After_Player_Leaves_Room {
     setvar(VAR_PLAYER_MOM_HOUSE_STATE, 1)
     setflag(FLAG_SPAWN_INVISIBLE)
     warpsilent(MAP_LITTLEROOT_TOWN, 13, 9)
+    waitstate
     releaseall
     end
 }
@@ -69,9 +70,8 @@ script PineveilTown_PlayerHouse_Mom_Talk_On1stExit_Tile {
 }
 
 script PineveilTown_PlayerHouse_Player_LookUp_OnWarp {
-    turnobject(LOCALID_PLAYER, DIR_NORTH)
     setvar(VAR_PLAYERFACING_ROOM, 2)
-    release
+    turnobject(LOCALID_PLAYER, DIR_NORTH)
     end
 }
 

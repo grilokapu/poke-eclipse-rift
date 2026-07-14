@@ -34,7 +34,7 @@ static const u8 sTileBitAttributes[NUM_METATILE_BEHAVIORS] =
     [MB_STAIRS_OUTSIDE_ABANDONED_SHIP]      = TILE_FLAG_UNUSED,
     [MB_SHOAL_CAVE_ENTRANCE]                = TILE_FLAG_UNUSED,
     [MB_ICE]                                = TILE_FLAG_UNUSED,
-    [MB_SAND]                               = TILE_FLAG_UNUSED,
+    [MB_SAND]                               = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_SEAWEED]                            = TILE_FLAG_UNUSED | TILE_FLAG_SURFABLE | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_STRENGTH_BUTTON]                    = TILE_FLAG_UNUSED,
     [MB_ASHGRASS]                           = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
@@ -1825,3 +1825,26 @@ bool8 MetatileBehavior_IsTrainerTowerMonitor(u8 metatileBehavior)
         return FALSE;
 }
 
+bool8 MetatileBehavior_IsOmniDirectionalJumpable(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_OMNI_DIRECTIONAL_JUMP)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsSteppingStoneUpDown(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_STEPPINGSTONE_UP_DOWN)
+        return TRUE;
+    else
+        return FALSE;
+}
+
+bool8 MetatileBehavior_IsSteppingStoneLeftRight(u8 metatileBehavior)
+{
+    if (metatileBehavior == MB_STEPPINGSTONE_LEFT_RIGHT)
+        return TRUE;
+    else
+        return FALSE;
+}

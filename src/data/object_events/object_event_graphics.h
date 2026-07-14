@@ -673,3 +673,7 @@ const u16 gObjectEventPal_PsychicM[] = INCBIN_U16("graphics/object_events/palett
 const u32 gObjectEventPic_YoungGiovanni[] = INCBIN_U32("graphics/object_events/pics/people/young_giovanni.4bpp");
 const u16 gObjectEventPal_YoungGiovanni[] = INCBIN_U16("graphics/object_events/palettes/young_giovanni.gbapal");
 const u16 gObjectEventPal_Lass[] = INCBIN_U16("graphics/object_events/palettes/lass.gbapal");
+const u16 gObjectEventPal_Hiker[] = INCBIN_U16("graphics/object_events/palettes/hiker.gbapal");
+const u16 gObjectEventPal_Camper[] = INCBIN_U16("graphics/object_events/palettes/camper.gbapal");
+const u16 gObjectEventPal_Fisherman[] = INCBIN_U16("graphics/object_events/palettes/fisherman.gbapal");
+const u16 gObjectEventPal_Teala[] = INCBIN_U16("graphics/object_events/palettes/teala.gbapal");

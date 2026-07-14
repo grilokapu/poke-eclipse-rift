@@ -171,10 +171,36 @@ static const struct MenuAction sShopMenuActions_BuySellQuit[] =
     { gText_ShopQuit, {.void_u8=Task_HandleShopMenuQuit} }
 };
 
+static const struct MenuAction sShopMenuActions_BuySellQuitPt[] =
+{
+    { gText_ShopBuyPt, {.void_u8=Task_HandleShopMenuBuy} },
+    { gText_ShopSellPt, {.void_u8=Task_HandleShopMenuSell} },
+    { gText_ShopQuitPt, {.void_u8=Task_HandleShopMenuQuit} }
+};
+
+static const struct MenuAction sShopMenuActions_BuySellQuitEs[] =
+{
+    { gText_ShopBuyPt, {.void_u8=Task_HandleShopMenuBuy} },
+    { gText_ShopSellPt, {.void_u8=Task_HandleShopMenuSell} },
+    { gText_ShopQuitEs, {.void_u8=Task_HandleShopMenuQuit} }
+};
+
 static const struct MenuAction sShopMenuActions_BuyQuit[] =
 {
     { gText_ShopBuy, {.void_u8=Task_HandleShopMenuBuy} },
     { gText_ShopQuit, {.void_u8=Task_HandleShopMenuQuit} }
+};
+
+static const struct MenuAction sShopMenuActions_BuyQuitPt[] =
+{
+    { gText_ShopBuyPt, {.void_u8=Task_HandleShopMenuBuy} },
+    { gText_ShopQuitPt, {.void_u8=Task_HandleShopMenuQuit} }
+};
+
+static const struct MenuAction sShopMenuActions_BuyQuitEs[] =
+{
+    { gText_ShopBuyPt, {.void_u8=Task_HandleShopMenuBuy} },
+    { gText_ShopQuitEs, {.void_u8=Task_HandleShopMenuQuit} }
 };
 
 static const struct WindowTemplate sShopMenuWindowTemplates[] =
@@ -343,6 +369,7 @@ static const u8 sShopBuyMenuTextColors[][3] =
 static u8 CreateShopMenu(u8 martType)
 {
     int numMenuItems;
+    bool8 language = GET_LANGUAGE();
 
     LockPlayerFieldControls();
     sMartInfo.martType = martType;
@@ -350,17 +377,33 @@ static u8 CreateShopMenu(u8 martType)
     if (martType == MART_TYPE_NORMAL)
     {
         struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_SELL_QUIT];
-        winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuit, ARRAY_COUNT(sShopMenuActions_BuySellQuit));
+        if (language == EN)
+            winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuit, ARRAY_COUNT(sShopMenuActions_BuySellQuit));
+        else
+            winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuySellQuitEs, ARRAY_COUNT(sShopMenuActions_BuySellQuitEs));
         sMartInfo.windowId = AddWindow(&winTemplate);
-        sMartInfo.menuActions = sShopMenuActions_BuySellQuit;
+        if (language == PT)
+            sMartInfo.menuActions = sShopMenuActions_BuySellQuitPt;
+        else if (language == ES)
+            sMartInfo.menuActions = sShopMenuActions_BuySellQuitEs;
+        else
+            sMartInfo.menuActions = sShopMenuActions_BuySellQuit;
         numMenuItems = ARRAY_COUNT(sShopMenuActions_BuySellQuit);
     }
     else
     {
         struct WindowTemplate winTemplate = sShopMenuWindowTemplates[WIN_BUY_QUIT];
-        winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuyQuit, ARRAY_COUNT(sShopMenuActions_BuyQuit));
+        if (language == EN)
+            winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuyQuit, ARRAY_COUNT(sShopMenuActions_BuyQuit));
+        else
+            winTemplate.width = GetMaxWidthInMenuTable(sShopMenuActions_BuyQuitEs, ARRAY_COUNT(sShopMenuActions_BuyQuitEs));
         sMartInfo.windowId = AddWindow(&winTemplate);
-        sMartInfo.menuActions = sShopMenuActions_BuyQuit;
+        if (language == PT)
+            sMartInfo.menuActions = sShopMenuActions_BuyQuitPt;
+        else if (language == ES)
+            sMartInfo.menuActions = sShopMenuActions_BuyQuitEs;
+        else
+            sMartInfo.menuActions = sShopMenuActions_BuyQuit;
         numMenuItems = ARRAY_COUNT(sShopMenuActions_BuyQuit);
     }
 
@@ -470,12 +513,39 @@ static void MapPostLoadHook_ReturnToShopMenu(void)
 
 static void Task_ReturnToShopMenu(u8 taskId)
 {
+    bool8 language = GET_LANGUAGE();
     if (IsWeatherNotFadingIn() == TRUE)
     {
         if (sMartInfo.martType == MART_TYPE_DECOR2)
-            DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
+        {
+            switch (language)
+            {
+            case EN:
+                DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElse, ShowShopMenuAfterExitingBuyOrSellMenu);
+                break;
+            case PT:
+                DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElsePt, ShowShopMenuAfterExitingBuyOrSellMenu);
+                break;
+            case ES:
+                DisplayItemMessageOnField(taskId, gText_CanIHelpWithAnythingElseEs, ShowShopMenuAfterExitingBuyOrSellMenu);
+                break;
+            }
+        }
         else
-            DisplayItemMessageOnField(taskId, gText_AnythingElseICanHelp, ShowShopMenuAfterExitingBuyOrSellMenu);
+        {
+            switch (language)
+            {
+            case EN:
+                DisplayItemMessageOnField(taskId, gText_AnythingElseICanHelp, ShowShopMenuAfterExitingBuyOrSellMenu);
+                break;
+            case PT:
+                DisplayItemMessageOnField(taskId, gText_AnythingElseICanHelpPt, ShowShopMenuAfterExitingBuyOrSellMenu);
+                break;
+            case ES:
+                DisplayItemMessageOnField(taskId, gText_AnythingElseICanHelpEs, ShowShopMenuAfterExitingBuyOrSellMenu);
+                break;
+            }
+        }
     }
 }
 

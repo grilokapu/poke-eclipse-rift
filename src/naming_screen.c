@@ -343,7 +343,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .bg = 0,
         .tilemapLeft = 8,
         .tilemapTop = 4,
-        .width = 14,
+        .width = 15,
         .height = 2,
         .paletteNum = 10,
         .baseBlock = 304
@@ -355,7 +355,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .width = 16,
         .height = 2,
         .paletteNum = 10,
-        .baseBlock = 332
+        .baseBlock = 334
     },
     [WIN_BANNER] = {
         .bg = 0,
@@ -364,7 +364,7 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
         .width = 30,
         .height = 2,
         .paletteNum = 11,
-        .baseBlock = 364
+        .baseBlock = 366
     },
     DUMMY_WIN_TEMPLATE
 };
@@ -1525,14 +1525,15 @@ static void DrawNormalTextEntryBox(void)
 static void DrawMonTextEntryBox(void)
 {
     u8 buffer[0x20];
-
-    StringCopy(buffer, GetSpeciesName(sNamingScreen->monSpeciesOrPlayerGender));
+    // Put the species name in gStringVar1 and expand the title template
+    // so placeholders like {STR_VAR_1} are replaced correctly.
+    StringCopy(gStringVar1, GetSpeciesName(sNamingScreen->monSpeciesOrPlayerGender));
     if (GET_LANGUAGE() == PT)
-        StringAppendN(buffer, sNamingScreen->template->titlePt, 15);
+        StringExpandPlaceholders(buffer, sNamingScreen->template->titlePt);
     else if (GET_LANGUAGE() == ES)
-        StringAppendN(buffer, sNamingScreen->template->titleSpa, 15);
+        StringExpandPlaceholders(buffer, sNamingScreen->template->titleSpa);
     else
-        StringAppendN(buffer, sNamingScreen->template->title, 15);
+        StringExpandPlaceholders(buffer, sNamingScreen->template->title);
     FillWindowPixelBuffer(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], PIXEL_FILL(0));
     AddTextPrinterParameterized3(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], FONT_NORMAL, 1, 1, sNamingScreenTextColor, 0xFF, buffer);
     CopyWindowToVram(sNamingScreen->windows[WIN_TEXT_ENTRY_BOX], COPYWIN_FULL);
@@ -1590,7 +1591,7 @@ static void AddGenderIconFunc_Yes(void)
             StringCopy(genderSymbol, gText_FemaleSymbol);
             gender = FEMALE;
         }
-        AddTextPrinterParameterized3(sNamingScreen->windows[2], 2, 104, 1, sGenderColors[gender], 0xFF, genderSymbol);
+        AddTextPrinterParameterized3(sNamingScreen->windows[2], 2, 110, 1, sGenderColors[gender], 0xFF, genderSymbol);
     }
 }
 

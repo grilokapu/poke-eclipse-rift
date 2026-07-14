@@ -267,7 +267,7 @@ EWRAM_DATA u8 gSelectedOrderFromParty[MAX_FRONTIER_PARTY_SIZE] = {0};
 static EWRAM_DATA u16 sPartyMenuItemId = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sFusionFirstMonSlot = 0; // Fusion item: selected first mon slot
-static EWRAM_DATA u16 sFusionFirstMonSpecies = 0; // Fusion item: selected first mon species
+static EWRAM_DATA u16 sFusionFirstMonSpecies = SPECIES_NONE; // Fusion item: selected first mon species
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
 static EWRAM_DATA u8 sHoverCursorSpriteId = 0;
@@ -343,7 +343,7 @@ static enum CanMoveBeLearned CanTeachMove(struct Pokemon *, enum Move);
 static void DisplayPartyPokemonBarDetail(u8, const u8 *, u8, const u8 *);
 static void DisplayPartyPokemonBarDetailToFit(u8 windowId, const u8 *str, u8 color, const u8 *align, u32 width);
 static void DisplayPartyPokemonLevel(u8, struct PartyMenuBox *);
-static void DisplayPartyPokemonGender(u8, u16, u8 *, struct PartyMenuBox *);
+static void DisplayPartyPokemonGender(u8, u16, u8 *, struct PartyMenuBox *, bool8);
 static void DisplayPartyPokemonHP(u16 hp, u16 maxHp, struct PartyMenuBox *menuBox);
 static void DisplayPartyPokemonMaxHP(u16, struct PartyMenuBox *);
 static void DisplayPartyPokemonHPBar(u16, u16, struct PartyMenuBox *);
@@ -578,7 +578,7 @@ static void CursorCb_ChangeAbility(u8);
 void TryItemHoldFormChange(struct Pokemon *mon, s8 slotId);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
-static u8 IsFusionMon(u16 species);
+u8 IsFusionMon(u16 species);
 static void Task_HideFollowerNPCForTeleport(u8);
 static void FieldCallback_RockClimb(void);
 static void SavePartyMenuStateForPC(void);
@@ -1583,7 +1583,7 @@ static bool8 DisplayPartyPokemonDataForItemOrTutor(u8 slot)
             if (sFusionFirstMonSlot < PARTY_SIZE)
             {
                 sFusionFirstMonSlot = PARTY_SIZE;
-                sFusionFirstMonSpecies = 0;
+                sFusionFirstMonSpecies = SPECIES_NONE;
             }
             DisplayPartyPokemonDataForFusion(slot);
             break;
@@ -1626,7 +1626,7 @@ static void DisplayPartyPokemonDataForMultiBattle(u8 slot)
         ConvertInternationalPlayerName(gStringVar1);
         DisplayPartyPokemonBarDetailToFit(menuBox->windowId, gStringVar1, 0, menuBox->infoRects->dimensions, 50);
         DisplayPartyPokemonLevel(gMultiPartnerParty[actualSlot].level, menuBox);
-        DisplayPartyPokemonGender(gMultiPartnerParty[actualSlot].gender, gMultiPartnerParty[actualSlot].species, gMultiPartnerParty[actualSlot].nickname, menuBox);
+        DisplayPartyPokemonGender(gMultiPartnerParty[actualSlot].gender, gMultiPartnerParty[actualSlot].species, gMultiPartnerParty[actualSlot].nickname, menuBox, FALSE);
         DisplayPartyPokemonHP(gMultiPartnerParty[actualSlot].hp, gMultiPartnerParty[actualSlot].maxhp, menuBox);
         DisplayPartyPokemonMaxHP(gMultiPartnerParty[actualSlot].maxhp, menuBox);
         DisplayPartyPokemonHPBar(gMultiPartnerParty[actualSlot].hp, gMultiPartnerParty[actualSlot].maxhp, menuBox);
@@ -3240,10 +3240,10 @@ static void DisplayPartyPokemonGenderNidoranCheck(struct Pokemon *mon, struct Pa
     if (c == 1)
         menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->dimensions[8] >> 3, (menuBox->infoRects->dimensions[9] >> 3) + 1, menuBox->infoRects->dimensions[10] >> 3, menuBox->infoRects->dimensions[11] >> 3, FALSE);
     GetMonNickname(mon, nickname);
-    DisplayPartyPokemonGender(GetMonGender(mon), GetMonData(mon, MON_DATA_SPECIES), nickname, menuBox);
+    DisplayPartyPokemonGender(GetMonGender(mon), GetMonData(mon, MON_DATA_SPECIES), nickname, menuBox, menuBox->windowId == gPartyMenu.slotId);
 }
 
-static void DisplayPartyPokemonGender(u8 gender, u16 species, u8 *nickname, struct PartyMenuBox *menuBox)
+static void DisplayPartyPokemonGender(u8 gender, u16 species, u8 *nickname, struct PartyMenuBox *menuBox, bool8 focused)
 {
     u8 palOffset = BG_PLTT_ID(GetWindowAttribute(menuBox->windowId, WINDOW_PALETTE_NUM));
 
@@ -4129,7 +4129,7 @@ static void FinishTwoMonAction(u8 taskId)
     if (gPartyMenu.action == PARTY_ACTION_FUSION)
     {
         sFusionFirstMonSlot = 0;
-        sFusionFirstMonSpecies = 0;
+        sFusionFirstMonSpecies = SPECIES_NONE;
     }
 
     gPartyMenu.action = PARTY_ACTION_CHOOSE_MON;
@@ -4898,10 +4898,14 @@ static void CursorCb_FieldMove(u8 taskId)
     if (MenuHelpers_IsLinkActive() == TRUE || InUnionRoom() == TRUE)
     {
         if (fieldMove == FIELD_MOVE_MILK_DRINK || fieldMove == FIELD_MOVE_SOFT_BOILED)
+        {
             DisplayPartyMenuMessage(gText_CantUseHere, TRUE);
+        }
         else
+        {
             StringExpandPlaceholders(gStringVar4, sActionStringTable[FieldMove_GetPartyMsgID(fieldMove)]);
             DisplayPartyMenuMessage(gStringVar4, TRUE);
+        }
 
         gTasks[taskId].func = Task_CancelAfterAorBPress;
     }
@@ -7891,7 +7895,7 @@ static void DisplayPartyPokemonDataForFormChange(u8 slot)
 static void Task_TryItemUseFusionChange(u8 taskId);
 static void SpriteCB_FormChangeIconMosaic(struct Sprite *sprite);
 
-static u8 IsFusionMon(u16 species)
+u8 IsFusionMon(u16 species)
 {
     u16 i;
     const struct Fusion *itemFusion = gFusionTablePointers[species];
@@ -8019,7 +8023,7 @@ static void RestoreFusionMon(struct Pokemon *mon)
     }
 }
 
-static void DeleteInvalidFusionMoves(struct Pokemon *mon, u32 species)
+static void DeleteInvalidFusionMoves(struct Pokemon *mon, u16 species)
 {
     for (u32 i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -8277,7 +8281,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 task->forgetMove = itemFusion[i].fusionMove;
 
                 sFusionFirstMonSlot = 0;
-                sFusionFirstMonSpecies = 0;
+                sFusionFirstMonSpecies = SPECIES_NONE;
                 TryItemUseFusionChange(taskId, taskFunc);
                 return;
             }
@@ -8302,7 +8306,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 for (i = 0; i < PARTY_SIZE; i++)
                 {
                     u16 slotSpecies;
-                    u8 fusionType;
+                    u8 slotFusionType;
 
                     if (i == gPartyMenu.slotId)
                         continue;
@@ -8311,8 +8315,8 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                     if (slotSpecies == SPECIES_NONE)
                         continue;
 
-                    fusionType = IsFusionMon(slotSpecies);
-                    if (fusionType != FALSE)
+                    slotFusionType = IsFusionMon(slotSpecies);
+                    if (slotFusionType != FALSE)
                     {
                         DisplayPartyPokemonDataForFusion(i);
                         CopyWindowToVram(sPartyMenuBoxes[i].windowId, COPYWIN_GFX);
@@ -8343,7 +8347,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
                 task->tExtraMoveHandling = itemFusion[i].extraMoveHandling;
 
                 sFusionFirstMonSlot = 0;
-                sFusionFirstMonSpecies = 0;
+                sFusionFirstMonSpecies = SPECIES_NONE;
                 // Start Fusion
                 TryItemUseFusionChange(taskId, taskFunc);
                 return;
@@ -8358,7 +8362,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
     if (task->fusionType != FUSE_MON)
     {
         sFusionFirstMonSlot = 0;
-        sFusionFirstMonSpecies = 0;
+        sFusionFirstMonSpecies = SPECIES_NONE;
     }
     task->func = Task_ReturnToChooseMonAfterText;
     return;
@@ -8371,6 +8375,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
 #undef secondFusionSlot
 #undef unfuseSecondMon
 #undef moveToLearn
+#undef tExtraMoveHandling
 #undef forgetMove
 #undef storageIndex
 

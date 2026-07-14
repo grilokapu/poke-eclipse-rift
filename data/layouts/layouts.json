@@ -202,10 +202,10 @@
     {
       "id": "LAYOUT_ROUTE103",
       "name": "Route103_Layout",
-      "width": 80,
+      "width": 40,
       "height": 22,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Petalburg",
+      "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Route103/border.bin",
       "blockdata_filepath": "data/layouts/Route103/map.bin",
       "layout_version": "emerald"
@@ -9347,8 +9347,8 @@
     {
       "id": "LAYOUT_SILENT_FOREST",
       "name": "SILENT_FOREST_Layout",
-      "width": 70,
-      "height": 30,
+      "width": 45,
+      "height": 26,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_InsideOfTruck",
       "border_filepath": "data/layouts/SILENT_FOREST/border.bin",
@@ -9383,6 +9383,26 @@
       "secondary_tileset": "gTileset_Slateport",
       "border_filepath": "data/layouts/SylvaraBeach/border.bin",
       "blockdata_filepath": "data/layouts/SylvaraBeach/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHISPERING_CAVE",
+      "name": "WhisperingCave_Layout",
+      "width": 40,
+      "height": 21,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/WhisperingCave/border.bin",
+      "blockdata_filepath": "data/layouts/WhisperingCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_WHISPERING_CAVE_2F",
+      "name": "WhisperingCave_2F_Layout",
+      "width": 40,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/WhisperingCave_2F/border.bin",
+      "blockdata_filepath": "data/layouts/WhisperingCave_2F/map.bin"
     }
   ]
 }

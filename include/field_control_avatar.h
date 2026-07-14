@@ -42,9 +42,5 @@ bool8 TryStartStepBasedScript(struct MapPosition *, u16, enum Direction);
 #define NOT_SIGNPOST 0
 #define WALK_AWAY_SIGNPOST_FRAMES 6
 
-extern const u8 SilentForest_whisper_1[];
-extern const u8 SilentForest_whisper_2[];
-extern const u8 SilentForest_whisper_3[];
-extern const u8 SilentForest_whisper_4[];
-
+extern const u8 SilentForest_EventScript_Symbol_Chien_Pao[];
 #endif // GUARD_FIELDCONTROLAVATAR_H

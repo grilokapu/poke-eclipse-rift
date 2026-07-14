@@ -1026,7 +1026,7 @@ bool8 ShowMonMugshot(u16 species, u8 position)
 		x = 10;
 		y = 3;
 	}
-    else if (position == MUGSHOT_DOWN_RIGHT)
+    else if (position == MUGSHOT_SOUTHEAST)
     {
         x = 18;
 		y = 6;
@@ -1261,6 +1261,9 @@ void CreateStarterMagPortal(u8 localId)
     u16 x = gSprites[spriteId].x - 16;
     u16 y = gSprites[spriteId].y - 10;
 
+    if (FlagGet(FLAG_MAGNET_PORTAL_BEHIND))
+        y -= 16;
+
     LoadSpriteSheet(&sMagPortalTileData);
     LoadSpritePalette(&sMagPortalPalData);
 
@@ -1278,7 +1281,7 @@ void CreateStarterMagPortal(u8 localId)
 
 void CreateMagnectPortal(void)
 {
-    CreateStarterMagPortal(LOCALID_PLAYER);
+    CreateStarterMagPortal(1);
 }
 
 static const u16 gSprite_PlayerBrightMGfx[] = INCBIN_U16("graphics/field_effects/pics/player_bright_m.4bpp");
@@ -1371,7 +1374,7 @@ void CreateSpecialObjectEvent(u16 sprite, u8 objId, u8 posX, u8 posY, u8 movetyp
         .kind = OBJ_KIND_NORMAL,
         .x = posX,
         .y = posY,
-        .elevation = 3,
+        .elevation = ELEVATION_DEFAULT,
         .movementType = movetype,
         .movementRangeX = 0,
         .movementRangeY = 0,
@@ -1560,6 +1563,72 @@ void GetFirstPartyMonGraphicsId(void)
 
     if (GetMonGender(mon) == MON_FEMALE)
         gSpecialVar_0x8000 += OBJ_EVENT_MON_FEMALE;
+}
+
+static const u16 gSprite_CaveSymbolGfx[] = INCBIN_U16("graphics/field_effects/pics/cavesymbol.4bpp");
+static const u16 gSprite_CaveSymbolPal[] = INCBIN_U16("graphics/field_effects/pics/cavesymbol.gbapal");
+
+static const struct SpriteSheet sCaveSymbolTileData =
+{
+    .data = gSprite_CaveSymbolGfx,
+    .size = sizeof(gSprite_CaveSymbolGfx),
+    .tag = 12,
+};
+
+static const struct SpritePalette sCaveSymbolPalData =
+{
+    .data = gSprite_CaveSymbolPal,
+    .tag = 12,
+};
+
+static const union AnimCmd sCaveSymbolAnim0[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_LOOP(3),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sCaveSymbolAnimTable[] =
+{
+    sCaveSymbolAnim0,
+};
+
+static const struct SpriteTemplate sCaveSymbolTemplate =
+{
+    .tileTag = 12,
+    .paletteTag = 12,
+    .oam = &sMagPortalOamData,
+    .anims = sCaveSymbolAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_MagPortal,
+};
+
+void CreateCaveSymbol(void)
+{
+    u16 objId = GetObjectEventIdByLocalId(LOCALID_PLAYER);
+    if (objId == OBJECT_EVENTS_COUNT) return;
+
+    u16 spriteId = gObjectEvents[objId].spriteId;
+    u16 x = gSprites[spriteId].x - 16;
+    u16 y = gSprites[spriteId].y - 32;
+
+    LoadSpriteSheet(&sCaveSymbolTileData);
+    LoadSpritePalette(&sCaveSymbolPalData);
+
+    u8 CaveSymbolId = CreateSprite(&sCaveSymbolTemplate, x, y, 0);
+    if (CaveSymbolId != MAX_SPRITES)
+    {
+        gSprites[CaveSymbolId].data[0] = 0;
+        gSprites[CaveSymbolId].centerToCornerVecX = 0;
+        gSprites[CaveSymbolId].centerToCornerVecY = 0;
+        gSprites[CaveSymbolId].coordOffsetEnabled = TRUE;
+        gSprites[CaveSymbolId].oam.priority = 2;
+        gSprites[CaveSymbolId].subpriority = 0;
+    }
 }
 
 // DW Scripts End

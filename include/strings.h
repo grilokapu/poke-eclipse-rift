@@ -685,7 +685,11 @@ extern const u8 gText_SilverCard[];
 extern const u8 gText_GoldCard[];
 
 extern const u8 gText_CanIHelpWithAnythingElse[];
+extern const u8 gText_CanIHelpWithAnythingElsePt[];
+extern const u8 gText_CanIHelpWithAnythingElseEs[];
 extern const u8 gText_AnythingElseICanHelp[];
+extern const u8 gText_AnythingElseICanHelpPt[];
+extern const u8 gText_AnythingElseICanHelpEs[];
 extern const u8 gText_QuitShopping[];
 extern const u8 gText_PokedollarVar1[];
 extern const u8 gText_YouDontHaveMoney[];
@@ -705,6 +709,10 @@ extern const u8 gText_ThrowInPremierBalls[];
 extern const u8 gText_ShopBuy[];
 extern const u8 gText_ShopSell[];
 extern const u8 gText_ShopQuit[];
+extern const u8 gText_ShopBuyPt[];
+extern const u8 gText_ShopSellPt[];
+extern const u8 gText_ShopQuitPt[];
+extern const u8 gText_ShopQuitEs[];
 extern const u8 gText_ThatItemIsSoldOut[];
 extern const u8 gText_SoldOut[];
 

@@ -646,6 +646,10 @@
 #define OBJ_EVENT_PAL_TAG_PSYCHIC_M                 0x1177
 #define OBJ_EVENT_PAL_TAG_YOUNG_GIOVANNI            0x1178
 #define OBJ_EVENT_PAL_TAG_LASS                      0x1179
+#define OBJ_EVENT_PAL_TAG_HIKER                     0x117A
+#define OBJ_EVENT_PAL_TAG_CAMPER                    0x117B
+#define OBJ_EVENT_PAL_TAG_FISHERMAN                 0x117C
+#define OBJ_EVENT_PAL_TAG_TEALA                     0x117D
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001

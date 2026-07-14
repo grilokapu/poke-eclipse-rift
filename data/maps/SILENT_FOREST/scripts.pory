@@ -1,669 +1,278 @@
 mapscripts SILENT_FOREST_MapScripts {
-    MAP_SCRIPT_ON_TRANSITION {
-        setflag(FLAG_DARK_SORCERERS)
-        end
-    }
-    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        VAR_FOREST_WHISPER_STATE, 0: SetPlayerFacingWarp
+    MAP_SCRIPT_ON_FRAME_TABLE[
+        VAR_FOREST_WHISPER_STATE, 0: SilentForest_EventScript_FadeIn_Player
+        VAR_FOREST_WHISPER_STATE, 2: SilentForest_EventScript_Chien_Pao_Event
     ]
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_CHIEN_PAO_SILENT_FOREST)
+    }
 }
 
-script SetPlayerFacingWarp {
-    callnative(SetPlayerDirection)
+const POS_X = VAR_TEMP_0
+const POS_Y = VAR_TEMP_1
+
+script SilentForest_EventScript_FadeIn_Player {
+    playse(SE_RAIN)
+    pause(100)
+    playse(SE_NOTE_D)
+    waitse
+    pause(80)
+    playse(SE_NOTE_E)
+    waitse
+    pause(80)
+    playse(SE_NOTE_A)
+    waitse
+    pause(80)
+    playse(SE_NOTE_D)
+    waitse
+    pause(80)
+    playse(SE_SWITCH)
+    waitse
+    pause(100)
+    getplayerxy(POS_X, POS_Y)
+    clearflag(FLAG_SPAWN_INVISIBLE)
     setvar(VAR_FOREST_WHISPER_STATE, 1)
-    end
+    setvar(VAR_DEFAULT_WALKING_SCRIPT, 2)
+    warpsilent(MAP_SILENT_FOREST, POS_X, POS_Y)
+    waitstate
 }
 
-const LOCALID_CHIEN_PAO = 9
-
-script SilentForest_Pentagram_Event_Tile {
+script SilentForest_EventScript_Symbol_Chien_Pao {
     lockall
     playse(SE_PIN)
-    moveplayer(Common_Movement_ExclaimFacingDown)
+    moveplayer(moves(emote_exclamation_mark))
     waitse
+    pause(30)
+    setvar(VAR_FOREST_WHISPER_STATE, 2)
+    warp(MAP_SILENT_FOREST, 11, 21)
+    waitstate
+}
+
+const CHIEN = LOCALID_FOREST_CHIEN_PAO
+
+script SilentForest_EventScript_Chien_Pao_Event {
+    call(Draw_Chien_Symbol)
+    playbgm(MUS_RG_SEVII_67, 0)
+    moveplayer(moves(walk_up * 7, face_up))
+    pause(30)
+    playse(SE_PIN)
+    moveplayer(moves(emote_exclamation_mark))
+    waitse
+    pause(30)
+    moveplayer(moves(walk_up * 3, face_down))
     setflag(FLAG_SET_SYMBOL_ANIM)
     special(DrawWholeMapView)
-    delay(20)
-    playse(SE_EXIT)
-    waitse
-    clearflag(FLAG_DARK_SORCERERS)
-    addobject(LOCALID_SORCERER_1)
-    addobject(LOCALID_SORCERER_2)
-    addobject(LOCALID_SORCERER_3)
-    addobject(LOCALID_SORCERER_4)
-    addobject(LOCALID_SORCERER_5)
-    addobject(LOCALID_SORCERER_6)
-    addobject(LOCALID_SORCERER_7)
-    addobject(LOCALID_SORCERER_8)
-    delay(20)
-    applymovement(LOCALID_SORCERER_1, Movement_Sorcerer_WalkDown3)
-    applymovement(LOCALID_SORCERER_2, Movement_Sorcerer_WalkLeft6)
-    applymovement(LOCALID_SORCERER_3, Movement_Sorcerer_WalkLeftUp5)
-    applymovement(LOCALID_SORCERER_4, Movement_Sorcerer_WalkLeft6LUp)
-    applymovement(LOCALID_SORCERER_5, Movement_Sorcerer_WalkUp3)
-    applymovement(LOCALID_SORCERER_6, Movement_Sorcerer_WalkRight6LUp)
-    applymovement(LOCALID_SORCERER_7, Movement_Sorcerer_WalkRightUp5)
-    applymovement(LOCALID_SORCERER_8, Movement_Sorcerer_WalkRight6)
-    waitmovementall
     pause(30)
-    movenpc(LOCALID_SORCERER_5, Movement_Sorcerer_WalkNextToPlayer)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\pEntão… você ainda respira.\pCurioso.\pMesmo sem a marca… você encontrou\no símbolo.\pOu talvez…\pEle tenha encontrado você.\pDepois de tanto tempo… ainda há um\neco.\pDiga-me…\pVocê sente isso?\pEssa ausência… onde algo deveria\nestar.\pNão tema.\pA Eclipse Mark nunca desaparece.\pEla apenas… espera.\pE nós…\pCumprimos o chamado.\p{PAUSE_UNTIL_PRESS}\pPermaneça imóvel.\pNão resista.\pO que foi negado a você… será\nrestaurado.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\pSo… you still breathe.\pCurious.\pEven without the mark… you found\nthe symbol.\pOr perhaps…\pIt found you.\pAfter all this time… there is\nstill an echo.\pTell me…\pDo you feel it?\pThat absence… where something\nshould be.\pDo not fear.\pThe Eclipse Mark never disappears.\pIt merely… waits.\pAnd we…\pAnswer the call.\p{PAUSE_UNTIL_PRESS}\pRemain still.\pDo not resist.\pWhat was denied to you… will be\nrestored.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\pAsí que… aún respiras.\pCurioso.\pIncluso sin la marca… encontraste\nel símbolo.\pO tal vez…\pÉl te encontró a ti.\pDespués de tanto tiempo… aún queda\nun eco.\pDime…\p¿Lo sientes?\pEsa ausencia… donde debería haber\nalgo.\pNo temas.\pLa Marca Eclipse nunca desaparece.\pSolo… espera.\pY nosotros…\pRespondemos al llamado.\p{PAUSE_UNTIL_PRESS}\pPermanece inmóvil.\pNo te resistas.\pLo que te fue negado… será\nrestaurado.", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    movenpc(LOCALID_SORCERER_7, Common_Movement_WalkInPlaceRight)
-    callnative(CheckGenderString2)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Luke", "É el{STR_VAR_1}…", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Luke", "It is {STR_VAR_1}…", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Luke", "Es {STR_VAR_1}…", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    movenpc(LOCALID_SORCERER_3, Common_Movement_WalkInPlaceLeft)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Dhenos", "Não… algo está faltando.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Dhenos", "No… something is missing.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Dhenos", "No… falta algo.", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    movenpc(LOCALID_SORCERER_6, Common_Movement_WalkInPlaceUp)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Zion", "A marca deveria estar aqui…", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Zion", "The mark should already be there…", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Zion", "La marca ya debería estar…", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    movenpc(LOCALID_SORCERER_2, Common_Movement_WalkInPlaceDown)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Trohn", "Desapareceu… assim como antes…\nVocê não lembra de nós…?", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Trohn", "It faded… just like before…\nDo you not remember us…?", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Trohn", "Se desvaneció… como antes…\n¿No nos recuerdas…?", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    movenpc(LOCALID_SORCERER_5, Common_Movement_WalkInPlaceUp)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\pEles ainda escutam.\pMesmo agora… ainda te reconhecem.\pMas você…\pVocê está vazio.\pA marca foi arrancada… ou\nesquecida.\pNão importa.\pO símbolo não erra.\pEle nunca erra.\pSe ele respondeu…\pEntão você ainda pertence a isto.\pE isto… pertence a você.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\pThey still hear it.\pEven now… they still recognize\nyou.\pBut you…\pYou are empty.\pThe mark was torn away… or\nforgotten.\pIt doesn't matter.\pThe symbol does not err.\pIt never errs.\pIf it responded…\pThen you still belong to this.\pAnd this… belongs to you.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\pAún lo escuchan.\pIncluso ahora… aún te reconocen.\pPero tú…\pEstás vacío.\pLa marca fue arrancada… o\nolvidada.\pNo importa.\pEl símbolo no se equivoca.\pNunca se equivoca.\pSi respondió…\pEntonces aún perteneces a esto.\pY esto… te pertenece.", MSGBOX_AUTOCLOSE)
-    }
-    delay(10)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Aethros", "Escute com atenção.\pO que vamos devolver…\pnão é apenas poder.\pÉ memória.\pÉ peso.\pÉ ligação.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Aethros", "Listen carefully.\pWhat we are about to return…\pis not just power.\pIt is memory.\pIt is weight.\pIt is connection.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Aethros", "Escucha con atención.\pLo que vamos a devolver…\pno es solo poder.\pEs memoria.\pEs peso.\pEs vínculo.", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Aethros", "Quando despertar…\nvocê não será mais o mesmo.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Aethros", "When you awaken…\nyou will not be the same.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Aethros", "Cuando despiertes…\nya no serás el mismo.", MSGBOX_AUTOCLOSE)
-    }
-    delay(20)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Aethros", "Mas… talvez…\nnunca tenha sido.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Aethros", "But… perhaps…\nyou never were.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Aethros", "Pero… quizás…\nnunca lo fuiste.", MSGBOX_AUTOCLOSE)
-    }
-    movenpc(LOCALID_SORCERER_5, Movement_Sorcerer_StepBackFromPlayer)
-    delay(30)
-    applymovement(LOCALID_SORCERER_1, MovementSorcererStepLeft2Down)
-    applymovement(LOCALID_SORCERER_2, MovementSorcererStepUpLeft2)
-    applymovement(LOCALID_SORCERER_3, MovementSorcererStepUp2Left)
-    applymovement(LOCALID_SORCERER_4, MovementSorcererStepRightUp2)
-    applymovement(LOCALID_SORCERER_5, MovementSorcererStepRight2Up)
-    applymovement(LOCALID_SORCERER_6, MovementSorcererStepDownRight2)
-    applymovement(LOCALID_SORCERER_7, MovementSorcererStepDown2Right)
-    applymovement(LOCALID_SORCERER_8, MovementSorcererStepLeftDown2)
-    waitmovementall
-    delay(30)
-    applymovement(LOCALID_SORCERER_2, MovementSorcererStepLeft2Down)
-    applymovement(LOCALID_SORCERER_3, MovementSorcererStepUpLeft2)
-    applymovement(LOCALID_SORCERER_4, MovementSorcererStepUp2Left)
-    applymovement(LOCALID_SORCERER_5, MovementSorcererStepRightUp2)
-    applymovement(LOCALID_SORCERER_6, MovementSorcererStepRight2Up)
-    applymovement(LOCALID_SORCERER_7, MovementSorcererStepDownRight2)
-    applymovement(LOCALID_SORCERER_8, MovementSorcererStepDown2Right)
-    applymovement(LOCALID_SORCERER_1, MovementSorcererStepLeftDown2)
-    waitmovementall
-    delay(30)
-    applymovement(LOCALID_SORCERER_2, MovementClock_S1)
-    applymovement(LOCALID_SORCERER_3, MovementClock_S2)
-    applymovement(LOCALID_SORCERER_4, MovementClock_S3)
-    applymovement(LOCALID_SORCERER_5, MovementClock_S4)
-    applymovement(LOCALID_SORCERER_6, MovementClock_S5)
-    applymovement(LOCALID_SORCERER_7, MovementClock_S6)
-    applymovement(LOCALID_SORCERER_8, MovementClock_S7)
-    applymovement(LOCALID_SORCERER_1, MovementClock_S8)
-    waitmovementall
-    delay(30)
-    applymovement(LOCALID_SORCERER_1, MovementClock_S1)
-    applymovement(LOCALID_SORCERER_2, MovementClock_S2)
-    applymovement(LOCALID_SORCERER_3, MovementClock_S3)
-    applymovement(LOCALID_SORCERER_4, MovementClock_S4)
-    applymovement(LOCALID_SORCERER_5, MovementClock_S5)
-    applymovement(LOCALID_SORCERER_6, MovementClock_S6)
-    applymovement(LOCALID_SORCERER_7, MovementClock_S7)
-    applymovement(LOCALID_SORCERER_8, MovementClock_S8)
-    waitmovementall
-    delay(30)
-    applymovement(LOCALID_SORCERER_1, MovementSorcererStepLeft2Down)
-    applymovement(LOCALID_SORCERER_2, MovementSorcererStepUpLeft2)
-    applymovement(LOCALID_SORCERER_3, MovementSorcererStepUp2Left)
-    applymovement(LOCALID_SORCERER_4, MovementSorcererStepRightUp2)
-    applymovement(LOCALID_SORCERER_5, MovementSorcererStepRight2Up)
-    applymovement(LOCALID_SORCERER_6, MovementSorcererStepDownRight2)
-    applymovement(LOCALID_SORCERER_7, MovementSorcererStepDown2Right)
-    applymovement(LOCALID_SORCERER_8, MovementSorcererStepLeftDown2)
-    waitmovementall
-    delay(30)
-    applymovement(LOCALID_SORCERER_1, MovementClock_S1)
-    applymovement(LOCALID_SORCERER_2, MovementClock_S2)
-    applymovement(LOCALID_SORCERER_3, MovementClock_S3)
-    applymovement(LOCALID_SORCERER_4, MovementClock_S4)
-    applymovement(LOCALID_SORCERER_5, MovementClock_S5)
-    applymovement(LOCALID_SORCERER_6, MovementClock_S6)
-    applymovement(LOCALID_SORCERER_7, MovementClock_S7)
-    applymovement(LOCALID_SORCERER_8, MovementClock_S8)
-    waitmovementall
-    setvar(VAR_0x8004, 1)  // vertical pan
-	setvar(VAR_0x8005, 1)  // horizontal pan
-	setvar(VAR_0x8006, 8)  // num shakes
-	setvar(VAR_0x8007, 5)  // shake delay
-	special(ShakeCamera)
-	waitstate
-    setvar(VAR_RESULT, 2)
     playse(SE_ORB)
+    setvar(VAR_RESULT, 2)
     special(DoOrbEffect)
-    waitstate
+    moveplayer(moves(walk_in_place_faster_down))
+    pause(150)
     special(FadeOutOrbEffect)
-	waitstate
-    delay(30)
-    switch (var(VAR_LANGUAGE)) {
-        case PT: blackmessage("...\pVocê sente algo… pressionando seu\npeito.\p")
-        case EN: blackmessage("...\pYou feel something… pressing\nagainst your chest.\p")
-        case ES: blackmessage("...\pSientes algo… presionando tu\npecho.\p")
-    }
-    pause(20)
-    playse(SE_M_BRICK_BREAK)
-    waitse
-    switch (var(VAR_LANGUAGE)) {
-        case PT: blackmessage("Sua visão… oscila.\p")
-        case EN: blackmessage("Your vision… wavers.\p")
-        case ES: blackmessage("Tu visión… oscila.\p")
-    }
+    waitstate
+    fadescreen(FADE_TO_WHITE)
+    fadedefaultbgm
     setvar(VAR_0x8004, 1)  // vertical pan
 	setvar(VAR_0x8005, 1)  // horizontal pan
 	setvar(VAR_0x8006, 8)  // num shakes
 	setvar(VAR_0x8007, 5)  // shake delay
 	special(ShakeCamera)
 	waitstate
-    pause(20)
-    switch (var(VAR_LANGUAGE)) {
-        case PT: blackmessage("Algo foi gravado em você.\pAlgo… despertou.\p")
-        case EN: blackmessage("Something was etched into you.\pSomething… awakened.\p")
-        case ES: blackmessage("Algo fue grabado en ti.\pAlgo… despertó.\p")
+    pause(100)
+    fadescreen(FADE_FROM_WHITE)
+    pause(30)
+    switch(var(VAR_LANGUAGE)){
+        case PT: blackmessage("???\pVocê consegue me ouvir…\p")
+        case EN: blackmessage("???\pCan you hear me…\p")
+        case ES: blackmessage("???\p¿Puedes oírme…\p")
     }
-    pause(20)
-    playse(SE_M_PETAL_DANCE)
-    callnative(CreateMagnectPortal)
-    waitse
-    pause(120)
+    pause(50)
+    switch(var(VAR_LANGUAGE)){
+        case PT: blackmessage("Finalmente…\p...\p...\pMas…\pAinda é cedo demais.\p")
+        case EN: blackmessage("Finally…\p...\p...\pBut…\pIt's still too early.\p")
+        case ES: blackmessage("Por fin…\p...\p...\pPero…\pAún es demasiado pronto.\p")
+    }
+    pause(30)
     playse(SE_SHINY)
     callnative(CreatePlayerBright)
     waitse
-    pause(20)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: blackmessage("...\pSeu corpo está… diferente.\p")
-        case EN: blackmessage("...\pYour body feels… different.\p")
-        case ES: blackmessage("...\pTu cuerpo se siente… diferente.\p")
-    }
-    pause(120)
-    playse(SE_PIN)
-    applymovement(LOCALID_SORCERER_1, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_2, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_3, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_4, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_5, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_6, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_7, Common_Movement_ExclamationMark)
-    applymovement(LOCALID_SORCERER_8, Common_Movement_ExclamationMark)
-    waitmovementall
-    waitse
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\nIsto… não deveria acontecer.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\nThis… shouldn't be happening.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Aethros", "...\nEsto… no debería estar pasando.", MSGBOX_AUTOCLOSE)
-    }
-    pause(20)
-    playmoncry(SPECIES_CHIEN_PAO, 0)
-    waitmoncry
-    pause(30)
-    playse(SE_PIN)
-    applymovement(LOCALID_SORCERER_1, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_2, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_3, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_4, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_5, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_6, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_7, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_SORCERER_8, Common_Movement_QuestionMarkFacingUp)
-    applymovement(LOCALID_PLAYER, Common_Movement_QuestionMarkFacingUp)
-    waitmovementall
-    waitse
-    createspobject(OBJ_EVENT_GFX_SPECIES(CHIEN_PAO), LOCALID_CHIEN_PAO, 11, 5)
+    pause(100)
+    clearflag(FLAG_CHIEN_PAO_SILENT_FOREST)
+    addobject(CHIEN)
     special(SpawnCameraObject)
-    applymovement(LOCALID_CAMERA, Movement_CameraShowChienPao)
-    waitmovement(LOCALID_CAMERA)
-    special(RemoveCameraObject)
+    movecamera(moves(walk_down * 7))
     pause(30)
-    special(SpawnCameraObject)
-    applymovement(LOCALID_CAMERA, Movement_CameraGoBackPlayer)
-    applymovement(LOCALID_CHIEN_PAO, Movement_Chien_Pao_GoDown)
-    applymovement(LOCALID_SORCERER_1, Movement_Sorcerer_GoToRight3)
-    applymovement(LOCALID_SORCERER_2, Movement_Sorcerer_GoToRight)
-    applymovement(LOCALID_SORCERER_8, Movement_Sorcerer_GoToLeft)
+    applymovement(LOCALID_CAMERA, moves(walk_up * 7))
+    applymovement(CHIEN, moves(walk_up * 5))
     waitmovementall
     special(RemoveCameraObject)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
+    call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("...\pVocê…\pEles tocaram você.\pErrado.\pEles não deveriam.\pEles sempre fazem isso…\pChamam.\pTomam.\pEsquecem o preço.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("...\pYou…\pThey touched you.\pWrong.\pThey shouldn't have.\pThey always do this…\pThey call.\pThey take.\pThey forget the cost.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("...\pTú…\pEllos te tocaron.\pMal.\pNo deberían.\pSiempre hacen esto…\pLlaman.\pToman.\pOlvidan el precio.", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Você não sabe quem eu sou.\pE eu também não sei quem você é.\nMas este lugar…\pNos permitiu nos encontrar.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("You don't know who I am.\pAnd I don't know who you are.\nBut this place…\pHas allowed us to meet.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("No sabes quién soy.\pY yo tampoco sé quién eres.\nPero este lugar…\pNos ha permitido encontrarnos.", MSGBOX_AUTOCLOSE)
     }
-    hidemonmugshot
-    pause(10)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Você não pertence a eles.\nNunca pertenceu.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("You do not belong to them.\nYou never did.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("No perteneces a ellos.\nNunca perteneciste.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
+    call(HideChien_Pao_Mugshot)
     pause(30)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Mas agora…\nVocê carrega o sinal.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("But now…\nYou carry the mark.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Pero ahora…\nLlevas la marca.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
-    pause(10)
-    movenpc(LOCALID_SORCERER_1, Movement_Sorcerer_GoNextChienPao)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_SORCERER, "Zoth", "Mestre-", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_SORCERER, "Zoth", "Master-", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_SORCERER, "Zoth", "Maestro-", MSGBOX_AUTOCLOSE)
-    }
-    playmoncry(SPECIES_CHIEN_PAO, 0)
-    movenpc(LOCALID_CHIEN_PAO, Movement_Chien_Pao_JumpInPlace)
-    pause(10)
-    playmoncry(SPECIES_CHIEN_PAO, 0)
-    waitmoncry
-    playse(SE_M_BUBBLE_BEAM2)
-    seticescrystalcurse(LOCALID_SORCERER_1)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_2)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_3)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_4)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_5)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_6)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_7)
-    playse(SE_M_BRICK_BREAK)
-    seticescrystalcurse(LOCALID_SORCERER_8)
-    playse(SE_M_BRICK_BREAK)
-    pause(95)
-    setflag(FLAG_DARK_SORCERERS)
-    removeobject(LOCALID_SORCERER_1)
-    removeobject(LOCALID_SORCERER_2)
-    removeobject(LOCALID_SORCERER_3)
-    removeobject(LOCALID_SORCERER_4)
-    removeobject(LOCALID_SORCERER_5)
-    removeobject(LOCALID_SORCERER_6)
-    removeobject(LOCALID_SORCERER_7)
-    removeobject(LOCALID_SORCERER_8)
-    fadescreen(FADE_FROM_BLACK)
-    pause(30)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Fracos.\nEles não mudam.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Weak.\nThey do not change.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Débiles.\nNo cambian.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
-    waitmoncry
-    movenpc(LOCALID_CHIEN_PAO, Movement_Chien_Pao_GoToPlayer)
-    pause(20)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Escute.\nIsso não é um pedido.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Listen.\nThis is not a request.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Escucha.\nEsto no es una petición.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
-    pause(20)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Meus irmãos…\nEstão sendo caçados.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("My brothers…\nAre being hunted.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Mis hermanos…\nEstán siendo cazados.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
-    pause(10)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    msgbox("Ting-Lu.\pWo-Chien.\pChi-Yu.", MSGBOX_AUTOCLOSE)
-    hidemonmugshot
-    pause(20)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Selados… corrompidos…\nenfraquecidos.\pSe caírem…\nIsso também cairá.\pVocê carrega a marca.\nEles vão encontrá-lo.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Sealed… corrupted…\nweakened.\pIf they fall…\nThis will fall as well.\pYou carry the mark.\nThey will find you.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Sellados… corrompidos…\ndebilitados.\pSi caen…\nEsto también caerá.\pLlevas la marca.\nTe encontrarán.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
-    pause(20)
-    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_DOWN_RIGHT)
-    setspeaker("Chien-Pao")
-    switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Quando isso acontecer…\nNão falhe.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("When that happens…\nDo not fail.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Cuando eso ocurra…\nNo falles.", MSGBOX_AUTOCLOSE)
-    }
-    hidemonmugshot
-    pause(10)
-    movenpc(LOCALID_CHIEN_PAO, Common_Movement_FaceUp)
-    pause(20)
-    movenpc(LOCALID_CHIEN_PAO, Movement_CameraShowChienPao)
-    removeobject(LOCALID_CHIEN_PAO)
-    playse(SE_EXIT)
+    playse(SE_PIN)
+    movenpc(CHIEN, moves(emote_question_mark, delay_16, face_down, delay_16, face_left, delay_16, face_right, delay_16, face_up, delay_16))
     waitse
-    pause(30)
+    call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: blackmessage("Acorde!\p")
-        case EN: blackmessage("Wake up!\p")
-        case ES: blackmessage("¡Despierta!\p")
+        case PT: msgbox("O tempo…\nEstá se rompendo.\p{PAUSE_UNTIL_PRESS}\pAlgo despertou…\nAntes da hora.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Time…\nIs breaking apart.\p{PAUSE_UNTIL_PRESS}\pSomething has awakened…\nBefore its time.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("El tiempo…\nSe está rompiendo.\p{PAUSE_UNTIL_PRESS}\pAlgo ha despertado…\nAntes de tiempo.", MSGBOX_AUTOCLOSE)
     }
+    call(HideChien_Pao_Mugshot)
+    pause(30)
+    call(Set_Chien_Pao_Name)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Escute com atenção.\nNão tente entender agora.\pQuanto menos você souber…\nMais seguro estará.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Listen carefully.\nDon't try to understand now.\pThe less you know…\nThe safer you'll be.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Escucha con atención.\nNo intentes comprenderlo ahora.\pCuanto menos sepas…\nMás seguro estarás.", MSGBOX_AUTOCLOSE)
+    }
+    call(HideChien_Pao_Mugshot)
+    pause(20)
+    movenpc(CHIEN, moves(walk_down *2, face_down))
+    pause(10)
+    call(Set_Chien_Pao_Name)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Quando o momento chegar…\pVocê saberá onde me encontrar.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("When the time comes…\pYou'll know where to find me.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Cuando llegue el momento…\pSabrás dónde encontrarme.", MSGBOX_AUTOCLOSE)
+    }
+
+    pause(30)
+    playse(SE_M_BRICK_BREAK)
+    waitse
+    pause(10)
+    playse(SE_PIN)
+    movenpc(CHIEN, moves(emote_exclamation_mark))
+    waitse
+    pause(10)
+    setvar(VAR_0x8004, 1)  // vertical pan
+	setvar(VAR_0x8005, 1)  // horizontal pan
+	setvar(VAR_0x8006, 8)  // num shakes
+	setvar(VAR_0x8007, 5)  // shake delay
+	special(ShakeCamera)
+	waitstate
+    setflag(FLAG_MAGNET_PORTAL_BEHIND)
+    callnative(CreateMagnectPortal)
+    movenpc(CHIEN, moves(face_up))
+    pause(100)
+    call(Set_Chien_Pao_Name)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Não…\pJá encontraram este lugar…", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("No…\pThey've already found this place…", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("No…\pYa han encontrado este lugar…", MSGBOX_AUTOCLOSE)
+    }
+    clearflag(FLAG_MAGNET_PORTAL_BEHIND)
+    call(HideChien_Pao_Mugshot)
+    pause(30)
+    movenpc(CHIEN, moves(walk_up * 2, face_up))
+    call(Set_Chien_Pao_Name)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Não deixe…\pQue eles…", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Don't let…\pThem…", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("No dejes…\pQue ellos…", MSGBOX_AUTOCLOSE)
+    }
+    call(HideChien_Pao_Mugshot)
+    pause(30)
+    callnative(CreateMagnectPortal)
+    removeobject(CHIEN)
+    pause(100)
+    playse(SE_PIN)
+    moveplayer(moves(emote_question_mark))
+    waitse
+    pause(20)
+    playse(SE_DING_DONG)
+    waitse
+    call(Erase_Chien_Symbol)
+    pause(10)
+    call(Draw_Chien_Symbol)
+    pause(10)
+    call(Erase_Chien_Symbol)
+    pause(10)
+    call(Draw_Chien_Symbol)
+    pause(10)
+    call(Erase_Chien_Symbol)
+    pause(150)
+    fadescreen(FADE_TO_BLACK)
+    pause(100)
     setvar(VAR_SILENT_FOREST_STATE, 1)
     setvar(VAR_DEFAULT_WALKING_SCRIPT, 0)
     warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 7, 6)
-    release
-    end
+    waitstate
 }
 
-script SetWalkingScript {
-    if (var(VAR_DEFAULT_WALKING_SCRIPT) == 1)
-    {
-        release
-        end
-    }
-    setvar(VAR_DEFAULT_WALKING_SCRIPT, 1)
-    release
-    end
+script Set_Chien_Pao_Name {
+    setspeaker("???")
+    showmonmugshot(SPECIES_CHIEN_PAO, MUGSHOT_SOUTHEAST)
+    return
 }
 
-script SilentForest_whisper_1 {
-    lockall
-    fadescreen(FADE_TO_BLACK)
-    setflag(FLAG_MSGBOXONMIDDLE)
-    callnative(CheckGenderString3)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: transbox("...\nEl{STR_VAR_1} chegou…")
-        case EN: transbox("...\n{STR_VAR_1} arrived…")
-        case ES: transbox("...\n{STR_VAR_1} llegó…")
-    }
-    setvar(VAR_DEFAULT_WALKING_SCRIPT, 2)
-    goto(SilentForest_whisper_Continue)
+script HideChien_Pao_Mugshot {
+    waitmoncry
+    hidemonmugshot
+    return
 }
 
-script SilentForest_whisper_2 {
-    lockall
-    fadescreen(FADE_TO_BLACK)
-    setflag(FLAG_MSGBOXONMIDDLE)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: transbox("Não olhe para trás…")
-        case EN: transbox("Don't look back…")
-        case ES: transbox("No mires atrás…")
-    }
-    setvar(VAR_DEFAULT_WALKING_SCRIPT, 3)
-    goto(SilentForest_whisper_Continue)
+script Erase_Chien_Symbol{
+    setmetatile(9, 9, 0x206, FALSE)
+    setmetatile(10, 9, 0x206, FALSE)
+    setmetatile(11, 9, 0x206, FALSE)
+    setmetatile(12, 9, 0x206, FALSE)
+    setmetatile(13, 9, 0x206, FALSE)
+    setmetatile(9, 10, 0x206, FALSE)
+    setmetatile(10, 10, 0x206, FALSE)
+    setmetatile(11, 10, 0x206, FALSE)
+    setmetatile(12, 10, 0x206, FALSE)
+    setmetatile(13, 10, 0x206, FALSE)
+    setmetatile(9, 11, 0x206, FALSE)
+    setmetatile(10, 11, 0x206, FALSE)
+    setmetatile(11, 11, 0x206, FALSE)
+    setmetatile(12, 11, 0x206, FALSE)
+    setmetatile(13, 11, 0x206, FALSE)
+    setmetatile(9, 12, 0x206, FALSE)
+    setmetatile(10, 12, 0x206, FALSE)
+    setmetatile(11, 12, 0x206, FALSE)
+    setmetatile(12, 12, 0x206, FALSE)
+    setmetatile(13, 12, 0x206, FALSE)
+    setmetatile(9, 13, 0x206, FALSE)
+    setmetatile(10, 13, 0x206, FALSE)
+    setmetatile(11, 13, 0x206, FALSE)
+    setmetatile(12, 13, 0x206, FALSE)
+    setmetatile(13, 13, 0x206, FALSE)
+    special(DrawWholeMapView)
+    return
 }
 
-script SilentForest_whisper_3 {
-    lockall
-    fadescreen(FADE_TO_BLACK)
-    setflag(FLAG_MSGBOXONMIDDLE)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: transbox("Ainda não…\pAinda não…")
-        case EN: transbox("Not yet…\pNot yet…")
-        case ES: transbox("Aún no…\pAún no…")
-    }
-    setvar(VAR_DEFAULT_WALKING_SCRIPT, 4)
-    goto(SilentForest_whisper_Continue)
-}
-
-script SilentForest_whisper_Continue {
-    clearflag(FLAG_MSGBOXONMIDDLE)
-    getplayerxy(VAR_TEMP_0, VAR_TEMP_1)
-    callnative(SavePlayerFacing)
-    setvar(VAR_FOREST_WHISPER_STATE, 0)
-    warpsilent(MAP_SILENT_FOREST, VAR_TEMP_0, VAR_TEMP_1)
-    release
-    end
-}
-
-script SilentForest_whisper_4 {
-    lockall
-    fadescreen(FADE_TO_BLACK)
-    setflag(FLAG_MSGBOXONMIDDLE)
-    switch(var(VAR_LANGUAGE)) {
-        case PT: transbox("Você não deveria estar aqui.")
-        case EN: transbox("You shouldn't be here.")
-        case ES: transbox("No deberías estar aquí.")
-    }
-    setvar(VAR_DEFAULT_WALKING_SCRIPT, 0)
-    goto(SilentForest_whisper_Continue)
-}
-
-movement Movement_Chien_Pao_GoToPlayer {
-    walk_down
-    face_down
-}
-
-movement Movement_Chien_Pao_JumpInPlace {
-    jump_in_place_down * 3
-}
-
-movement Movement_Sorcerer_GoNextChienPao {
-    walk_left * 2
-    face_down
-}
-
-movement Movement_CameraShowChienPao {
-    walk_up * 5
-}
-
-movement Movement_CameraGoBackPlayer {
-    walk_down * 5
-}
-
-movement Movement_Chien_Pao_GoDown {
-    walk_down * 4
-    face_down    
-}
-
-movement Movement_Sorcerer_GoToRight {
-    walk_right
-    face_left
-}
-
-movement Movement_Sorcerer_GoToLeft {
-    walk_left
-    face_right
-}
-
-movement Movement_Sorcerer_GoToRight3 {
-    walk_right * 3
-    face_left
-}
-
-movement MovementClock_S1 { // topo → topo-direita
-    walk_up
-    walk_right * 2
-    face_down
-}
-
-movement MovementClock_S2 { // topo-direita → direita
-    walk_right * 2
-    walk_down
-    face_down
-}
-
-movement MovementClock_S3 { // direita → baixo-direita
-    walk_right
-    walk_down * 2
-    face_left
-}
-
-movement MovementClock_S4 { // baixo-direita → baixo
-    walk_down * 2
-    walk_left
-    face_up
-}
-
-movement MovementClock_S5 { // baixo → baixo-esquerda
-    walk_down
-    walk_left * 2
-    face_up
-}
-
-movement MovementClock_S6 { // baixo-esquerda → esquerda
-    walk_left * 2
-    walk_up
-    face_up
-}
-
-movement MovementClock_S7 { // esquerda → topo-esquerda
-    walk_left
-    walk_up * 2
-    face_right
-}
-
-movement MovementClock_S8 { // topo-esquerda → topo
-    walk_up * 2
-    walk_right
-    face_down
-}
-
-movement MovementSorcererStepLeftDown2 {
-    walk_left
-    walk_down * 2
-    face_right
-}
-
-movement MovementSorcererStepDown2Right {
-    walk_down * 2
-    walk_right
-    face_up
-}
-
-movement MovementSorcererStepDownRight2 {
-    walk_down
-    walk_right * 2
-    face_up
-}
-
-movement MovementSorcererStepRight2Up {
-    walk_right * 2
-    walk_up
-    face_up
-}
-
-movement MovementSorcererStepRightUp2 {
-    walk_right
-    walk_up * 2
-    face_left
-}
-
-movement MovementSorcererStepUp2Left {
-    walk_up * 2
-    walk_left
-    face_down
-}
-
-movement MovementSorcererStepLeft2Down {
-    walk_left * 2
-    walk_down
-    face_down
-}
-
-movement MovementSorcererStepUpLeft2 {
-    walk_up
-    walk_left * 2
-    face_down
-}
-
-movement Movement_Sorcerer_WalkNextToPlayer {
-    walk_up * 2
-    face_up
-}
-
-movement Movement_Sorcerer_StepBackFromPlayer {
-    walk_down * 2
-    face_up
-}
-
-movement Movement_Sorcerer_WalkDown3 {
-    walk_down * 3
-    face_down
-}
-
-movement Movement_Sorcerer_WalkLeft6 {
-    walk_left * 6
-    face_left
-}
-
-movement Movement_Sorcerer_WalkLeftUp5 {
-    walk_left * 5
-    walk_up
-    face_left
-}
-
-movement Movement_Sorcerer_WalkLeft6LUp {
-    walk_left * 6
-    face_up
-}
-
-movement Movement_Sorcerer_WalkUp3 {
-    walk_up * 3
-    face_up
-}
-
-movement Movement_Sorcerer_WalkRight6LUp {
-    walk_right * 6
-    face_up
-}
-
-movement Movement_Sorcerer_WalkRightUp5 {
-    walk_right * 5
-    walk_up
-    face_right
-}
-
-movement Movement_Sorcerer_WalkRight6 {
-    walk_right * 6
-    face_right
+script Draw_Chien_Symbol {
+    setmetatile(9, 9, METATILE_InsideOfTruck_Chien_Symbol_0, FALSE)
+    setmetatile(10, 9, METATILE_InsideOfTruck_Chien_Symbol_1, FALSE)
+    setmetatile(11, 9, METATILE_InsideOfTruck_Chien_Symbol_2, FALSE)
+    setmetatile(12, 9, METATILE_InsideOfTruck_Chien_Symbol_3, FALSE)
+    setmetatile(13, 9, METATILE_InsideOfTruck_Chien_Symbol_4, FALSE)
+    setmetatile(9, 10, METATILE_InsideOfTruck_Chien_Symbol_5, FALSE)
+    setmetatile(10, 10, METATILE_InsideOfTruck_Chien_Symbol_6, FALSE)
+    setmetatile(11, 10, METATILE_InsideOfTruck_Chien_Symbol_7, FALSE)
+    setmetatile(12, 10, METATILE_InsideOfTruck_Chien_Symbol_8, FALSE)
+    setmetatile(13, 10, METATILE_InsideOfTruck_Chien_Symbol_9, FALSE)
+    setmetatile(9, 11, METATILE_InsideOfTruck_Chien_Symbol_10, FALSE)
+    setmetatile(10, 11, METATILE_InsideOfTruck_Chien_Symbol_11, FALSE)
+    setmetatile(11, 11, METATILE_InsideOfTruck_Chien_Symbol_12, FALSE)
+    setmetatile(12, 11, METATILE_InsideOfTruck_Chien_Symbol_13, FALSE)
+    setmetatile(13, 11, METATILE_InsideOfTruck_Chien_Symbol_14, FALSE)
+    setmetatile(9, 12, METATILE_InsideOfTruck_Chien_Symbol_15, FALSE)
+    setmetatile(10, 12, METATILE_InsideOfTruck_Chien_Symbol_16, FALSE)
+    setmetatile(11, 12, METATILE_InsideOfTruck_Chien_Symbol_17, FALSE)
+    setmetatile(12, 12, METATILE_InsideOfTruck_Chien_Symbol_18, FALSE)
+    setmetatile(13, 12, METATILE_InsideOfTruck_Chien_Symbol_19, FALSE)
+    setmetatile(9, 13, METATILE_InsideOfTruck_Chien_Symbol_20, FALSE)
+    setmetatile(10, 13, METATILE_InsideOfTruck_Chien_Symbol_21, FALSE)
+    setmetatile(11, 13, METATILE_InsideOfTruck_Chien_Symbol_22, FALSE)
+    setmetatile(12, 13, METATILE_InsideOfTruck_Chien_Symbol_23, FALSE)
+    setmetatile(13, 13, METATILE_InsideOfTruck_Chien_Symbol_24, FALSE)
+    special(DrawWholeMapView)
+    return
 }

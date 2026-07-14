@@ -222,5 +222,28 @@ const struct HelpWindow gHelpWindowInfo[] =
                                 "que buscan la prueba definitiva!"
                             ),
     },
+    [HELP_MATCH_STATS] =
+    {
+        .header = COMPOUND_STRING("Information: Match Stats"),
+        .headerPt = COMPOUND_STRING("Informação: Estatísticas de Partida"),
+        .headerEs = COMPOUND_STRING("Información: Estadísticas de Partida"),
+        .desc = COMPOUND_STRING("Check whether your Pokémon has a higher\n"
+                                "Attack or Special Attack stat.\n\n"
+                                "Always equip them with moves that match\n"
+                                "their higher stat to maximize damage.$"
+                            ),
+        .descPt = COMPOUND_STRING("Verifique se o seu Pokémon tem um Ataque\n"
+                                  "ou Ataque Especial maior. \n\n"
+                                  "Sempre ensine golpes que correspondam\n"
+                                  "ao seu maior atributo para causar o\n"
+                                  "máximo de dano."
+                            ),
+        .descEs = COMPOUND_STRING("Comprueba si tu Pokémon tiene un Ataque\n"
+                                  "o Ataque Especial más alto. \n\n"
+                                  "Enséñale siempre movimientos que\n"
+                                  "aprovechen su mejor estadística para\n"
+                                  "causar el máximo daño."
+                            ),
+    },
     // Add more entries
 };

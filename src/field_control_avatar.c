@@ -94,10 +94,8 @@ static u16 sWalkingStepCounter = 0;
 //Table full of pointers to custom walking scripts
 static const u8* const sDefaultWalkingScripts[] =
 {
-	SilentForest_whisper_1,
-	SilentForest_whisper_2,
-	SilentForest_whisper_3,
-	SilentForest_whisper_4,
+	NULL,
+    SilentForest_EventScript_Symbol_Chien_Pao,
 };
 #endif
 
@@ -855,7 +853,10 @@ static const u8* GetCustomWalkingScript(void)
 
     sWalkingStepCounter++;
 
-    u16 interval = 22;
+    u16 interval = 0;
+
+    if (MAP_IS(MAP_SILENT_FOREST))
+        interval = 80;
 
     if (sWalkingStepCounter < interval)
         return NULL;

@@ -45,6 +45,7 @@ static void TilesetAnim_BikeShop(u16);
 static void TilesetAnim_BattlePyramid(u16);
 static void TilesetAnim_BattleDome(u16);
 static void QueueAnimTiles_General_Flower(u16);
+static void QueueAnimTiles_General_Flower2(u16);
 static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
 static void QueueAnimTiles_General_Waterfall(u16);
@@ -80,13 +81,25 @@ static void QueueAnimTiles_EliteFour_WallLights(u16);
 const u16 gTilesetAnims_General_Flower_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/1.4bpp");
 const u16 gTilesetAnims_General_Flower_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/0.4bpp");
 const u16 gTilesetAnims_General_Flower_Frame2[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/2.4bpp");
+
+const u16 gTilesetAnims_General_Flower2_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/4.4bpp");
+const u16 gTilesetAnims_General_Flower2_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/3.4bpp");
+const u16 gTilesetAnims_General_Flower2_Frame2[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/5.4bpp");
+
 const u16 tileset_anims_space_0[16] = {};
 
 const u16 *const gTilesetAnims_General_Flower[] = {
     gTilesetAnims_General_Flower_Frame0,
     gTilesetAnims_General_Flower_Frame1,
-    gTilesetAnims_General_Flower_Frame0,
-    gTilesetAnims_General_Flower_Frame2
+    gTilesetAnims_General_Flower_Frame2,
+    gTilesetAnims_General_Flower_Frame1
+};
+
+const u16 *const gTilesetAnims_General_Flower2[] = {
+    gTilesetAnims_General_Flower2_Frame0,
+    gTilesetAnims_General_Flower2_Frame1,
+    gTilesetAnims_General_Flower2_Frame2,
+    gTilesetAnims_General_Flower2_Frame1
 };
 
 const u16 gTilesetAnims_General_Water_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/water/0.4bpp");
@@ -700,12 +713,14 @@ static void TilesetAnim_General(u16 timer)
     if (timer % 16 == 0)
         QueueAnimTiles_General_Flower(timer / 16);
     if (timer % 16 == 1)
-        QueueAnimTiles_General_Water(timer / 16);
+        QueueAnimTiles_General_Flower2(timer / 16);
     if (timer % 16 == 2)
-        QueueAnimTiles_General_SandWaterEdge(timer / 16);
+        QueueAnimTiles_General_Water(timer / 16);
     if (timer % 16 == 3)
-        QueueAnimTiles_General_Waterfall(timer / 16);
+        QueueAnimTiles_General_SandWaterEdge(timer / 16);
     if (timer % 16 == 4)
+        QueueAnimTiles_General_Waterfall(timer / 16);
+    if (timer % 16 == 5)
         QueueAnimTiles_General_LandWaterEdge(timer / 16);
 }
 
@@ -719,6 +734,12 @@ static void QueueAnimTiles_General_Flower(u16 timer)
 {
     u16 i = timer % ARRAY_COUNT(gTilesetAnims_General_Flower);
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(508)), 4 * TILE_SIZE_4BPP);
+}
+
+static void QueueAnimTiles_General_Flower2(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_General_Flower2);
+    AppendTilesetAnimToBuffer(gTilesetAnims_General_Flower2[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(242)), 4 * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_General_Water(u16 timer)

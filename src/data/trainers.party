@@ -170,7 +170,7 @@ AI: Check Bad Move
 Mugshot: Blue
 
 Frigibax
-Level: 9
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_2 ===
@@ -184,7 +184,7 @@ AI: Check Bad Move
 Mugshot: Blue
 
 Chikorita
-Level: 9
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_3 ===
@@ -198,7 +198,7 @@ AI: Check Bad Move
 Mugshot: Blue
 
 Quaxly
-Level: 9
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GABRIELLE_1 ===
@@ -212,7 +212,7 @@ AI: Check Bad Move
 Mugshot: Blue
 
 Tepig
-Level: 9
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_PETALBURG_WOODS ===
@@ -226,11 +226,11 @@ AI: Check Bad Move
 Mugshot: Blue
 
 Meowth
-Level: 12
+Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Nidoran m
-Level: 12
+Level: 8
 
 === TRAINER_MARCEL ===
 Name: Mariana
@@ -243,102 +243,104 @@ Double Battle: No
 AI: Check Bad Move
 
 Snubbull
-Level: 10
+Level: 6
 
 Snubbull
-Level: 10
+Level: 6
 
 Lechonk
-Level: 10
+Level: 6
 
 === TRAINER_ALBERTO ===
-Name: ALBERTO
-Class: Bird Keeper
-Pic: Bird Keeper
+Name: Lamartine
+Class: Hiker
+Pic: Hiker
 Gender: Male
-Music: Cool
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Pelipper
-Level: 30
+Geodude
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Xatu
-Level: 30
+Binacle
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ED ===
-Name: ED
-Class: Collector
-Pic: Collector
+Name: Fred
+Class: Camper
+Pic: Camper
 Gender: Male
-Music: Suspicious
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
 Zangoose
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Seviper
-Level: 30
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_4 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt F
-Gender: Female
-Music: Aqua
+Name: Roberto
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Carvanha
-Level: 36
+Lechonk
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DECLAN ===
-Name: DECLAN
-Class: Swimmer M
-Pic: Swimmer M
+Name: Declan
+Class: Bug Catcher
+Pic: Bug Catcher
 Gender: Male
-Music: Swimmer
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Gyarados
-Level: 34
+Wurmple
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Cascoon
+Level: 7
+
+Silcoon
+Level: 7
+
 === TRAINER_GRUNT_RUSTURF_TUNNEL ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
+Name: Sarah
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Poochyena
-Level: 11
+Shroomish
+Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_1 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Name: Noah
+Class: Youngster
+Pic: Youngster
 Gender: Male
-Music: Aqua
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Zubat
-Level: 27
+Wooloo
+Level: 10
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Poochyena
-Level: 27
+Level: 10
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_2 ===

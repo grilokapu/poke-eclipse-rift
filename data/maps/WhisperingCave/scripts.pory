@@ -1,0 +1,50 @@
+mapscripts WhisperingCave_MapScripts {
+
+}
+
+script EventScript_WhisperingCave_TM28_Get {
+    finditem(ITEM_TM_METAL_CLAW)
+    end
+}
+
+script EventScript_WhisperingCave_Hiker_Battle {
+    switch (var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_HIKER_LAMARTINE, "La-la-la…\pAh! Um treinador!\pQue tal acompanhar o ritmo da\nminha batalha?", "La… la…\pOps. Acho que desafinei.")
+            msgbox("As cavernas têm uma acústica\nincrível.\pAté meus Pokémon parecem gostar\ndas minhas músicas.")
+        case EN:
+            trainerbattle_single(TRAINER_HIKER_LAMARTINE, "La-la-la…\pOh! A Trainer!\pHow about keeping up with the\nrhythm of my battle?", "La… la…\pOops. Looks like I hit a wrong\nnote.")
+            msgbox("Caves have amazing acoustics.\pEven my Pokémon seem to enjoy my\nsongs.")
+        case ES:
+            trainerbattle_single(TRAINER_HIKER_LAMARTINE, "La-la-la…\p¡Oh! ¡Un Entrenador!\p¿Qué tal si sigues el ritmo de mi\nbatalla?", "La… la…\pUps. Creo que desafiné.")
+            msgbox("Las cuevas tienen una acústica\nincreíble.\pHasta mis Pokémon parecen\ndisfrutar de mis canciones.")
+    }
+    release
+    end
+}
+
+script EventScript_WhisperingCave_Camper_Battle {
+    switch (var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_CAMPER_FRED, "Eu sempre confundo “mais” e “mas”.\pMas… ou era mais?\pAh, tanto faz! Vamos batalhar!", "Eu perdi…\pOu ganhei experiência?\pAcho que as duas coisas!")
+            msgbox("Outro dia escrevi “concerto”\nquando queria dizer “conserto”.\pMeu Pokémon ficou tão confuso\nquanto eu.")
+        case EN:
+            trainerbattle_single(TRAINER_CAMPER_FRED, "I always mix up “peace” and\n“piece”.\pOr was it the other way around?\pAh, whatever! Let's battle!", "I lost…\pOr did I gain experience?\pI guess both!")
+            msgbox("The other day I wrote “Leek” when\nI meant “Leak”.\pMy Pokémon was just as confused as\nI was.")
+        case ES:
+            trainerbattle_single(TRAINER_CAMPER_FRED, "Siempre confundo algunas palabras.\p¿Era una cosa o la otra?\p¡Bah, da igual! ¡Vamos a combatir!", "Perdí…\p¿O gané experiencia?\p¡Creo que ambas cosas!")
+            msgbox("El otro día escribí una palabra\ncuando quería decir otra.\pMi Pokémon estaba tan confundido\ncomo yo.")
+    }
+    release
+    end
+}
+
+script EventScript_WhisperingCave_Item_MysticWater_Get {
+    finditem(ITEM_MYSTIC_WATER)
+    end
+}
+
+script EventScript_WhisperingCave_FossilizedDrake_Get {
+    finditem(ITEM_FOSSILIZED_DRAKE)
+    end
+}

@@ -1,0 +1,197 @@
+mapscripts WhisperingCave_2F_MapScripts {
+    
+}
+
+const ID_GIOVANNI = LOCALID_WHISPERING_GIOVANNI
+
+script WhisperingCave_2F_EventScript_Giovanni_LookingToSymbol_Trigger {
+    lock
+    removeowe
+    moveplayer(moves(walk_right, walk_up, face_up))
+    pause(30)
+    playse(SE_PIN)
+    moveplayer(moves(emote_exclamation_mark))
+    waitse
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "…\pVocê também veio até aqui.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "…\pYou came here too.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "…\pTú también has venido hasta aquí.", MSGBOX_AUTOCLOSE)
+    }
+    applymovement(ID_GIOVANNI, moves(walk_right, face_up))
+    applymovement(LOCALID_PLAYER, moves(walk_up, face_up))
+    waitmovementall
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "O que acha desse desenho?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "What do you think of this drawing?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "¿Qué te parece este dibujo?", MSGBOX_AUTOCLOSE)
+    }
+    pause(50)
+    applymovement(ID_GIOVANNI, moves(face_left))
+    applymovement(LOCALID_PLAYER, moves(face_right))
+    waitmovementall
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Estranho…\pEu já passei por esta caverna\noutras vezes.\pMas nunca tinha reparado nele.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Strange…\pI've passed through this cave\nbefore.\pBut I've never noticed it.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Qué extraño…\pYa había pasado por esta cueva\nantes.\pPero nunca me había fijado en él.", MSGBOX_AUTOCLOSE)
+    }
+    pause(30)
+    moveplayer(moves(walk_up, face_up))
+    movenpc(ID_GIOVANNI, moves(face_up))
+    pause(30)
+    playse(SE_PIN)
+    moveplayer(moves(emote_question_mark))
+    waitse
+    pause(20)
+    playse(SE_SHINY)
+    callnative(CreateCaveSymbol)
+    pause(100)
+    playse(SE_PIN)
+    movenpc(ID_GIOVANNI, moves(emote_exclamation_mark, delay_16, walk_up, face_left))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Você viu isso?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Did you see that?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "¿Viste eso?", MSGBOX_AUTOCLOSE)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Isso só aconteceu quando você\nchegou.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "That only happened when you\narrived.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Eso solo ocurrió cuando llegaste.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interessante…", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interesting…", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interesante…", MSGBOX_AUTOCLOSE)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Agora você me deixou curioso…\pQuem… ou o que é você?\pAcho que terei tempo de sobra para\ndescobrir.\pTenho a sensação de que nossos\ncaminhos ainda vão se cruzar\lmuitas vezes.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Now you've made me curious…\pWho… or what are you?\pI suppose I'll have plenty of time\nto find out.\pI have a feeling our paths will\ncross many more times.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Ahora has despertado mi\ncuriosidad…\p¿Quién… o qué eres?\pSupongo que tendré tiempo de sobra\npara descubrirlo.\pTengo el presentimiento de que\nnuestros caminos volverán a\lcruzarse muchas veces.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    movenpc(ID_GIOVANNI, moves(face_up))
+    pause(30)
+    movenpc(ID_GIOVANNI, moves(walk_down * 2, walk_left, walk_down, walk_left * 4, walk_down * 2, delay_16))
+    setflag(FLAG_GIOVANNI_CAVE_SYMBOL)
+    removeobject(ID_GIOVANNI)
+    setvar(VAR_WHISPERING_CAVE_2F_EVENT, 1)
+    updateowe
+    release
+    end    
+}
+
+script WhisperingCave_2F_EventScript_Hiker_Guard_Way_Talk {
+    lock
+    faceplayer
+    if(flag(FLAG_GIOVANNI_CAVE_SYMBOL)) {
+        setspeaker("Gerônimo")
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Desculpa por ter te empurrado\ndaquela saliência!\pEu só queria testar se a gravidade\nainda estava funcionando.\pParece que está!")
+            case EN: msgbox("Sorry for pushing you off that\nledge!\pI just wanted to make sure gravity\nwas still working.\pLooks like it is!")
+            case ES: msgbox("¡Perdón por empujarte desde esa\ncornisa!\pSolo quería comprobar si la\ngravedad seguía funcionando.\p¡Parece que sí!")
+        }
+        release
+        end
+    }
+    playse(SE_PIN)
+    movenpc(LOCALID_WHISPERING_HIKER, moves(emote_exclamation_mark))
+    waitse
+    pause(20)
+    setspeaker("Gerônimo")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Espere!\pEstá vendo aquela coisa ali em\nbaixo?")
+        case EN: msgbox("Wait!\pDo you see that thing down there?")
+        case ES: msgbox("¡Espera!\p¿Ves esa cosa ahí abajo?")
+    }
+    playse(SE_PIN)
+    moveplayer(moves(emote_question_mark, face_down))
+    waitse
+    pause(20)
+    setspeaker("Gerônimo")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Veja mais de perto…")
+        case EN: msgbox("Take a closer look…")
+        case ES: msgbox("Míralo más de cerca…")
+    }
+    moveplayer(moves(walk_down, face_down, delay_16))
+    movenpc(LOCALID_WHISPERING_HIKER, moves(walk_right, face_down))
+    applymovement(LOCALID_WHISPERING_HIKER, moves(walk_fast_down))
+    applymovement(LOCALID_PLAYER, moves(jump_2_down))
+    waitmovementall
+    movenpc(LOCALID_WHISPERING_HIKER, moves(walk_up, walk_left, face_down))
+    release
+    end
+}
+
+script WhisperingCave_2F_EventScript_Hiker_Guard_Way {
+    lock
+    playse(SE_PIN)
+    movenpc(LOCALID_WHISPERING_HIKER, moves(emote_exclamation_mark))
+    waitse
+    pause(20)
+    movenpc(LOCALID_WHISPERING_HIKER, moves(walk_right, face_down))
+    moveplayer(moves(face_up))
+    setspeaker("Gerônimo")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Espere!\pEstá vendo aquela coisa ali em\nbaixo?")
+        case EN: msgbox("Wait!\pDo you see that thing down there?")
+        case ES: msgbox("¡Espera!\p¿Ves esa cosa ahí abajo?")
+    }
+    playse(SE_PIN)
+    moveplayer(moves(emote_question_mark, face_down))
+    waitse
+    pause(20)
+    setspeaker("Gerônimo")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Veja mais de perto…")
+        case EN: msgbox("Take a closer look…")
+        case ES: msgbox("Míralo más de cerca…")
+    }
+    applymovement(LOCALID_WHISPERING_HIKER, moves(walk_fast_down))
+    applymovement(LOCALID_PLAYER, moves(jump_2_down))
+    waitmovementall
+    movenpc(LOCALID_WHISPERING_HIKER, moves(walk_up, walk_left, face_down))
+    release
+    end
+}
+
+const SARAH = TRAINER_PICNICKER_SARAH
+
+script WhisperingCave_2F_EventScript_Picnicker_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(SARAH, "Que bom encontrar você!\nVamos batalhar!", "Essa derrota não foi nada legal…")
+            msgbox("Quanto mais você batalha, mais\nvontade dá de continuar\lbatalhando!")
+        case EN:
+            trainerbattle_single(SARAH, "It's great to see you!\nLet's have a battle!", "That loss wasn't fun at all…")
+            msgbox("The more you battle, the more you\nwant to keep battling!")
+        case ES:
+            trainerbattle_single(SARAH, "¡Qué bueno encontrarte!\n¡Vamos a combatir!", "Esa derrota no fue nada divertida…")
+            msgbox("¡Cuanto más combates, más ganas\ntienes de seguir combatiendo!")
+    }
+    release
+    end
+}
+
+script WhisperingCave_2F_EventScript_Rare_Bone_Get {
+    finditem(ITEM_RARE_BONE)
+    end
+}
+
+script WhisperingCave_2F_EventScript_Fisherman_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Muita gente acha que a Old Rod só\nserve para pescar Magikarp.\pMas um bom Pescador sempre\nencontra surpresas!c", MSGBOX_NPC)
+        case EN: msgbox("Lots of people think the Old Rod\nonly catches Magikarp.\pBut a skilled Fisher can always\nreel in a surprise!", MSGBOX_NPC)
+        case ES: msgbox("Mucha gente cree que la Old Rod\nsolo sirve para pescar Magikarp.\p¡Pero un buen Pescador siempre\nencuentra alguna sorpresa!", MSGBOX_NPC)
+    }
+    end
+}
+
+script WhisperingCave_2F_EventScript_Hiker_Talk {
+
+}

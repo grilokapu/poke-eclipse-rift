@@ -154,11 +154,13 @@
     },
     {
       "id": "MAPSEC_ROUTE_103",
-      "name": "ROUTE 103",
+      "name": "Route 3",
       "x": 4,
       "y": 8,
       "width": 4,
-      "height": 1
+      "height": 1,
+      "nameEs": "Ruta 3",
+      "namePt": "Rota 3"
     },
     {
       "id": "MAPSEC_ROUTE_104",
@@ -1634,6 +1636,12 @@
       "y": 4,
       "width": 1,
       "height": 1
+    },
+    {
+      "id": "MAPSEC_WHISPERING_CAVE",
+      "name": "Whispering Cave",
+      "nameEs": "Cueva Susurro",
+      "namePt": "Caverna Sussurro"
     }
   ]
 }

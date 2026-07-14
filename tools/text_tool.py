@@ -218,13 +218,13 @@ class PoryMultilangTextTool:
 
     def generate_output(self):
         try:
-            lines = ["switch(var(VAR_LANGUAGE)) {"]
+            lines = ["    switch(var(VAR_LANGUAGE)) {"]
             for language in LANGUAGES:
                 text = self.get_text(language)
                 if not text:
                     raise ValueError(f"O texto {language} está vazio.")
-                lines.append(f"    case {language}: {self.build_call(text)}")
-            lines.append("}")
+                lines.append(f"        case {language}: {self.build_call(text)}")
+            lines.append("    }")
         except ValueError as error:
             messagebox.showwarning("Aviso", str(error))
             return

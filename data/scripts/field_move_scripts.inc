@@ -68,7 +68,9 @@ EventScript_RockSmash::
 	setfieldeffectargument 0, VAR_RESULT
 	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	buffermovename STR_VAR_2, MOVE_ROCK_SMASH
-	msgbox Text_WantToSmash, MSGBOX_YESNO
+	call_if_eq VAR_LANGUAGE, PT, EventScript_WantToSmash_PT
+	call_if_eq VAR_LANGUAGE, EN, EventScript_WantToSmash
+	call_if_eq VAR_LANGUAGE, ES, EventScript_WantToSmash_ES
 	goto_if_eq VAR_RESULT, NO, EventScript_CancelSmash
 	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
 	closemessage
@@ -91,6 +93,18 @@ EventScript_SmashRock:: @ fallthrough
 	waitstate
 	releaseall
 	end
+
+EventScript_WantToSmash_PT:
+	msgbox Text_WantToSmashPT, MSGBOX_YESNO
+	return
+
+EventScript_WantToSmash:
+	msgbox Text_WantToSmash, MSGBOX_YESNO
+	return
+
+EventScript_WantToSmash_ES:
+	msgbox Text_WantToSmashES, MSGBOX_YESNO
+	return
 
 EventScript_FollowerFieldMove:
 	getdirectiontoface VAR_0x8005, OBJ_EVENT_ID_FOLLOWER, OBJ_EVENT_ID_PLAYER
@@ -204,7 +218,19 @@ Movement_SmashRock:
 	step_end
 
 EventScript_CantSmashRock::
+	goto_if_eq VAR_LANGUAGE, PT, EventScript_CantSmashRockPT
+	goto_if_eq VAR_LANGUAGE, ES, EventScript_CantSmashRockES
 	msgbox Text_CantSmash, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_CantSmashRockPT::
+	msgbox Text_CantSmashPT, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_CantSmashRockES::
+	msgbox Text_CantSmashES, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -217,9 +243,26 @@ Text_WantToSmash:
 	.string "This rock appears to be breakable.\n"
 	.string "Would you like to use ROCK SMASH?$"
 
+Text_WantToSmashPT:
+	.string "Esta rocha parece poder ser\n"
+	.string "quebrada.\l"
+	.string "Gostaria de usar ROCK SMASH?$"
+
+Text_WantToSmashES:
+	.string "Esta roca parece poder romperse.\n"
+	.string "¿Quieres usar GOLPE ROCA?$"
+
 Text_CantSmash:
 	.string "It's a rugged rock, but a POKéMON\n"
 	.string "may be able to smash it.$"
+
+Text_CantSmashPT:
+	.string "É uma rocha resistente, mas um\n"
+	.string "POKéMON talvez consiga quebrá-la.$"
+
+Text_CantSmashES:
+	.string "Es una roca resistente, pero un\n"
+	.string "POKéMON podría romperla.$"
 
 EventScript_StrengthBoulder::
 	lockall

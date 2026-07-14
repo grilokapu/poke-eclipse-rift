@@ -19,8 +19,9 @@ script SylvaraBeach_EventScript_Psychic_Battle {
 }
 
 script SylvaraBeach_EventScript_Rival_Battle {
-    lock
+    lockall
     faceplayer
+    removeowe
     playbgm(MUS_RG_ENCOUNTER_RIVAL, 1)
     playse(SE_PIN)
     movenpc(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
@@ -93,6 +94,7 @@ script SylvaraBeach_EventScript_Rival_Battle_ES {
 }
 
 script SylvaraBeach_EventScript_Rival_Continue {
+    lockall
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Uau… essa batalha foi ainda melhor\ndo que eu imaginava.\pVocê é realmente incrível,\n{PLAYER}.\pSe esta foi a nossa primeira\nbatalha, mal posso esperar pelas\lpróximas.\pAcho que nós dois temos um longo\ncaminho pela frente.\pHá muitos lugares para conhecer,\nmuitos Pokémon para encontrar…\pE muitos desafios esperando por\nnós.\pVou seguir em frente e continuar\ntreinando.\pEntão trate de não ficar para\ntrás, certo?\pAté a próxima batalha!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Wow… that battle was even better\nthan I imagined.\pYou're really amazing, {PLAYER}.\pIf this was our first battle, I\ncan't wait for the next ones.\pI think both of us have a long\nroad ahead.\pThere are so many places to\nexplore, so many Pokémon to meet…\pAnd so many challenges waiting for\nus.\pI'll keep moving forward and\ntraining.\pSo don't fall behind, alright?\pUntil our next battle!", MSGBOX_AUTOCLOSE)
@@ -116,7 +118,8 @@ script SylvaraBeach_EventScript_Rival_Continue {
     removeobject(LOCALID_BEACH_RIVAL)
     fadedefaultbgm
     special(HealPlayerParty)
-    release
+    updateowe
+    releaseall
     end
 }
 

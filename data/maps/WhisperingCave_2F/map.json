@@ -1,0 +1,173 @@
+{
+  "id": "MAP_WHISPERING_CAVE_2F",
+  "name": "WhisperingCave_2F",
+  "layout": "LAYOUT_WHISPERING_CAVE_2F",
+  "music": "MUS_NONE",
+  "region_map_section": "MAPSEC_WHISPERING_CAVE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "x": 21,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_12"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+      "x": 35,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EventScript_RockSmash",
+      "flag": "FLAG_TEMP_13"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "x": 30,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WhisperingCave_2F_EventScript_Rare_Bone_Get",
+      "flag": "FLAG_WHISPERING_CAVE_RARE_BONE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "x": 4,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "WhisperingCave_2F_EventScript_Picnicker_Battle",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 26,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WhisperingCave_2F_EventScript_Fisherman_Talk",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_WHISPERING_HIKER",
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "x": 15,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "WhisperingCave_2F_EventScript_Hiker_Guard_Way_Talk",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_WHISPERING_GIOVANNI",
+      "graphics_id": "OBJ_EVENT_GFX_YOUNG_GIOVANNI",
+      "x": 34,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_GIOVANNI_CAVE_SYMBOL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_WHISPERING_CAVE",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE103",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_WHISPERING_CAVE_2F_EVENT",
+      "var_value": "0",
+      "script": "WhisperingCave_2F_EventScript_Hiker_Guard_Way"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_WHISPERING_CAVE_2F_EVENT",
+      "var_value": "0",
+      "script": "WhisperingCave_2F_EventScript_Giovanni_LookingToSymbol_Trigger"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 34,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "NULL"
+    },
+    {
+      "type": "hidden_item",
+      "x": 5,
+      "y": 14,
+      "elevation": 0,
+      "item": "ITEM_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_WHISPERING_CAVE_ETHER"
+    },
+    {
+      "type": "hidden_item",
+      "x": 36,
+      "y": 19,
+      "elevation": 0,
+      "item": "ITEM_ABILITY_CAPSULE",
+      "flag": "FLAG_HIDDEN_ITEM_WHISPERING_CAVE_A_CAPSULE"
+    }
+  ]
+}

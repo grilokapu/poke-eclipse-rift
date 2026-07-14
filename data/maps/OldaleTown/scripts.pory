@@ -50,7 +50,7 @@ script SylvaraTown_BoyWithRalts_Talk {
 script SylvaraTown_Ralts_Cry {
     lock
     faceplayer
-    showmonmugshot(SPECIES_RALTS, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_RALTS, MUGSHOT_SOUTHEAST)
     setspeaker("Ralts")
     msgbox("Tiii-rii!")
     waitmoncry

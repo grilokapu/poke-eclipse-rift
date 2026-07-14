@@ -37,13 +37,13 @@ script Route1_Sign {
     switch(var(VAR_LANGUAGE)) {
         case PT: msgbox("Rota 1\nVila Pineveil {RIGHT_ARROW_2}\lFloresta Pendant {UP_ARROW_2}", MSGBOX_SIGN)
         case EN: msgbox("Route 1\nPineveil Town {RIGHT_ARROW_2}\lPendant Forest {UP_ARROW_2}", MSGBOX_SIGN)
-        case ES: msgbox("Ruta 1\nPueblo Pineveil {RIGHT_ARROW_2}\lBosque Pendant {UP_ARROW_2}", MSGBOX_SIGN)
+        case ES: msgbox("Ruta 1\nAldea Pineveil {RIGHT_ARROW_2}\lBosque Pendant {UP_ARROW_2}", MSGBOX_SIGN)
     }
     end
 }
 
-const LOCALID_ROUTE1_LYCANROC = 5
-const LOCALID_ROUTE1_POKEBALL = 6
+const LOCALID_ROUTE1_LYCANROC = 19
+const LOCALID_ROUTE1_POKEBALL = 20
 
 script Route1_EncounterHikariWildBattle_Tile {
     lockall
@@ -66,14 +66,14 @@ script Route1_EncounterHikariWildBattle_Tile {
     }
     pause(30)
     movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_MovesAngry)
-    showmonmugshot(SPECIES_ABSOL, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_ABSOL, MUGSHOT_SOUTHEAST)
     setspeaker("Absol")
     msgbox("Grrrrrrr!", MSGBOX_AUTOCLOSE)
     waitmoncry
     hidemonmugshot
     pause(20)
     movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_MovesAngry_Clockwise)
-    showmonmugshot(SPECIES_ABSOL, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_ABSOL, MUGSHOT_SOUTHEAST)
     setspeaker("Absol")
     msgbox("Grrrrrrr!", MSGBOX_AUTOCLOSE)
     waitmoncry
@@ -106,7 +106,7 @@ script Route1_EncounterHikariWildBattle_Tile {
     movenpc(LOCALID_ROUTE1_LYCANROC, Movement_Lycanroc_ExitBall)
     pause(20)
     setspeaker("Lycanroc")
-    showmonmugshot(SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_SOUTHEAST)
     msgbox("awooooo!", MSGBOX_AUTOCLOSE)
     waitmoncry
     hidemonmugshot
@@ -226,6 +226,7 @@ script Route1_EncounterHikariWildBattle_Tile {
     setflag(FLAG_HIKARI_ROUTE_1)
     moveplayer(Movement_PlayerGoBackToLab)
     warpsilent(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 14)
+    waitstate
     release
     end
 }

@@ -79,7 +79,7 @@ script Route2_EventScript_Meeting_Giovanni {
         case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Necesitas pensar antes de actuar.", MSGBOX_AUTOCLOSE)
     }
     pause(20)
-    showmonmugshot(SPECIES_NIDORAN_M, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_NIDORAN_M, MUGSHOT_SOUTHEAST)
     setspeaker("Nidoran$")
     msgbox("Nee-doh!\p", MSGBOX_AUTOCLOSE)
     waitmoncry
@@ -95,7 +95,7 @@ script Route2_EventScript_Meeting_Giovanni {
         case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Y tú…\pDeja de jugar y tómate esto en\nserio.", MSGBOX_AUTOCLOSE)
     }
     pause(20)
-    showmonmugshot(SPECIES_MEOWTH, MUGSHOT_DOWN_RIGHT)
+    showmonmugshot(SPECIES_MEOWTH, MUGSHOT_SOUTHEAST)
     setspeaker("Meowth$")
     msgbox("Meeow!\p", MSGBOX_AUTOCLOSE)
     waitmoncry
@@ -226,5 +226,70 @@ script Route2_EventScript_Meeting_Giovanni_End {
     setflag(FLAG_ROUTE2_GIOVANNI)
     setvar(VAR_ROUTE2_MEETING_GIOVANNI_STATE, 1)
     release
+    end
+}
+
+script Route2_EventScript_Potion_Get {
+    finditem(ITEM_POTION, 1)
+    end
+}
+
+script Route2_EventScript_ScapeRope_Get {
+    finditem(ITEM_ESCAPE_ROPE)
+    end
+}
+
+script Route2_EventScript_Youngster_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_YOUNGSTER_ROBERTO, "Capturar Pokémon pode dar trabalho\nàs vezes, não acha?", "Essa derrota não vai me impedir!")
+            msgbox("Capturar Pokémon só é difícil se\nvocê estiver atrás dos stats\lperfeitos!")
+        case EN:
+            trainerbattle_single(TRAINER_YOUNGSTER_ROBERTO, "Catching Pokémon can be tough\nsometimes, don't you think?", "This loss won't stop me!")
+            msgbox("Catching Pokémon is only hard if\nyou're after perfect stats!")
+        case ES:
+            trainerbattle_single(TRAINER_YOUNGSTER_ROBERTO, "Atrapar Pokémon puede ser difícil\na veces, ¿no crees?", "¡Esta derrota no me detendrá!")
+            msgbox("¡Atrapar Pokémon solo es difícil\nsi buscas stats perfectos!")
+    }
+    release
+    end
+}
+
+script Route2_EventScript_FatGuy_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dizem que a Caverna Sussurro fica\nlogo adiante.\pVou descansar mais um pouco antes\nde entrar.", MSGBOX_NPC)
+        case EN: msgbox("They say Whispering Cave is just\nahead.\pI'll rest a little longer before\ngoing in.", MSGBOX_NPC)
+        case ES: msgbox("Dicen que la Cueva Susurro está\njusto adelante.\pDescansaré un poco más antes de\nentrar.", MSGBOX_NPC)
+    }
+    end
+}
+
+script Route2_EventScript_BugCatcher_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_BUG_CATCHER_DECLAN, "Você sabe qual é a melhor forma de\ncapturar Pokémon do tipo Inseto?", "Parece que ainda preciso treinar\nmais meus Pokémon…")
+            msgbox("Se estiver procurando Pokémon do\ntipo Inseto, uma Nest Ball pode\lajudar bastante!")
+        case EN:
+            trainerbattle_single(TRAINER_BUG_CATCHER_DECLAN, "Do you know the best way to catch\nBug-type Pokémon?", "Looks like I still need to train\nmy Pokémon a bit more…")
+            msgbox("If you're is searching for\nBug-type Pokémon, a Nest Ball can\lreally help!")
+        case ES:
+            trainerbattle_single(TRAINER_BUG_CATCHER_DECLAN, "¿Sabes cuál es la mejor forma de\natrapar a los Pokémon de tipo\lBicho?", "Parece que aún necesito entrenar\nmás a mis Pokémon…")
+            msgbox("Si buscas Pokémon de tipo Bicho,\n¡una Nest Ball puede ser de gran\layuda!")
+    }
+    release
+    end
+}
+
+script Route2_EventScript_NestBall_Get {
+    finditem(ITEM_NEST_BALL)
+    end
+}
+
+script Route2_EventScript_Sign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Rota 2\nVila Sylvara {RIGHT_ARROW_2}\lCaverna Sussuro {LEFT_ARROW_2}", MSGBOX_SIGN)
+        case EN: msgbox("Route 2\nSylvara Town {RIGHT_ARROW_2}\lWhispering Cave {LEFT_ARROW_2}", MSGBOX_SIGN)
+        case ES: msgbox("Ruta 2\nAldea Sylvara {RIGHT_ARROW_2}\lCueva Susurro {LEFT_ARROW_2}", MSGBOX_SIGN)
+    }
     end
 }

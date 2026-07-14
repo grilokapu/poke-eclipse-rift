@@ -1840,3 +1840,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/SylvaraTown_House3/scripts.inc"
 
 	.include "data/maps/SylvaraBeach/scripts.inc"
+
+	.include "data/maps/WhisperingCave/scripts.inc"
+
+	.include "data/maps/WhisperingCave_2F/scripts.inc"

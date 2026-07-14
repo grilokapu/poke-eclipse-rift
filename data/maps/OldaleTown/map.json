@@ -75,7 +75,7 @@
       "local_id": "LOCALID_SYLVARA_BACKPACKER",
       "graphics_id": "OBJ_EVENT_GFX_BACKPACKER",
       "x": 21,
-      "y": 18,
+      "y": 19,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 2,
@@ -136,6 +136,7 @@
       "dest_warp_id": "0"
     },
     {
+      "warp_id": "WARP_ID_SHOP",
       "x": 20,
       "y": 16,
       "elevation": 0,

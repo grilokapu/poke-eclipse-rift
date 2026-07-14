@@ -1,0 +1,3405 @@
+LittlerootTown_ProfessorBirchsLab_MapScripts::
+# 2 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION
+# 27 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+# 31 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE
+	.byte 0
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+# 3 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_STORE_FIST_MON_TYPE
+# 4 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_GRASS, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_3
+# 7 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_FIRE, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_4
+# 10 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_WATER, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_5
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
+# 14 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto_if_unset FLAG_RIVAL_LEAVE_HOUSE, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_7
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_6:
+# 17 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto_if_set FLAG_HIKARI_ROUTE_1, LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_10
+# 20 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setobjectxyperm LOCALID_LAB_BALL_1, 20, 15
+# 21 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setobjectxyperm LOCALID_LAB_BALL_2, 20, 15
+# 22 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setobjectxyperm LOCALID_LAB_BALL_3, 20, 15
+# 23 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setobjectxyperm LOCALID_HIKARI_LAB, 20, 15
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_9:
+	end
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_3:
+# 5 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	clearflag FLAG_LAB_POKE_BALL_3
+# 6 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_3
+	goto LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_4:
+# 8 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	clearflag FLAG_LAB_POKE_BALL_1
+# 9 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_1
+	goto LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_5:
+# 11 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	clearflag FLAG_LAB_POKE_BALL_2
+# 12 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_2
+	goto LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_1
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_7:
+# 15 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setobjectxyperm LOCALID_RIVAL_LAB, 20, 15
+	goto LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_6
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_10:
+# 18 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setobjectmovementtype LOCALID_RIVAL_LAB, MOVEMENT_TYPE_FACE_UP
+	goto LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_TRANSITION_9
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+# 28 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	map_script_2 VAR_LITTLEROOT_TOWN_STATE, 3, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf
+# 29 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	map_script_2 VAR_BIRCH_LAB_STATE, 1, PineveilTown_ProfessorHikarisLab_OnFrame
+	.2byte 0
+
+LittlerootTown_ProfessorBirchsLab_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
+# 32 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	map_script_2 VAR_ROUTE1_HIKARI_EVENT, 1, PineveilTown_ProfessorHikariLab_OnWarpIntoMap
+	.2byte 0
+
+
+PineveilTown_ProfessorHikariLab_OnWarpIntoMap::
+# 37 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	turnobject LOCALID_PLAYER, DIR_NORTH
+# 38 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_ROUTE1_HIKARI_EVENT, 2
+	end
+
+
+PineveilTown_ProfessorHikarisLab_OnFrame::
+# 43 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_RIVAL_LAB
+# 44 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerWalkNextToProfessorAndRival
+# 45 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 46 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playse SE_PIN
+# 47 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Common_Movement_EmojiGrin
+# 48 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitse
+# 49 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 50 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 51 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_3
+# 52 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_4
+# 53 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_5
+PineveilTown_ProfessorHikarisLab_OnFrame_1:
+# 55 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 56 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 57 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_8
+# 58 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_9
+# 59 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_10
+PineveilTown_ProfessorHikarisLab_OnFrame_6:
+# 61 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_HikariWalkNextPlayer
+# 62 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 63 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 64 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_13
+# 65 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_14
+# 66 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_15
+PineveilTown_ProfessorHikarisLab_OnFrame_11:
+# 68 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_HikariWalkNextRival
+# 69 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 70 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 71 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_18
+# 72 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_19
+# 73 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_20
+PineveilTown_ProfessorHikarisLab_OnFrame_16:
+# 75 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 76 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	callnative EnterRivalName
+# 77 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitstate
+# 78 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 79 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 80 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_23
+# 81 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_24
+# 82 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_25
+PineveilTown_ProfessorHikarisLab_OnFrame_21:
+# 84 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Common_Movement_EmojiConfident
+# 85 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 86 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 87 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_28
+# 88 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_29
+# 89 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_30
+PineveilTown_ProfessorHikarisLab_OnFrame_26:
+# 91 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_HikariBackToCenter
+# 92 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 93 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 94 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_33
+# 95 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_34
+# 96 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_35
+PineveilTown_ProfessorHikarisLab_OnFrame_31:
+# 98 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Common_Movement_EmojiWink
+# 99 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 100 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 101 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_38
+# 102 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_39
+# 103 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_40
+PineveilTown_ProfessorHikarisLab_OnFrame_36:
+# 105 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_HIKARI_LAB, Movement_HikariGoesAtBallsFront
+# 106 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_RIVAL_LAB, Movement_RivalGotoBallsFront
+# 107 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_PLAYER, Movement_PlayerGotoBallsFront
+# 108 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmovementall
+# 109 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 110 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 111 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_43
+# 112 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_44
+# 113 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_45
+PineveilTown_ProfessorHikarisLab_OnFrame_41:
+# 115 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 116 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 117 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_OnFrame_48
+# 118 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_OnFrame_49
+# 119 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_OnFrame_50
+PineveilTown_ProfessorHikarisLab_OnFrame_46:
+# 121 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot
+	return
+
+PineveilTown_ProfessorHikarisLab_OnFrame_3:
+# 51 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_1
+
+PineveilTown_ProfessorHikarisLab_OnFrame_4:
+# 52 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_1
+
+PineveilTown_ProfessorHikarisLab_OnFrame_5:
+# 53 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_3, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_1
+
+PineveilTown_ProfessorHikarisLab_OnFrame_8:
+# 57 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_4, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_6
+
+PineveilTown_ProfessorHikarisLab_OnFrame_9:
+# 58 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_5, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_6
+
+PineveilTown_ProfessorHikarisLab_OnFrame_10:
+# 59 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_6, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_6
+
+PineveilTown_ProfessorHikarisLab_OnFrame_13:
+# 64 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_7, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_11
+
+PineveilTown_ProfessorHikarisLab_OnFrame_14:
+# 65 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_8, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_11
+
+PineveilTown_ProfessorHikarisLab_OnFrame_15:
+# 66 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_9, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_11
+
+PineveilTown_ProfessorHikarisLab_OnFrame_18:
+# 71 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_10, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_16
+
+PineveilTown_ProfessorHikarisLab_OnFrame_19:
+# 72 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_11, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_16
+
+PineveilTown_ProfessorHikarisLab_OnFrame_20:
+# 73 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_12, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_16
+
+PineveilTown_ProfessorHikarisLab_OnFrame_23:
+# 80 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikarisLab_OnFrame_Text_14, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_21
+
+PineveilTown_ProfessorHikarisLab_OnFrame_24:
+# 81 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikarisLab_OnFrame_Text_15, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_21
+
+PineveilTown_ProfessorHikarisLab_OnFrame_25:
+# 82 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikarisLab_OnFrame_Text_16, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_21
+
+PineveilTown_ProfessorHikarisLab_OnFrame_28:
+# 87 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_17, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_26
+
+PineveilTown_ProfessorHikarisLab_OnFrame_29:
+# 88 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_18, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_26
+
+PineveilTown_ProfessorHikarisLab_OnFrame_30:
+# 89 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_19, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_26
+
+PineveilTown_ProfessorHikarisLab_OnFrame_33:
+# 94 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_20, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_31
+
+PineveilTown_ProfessorHikarisLab_OnFrame_34:
+# 95 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_21, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_31
+
+PineveilTown_ProfessorHikarisLab_OnFrame_35:
+# 96 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_22, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_31
+
+PineveilTown_ProfessorHikarisLab_OnFrame_38:
+# 101 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_23, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_36
+
+PineveilTown_ProfessorHikarisLab_OnFrame_39:
+# 102 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_24, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_36
+
+PineveilTown_ProfessorHikarisLab_OnFrame_40:
+# 103 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_25, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_36
+
+PineveilTown_ProfessorHikarisLab_OnFrame_43:
+# 111 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_26, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_41
+
+PineveilTown_ProfessorHikarisLab_OnFrame_44:
+# 112 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_27, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_41
+
+PineveilTown_ProfessorHikarisLab_OnFrame_45:
+# 113 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_28, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_41
+
+PineveilTown_ProfessorHikarisLab_OnFrame_48:
+# 117 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_29, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_46
+
+PineveilTown_ProfessorHikarisLab_OnFrame_49:
+# 118 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_30, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_46
+
+PineveilTown_ProfessorHikarisLab_OnFrame_50:
+# 119 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_OnFrame_Text_31, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_OnFrame_46
+
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot::
+# 125 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 126 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_3
+# 127 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_4
+# 128 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_5
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_1:
+# 130 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmessage
+# 131 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 132 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_8
+# 133 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_9
+# 134 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_10
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_6:
+# 136 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, 0
+	goto_if_eq PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_11
+# 148 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 149 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_21
+# 150 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_22
+# 151 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_23
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_19:
+# 153 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_27
+# 156 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion
+	return
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_3:
+# 126 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_0
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_1
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_4:
+# 127 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_1
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_1
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_5:
+# 128 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_2
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_1
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_8:
+# 132 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_3, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_4
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_6
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_9:
+# 133 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_5, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_6
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_6
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_10:
+# 134 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 2, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_3, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_4
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_6
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_11:
+# 137 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 138 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_16
+# 139 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_17
+# 140 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_18
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_14:
+# 142 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_24
+# 145 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion
+	return
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_16:
+# 138 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_7, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_14
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_17:
+# 139 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_8, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_14
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_18:
+# 140 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_9, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_14
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_21:
+# 149 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_10, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_19
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_22:
+# 150 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_11, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_19
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_23:
+# 151 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_12, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_19
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_24:
+# 143 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot
+	return
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_27:
+# 154 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot
+	return
+
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion::
+# 162 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	closemessage
+# 163 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_ClearMonVars
+# 164 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 165 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_3
+# 166 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_4
+# 167 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_5
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_1:
+# 169 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_8
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_9
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_10
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_6:
+# 174 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	copyvar VAR_0x8000, VAR_RESULT
+# 175 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_0x8000
+# 176 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 0, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_13
+# 180 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 1, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_14
+# 184 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 2, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_15
+# 188 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 3, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_16
+# 192 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 4, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_17
+# 196 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 5, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_18
+# 200 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 6, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_19
+# 204 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 7, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_20
+# 208 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 8, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_21
+# 212 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 9, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_22
+# 216 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 10, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_23
+# 220 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 11, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_24
+# 224 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 12, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_25
+# 228 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 13, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_26
+# 232 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 14, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_27
+# 236 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 15, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_28
+# 240 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 16, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_29
+# 244 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 17, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_30
+# 248 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 127, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_31
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11:
+# 251 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_AreYouSure
+# 252 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_32
+# 256 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_ADVENTURE_IS_MONOTYPE
+# 257 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_WichMonYouChoose
+	return
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_3:
+# 165 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_0
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_1
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_4:
+# 166 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_1
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_1
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_5:
+# 167 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_2
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_1
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_8:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_3, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_4, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_5, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_6, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_7, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_8, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_9, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_10, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_11, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_12, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_13, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_14, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_15, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_16, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_17, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_18, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_19, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_20
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_9:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_21, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_22, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_23, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_24, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_25, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_26, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_27, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_28, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_29, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_30, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_31, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_32, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_15, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_33, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_34, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_35, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_36, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_37
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_10:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_38, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_39, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_40, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_41, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_42, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_43, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_44, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_45, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_11, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_46, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_47, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_14, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_15, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_16, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_48, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_49, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_50, PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_51
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_13:
+# 177 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_SEWADDLE
+# 178 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_SIZZLIPEDE
+# 179 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_WIMPOD
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_14:
+# 181 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_IMPIDIMP
+# 182 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_GRIMER_ALOLA
+# 183 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_CARVANHA
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_15:
+# 185 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_DRATINI
+# 186 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_BAGON
+# 187 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_GIBLE
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_16:
+# 189 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_VOLTORB_HISUI
+# 190 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_YAMPER
+# 191 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_CHINCHOU
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_17:
+# 193 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_MORELULL
+# 194 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_MIME_JR
+# 195 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_MARILL
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_18:
+# 197 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_SNEASEL_HISUI
+# 198 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_TYROGUE
+# 199 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_RIOLU
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_19:
+# 201 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_CHARMANDER
+# 202 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_TORCHIC
+# 203 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_FENNEKIN
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_20:
+# 205 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_PIDGEY
+# 206 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_STARLY
+# 207 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_ROOKIDEE
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_21:
+# 209 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_POLTCHAGEIST
+# 210 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_LITWICK
+# 211 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_FRILLISH
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_22:
+# 213 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_BULBASAUR
+# 214 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_CHIKORITA
+# 215 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_TREECKO
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_23:
+# 217 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_TRAPINCH
+# 218 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_DIGLETT_ALOLA
+# 219 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_NUMEL
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_24:
+# 221 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_SNOVER
+# 222 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_SNOM
+# 223 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_VULPIX_ALOLA
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_25:
+# 225 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_DEERLING
+# 226 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_LITLEO
+# 227 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_BIDOOF
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_26:
+# 229 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_BELLSPROUT
+# 230 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_SALANDIT
+# 231 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_TENTACOOL
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_27:
+# 233 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_ABRA
+# 234 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_ESPURR
+# 235 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_RALTS
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_28:
+# 237 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_LILEEP
+# 238 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_ROLYCOLY
+# 239 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_BINACLE
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_29:
+# 241 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_CUFANT
+# 242 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_ARON
+# 243 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_BELDUM
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_30:
+# 245 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_SQUIRTLE
+# 246 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_FROAKIE
+# 247 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_MUDKIP
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_31:
+# 249 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_11
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_32:
+# 253 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_ReturnBallGraphics
+# 254 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion
+	return
+
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion::
+# 262 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	closemessage
+# 263 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_ClearMonVars
+# 264 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 265 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_3
+# 266 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_4
+# 267 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_5
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_1:
+# 269 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmessage
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	dynmultichoice 0, 0, TRUE, 4, 0, DYN_MULTICHOICE_CB_NONE, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_3, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_4, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_5, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_6, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_7, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_8, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_9, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_10, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_11
+# 271 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	copyvar VAR_0x8000, VAR_RESULT
+# 272 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_0x8000
+# 273 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 0, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_8
+# 277 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 1, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_9
+# 281 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 2, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_10
+# 285 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 3, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_11
+# 289 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 4, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_12
+# 293 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 5, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_13
+# 297 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 6, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_14
+# 301 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 7, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_15
+# 305 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 8, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_16
+# 309 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case 127, PineveilTown_ProfessorHikariLab_ChooseStarterRegion_17
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6:
+# 312 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_AreYouSure
+# 313 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_ChooseStarterRegion_18
+# 317 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_WichMonYouChoose
+	return
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_3:
+# 265 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_0
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_1
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_4:
+# 266 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_1
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_1
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_5:
+# 267 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	message PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_2
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_1
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_8:
+# 274 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_BULBASAUR
+# 275 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_CHARMANDER
+# 276 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_SQUIRTLE
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_9:
+# 278 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_CHIKORITA
+# 279 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_CYNDAQUIL
+# 280 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_TOTODILE
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_10:
+# 282 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_TREECKO
+# 283 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_TORCHIC
+# 284 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_MUDKIP
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_11:
+# 286 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_TURTWIG
+# 287 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_CHIMCHAR
+# 288 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_PIPLUP
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_12:
+# 290 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_SNIVY
+# 291 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_TEPIG
+# 292 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_OSHAWOTT
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_13:
+# 294 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_CHESPIN
+# 295 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_FENNEKIN
+# 296 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_FROAKIE
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_14:
+# 298 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_ROWLET
+# 299 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_LITTEN
+# 300 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_POPPLIO
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_15:
+# 302 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_GROOKEY
+# 303 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_SCORBUNNY
+# 304 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_SOBBLE
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_16:
+# 306 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, SPECIES_SPRIGATITO
+# 307 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, SPECIES_FUECOCO
+# 308 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, SPECIES_QUAXLY
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_17:
+# 310 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion
+	goto PineveilTown_ProfessorHikariLab_ChooseStarterRegion_6
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_18:
+# 314 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_ReturnBallGraphics
+# 315 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion
+	return
+
+
+PineveilTown_ProfessorHikariLab_ReturnBallGraphics::
+# 322 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_1
+# 323 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_2
+# 324 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_3
+# 325 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_1
+# 326 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_2
+# 327 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_3
+	return
+
+
+PineveilTown_ProfessorHikariLab_AreYouSure::
+# 332 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	callnative ShowMonInsidePokeball
+# 333 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 334 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_AreYouSure_3
+# 335 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_AreYouSure_4
+# 336 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_AreYouSure_5
+PineveilTown_ProfessorHikariLab_AreYouSure_1:
+	return
+
+PineveilTown_ProfessorHikariLab_AreYouSure_3:
+# 334 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_AreYouSure_Text_0, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_AreYouSure_1
+
+PineveilTown_ProfessorHikariLab_AreYouSure_4:
+# 335 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_AreYouSure_Text_1, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_AreYouSure_1
+
+PineveilTown_ProfessorHikariLab_AreYouSure_5:
+# 336 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_AreYouSure_Text_2, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_AreYouSure_1
+
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose::
+# 342 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 343 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_WichMonYouChoose_3
+# 344 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_WichMonYouChoose_4
+# 345 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_WichMonYouChoose_5
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_1:
+# 347 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BIRCH_LAB_STATE, 2
+# 348 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_3:
+# 343 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_WichMonYouChoose_Text_0, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_WichMonYouChoose_1
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_4:
+# 344 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_WichMonYouChoose_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_WichMonYouChoose_1
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_5:
+# 345 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_WichMonYouChoose_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_WichMonYouChoose_1
+
+
+PineveilTown_ProfessorHikariLab_ClearMonVars::
+# 353 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_GRASS_MON, 0
+# 354 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_FIRE_MON, 0
+# 355 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BUFFER_WATER_MON, 0
+	return
+
+
+PineveilTown_ProfessorHikariLab_PC::
+# 360 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 361 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_PC_3
+# 362 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_PC_4
+# 363 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_PC_5
+PineveilTown_ProfessorHikariLab_PC_1:
+	end
+
+PineveilTown_ProfessorHikariLab_PC_3:
+# 361 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_PC_Text_0, MSGBOX_SIGN
+	goto PineveilTown_ProfessorHikariLab_PC_1
+
+PineveilTown_ProfessorHikariLab_PC_4:
+# 362 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_PC_Text_1, MSGBOX_SIGN
+	goto PineveilTown_ProfessorHikariLab_PC_1
+
+PineveilTown_ProfessorHikariLab_PC_5:
+# 363 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_PC_Text_2, MSGBOX_SIGN
+	goto PineveilTown_ProfessorHikariLab_PC_1
+
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon::
+# 369 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto_if_unset FLAG_HIKARI_ROUTE_1, PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_2
+# 373 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lock
+# 374 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 375 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_6
+# 376 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_7
+# 377 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_8
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_4:
+# 379 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	getplayerxy VAR_TEMP_0, VAR_TEMP_1
+# 380 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_TEMP_0, 2
+	goto_if_eq PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_10
+# 383 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerNeedToChooseMon_1
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_9:
+# 385 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_2:
+# 370 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_6:
+# 375 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_Text_0
+	goto PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_4
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_7:
+# 376 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_Text_1
+	goto PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_4
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_8:
+# 377 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_Text_2
+	goto PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_4
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_10:
+# 381 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerNeedToChooseMon_0
+	goto PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_9
+
+
+PineveilTown_ProfessorHikariLab_GrassPokeball::
+# 390 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lockall
+# 391 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto_if_set FLAG_SYS_POKEMON_GET, PineveilTown_ProfessorHikariLab_GrassPokeball_2
+PineveilTown_ProfessorHikariLab_GrassPokeball_1:
+# 394 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_FACING, DIR_EAST
+	goto_if_eq PineveilTown_ProfessorHikariLab_GrassPokeball_5
+PineveilTown_ProfessorHikariLab_GrassPokeball_4:
+# 397 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	showmonmugshot VAR_BUFFER_GRASS_MON, MUGSHOT_CENTER
+# 398 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_BUFFER_GRASS_MON
+# 399 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_WantToChooseThisMon
+# 400 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_GrassPokeball_8
+PineveilTown_ProfessorHikariLab_GrassPokeball_7:
+# 403 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonmugshot
+# 404 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	givemon VAR_BUFFER_GRASS_MON, 5
+# 405 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_1
+# 406 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_MonChoosed
+# 407 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 20
+# 408 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerStepDownLookingUp3
+# 409 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 410 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_LAB_POKE_BALL_1
+# 411 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_STORE_FIST_MON_TYPE, TYPE_GRASS
+# 412 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn
+	return
+
+PineveilTown_ProfessorHikariLab_GrassPokeball_2:
+# 392 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_AlreadyHaveMon
+	goto PineveilTown_ProfessorHikariLab_GrassPokeball_1
+
+PineveilTown_ProfessorHikariLab_GrassPokeball_5:
+# 395 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerFacingUpGrassBall
+	goto PineveilTown_ProfessorHikariLab_GrassPokeball_4
+
+PineveilTown_ProfessorHikariLab_GrassPokeball_8:
+# 401 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto ReleaseAllScript
+	goto PineveilTown_ProfessorHikariLab_GrassPokeball_7
+
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon::
+# 416 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 417 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_WantToChooseThisMon_3
+# 418 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_WantToChooseThisMon_4
+# 419 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_WantToChooseThisMon_5
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_1:
+	return
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_3:
+# 417 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_WantToChooseThisMon_Text_0, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_WantToChooseThisMon_1
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_4:
+# 418 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_WantToChooseThisMon_Text_1, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_WantToChooseThisMon_1
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_5:
+# 419 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_WantToChooseThisMon_Text_2, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_WantToChooseThisMon_1
+
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon::
+# 425 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 426 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_AlreadyHaveMon_3
+# 427 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_AlreadyHaveMon_4
+# 428 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_AlreadyHaveMon_5
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_1:
+# 430 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	releaseall
+	end
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_3:
+# 426 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_AlreadyHaveMon_Text_0
+	goto PineveilTown_ProfessorHikariLab_AlreadyHaveMon_1
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_4:
+# 427 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_AlreadyHaveMon_Text_1
+	goto PineveilTown_ProfessorHikariLab_AlreadyHaveMon_1
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_5:
+# 428 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_AlreadyHaveMon_Text_2
+	goto PineveilTown_ProfessorHikariLab_AlreadyHaveMon_1
+
+
+PineveilTown_ProfessorHikariLab_FirePokeball::
+# 435 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lockall
+# 436 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto_if_set FLAG_SYS_POKEMON_GET, PineveilTown_ProfessorHikariLab_FirePokeball_2
+PineveilTown_ProfessorHikariLab_FirePokeball_1:
+# 439 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	showmonmugshot VAR_BUFFER_FIRE_MON, MUGSHOT_CENTER
+# 440 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_BUFFER_FIRE_MON
+# 441 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_WantToChooseThisMon
+# 442 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_FirePokeball_5
+PineveilTown_ProfessorHikariLab_FirePokeball_4:
+# 445 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonmugshot
+# 446 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	givemon VAR_BUFFER_FIRE_MON, 5
+# 447 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_2
+# 448 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_MonChoosed
+# 449 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 20
+# 450 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerStepDownLookingUp
+# 451 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 452 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_LAB_POKE_BALL_2
+# 453 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_STORE_FIST_MON_TYPE, TYPE_FIRE
+# 454 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn
+	return
+
+PineveilTown_ProfessorHikariLab_FirePokeball_2:
+# 437 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_AlreadyHaveMon
+	goto PineveilTown_ProfessorHikariLab_FirePokeball_1
+
+PineveilTown_ProfessorHikariLab_FirePokeball_5:
+# 443 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto ReleaseAllScript
+	goto PineveilTown_ProfessorHikariLab_FirePokeball_4
+
+
+PineveilTown_ProfessorHikariLab_WaterPokeball::
+# 458 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lockall
+# 459 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto_if_set FLAG_SYS_POKEMON_GET, PineveilTown_ProfessorHikariLab_WaterPokeball_2
+PineveilTown_ProfessorHikariLab_WaterPokeball_1:
+# 462 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_FACING, DIR_WEST
+	goto_if_eq PineveilTown_ProfessorHikariLab_WaterPokeball_5
+PineveilTown_ProfessorHikariLab_WaterPokeball_4:
+# 465 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	showmonmugshot VAR_BUFFER_WATER_MON, MUGSHOT_CENTER
+# 466 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_BUFFER_WATER_MON
+# 467 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_WantToChooseThisMon
+# 468 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq PineveilTown_ProfessorHikariLab_WaterPokeball_8
+PineveilTown_ProfessorHikariLab_WaterPokeball_7:
+# 471 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonmugshot
+# 472 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	givemon VAR_BUFFER_WATER_MON, 5
+# 473 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_3
+# 474 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_MonChoosed
+# 475 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerStepDownLookingUp2
+# 476 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 477 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_LAB_POKE_BALL_3
+# 478 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_STORE_FIST_MON_TYPE, TYPE_WATER
+# 479 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn
+	return
+
+PineveilTown_ProfessorHikariLab_WaterPokeball_2:
+# 460 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_AlreadyHaveMon
+	goto PineveilTown_ProfessorHikariLab_WaterPokeball_1
+
+PineveilTown_ProfessorHikariLab_WaterPokeball_5:
+# 463 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerFacingUpWaterBall
+	goto PineveilTown_ProfessorHikariLab_WaterPokeball_4
+
+PineveilTown_ProfessorHikariLab_WaterPokeball_8:
+# 469 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto ReleaseAllScript
+	goto PineveilTown_ProfessorHikariLab_WaterPokeball_7
+
+
+PineveilTown_ProfessorHikariLab_MonChoosed::
+# 483 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_SYS_POKEMON_GET
+# 484 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_ReturnBallGraphics
+# 485 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playfanfare MUS_LEVEL_UP
+# 486 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 487 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_MonChoosed_3
+# 488 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_MonChoosed_4
+# 489 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_MonChoosed_5
+PineveilTown_ProfessorHikariLab_MonChoosed_1:
+# 491 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitfanfare
+# 492 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	closemessage
+# 493 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 494 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_MonChoosed_8
+# 495 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_MonChoosed_9
+# 496 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_MonChoosed_10
+PineveilTown_ProfessorHikariLab_MonChoosed_6:
+# 498 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	compare VAR_RESULT, TRUE
+	goto_if_eq PineveilTown_ProfessorHikariLab_MonChoosed_12
+PineveilTown_ProfessorHikariLab_MonChoosed_11:
+	return
+
+PineveilTown_ProfessorHikariLab_MonChoosed_3:
+# 487 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_MonChoosed_Text_0
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_1
+
+PineveilTown_ProfessorHikariLab_MonChoosed_4:
+# 488 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_MonChoosed_Text_1
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_1
+
+PineveilTown_ProfessorHikariLab_MonChoosed_5:
+# 489 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_MonChoosed_Text_2
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_1
+
+PineveilTown_ProfessorHikariLab_MonChoosed_8:
+# 494 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_MonChoosed_Text_3, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_6
+
+PineveilTown_ProfessorHikariLab_MonChoosed_9:
+# 495 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_MonChoosed_Text_4, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_6
+
+PineveilTown_ProfessorHikariLab_MonChoosed_10:
+# 496 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_MonChoosed_Text_5, MSGBOX_YESNO
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_6
+
+PineveilTown_ProfessorHikariLab_MonChoosed_12:
+# 499 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_0x8000, 0
+# 500 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_GiveMonNickname
+	goto PineveilTown_ProfessorHikariLab_MonChoosed_11
+
+
+PineveilTown_ProfessorHikariLab_GiveMonNickname::
+# 506 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 507 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	special ChangePokemonNickname
+# 508 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitstate
+	return
+
+
+ReleaseAllScript::
+# 513 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	hidemonmugshot
+# 514 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	releaseall
+	end
+
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn::
+# 519 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	call PineveilTown_ProfessorHikariLab_ReturnBallGraphics
+# 520 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playse SE_PIN
+# 521 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalExclaimToPlayer
+# 522 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitse
+# 523 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 524 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 525 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_3
+# 526 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_4
+# 527 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_5
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_1:
+# 529 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 530 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_HikariWalkInPlaceDown
+# 531 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_3, MSGBOX_AUTOCLOSE
+# 532 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_PLAYER, Common_Movement_FaceUp
+# 533 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_RIVAL_LAB, Common_Movement_FaceUp
+# 534 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmovementall
+# 535 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 536 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 537 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_8
+# 538 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_9
+# 539 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_10
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_6:
+# 541 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playse SE_PIN
+# 542 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Common_Movement_EmojiTongueWinking
+# 543 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitse
+# 544 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 545 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 546 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_13
+# 547 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_14
+# 548 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_15
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_11:
+# 550 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 551 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_STORE_FIST_MON_TYPE
+# 552 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_GRASS, PineveilTown_ProfessorHikariLab_RivalChooseTurn_18
+# 553 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_FIRE, PineveilTown_ProfessorHikariLab_RivalChooseTurn_19
+# 554 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_WATER, PineveilTown_ProfessorHikariLab_RivalChooseTurn_20
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_16:
+# 556 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 557 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_23
+# 558 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_24
+# 559 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_25
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_21:
+# 561 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_STORE_FIST_MON_TYPE
+# 562 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_GRASS, PineveilTown_ProfessorHikariLab_RivalChooseTurn_28
+# 567 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_FIRE, PineveilTown_ProfessorHikariLab_RivalChooseTurn_29
+# 572 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_WATER, PineveilTown_ProfessorHikariLab_RivalChooseTurn_30
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_26:
+# 578 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playfanfare MUS_LEVEL_UP
+# 579 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitfanfare
+# 580 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 581 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 582 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_33
+# 583 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_34
+# 584 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_35
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_31:
+# 586 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_HikariGoesInFrontOfBothTrainers
+# 587 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Common_Movement_FaceRight
+# 588 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_STORE_FIST_MON_TYPE
+# 589 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_GRASS, PineveilTown_ProfessorHikariLab_RivalChooseTurn_38
+# 590 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_FIRE, PineveilTown_ProfessorHikariLab_RivalChooseTurn_39
+# 591 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case TYPE_WATER, PineveilTown_ProfessorHikariLab_RivalChooseTurn_40
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_36:
+# 593 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 594 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 595 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_43
+# 596 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_44
+# 597 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_45
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_41:
+# 599 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 600 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+# 601 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 602 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_48
+# 603 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_49
+# 604 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_50
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_46:
+# 606 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitfanfare
+# 607 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	closemessage
+# 608 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_SYS_POKEDEX_GET
+# 609 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	special EnableNationalPokedex
+# 610 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 611 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_53
+# 612 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_54
+# 613 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_55
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_51:
+# 615 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay 30
+# 616 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_RIVAL_LAB, Common_Movement_FaceDown
+# 617 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	applymovement LOCALID_PLAYER, Common_Movement_FaceUp
+# 618 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitmovementall
+# 619 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 620 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalChooseTurn_58
+# 621 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalChooseTurn_59
+# 622 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalChooseTurn_60
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_56:
+# 624 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playbgm MUS_RG_RIVAL_EXIT, 0
+# 625 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalGoAwayFromLab
+# 626 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_RIVAL_LAB
+# 627 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_REMOVE_RIVAL_LAB
+# 628 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playbgm MUS_BIRCH_LAB, 0
+# 629 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	goto PineveilTown_ProfessorHikariLab_HikariSayGoodBye
+	return
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_3:
+# 525 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_0, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_1
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_4:
+# 526 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_1
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_5:
+# 527 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_1
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_8:
+# 537 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_4, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_6
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_9:
+# 538 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_5, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_6
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_10:
+# 539 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_6, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_6
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_13:
+# 546 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_7, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_11
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_14:
+# 547 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_8, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_11
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_15:
+# 548 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_9, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_11
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_18:
+# 552 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalGoesToFireStarterBall
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_16
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_19:
+# 553 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalGoesToWaterStarterBall
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_16
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_20:
+# 554 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalGoesToGrassStarterBall
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_16
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_23:
+# 557 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_10, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_21
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_24:
+# 558 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_11, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_21
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_25:
+# 559 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_12, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_21
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_28:
+# 563 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_2
+# 564 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_LAB_POKE_BALL_2
+# 565 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_3
+# 566 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_3
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_26
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_29:
+# 568 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_3
+# 569 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_LAB_POKE_BALL_3
+# 570 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_1
+# 571 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_1
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_26
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_30:
+# 573 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_1
+# 574 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setflag FLAG_LAB_POKE_BALL_1
+# 575 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	removeobject LOCALID_LAB_BALL_2
+# 576 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	addobject LOCALID_LAB_BALL_2
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_26
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_33:
+# 582 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_13, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_31
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_34:
+# 583 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_14, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_31
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_35:
+# 584 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_15, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_31
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_38:
+# 589 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Common_Movement_FaceRight
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_36
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_39:
+# 590 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalStepBack
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_36
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_40:
+# 591 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_RIVAL_LAB, Movement_RivalStepForward
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_36
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_43:
+# 595 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_16, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_41
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_44:
+# 596 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_17, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_41
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_45:
+# 597 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_18, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_41
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_48:
+# 602 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_19
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_46
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_49:
+# 603 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_20
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_46
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_50:
+# 604 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_21
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_46
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_53:
+# 611 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_22, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_51
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_54:
+# 612 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_23, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_51
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_55:
+# 613 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_24, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_51
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_58:
+# 620 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_25, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_56
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_59:
+# 621 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_26, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_56
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_60:
+# 622 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikarisLab_OnFrame_Text_13, PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_27, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalChooseTurn_56
+
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye::
+# 633 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	moveplayer Movement_PlayerGoesToHikariFront
+# 634 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Common_Movement_FaceDown
+# 635 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 636 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_HikariSayGoodBye_3
+# 637 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_HikariSayGoodBye_4
+# 638 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_HikariSayGoodBye_5
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_1:
+# 640 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_HikariGoToOriginalPosition
+# 641 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_BIRCH_LAB_STATE, 2
+# 642 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	releaseall
+	end
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_3:
+# 636 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_HikariSayGoodBye_Text_0, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_HikariSayGoodBye_1
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_4:
+# 637 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_HikariSayGoodBye_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_HikariSayGoodBye_1
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_5:
+# 638 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_HikariSayGoodBye_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_HikariSayGoodBye_1
+
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk::
+# 647 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lock
+# 648 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	faceplayer
+# 649 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 650 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_Hikari_Talk_3
+# 651 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_Hikari_Talk_4
+# 652 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_Hikari_Talk_5
+PineveilTown_ProfessorHikariLab_Hikari_Talk_1:
+# 654 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk_3:
+# 650 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_Hikari_Talk_Text_0, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_Hikari_Talk_1
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk_4:
+# 651 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_Hikari_Talk_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_Hikari_Talk_1
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk_5:
+# 652 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikariLab_Hikari_Talk_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_Hikari_Talk_1
+
+
+PineveilTown_ProfessorHikariLab_Aid_1::
+# 659 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lock
+# 660 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	faceplayer
+# 661 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 662 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_Aid_1_3
+# 663 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_Aid_1_4
+# 664 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_Aid_1_5
+PineveilTown_ProfessorHikariLab_Aid_1_1:
+# 666 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_Aid_1_3:
+# 662 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_1_Text_0
+	goto PineveilTown_ProfessorHikariLab_Aid_1_1
+
+PineveilTown_ProfessorHikariLab_Aid_1_4:
+# 663 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_1_Text_1
+	goto PineveilTown_ProfessorHikariLab_Aid_1_1
+
+PineveilTown_ProfessorHikariLab_Aid_1_5:
+# 664 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_1_Text_2
+	goto PineveilTown_ProfessorHikariLab_Aid_1_1
+
+
+PineveilTown_ProfessorHikariLab_Aid_2::
+# 671 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lock
+# 672 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	faceplayer
+# 673 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 674 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_Aid_2_3
+# 675 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_Aid_2_4
+# 676 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_Aid_2_5
+PineveilTown_ProfessorHikariLab_Aid_2_1:
+# 678 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_Aid_2_3:
+# 674 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_2_Text_0
+	goto PineveilTown_ProfessorHikariLab_Aid_2_1
+
+PineveilTown_ProfessorHikariLab_Aid_2_4:
+# 675 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_2_Text_1
+	goto PineveilTown_ProfessorHikariLab_Aid_2_1
+
+PineveilTown_ProfessorHikariLab_Aid_2_5:
+# 676 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_2_Text_2
+	goto PineveilTown_ProfessorHikariLab_Aid_2_1
+
+
+PineveilTown_ProfessorHikariLab_Aid_3::
+# 683 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lock
+# 684 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	faceplayer
+# 685 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 686 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_Aid_3_3
+# 687 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_Aid_3_4
+# 688 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_Aid_3_5
+PineveilTown_ProfessorHikariLab_Aid_3_1:
+# 690 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_Aid_3_3:
+# 686 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_3_Text_0
+	goto PineveilTown_ProfessorHikariLab_Aid_3_1
+
+PineveilTown_ProfessorHikariLab_Aid_3_4:
+# 687 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_3_Text_1
+	goto PineveilTown_ProfessorHikariLab_Aid_3_1
+
+PineveilTown_ProfessorHikariLab_Aid_3_5:
+# 688 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikariLab_Aid_3_Text_2
+	goto PineveilTown_ProfessorHikariLab_Aid_3_1
+
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting::
+# 695 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	lock
+# 696 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	faceplayer
+# 697 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 698 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikariLab_RivalIsWaiting_3
+# 699 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikariLab_RivalIsWaiting_4
+# 700 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikariLab_RivalIsWaiting_5
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_1:
+# 702 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_LITTLEROOT_TOWN_STATE, 1
+# 703 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_3:
+# 698 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_0, PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalIsWaiting_1
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_4:
+# 699 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_0, PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalIsWaiting_1
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_5:
+# 700 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_0, PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_3, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikariLab_RivalIsWaiting_1
+
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf::
+# 710 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	createspobject OBJ_EVENT_GFX_SCIENTIST_1, 9, 6, 6, MOVEMENT_TYPE_FACE_UP
+# 711 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 30
+# 712 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 713 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_3
+# 714 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_4
+# 715 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_5
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_1:
+# 717 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 718 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playse SE_PIN
+# 719 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Common_Movement_EmojiScream
+# 720 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitse
+# 721 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 20
+# 722 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 723 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_8
+# 724 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_9
+# 725 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_10
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_6:
+# 727 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 728 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 729 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_13
+# 730 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_14
+# 731 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_15
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_11:
+# 733 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playfanfare MUS_RG_OBTAIN_KEY_ITEM
+# 734 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 735 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_18
+# 736 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_19
+# 737 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_20
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_16:
+# 739 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitfanfare
+# 740 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitbuttonpress
+# 741 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	closemessage
+# 742 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 743 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_23
+# 744 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_24
+# 745 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_25
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_21:
+# 747 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 748 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	playse SE_PIN
+# 749 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Common_Movement_EmojiThinking
+# 750 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitse
+# 751 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	pause 10
+# 752 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 753 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_28
+# 754 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_29
+# 755 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_30
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_26:
+# 757 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc LOCALID_HIKARI_LAB, Movement_Hikari_WalkLeftRightThinking
+# 758 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	switch VAR_LANGUAGE
+# 759 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case PT, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_33
+# 760 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case EN, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_34
+# 761 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	case ES, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_35
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_31:
+# 763 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	movenpc 9, Movement_EdwinWalkAwayDown
+# 764 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 765 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+# 766 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	clearflag FLAG_SPAWN_INVISIBLE
+# 767 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	warpsilent MAP_LITTLEROOT_TOWN, 13, 14
+# 768 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	waitstate
+# 769 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	release
+	end
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_3:
+# 713 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_1, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_1
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_4:
+# 714 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_2, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_1
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_5:
+# 715 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_3, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_1
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_8:
+# 723 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_4, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_6
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_9:
+# 724 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_5, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_6
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_10:
+# 725 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_6, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_6
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_13:
+# 729 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_7, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_11
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_14:
+# 730 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_8, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_11
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_15:
+# 731 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_9, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_11
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_18:
+# 735 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_10
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_16
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_19:
+# 736 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_11
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_16
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_20:
+# 737 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgbox PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_12
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_16
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_23:
+# 743 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_13, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_21
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_24:
+# 744 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_14, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_21
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_25:
+# 745 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_SCIENTIST, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_15, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_21
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_28:
+# 753 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_16, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_26
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_29:
+# 754 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_17, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_26
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_30:
+# 755 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_18, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_26
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_33:
+# 759 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_19, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_31
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_34:
+# 760 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_20, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_31
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_35:
+# 761 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, PineveilTown_ProfessorHikarisLab_OnFrame_Text_0, PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_21, MSGBOX_AUTOCLOSE
+	goto PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_31
+
+
+# 773 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_EdwinWalkAwayDown:
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+# 774 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_down
+	step_end
+
+# 777 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_Hikari_WalkLeftRightThinking:
+# 778 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_left
+# 778 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_left
+# 779 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_right
+# 779 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_right
+# 779 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_right
+# 779 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_right
+# 780 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_left
+# 780 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_slow_left
+# 781 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+# 784 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariGoToOriginalPosition:
+# 785 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 785 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 786 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 787 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+# 790 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerGoesToHikariFront:
+# 791 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 792 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 793 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 794 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 797 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalGoAwayFromLab:
+# 798 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 799 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 799 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 800 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 800 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 800 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 801 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 802 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	delay_16
+	step_end
+
+# 805 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalStepBack:
+# 806 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 807 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_right
+	step_end
+
+# 810 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalStepForward:
+# 811 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 812 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_right
+	step_end
+
+# 815 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariGoesInFrontOfBothTrainers:
+# 816 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 816 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 817 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 817 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 817 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 818 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_left
+	step_end
+
+# 821 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalGoesToFireStarterBall:
+# 822 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 823 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 824 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 827 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalGoesToWaterStarterBall:
+# 828 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 829 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 832 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalGoesToGrassStarterBall:
+# 833 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 834 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 834 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 835 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 838 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariWalkInPlaceDown:
+# 839 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_in_place_down
+# 840 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+# 843 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalExclaimToPlayer:
+# 844 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_player
+# 845 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	emote_exclamation_mark
+	step_end
+
+# 848 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerFacingUpGrassBall:
+# 849 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 850 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 851 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 854 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerFacingUpWaterBall:
+# 855 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 856 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 857 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 860 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerNeedToChooseMon_0:
+# 861 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 862 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 865 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerNeedToChooseMon_1:
+# 866 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 867 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_left
+	step_end
+
+# 870 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerWalkNextToProfessorAndRival:
+# 871 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 871 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 871 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 871 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 871 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 871 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 872 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 873 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 874 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 877 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariSaySmile:
+# 878 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	emote_heart
+	step_end
+
+# 881 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariGoesAtBallsFront:
+# 882 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 883 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 883 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 884 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 884 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 884 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 885 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+# 888 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerGotoBallsFront:
+# 889 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 889 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 890 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 891 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 892 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 895 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_RivalGotoBallsFront:
+# 896 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 897 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 897 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 897 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 898 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 901 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerStepDownLookingUp:
+# 902 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 903 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 906 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerStepDownLookingUp2:
+# 907 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 908 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 909 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 912 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_PlayerStepDownLookingUp3:
+# 913 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 914 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 915 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_up
+	step_end
+
+# 918 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariWalkNextPlayer:
+# 919 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_left
+# 920 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_down
+# 921 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+# 924 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariWalkNextRival:
+# 925 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_right
+# 926 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+# 929 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+Movement_HikariBackToCenter:
+# 930 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	walk_up
+# 931 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	face_down
+	step_end
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_0:
+# 51 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Hikari$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_1:
+# 51 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ah, ótimo.\nAgora estamos todos aqui.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_2:
+# 52 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ah, great.\nNow we're all here.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_3:
+# 53 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ah, genial.\nAhora estamos todos aquí.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_4:
+# 57 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Então vocês dois serão os\nrepresentantes iniciais deste ano…\pVamos nos apresentar…\nMeu nome é Hikari!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_5:
+# 58 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "So you two will be this year's\nstarting representatives...\pLet's introduce ourselves...\nMy name is Hikari!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_6:
+# 59 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Entonces ustedes dos serán los\nrepresentantes iniciales de este\laño...\pVamos a presentarnos...\n¡Mi nombre es Hikari!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_7:
+# 64 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você deve ser o {PLAYER}.\nNão é verdade?$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_8:
+# 65 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "You must be {PLAYER}.\nIsn't that right?$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_9:
+# 66 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Tú debes ser {PLAYER}.\n¿No es así?$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_10:
+# 71 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "E você? Qual seu nome?$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_11:
+# 72 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "And you? What's your name?$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_12:
+# 73 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Y tú? ¿Cuál es tu nombre?$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_13:
+# 80 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{RIVAL}$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_14:
+# 80 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Meu nome é {RIVAL}, professora!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_15:
+# 81 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "My name is {RIVAL}, professor!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_16:
+# 82 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Mi nombre es {RIVAL}, profesora!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_17:
+# 87 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Muito bem!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_18:
+# 88 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Great!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_19:
+# 89 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Muy bien!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_20:
+# 94 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Os Pokémon que preparei para hoje\nnormalmente seriam enviados para\loutros laboratórios…\pMas depois do que aconteceu\nna rota…\p...\pAcho melhor mudar os planos.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_21:
+# 95 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "The Pokémon I prepared for today\nwould normally be sent to other\llaboratories…\pBut after what happened\non the route…\p...\pI think it's better to change\nthe plans.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_22:
+# 96 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Los Pokémon que preparé para hoy\nnormalmente serían enviados a\lotros laboratorios…\pPero después de lo que pasó\nen la ruta…\p...\pCreo que será mejor cambiar\nlos planes.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_23:
+# 101 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Venham comigo!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_24:
+# 102 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Come with me!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_25:
+# 103 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Vengan conmigo!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_26:
+# 111 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Eu tenho aqui três Pokémon\ndentro dessas Pokébolas.\pVocês terão que escolher um\ndeles para ser seu primeiro\lcompanheiro.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_27:
+# 112 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "I have three Pokémon inside these\nPokéballs.\pYou'll have to choose one of them\lto be your first partner.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_28:
+# 113 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Tengo aquí tres Pokémon\ndentro de estas Pokébolas.\pTendrán que elegir uno de ellos\lpara ser su primer compañero.$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_29:
+# 117 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Primeiro você escolhe, {PLAYER}!\nDepois será a vez do {RIVAL}!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_30:
+# 118 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "First you choose, {PLAYER}!\nThen it'll be {RIVAL}'s turn!$"
+
+PineveilTown_ProfessorHikarisLab_OnFrame_Text_31:
+# 119 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Primero tú eliges, {PLAYER}!\n¡Después será el turno de {RIVAL}!$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_0:
+# 126 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você fará monotipo ou quer\numa aventura tradicional?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_1:
+# 127 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Will you make a mono-type team or\na traditional adventure?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_2:
+# 128 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿Harás un equipo monotipo o quieres\nuna aventura tradicional?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_3:
+# 132 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "MONOTIPO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_4:
+# 132 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "TRADICIONAL$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_5:
+# 133 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "MONO-TYPE$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_6:
+# 133 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "TRADITIONAL$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_7:
+# 138 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você quer mesmo fazer um desafio\nMONOTIPO?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_8:
+# 139 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Do you really want to do a\nMONOTYPE challenge?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_9:
+# 140 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿De verdad quieres hacer un\ndesafío MONOTIPO?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_10:
+# 149 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você quer mesmo seguir\na aventura tradicional?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_11:
+# 150 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Do you really want to continue\nwith the traditional adventure?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeOrNot_Text_12:
+# 151 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿De verdad quieres continuar\ncon la aventura tradicional?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_0:
+# 165 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Qual Tipo você irá escolher para\no seu Pokémon inicial?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_1:
+# 166 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Which type will you choose for\nyour starter Pokémon?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_2:
+# 167 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿Qué tipo vas a elegir para\ntu Pokémon inicial?$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_3:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "INSETO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_4:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "SOMBRIO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_5:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "DRAGÃO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_6:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ELÉTRICO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_7:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FADA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_8:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "LUTADOR$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_9:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FOGO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_10:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "VOADOR$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_11:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FANTASMA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_12:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "GRAMA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_13:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "TERRA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_14:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "GELO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_15:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "NORMAL$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_16:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "VENENO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_17:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "PSIQUICO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_18:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "PEDRA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_19:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "AÇO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_20:
+# 170 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ÁGUA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_21:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "BUG$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_22:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "DARK$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_23:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "DRAGON$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_24:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ELECTRIC$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_25:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FAIRY$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_26:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FIGHTING$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_27:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FIRE$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_28:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FLYING$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_29:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "GHOST$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_30:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "GRASS$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_31:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "GROUND$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_32:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ICE$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_33:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "POISON$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_34:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "PSYCHIC$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_35:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ROCK$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_36:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "STEEL$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_37:
+# 171 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "WATER$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_38:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "INSECTO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_39:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "NOCTURNO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_40:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "DRAGÓN$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_41:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ELÉCTRICO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_42:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "HADA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_43:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "LUCHADOR$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_44:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "FUEGO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_45:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "VOLADOR$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_46:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "PLANTA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_47:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "TIERRA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_48:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "PSÍQUICO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_49:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ROCA$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_50:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ACERO$"
+
+PineveilTown_ProfessorHikariLab_ChooseMonoTypeStarterRegion_Text_51:
+# 172 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "AGUA$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_0:
+# 265 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Então… de qual região vem o seu\nPokémon?$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_1:
+# 266 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "So… which region does your Pokémon\ncome from?$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_2:
+# 267 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Entonces… ¿de qué región proviene\ntu Pokémon?$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_3:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "KANTO$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_4:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "JOHTO$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_5:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "HOENN$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_6:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "SINNOH$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_7:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "UNOVA$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_8:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "KALOS$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_9:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "ALOLA$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_10:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "GALAR$"
+
+PineveilTown_ProfessorHikariLab_ChooseStarterRegion_Text_11:
+# 270 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "PALDEA$"
+
+PineveilTown_ProfessorHikariLab_AreYouSure_Text_0:
+# 334 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você tem certeza da sua escolha?$"
+
+PineveilTown_ProfessorHikariLab_AreYouSure_Text_1:
+# 335 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Are you sure about your choice?$"
+
+PineveilTown_ProfessorHikariLab_AreYouSure_Text_2:
+# 336 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿Estás seguro de tu elección?$"
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_Text_0:
+# 343 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Agora… escolha qual desses três\nserá o seu Pokémon!$"
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_Text_1:
+# 344 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Now… choose which of these three\nwill be your Pokémon!$"
+
+PineveilTown_ProfessorHikariLab_WichMonYouChoose_Text_2:
+# 345 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ahora… ¡elige cuál de estos tres\nserá tu Pokémon!$"
+
+PineveilTown_ProfessorHikariLab_PC_Text_0:
+# 361 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "É um PC usado para pesquisas.\nMelhor não mexer nele.$"
+
+PineveilTown_ProfessorHikariLab_PC_Text_1:
+# 362 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "It's a PC used for research.\nBetter not mess around with it.$"
+
+PineveilTown_ProfessorHikariLab_PC_Text_2:
+# 363 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Es una PC usada para\ninvestigación.\lMejor no tocarla.$"
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_Text_0:
+# 375 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Escolha um Pokémon para\nprosseguir!$"
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_Text_1:
+# 376 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Choose a Pokémon to proceed!$"
+
+PineveilTown_ProfessorHikariLab_DontPassBeforeChooseAPokemon_Text_2:
+# 377 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Elige un Pokémon para continuar!$"
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_Text_0:
+# 417 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Pense bem e escolha com sabedoria!\pEntão você irá escolher o\n{STR_VAR_1}, certo?$"
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_Text_1:
+# 418 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Think carefully and choose wisely!\pSo you'll choose {STR_VAR_1},\nright?$"
+
+PineveilTown_ProfessorHikariLab_WantToChooseThisMon_Text_2:
+# 419 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Piensa bien y elige sabiamente!\pEntonces elegirás a {STR_VAR_1},\n¿verdad?$"
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_Text_0:
+# 426 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Há um Pokémon dentro desta\nPokébola.$"
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_Text_1:
+# 427 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "There's a Pokémon inside this\nPoké Ball.$"
+
+PineveilTown_ProfessorHikariLab_AlreadyHaveMon_Text_2:
+# 428 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Hay un Pokémon dentro de esta\nPoké Ball.$"
+
+PineveilTown_ProfessorHikariLab_MonChoosed_Text_0:
+# 487 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Parabéns!\p{STR_VAR_1} agora é o seu Pokémon\ninicial!$"
+
+PineveilTown_ProfessorHikariLab_MonChoosed_Text_1:
+# 488 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Congratulations!\p{STR_VAR_1} is now your starter\nPokémon!$"
+
+PineveilTown_ProfessorHikariLab_MonChoosed_Text_2:
+# 489 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Felicidades!\p¡{STR_VAR_1} ahora es tu Pokémon\ninicial!$"
+
+PineveilTown_ProfessorHikariLab_MonChoosed_Text_3:
+# 494 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você gostaria de dar um apelido ao\n{STR_VAR_1}?$"
+
+PineveilTown_ProfessorHikariLab_MonChoosed_Text_4:
+# 495 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Would you like to give {STR_VAR_1}\na nickname?$"
+
+PineveilTown_ProfessorHikariLab_MonChoosed_Text_5:
+# 496 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿Te gustaría ponerle un apodo a\n{STR_VAR_1}?$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_0:
+# 525 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Muito bem, {PLAYER}!\nÓtima escolha!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_1:
+# 526 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Well done, {PLAYER}!\nA great choice!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_2:
+# 527 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Muy bien, {PLAYER}!\n¡Una gran elección!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_3:
+# 531 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{RIVAL}!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_4:
+# 537 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Sua vez, {RIVAL}!\pEscolha o Pokémon que vai te\nacompanhar na sua jornada.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_5:
+# 538 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Your turn, {RIVAL}!\pChoose the Pokémon that will\naccompany you on your journey.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_6:
+# 539 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Es tu turno, {RIVAL}!\pElige el Pokémon que te acompañará\nen tu aventura.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_7:
+# 546 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Legal, {PLAYER}!\pEntão você escolheu este Pokémon,\nnão é?$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_8:
+# 547 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Nice, {PLAYER}!\pSo, you chose this Pokémon,\nright?$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_9:
+# 548 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Genial, {PLAYER}!\pEntonces, elegiste este Pokémon,\n¿verdad?$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_10:
+# 557 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Já sei!\nVou escolher este Pokémon aqui!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_11:
+# 558 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "I know!\nI'm going with this Pokémon!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_12:
+# 559 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Ya sé!\n¡Me quedo con este Pokémon!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_13:
+# 582 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Quero parabenizar vocês dois pelas\nexcelentes escolhas.\pTenho certeza de que cuidarão\nmuito bem dos seus novos Pokémon.\pAgora, prestem atenção!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_14:
+# 583 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "I'd like to congratulate you both\non your excellent choices.\pI'm sure you'll take great care of\nyour new Pokémon.\pNow, pay close attention!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_15:
+# 584 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Quiero felicitar a ambos por sus\nexcelentes elecciones.\pEstoy seguro de que cuidarán muy\nbien de sus nuevos Pokémon.\p¡Ahora, presten atención!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_16:
+# 595 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Vocês dois estão quase prontos\npara iniciar suas jornadas.\pMas antes de partirem, há algo\nmuito importante que preciso\lconfiar a vocês.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_17:
+# 596 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "You're both almost ready to begin\nyour journeys.\pBut before you set off, there's\nsomething very important I need to\lentrust to you.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_18:
+# 597 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ambos están casi listos para\ncomenzar sus aventuras.\pPero antes de partir, hay algo muy\nimportante que debo confiarles.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_19:
+# 602 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{PLAYER} recebeu a {COLOR BLUE}Pokédex{COLOR DARK_GRAY} da\nProfessora Hikari.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_20:
+# 603 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{PLAYER} received the {COLOR BLUE}Pokédex{COLOR DARK_GRAY} from\nProfessor Hikari.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_21:
+# 604 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{PLAYER} recibió la {COLOR BLUE}Pokédex{COLOR DARK_GRAY} de la\nProfesora Hikari.$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_22:
+# 611 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Esta é a Pokédex! Um dispositivo\nde alta tecnologia que registra\lautomaticamente os dados dos\lPokémon que vocês encontrarem ou\lcapturarem.\pAinda há muitos Pokémon no mundo\nque nem mesmo eu tive a chance de\lestudar…\pPor isso, conto com vocês dois\npara me ajudarem a completar essa\limportante pesquisa.\pCada encontro, cada batalha e cada\ndescoberta fará parte da jornada\lde vocês!\pAgora vão, explorem o mundo e\ntornem-se grandes Treinadores\lPokémon!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_23:
+# 612 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "This is the Pokédex! A high-tech\ndevice that automatically records\ldata on the Pokémon you encounter\lor catch.\pThere are still many Pokémon in\nthe world that even I haven't had\lthe chance to study…\pThat's why I'm counting on both of\nyou to help me complete this\limportant research.\pEvery encounter and discovery will\nshape your journey!\pNow go, explore the world and\nbecome great Pokémon Trainers!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_24:
+# 613 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Esta es la Pokédex! Un\ndispositivo de alta tecnología que\lregistra automáticamente los datos\lde los Pokémon que encuentren o\lcapturen.\pAún hay muchos Pokémon en el mundo\nque ni siquiera yo he tenido la\loportunidad de estudiar…\pPor eso, cuento con ustedes dos\npara ayudarme a completar esta\limportante investigación.\p¡Cada encuentro y descubrimiento\nformará parte de su aventura!\p¡Ahora vayan y conviértanse en\ngrandes Entrenadores Pokémon!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_25:
+# 620 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Uau, isso é incrível! Finalmente\ntenho minha própria Pokédex!\pMal posso esperar para sair por aí\ne capturar um monte de Pokémon!\pEi, {PLAYER}! Aposto que vou\ncompletar a Pokédex antes de você!\pHaha! Tenta não ficar para trás,\nhein?\pTe vejo por aí!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_26:
+# 621 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Wow, this is awesome! I finally\nhave my own Pokédex!\pI can't wait to go out there and\ncatch tons of Pokémon!\pHey, {PLAYER}! I bet I'll complete\nthe Pokédex before you!\pHaha! Try not to fall behind!\pSee you around!$"
+
+PineveilTown_ProfessorHikariLab_RivalChooseTurn_Text_27:
+# 622 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Guau, esto es increíble! ¡Por fin\ntengo mi propia Pokédex!\p¡No puedo esperar para salir y\natrapar un montón de Pokémon!\p¡Oye, {PLAYER}! ¡Apuesto a que\ncompletaré la Pokédex antes que\ltú!\p¡Ja! ¡Intenta no quedarte atrás!\p¡Nos vemos!$"
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_Text_0:
+# 636 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{PLAYER}, chegou a hora de partir.\pA região de Aetheris está repleta\nde mistérios e descobertas\lesperando por você.\pAo longo da sua jornada, você\nenfrentará desafios, fará novos\lamigos… e crescerá como Treinador.\pNunca se esqueça do vínculo que\nconstrói com seus Pokémon - ele\lserá sua maior força.\pDesejo a você toda a sorte em\nAetheris!\pVá em frente, {PLAYER}, e faça\ndessa jornada algo inesquecível!$"
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_Text_1:
+# 637 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{PLAYER}, it's time for you to set\nout.\pThe Aetheris region is filled with\nmysteries and discoveries waiting\lfor you.\pAlong your journey, you'll face\nchallenges, make new friends… and\lgrow as a Trainer.\pNever forget the bond you share\nwith your Pokémon - it will be\lyour greatest strength.\pI wish you the best of luck in\nAetheris!\pGo on, {PLAYER}, and make your\njourney unforgettable!$"
+
+PineveilTown_ProfessorHikariLab_HikariSayGoodBye_Text_2:
+# 638 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{PLAYER}, ha llegado la hora de\npartir.\pLa región de Aetheris está llena\nde misterios y descubrimientos\lesperándote.\pA lo largo de tu aventura,\nenfrentarás desafíos, harás nuevos\lamigos… y crecerás como\lEntrenador.\pNunca olvides el vínculo que\ntienes con tus Pokémon - será tu\lmayor fortaleza.\p¡Te deseo mucha suerte en\nAetheris!\p¡Adelante, {PLAYER}, y haz de tu\naventura algo inolvidable!$"
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk_Text_0:
+# 650 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ah, {PLAYER}! Já vai sair?\pEi… acabou de escolher seu\nprimeiro Pokémon, não foi?\pTente não se apressar tanto no\ncomeço. Aproveite esse momento,\lconheça melhor seu parceiro…\pCada passo que vocês derem juntos\ndaqui pra frente vai fazer\ldiferença.\pSe precisar de algo, já sabe onde\nme encontrar.\pBoa sorte lá fora!$"
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk_Text_1:
+# 651 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ah, {PLAYER}! Heading out already?\pHey… you just chose your first\nPokémon, didn't you?\pTry not to rush things at the\nstart. Take your time and get to\lknow your partner…\pEvery step you take together from\nhere on will matter.\pIf you need anything, you know\nwhere to find me.\pGood luck out there!$"
+
+PineveilTown_ProfessorHikariLab_Hikari_Talk_Text_2:
+# 652 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Ah, {PLAYER}! ¿Ya te vas?\pOye… acabas de elegir a tu primer\nPokémon, ¿verdad?\pNo te apresures al principio.\nTómate tu tiempo y conoce mejor a\ltu compañero…\pCada paso que den juntos a partir\nde ahora será importante.\pSi necesitas algo, ya sabes dónde\nencontrarme.\p¡Buena suerte ahí fuera!$"
+
+PineveilTown_ProfessorHikariLab_Aid_1_Text_0:
+# 662 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Ei, você sabia de uma coisa\ncuriosa?\pExistem Pokémon que se parecem\nmuito com outros, mesmo sem terem\lqualquer relação direta entre si.\pNós chamamos isso de “Pokémon\nconvergentes”.\pÉ como se a natureza encontrasse\ndiferentes caminhos… para chegar a\lresultados muito parecidos.\pFascinante, não é?$"
+
+PineveilTown_ProfessorHikariLab_Aid_1_Text_1:
+# 663 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Hey, did you know something\ninteresting?\pThere are Pokémon that look very\nsimilar to others, even though\lthey aren't directly related at\lall.\pWe call them “convergent Pokémon.”\pIt's as if nature finds different\npaths… to reach very similar\lresults.\pFascinating, isn't it?$"
+
+PineveilTown_ProfessorHikariLab_Aid_1_Text_2:
+# 664 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Oye, ¿sabías algo curioso?\pHay Pokémon que se parecen mucho a\notros, incluso sin tener ninguna\lrelación directa entre ellos.\pA esto lo llamamos “Pokémon\nconvergentes”.\pEs como si la naturaleza\nencontrara distintos caminos… para\lllegar a resultados muy similares.\pFascinante, ¿no?$"
+
+PineveilTown_ProfessorHikariLab_Aid_2_Text_0:
+# 674 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Você pode comprar Pokébolas em\nlojas Pokémon nas cidades.\pMas também dá pra encontrar\nalgumas durante a sua jornada,\lexplorando e falando com pessoas.\pAh, e não esqueça de sempre levar\nalgumas com você… nunca se sabe\lquando um Pokémon raro pode\laparecer!$"
+
+PineveilTown_ProfessorHikariLab_Aid_2_Text_1:
+# 675 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "You can buy Poké Balls at Poké\nMarts in towns.\pBut you can also find some along\nyour journey by exploring and\ltalking to people.\pOh, and always carry a few with\nyou… you never know when a rare\lPokémon might appear!$"
+
+PineveilTown_ProfessorHikariLab_Aid_2_Text_2:
+# 676 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Puedes comprar Poké Balls en las\ntiendas Pokémon de las ciudades.\pPero también puedes encontrar\nalgunas durante tu aventura,\lexplorando y hablando con la\lgente.\pAh, y no olvides llevar siempre\nalgunas contigo… ¡nunca sabes\lcuándo puede aparecer un Pokémon\lraro!$"
+
+PineveilTown_ProfessorHikariLab_Aid_3_Text_0:
+# 686 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Eu sou um dos assistentes do\nProfessor Hikari.\pUltimamente, estamos estudando a\nTeracristalizaçäo!\pA forma como um Pokémon muda de\ntipo e brilha com energia… é\lfascinante!$"
+
+PineveilTown_ProfessorHikariLab_Aid_3_Text_1:
+# 687 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "I'm one of Professor Hikari's\nassistants.\pLately, we've been studying\nTerastalization!\pThe way a Pokémon changes its type\nand shines with energy… it's\lfascinating!$"
+
+PineveilTown_ProfessorHikariLab_Aid_3_Text_2:
+# 688 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Soy una de las asistentes de la\nProfesora Hikari.\pÚltimamente, hemos estado\nestudiando la Teracristalización.\pLa forma en que un Pokémon cambia\nde tipo y brilla con energía… ¡es\lfascinante!$"
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_0:
+# 698 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "????$"
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_1:
+# 698 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "...\pVocê demorou.\pA Professora Hikari ainda não\napareceu.\pEstranho...\nEla normalmente chega antes de\ltodo mundo.\pTalvez tenha acontecido alguma\ncoisa.\pEu vou esperar aqui.$"
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_2:
+# 699 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "...\pYou took long enough.\pProfessor Hikari still hasn't\nshown up.\pStrange...\nShe's usually here before everyone\lelse.\pMaybe something happened.\pI'll wait here.$"
+
+PineveilTown_ProfessorHikariLab_RivalIsWaiting_Text_3:
+# 700 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "...\pTe demoraste.\pLa Profesora Hikari todavía no ha\naparecido.\pQué extraño...\nNormalmente llega antes que todos.\pTal vez haya ocurrido algo.\pEsperaré aquí.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_0:
+# 713 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Edwin$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_1:
+# 713 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Professora!\pOutro caso foi reportado perto das\nruínas do norte!$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_2:
+# 714 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Professor!\pAnother case has been reported\nnear the northern ruins!$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_3:
+# 715 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¡Profesora!\p¡Otro caso fue reportado cerca de\nlas ruinas del norte!$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_4:
+# 723 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Tem certeza de que foi aqui?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_5:
+# 724 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Are you sure it was here?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_6:
+# 725 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "¿Estás seguro de que fue aquí?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_7:
+# 729 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Sim, professora. Os moradores\ndisseram que a névoa apareceu\lnovamente durante a madrugada.\pE não foi só isso…\pAlguns Pokémon começaram a agir de\nforma agressiva sem motivo.\p...igual aos outros casos.\pMas desta vez… encontraram isto\nperto das ruínas.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_8:
+# 730 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Yes, Professor. The villagers said\nthe mist appeared again during the\lnight.\pAnd that wasn't all…\pSome Pokémon started acting\naggressively for no reason.\p...just like the other cases.\pBut this time… they found this\nnear the ruins.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_9:
+# 731 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Sí, profesora. Los habitantes\ndijeron que la niebla apareció\lnuevamente durante la madrugada.\pY eso no fue todo…\pAlgunos Pokémon comenzaron a\nactuar de forma agresiva sin\lmotivo.\p...igual que en los otros casos.\pPero esta vez… encontraron esto\ncerca de las ruinas.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_10:
+# 735 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{COLOR}{BLUE}-Edwin entrega um fragmento escuro\npara a Professora Hikari.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_11:
+# 736 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{COLOR}{BLUE}-Edwin hands a dark fragment to\nProfessor Hikari.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_12:
+# 737 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "{COLOR}{BLUE}-Edwin le entrega un fragmento\noscuro a la Profesora Hikari.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_13:
+# 743 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Isso não deveria existir em\nAetheris.\pProfessora…\pAcha que isso pode estar\nrelacionado às antigas lendas?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_14:
+# 744 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "This shouldn't exist in Aetheris.\pProfessor…\pDo you think this could be related\nto the ancient legends?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_15:
+# 745 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Esto no debería existir en\nAetheris.\pProfesora…\p¿Cree que esto podría estar\nrelacionado con las antiguas\lleyendas?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_16:
+# 753 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Espero que não.\nPorque, se estiver…\pEntão talvez já seja tarde demais.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_17:
+# 754 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "I hope not.\nBecause if it is…\pThen it might already be too late.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_18:
+# 755 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Espero que no.\nPorque si lo está…\pEntonces quizá ya sea demasiado\ntarde.$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_19:
+# 759 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Mantenha isso em segredo por\nenquanto.\pNão quero espalhar pânico antes de\nentendermos o que está\lacontecendo.\pEntendido?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_20:
+# 760 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Keep this a secret for now.\pI don't want to spread panic\nbefore we understand what's\lhappening.\pUnderstood?$"
+
+PineveilTown_ProfessorHikarisLab_AidGiveNewsToProf_Text_21:
+# 761 "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.pory"
+	.string "Mantén esto en secreto por ahora.\pNo quiero provocar pánico antes de\nentender qué está ocurriendo.\pEntendido?$"

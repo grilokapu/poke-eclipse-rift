@@ -6,6 +6,8 @@ mapscripts LittlerootTown_MaysHouse_2F_MapScripts {
             {
                 setobjectxyperm(LOCALID_KAEL_SLEEPING, 7, 6)
             }
+        } elif (var(VAR_PLAYER_ROOM_STATE) >= 1) {
+            setobjectmovementtype(LOCALID_KAEL_SLEEPING, MOVEMENT_TYPE_INVISIBLE)
         }
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
@@ -49,8 +51,9 @@ script PineveilTown_PlayerRoom_Start_Story {
     playse(SE_M_NIGHTMARE)
     waitse
     setvar(VAR_PLAYER_ROOM_STATE, 1)
-    setvar(VAR_DEFAULT_WALKING_SCRIPT, 1)
-    warpsilent(MAP_SILENT_FOREST, 68, 27)
+    setflag(FLAG_SPAWN_INVISIBLE)
+    warpsilent(MAP_SILENT_FOREST, 42, 23)
+    waitstate
     release
     end
 }
