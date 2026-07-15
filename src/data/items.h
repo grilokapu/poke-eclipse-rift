@@ -22351,6 +22351,7 @@ const struct ItemInfo gItemsInfo[] =
             "habilidad para el\n"
             "poseedor este."),
         .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_HELD_ITEM,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .flingPower = 30,
@@ -24051,6 +24052,7 @@ const struct ItemInfo gItemsInfo[] =
         .descricion = COMPOUND_STRING(
             "?????"),
         .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_AUX_ITEM,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         //.effect = currently missing
@@ -24069,6 +24071,7 @@ const struct ItemInfo gItemsInfo[] =
         .descricion = COMPOUND_STRING(
             "?????"),
         .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_AUX_ITEM,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         //.effect = currently missing
@@ -24088,6 +24091,7 @@ const struct ItemInfo gItemsInfo[] =
         .descricion = COMPOUND_STRING(
             "?????"),
         .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_AUX_ITEM,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         //.effect = currently missing

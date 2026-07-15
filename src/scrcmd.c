@@ -99,10 +99,6 @@ static bool8 IsBlackMessageFadeInFinished(void);
 static void BackupBlackMessagePalettes(void);
 static void RestoreBlackMessagePalettes(void);
 
-// This is defined in here so the optimizer can't see its value when compiling
-// script.c.
-void *const gNullScriptPtr = NULL;
-
 static const u8 sScriptConditionTable[6][3] =
 {
 //  <  =  >
