@@ -422,19 +422,19 @@
 #define OBJ_EVENT_GFX_BOY                        389
 
 // FRLG equivalents
-
 // #define OBJ_EVENT_GFX_MEW OBJ_EVENT_GFX_NINJA_BOY
 // #define OBJ_EVENT_GFX_LUGIA OBJ_EVENT_GFX_NINJA_BOY
-
-
 
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
+<<<<<<< HEAD
 #define OBJ_EVENT_GFX_PARK_BALL                     393
 #define OBJ_EVENT_GFX_BACKPACKER                    394
 #define OBJ_EVENT_GFX_YOUNG_GIOVANNI                395
 #define NUM_OBJ_EVENT_GFX                        396
+=======
+>>>>>>> expansion/1.16.0
 
 
 // These are dynamic object gfx ids.
@@ -474,7 +474,7 @@
 #define OW_SHINY(x) ((x)->graphicsId & OBJ_EVENT_MON_SHINY)
 #define OW_FEMALE(x) ((x)->graphicsId & OBJ_EVENT_MON_FEMALE)
 
-// Whether Object Event is an OW pokemon
+// Whether Object Event is an OW Pokémon
 #define IS_OW_MON_OBJ(obj) ((obj)->graphicsId & OBJ_EVENT_MON)
 
 #define SHADOW_SIZE_S       0
@@ -570,6 +570,7 @@
 #define OBJ_EVENT_PAL_TAG_PLAYER_GREEN            0x1127
 #define OBJ_EVENT_PAL_TAG_PLAYER_GREEN_REFLECTION 0x1128
 #define OBJ_EVENT_PAL_TAG_NPC_BLUE                0x1129
+<<<<<<< HEAD
 #define OBJ_EVENT_PAL_TAG_NPC_PINK                0x1130
 #define OBJ_EVENT_PAL_TAG_NPC_GREEN               0x1131
 #define OBJ_EVENT_PAL_TAG_NPC_WHITE               0x1132
@@ -595,6 +596,18 @@
 #define OBJ_EVENT_PAL_TAG_LUCIEN                  0x1147
 #define OBJ_EVENT_PAL_TAG_QUESTION                0x1146
 #define OBJ_EVENT_PAL_TAG_EMOJIS                  0x1148
+=======
+#define OBJ_EVENT_PAL_TAG_NPC_PINK                0x112A
+#define OBJ_EVENT_PAL_TAG_NPC_GREEN               0x112B
+#define OBJ_EVENT_PAL_TAG_NPC_WHITE               0x112C
+#define OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION     0x112D
+#define OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION     0x112E
+#define OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION    0x112F
+#define OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION    0x1130
+#define OBJ_EVENT_PAL_TAG_METEORITE               0x1131
+#define OBJ_EVENT_PAL_TAG_SEAGALLOP               0x1132
+#define OBJ_EVENT_PAL_TAG_SS_ANNE                 0x1133
+>>>>>>> expansion/1.16.0
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

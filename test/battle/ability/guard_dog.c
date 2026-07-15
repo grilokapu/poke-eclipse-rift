@@ -120,7 +120,11 @@ SINGLE_BATTLE_TEST("Guard Dog does not activate if Intimidate is blocked by Mist
 SINGLE_BATTLE_TEST("Guard Dog does not activate if Intimidate cannot lower Attack at minimum stage")
 {
     GIVEN {
+<<<<<<< HEAD
         ASSUME(GetMoveEffect(MOVE_CHARM) == EFFECT_ATTACK_DOWN_2);
+=======
+        ASSUME_STAT_CHANGE(MOVE_CHARM, attack: -2);
+>>>>>>> expansion/1.16.0
         PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_GUARD_DOG); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }

@@ -30,7 +30,11 @@ SINGLE_BATTLE_TEST("Seed Sower sets up Grassy Terrain even when the user faints 
         MESSAGE("Grass grew to cover the battlefield!");
         MESSAGE("Arboliva fainted!");
     }
+<<<<<<< HEAD
 }
+=======
+} 
+>>>>>>> expansion/1.16.0
 
 #define ABILITY_PARAM(n)(abilities[n] = (k == n) ? ABILITY_SEED_SOWER : ABILITY_HARVEST)
 #define MOVE_HIT(target, position)                      \

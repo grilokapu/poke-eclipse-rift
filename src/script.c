@@ -9,6 +9,7 @@
 #include "field_weather.h"
 #include "menu.h"
 #include "metaprogram.h"
+#include "field_screen_effect.h"
 #include "mystery_gift.h"
 #include "naming_screen.h"
 #include "overworld.h"

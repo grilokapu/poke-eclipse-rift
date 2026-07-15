@@ -184,7 +184,7 @@ struct NamingScreenData
     const struct NamingScreenTemplate *template;
     u8 templateNum;
     u8 *destBuffer;
-    u16 monSpeciesOrPlayerGender;
+    enum Species monSpecies;
     u16 monGender;
     u32 monPersonality;
     MainCallback returnCallback;
@@ -368,6 +368,11 @@ static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] =
     },
     DUMMY_WIN_TEMPLATE
 };
+static const u8 sPCIconOff_Gfx[] = INCGFX_U8("graphics/naming_screen/pc_icon_off.png", ".4bpp");
+static const u8 sPCIconOn_Gfx[] = INCGFX_U8("graphics/naming_screen/pc_icon_on.png", ".4bpp");
+static const u16 sKeyboard_Pal[] = INCGFX_U16("graphics/naming_screen/keyboard.pal", ".gbapal");
+static const u16 sRival_Gfx[] = INCGFX_U16("graphics/naming_screen/rival.png", ".4bpp");
+static const u16 sRival_Pal[] = INCGFX_U16("graphics/naming_screen/rival.pal", ".gbapal");
 
 static const u8 *const sTransferredToPCMessages[] =
 {
@@ -378,10 +383,6 @@ static const u8 *const sTransferredToPCMessages[] =
 };
 
 static const u8 sText_AlphabetUpperLower[] = _("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!");
-static const u16 sRival_Gfx[] = INCBIN_U16("graphics/naming_screen/rival.4bpp");
-static const u16 sRival_Pal[] = INCBIN_U16("graphics/naming_screen/rival.gbapal");
-static const u8 sPCIconOff_Gfx[] = INCBIN_U8("graphics/naming_screen/pc_icon_off.4bpp");
-static const u8 sPCIconOn_Gfx[] = INCBIN_U8("graphics/naming_screen/pc_icon_on.4bpp");
 
 static const u8 sKeyboardChars[][3][12] = {
     [KBPAGE_LETTERS_LOWER] = {
@@ -413,7 +414,7 @@ static void CreateNamingScreenTask(void)
     SetMainCallback2(CB2_NamingScreen);
 }
 
-void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGender, u32 monPersonality, MainCallback returnCallback)
+void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpeciesOrPlayerGender, u16 monGender, u32 monPersonality, MainCallback returnCallback)
 {
     sNamingScreen = Alloc(sizeof(struct NamingScreenData));
     if (!sNamingScreen)
@@ -423,7 +424,7 @@ void DoNamingScreen(u8 templateNum, u8 *destBuffer, u16 monSpecies, u16 monGende
     else
     {
         sNamingScreen->templateNum = templateNum;
-        sNamingScreen->monSpeciesOrPlayerGender = monSpecies;
+        sNamingScreen->monSpecies = monSpeciesOrPlayerGender;
         sNamingScreen->monGender = monGender;
         sNamingScreen->monPersonality = monPersonality;
         sNamingScreen->destBuffer = destBuffer;
@@ -1107,7 +1108,7 @@ static void NamingScreen_CreatePlayerIcon(void)
     u16 rivalGfxId;
     u8 spriteId;
 
-    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpeciesOrPlayerGender);
+    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, (enum Gender)sNamingScreen->monSpecies);
     spriteId = CreateObjectGraphicsSprite(rivalGfxId, SpriteCallbackDummy, 40, 26, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);

@@ -147,7 +147,11 @@ SINGLE_BATTLE_TEST("Poison Puppeteer consumes its pending target after triggerin
 
         ABILITY_POPUP(player, ABILITY_POISON_PUPPETEER);
         ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_CONFUSION, opponent);
+<<<<<<< HEAD
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+=======
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_BERRY, opponent);
+>>>>>>> expansion/1.16.0
 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TWINEEDLE, player);
         HP_BAR(opponent);

@@ -63,7 +63,11 @@ DOUBLE_BATTLE_TEST("Throat Spray does not activate if both foes take no damage f
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+<<<<<<< HEAD
         }
+=======
+	}
+>>>>>>> expansion/1.16.0
     }
 }
 
@@ -117,6 +121,8 @@ SINGLE_BATTLE_TEST("Throat Spray activates when a sound move is used")
     }
 }
 
+
+
 SINGLE_BATTLE_TEST("Throat Spray does not activate if move fails")
 {
     GIVEN {
@@ -126,7 +132,11 @@ SINGLE_BATTLE_TEST("Throat Spray does not activate if move fails")
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_PARTING_SHOT); }
+<<<<<<< HEAD
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE);  }
+=======
+	TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE);  }
+>>>>>>> expansion/1.16.0
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_TORCH_SONG); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);
@@ -189,5 +199,21 @@ SINGLE_BATTLE_TEST("Throat Spray is not blocked by Sheer Force")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_BUG_BUZZ, player);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Throat Spray will not activate if the mon just switched in")
+{
+    GIVEN {
+        ASSUME(IsSoundMove(MOVE_HYPER_VOICE) == TRUE);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_THROAT_SPRAY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_HYPER_VOICE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent); // red card
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player); // throat spray
     }
 }

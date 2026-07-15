@@ -420,12 +420,14 @@ static const u8 *GetInteractedObjectEventScript(struct MapPosition *position, u8
     gSelectedObjectEvent = objectEventId;
     gSpecialVar_LastTalked = gObjectEvents[objectEventId].localId;
 
-    if (InTrainerHill() == TRUE)
-        script = GetTrainerHillTrainerScript();
-    else if (PlayerHasFollowerNPC() && objectEventId == GetFollowerNPCObjectId())
+    if (PlayerHasFollowerNPC() && objectEventId == GetFollowerNPCObjectId())
         script = GetFollowerNPCScriptPointer();
     else if (IsOverworldWildEncounter(&gObjectEvents[objectEventId], OWE_ANY))
         script = GetOverworlWildEncounterScript(objectEventId);
+    else if (gObjectEvents[objectEventId].localId == OBJ_EVENT_ID_FOLLOWER)
+        script = EventScript_Follower;
+    else if (InTrainerHill() == TRUE)
+        script = GetTrainerHillTrainerScript();
     else
         script = GetObjectEventScriptPointerByObjectEventId(objectEventId);
 
@@ -613,7 +615,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
         SetMsgSignPostAndVarFacing(direction);
         return Common_EventScript_ShowPokemonCenterSign;
     }
-    if (MetatileBehavior_IsRockClimbable(metatileBehavior) == TRUE && !IsRockClimbActive())
+    if (IsFieldMoveUnlocked(FIELD_MOVE_ROCK_CLIMB) && MetatileBehavior_IsRockClimbable(metatileBehavior) == TRUE && !IsRockClimbActive())
         return EventScript_UseRockClimb;
 
     elevation = position->elevation;
@@ -888,7 +890,7 @@ static void UpdateFriendshipStepCounter(void)
     (*ptr) %= 128;
     if (*ptr == 0)
     {
-        struct Pokemon *mon = gPlayerParty;
+        struct Pokemon *mon = gParties[B_TRAINER_PLAYER];
         for (i = 0; i < PARTY_SIZE; i++)
         {
             AdjustFriendship(mon, FRIENDSHIP_EVENT_WALKING);
@@ -899,7 +901,7 @@ static void UpdateFriendshipStepCounter(void)
 
 static void UpdateFollowerStepCounter(void)
 {
-    if (gPlayerPartyCount > 0 && gFollowerSteps < (u16)-1)
+    if (gPartiesCount[B_TRAINER_PLAYER] > 0 && gFollowerSteps < (u16)-1)
         gFollowerSteps++;
 }
 
@@ -943,7 +945,7 @@ void RestartWildEncounterImmunitySteps(void)
 
 static bool32 ShouldDisableRandomEncounters(void)
 {
-    if (FlagGet(OW_FLAG_NO_ENCOUNTER))
+    if (FlagGet(WE_FLAG_NO_ENCOUNTER))
         return TRUE;
 
     if (!WE_VANILLA_RANDOM && WE_OW_ENCOUNTERS)
