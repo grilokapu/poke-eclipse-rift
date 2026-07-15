@@ -28950,12 +28950,7 @@ gBattleAnimGeneral_PokeblockThrow::
 	end
 
 gBattleAnimGeneral_ItemKnockoff::
-<<<<<<< HEAD
-	loadspritegfx ANIM_TAG_ITEM_BAG
-	createvisualtask AnimTask_KnockOffItem, ANIM_TARGET, 2
-=======
 	createsprite gKnockOffItemSpriteTemplate, ANIM_TARGET, 2
->>>>>>> expansion/1.16.0
 	end
 
 gBattleAnimGeneral_TurnTrap::
