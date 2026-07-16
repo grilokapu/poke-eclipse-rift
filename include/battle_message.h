@@ -260,6 +260,8 @@ void ExpandBattleTextBuffPlaceholders(const u8 *src, u8 *dst);
 extern struct BattleMsgData *gBattleMsgDataPtr;
 
 extern const u8 *const gBattleStringsTable[];
+extern const u8 *const gBattleStringsTablePt[];
+extern const u8 *const gBattleStringsTableEs[];
 const u8 *GetBattleString(u32 stringId);
 extern const u8 *const gStatNamesTable[NUM_BATTLE_STATS];
 extern const u8 *const gPokeblockWasTooXStringTable[];

@@ -342,7 +342,7 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
     [ABILITY_CLEAR_BODY] =
     {
         .name = _("Clear Body"),
-        .nome = _("Corpo Claro"),
+        .nome = _("Corpo Limpo"),
         .nombre = _("Cuerpo Puro"),
         .description = COMPOUND_STRING("Prevents ability reduction."),
         .descricao = COMPOUND_STRING("Impede baixar stats."),

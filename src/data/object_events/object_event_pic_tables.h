@@ -3085,9 +3085,11 @@ static const struct SpriteFrameImage sPicTable_MomFrlg[] = {
 
 #endif // IS_FRLG
 
+#if OW_FOLLOWERS_POKEBALLS
 static const struct SpriteFrameImage sPicTable_ParkBall[] = {
     overworld_ascending_frames(gObjectEventPic_ParkBall, 2, 4),
 };
+#endif
 
 static const struct SpriteFrameImage sPicTable_Backpacker[] = {
     overworld_ascending_frames(gObjectEventPic_Backpacker, 4, 4),

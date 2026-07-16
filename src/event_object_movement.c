@@ -478,20 +478,12 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT] = DIR_WEST,
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
     [MOVEMENT_TYPE_FOLLOW_PLAYER] = DIR_SOUTH,
-<<<<<<< HEAD
-    [MOVEMENT_TYPE_WALK_IN_PLACE_DOWN_SLOWER] = DIR_SOUTH,
-=======
->>>>>>> expansion/1.16.0
     [MOVEMENT_TYPE_WANDER_AROUND_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_CHASE_PLAYER_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_FLEE_PLAYER_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_WATCH_PLAYER_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_APPROACH_PLAYER_OWE] = DIR_SOUTH,
     [MOVEMENT_TYPE_DESPAWN_OWE] = DIR_SOUTH,
-<<<<<<< HEAD
-    //[MOVEMENT_TYPE_EXCLAMATION] = DIR_SOUTH,
-=======
->>>>>>> expansion/1.16.0
 };
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -504,6 +496,10 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #include "data/object_events/object_event_graphics_info_followers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
+    {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_NPC_1},
+    {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
+    {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
+    {gObjectEventPal_Npc4,                  OBJ_EVENT_PAL_TAG_NPC_4},
     {gObjectEventPal_Teala,                 OBJ_EVENT_PAL_TAG_TEALA},
     {gObjectEventPal_Fisherman,             OBJ_EVENT_PAL_TAG_FISHERMAN},
     {gObjectEventPal_Camper,                OBJ_EVENT_PAL_TAG_CAMPER},
@@ -522,10 +518,6 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Backpacker,            OBJ_EVENT_PAL_TAG_BACKPACKER},
     {gObjectEventPal_ParkBall,              OBJ_EVENT_PAL_TAG_PARK_BALL},
     {gObjectEventPal_BugCatcher,            OBJ_EVENT_PAL_TAG_BUG_CATCHER},
-    {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_NPC_1},
-    {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
-    {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
-    {gObjectEventPal_Npc4,                  OBJ_EVENT_PAL_TAG_NPC_4},
     {gObjectEventPal_Npc1Reflection,        OBJ_EVENT_PAL_TAG_NPC_1_REFLECTION},
     {gObjectEventPal_Npc2Reflection,        OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION},
     {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
@@ -1709,21 +1701,9 @@ static u32 GetAvailableObjectEventId(u16 localId, u8 mapNum, u8 mapGroup)
             availableId = i;
         }
     }
-<<<<<<< HEAD
-    if (i >= OBJECT_EVENTS_COUNT && !IS_LOCALID_GENERATED_OWE(localId))
-        return TryAndDespawnOldestGeneratedOWE_ToFreeObject(objectEventId);
-    *objectEventId = i;
-    for (; i < OBJECT_EVENTS_COUNT; i++)
-    {
-        if (gObjectEvents[i].active && gObjectEvents[i].localId == localId && gObjectEvents[i].mapNum == mapNum && gObjectEvents[i].mapGroup == mapGroup)
-            return TRUE;
-    }
-    return FALSE;
-=======
     if (availableId == OBJECT_EVENTS_COUNT && !IS_LOCALID_GENERATED_OWE(localId))
          return TryAndDespawnOldestGeneratedOWE_ToFreeObject();
     return availableId;
->>>>>>> expansion/1.16.0
 }
 
 void RemoveObjectEvent(struct ObjectEvent *objectEvent)
@@ -12357,11 +12337,7 @@ bool8 MovementAction_WalkSlowStairsRight_Step1(struct ObjectEvent *objectEvent, 
     return FALSE;
 }
 
-<<<<<<< HEAD
-u16 GetGraphicsIdForMon(u32 species, bool32 shiny, bool32 female)
-=======
 u16 GetGraphicsIdForMon(enum Species species, bool32 shiny, bool32 female)
->>>>>>> expansion/1.16.0
 {
     u16 graphicsId = species + OBJ_EVENT_MON;
     if (shiny)
@@ -12717,11 +12693,7 @@ bool8 MovementType_OverworldWildEncounter_FleePlayer_Step8(struct ObjectEvent *o
 
 bool8 MovementType_OverworldWildEncounter_FleePlayer_Step10(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-<<<<<<< HEAD
-    if (WE_OWE_FLEE_DESPAWN && sCollisionTimer >= OWE_FLEE_COLLISION_TIME)
-=======
     if (WE_OWE_FLEE_DESPAWN && sCollisionTimer >= OWE_FLEE_COLLISION_TIME && CanRemoveObjectForOWEMovement(objectEvent))
->>>>>>> expansion/1.16.0
     {
         RemoveObjectEvent(objectEvent);
         return FALSE;
@@ -12917,11 +12889,7 @@ bool8 MovementType_OverworldWildEncounter_Despawn_Step10(struct ObjectEvent *obj
 
 bool8 MovementType_OverworldWildEncounter_Despawn_Step11(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {
-<<<<<<< HEAD
-    if (sDespawnTimer == OWE_DESPAWN_FRAMES)
-=======
     if (sDespawnTimer == OWE_DESPAWN_FRAMES && CanRemoveObjectForOWEMovement(objectEvent))
->>>>>>> expansion/1.16.0
     {
         RemoveObjectEvent(objectEvent);
         return FALSE;

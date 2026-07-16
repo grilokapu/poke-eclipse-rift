@@ -716,10 +716,10 @@
 #define FLAG_WHISPERING_CAVE_RARE_BONE  0x28F // New Added Flag
 #define FLAG_ROUTE2_WATER_GEM_GET  0x290 // New Added Flag
 #define FLAG_ROUTE2_TM_POISON_TAIL_GET  0x291 // Unused Flag
-#define FLAG_UNUSED_0x292  0x292 // Unused Flag
-#define FLAG_UNUSED_0x293  0x293 // Unused Flag
-#define FLAG_UNUSED_0x294  0x294 // Unused Flag
-#define FLAG_UNUSED_0x295  0x295 // Unused Flag
+#define FLAG_WE_FLAG_NO_CATCHING  0x292 // Unused Flag
+#define FLAG_WE_FLAG_NO_RUNNING  0x293 // Unused Flag
+#define FLAG_WE_SMART_WILD_AI_FLAG  0x294 // Unused Flag
+#define FLAG_WE_FLAG_NO_ENCOUNTER  0x295 // Unused Flag
 #define FLAG_UNUSED_0x296  0x296 // Unused Flag
 #define FLAG_UNUSED_0x297  0x297 // Unused Flag
 #define FLAG_UNUSED_0x298  0x298 // Unused Flag

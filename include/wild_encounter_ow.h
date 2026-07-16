@@ -85,11 +85,7 @@ void OnOverworldWildEncounterDespawn(struct ObjectEvent *owe);
 bool32 IsOWEDespawnExempt(struct ObjectEvent *owe);
 bool32 DespawnOWEDueToNPCCollision(struct ObjectEvent *obstacle, struct ObjectEvent *activeObject);
 void DespawnAllOverworldWildEncounters(enum TypeOWE oweType, u32 flags);
-<<<<<<< HEAD
-bool32 TryAndDespawnOldestGeneratedOWE_ToFreeObject(u8 *objectEventId);
-=======
 u32 TryAndDespawnOldestGeneratedOWE_ToFreeObject();
->>>>>>> expansion/1.16.0
 void DespawnOWEOnBattleStart(void);
 void TryDespawnOWEsCrossingMapConnection(void);
 void RestoreSavedOWEBehaviorState(struct ObjectEvent *owe, struct Sprite *sprite);
@@ -107,10 +103,7 @@ u32 GetNumberOfActiveOWEs(enum TypeOWE oweType);
 const struct ObjectEventTemplate TryGetObjectEventTemplateForOWE(const struct ObjectEventTemplate *template);
 struct SpritePalette GetOWESpawnDespawnAnimFldEffPalette(enum SpawnDespawnTypeOWE spawnAnim);
 u32 RemoveOldestGeneratedOWE(void);
-<<<<<<< HEAD
-=======
 bool32 CanRemoveObjectForOWEMovement(struct ObjectEvent *objectEvent);
->>>>>>> expansion/1.16.0
 
 extern const u8 InteractWithOverworldWildEncounter[];
 

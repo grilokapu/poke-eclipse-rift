@@ -78,9 +78,9 @@ static void QueueAnimTiles_EliteFour_WallLights(u16);
 
 #define APPENDTILES(tile, offset) AppendTilesetAnimToBuffer(tile[timer % ARRAY_COUNT(tile)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(offset)), 5 * TILE_SIZE_4BPP);
 
-const u16 gTilesetAnims_General_Flower2_Frame1[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/4.png", ".4bpp");
-const u16 gTilesetAnims_General_Flower2_Frame0[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/3.png", ".4bpp");
-const u16 gTilesetAnims_General_Flower2_Frame2[] = INCBIN_U16("data/tilesets/primary/general/anim/flower/5.png", ".4bpp");
+const u16 gTilesetAnims_General_Flower2_Frame1[] = INCGFX_U16("data/tilesets/primary/general/anim/flower/4.png", ".4bpp");
+const u16 gTilesetAnims_General_Flower2_Frame0[] = INCGFX_U16("data/tilesets/primary/general/anim/flower/3.png", ".4bpp");
+const u16 gTilesetAnims_General_Flower2_Frame2[] = INCGFX_U16("data/tilesets/primary/general/anim/flower/5.png", ".4bpp");
 
 const u16 gTilesetAnims_General_Flower_Frame1[] = INCGFX_U16("data/tilesets/primary/general/anim/flower/1.png", ".4bpp");
 const u16 gTilesetAnims_General_Flower_Frame0[] = INCGFX_U16("data/tilesets/primary/general/anim/flower/0.png", ".4bpp");
@@ -773,12 +773,12 @@ void TilesetAnim_Generic_Inside(u16 timer)
 void InitTilesetAnim_PlayerHouseInside(void)
 {
     sPrimaryTilesetAnimCounter = 0;
-    sPrimaryTilesetAnimCounterMax = sPrimaryTilesetAnimCounterMax;
+    sPrimaryTilesetAnimCounterMax = 256;
     sPrimaryTilesetAnimCallback = TilesetAnim_Generic_Inside;
 }
 
 static void QueueAnimTiles_DarkForest_Symbol(u16 timer)
-{    
+{
     APPENDTILES(gTilesetAnims_DarkForest_Symbol0, 584)
     APPENDTILES(gTilesetAnims_DarkForest_Symbol1, 600)
     APPENDTILES(gTilesetAnims_DarkForest_Symbol2, 616)
@@ -1557,4 +1557,3 @@ void InitTilesetAnim_CeladonGym(void)
     sSecondaryTilesetAnimCounterMax = 256;
     sSecondaryTilesetAnimCallback = TilesetAnim_CeladonGym;
 }
-

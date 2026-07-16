@@ -1723,7 +1723,7 @@ static const u16 sBagRotomFormChangeMoves[] = {
 
 extern void DeleteMove(struct Pokemon *mon, enum Move move);
 extern bool32 DoesMonHaveAnyMoves(struct Pokemon *mon);
-extern u8 IsFusionMon(u16 species);
+extern u8 IsFusionMon(enum Species species);
 #endif // SWSH_ITEM_MENU_IN_BAG_USE
 
 // Matching the enum in item_menu_icons.c to reserve palette slots.
@@ -5742,7 +5742,7 @@ static void BagMenu_LoadHeldItemIconGfx(enum Item itemId)
 
 static void BagMenu_UpdateHeldItemIcon(u8 slot)
 { 
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
     struct Sprite *spr;
     u16 heldItem;
 
@@ -5814,7 +5814,7 @@ static void BagMenu_UpdateTMHMPartyBlend(s32 itemIndex)
         }
         else
         {
-            struct Pokemon *mon = &gPlayerParty[i];
+            struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
             enum Item itemId = BagList_GetItemId(gBagPosition.pocket, itemIndex);
             enum Move move = ItemIdToBattleMoveId(itemId);
             u16 species = GetMonData(mon, MON_DATA_SPECIES);
@@ -5843,7 +5843,7 @@ static void BagMenu_DisableTMHMPartyBlend(void)
 
 static bool8 BagMenu_IsMonEligibleForItem(u8 partySlot)
 {
-    struct Pokemon *mon = &gPlayerParty[partySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][partySlot];
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 i;
 
@@ -5912,12 +5912,12 @@ static void BagMenu_DisablePartyBlend(void)
 
 static bool8 BagMenu_MonHoldsItem(u8 partySlot)
 {
-    return GetMonData(&gPlayerParty[partySlot], MON_DATA_HELD_ITEM) != ITEM_NONE;
+    return GetMonData(&gParties[B_TRAINER_PLAYER][partySlot], MON_DATA_HELD_ITEM) != ITEM_NONE;
 }
 
 static bool8 BagMenu_IsMonEligibleFusion1(u8 partySlot)
 {
-    struct Pokemon *mon = &gPlayerParty[partySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][partySlot];
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 fusionKind;
     const struct Fusion *tbl;
@@ -5942,7 +5942,7 @@ static bool8 BagMenu_IsMonEligibleFusion1(u8 partySlot)
 static void BagMenu_ApplyFusionStage2Blend(u8 firstSlot)
 {
     u8 i;
-    u16 firstSpecies = GetMonData(&gPlayerParty[firstSlot], MON_DATA_SPECIES);
+    u16 firstSpecies = GetMonData(&gParties[B_TRAINER_PLAYER][firstSlot], MON_DATA_SPECIES);
 
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -5958,7 +5958,7 @@ static void BagMenu_ApplyFusionStage2Blend(u8 firstSlot)
         }
         else
         {
-            u16 species2 = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+            u16 species2 = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES);
             const struct Fusion *tbl = gFusionTablePointers[species2];
             u16 j;
 
@@ -6331,7 +6331,7 @@ static void BagMenu_UseSacredAsh(u8 taskId)
 
     for (slot = 0; slot < PARTY_SIZE; slot++)
     {
-        struct Pokemon *mon = &gPlayerParty[slot];
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
         if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE
             && GetMonData(mon, MON_DATA_HP) == 0
             && !ExecuteTableBasedItemEffect(mon, item, slot, 0, 1, 1))
@@ -6372,7 +6372,7 @@ static void Task_BagMenu_SacredAshMessages(u8 taskId)
 
     tPartyTemp = slot + 1;
 
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
     GetMonNickname(mon, gStringVar1);
     ConvertIntToDecimalStringN(gStringVar2, GetMonData(mon, MON_DATA_HP), STR_CONV_MODE_LEFT_ALIGN, 3);
     StringExpandPlaceholders(gStringVar4, gText_PkmnHPRestoredByVar2);
@@ -6382,7 +6382,7 @@ static void Task_BagMenu_SacredAshMessages(u8 taskId)
 static void BagMenu_UseMedicine(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     u16 hp = 0, maxHp = 0;
     u32 oldStatus = GetMonData(mon, MON_DATA_STATUS);
@@ -6454,7 +6454,7 @@ static void BagMenu_UseMedicine(u8 taskId)
 static void BagMenu_UseResetEVs(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     bool8 cannotUse = ExecuteTableBasedItemEffect(mon, item, tPartySlot, 0, 1, 1);
 
@@ -6475,7 +6475,7 @@ static void BagMenu_UseResetEVs(u8 taskId)
 static void BagMenu_UseDynamaxCandy(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     u8 dynamaxLevel = GetMonData(mon, MON_DATA_DYNAMAX_LEVEL);
 
@@ -6549,7 +6549,7 @@ static void BagMenu_GetEVStatName(enum ItemEffectType effectType, u8 *dest)
 static void BagMenu_UseReduceEV(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     enum ItemEffectType effectType = GetItemEffectType(item);
     u16 friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
@@ -6609,7 +6609,7 @@ static void Task_BagMenu_PartyYesNo(u8 taskId)
 static void BagMenu_AbilityChangeYes(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     u8 currentAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
     u8 abilityNum;
@@ -6638,7 +6638,7 @@ static void BagMenu_AbilityChangeNo(u8 taskId)
 static void BagMenu_UseAbilityCapsule(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u32 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 abilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM) ^ 1;
 
@@ -6663,7 +6663,7 @@ static void BagMenu_UseAbilityCapsule(u8 taskId)
 static void BagMenu_UseAbilityPatch(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u32 species = GetMonData(mon, MON_DATA_SPECIES);
     u8 currentAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM);
     u8 abilityNum = (currentAbilityNum == 2) ? 0 : 2;
@@ -6686,7 +6686,7 @@ static void BagMenu_UseAbilityPatch(u8 taskId)
 static void BagMenu_MintYes(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     u8 newNature = GetItemSecondaryId(item);
 
@@ -6709,7 +6709,7 @@ static void BagMenu_MintNo(u8 taskId)
 static void BagMenu_UseMint(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     u8 currentNature = GetMonData(mon, MON_DATA_HIDDEN_NATURE);
     u8 newNature = GetItemSecondaryId(item);
@@ -6732,7 +6732,7 @@ static void BagMenu_UseMint(u8 taskId)
 static void BagMenu_UsePPOnMove(u8 taskId, u8 moveSlot)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
 
     if (ExecuteTableBasedItemEffect(mon, item, tPartySlot, moveSlot, 1, 1))
@@ -6825,7 +6825,7 @@ static void BagMenu_RareCandyBufferStats(struct Pokemon *mon, s16 *data)
 static void BagMenu_UseRareCandy(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     u8 holdEffectParam = GetItemHoldEffectParam(item);
     bool8 cannotUse;
@@ -6956,7 +6956,7 @@ static void Task_BagMenu_RareCandyStatsPg2(u8 taskId)
 
 static void BagMenu_RareCandyDoLearnMoveStep(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sBagItemUseState->slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagItemUseState->slot];
 
     for (; sBagItemUseState->learnMoveLevel <= sBagItemUseState->finalLevel;)
     {
@@ -7018,7 +7018,7 @@ static void Task_BagMenu_MoveLearnFanfareWait(u8 taskId)
 
 static void BagMenu_RareCandyReplaceYes(u8 taskId)
 {
-    GetMonNickname(&gPlayerParty[sBagItemUseState->slot], gStringVar1);
+    GetMonNickname(&gParties[B_TRAINER_PLAYER][sBagItemUseState->slot], gStringVar1);
     StringCopy(gStringVar2, GetMoveName(sBagItemUseState->moveToLearn));
     StringExpandPlaceholders(gStringVar4, gText_WhichMoveToForget);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_BagMenu_MoveLearnGoToSummary);
@@ -7026,7 +7026,7 @@ static void BagMenu_RareCandyReplaceYes(u8 taskId)
 
 static void BagMenu_RareCandyReplaceNo(u8 taskId)
 {
-    GetMonNickname(&gPlayerParty[sBagItemUseState->slot], gStringVar1);
+    GetMonNickname(&gParties[B_TRAINER_PLAYER][sBagItemUseState->slot], gStringVar1);
     StringCopy(gStringVar2, GetMoveName(sBagItemUseState->moveToLearn));
     StringExpandPlaceholders(gStringVar4, gText_MoveNotLearned);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_BagMenu_MoveLearnNotLearned);
@@ -7048,7 +7048,7 @@ static void Task_BagMenu_MoveLearnGoToSummary(u8 taskId)
 
 static void BagMenu_CB2_SummaryForMoveForget(void)
 {
-    ShowSelectMovePokemonSummaryScreen(gPlayerParty,
+    ShowSelectMovePokemonSummaryScreen(gParties[B_TRAINER_PLAYER],
                                       sBagItemUseState->slot,
                                       BagMenu_CB2_ReturnFromMoveForget,
                                       sBagItemUseState->moveToLearn);
@@ -7100,7 +7100,7 @@ static void Task_BagMenu_MoveLearnAfterForget(u8 taskId)
     moveSlot = GetMoveSlotToReplace();
     if (moveSlot != MAX_MON_MOVES)
     {
-        struct Pokemon *mon = &gPlayerParty[sBagItemUseState->slot];
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagItemUseState->slot];
         enum Move oldMove = GetMonData(mon, MON_DATA_MOVE1 + moveSlot);
 
         RemoveMonPPBonus(mon, moveSlot);
@@ -7113,7 +7113,7 @@ static void Task_BagMenu_MoveLearnAfterForget(u8 taskId)
     }
     else
     {
-        GetMonNickname(&gPlayerParty[sBagItemUseState->slot], gStringVar1);
+        GetMonNickname(&gParties[B_TRAINER_PLAYER][sBagItemUseState->slot], gStringVar1);
         StringCopy(gStringVar2, GetMoveName(sBagItemUseState->moveToLearn));
         StringExpandPlaceholders(gStringVar4, gText_MoveNotLearned);
         DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_BagMenu_MoveLearnNotLearned);
@@ -7122,7 +7122,7 @@ static void Task_BagMenu_MoveLearnAfterForget(u8 taskId)
 
 static void Task_BagMenu_MoveLearnAfterForgotMove(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sBagItemUseState->slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagItemUseState->slot];
 
     RemoveItemMessageWindow(ITEMWIN_MESSAGE);
     GetMonNickname(mon, gStringVar1);
@@ -7141,7 +7141,7 @@ static void Task_BagMenu_MoveLearnDone(u8 taskId)
 
 static void BagMenu_RareCandyTryEvolution(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sBagItemUseState->slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagItemUseState->slot];
     bool32 canStopEvo = TRUE;
     u16 target = GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, CHECK_EVO);
 
@@ -7162,7 +7162,7 @@ static void BagMenu_RareCandyTryEvolution(u8 taskId)
 
 static void BagMenu_CB2_DoBeginEvolution(void)
 {
-    EvolutionScene(&gPlayerParty[sBagItemUseState->slot],
+    EvolutionScene(&gParties[B_TRAINER_PLAYER][sBagItemUseState->slot],
                    sBagItemUseState->evolutionTarget,
                    sBagItemUseState->canStopEvolution,
                    sBagItemUseState->slot);
@@ -7194,7 +7194,7 @@ static void BagMenu_UseEvolutionStone(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u16 item = gSpecialVar_ItemId;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     bool32 canStopEvo = TRUE;
     u16 target = GetEvolutionTargetSpecies(mon, EVO_MODE_ITEM_USE, item, NULL, &canStopEvo, CHECK_EVO);
 
@@ -7265,7 +7265,7 @@ static void BagMenu_DoGiveMail(u8 taskId, struct Pokemon *mon, u16 item)
 static void BagMenu_GiveItem(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u16 item = gSpecialVar_ItemId;
     u16 heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
     u8 itemBytes[2];
@@ -7287,7 +7287,7 @@ static void BagMenu_GiveItem(u8 taskId)
         itemBytes[0] = item;
         itemBytes[1] = item >> 8;
         SetMonData(mon, MON_DATA_HELD_ITEM, itemBytes);
-        TryFormChange(mon, FORM_CHANGE_ITEM_HOLD);
+        TryFormChange(mon, FORM_CHANGE_ITEM_HOLD, B_TRAINER_PLAYER);
         BagMenu_UpdateHeldItemIcon(tPartySlot);
         BagMenu_ApplyPartyBlend(BagMenu_MonHoldsItem);
         RemoveBagItem(item, 1);
@@ -7316,7 +7316,7 @@ static void BagMenu_GiveItem(u8 taskId)
 static void BagMenu_GiveSwapYes(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u16 item = gSpecialVar_ItemId;
     u8 itemBytes[2];
 
@@ -7333,7 +7333,7 @@ static void BagMenu_GiveSwapYes(u8 taskId)
     {
         u16 speciesBefore = GetMonData(mon, MON_DATA_SPECIES);
         SetMonData(mon, MON_DATA_HELD_ITEM, itemBytes);
-        TryFormChange(mon, FORM_CHANGE_ITEM_HOLD);
+        TryFormChange(mon, FORM_CHANGE_ITEM_HOLD, B_TRAINER_PLAYER);
         BagMenu_UpdateHeldItemIcon(tPartySlot);
         CopyItemName(item, gStringVar1);
         CopyItemName(gBagMenu->partyGiveSwapItem, gStringVar2);
@@ -7368,7 +7368,7 @@ static void Task_BagMenu_AfterGiveFormChange(u8 taskId)
 
 static void BagMenu_CB2_GiveMail(void)
 {
-    struct Pokemon *mon = &gPlayerParty[sBagMailGiveState->slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagMailGiveState->slot];
     u8 mail = GetMonData(mon, MON_DATA_MAIL);
 
     DoEasyChatScreen(
@@ -7380,7 +7380,7 @@ static void BagMenu_CB2_GiveMail(void)
 
 static void BagMenu_CB2_AfterMailWrite(void)
 {
-    struct Pokemon *mon = &gPlayerParty[sBagMailGiveState->slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagMailGiveState->slot];
     MainCallback exitCb = gBagPosition.exitCallback;
 
     if (!gSpecialVar_Result)
@@ -7421,7 +7421,7 @@ static void Task_BagMenu_FormChangeAnim(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u8 slot = tPartySlot;
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
 
     switch (tAnimState)
     {
@@ -7487,12 +7487,12 @@ static void Task_BagMenu_FormChangeAnim(u8 taskId)
 static void BagMenu_UseFormChange(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     bool8 consumed = (gItemUseCB == ItemUseCB_FormChange_ConsumedOnUse);
 
     PlaySE(SE_SELECT);
 
-    if (!TryFormChange(mon, FORM_CHANGE_ITEM_USE))
+    if (!TryFormChange(mon, FORM_CHANGE_ITEM_USE, B_TRAINER_PLAYER))
     {
         BagMenu_DisplayCannotUseMessage(taskId);
         return;
@@ -7528,10 +7528,10 @@ static void BagMenu_UseMultichoiceFormChange(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u8 slot = tPartySlot;
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
     enum Move moveToTeach = MOVE_NONE;
 
-    if (!TryFormChange(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE))
+    if (!TryFormChange(mon, FORM_CHANGE_ITEM_USE_MULTICHOICE, B_TRAINER_PLAYER))
     {
         BagMenu_DisplayCannotUseMessage(taskId);
         return;
@@ -7608,7 +7608,7 @@ static const u8 gText_LawnMower[] = _("Lawn mower");
 static void BagMenu_UseRotomCatalog(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u8 windowId;
     u8 cursorDim;
     u32 i;
@@ -7663,7 +7663,7 @@ static const u8 gText_ChangeAbility[] = _("Change ability");
 static void BagMenu_UseZygardeCube(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u8 windowId;
     u8 cursorDim;
     u32 i;
@@ -7692,7 +7692,7 @@ static void Task_BagMenu_RotomAfterTransform(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u8 slot = tPartySlot;
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
     enum Move moveToTeach = (u16)tAnimMove;
     u32 i;
 
@@ -7734,7 +7734,7 @@ static void Task_BagMenu_RotomAfterTransform(u8 taskId)
 
 static void BagMenu_RotomMoveReplaceYes(u8 taskId)
 {
-    GetMonNickname(&gPlayerParty[sBagItemUseState->slot], gStringVar1);
+    GetMonNickname(&gParties[B_TRAINER_PLAYER][sBagItemUseState->slot], gStringVar1);
     StringCopy(gStringVar2, GetMoveName(sBagItemUseState->moveToLearn));
     StringExpandPlaceholders(gStringVar4, gText_WhichMoveToForget);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_BagMenu_MoveLearnGoToSummary);
@@ -7742,7 +7742,7 @@ static void BagMenu_RotomMoveReplaceYes(u8 taskId)
 
 static void BagMenu_RotomMoveReplaceNo(u8 taskId)
 {
-    GetMonNickname(&gPlayerParty[sBagItemUseState->slot], gStringVar1);
+    GetMonNickname(&gParties[B_TRAINER_PLAYER][sBagItemUseState->slot], gStringVar1);
     StringCopy(gStringVar2, GetMoveName(sBagItemUseState->moveToLearn));
     StringExpandPlaceholders(gStringVar4, gText_MoveNotLearned);
     DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_BagMenu_MoveLearnNotLearned);
@@ -7753,15 +7753,15 @@ static void BagMenu_RestoreFusionMon(struct Pokemon *mon)
     s32 i;
     for (i = 0; i < PARTY_SIZE; i++)
     {
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) == SPECIES_NONE)
+        if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES) == SPECIES_NONE)
             break;
     }
     if (i >= PARTY_SIZE)
         CopyMonToPC(mon);
     else
     {
-        CopyMon(&gPlayerParty[i], mon, sizeof(*mon));
-        gPlayerPartyCount = i + 1;
+        CopyMon(&gParties[B_TRAINER_PLAYER][i], mon, sizeof(*mon));
+        gPartiesCount[B_TRAINER_PLAYER] = i + 1;
     }
 }
 
@@ -7840,7 +7840,7 @@ static void Task_BagMenu_FusionAnim(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u8 slot = sBagFusionState->firstFusionSlot;
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
 
     switch (tAnimState)
     {
@@ -7850,9 +7850,9 @@ static void Task_BagMenu_FusionAnim(u8 taskId)
         if (sBagFusionState->fusionType == BAG_FUSE_MON)
         {
             u8 slot2 = sBagFusionState->secondFusionSlot;
-            struct Pokemon *mon2 = &gPlayerParty[slot2];
+            struct Pokemon *mon2 = &gParties[B_TRAINER_PLAYER][slot2];
             CopyMon(&gPokemonStoragePtr->fusions[sBagFusionState->storageIndex], mon2, sizeof(*mon2));
-            ZeroMonData(&gPlayerParty[slot2]);
+            ZeroMonData(&gParties[B_TRAINER_PLAYER][slot2]);
             SetMonData(mon, MON_DATA_SPECIES, &fusionResult);
         }
         else
@@ -7917,7 +7917,7 @@ static void Task_BagMenu_FusionAnim(u8 taskId)
     case 3:
         if (IsCryFinished())
         {
-            GetMonNickname(&gPlayerParty[sBagFusionState->firstFusionSlot], gStringVar1);
+            GetMonNickname(&gParties[B_TRAINER_PLAYER][sBagFusionState->firstFusionSlot], gStringVar1);
             StringExpandPlaceholders(gStringVar4, gText_PkmnTransformed);
             DisplayItemMessage(taskId, FONT_NORMAL, gStringVar4, Task_BagMenu_FusionAfterAnim);
             tAnimState++;
@@ -7934,7 +7934,7 @@ static void Task_BagMenu_FusionAfterAnim(u8 taskId)
     u8 extraMoveHandling = sBagFusionState->extraMoveHandling;
     u16 moveToLearn = sBagFusionState->moveToLearn;
     u16 fusionResult = sBagFusionState->fusionResult;
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
 
     tPartySlot = slot;
     Free(sBagFusionState);
@@ -8003,7 +8003,7 @@ static void BagMenu_UseFusion(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u8 slot = tPartySlot;
-    struct Pokemon *mon = &gPlayerParty[slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][slot];
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
     const struct Fusion *itemFusion = gFusionTablePointers[species];
     u16 i;
@@ -8027,7 +8027,7 @@ static void BagMenu_UseFusion(u8 taskId)
         }
         break;
     case BAG_UNFUSE_MON:
-        if (gPlayerPartyCount >= PARTY_SIZE)
+        if (gPartiesCount[B_TRAINER_PLAYER] >= PARTY_SIZE)
         {
             DisplayItemMessage(taskId, FONT_NORMAL, gText_YourPartysFull, Task_BagMenu_PartyStayAfterMessage);
             return;
@@ -8115,8 +8115,8 @@ static void BagMenu_UseFusionSecond(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     u8 slot2 = tPartySlot;
-    struct Pokemon *mon1 = &gPlayerParty[sBagFusionState->firstFusionSlot];
-    struct Pokemon *mon2 = &gPlayerParty[slot2];
+    struct Pokemon *mon1 = &gParties[B_TRAINER_PLAYER][sBagFusionState->firstFusionSlot];
+    struct Pokemon *mon2 = &gParties[B_TRAINER_PLAYER][slot2];
     u16 species1 = GetMonData(mon1, MON_DATA_SPECIES);
     u16 species2 = GetMonData(mon2, MON_DATA_SPECIES);
     const struct Fusion *itemFusion = gFusionTablePointers[species2];
@@ -8153,7 +8153,7 @@ static void BagMenu_UseFusionSecond(u8 taskId)
 
 static void Task_BagMenu_TMHMLearnDone(u8 taskId)
 {
-    struct Pokemon *mon = &gPlayerParty[sBagItemUseState->slot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][sBagItemUseState->slot];
     bool32 learned = MonKnowsMove(mon, sBagItemUseState->moveToLearn);
 
     if (learned)
@@ -8171,7 +8171,7 @@ static void BagMenu_UseTMHM(u8 taskId)
     s16 *data = gTasks[taskId].data;
     u16 item = gSpecialVar_ItemId;
     enum Move move = ItemIdToBattleMoveId(item);
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG);
 
     GetMonNickname(mon, gStringVar1);
@@ -8214,7 +8214,7 @@ static void BagMenu_UseTMHM(u8 taskId)
 static s16 BagMenu_ComputeMultiUseMax(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[tPartySlot];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][tPartySlot];
     enum Item item = gSpecialVar_ItemId;
     s16 bagQty = CountTotalItemQuantityInBag(item);
 
@@ -8366,24 +8366,6 @@ static bool8 BagMenu_InBattleSelect(void)
 #endif
 }
 
-static bool32 AreMultiPartiesFullTeams(void)
-{
-    enum DifficultyLevel difficulty = GetCurrentDifficultyLevel();
-
-    if (B_MULTI_HALF_TEAMS
-     || TRAINER_BATTLE_PARAM.opponentA == TRAINER_LINK_OPPONENT
-     || gBattleTypeFlags & BATTLE_TYPE_TOWER_LINK_MULTI
-     || (gTrainers[difficulty][TRAINER_BATTLE_PARAM.opponentA].multiTeamSize == MULTI_TEAM_SIZE_HALF)
-     || (gTrainers[difficulty][TRAINER_BATTLE_PARAM.opponentB].multiTeamSize == MULTI_TEAM_SIZE_HALF))
-    {
-        gSpecialVar_Result = FALSE;
-        return FALSE;
-    }
-
-    gSpecialVar_Result = TRUE;
-    return TRUE;
-}
-
 #if SWSH_ITEM_MENU_IN_BATTLE_USE == TRUE
 static bool8 BagMenu_IsMultiFull(void)
 {
@@ -8452,8 +8434,8 @@ static u8 BagMenu_PartyIdFromSlot(u8 slot)
 static struct Pokemon *BagMenu_GetPanelMon(u8 slot)
 {
     if (BagMenu_SlotIsPartner(slot))
-        return &GetBattlerParty(BATTLE_PARTNER(gBattlerAttacker))[BagMenu_PartyIdFromSlot(slot)];
-    return &gPlayerParty[BagMenu_PartyIdFromSlot(slot)];
+        return &gParties[B_TRAINER_PARTNER][BagMenu_PartyIdFromSlot(slot)];
+    return &gParties[B_TRAINER_PLAYER][BagMenu_PartyIdFromSlot(slot)];
 }
 
 static u8 BagMenu_PanelSlotLimit(void)
@@ -8815,7 +8797,7 @@ void DisplayItemMessageInBattlePyramid(u8 taskId, const u8 *str, TaskFunc callba
 void TryStoreHeldItemsInPyramidBag(void)
 {
     u8 i;
-    struct Pokemon *party = gPlayerParty;
+    struct Pokemon *party = gParties[B_TRAINER_PLAYER];
     u16 *newItems = Alloc(PYRAMID_BAG_ITEMS_COUNT * sizeof(*newItems));
 #if MAX_PYRAMID_BAG_ITEM_CAPACITY > 255
     u16 *newQuantities = Alloc(PYRAMID_BAG_ITEMS_COUNT * sizeof(*newQuantities));

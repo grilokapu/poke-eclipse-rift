@@ -93,13 +93,6 @@
 #define MOVEMENT_TYPE_APPROACH_PLAYER_OWE              0x58
 #define MOVEMENT_TYPE_DESPAWN_OWE                      0x59
 #define NUM_MOVEMENT_TYPES                             0x5A
-#define MOVEMENT_TYPE_WANDER_AROUND_OWE                0x5B
-#define MOVEMENT_TYPE_CHASE_PLAYER_OWE                 0x5C
-#define MOVEMENT_TYPE_FLEE_PLAYER_OWE                  0x5D
-#define MOVEMENT_TYPE_WATCH_PLAYER_OWE                 0x5E
-#define MOVEMENT_TYPE_APPROACH_PLAYER_OWE              0x5F
-#define MOVEMENT_TYPE_DESPAWN_OWE                      0x60
-#define NUM_MOVEMENT_TYPES                             0x61
 
 #define MOVEMENT_ACTION_FACE_DOWN                       0x0
 #define MOVEMENT_ACTION_FACE_UP                         0x1

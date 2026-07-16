@@ -833,7 +833,7 @@ u8 GetMonsStateToDoubles(void);
 u8 GetMonsStateToDoubles_2(void);
 enum Ability GetAbilityBySpecies(enum Species species, u8 abilityNum);
 enum Ability GetMonAbility(struct Pokemon *mon);
-enum Ability LunaticBannedAbilitySwapper(enum Ability ability, u16 species);
+enum Ability LunaticBannedAbilitySwapper(enum Ability ability, enum Species species);
 void CreateSecretBaseEnemyParty(struct SecretBase *secretBaseRecord);
 enum TrainerPicID GetSecretBaseTrainerPicIndex(void);
 enum TrainerClassID GetSecretBaseTrainerClass(void);
@@ -929,7 +929,7 @@ bool8 IsMonShiny(struct Pokemon *mon);
 const u8 *GetTrainerPartnerName(void);
 void BattleAnimateFrontSprite(struct Sprite *sprite, enum Species species, bool8 noCry, u8 panMode);
 void DoMonFrontSpriteAnimation(struct Sprite *sprite, enum Species species, bool8 noCry, u8 panModeAnimFlag);
-void PokemonSummaryDoMonAnimation(struct Sprite *sprite, enum Species species, bool8 oneFrame);
+void PokemonSummaryDoMonAnimation(struct Sprite *sprite, enum Species species, bool8 oneFrame, bool8 isShadow);
 void StopPokemonAnimationDelayTask(void);
 void BattleAnimateBackSprite(struct Sprite *sprite, enum Species species);
 u8 GetOpposingLinkMultiBattlerId(bool8 rightSide, u8 multiplayerId);
@@ -945,6 +945,7 @@ u8 *MonSpritesGfxManager_GetSpritePtr(u8 managerId, u8 spriteNum);
 u16 GetFormSpeciesId(enum Species speciesId, u8 formId);
 u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId);
 enum Species GetFormChangeTargetSpecies_Internal(struct FormChangeContext ctx);
+enum Species GetFormChangeTargetSpecies(struct Pokemon *mon, enum FormChanges method);
 bool32 DoesSpeciesHaveFormChangeMethod(enum Species species, enum FormChanges method);
 u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
 void RemoveIVIndexFromList(u8 *ivs, u8 selectedIv);
@@ -1082,55 +1083,6 @@ static inline const u8 *GetAbilityDescription(enum Ability abilityId)
         description = abilityInfo->description;
 
     return description;
-}
-
-static inline u32 OWE_GetMovementTypeFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].movementType;
-}
-
-static inline u32 OWE_GetViewDistanceFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].viewDistance;
-}
-
-static inline u32 OWE_GetViewWidthFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].viewWidth;
-}
-
-static inline u32 OWE_GetViewActiveDistanceFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].activeDistance;
-}
-
-static inline enum SpeedOWE OWE_GetIdleSpeedFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].idleSpeed;
-}
-
-static inline enum SpeedOWE OWE_GetActiveSpeedFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].activeSpeed;
-}
-
-static inline enum ReturnToIdleOWE OWE_GetReturnToIdleFromSpecies(u16 speciesId)
-{
-    speciesId = SanitizeSpeciesId(speciesId);
-    enum OverworldWildEncounterBehaviors behavior = gSpeciesInfo[speciesId].overworldEncounterBehavior;
-    return gOWESpeciesBehavior[behavior].returnToIdle;
 }
 
 #endif // GUARD_POKEMON_H

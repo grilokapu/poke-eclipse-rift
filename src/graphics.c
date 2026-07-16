@@ -2078,8 +2078,8 @@ const u16 gMessageBox_Pal[] = INCGFX_U16("graphics/text_window/message_box.png",
 const u8 gMessageBox_Gfx[] = INCGFX_U8("graphics/text_window/message_box.png", ".4bpp");
 const u8 gSignpostWindow_Gfx[] = INCGFX_U8("graphics/text_window/signpost.png", ".4bpp");
 
-const u16 gTransMsgBox_Pal[] = INCBIN_U16("graphics/text_window/transparentpal.pal", ".gbapal");
-const u8 gTransMsgBox_Gfx[] = INCBIN_U8("graphics/text_window/black_message_box.png", ".4bpp");
+const u16 gTransMsgBox_Pal[] = INCGFX_U16("graphics/text_window/transparentpal.pal", ".gbapal");
+const u8 gTransMsgBox_Gfx[] = INCGFX_U8("graphics/text_window/black_message_box.png", ".4bpp");
 
 const u32 gWallpaperIcon_Cross[] = INCGFX_U32("graphics/pokemon_storage/wallpapers/icons/cross.png", ".4bpp.smol");
 const u32 gWallpaperIcon_Bolt[] = INCGFX_U32("graphics/pokemon_storage/wallpapers/icons/bolt.png", ".4bpp.smol");
@@ -2120,6 +2120,10 @@ const u16 gMonIconPalettes[][16] =
 #ifdef OLD_TITLE_SCREEN
 const u16 gTitleScreenBgPalettes[]         = INCBIN_U16("graphics/title_screen/pokemon_logo.gbapal",
                                                         "graphics/title_screen/rayquaza_and_clouds.gbapal");
+#else
+const u16 gTitleScreenBgPalettes[]         = INCBIN_U16("graphics/title_screen/pokemon_logo.gbapal",
+                                                        "graphics/title_screen/rift.gbapal");
+#endif
 const u16 gTitleScreenEmeraldVersionPal[]  = INCGFX_U16("graphics/title_screen/emerald_version.png", ".gbapal");
 const u32 gTitleScreenCloudsTilemap[]      = INCGFX_U32("graphics/title_screen/clouds.bin", ".smolTM");
 const u32 gTitleScreenPokemonLogoGfx[]     = INCGFX_U32("graphics/title_screen/pokemon_logo.png", ".8bpp.smol");

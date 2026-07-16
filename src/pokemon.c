@@ -3254,11 +3254,6 @@ u8 CalculateEnemyPartyCount(void)
     return gPartiesCount[B_TRAINER_OPPONENT_A] + gPartiesCount[B_TRAINER_OPPONENT_B];
 }
 
-u8 CalculatePartnerPartyCount(void)
-{
-    return CalculatePartyCount(GetBattlerParty(BATTLE_PARTNER(gBattlerAttacker)));
-}
-
 u8 GetMonsStateToDoubles(void)
 {
     s32 aliveCount = 0;
@@ -5953,7 +5948,7 @@ void DoMonFrontSpriteAnimation(struct Sprite *sprite, enum Species species, bool
     }
 }
 
-void PokemonSummaryDoMonAnimation(struct Sprite *sprite, enum Species species, bool8 oneFrame)
+void PokemonSummaryDoMonAnimation(struct Sprite *sprite, enum Species species, bool8 oneFrame, bool8 isShadow)
 {
     if (!oneFrame && HasTwoFramesAnimation(species))
         StartSpriteAnim(sprite, 1);
@@ -6095,18 +6090,18 @@ enum TrainerPicID GetBackspriteId(void)
         enum GameVersion version = gLinkPlayers[multiplayerId].version & 0xFF;
 
         if (version == VERSION_FIRE_RED || version == VERSION_LEAF_GREEN)
-            return gender + TRAINER_PIC_BACK_RED;
+            return gender + TRAINER_PIC_RED;
         else if (version == VERSION_RUBY || version == VERSION_SAPPHIRE)
-            return gender + TRAINER_PIC_BACK_RUBY_SAPPHIRE_BRENDAN;
+            return gender + TRAINER_PIC_RS_BRENDAN;
         else
-            return gender + TRAINER_PIC_BACK_BRENDAN;
+            return gender + TRAINER_PIC_BRENDAN;
     }
 
     trainerPicId = VarGet(VAR_BACKSPRITE_SWITCH);
     if (trainerPicId != 0)
         return trainerPicId;
 
-    return gSaveBlock2Ptr->playerGender == FEMALE ? TRAINER_BACK_PIC_PLAYER_FEMALE : TRAINER_BACK_PIC_PLAYER_MALE;
+    return gSaveBlock2Ptr->playerGender == FEMALE ? TRAINER_PIC_MAY : TRAINER_PIC_BRENDAN;
 }
 
 void HandleSetPokedexFlag(enum NationalDexOrder nationalNum, u8 caseId, u32 personality)

@@ -316,7 +316,8 @@ void TeachMoveRelearnerMove(void)
 {
     LockPlayerFieldControls();
     CreateTask(Task_WaitForFadeOut, 10);
-    gRelearnMode = RELEARN_MODE_SCRIPT;
+    if (gRelearnMode != RELEARN_MODE_PARTY_MENU)
+        gRelearnMode = RELEARN_MODE_SCRIPT;
     // Fade to black
     BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
 }
@@ -548,7 +549,11 @@ static void Task_MoveRelearner_Quit(u8 taskId)
     if (gPaletteFade.active)
         return;
 
-    if (gInitialSummaryScreenCallback != NULL)
+    if (gRelearnMode == RELEARN_MODE_PARTY_MENU)
+    {
+        SetMainCallback2(CB2_ReturnToPartyMenuFromSummaryScreen);
+    }
+    else if (gInitialSummaryScreenCallback != NULL)
     {
         if (gRelearnMode == RELEARN_MODE_PSS_PAGE_CONTEST_MOVES)
             ShowPokemonSummaryScreen(SUMMARY_MODE_RELEARNER_CONTEST, gParties[B_TRAINER_PLAYER], gTasks[taskId].tPartyIndex, gPartiesCount[B_TRAINER_PLAYER] - 1, gInitialSummaryScreenCallback);

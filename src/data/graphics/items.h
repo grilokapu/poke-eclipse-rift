@@ -2110,7 +2110,7 @@ const u16 gItemIconPalette_PokeshiDoll[] = INCGFX_U16("graphics/items/icon_palet
 const u32 gItemIcon_SwapSnack[] = INCGFX_U32("graphics/items/icons/swap_snack.png", ".4bpp.smol");
 const u16 gItemIconPalette_SwapSnack[] = INCGFX_U16("graphics/items/icon_palettes/swap_snack.pal", ".gbapal");
 
-const u32 gItemIcon_UltraRepel[] = INCBIN_U32("graphics/items/icons/ultra_repel.png", ".4bpp.smol");
-const u16 gItemIconPalette_UltraRepel[] = INCBIN_U16("graphics/items/icon_palettes/ultra_repel.pal", ".gbapal");
+const u32 gItemIcon_UltraRepel[] = INCGFX_U32("graphics/items/icons/ultra_repel.png", ".4bpp.smol");
+const u16 gItemIconPalette_UltraRepel[] = INCGFX_U16("graphics/items/icon_palettes/ultra_repel.pal", ".gbapal");
 const u32 gItemIcon_TwiceSpicedRadish[] = INCGFX_U32("graphics/items/icons/twice_spiced_radish.png", ".4bpp.smol");
 const u16 gItemIconPalette_TwiceSpicedRadish[] = INCGFX_U16("graphics/items/icon_palettes/twice_spiced_radish.pal", ".gbapal");

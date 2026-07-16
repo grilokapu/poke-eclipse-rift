@@ -3,7 +3,7 @@
 
 // Vanilla
 #define WE_VANILLA_RANDOM           TRUE    // If TRUE, Pokémon can randomly spawn on tiles that can trigger wild encounters, as in vanilla.
-#define WE_FLAG_NO_ENCOUNTER        0       // If this flag is set, wild encounters will be disabled.
+#define WE_FLAG_NO_ENCOUNTER        0x295       // If this flag is set, wild encounters will be disabled.
 
 // Double Wild Battles
 #define WE_DOUBLE_WILD_CHANCE            0          // % chance of encountering two Pokémon in a Wild Encounter.
@@ -12,12 +12,12 @@
 
 // Wild Battle Flags
 #define WE_FLAG_FORCE_DOUBLE_WILD    0     // If this flag is set, all land and surfing wild battles will be double battles.
-#define WE_SMART_WILD_AI_FLAG        0     // If this flag is set, wild Pokémon will become smart, with all AI flags enabled.
-#define WE_FLAG_NO_CATCHING          0     // If this flag is set, the ability to catch wild Pokémon is disabled.
-#define WE_FLAG_NO_RUNNING           0     // If this flag is set, the ability to escape from wild battles is disabled. Also makes Roar/Whirlwind and Teleport (under Gen8) fail.
+#define WE_SMART_WILD_AI_FLAG        0x294     // If this flag is set, wild Pokémon will become smart, with all AI flags enabled.
+#define WE_FLAG_NO_CATCHING          0x292     // If this flag is set, the ability to catch wild Pokémon is disabled.
+#define WE_FLAG_NO_RUNNING           0x293     // If this flag is set, the ability to escape from wild battles is disabled. Also makes Roar/Whirlwind and Teleport (under Gen8) fail.
 
 // Overworld Wild Encounters (OWEs)
-#define WE_OW_ENCOUNTERS                        FALSE   // If TRUE, OW Pokémon can spawn as Overworld Wild Encounters on the current map. Requires OW_POKEMON_OBJECT_EVENTS.
+#define WE_OW_ENCOUNTERS                        TRUE   // If TRUE, OW Pokémon can spawn as Overworld Wild Encounters on the current map. Requires OW_POKEMON_OBJECT_EVENTS.
                                                         // If WE_OW_ENCOUNTERS is TRUE, it is recommended that OW_GFX_COMPRESS be set to FALSE to prevent VRAM issues.
 #define WE_OWE_FLAG_DISABLED                    0       // Replace 0 with a flag to use it to enable/disable generated OWEs.
 #define WE_OWE_SPECIAL_ONLY                     FALSE   // If TRUE, generated OWEs can only be special spawns.

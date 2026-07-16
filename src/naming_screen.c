@@ -372,7 +372,7 @@ static const u8 sPCIconOff_Gfx[] = INCGFX_U8("graphics/naming_screen/pc_icon_off
 static const u8 sPCIconOn_Gfx[] = INCGFX_U8("graphics/naming_screen/pc_icon_on.png", ".4bpp");
 static const u16 sKeyboard_Pal[] = INCGFX_U16("graphics/naming_screen/keyboard.pal", ".gbapal");
 static const u16 sRival_Gfx[] = INCGFX_U16("graphics/naming_screen/rival.png", ".4bpp");
-static const u16 sRival_Pal[] = INCGFX_U16("graphics/naming_screen/rival.pal", ".gbapal");
+static const u16 sRival_Pal[] = INCGFX_U16("graphics/naming_screen/rival.png", ".gbapal");
 
 static const u8 *const sTransferredToPCMessages[] =
 {
@@ -1128,7 +1128,7 @@ static void NamingScreen_CreateMonIcon(void)
     u8 spriteId;
 
     LoadMonIconPalettes();
-    spriteId = CreateMonIcon(sNamingScreen->monSpeciesOrPlayerGender, SpriteCallbackDummy, 40, 26, 0, sNamingScreen->monPersonality);
+    spriteId = CreateMonIcon(sNamingScreen->monSpecies, SpriteCallbackDummy, 40, 26, 0, sNamingScreen->monPersonality);
     gSprites[spriteId].oam.priority = 3;
 }
 
@@ -1528,7 +1528,7 @@ static void DrawMonTextEntryBox(void)
     u8 buffer[0x20];
     // Put the species name in gStringVar1 and expand the title template
     // so placeholders like {STR_VAR_1} are replaced correctly.
-    StringCopy(gStringVar1, GetSpeciesName(sNamingScreen->monSpeciesOrPlayerGender));
+    StringCopy(gStringVar1, GetSpeciesName(sNamingScreen->monSpecies));
     if (GET_LANGUAGE() == PT)
         StringExpandPlaceholders(buffer, sNamingScreen->template->titlePt);
     else if (GET_LANGUAGE() == ES)

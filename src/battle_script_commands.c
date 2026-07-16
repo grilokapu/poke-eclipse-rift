@@ -11219,7 +11219,7 @@ void BS_ItemRestoreHP(void)
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 #if SWSH_ITEM_MENU_IN_BATTLE_USE == TRUE
     if (ItemUseTargetsPartnerParty(gBattlerAttacker))
-        party = GetBattlerParty(BATTLE_PARTNER(gBattlerAttacker));
+        party = gParties[B_TRAINER_PARTNER];
 #endif
     u16 hp = GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_HP);
     u16 maxHP = GetMonData(&party[gBattleStruct->itemPartyIndex[gBattlerAttacker]], MON_DATA_MAX_HP);
@@ -11306,7 +11306,7 @@ void BS_ItemCureStatus(void)
     struct Pokemon *party = GetBattlerParty(gBattlerAttacker);
 #if SWSH_ITEM_MENU_IN_BATTLE_USE == TRUE
     if (ItemUseTargetsPartnerParty(gBattlerAttacker))
-        party = GetBattlerParty(BATTLE_PARTNER(gBattlerAttacker));
+        party = gParties[B_TRAINER_PARTNER];
 #endif
 
     // Heal volatile conditions if battler is active.
@@ -11368,13 +11368,6 @@ void BS_ItemIncreaseStat(void)
         gBattlerAttacker = BATTLE_PARTNER(gBattlerAttacker);
     else
 #endif
-    if (GetItemBattleUsage(gLastUsedItem) == EFFECT_ITEM_INCREASE_STAT)
-    {
-        u16 statId = GetItemEffect(gLastUsedItem)[1];
-        u16 stages = GetItemHoldEffectParam(gLastUsedItem);
-        SET_STATCHANGER(statId, stages, FALSE);
-    } // else EFFECT_ITEM_INCREASE_ALL_STATS or EFFECT_ITEM_SET_FOCUS_ENERGY
-
     if (gBattlerPartyIndexes[gBattlerAttacker] != gBattleStruct->itemPartyIndex[gBattlerAttacker])
         gBattlerAttacker = BATTLE_PARTNER(gBattlerAttacker);
 
@@ -11406,7 +11399,7 @@ void BS_ItemRestorePP(void)
 
 #if SWSH_ITEM_MENU_IN_BATTLE_USE == TRUE
     if (ItemUseTargetsPartnerParty(gBattlerAttacker))
-        mon = &GetBattlerParty(BATTLE_PARTNER(gBattlerAttacker))[gBattleStruct->itemPartyIndex[gBattlerAttacker]];
+        mon = &gParties[B_TRAINER_PARTNER][gBattleStruct->itemPartyIndex[gBattlerAttacker]];
 #endif
 
     // Check whether to apply to all moves.
@@ -14042,4 +14035,3 @@ void BS_RestoreStatChangeQueue(void)
     ClearOtherStatChangeValues(gBattlerAttacker);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
-

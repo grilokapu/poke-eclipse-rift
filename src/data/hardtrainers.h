@@ -14,7 +14,7 @@
 #line 32
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 33
-        .trainerPic = TRAINER_PIC_FRONT_LUCIEN,
+        .trainerPic = TRAINER_PIC_LUCIEN,
 #line 34
         .gender = TRAINER_GENDER_MALE,
 #line 35
@@ -26,7 +26,7 @@
 #line 38
         .mugshotColor = MUGSHOT_COLOR_BLUE,
 #line 0
-        .trainerBackPic = TRAINER_PIC_FRONT_LUCIEN,
+        .multiTeamSize = MULTI_TEAM_SIZE_FULL,
         .partySize = 2,
         .party = (const struct TrainerMon[])
         {
@@ -84,7 +84,7 @@
 #line 62
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 63
-        .trainerPic = TRAINER_PIC_FRONT_LUCIEN,
+        .trainerPic = TRAINER_PIC_LUCIEN,
 #line 64
         .gender = TRAINER_GENDER_MALE,
 #line 65
@@ -96,7 +96,7 @@
 #line 68
         .mugshotColor = MUGSHOT_COLOR_BLUE,
 #line 0
-        .trainerBackPic = TRAINER_PIC_FRONT_LUCIEN,
+        .multiTeamSize = MULTI_TEAM_SIZE_FULL,
         .partySize = 2,
         .party = (const struct TrainerMon[])
         {
@@ -154,7 +154,7 @@
 #line 92
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 93
-        .trainerPic = TRAINER_PIC_FRONT_LUCIEN,
+        .trainerPic = TRAINER_PIC_LUCIEN,
 #line 94
         .gender = TRAINER_GENDER_MALE,
 #line 95
@@ -166,7 +166,7 @@
 #line 98
         .mugshotColor = MUGSHOT_COLOR_BLUE,
 #line 0
-        .trainerBackPic = TRAINER_PIC_FRONT_LUCIEN,
+        .multiTeamSize = MULTI_TEAM_SIZE_FULL,
         .partySize = 2,
         .party = (const struct TrainerMon[])
         {
@@ -224,7 +224,7 @@
 #line 122
         .trainerClass = TRAINER_CLASS_RIVAL,
 #line 123
-        .trainerPic = TRAINER_PIC_FRONT_LUCIEN,
+        .trainerPic = TRAINER_PIC_LUCIEN,
 #line 124
         .gender = TRAINER_GENDER_MALE,
 #line 125
@@ -236,7 +236,7 @@
 #line 128
         .mugshotColor = MUGSHOT_COLOR_BLUE,
 #line 0
-        .trainerBackPic = TRAINER_PIC_FRONT_LUCIEN,
+        .multiTeamSize = MULTI_TEAM_SIZE_FULL,
         .partySize = 2,
         .party = (const struct TrainerMon[])
         {
@@ -294,7 +294,7 @@
 #line 152
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_1,
 #line 153
-        .trainerPic = TRAINER_PIC_FRONT_YOUNG_GIOVANNI,
+        .trainerPic = TRAINER_PIC_YOUNG_GIOVANNI,
 #line 154
         .gender = TRAINER_GENDER_MALE,
 #line 155
@@ -306,7 +306,7 @@
 #line 158
         .mugshotColor = MUGSHOT_COLOR_BLUE,
 #line 0
-        .trainerBackPic = TRAINER_PIC_FRONT_YOUNG_GIOVANNI,
+        .multiTeamSize = MULTI_TEAM_SIZE_FULL,
         .partySize = 3,
         .party = (const struct TrainerMon[])
         {
@@ -384,7 +384,7 @@
 #line 191
         .trainerClass = TRAINER_CLASS_PICNICKER,
 #line 192
-        .trainerPic = TRAINER_PIC_FRONT_PICNICKER,
+        .trainerPic = TRAINER_PIC_PICNICKER,
 #line 193
         .gender = TRAINER_GENDER_FEMALE,
 #line 194
@@ -394,7 +394,7 @@
 #line 196
         .aiFlags = AI_FLAG_CHECK_VIABILITY,
 #line 0
-        .trainerBackPic = TRAINER_PIC_FRONT_PICNICKER,
+        .multiTeamSize = MULTI_TEAM_SIZE_FULL,
         .partySize = 4,
         .party = (const struct TrainerMon[])
         {

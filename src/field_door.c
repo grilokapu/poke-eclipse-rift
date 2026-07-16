@@ -47,7 +47,7 @@ static bool8 ShouldUseMultiCorridorDoor(void);
 
 static const u8 sDoorAnimTiles_Littleroot[] = INCGFX_U8("graphics/door_anims/littleroot.png", ".4bpp");
 static const u16 sDoorNullPalette1[16] = {};
-static const u8 sDoorAnimTiles_BirchsLab[] = INCGFX_U8("graphics/door_anims/birchs_lab.png", ".4bpp");
+static const u8 sDoorAnimTiles_BirchsLab[] = INCGFX_U8("graphics/door_anims/pineveil_lab.png", ".4bpp");
 static const u16 sDoorNullPalette2[16] = {};
 static const u8 sDoorAnimTiles_FallarborLightRoof[] = INCGFX_U8("graphics/door_anims/fallarbor_light_roof.png", ".4bpp");
 static const u16 sDoorNullPalette3[16] = {};

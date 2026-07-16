@@ -472,12 +472,7 @@ static enum ItemEffect TryMentalHerb(enum BattlerId battler, ActivationTiming ti
     }
 
     if (effect)
-    {
-        if (timing == IsOnFlingActivation)
-            BattleScriptCall(BattleScript_MentalHerbCureFling);
-        else
-            BattleScriptCall(BattleScript_MentalHerbCureRet);
-    }
+        BattleScriptCall(BattleScript_MentalHerbCureRet);
 
     return effect;
 }

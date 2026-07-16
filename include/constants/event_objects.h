@@ -428,13 +428,10 @@
 // NOTE: The maximum amount of object events has been expanded from 255 to 65535.
 // Since dynamic graphics ids still require at least 16 free values, the actual limit
 // is 65519, but even considering follower Pokémon, this should be more than enough :)
-<<<<<<< HEAD
 #define OBJ_EVENT_GFX_PARK_BALL                     393
 #define OBJ_EVENT_GFX_BACKPACKER                    394
 #define OBJ_EVENT_GFX_YOUNG_GIOVANNI                395
 #define NUM_OBJ_EVENT_GFX                        396
-=======
->>>>>>> expansion/1.16.0
 
 
 // These are dynamic object gfx ids.
@@ -570,33 +567,6 @@
 #define OBJ_EVENT_PAL_TAG_PLAYER_GREEN            0x1127
 #define OBJ_EVENT_PAL_TAG_PLAYER_GREEN_REFLECTION 0x1128
 #define OBJ_EVENT_PAL_TAG_NPC_BLUE                0x1129
-<<<<<<< HEAD
-#define OBJ_EVENT_PAL_TAG_NPC_PINK                0x1130
-#define OBJ_EVENT_PAL_TAG_NPC_GREEN               0x1131
-#define OBJ_EVENT_PAL_TAG_NPC_WHITE               0x1132
-#define OBJ_EVENT_PAL_TAG_NPC_BLUE_REFLECTION     0x1133
-#define OBJ_EVENT_PAL_TAG_NPC_PINK_REFLECTION     0x1134
-#define OBJ_EVENT_PAL_TAG_NPC_GREEN_REFLECTION    0x1135
-#define OBJ_EVENT_PAL_TAG_NPC_WHITE_REFLECTION    0x1136
-#define OBJ_EVENT_PAL_TAG_METEORITE               0x1137
-#define OBJ_EVENT_PAL_TAG_SEAGALLOP               0x1138
-#define OBJ_EVENT_PAL_TAG_SS_ANNE                 0x1139
-#define OBJ_EVENT_PAL_TAG_BARRY                   0x113A
-#define OBJ_EVENT_PAL_TAG_HIKARI                  0x113B
-#define OBJ_EVENT_PAL_TAG_CAMERAMAN               0x113C
-#define OBJ_EVENT_PAL_TAG_MOM                     0x113D
-#define OBJ_EVENT_PAL_TAG_BOY2                    0x113E
-#define OBJ_EVENT_PAL_TAG_WOMAN3                  0x113F
-#define OBJ_EVENT_PAL_TAG_MAN_5                   0x1140
-#define OBJ_EVENT_PAL_TAG_GIRL1                   0x1141
-#define OBJ_EVENT_PAL_TAG_SCIENTIST_1             0x1142
-#define OBJ_EVENT_PAL_TAG_GIRL_2                  0x1143
-#define OBJ_EVENT_PAL_TAG_DARK_SORCERER           0x1145
-#define OBJ_EVENT_PAL_TAG_YOUNGSTER               0x1144
-#define OBJ_EVENT_PAL_TAG_LUCIEN                  0x1147
-#define OBJ_EVENT_PAL_TAG_QUESTION                0x1146
-#define OBJ_EVENT_PAL_TAG_EMOJIS                  0x1148
-=======
 #define OBJ_EVENT_PAL_TAG_NPC_PINK                0x112A
 #define OBJ_EVENT_PAL_TAG_NPC_GREEN               0x112B
 #define OBJ_EVENT_PAL_TAG_NPC_WHITE               0x112C
@@ -607,7 +577,21 @@
 #define OBJ_EVENT_PAL_TAG_METEORITE               0x1131
 #define OBJ_EVENT_PAL_TAG_SEAGALLOP               0x1132
 #define OBJ_EVENT_PAL_TAG_SS_ANNE                 0x1133
->>>>>>> expansion/1.16.0
+#define OBJ_EVENT_PAL_TAG_BARRY                   0x1134
+#define OBJ_EVENT_PAL_TAG_HIKARI                  0x1135
+#define OBJ_EVENT_PAL_TAG_CAMERAMAN               0x1136
+#define OBJ_EVENT_PAL_TAG_MOM                     0x1137
+#define OBJ_EVENT_PAL_TAG_BOY2                    0x1138
+#define OBJ_EVENT_PAL_TAG_WOMAN3                  0x1139
+#define OBJ_EVENT_PAL_TAG_MAN_5                   0x113A
+#define OBJ_EVENT_PAL_TAG_GIRL1                   0x113B
+#define OBJ_EVENT_PAL_TAG_SCIENTIST_1             0x113C
+#define OBJ_EVENT_PAL_TAG_GIRL_2                  0x113D
+#define OBJ_EVENT_PAL_TAG_DARK_SORCERER           0x113E
+#define OBJ_EVENT_PAL_TAG_YOUNGSTER               0x113F
+#define OBJ_EVENT_PAL_TAG_LUCIEN                  0x1140
+#define OBJ_EVENT_PAL_TAG_QUESTION                0x1141
+#define OBJ_EVENT_PAL_TAG_EMOJIS                  0x1142
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

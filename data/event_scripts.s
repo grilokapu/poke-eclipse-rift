@@ -1493,13 +1493,8 @@ gText_HadQuiteAnExperienceTakeRestEs::
 gText_MomExplainHPGetPotions::
 	.string "Oh, good! You and your\n"
 	.string "POKéMON are looking great.\p"
-<<<<<<< HEAD
-	.string "I just heard from Prof. Hikari.\p"
-	.string "She said that POKéMON's energy is\n"
-=======
 	.string "I just heard from {STR_VAR_1}.\p"
 	.string "He said that POKéMON's energy is\n"
->>>>>>> expansion/1.16.0
 	.string "measured in HP.\p"
 	.string "If your POKéMON lose their HP,\n"
 	.string "you can restore them at any\l"
@@ -1833,23 +1828,13 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/dexnav.inc"
 	.include "data/scripts/battle_frontier.inc"
 	.include "data/scripts/apricorn_tree.inc"
-<<<<<<< HEAD
 	.include "data/maps/StartMap/scripts.inc"
-
 	.include "data/maps/PineveilTown_House_3/scripts.inc"
-
 	.include "data/maps/SILENT_FOREST/scripts.inc"
-
 	.include "data/maps/PendantForest/scripts.inc"
 	.include "data/scripts/wild_encounter.inc"
-
 	.include "data/maps/SylvaraTown_House3/scripts.inc"
-
 	.include "data/maps/SylvaraBeach/scripts.inc"
-
 	.include "data/maps/WhisperingCave/scripts.inc"
-
 	.include "data/maps/WhisperingCave_2F/scripts.inc"
-=======
-	.include "data/scripts/wild_encounter.inc"
->>>>>>> expansion/1.16.0
+

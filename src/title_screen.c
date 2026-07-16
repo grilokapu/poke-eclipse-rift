@@ -68,10 +68,10 @@ static const u32 sTitleScreenRayquazaTilemap[] = INCGFX_U32("graphics/title_scre
 static const u32 sTitleScreenLogoShineGfx[] = INCGFX_U32("graphics/title_screen/logo_shine.png", ".4bpp.smol");
 static const u32 sTitleScreenCloudsGfx[] = INCGFX_U32("graphics/title_screen/clouds.png", ".4bpp.smol");
 #else
-static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rift.png", ".4bpp.smol");
-static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rift.bin", ".smolTM");
-static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.png", ".4bpp.smol");
-static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.png", ".4bpp.smol");
+static const u32 sTitleScreenRayquazaGfx[] = INCGFX_U32("graphics/title_screen/rift.png", ".4bpp.smol");
+static const u32 sTitleScreenRayquazaTilemap[] = INCGFX_U32("graphics/title_screen/rift.bin", ".smolTM");
+static const u32 sTitleScreenLogoShineGfx[] = INCGFX_U32("graphics/title_screen/logo_shine.png", ".4bpp.smol");
+static const u32 sTitleScreenCloudsGfx[] = INCGFX_U32("graphics/title_screen/clouds.png", ".4bpp.smol");
 #endif
 
 

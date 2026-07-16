@@ -22,6 +22,7 @@ EWRAM_DATA const u8 *gSpeakerName = NULL;
 
 static const u32 sNameBoxDefaultGfx[] = INCGFX_U32("graphics/text_window/name_box.png", ".4bpp");
 static const u32 sNameBoxPokenavGfx[] = INCGFX_U32("graphics/pokenav/name_box.png", ".4bpp");
+static const u32 sTransNameBoxDefaultGfx[] = INCGFX_U32("graphics/text_window/black_name_box.png", ".4bpp");
 
 static void DestroyNameboxFrame(void);
 static void WindowFunc_DrawNamebox(u32, u32, u32, u32, u32, u32, u32);

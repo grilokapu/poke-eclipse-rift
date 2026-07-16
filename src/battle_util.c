@@ -3643,23 +3643,6 @@ u32 AbilityBattleEffects(enum AbilityEffect caseID, enum BattlerId battler, enum
                     BattleScriptCall(BattleScript_AbilityStatChange);
                     effect++;
                 }
-
-                gBattleScripting.statChanger = gBattleScripting.savedStatChanger = 0; // for raising and lowering stat respectively
-                if (validToRaise) // Find stat to raise
-                {
-                    i = RandomUniformExcept(RNG_MOODY_INCREASE, STAT_ATK, statsNum - 1, MoodyCantRaiseStat);
-                    SET_STATCHANGER(i, 2, FALSE);
-                    validToLower &= ~(1u << i); // Can't lower the same stat as raising.
-                }
-                if (validToLower) // Find stat to lower
-                {
-                    // MoodyCantLowerStat already checks that both stats are different
-                    i = RandomUniformExcept(RNG_MOODY_DECREASE, STAT_ATK, statsNum - 1, MoodyCantLowerStat);
-                    SET_STATCHANGER2(gBattleScripting.savedStatChanger, i, 1, TRUE);
-                }
-                BattleScriptExecute(BattleScript_MoodyActivates);
-                effect++;
-            }
                 break;
             case ABILITY_TRUANT:
                 gBattleMons[gBattlerAttacker].volatiles.truantCounter ^= 1;

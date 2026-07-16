@@ -141,7 +141,7 @@ static void SetUpItemUseCallback(u8 taskId)
         bool8 inPyramid = (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE);
 #if SWSH_ITEM_MENU_IN_BAG_USE == TRUE
         bool8 useInline = !inPyramid;
-#if SWSH_ITEM_MENU_PYRAMID == TRUE_ACTION
+#if SWSH_ITEM_MENU_PYRAMID_ACTION
         useInline = TRUE;
 #endif
         if (useInline && (type == (ITEM_USE_PARTY_MENU - 1) || type == (ITEM_USE_PARTY_MENU_MOVES - 1)))
@@ -1222,7 +1222,7 @@ static void ItemUseInBattle_ShowPartyMenu(u8 taskId)
     bool8 inPyramid = (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE);
 #if SWSH_ITEM_MENU_IN_BATTLE_USE == TRUE
     bool8 useInline = !inPyramid;
-#if SWSH_ITEM_MENU_PYRAMID == TRUE_ACTION
+#if SWSH_ITEM_MENU_PYRAMID_ACTION
     useInline = TRUE;
 #endif
     if (useInline)

@@ -4,6 +4,12 @@
 const u32 gTrainerFrontPic_None[] = INCGFX_U32("graphics/trainers/front_pics/none.png", ".4bpp.smol");
 const u16 gTrainerPalette_None[] = INCGFX_U16("graphics/trainers/palettes/none.pal", ".gbapal");
 
+const u32 gTrainerFrontPic_Lucien[] = INCGFX_U32("graphics/trainers/front_pics/lucien.png", ".4bpp.smol");
+const u16 gTrainerPalette_Lucien[] = INCGFX_U16("graphics/trainers/palettes/lucien.pal", ".gbapal");
+
+const u32 gTrainerFrontPic_YoungGiovanni[] = INCGFX_U32("graphics/trainers/front_pics/young_giovanni.png", ".4bpp.smol");
+const u16 gTrainerPalette_YoungGiovanni[] = INCGFX_U16("graphics/trainers/palettes/young_giovanni.pal", ".gbapal");
+
 const u32 gTrainerFrontPic_Hiker[] = INCGFX_U32("graphics/trainers/front_pics/hiker.png", ".4bpp.smol");
 const u16 gTrainerPalette_Hiker[] = INCGFX_U16("graphics/trainers/front_pics/hiker.png", ".gbapal");
 
@@ -219,6 +225,7 @@ const u16 gTrainerPalette_Wally[] = INCGFX_U16("graphics/trainers/palettes/wally
 
 const u32 gTrainerFrontPic_Brendan[] = INCGFX_U32("graphics/trainers/front_pics/brendan.png", ".4bpp.smol");
 const u16 gTrainerPalette_Brendan[] = INCGFX_U16("graphics/trainers/palettes/brendan.pal", ".gbapal");
+const u16 gTrainerPalette_BrendanBack[] = INCGFX_U16("graphics/trainers/palettes/brendanback.pal", ".gbapal");
 
 const u32 gTrainerFrontPic_May[] = INCGFX_U32("graphics/trainers/front_pics/may.png", ".4bpp.smol");
 const u16 gTrainerPalette_May[] = INCGFX_U16("graphics/trainers/palettes/may.pal", ".gbapal");
@@ -593,7 +600,7 @@ const struct TrainerPicInfo gTrainerPicInfo[TRAINER_PIC_COUNT] =
     [TRAINER_PIC_BRENDAN] =
     {
         .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_Brendan, gTrainerPalette_Brendan),
-        .backPic = TRAINER_BACK_PIC(4, gTrainerBackPic_Brendan, gTrainerPalette_Brendan, sBackAnims_Hoenn),
+        .backPic = TRAINER_BACK_PIC(4, gTrainerBackPic_Brendan, gTrainerPalette_BrendanBack, sBackAnims_Hoenn),
     },
     [TRAINER_PIC_MAY] =
     {
@@ -1225,5 +1232,13 @@ const struct TrainerPicInfo gTrainerPicInfo[TRAINER_PIC_COUNT] =
     [TRAINER_PIC_PAINTER_FRLG] =
     {
         .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_PainterFrlg, gTrainerPalette_PainterFrlg),
+    },
+    [TRAINER_PIC_LUCIEN] =
+    {
+        .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_Lucien, gTrainerPalette_Lucien),
+    },
+    [TRAINER_PIC_YOUNG_GIOVANNI] =
+    {
+        .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_YoungGiovanni, gTrainerPalette_YoungGiovanni),
     },
 };

@@ -7985,7 +7985,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .name = COMPOUND_STRING("Encore"),
         .nameEs = COMPOUND_STRING("Otra Vez"),
         .description = COMPOUND_STRING(
-        #if B_ENCORE_TURNS >= GEN_5
             "Makes the foe repeat its\n"
             "last move over 3 turns."),
         .descriptionPt = COMPOUND_STRING(
