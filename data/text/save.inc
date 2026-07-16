@@ -2,6 +2,12 @@
 gText_ConfirmSave::
 	.string "Would you like to save the game?$"
 
+gText_ConfirmSavePt::
+	.string "Deseja salvar o jogo?$"
+
+gText_ConfirmSaveEs::
+	.string "¿Quieres guardar la partida?$"
+
 gText_AlreadySavedFile::
 	.string "There is already a saved file.\n"
 	.string "Is it okay to overwrite it?$"

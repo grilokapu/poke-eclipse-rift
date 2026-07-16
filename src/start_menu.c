@@ -34,6 +34,7 @@
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
+#include "pokemon_icon.h"
 #include "pokenav.h"
 #include "rtc.h"
 #include "safari_zone.h"
@@ -107,6 +108,8 @@ EWRAM_DATA static u8 (*sSaveDialogCallback)(void) = NULL;
 EWRAM_DATA static u8 sSaveDialogTimer = 0;
 EWRAM_DATA static bool8 sSavingComplete = FALSE;
 EWRAM_DATA static u8 sSaveInfoWindowId = 0;
+EWRAM_DATA static u8 sSavePartyIconSpriteIds[PARTY_SIZE] = {};
+EWRAM_DATA static bool8 sSavePartyIconsActive = FALSE;
 EWRAM_DATA static u8 sSelectorSpriteIds[2];
 EWRAM_DATA static u8 sSpriteIds[8];
 EWRAM_DATA static u8 sSpriteIdCount;
@@ -604,8 +607,8 @@ static const struct WindowTemplate sSaveInfoWindowTemplate = {
     .bg = 0,
     .tilemapLeft = 1,
     .tilemapTop = 1,
-    .width = 14,
-    .height = 10,
+    .width = 18,
+    .height = 12,
     .paletteNum = 15,
     .baseBlock = 8
 };
@@ -1641,7 +1644,21 @@ static u8 SaveConfirmSaveCallback(void)
     }
     else
     {
-        ShowSaveMessage(gText_ConfirmSave, SaveYesNoCallback);
+        const u8 *confirmSaveText;
+
+        switch (GET_LANGUAGE())
+        {
+        case PT:
+            confirmSaveText = gText_ConfirmSavePt;
+            break;
+        case ES:
+            confirmSaveText = gText_ConfirmSaveEs;
+            break;
+        default:
+            confirmSaveText = gText_ConfirmSave;
+            break;
+        }
+        ShowSaveMessage(confirmSaveText, SaveYesNoCallback);
     }
 
     return SAVE_IN_PROGRESS;
@@ -1988,67 +2005,114 @@ static void Task_SaveAfterLinkBattle(u8 taskId)
 
 static void ShowSaveInfoWindow(void)
 {
-    struct WindowTemplate saveInfoWindow = sSaveInfoWindowTemplate;
-    enum Gender gender;
-    u8 color;
+    static const u8 sText_DateTime[] = _("{STR_VAR_1}/{STR_VAR_2}/{STR_VAR_3} - ");
+    u8 dateTime[64];
+    enum Gender gender = gSaveBlock2Ptr->playerGender;
+    u8 color = (gender == MALE) ? TEXT_COLOR_BLUE : TEXT_COLOR_RED;
+    const u8 *badgesText;
+    const u8 *timeText;
+    u32 i;
     u32 xOffset;
-    u32 yOffset;
 
-    if (!FlagGet(FLAG_SYS_POKEDEX_GET))
+    switch (GET_LANGUAGE())
     {
-        saveInfoWindow.height -= 2;
+    case PT:
+        badgesText = gText_SavingBadgesPt;
+        timeText = gText_SavingTimePt;
+        break;
+    case ES:
+        badgesText = gText_SavingBadgesEs;
+        timeText = gText_SavingTimeEs;
+        break;
+    default:
+        badgesText = gText_SavingBadges;
+        timeText = gText_SavingTime;
+        break;
     }
 
-    sSaveInfoWindowId = AddWindow(&saveInfoWindow);
+    sSaveInfoWindowId = AddWindow(&sSaveInfoWindowTemplate);
     DrawStdWindowFrame(sSaveInfoWindowId, FALSE);
 
-    gender = gSaveBlock2Ptr->playerGender;
-    color = TEXT_COLOR_RED;  // Red when female, blue when male.
+    // Print current date and time.
+    ConvertIntToDecimalStringN(gStringVar1, GetDay(), STR_CONV_MODE_LEADING_ZEROS, 2);
+    ConvertIntToDecimalStringN(gStringVar2, GetMonth(), STR_CONV_MODE_LEADING_ZEROS, 2);
+    ConvertIntToDecimalStringN(gStringVar3, GetFullYear(), STR_CONV_MODE_LEADING_ZEROS, 4);
+    FormatDecimalTimeWithoutSeconds(gStringVar4, gLocalTime.hours, gLocalTime.minutes, TRUE);
+    StringExpandPlaceholders(dateTime, sText_DateTime);
+    StringAppend(dateTime, gStringVar4);
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, dateTime, 0, 1, TEXT_SKIP_DRAW, NULL);
 
-    if (gender == MALE)
-        color = TEXT_COLOR_BLUE;
-
-    // Print region name
-    yOffset = 1;
+    // Print location name.
     BufferSaveMenuText(SAVE_MENU_LOCATION, gStringVar4, TEXT_COLOR_GREEN);
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, 0, yOffset, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, 0, 17, TEXT_SKIP_DRAW, NULL);
 
-    // Print player name
-    yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingPlayer, 0, yOffset, TEXT_SKIP_DRAW, NULL);
-    BufferSaveMenuText(SAVE_MENU_NAME, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-    PrintPlayerNameOnWindow(sSaveInfoWindowId, gStringVar4, xOffset, yOffset);
+    // Create the party icons in the space between the location and save stats.
+    LoadMonIconPalettes();
+    sSavePartyIconsActive = TRUE;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        sSavePartyIconSpriteIds[i] = SPRITE_NONE;
+        if (i < gPartiesCount[B_TRAINER_PLAYER])
+        {
+            struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+            enum Species species = GetMonData(mon, MON_DATA_SPECIES);
+            u32 personality = GetMonData(mon, MON_DATA_PERSONALITY);
+            bool32 isEgg = GetMonData(mon, MON_DATA_IS_EGG);
 
-    // Print badge count
-    yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingBadges, 0, yOffset, TEXT_SKIP_DRAW, NULL);
+            sSavePartyIconSpriteIds[i] = CreateMonIconIsEgg(species, SpriteCallbackDummy,
+                                                            20 + 24 * i, 60, 0,
+                                                            personality, isEgg);
+            if (sSavePartyIconSpriteIds[i] == MAX_SPRITES)
+            {
+                sSavePartyIconSpriteIds[i] = SPRITE_NONE;
+            }
+            else
+            {
+                gSprites[sSavePartyIconSpriteIds[i]].oam.priority = 0;
+            }
+        }
+    }
+
+    // Print badge count and Pokédex count on the same line.
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, badgesText, 0, 69, TEXT_SKIP_DRAW, NULL);
     BufferSaveMenuText(SAVE_MENU_BADGES, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
+    xOffset = GetStringWidth(FONT_NORMAL, badgesText, 0) + 3;
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, 69, TEXT_SKIP_DRAW, NULL);
 
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
     {
-        // Print Pokédex count
-        yOffset += 16;
-        AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingPokedex, 0, yOffset, TEXT_SKIP_DRAW, NULL);
+        AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingPokedex, 76, 69, TEXT_SKIP_DRAW, NULL);
         BufferSaveMenuText(SAVE_MENU_CAUGHT, gStringVar4, color);
-        xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-        AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
+        xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 136);
+        AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, 69, TEXT_SKIP_DRAW, NULL);
     }
 
-    // Print play time
-    yOffset += 16;
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gText_SavingTime, 0, yOffset, TEXT_SKIP_DRAW, NULL);
+    // Print play time.
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, timeText, 0, 81, TEXT_SKIP_DRAW, NULL);
     BufferSaveMenuText(SAVE_MENU_PLAY_TIME, gStringVar4, color);
-    xOffset = GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, 0x70);
-    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, yOffset, TEXT_SKIP_DRAW, NULL);
+    xOffset = GetStringWidth(FONT_NORMAL, timeText, 0) + 3;
+    AddTextPrinterParameterized(sSaveInfoWindowId, FONT_NORMAL, gStringVar4, xOffset, 81, TEXT_SKIP_DRAW, NULL);
 
     CopyWindowToVram(sSaveInfoWindowId, COPYWIN_GFX);
 }
 
 static void RemoveSaveInfoWindow(void)
 {
+    u32 i;
+
+    if (sSavePartyIconsActive)
+    {
+        for (i = 0; i < PARTY_SIZE; i++)
+        {
+            if (sSavePartyIconSpriteIds[i] != SPRITE_NONE)
+            {
+                FreeAndDestroyMonIconSprite(&gSprites[sSavePartyIconSpriteIds[i]]);
+                sSavePartyIconSpriteIds[i] = SPRITE_NONE;
+            }
+        }
+        FreeMonIconPalettes();
+        sSavePartyIconsActive = FALSE;
+    }
     ClearStdWindowAndFrame(sSaveInfoWindowId, FALSE);
     RemoveWindow(sSaveInfoWindowId);
 }
