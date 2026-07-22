@@ -9,6 +9,7 @@
 #include "m4a.h"
 #include "main.h"
 #include "intro_frlg.h"
+#include "pokeroms_logo.h"
 #include "malloc.h"
 #include "menu.h"
 #include "new_game.h"
@@ -902,12 +903,7 @@ static void CB2_WaitFadeBeforeSetUpIntro(void)
 {
     if (!UpdatePaletteFade())
     {
-#if EXPANSION_INTRO == TRUE
-        SetMainCallback2(CB2_ExpansionIntro);
-        CreateTask(Task_HandleExpansionIntro, 0);
-#else
-        SetMainCallback2(CB2_SetUpIntroFrlg);
-#endif
+        SetMainCallback2(CB2_InitPokeromsLogoScreen);
     }
 }
 

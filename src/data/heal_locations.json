@@ -47,8 +47,8 @@
     {
       "id": "HEAL_LOCATION_RUSTBORO_CITY",
       "map": "MAP_RUSTBORO_CITY",
-      "x": 27,
-      "y": 20
+      "x": 34,
+      "y": 23
     },
     {
       "id": "HEAL_LOCATION_FORTREE_CITY",
@@ -343,7 +343,7 @@
     {
       "id": "HEAL_LOCATION_OLDALE_TOWN",
       "map": "MAP_OLDALE_TOWN",
-      "x": 3,
+      "x": 4,
       "y": 8
     }
   ]

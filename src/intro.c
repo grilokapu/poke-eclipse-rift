@@ -29,6 +29,7 @@
 #include "constants/rgb.h"
 #include "constants/battle_anim.h"
 #include "pokemon.h"
+#include "pokeroms_logo.h"
 
 /*
     The intro is grouped into the following scenes
@@ -1105,13 +1106,7 @@ static u8 SetUpCopyrightScreen(void)
     case COPYRIGHT_START_INTRO:
         if (UpdatePaletteFade())
             break;
-#if EXPANSION_INTRO == TRUE
-        SetMainCallback2(CB2_ExpansionIntro);
-        CreateTask(Task_HandleExpansionIntro, 0);
-#else
-        CreateTask(Task_Scene1_Load, 0);
-        SetMainCallback2(MainCB2_Intro);
-#endif
+        SetMainCallback2(CB2_InitPokeromsLogoScreen);
         if (gMultibootProgramStruct.gcmb_field_2 != 0)
         {
             if (gMultibootProgramStruct.gcmb_field_2 == 2)

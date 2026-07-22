@@ -2014,7 +2014,7 @@ const u32 gNamingScreenKeyboardSymbols_Tilemap[] = INCGFX_U32("graphics/naming_s
 
 //New Naming Screen BW
 const u32 gNamingScreenBGTiles[] = INCBIN_U32("graphics/naming_screen/tiles.4bpp.smol");
-const u32 gNamingScreenBGMap[] = INCBIN_U32("graphics/naming_screen/bg.bin.smolTM");
+const u32 gNamingScreenBGMap[] = INCGFX_U32("graphics/naming_screen/scroll_bg.bin", ".smolTM");
 const u32 gNamingScreenCharUpperMap[] = INCBIN_U32("graphics/naming_screen/letters_uppers.bin.smolTM");
 const u32 gNamingScreenCharLowerMap[] = INCBIN_U32("graphics/naming_screen/letters_lowers.bin.smolTM");
 const u32 gNamingScreenButtonsEng[] = INCBIN_U32("graphics/naming_screen/buttons_eng.bin.smol");

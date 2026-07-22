@@ -386,7 +386,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .metatileNum = METATILE_Rustboro_Door_Tan,
         .tileset = &gTileset_Rustboro,
         .sound = DOOR_SOUND_NORMAL,
-        .size = DOOR_SIZE_1x2,
+        .size = DOOR_SIZE_1x1,
         .tiles = sDoorAnimTiles_RustboroTan,
         .palettes = sDoorAnimPalettes_RustboroTan
     },

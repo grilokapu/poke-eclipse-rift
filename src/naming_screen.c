@@ -549,10 +549,10 @@ static void NamingScreen_ResetObjectsAndTasks(void)
 
 static void NamingScreen_LoadBGsTilesAndMap(void)
 {
-    DecompressDataWithHeaderVram(gNamingScreenBGTiles,      	((void *)BG_VRAM + 0x4000));
-    DecompressDataWithHeaderVram(gNamingScreenBGMap,			((void *)BG_VRAM + 0xE000));
-    DecompressDataWithHeaderVram(gNamingScreenCharUpperMap,     ((void *)BG_VRAM + 0xD800 + 0x200));
-	DecompressDataWithHeaderVram(gNamingScreenButtonsEng,   	((void *)BG_VRAM + 0xE000 + 0x440));
+    DecompressDataWithHeaderVram(gNamingScreenBGTiles,      ((void *)BG_VRAM + 0x4000));
+    DecompressDataWithHeaderVram(gNamingScreenBGMap,        ((void *)BG_VRAM + 0xE000));
+    DecompressDataWithHeaderVram(gNamingScreenCharUpperMap, ((void *)BG_VRAM + 0xD800 + 0x200));
+    DecompressDataWithHeaderVram(gNamingScreenButtonsEng,   ((void *)BG_VRAM + 0xE800 + 0x440));
 }
 
 static void Task_NamingScreen(u8 taskId)
@@ -1751,6 +1751,8 @@ static void VBlankCB_NamingScreen(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
+    ChangeBgX(3, 64, BG_COORD_ADD);
+    ChangeBgY(3, 64, BG_COORD_ADD);
     SetGpuReg(REG_OFFSET_BG2VOFS, sNamingScreen->bg2vOffset);
 }
 

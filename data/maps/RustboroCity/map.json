@@ -3,7 +3,6 @@
   "name": "RustboroCity",
   "layout": "LAYOUT_RUSTBORO_CITY",
   "music": "MUS_RUSTBORO",
-  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_RUSTBORO_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -16,12 +15,13 @@
   "connections": [
     {
       "map": "MAP_ROUTE103",
-      "offset": 0,
-      "direction": "right"
+      "offset": 24,
+      "direction": "up"
     }
   ],
   "object_events": [],
   "warp_events": [],
   "coord_events": [],
-  "bg_events": []
+  "bg_events": [],
+  "region": "REGION_HOENN"
 }
