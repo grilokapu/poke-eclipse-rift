@@ -1,0 +1,52 @@
+mapscripts StonereachCity_Building1_2F_MapScripts {}
+
+script StonereachCity_Building1_2F_EventScript_Gentleman {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_PREMIER_BALL_STONEREACH)) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Uma PREMIER BALL não torna a captura\nmais fácil.\pMas um momento importante merece\nser lembrado com elegância, não\lacha?", MSGBOX_DEFAULT)
+            case EN: msgbox("A PREMIER BALL doesn't make a catch\nany easier.\pBut an important moment deserves to\nbe remembered with elegance,\ldoesn't it?", MSGBOX_DEFAULT)
+            case ES: msgbox("Una HONOR BALL no facilita una\ncaptura.\pPero un momento importante merece\nser recordado con elegancia,\l¿no crees?", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("As pessoas daqui valorizam pedras\nraras, mas eu coleciono momentos.\pEsta PREMIER BALL estava guardada\npara uma ocasião especial.\pSeu olhar diz que você encontrará\numa antes de mim. Pode ficar com\lela.", MSGBOX_DEFAULT)
+        case EN: msgbox("People here value rare stones, but\nI collect moments.\pThis PREMIER BALL was saved for a\nspecial occasion.\pYour eyes say you'll find one before\nI do. You may have it.", MSGBOX_DEFAULT)
+        case ES: msgbox("Aquí valoran las piedras raras, pero\nyo colecciono momentos.\pGuardaba esta HONOR BALL para una\nocasión especial.\pTu mirada dice que hallarás una antes\nque yo. Puedes quedártela.", MSGBOX_DEFAULT)
+    }
+    checkitemspace(ITEM_PREMIER_BALL)
+    if (var(VAR_RESULT) == FALSE) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Parece que sua Bolsa está cheia.\nVolte quando tiver espaço.", MSGBOX_DEFAULT)
+            case EN: msgbox("It seems your Bag is full.\nCome back when you have room.", MSGBOX_DEFAULT)
+            case ES: msgbox("Parece que tu Bolsa está llena.\nRegresa cuando tengas espacio.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    giveitem(ITEM_PREMIER_BALL)
+    setflag(FLAG_RECEIVED_PREMIER_BALL_STONEREACH)
+    release
+    end
+}
+
+script StonereachCity_Building1_2F_EventScript_Collector {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dizem que toda pedra guarda uma\nhistória.\pEntão deixei uma na janela por dez\nanos.\pAté agora, a única história que ela\nguarda é a de nunca ter saído do\llugar.", MSGBOX_NPC)
+        case EN: msgbox("They say every stone holds a story.\pSo I left one by the window for ten\nyears.\pSo far, its only story is that it\nhas never moved.", MSGBOX_NPC)
+        case ES: msgbox("Dicen que cada piedra guarda una\nhistoria.\pDejé una junto a la ventana por\ndiez años.\pHasta ahora, su única historia es\nque nunca se movió.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Building1_2F_EventScript_Woman {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Lá de cima, consigo ver treinadores\nentrando na cidade.\pAlguns olham para os prédios.\nOutros, para o Ginásio.\pOs mais curiosos olham para as\nmontanhas, como se algo os chamasse.", MSGBOX_NPC)
+        case EN: msgbox("From up here, I can see Trainers\nentering the city.\pSome look at the buildings. Others\nlook at the Gym.\pThe curious ones look toward the\nmountains, as if something were\lcalling them.", MSGBOX_NPC)
+        case ES: msgbox("Desde aquí veo a los Entrenadores\nentrar en la ciudad.\pUnos miran los edificios. Otros, el\nGimnasio.\pLos más curiosos miran las montañas,\ncomo si algo los llamara.", MSGBOX_NPC)
+    }
+    end
+}

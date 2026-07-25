@@ -80,8 +80,8 @@ script Route2_EventScript_Meeting_Giovanni {
     }
     pause(20)
     showmonmugshot(SPECIES_NIDORAN_M, MUGSHOT_SOUTHEAST)
-    setspeaker("Nidoran$")
-    msgbox("Nee-doh!\p", MSGBOX_AUTOCLOSE)
+    setspeaker("Nidoran")
+    msgbox("Nee-doh!", MSGBOX_AUTOCLOSE)
     waitmoncry
     hidemonmugshot
     pause(20)
@@ -96,8 +96,8 @@ script Route2_EventScript_Meeting_Giovanni {
     }
     pause(20)
     showmonmugshot(SPECIES_MEOWTH, MUGSHOT_SOUTHEAST)
-    setspeaker("Meowth$")
-    msgbox("Meeow!\p", MSGBOX_AUTOCLOSE)
+    setspeaker("Meowth")
+    msgbox("Meeow!", MSGBOX_AUTOCLOSE)
     waitmoncry
     hidemonmugshot
     pause(20)
@@ -131,9 +131,9 @@ script Route2_EventScript_Meeting_Giovanni_Continue {
     pause(30)
     movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_right, face_right))
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Então estava assistindo.\nO que achou?\pEles ainda cometem erros demais.\pMas eu vou transformá-los nos\nPokémon mais fortes de Aetheris.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "So I was watching.\nWhat did you think?\pThey still make too many mistakes.\pBut I will turn them into the\nstrongest Pokémon in Aetheris.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Entonces estaba mirando.\n¿Qué te pareció?\pTodavía cometen demasiados\nerrores.\pPero yo los convertiré en los\nPokémon más fuertes de Aetheris.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Então você estava observando.\pDiga… o que viu?\pVelocidade sem disciplina é apenas\nmovimento desperdiçado.\pEles têm talento.\nSó precisam de direção.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "So you were watching.\pTell me… what did you see?\pSpeed without discipline is merely\nwasted movement.\pThey have talent.\nThey just need direction.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Así que estabas observando.\pDime… ¿qué viste?\pLa velocidad sin disciplina es\nsolo movimiento desperdiciado.\pTienen talento.\nSolo necesitan dirección.", MSGBOX_AUTOCLOSE)
     }
     pause(20)
     playse(SE_PIN)
@@ -141,9 +141,9 @@ script Route2_EventScript_Meeting_Giovanni_Continue {
     waitse
     pause(20)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Aliás…\pVocê também é um treinador, não é?\pÓtimo.\pEu preciso testar algumas\nestratégias.\pQue tal uma batalha?", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "By the way…\pYou're a trainer too, aren't you?\pGreat.\pI need to test some strategies.\pHow about a battle?", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Por cierto…\pTú también eres un entrenador,\n¿no?\pGenial.\pNecesito probar algunas\nestrategias.\p¿Qué tal un combate?", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Você também é um treinador, não é?\pÓtimo.\pUma opinião vale pouco sem algo\nque a sustente.\pMostre-me como você batalha.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "You're a Trainer too, aren't you?\pGood.\pAn opinion means little without\nsomething to support it.\pShow me how you battle.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Tú también eres Entrenador, ¿no?\pBien.\pUna opinión vale poco sin algo\nque la respalde.\pMuéstrame cómo combates.", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_ROUTE2_NIDORAN, moves(enter_pokeball))
     movenpc(LOCALID_ROUTE2_MEOWTH, moves(enter_pokeball))
@@ -182,10 +182,10 @@ script Route2_EventScript_Meeting_Giovanni_End {
     waitmovementall
     removeobject(LOCALID_ROUTE2_MEOWTH)
     removeobject(LOCALID_PLAYER_MON)
-        switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Foi divertido.\pA maioria dos treinadores só pensa\nem força.\pVocê parece pensar também.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "That was fun.\pMost trainers only think about\nstrength.\pYou seem to think as well.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Fue divertido.\pLa mayoría de los entrenadores\nsolo piensan en la fuerza.\pTú pareces pensar también.", MSGBOX_AUTOCLOSE)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interessante.\pA maioria dos treinadores confunde\nforça com controle.\pVocê, ao menos, me deu algo em que\npensar.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interesting.\pMost Trainers mistake strength for\ncontrol.\pYou, at least, gave me something\nto think about.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interesante.\pLa mayoría de los Entrenadores\nconfunde fuerza con control.\pTú, al menos, me diste algo en qué\npensar.", MSGBOX_AUTOCLOSE)
     }
     applymovement(LOCALID_ROUTE2_GIOVANNI, moves(walk_down, face_down))
     applymovement(LOCALID_PLAYER, moves(walk_up, face_up))
@@ -196,9 +196,9 @@ script Route2_EventScript_Meeting_Giovanni_End {
     waitse
     pause(20)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Meu nome é Giovanni.\nPrazer em conhecê-lo.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "My name is Giovanni.\nNice to meet you.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Mi nombre es Giovanni.\nUn placer conocerte.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Giovanni.\pGuarde esse nome.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Giovanni.\pRemember that name.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Giovanni.\pRecuerda ese nombre.", MSGBOX_AUTOCLOSE)
     }
     pause(20)
     playse(SE_PIN)
@@ -206,21 +206,21 @@ script Route2_EventScript_Meeting_Giovanni_End {
     waitse
     pause(20)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Vou me tornar alguém importante um\ndia.\pPode soar arrogante…\pMas eu sei exatamente onde quero\nchegar.\pE não pretendo parar até\nconseguir.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "I'm going to become someone\nimportant someday.\pIt might sound arrogant…\pBut I know exactly where I want to\ngo.\pAnd I don't plan on stopping until\nI get there.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Voy a convertirme en alguien\nimportante algún día.\pPuede sonar arrogante…\pPero sé exactamente a dónde quiero\nllegar.\pY no pienso detenerme hasta\nlograrlo.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "As pessoas aceitam seus limites\ncom facilidade demais.\pEu não.\pSe existe um caminho até o topo,\neu vou encontrá-lo.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "People accept their limits far too\neasily.\pI don't.\pIf there's a path to the top, I\nwill find it.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "La gente acepta sus límites con\ndemasiada facilidad.\pYo no.\pSi existe un camino a la cima, lo\nencontraré.", MSGBOX_AUTOCLOSE)
     }
     setemoji(LOCALID_ROUTE2_GIOVANNI, moves(emoji_confident))
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Pokémon fortes.\pTreinadores fortes.\pUm mundo forte.\pÉ isso que eu quero construir.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Strong Pokémon.\pStrong trainers.\pA strong world.\pThat's what I want to build.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Pokémon fuertes.\pEntrenadores fuertes.\pUn mundo fuerte.\pEso es lo que quiero construir.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Talento sem direção é\ndesperdiçado.\pUm dia, eu darei direção a algo\nmuito maior.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Talent without direction is\nwasted.\pOne day, I will give direction to\nsomething far greater.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "El talento sin dirección se\ndesperdicia.\pAlgún día, daré dirección a algo\nmucho más grande.", MSGBOX_AUTOCLOSE)
     }
     pause(30)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Espero que a gente se encontre de\nnovo, {PLAYER}.\pDa próxima vez, eu vou vencer.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "I hope we meet again, {PLAYER}.\pNext time, I'll win.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Espero que nos volvamos a\nencontrar, {PLAYER}.\pLa próxima vez, ganaré yo.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Nós vamos nos encontrar de novo,\n{PLAYER}.\pNa próxima vez, estarei ainda mais\nperto do meu objetivo.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "We will meet again, {PLAYER}.\pNext time, I will be even closer\nto my goal.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Volveremos a encontrarnos,\n{PLAYER}.\pLa próxima vez, estaré aún más\ncerca de mi objetivo.", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_left * 12))
     setflag(FLAG_ROUTE2_GIOVANNI)

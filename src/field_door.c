@@ -45,7 +45,7 @@ struct DoorSizeInfo
 
 static bool8 ShouldUseMultiCorridorDoor(void);
 
-static const u8 sDoorAnimTiles_Littleroot[] = INCGFX_U8("graphics/door_anims/littleroot.png", ".4bpp");
+static const u8 sDoorAnimTiles_Pineveil[] = INCGFX_U8("graphics/door_anims/pineveil.png", ".4bpp");
 static const u16 sDoorNullPalette1[16] = {};
 static const u8 sDoorAnimTiles_BirchsLab[] = INCGFX_U8("graphics/door_anims/pineveil_lab.png", ".4bpp");
 static const u16 sDoorNullPalette2[16] = {};
@@ -60,11 +60,11 @@ static const u16 sDoorNullPalette6[16] = {};
 static const u8 sDoorAnimTiles_PokeCenter[] = INCGFX_U8("graphics/door_anims/poke_center.png", ".4bpp");
 static const u8 sDoorAnimTiles_Gym[] = INCGFX_U8("graphics/door_anims/gym.png", ".4bpp");
 static const u8 sDoorAnimTiles_PokeMart[] = INCGFX_U8("graphics/door_anims/poke_mart.png", ".4bpp");
-static const u8 sDoorAnimTiles_RustboroTan[] = INCGFX_U8("graphics/door_anims/rustboro_tan.png", ".4bpp");
+static const u8 sDoorAnimTiles_StonereachTan[] = INCGFX_U8("graphics/door_anims/stonereach_tan.png", ".4bpp");
 static const u16 sDoorNullPalette7[16] = {};
-static const u8 sDoorAnimTiles_RustboroGray[] = INCGFX_U8("graphics/door_anims/rustboro_gray.png", ".4bpp");
+static const u8 sDoorAnimTiles_StonereachGray[] = INCGFX_U8("graphics/door_anims/stonereach_gray.png", ".4bpp");
 static const u16 sDoorNullPalette8[16] = {};
-static const u8 sDoorAnimTiles_Oldale[] = INCGFX_U8("graphics/door_anims/oldale.png", ".4bpp");
+static const u8 sDoorAnimTiles_Sylvara[] = INCGFX_U8("graphics/door_anims/sylvara.png", ".4bpp");
 static const u8 sFiller1[0x5900] = {};
 static const u8 sDoorAnimTiles_UnusedTops[] = INCGFX_U8("graphics/door_anims/unused_top.png", ".4bpp");
 static const u8 sFiller2[0x140] = {};
@@ -246,13 +246,13 @@ static const u8 sDoorAnimPalettes_General[] = {1, 1, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokeCenter[] = {5, 5, 5, 5, 5, 5, 5, 5};
 static const u8 sDoorAnimPalettes_Gym[] = {5, 5, 5, 5, 5, 5, 5, 5};
 static const u8 sDoorAnimPalettes_PokeMart[] = {0, 0, 1, 1, 1, 1, 1, 1};
-static const u8 sDoorAnimPalettes_Littleroot[] = {10, 10, 6, 6, 6, 6, 6, 6};
+static const u8 sDoorAnimPalettes_Pineveil[] = {10, 10, 6, 6, 6, 6, 6, 6};
 static const u8 sDoorAnimPalettes_BirchsLab[] = {5, 5, 5, 5, 5, 5, 5, 5};
-static const u8 sDoorAnimPalettes_RustboroTan[] = {11, 11, 11, 11, 11, 11, 11, 11};
-static const u8 sDoorAnimPalettes_RustboroGray[] = {10, 10, 10, 10, 10, 10, 10, 10};
+static const u8 sDoorAnimPalettes_StonereachTan[] = {9, 9, 9, 9, 9, 9, 9, 9};
+static const u8 sDoorAnimPalettes_StonereachGray[] = {10, 10, 10, 10, 10, 10, 10, 10};
 static const u8 sDoorAnimPalettes_FallarborLightRoof[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_Lilycove[] = {8, 8, 8, 8, 8, 8, 8, 8};
-static const u8 sDoorAnimPalettes_Oldale[] = {10, 10, 9, 9, 9, 9, 9, 9};
+static const u8 sDoorAnimPalettes_Sylvara[] = {10, 10, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_Mossdeep[] = {9, 9, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokemonLeague[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Pacifidlog[] = {9, 9, 9, 9, 9, 9, 9, 9};
@@ -367,12 +367,12 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .palettes = sDoorAnimPalettes_PokeMart
     },
     {
-        .metatileNum = METATILE_Petalburg_Door_Littleroot,
+        .metatileNum = METATILE_Petalburg_Door_Pineveil,
         .tileset = &gTileset_Petalburg,
         .sound = DOOR_SOUND_NORMAL,
         .size = DOOR_SIZE_1x1,
-        .tiles = sDoorAnimTiles_Littleroot,
-        .palettes = sDoorAnimPalettes_Littleroot
+        .tiles = sDoorAnimTiles_Pineveil,
+        .palettes = sDoorAnimPalettes_Pineveil
     },
     {
         .metatileNum = METATILE_Petalburg_Door_BirchsLab,
@@ -383,20 +383,20 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .palettes = sDoorAnimPalettes_BirchsLab
     },
     {
-        .metatileNum = METATILE_Rustboro_Door_Tan,
-        .tileset = &gTileset_Rustboro,
+        .metatileNum = METATILE_Stonereach_Door_Tan,
+        .tileset = &gTileset_Stonereach,
         .sound = DOOR_SOUND_NORMAL,
         .size = DOOR_SIZE_1x1,
-        .tiles = sDoorAnimTiles_RustboroTan,
-        .palettes = sDoorAnimPalettes_RustboroTan
+        .tiles = sDoorAnimTiles_StonereachTan,
+        .palettes = sDoorAnimPalettes_StonereachTan
     },
     {
-        .metatileNum = METATILE_Rustboro_Door_Gray,
-        .tileset = &gTileset_Rustboro,
+        .metatileNum = METATILE_Stonereach_Door_Gray,
+        .tileset = &gTileset_Stonereach,
         .sound = DOOR_SOUND_NORMAL,
         .size = DOOR_SIZE_1x2,
-        .tiles = sDoorAnimTiles_RustboroGray,
-        .palettes = sDoorAnimPalettes_RustboroGray
+        .tiles = sDoorAnimTiles_StonereachGray,
+        .palettes = sDoorAnimPalettes_StonereachGray
     },
     {
         .metatileNum = METATILE_Fallarbor_Door_LightRoof,
@@ -407,12 +407,12 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .palettes = sDoorAnimPalettes_FallarborLightRoof
     },
     {
-        .metatileNum = METATILE_Petalburg_Door_Oldale,
+        .metatileNum = METATILE_Petalburg_Door_Sylvara,
         .tileset = &gTileset_Petalburg,
         .sound = DOOR_SOUND_NORMAL,
         .size = DOOR_SIZE_1x2,
-        .tiles = sDoorAnimTiles_Oldale,
-        .palettes = sDoorAnimPalettes_Oldale
+        .tiles = sDoorAnimTiles_Sylvara,
+        .palettes = sDoorAnimPalettes_Sylvara
     },
     {
         .metatileNum = METATILE_Mauville_Door,

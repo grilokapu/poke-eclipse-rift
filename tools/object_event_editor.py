@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INFO_H = ROOT / "src/data/object_events/object_event_graphics_info.h"
 GRAPHICS_H = ROOT / "src/data/object_events/object_event_graphics.h"
 PIC_TABLES_H = ROOT / "src/data/object_events/object_event_pic_tables.h"
+BERRY_PIC_TABLES_H = ROOT / "src/data/object_events/berry_tree_graphics_tables.h"
 FIELD_EFFECT_OBJECTS_H = ROOT / "src/data/field_effects/field_effect_objects.h"
 POINTERS_H = ROOT / "src/data/object_events/object_event_graphics_info_pointers.h"
 CONSTANTS_H = ROOT / "include/constants/event_objects.h"
@@ -132,7 +133,14 @@ class ObjectEventRepo:
     def _parse_incbins(self) -> dict[str, list[str]]:
         text = self._read(GRAPHICS_H)
         out: dict[str, list[str]] = {}
-        pat = re.compile(r"const\s+u(?:16|32)\s+([A-Za-z0-9_]+)\[\]\s*=\s*INCBIN_U(?:16|32)\(([^;]+?)\);")
+        # Assets may be included from a converted binary (INCBIN_U*) or
+        # generated from a PNG/JASC palette (INCGFX_U*). Most current object
+        # events use INCGFX, so both forms must be indexed for the preview.
+        pat = re.compile(
+            r"const\s+u(?:8|16|32)\s+"
+            r"([A-Za-z0-9_]+)\s*\[[^\]]*\]\s*=\s*"
+            r"INC(?:BIN|GFX)_U(?:8|16|32)\s*\(([^;]+?)\);"
+        )
         for symbol, args in pat.findall(text):
             out[symbol] = re.findall(r'"([^"]+)"', args)
         return out
@@ -140,7 +148,7 @@ class ObjectEventRepo:
     def _parse_pic_tables(self) -> dict[str, str]:
         out: dict[str, str] = {}
         pat = re.compile(r"(?:static\s+)?const\s+struct\s+SpriteFrameImage\s+([A-Za-z0-9_]+)\[\]\s*=\s*\{(.*?)\};", re.S)
-        for path in (PIC_TABLES_H, FIELD_EFFECT_OBJECTS_H):
+        for path in (PIC_TABLES_H, BERRY_PIC_TABLES_H, FIELD_EFFECT_OBJECTS_H):
             if path.exists():
                 out.update({name: body for name, body in pat.findall(self._read(path))})
         return out
@@ -926,7 +934,20 @@ class ObjectEventEditor(tk.Tk):
 
 
 def main() -> int:
-    missing = [p for p in [INFO_H, GRAPHICS_H, PIC_TABLES_H, FIELD_EFFECT_OBJECTS_H, POINTERS_H, CONSTANTS_H, MOVEMENT_C] if not p.exists()]
+    missing = [
+        path
+        for path in (
+            INFO_H,
+            GRAPHICS_H,
+            PIC_TABLES_H,
+            BERRY_PIC_TABLES_H,
+            FIELD_EFFECT_OBJECTS_H,
+            POINTERS_H,
+            CONSTANTS_H,
+            MOVEMENT_C,
+        )
+        if not path.exists()
+    ]
     if missing:
         print("Arquivos esperados nao encontrados:")
         for path in missing:

@@ -1,0 +1,19 @@
+mapscripts StonereachCity_Building4_2F_MapScripts {}
+
+script StonereachCity_Building4_2F_EventScript_Student {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("O mestre diz que uma batalha é como\numa frase.\pSe trocar a ordem das palavras, ela\npode perder todo o sentido.\pEu ainda acabo… falando com os\ngolpes na ordem errada.", MSGBOX_NPC)
+        case EN: msgbox("The master says a battle is like a\nsentence.\pChange the word order and it may lose\nall meaning.\pI still end up… speaking my moves in\nthe wrong order.", MSGBOX_NPC)
+        case ES: msgbox("El maestro dice que un combate es\ncomo una frase.\pSi cambias el orden de las palabras,\npuede perder todo sentido.\pYo aún… digo mis movimientos en el\norden equivocado.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Building4_2F_EventScript_OldWoman {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Treinadores jovens procuram o golpe\nmais poderoso.\pCom o tempo, aprendem que o momento\ncerto pode tornar um golpe simples\ninesquecível.", MSGBOX_NPC)
+        case EN: msgbox("Young Trainers seek the strongest\nmove.\pIn time, they learn the right moment\ncan make a simple move unforgettable.", MSGBOX_NPC)
+        case ES: msgbox("Los Entrenadores jóvenes buscan el\nmovimiento más fuerte.\pCon el tiempo aprenden que el momento\njusto vuelve inolvidable hasta un\nmovimiento sencillo.", MSGBOX_NPC)
+    }
+    end
+}

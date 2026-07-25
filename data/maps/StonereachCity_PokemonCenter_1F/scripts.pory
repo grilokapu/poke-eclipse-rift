@@ -1,0 +1,39 @@
+mapscripts StonereachCity_PokemonCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+}
+
+script StonereachCity_PokemonCenter_1F_EventScript_Nurse {
+    setvar(VAR_0x800B, LOCALID_STONEREACH_NURSE)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+	end
+}
+
+script StonereachCity_PokemonCenter_1F_EventScript_Boy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu Aron tem uma Nature Adamant.\pIsso favorece o Ataque, mas reduz o\nAtaque Especial.\pNão significa que ele seja bravo…\nSó que prefere resolver tudo com\luma boa cabeçada!", MSGBOX_NPC)
+        case EN: msgbox("My Aron has an Adamant Nature.\pIt favors Attack, but lowers\nSpecial Attack.\pThat doesn't mean he's angry…\nHe just prefers solving everything\lwith a good headbutt!", MSGBOX_NPC)
+        case ES: msgbox("Mi Aron tiene una Naturaleza Firme.\pFavorece el Ataque, pero reduce el\nAtaque Especial.\pEso no significa que esté enojado…\n¡Solo prefiere resolverlo todo con\lun buen cabezazo!", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_PokemonCenter_1F_EventScript_Girl {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Quando meu Pokémon se machuca, eu\nsempre digo que vai ficar tudo bem.\pTalvez ele não entenda as palavras…\nMas entende quando eu fico ao lado\ldele.", MSGBOX_NPC)
+        case EN: msgbox("Whenever my Pokémon gets hurt, I\nalways say everything will be okay.\pMaybe it doesn't understand the\nwords…\pBut it understands when I stay by\nits side.", MSGBOX_NPC)
+        case ES: msgbox("Cuando mi Pokémon se lastima,\nsiempre digo que todo estará bien.\pQuizá no entienda mis palabras…\pPero entiende cuando permanezco a\nsu lado.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_PokemonCenter_1F_EventScript_Traveler {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("As pedras de STONEREACH parecem\nimóveis, mas guardam marcas de\ltudo que passou por elas.\pAcho que os treinadores são assim\ntambém.\pCada batalha deixa alguma coisa\npara trás.", MSGBOX_NPC)
+        case EN: msgbox("STONEREACH's stones look\nunchanging, yet they carry marks\lfrom everything that passed them.\pI think Trainers are the same.\pEvery battle leaves something\nbehind.", MSGBOX_NPC)
+        case ES: msgbox("Las piedras de STONEREACH parecen\ninmutables, pero conservan las\lmarcas de todo lo que pasó.\pCreo que los Entrenadores somos\niguales.\pCada combate deja algo atrás.", MSGBOX_NPC)
+    }
+    end
+}

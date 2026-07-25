@@ -1251,7 +1251,7 @@ Route2_EventScript_Meeting_Giovanni_Text_13:
 
 Route2_EventScript_Meeting_Giovanni_Text_14:
 # 84 "data/maps/Route102/scripts.pory"
-	.string "Nee-doh!\p$"
+	.string "Nee-doh!$"
 
 Route2_EventScript_Meeting_Giovanni_Text_15:
 # 93 "data/maps/Route102/scripts.pory"
@@ -1271,7 +1271,7 @@ Route2_EventScript_Meeting_Giovanni_Text_18:
 
 Route2_EventScript_Meeting_Giovanni_Text_19:
 # 100 "data/maps/Route102/scripts.pory"
-	.string "Meeow!\p$"
+	.string "Meeow!$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_0:
 # 127 "data/maps/Route102/scripts.pory"
@@ -1287,27 +1287,27 @@ Route2_EventScript_Meeting_Giovanni_Continue_Text_2:
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_3:
 # 134 "data/maps/Route102/scripts.pory"
-	.string "Então estava assistindo.\nO que achou?\pEles ainda cometem erros demais.\pMas eu vou transformá-los nos\nPokémon mais fortes de Aetheris.$"
+	.string "Então você estava observando.\pDiga… o que viu?\pVelocidade sem disciplina é apenas\nmovimento desperdiçado.\pEles têm talento.\nSó precisam de direção.$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_4:
 # 135 "data/maps/Route102/scripts.pory"
-	.string "So I was watching.\nWhat did you think?\pThey still make too many mistakes.\pBut I will turn them into the\nstrongest Pokémon in Aetheris.$"
+	.string "So you were watching.\pTell me… what did you see?\pSpeed without discipline is merely\nwasted movement.\pThey have talent.\nThey just need direction.$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_5:
 # 136 "data/maps/Route102/scripts.pory"
-	.string "Entonces estaba mirando.\n¿Qué te pareció?\pTodavía cometen demasiados\nerrores.\pPero yo los convertiré en los\nPokémon más fuertes de Aetheris.$"
+	.string "Así que estabas observando.\pDime… ¿qué viste?\pLa velocidad sin disciplina es\nsolo movimiento desperdiciado.\pTienen talento.\nSolo necesitan dirección.$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_6:
 # 144 "data/maps/Route102/scripts.pory"
-	.string "Aliás…\pVocê também é um treinador, não é?\pÓtimo.\pEu preciso testar algumas\nestratégias.\pQue tal uma batalha?$"
+	.string "Você também é um treinador, não é?\pÓtimo.\pUma opinião vale pouco sem algo\nque a sustente.\pMostre-me como você batalha.$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_7:
 # 145 "data/maps/Route102/scripts.pory"
-	.string "By the way…\pYou're a trainer too, aren't you?\pGreat.\pI need to test some strategies.\pHow about a battle?$"
+	.string "You're a Trainer too, aren't you?\pGood.\pAn opinion means little without\nsomething to support it.\pShow me how you battle.$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_8:
 # 146 "data/maps/Route102/scripts.pory"
-	.string "Por cierto…\pTú también eres un entrenador,\n¿no?\pGenial.\pNecesito probar algunas\nestrategias.\p¿Qué tal un combate?$"
+	.string "Tú también eres Entrenador, ¿no?\pBien.\pUna opinión vale poco sin algo\nque la respalde.\pMuéstrame cómo combates.$"
 
 Route2_EventScript_Meeting_Giovanni_Continue_Text_9:
 # 155 "data/maps/Route102/scripts.pory"
@@ -1347,63 +1347,63 @@ Route2_EventScript_Meeting_Giovanni_Battle_Text_5:
 
 Route2_EventScript_Meeting_Giovanni_End_Text_0:
 # 186 "data/maps/Route102/scripts.pory"
-	.string "Foi divertido.\pA maioria dos treinadores só pensa\nem força.\pVocê parece pensar também.$"
+	.string "Interessante.\pA maioria dos treinadores confunde\nforça com controle.\pVocê, ao menos, me deu algo em que\npensar.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_1:
 # 187 "data/maps/Route102/scripts.pory"
-	.string "That was fun.\pMost trainers only think about\nstrength.\pYou seem to think as well.$"
+	.string "Interesting.\pMost Trainers mistake strength for\ncontrol.\pYou, at least, gave me something\nto think about.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_2:
 # 188 "data/maps/Route102/scripts.pory"
-	.string "Fue divertido.\pLa mayoría de los entrenadores\nsolo piensan en la fuerza.\pTú pareces pensar también.$"
+	.string "Interesante.\pLa mayoría de los Entrenadores\nconfunde fuerza con control.\pTú, al menos, me diste algo en qué\npensar.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_3:
 # 199 "data/maps/Route102/scripts.pory"
-	.string "Meu nome é Giovanni.\nPrazer em conhecê-lo.$"
+	.string "Giovanni.\pGuarde esse nome.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_4:
 # 200 "data/maps/Route102/scripts.pory"
-	.string "My name is Giovanni.\nNice to meet you.$"
+	.string "Giovanni.\pRemember that name.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_5:
 # 201 "data/maps/Route102/scripts.pory"
-	.string "Mi nombre es Giovanni.\nUn placer conocerte.$"
+	.string "Giovanni.\pRecuerda ese nombre.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_6:
 # 209 "data/maps/Route102/scripts.pory"
-	.string "Vou me tornar alguém importante um\ndia.\pPode soar arrogante…\pMas eu sei exatamente onde quero\nchegar.\pE não pretendo parar até\nconseguir.$"
+	.string "As pessoas aceitam seus limites\ncom facilidade demais.\pEu não.\pSe existe um caminho até o topo,\neu vou encontrá-lo.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_7:
 # 210 "data/maps/Route102/scripts.pory"
-	.string "I'm going to become someone\nimportant someday.\pIt might sound arrogant…\pBut I know exactly where I want to\ngo.\pAnd I don't plan on stopping until\nI get there.$"
+	.string "People accept their limits far too\neasily.\pI don't.\pIf there's a path to the top, I\nwill find it.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_8:
 # 211 "data/maps/Route102/scripts.pory"
-	.string "Voy a convertirme en alguien\nimportante algún día.\pPuede sonar arrogante…\pPero sé exactamente a dónde quiero\nllegar.\pY no pienso detenerme hasta\nlograrlo.$"
+	.string "La gente acepta sus límites con\ndemasiada facilidad.\pYo no.\pSi existe un camino a la cima, lo\nencontraré.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_9:
 # 215 "data/maps/Route102/scripts.pory"
-	.string "Pokémon fortes.\pTreinadores fortes.\pUm mundo forte.\pÉ isso que eu quero construir.$"
+	.string "Talento sem direção é\ndesperdiçado.\pUm dia, eu darei direção a algo\nmuito maior.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_10:
 # 216 "data/maps/Route102/scripts.pory"
-	.string "Strong Pokémon.\pStrong trainers.\pA strong world.\pThat's what I want to build.$"
+	.string "Talent without direction is\nwasted.\pOne day, I will give direction to\nsomething far greater.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_11:
 # 217 "data/maps/Route102/scripts.pory"
-	.string "Pokémon fuertes.\pEntrenadores fuertes.\pUn mundo fuerte.\pEso es lo que quiero construir.$"
+	.string "El talento sin dirección se\ndesperdicia.\pAlgún día, daré dirección a algo\nmucho más grande.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_12:
 # 221 "data/maps/Route102/scripts.pory"
-	.string "Espero que a gente se encontre de\nnovo, {PLAYER}.\pDa próxima vez, eu vou vencer.$"
+	.string "Nós vamos nos encontrar de novo,\n{PLAYER}.\pNa próxima vez, estarei ainda mais\nperto do meu objetivo.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_13:
 # 222 "data/maps/Route102/scripts.pory"
-	.string "I hope we meet again, {PLAYER}.\pNext time, I'll win.$"
+	.string "We will meet again, {PLAYER}.\pNext time, I will be even closer\nto my goal.$"
 
 Route2_EventScript_Meeting_Giovanni_End_Text_14:
 # 223 "data/maps/Route102/scripts.pory"
-	.string "Espero que nos volvamos a\nencontrar, {PLAYER}.\pLa próxima vez, ganaré yo.$"
+	.string "Volveremos a encontrarnos,\n{PLAYER}.\pLa próxima vez, estaré aún más\ncerca de mi objetivo.$"
 
 Route2_EventScript_Youngster_Battle_Text_0:
 # 245 "data/maps/Route102/scripts.pory"

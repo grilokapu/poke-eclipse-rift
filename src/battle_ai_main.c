@@ -25,6 +25,7 @@
 #include "recorded_battle.h"
 #include "util.h"
 #include "script.h"
+#include "stonereach_quiz.h"
 #include "constants/abilities.h"
 #include "constants/battle_ai.h"
 #include "constants/battle_move_effects.h"
@@ -887,6 +888,28 @@ static u32 ChooseMoveOrAction_Singles(enum BattlerId battler)
     u32 numOfBestMoves;
     u64 flags = gAiThinkingStruct->aiFlags[battler];
     enum BattlerId opposingBattler = GetOppositeBattler(battler);
+
+    if (StonereachQuiz_IsActive())
+    {
+        enum Species species = gBattleMons[battler].species;
+
+        // This battle is a tactical puzzle. Guarantee that its two FEAR-style
+        // Pokémon execute their intended plans instead of selecting raw damage.
+        if (species == SPECIES_DUGTRIO && IsWeatherActive(B_WEATHER_SANDSTORM) == WEATHER_INACTIVE)
+            return GetMoveSlot(gBattleMons[battler].moves, MOVE_SANDSTORM);
+        if (species == SPECIES_RATTATA)
+        {
+            if (gBattleMons[opposingBattler].hp <= 1)
+                return GetMoveSlot(gBattleMons[battler].moves, MOVE_QUICK_ATTACK);
+            return GetMoveSlot(gBattleMons[battler].moves, MOVE_ENDEAVOR);
+        }
+        if (species == SPECIES_ARON)
+        {
+            if (gBattleMons[opposingBattler].hp > gBattleMons[battler].hp)
+                return GetMoveSlot(gBattleMons[battler].moves, MOVE_ENDEAVOR);
+            return GetMoveSlot(gBattleMons[battler].moves, MOVE_PROTECT);
+        }
+    }
 
     gAiThinkingStruct->aiLogicId = 0;
     gAiThinkingStruct->movesetIndex = 0;

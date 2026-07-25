@@ -1,0 +1,54 @@
+mapscripts StonereachCity_Mart_MapScripts {
+
+}
+
+script StonereachCity_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: message(gText_HowMayIServeYouPt)
+        case EN: message(gText_HowMayIServeYou)
+        case ES: message(gText_HowMayIServeYouEs)
+    }
+    waitmessage
+    pokemart(StonereachCity_Mart_Pokemart)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox(gText_PleaseComeAgainPt)
+        case EN: msgbox(gText_PleaseComeAgain)
+        case ES: msgbox(gText_PleaseComeAgainEs)
+    }
+    release
+    end
+}
+
+script StonereachCity_Mart_EventScript_Boy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Vou levar uma Escape Rope para a\npróxima caverna.\pEla não impede que eu me perca…\nMas transforma um desastre em uma\lsaída rápida!", MSGBOX_NPC)
+        case EN: msgbox("I'm taking an Escape Rope into the\nnext cave.\pIt won't stop me from getting lost…\nBut it can turn a disaster into a\lquick escape!", MSGBOX_NPC)
+        case ES: msgbox("Llevaré una Escape Rope a la\npróxima cueva.\pNo evitará que me pierda…\n¡Pero puede convertir un desastre\len una salida rápida!", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Mart_EventScript_Pokefan {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu Nosepass aguenta golpes como\numa muralha.\pMas até uma muralha acumula\nrachaduras.\pPor isso nunca viajo sem algumas\nSuper Potions.", MSGBOX_NPC)
+        case EN: msgbox("My Nosepass takes hits like a wall.\pBut even a wall gathers cracks.\pThat's why I never travel without\na few Super Potions.", MSGBOX_NPC)
+        case ES: msgbox("Mi Nosepass resiste golpes como un\nmuro.\pPero hasta un muro acumula\ngrietas.\pPor eso nunca viajo sin algunas\nSuper Potions.", MSGBOX_NPC)
+    }
+    end
+}
+
+mart StonereachCity_Mart_Pokemart {
+    ITEM_POKE_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+    ITEM_ESCAPE_ROPE
+    ITEM_REPEL
+    ITEM_X_SPEED
+    ITEM_X_ATTACK
+    ITEM_X_DEFENSE
+}

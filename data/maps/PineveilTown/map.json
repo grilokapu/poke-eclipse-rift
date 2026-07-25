@@ -1,0 +1,179 @@
+{
+  "id": "MAP_PINEVEIL_TOWN",
+  "name": "PineveilTown",
+  "layout": "LAYOUT_PINEVEIL_TOWN",
+  "music": "MUS_PINEVEIL",
+  "region_map_section": "MAPSEC_PINEVEIL_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE101",
+      "offset": 16,
+      "direction": "left"
+    }
+  ],
+  "object_events": [
+    {
+      "local_id": "LOCALID_PINEVEIL_BIDKEEPER",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_5",
+      "x": 0,
+      "y": 31,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PineveilTown_BirdKeeper_Talk",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_PINEVEIL_BOY",
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "x": 16,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PineveilTown_Boy_Conversation",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_HIKARI",
+      "graphics_id": "OBJ_EVENT_GFX_HIKARI",
+      "x": 13,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_INTERVIEW_HIKARI_DONE"
+    },
+    {
+      "local_id": "LOCALID_CAMERAMAN",
+      "graphics_id": "OBJ_EVENT_GFX_CAMERAMAN",
+      "x": 14,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_INTERVIEW_HIKARI_DONE"
+    },
+    {
+      "local_id": "LOCALID_REPORTER",
+      "graphics_id": "OBJ_EVENT_GFX_REPORTER_M",
+      "x": 13,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_INTERVIEW_HIKARI_DONE"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 25,
+      "y": 27,
+      "elevation": 0,
+      "dest_map": "MAP_PINEVEIL_TOWN_MAYS_HOUSE_1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 6,
+      "y": 22,
+      "elevation": 0,
+      "dest_map": "MAP_PINEVEIL_TOWN_BRENDANS_HOUSE_1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 13,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PINEVEIL_TOWN_PROFESSOR_BIRCHS_LAB",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 19,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_PINEVEIL_TOWN_HOUSE_3",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 32,
+      "elevation": 3,
+      "var": "VAR_PINEVEIL_TOWN_STATE",
+      "var_value": "0",
+      "script": "PineveilTown_CantPassUntilHaveAPokemon_Tile"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_PINEVEIL_TOWN_STATE",
+      "var_value": "2",
+      "script": "PineveilTown_MomComeToGiveSomeItemsBeforePlayerGone"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 19,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PineveilTown_Signpost"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 7,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PineveilTown_Lab_Signpost"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 22,
+      "elevation": 3,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PineveilTown_RivalHouseSign"
+    },
+    {
+      "type": "sign",
+      "x": 22,
+      "y": 27,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PineveilTown_PlayerHouseSign"
+    }
+  ],
+  "region": "REGION_HOENN"
+}

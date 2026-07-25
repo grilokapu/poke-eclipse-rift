@@ -179,7 +179,7 @@ static void MatchCall_GetNameAndDescByRematchIdx(u32, const u8 **, const u8 **);
 static const struct MatchCallStructNPC sMrStoneMatchCallHeader =
 {
     .type = MC_TYPE_NPC,
-    .mapSec = MAPSEC_RUSTBORO_CITY,
+    .mapSec = MAPSEC_STONEREACH_CITY,
     .flag = 0xFFFF,
     .desc = COMPOUND_STRING("DEVON PRES"),
     .name = COMPOUND_STRING("MR. STONE"),
@@ -240,7 +240,7 @@ static const match_call_text_data_t sMomTextScripts[] = {
 static const struct MatchCallStructNPC sMomMatchCallHeader =
 {
     .type = MC_TYPE_NPC,
-    .mapSec = MAPSEC_LITTLEROOT_TOWN,
+    .mapSec = MAPSEC_PINEVEIL_TOWN,
     .flag = FLAG_ENABLE_MOM_MATCH_CALL,
     .desc = COMPOUND_STRING("CALM & KIND"),
     .name = COMPOUND_STRING("MOM"),
@@ -374,7 +374,7 @@ static const struct MatchCallStructNPC sScottMatchCallHeader =
 static const struct MatchCallStructTrainer sRoxanneMatchCallHeader =
 {
     .type = MC_TYPE_LEADER,
-    .mapSec = MAPSEC_RUSTBORO_CITY,
+    .mapSec = MAPSEC_STONEREACH_CITY,
     .flag = FLAG_ENABLE_ROXANNE_MATCH_CALL,
     .rematchTableIdx = REMATCH_ROXANNE,
     .desc = COMPOUND_STRING("ROCKIN' WHIZ"),

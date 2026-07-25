@@ -677,3 +677,7 @@ const u16 gObjectEventPal_Hiker[] = INCGFX_U16("graphics/object_events/palettes/
 const u16 gObjectEventPal_Camper[] = INCGFX_U16("graphics/object_events/palettes/camper.pal", ".gbapal");
 const u16 gObjectEventPal_Fisherman[] = INCGFX_U16("graphics/object_events/palettes/fisherman.pal", ".gbapal");
 const u16 gObjectEventPal_Teala[] = INCGFX_U16("graphics/object_events/palettes/teala.pal", ".gbapal");
+const u16 gObjectEventPal_Man2[] = INCBIN_U16("graphics/object_events/palettes/man_2.gbapal");
+const u16 gObjectEventPal_ExpertM[] = INCBIN_U16("graphics/object_events/palettes/expert_m.gbapal");
+const u16 gObjectEventPal_ExpertF[] = INCBIN_U16("graphics/object_events/palettes/expert_f.gbapal");
+const u16 gObjectEventPal_OldMan[] = INCBIN_U16("graphics/object_events/palettes/old_man.gbapal");

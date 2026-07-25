@@ -347,6 +347,7 @@ gSpecials::
 	def_special SetRoute123Weather
 	def_special GetContestMultiplayerId
 	def_special ScriptGetPartyMonSpecies
+	def_special ScriptTakeSelectedPartyMon
 	def_special IsSelectedMonEgg
 	def_special Special_HasMoveToRelearn
 	def_special TryInitBattleTowerAwardManObjectEvent
@@ -639,3 +640,5 @@ gSpecials::
 	def_special UpdateTrainerCardPhotoIcons
 	def_special StickerManGetBragFlags
 	def_special CheckAddCoins
+	def_special StonereachQuiz_PrepareParty
+	def_special StonereachQuiz_Finish

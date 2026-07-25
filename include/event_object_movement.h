@@ -286,6 +286,7 @@ void MovementType_WanderAroundSlower(struct Sprite *sprite);
 void MovementType_WanderUpAndDown(struct Sprite *sprite);
 void MovementType_WanderLeftAndRight(struct Sprite *sprite);
 void MovementType_FaceDirection(struct Sprite *sprite);
+void MovementType_QuestIcon(struct Sprite *sprite);
 void MovementType_Player(struct Sprite *sprite);
 void MovementType_BerryTreeGrowth(struct Sprite *sprite);
 void MovementType_FaceDownAndUp(struct Sprite *sprite);

@@ -356,7 +356,7 @@ gSongTable::
 	song dummy_song_header, MUSIC_PLAYER_BGM, 0
 	song dummy_song_header, MUSIC_PLAYER_BGM, 0
 	song dummy_song_header, MUSIC_PLAYER_BGM, 0
-	song mus_littleroot_test, MUSIC_PLAYER_BGM, 0
+	song mus_pineveil_test, MUSIC_PLAYER_BGM, 0
 	song mus_gsc_route38, MUSIC_PLAYER_BGM, 0
 	song mus_caught, MUSIC_PLAYER_BGM, 0
 	song mus_victory_wild, MUSIC_PLAYER_BGM, 0
@@ -365,11 +365,11 @@ gSongTable::
 	song mus_c_comm_center, MUSIC_PLAYER_BGM, 0
 	song mus_gsc_pewter, MUSIC_PLAYER_BGM, 0
 	song mus_c_vs_legend_beast, MUSIC_PLAYER_BGM, 0
-	song mus_route101, MUSIC_PLAYER_BGM, 0
+	song mus_route1, MUSIC_PLAYER_BGM, 0
 	song mus_route110, MUSIC_PLAYER_BGM, 0
 	song mus_route120, MUSIC_PLAYER_BGM, 0
 	song mus_petalburg, MUSIC_PLAYER_BGM, 0
-	song mus_oldale, MUSIC_PLAYER_BGM, 0
+	song mus_sylvara, MUSIC_PLAYER_BGM, 0
 	song mus_gym, MUSIC_PLAYER_BGM, 0
 	song mus_surf, MUSIC_PLAYER_BGM, 0
 	song mus_petalburg_woods, MUSIC_PLAYER_BGM, 0
@@ -405,13 +405,13 @@ gSongTable::
 	song mus_link_contest_p4, MUSIC_PLAYER_BGM, 0
 	song mus_encounter_rich, MUSIC_PLAYER_BGM, 0
 	song mus_verdanturf, MUSIC_PLAYER_BGM, 0
-	song mus_rustboro, MUSIC_PLAYER_BGM, 0
+	song mus_stonereach, MUSIC_PLAYER_BGM, 0
 	song mus_poke_center, MUSIC_PLAYER_BGM, 0
 	song mus_route104, MUSIC_PLAYER_BGM, 0
 	song mus_route119, MUSIC_PLAYER_BGM, 0
 	song mus_cycling, MUSIC_PLAYER_BGM, 0
 	song mus_poke_mart, MUSIC_PLAYER_BGM, 0
-	song mus_littleroot, MUSIC_PLAYER_BGM, 0
+	song mus_pineveil, MUSIC_PLAYER_BGM, 0
 	song mus_mt_chimney, MUSIC_PLAYER_BGM, 0
 	song mus_encounter_female, MUSIC_PLAYER_BGM, 0
 	song mus_lilycove, MUSIC_PLAYER_BGM, 0

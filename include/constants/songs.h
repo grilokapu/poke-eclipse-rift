@@ -278,7 +278,7 @@
 #define SE_SUDOWOODO_SHAKE          269 // SE_USSOKI
 
 // Music
-#define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI          // Unused, likely a test track.
+#define MUS_PINEVEIL_TEST         350 // MUS_TETSUJI          // Unused, likely a test track.
 #define MUS_GSC_ROUTE38             351 // MUS_FIELD13          // Unused, likely a test track.
 #define MUS_CAUGHT                  352 // MUS_KACHI22
 #define MUS_VICTORY_WILD            353 // MUS_KACHI2
@@ -287,11 +287,11 @@
 #define MUS_C_COMM_CENTER           356 // MUS_PCC              // Unused, likely a test track.
 #define MUS_GSC_PEWTER              357 // MUS_NIBI             // Used in unused Contest Halls.
 #define MUS_C_VS_LEGEND_BEAST       358 // MUS_SUIKUN           // Unused, likely a test track.
-#define MUS_ROUTE101                359 // MUS_DOORO1           // Also used in Routes 102 and 103.
+#define MUS_ROUTE1                359 // MUS_DOORO1           // Also used in Routes 102 and 103.
 #define MUS_ROUTE110                360 // MUS_DOORO_X1         // Also used in Routes 112, 114, 117, 111's non-desert section and 118's west half.
 #define MUS_ROUTE120                361 // MUS_DOORO_X3         // Also used in Routes 121, 124, 125, 126, 127 and 128.
 #define MUS_PETALBURG               362 // MUS_MACHI_S2         // Also used in Mr. Briney's House and Pretty Petal Flower Shop.
-#define MUS_OLDALE                  363 // MUS_MACHI_S4         // Also used in Lavaridge Town.
+#define MUS_SYLVARA                  363 // MUS_MACHI_S4         // Also used in Lavaridge Town.
 #define MUS_GYM                     364 // MUS_GIM
 #define MUS_SURF                    365 // MUS_NAMINORI
 #define MUS_PETALBURG_WOODS         366 // MUS_DAN01            // Also used in Artisan Cave, Fiery Path, Granite Cave, Jagged Pass, Marine Cave, Rusturf Tunnel, Scorched Slab and Terra Cave.
@@ -327,13 +327,13 @@
 #define MUS_LINK_CONTEST_P4         396 // MUS_TEST4
 #define MUS_ENCOUNTER_RICH          397 // MUS_TEST
 #define MUS_VERDANTURF              398 // MUS_GOMACHI0
-#define MUS_RUSTBORO                399 // MUS_GOTOWN           // Also used in Mauville City, Mossdeep City, Daycare, Weather Institute and several Route houses.
+#define MUS_STONEREACH                399 // MUS_GOTOWN           // Also used in Mauville City, Mossdeep City, Daycare, Weather Institute and several Route houses.
 #define MUS_POKE_CENTER             400 // MUS_POKECEN          // Also used in the Pokémon League's lobby.
 #define MUS_ROUTE104                401 // MUS_NEXTROAD         // Also used in Routes 105, 106, 107, 108, 109, 115 and 116.
 #define MUS_ROUTE119                402 // MUS_GRANROAD         // Also used in Routes 129, 130, 131, 132, 133, 134 and 118's east half.
 #define MUS_CYCLING                 403 // MUS_CYCLING
 #define MUS_POKE_MART               404 // MUS_FRIENDLY         // Also used in Lilycove's Department Store.
-#define MUS_LITTLEROOT              405 // MUS_MISHIRO
+#define MUS_PINEVEIL              405 // MUS_MISHIRO
 #define MUS_MT_CHIMNEY              406 // MUS_TOZAN            // Also used in Desert Underpass, Mirage Tower, Seafloor Cavern and Sky Pillar.
 #define MUS_ENCOUNTER_FEMALE        407 // MUS_GIRLEYE
 #define MUS_LILYCOVE                408 // MUS_MINAMO           // Also used in Pacifidlog Town and the Diving Treasure Hunter's house.

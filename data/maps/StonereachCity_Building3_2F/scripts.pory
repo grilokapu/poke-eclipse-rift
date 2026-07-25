@@ -1,0 +1,10 @@
+mapscripts StonereachCity_Building3_2F_MapScripts {}
+
+script StonereachCity_Building3_2F_EventScript_Artist {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Pinto a cidade ao entardecer.\pDurante poucos minutos, a pedra\ncinzenta ganha tons de ouro e\lvioleta.\pAs pessoas dizem que STONEREACH é\nsevera.\pTalvez nunca tenham esperado a luz\ncerta.", MSGBOX_NPC)
+        case EN: msgbox("I paint the city at sunset.\pFor a few minutes, the gray stone\nturns gold and violet.\pPeople say STONEREACH is stern.\pPerhaps they never waited for the\nright light.", MSGBOX_NPC)
+        case ES: msgbox("Pinto la ciudad al atardecer.\pPor unos minutos, la piedra gris se\nvuelve dorada y violeta.\pDicen que STONEREACH es severa.\pQuizá nunca esperaron la luz\nadecuada.", MSGBOX_NPC)
+    }
+    end
+}

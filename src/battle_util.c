@@ -25,6 +25,7 @@
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
+#include "stonereach_quiz.h"
 #include "task.h"
 #include "test_runner.h"
 #include "trig.h"
@@ -5570,6 +5571,8 @@ enum Obedience GetAttackerObedienceForAction(void)
     if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
         return OBEYS;
     if (BattlerHasAi(gBattlerAttacker))
+        return OBEYS;
+    if (StonereachQuiz_IsActive())
         return OBEYS;
 
     if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(gBattlerAttacker) == B_POSITION_PLAYER_RIGHT)

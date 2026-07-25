@@ -7,6 +7,7 @@
 #include "international_string_util.h"
 #include "main.h"
 #include "menu.h"
+#include "overworld.h"
 #include "palette.h"
 #include "pokedex.h"
 #include "pokemon.h"
@@ -23,6 +24,7 @@
 #include "window.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
+#include "constants/vars.h"
 
 #define STARTER_MON_COUNT   3
 
@@ -48,8 +50,20 @@ static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y);
 static void SpriteCB_SelectionHand(struct Sprite *sprite);
 static void SpriteCB_Pokeball(struct Sprite *sprite);
 static void SpriteCB_StarterPokemon(struct Sprite *sprite);
+static enum Species GetDisplayedStarter(u16 selection);
+static const u8 *GetStarterChoosePrompt(void);
+static const u8 *GetStarterConfirmPrompt(void);
+static const u8 *GetPokeballCoords(u16 selection);
 
 static u16 sStarterLabelWindowId;
+static bool8 sIsHikariStarterSelection;
+
+static const u8 sText_HikariChooseStarter_PT[] = _("Escolha seu primeiro parceiro.");
+static const u8 sText_HikariChooseStarter_EN[] = _("Choose your first partner.");
+static const u8 sText_HikariChooseStarter_ES[] = _("Elige a tu primer compañero.");
+static const u8 sText_HikariConfirmStarter_PT[] = _("Escolhe este Pokémon?");
+static const u8 sText_HikariConfirmStarter_EN[] = _("Do you choose this Pokémon?");
+static const u8 sText_HikariConfirmStarter_ES[] = _("¿Eliges a este Pokémon?");
 
 const u16 gBirchBagGrass_Pal[] = INCGFX_U16("graphics/starter_choose/tiles.png", ".gbapal");
 static const u16 sPokeballSelection_Pal[] = INCGFX_U16("graphics/starter_choose/pokeball_selection.png", ".gbapal");
@@ -103,6 +117,13 @@ static const u8 sPokeballCoords[STARTER_MON_COUNT][2] =
     {180, 64},
 };
 
+static const u8 sHikariPokeballCoords[STARTER_MON_COUNT][2] =
+{
+    {56, 96},
+    {120, 96},
+    {184, 96},
+};
+
 static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
 {
     {0, 9},
@@ -152,7 +173,7 @@ static const struct BgTemplate sBgTemplates[3] =
     },
 };
 
-static const u8 sTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY};
+static const u8 sTextColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_WHITE, TEXT_COLOR_TRANSPARENT};
 
 static const struct OamData sOam_Hand =
 {
@@ -349,9 +370,71 @@ static const struct SpriteTemplate sSpriteTemplate_StarterCircle =
 // .text
 u16 GetStarterPokemon(u16 chosenStarterId)
 {
-    if (chosenStarterId > STARTER_MON_COUNT)
+    if (chosenStarterId >= STARTER_MON_COUNT)
         chosenStarterId = 0;
     return sStarterMon[chosenStarterId];
+}
+
+void OpenHikariStarterSelection(void)
+{
+    sIsHikariStarterSelection = TRUE;
+    gMain.savedCallback = CB2_ReturnToFieldContinueScript;
+    SetMainCallback2(CB2_ChooseStarter);
+}
+
+static enum Species GetDisplayedStarter(u16 selection)
+{
+    if (!sIsHikariStarterSelection)
+        return GetStarterPokemon(selection);
+
+    switch (selection)
+    {
+    case 0:
+        return VarGet(VAR_BUFFER_GRASS_MON);
+    case 1:
+        return VarGet(VAR_BUFFER_FIRE_MON);
+    default:
+        return VarGet(VAR_BUFFER_WATER_MON);
+    }
+}
+
+static const u8 *GetStarterChoosePrompt(void)
+{
+    if (!sIsHikariStarterSelection)
+        return gText_BirchInTrouble;
+
+    switch (VarGet(VAR_LANGUAGE))
+    {
+    case PT:
+        return sText_HikariChooseStarter_PT;
+    case ES:
+        return sText_HikariChooseStarter_ES;
+    default:
+        return sText_HikariChooseStarter_EN;
+    }
+}
+
+static const u8 *GetStarterConfirmPrompt(void)
+{
+    if (!sIsHikariStarterSelection)
+        return gText_ConfirmStarterChoice;
+
+    switch (VarGet(VAR_LANGUAGE))
+    {
+    case PT:
+        return sText_HikariConfirmStarter_PT;
+    case ES:
+        return sText_HikariConfirmStarter_ES;
+    default:
+        return sText_HikariConfirmStarter_EN;
+    }
+}
+
+static const u8 *GetPokeballCoords(u16 selection)
+{
+    if (sIsHikariStarterSelection)
+        return sHikariPokeballCoords[selection];
+    return sPokeballCoords[selection];
 }
 
 static void VblankCB_StarterChoose(void)
@@ -396,9 +479,12 @@ void CB2_ChooseStarter(void)
     DmaFill32(3, 0, OAM, OAM_SIZE);
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
 
-    DecompressDataWithHeaderVram(gBirchBagGrass_Gfx, (void *)VRAM);
-    DecompressDataWithHeaderVram(gBirchBagTilemap, (void *)(BG_SCREEN_ADDR(6)));
-    DecompressDataWithHeaderVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
+    if (!sIsHikariStarterSelection)
+    {
+        DecompressDataWithHeaderVram(gBirchBagGrass_Gfx, (void *)VRAM);
+        DecompressDataWithHeaderVram(gBirchBagTilemap, (void *)(BG_SCREEN_ADDR(6)));
+        DecompressDataWithHeaderVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
+    }
 
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
@@ -415,7 +501,8 @@ void CB2_ChooseStarter(void)
     ResetAllPicSprites();
 
     LoadPalette(GetOverworldTextboxPalettePtr(), BG_PLTT_ID(14), PLTT_SIZE_4BPP);
-    LoadPalette(gBirchBagGrass_Pal, BG_PLTT_ID(0), sizeof(gBirchBagGrass_Pal));
+    if (!sIsHikariStarterSelection)
+        LoadPalette(gBirchBagGrass_Pal, BG_PLTT_ID(0), sizeof(gBirchBagGrass_Pal));
     LoadCompressedSpriteSheet(&sSpriteSheet_PokeballSelect[0]);
     LoadCompressedSpriteSheet(&sSpriteSheet_StarterCircle[0]);
     LoadSpritePalettes(sSpritePalettes_StarterChoose);
@@ -435,8 +522,11 @@ void CB2_ChooseStarter(void)
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON | DISPCNT_OBJ_ON | DISPCNT_OBJ_1D_MAP);
 
     ShowBg(0);
-    ShowBg(2);
-    ShowBg(3);
+    if (!sIsHikariStarterSelection)
+    {
+        ShowBg(2);
+        ShowBg(3);
+    }
 
     taskId = CreateTask(Task_StarterChoose, 0);
     gTasks[taskId].tStarterSelection = 1;
@@ -446,15 +536,15 @@ void CB2_ChooseStarter(void)
     gSprites[spriteId].data[0] = taskId;
 
     // Create three Poké Ball sprites
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[0][0], sPokeballCoords[0][1], 2);
+    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, GetPokeballCoords(0)[0], GetPokeballCoords(0)[1], 2);
     gSprites[spriteId].sTaskId = taskId;
     gSprites[spriteId].sBallId = 0;
 
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[1][0], sPokeballCoords[1][1], 2);
+    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, GetPokeballCoords(1)[0], GetPokeballCoords(1)[1], 2);
     gSprites[spriteId].sTaskId = taskId;
     gSprites[spriteId].sBallId = 1;
 
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[2][0], sPokeballCoords[2][1], 2);
+    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, GetPokeballCoords(2)[0], GetPokeballCoords(2)[1], 2);
     gSprites[spriteId].sTaskId = taskId;
     gSprites[spriteId].sBallId = 2;
 
@@ -474,7 +564,7 @@ static void Task_StarterChoose(u8 taskId)
 {
     CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
     DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
-    AddTextPrinterParameterized(0, FONT_NORMAL, gText_BirchInTrouble, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, FONT_NORMAL, GetStarterChoosePrompt(), 0, 1, 0, NULL);
     PutWindowTilemap(0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = Task_HandleStarterChooseInput;
@@ -491,11 +581,11 @@ static void Task_HandleStarterChooseInput(u8 taskId)
         ClearStarterLabel();
 
         // Create white circle background
-        spriteId = CreateSprite(&sSpriteTemplate_StarterCircle, sPokeballCoords[selection][0], sPokeballCoords[selection][1], 1);
+        spriteId = CreateSprite(&sSpriteTemplate_StarterCircle, GetPokeballCoords(selection)[0], GetPokeballCoords(selection)[1], 1);
         gTasks[taskId].tCircleSpriteId = spriteId;
 
         // Create Pokémon sprite
-        spriteId = CreatePokemonFrontSprite(GetStarterPokemon(gTasks[taskId].tStarterSelection), sPokeballCoords[selection][0], sPokeballCoords[selection][1]);
+        spriteId = CreatePokemonFrontSprite(GetDisplayedStarter(gTasks[taskId].tStarterSelection), GetPokeballCoords(selection)[0], GetPokeballCoords(selection)[1]);
         gSprites[spriteId].affineAnims = &sAffineAnims_StarterPokemon;
         gSprites[spriteId].callback = SpriteCB_StarterPokemon;
 
@@ -526,9 +616,9 @@ static void Task_WaitForStarterSprite(u8 taskId)
 
 static void Task_AskConfirmStarter(u8 taskId)
 {
-    PlayCry_Normal(GetStarterPokemon(gTasks[taskId].tStarterSelection), 0);
+    PlayCry_Normal(GetDisplayedStarter(gTasks[taskId].tStarterSelection), 0);
     FillWindowPixelBuffer(0, PIXEL_FILL(1));
-    AddTextPrinterParameterized(0, FONT_NORMAL, gText_ConfirmStarterChoice, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, FONT_NORMAL, GetStarterConfirmPrompt(), 0, 1, 0, NULL);
     ScheduleBgCopyTilemapToVram(0);
     CreateYesNoMenu(&sWindowTemplate_ConfirmStarter, 0x2A8, 0xD, 0);
     gTasks[taskId].func = Task_HandleConfirmStarterInput;
@@ -544,6 +634,7 @@ static void Task_HandleConfirmStarterInput(u8 taskId)
         // Return the starter choice and exit.
         gSpecialVar_Result = gTasks[taskId].tStarterSelection;
         ResetAllPicSprites();
+        sIsHikariStarterSelection = FALSE;
         SetMainCallback2(gMain.savedCallback);
         break;
     case 1:  // NO
@@ -574,13 +665,21 @@ static void CreateStarterPokemonLabel(u8 selection)
     s32 width;
     u8 labelLeft, labelRight, labelTop, labelBottom;
 
-    enum Species species = GetStarterPokemon(selection);
+    enum Species species = GetDisplayedStarter(selection);
     CopyMonCategoryText(species, categoryText);
     speciesName = GetSpeciesName(species);
 
     winTemplate = sWindowTemplate_StarterLabel;
-    winTemplate.tilemapLeft = sStarterLabelCoords[selection][0];
-    winTemplate.tilemapTop = sStarterLabelCoords[selection][1];
+    if (sIsHikariStarterSelection)
+    {
+        winTemplate.tilemapLeft = 8;
+        winTemplate.tilemapTop = 1;
+    }
+    else
+    {
+        winTemplate.tilemapLeft = sStarterLabelCoords[selection][0];
+        winTemplate.tilemapTop = sStarterLabelCoords[selection][1];
+    }
 
     sStarterLabelWindowId = AddWindow(&winTemplate);
     FillWindowPixelBuffer(sStarterLabelWindowId, PIXEL_FILL(0));
@@ -594,10 +693,10 @@ static void CreateStarterPokemonLabel(u8 selection)
     PutWindowTilemap(sStarterLabelWindowId);
     ScheduleBgCopyTilemapToVram(0);
 
-    labelLeft = sStarterLabelCoords[selection][0] * 8 - 4;
-    labelRight = (sStarterLabelCoords[selection][0] + 13) * 8 + 4;
-    labelTop = sStarterLabelCoords[selection][1] * 8;
-    labelBottom = (sStarterLabelCoords[selection][1] + 4) * 8;
+    labelLeft = winTemplate.tilemapLeft * 8 - 4;
+    labelRight = (winTemplate.tilemapLeft + 13) * 8 + 4;
+    labelTop = winTemplate.tilemapTop * 8;
+    labelBottom = (winTemplate.tilemapTop + 4) * 8;
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(labelLeft, labelRight));
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(labelTop, labelBottom));
 }
@@ -637,8 +736,16 @@ static u8 CreatePokemonFrontSprite(enum Species species, u8 x, u8 y)
 static void SpriteCB_SelectionHand(struct Sprite *sprite)
 {
     // Float up and down above selected Poké Ball
-    sprite->x = sCursorCoords[gTasks[sprite->data[0]].tStarterSelection][0];
-    sprite->y = sCursorCoords[gTasks[sprite->data[0]].tStarterSelection][1];
+    if (sIsHikariStarterSelection)
+    {
+        sprite->x = GetPokeballCoords(gTasks[sprite->data[0]].tStarterSelection)[0];
+        sprite->y = GetPokeballCoords(gTasks[sprite->data[0]].tStarterSelection)[1] - 32;
+    }
+    else
+    {
+        sprite->x = sCursorCoords[gTasks[sprite->data[0]].tStarterSelection][0];
+        sprite->y = sCursorCoords[gTasks[sprite->data[0]].tStarterSelection][1];
+    }
     sprite->y2 = Sin(sprite->data[1], 8);
     sprite->data[1] = (u8)(sprite->data[1]) + 4;
 }

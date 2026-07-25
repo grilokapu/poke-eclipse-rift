@@ -22,6 +22,6 @@ There are a few steps involved:
 - In the script that triggers the battle, add a call to `setdynamicswitchaifunc` specifying your function, as in:
 ```
 setdynamicswitchaifunc ShouldSwitchDynFuncExample
-trainerbattle_single TRAINER_TIANA, Route102_Text_TianaIntro, Route102_Text_TianaDefeated
+trainerbattle_single TRAINER_TIANA, Route2_Text_TianaIntro, Route2_Text_TianaDefeated
 ```
 That's it! The switching function will be used in the battle immediately following it, and automatically cleared at the end of the battle. You can then use `setdynamicswitchaifunc` with the same or a different AI scoring function as you see fit.

@@ -2,7 +2,7 @@ mapscripts Route103_MapScripts {
 
 }
 
-script Route103_EventScript_RouteSign {
+script Route3_EventScript_RouteSign {
     switch(var(VAR_LANGUAGE)) {
         case PT: msgbox("Rota 3\nCaverna Sussuro {RIGHT_ARROW_2}\lCaverna Sussuro {LEFT_ARROW_2}", MSGBOX_SIGN)
         case EN: msgbox("Route 3\nWhispering Cave {RIGHT_ARROW_2}\lWhispering Cave {LEFT_ARROW_2}", MSGBOX_SIGN)
@@ -10,7 +10,7 @@ script Route103_EventScript_RouteSign {
     }
 }
 
-script Route103_EventScript_Lass_Talk {
+script Route3_EventScript_Lass_Talk {
     switch(var(VAR_LANGUAGE)) {
         case PT: msgbox("Meu sonho é encontrar o Pokémon\nSupremo de Aetheris…\pSerá que esse dia vai chegar?", MSGBOX_NPC)
         case EN: msgbox("My dream is to find Aetheris's\nSupreme Pokémon…\pI wonder if that day will ever\ncome.", MSGBOX_NPC)
@@ -19,19 +19,19 @@ script Route103_EventScript_Lass_Talk {
     end
 }
 
-script Route103_EventScript_Pokemon_Tips {
+script Route3_EventScript_Pokemon_Tips {
     helpwindow(HELP_MATCH_STATS)
     end
 }
 
-script Route103_EventScript_Water_Gem_Get {
+script Route3_EventScript_Water_Gem_Get {
     finditem(ITEM_WATER_GEM)
     end
 }
 
 const NOAH = TRAINER_YOUNGSTER_NOAH
 
-script Route103_EventScript_Youngster_Battle {
+script Route3_EventScript_Youngster_Battle {
     switch(var(VAR_LANGUAGE)) {
         case PT:
             trainerbattle_single(NOAH, "Vamos batalhar um pouco!", "Essa derrota não estava nos meus\nplanos…")
@@ -47,7 +47,7 @@ script Route103_EventScript_Youngster_Battle {
     end
 }
 
-script Route103_EventScript_TM_PoisonTail_Get {
+script Route3_EventScript_TM_PoisonTail_Get {
     finditem(ITEM_TM23)
     end
 }

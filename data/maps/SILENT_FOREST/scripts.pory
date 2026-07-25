@@ -51,25 +51,43 @@ script SilentForest_EventScript_Symbol_Chien_Pao {
 const CHIEN = LOCALID_FOREST_CHIEN_PAO
 
 script SilentForest_EventScript_Chien_Pao_Event {
+    lockall
     call(Draw_Chien_Symbol)
+    pause(60)
     playbgm(MUS_RG_SEVII_67, 0)
     moveplayer(moves(walk_up * 7, face_up))
-    pause(30)
+    pause(50)
+    playse(SE_NOTE_D)
+    waitse
+    pause(35)
+    playse(SE_NOTE_A)
+    waitse
+    pause(50)
     playse(SE_PIN)
     moveplayer(moves(emote_exclamation_mark))
     waitse
-    pause(30)
+    pause(40)
     moveplayer(moves(walk_up * 3, face_down))
+    pause(30)
+    call(Erase_Chien_Symbol)
+    pause(12)
+    call(Draw_Chien_Symbol)
+    pause(12)
+    call(Erase_Chien_Symbol)
+    pause(25)
+    call(Draw_Chien_Symbol)
+    pause(40)
     setflag(FLAG_SET_SYMBOL_ANIM)
     special(DrawWholeMapView)
-    pause(30)
+    pause(50)
     playse(SE_ORB)
     setvar(VAR_RESULT, 2)
     special(DoOrbEffect)
     moveplayer(moves(walk_in_place_faster_down))
-    pause(150)
+    pause(180)
     special(FadeOutOrbEffect)
-    waitstate
+    playse(SE_M_NIGHTMARE)
+    waitse
     fadescreen(FADE_TO_WHITE)
     fadedefaultbgm
     setvar(VAR_0x8004, 1)  // vertical pan
@@ -80,37 +98,41 @@ script SilentForest_EventScript_Chien_Pao_Event {
 	waitstate
     pause(100)
     fadescreen(FADE_FROM_WHITE)
+    pause(80)
+    switch(var(VAR_LANGUAGE)){
+        case PT: blackmessage("...\p...\pVocê… consegue me ouvir?\p")
+        case EN: blackmessage("...\p...\pCan you… hear me?\p")
+        case ES: blackmessage("...\p...\p¿Puedes… oírme?\p")
+    }
+    pause(70)
+    playse(SE_NOTE_D)
+    waitse
     pause(30)
     switch(var(VAR_LANGUAGE)){
-        case PT: blackmessage("???\pVocê consegue me ouvir…\p")
-        case EN: blackmessage("???\pCan you hear me…\p")
-        case ES: blackmessage("???\p¿Puedes oírme…\p")
+        case PT: blackmessage("A voz atravessou…\pEntão a fenda já alcançou você.\p...\pNão.\pAinda não deveria estar aqui.\p")
+        case EN: blackmessage("The voice crossed through…\pThen the rift has already reached\lyou.\p...\pNo.\pYou shouldn't be here yet.\p")
+        case ES: blackmessage("La voz ha logrado atravesar…\pEntonces la grieta ya te ha\lalcanzado.\p...\pNo.\pAún no deberías estar aquí.\p")
     }
-    pause(50)
-    switch(var(VAR_LANGUAGE)){
-        case PT: blackmessage("Finalmente…\p...\p...\pMas…\pAinda é cedo demais.\p")
-        case EN: blackmessage("Finally…\p...\p...\pBut…\pIt's still too early.\p")
-        case ES: blackmessage("Por fin…\p...\p...\pPero…\pAún es demasiado pronto.\p")
-    }
-    pause(30)
+    pause(60)
     playse(SE_SHINY)
     callnative(CreatePlayerBright)
     waitse
-    pause(100)
+    pause(120)
     clearflag(FLAG_CHIEN_PAO_SILENT_FOREST)
     addobject(CHIEN)
     special(SpawnCameraObject)
     movecamera(moves(walk_down * 7))
-    pause(30)
+    pause(50)
     applymovement(LOCALID_CAMERA, moves(walk_up * 7))
     applymovement(CHIEN, moves(walk_up * 5))
     waitmovementall
     special(RemoveCameraObject)
+    pause(40)
     call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Você não sabe quem eu sou.\pE eu também não sei quem você é.\nMas este lugar…\pNos permitiu nos encontrar.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("You don't know who I am.\pAnd I don't know who you are.\nBut this place…\pHas allowed us to meet.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("No sabes quién soy.\pY yo tampoco sé quién eres.\nPero este lugar…\pNos ha permitido encontrarnos.", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Não diga seu nome.\pNomes deixam rastros…\nE algo está seguindo o seu.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Don't tell me your name.\pNames leave trails…\nAnd something is following yours.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("No digas tu nombre.\pLos nombres dejan rastros…\nY algo está siguiendo el tuyo.", MSGBOX_AUTOCLOSE)
     }
     call(HideChien_Pao_Mugshot)
     pause(30)
@@ -119,17 +141,17 @@ script SilentForest_EventScript_Chien_Pao_Event {
     waitse
     call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("O tempo…\nEstá se rompendo.\p{PAUSE_UNTIL_PRESS}\pAlgo despertou…\nAntes da hora.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Time…\nIs breaking apart.\p{PAUSE_UNTIL_PRESS}\pSomething has awakened…\nBefore its time.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("El tiempo…\nSe está rompiendo.\p{PAUSE_UNTIL_PRESS}\pAlgo ha despertado…\nAntes de tiempo.", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Esta escuridão não está vazia.\pÉ uma lembrança… presa entre dois\ninstantes.\p{PAUSE_UNTIL_PRESS}\pE alguma coisa acabou de se mexer\ndo outro lado.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("This darkness isn't empty.\pIt's a memory… trapped between two\nmoments.\p{PAUSE_UNTIL_PRESS}\pAnd something just moved on the\nother side.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Esta oscuridad no está vacía.\pEs un recuerdo… atrapado entre dos\ninstantes.\p{PAUSE_UNTIL_PRESS}\pY algo acaba de moverse al otro\nlado.", MSGBOX_AUTOCLOSE)
     }
     call(HideChien_Pao_Mugshot)
     pause(30)
     call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Escute com atenção.\nNão tente entender agora.\pQuanto menos você souber…\nMais seguro estará.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Listen carefully.\nDon't try to understand now.\pThe less you know…\nThe safer you'll be.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Escucha con atención.\nNo intentes comprenderlo ahora.\pCuanto menos sepas…\nMás seguro estarás.", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Quando ouvir o vento chamar pelo\nseu nome…\pNão responda.\pMesmo que a voz pareça familiar.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("When you hear the wind call your\nname…\pDon't answer.\pEven if the voice sounds familiar.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Cuando oigas al viento pronunciar\ntu nombre…\pNo respondas.\pAunque la voz te resulte familiar.", MSGBOX_AUTOCLOSE)
     }
     call(HideChien_Pao_Mugshot)
     pause(20)
@@ -137,15 +159,15 @@ script SilentForest_EventScript_Chien_Pao_Event {
     pause(10)
     call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Quando o momento chegar…\pVocê saberá onde me encontrar.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("When the time comes…\pYou'll know where to find me.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Cuando llegue el momento…\pSabrás dónde encontrarme.", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Se nos encontrarmos novamente…\pTalvez eu possa contar o que você\nesqueceu.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("If we meet again…\pPerhaps I can tell you what you\nforgot.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Si volvemos a encontrarnos…\pQuizá pueda contarte lo que has\nolvidado.", MSGBOX_AUTOCLOSE)
     }
 
     pause(30)
-    playse(SE_M_BRICK_BREAK)
+    playse(SE_ICE_BREAK)
     waitse
-    pause(10)
+    pause(20)
     playse(SE_PIN)
     movenpc(CHIEN, moves(emote_exclamation_mark))
     waitse
@@ -154,12 +176,13 @@ script SilentForest_EventScript_Chien_Pao_Event {
 	setvar(VAR_0x8005, 1)  // horizontal pan
 	setvar(VAR_0x8006, 8)  // num shakes
 	setvar(VAR_0x8007, 5)  // shake delay
-	special(ShakeCamera)
+    special(ShakeCamera)
 	waitstate
     setflag(FLAG_MAGNET_PORTAL_BEHIND)
+    playse(SE_WARP_IN)
     callnative(CreateMagnectPortal)
     movenpc(CHIEN, moves(face_up))
-    pause(100)
+    pause(120)
     call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
         case PT: msgbox("Não…\pJá encontraram este lugar…", MSGBOX_AUTOCLOSE)
@@ -172,15 +195,16 @@ script SilentForest_EventScript_Chien_Pao_Event {
     movenpc(CHIEN, moves(walk_up * 2, face_up))
     call(Set_Chien_Pao_Name)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Não deixe…\pQue eles…", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Don't let…\pThem…", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("No dejes…\pQue ellos…", MSGBOX_AUTOCLOSE)
+        case PT: msgbox("Não deixe que eles encontrem a…", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Don't let them find the…", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("No dejes que encuentren la…", MSGBOX_AUTOCLOSE)
     }
     call(HideChien_Pao_Mugshot)
     pause(30)
+    playse(SE_WARP_IN)
     callnative(CreateMagnectPortal)
     removeobject(CHIEN)
-    pause(100)
+    pause(120)
     playse(SE_PIN)
     moveplayer(moves(emote_question_mark))
     waitse
@@ -201,7 +225,7 @@ script SilentForest_EventScript_Chien_Pao_Event {
     pause(100)
     setvar(VAR_SILENT_FOREST_STATE, 1)
     setvar(VAR_DEFAULT_WALKING_SCRIPT, 0)
-    warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 7, 6)
+    warpsilent(MAP_PINEVEIL_TOWN_MAYS_HOUSE_2F, 7, 6)
     waitstate
 }
 

@@ -134,271 +134,271 @@ Route1_EncounterHikariWildBattle_Tile_7:
 # 75 "data/maps/Route101/scripts.pory"
 	movenpc LOCALID_ROUTE1_ABSOL, Movement_Absol_MovesAngry_Clockwise
 # 76 "data/maps/Route101/scripts.pory"
-	showmonmugshot SPECIES_ABSOL, MUGSHOT_SOUTHEAST
+	pause 15
 # 77 "data/maps/Route101/scripts.pory"
-	setspeaker Route1_EncounterHikariWildBattle_Tile_Text_4
-# 78 "data/maps/Route101/scripts.pory"
-	msgbox Route1_EncounterHikariWildBattle_Tile_Text_5, MSGBOX_AUTOCLOSE
-# 79 "data/maps/Route101/scripts.pory"
-	waitmoncry
-# 80 "data/maps/Route101/scripts.pory"
-	hidemonmugshot
-# 81 "data/maps/Route101/scripts.pory"
-	pause 30
-# 82 "data/maps/Route101/scripts.pory"
 	playse SE_PIN
-# 83 "data/maps/Route101/scripts.pory"
+# 78 "data/maps/Route101/scripts.pory"
 	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_ExclaimFacingRight
-# 84 "data/maps/Route101/scripts.pory"
+# 79 "data/maps/Route101/scripts.pory"
 	waitse
-# 85 "data/maps/Route101/scripts.pory"
+# 80 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 86 "data/maps/Route101/scripts.pory"
+# 81 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_14
-# 87 "data/maps/Route101/scripts.pory"
+# 82 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_15
-# 88 "data/maps/Route101/scripts.pory"
+# 83 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_16
 Route1_EncounterHikariWildBattle_Tile_12:
-# 90 "data/maps/Route101/scripts.pory"
+# 85 "data/maps/Route101/scripts.pory"
 	pause 10
-# 91 "data/maps/Route101/scripts.pory"
+# 86 "data/maps/Route101/scripts.pory"
 	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_ExclaimFacingLeft
-# 92 "data/maps/Route101/scripts.pory"
+# 87 "data/maps/Route101/scripts.pory"
 	pause 10
-# 93 "data/maps/Route101/scripts.pory"
+# 88 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 94 "data/maps/Route101/scripts.pory"
+# 89 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_19
-# 95 "data/maps/Route101/scripts.pory"
+# 90 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_20
-# 96 "data/maps/Route101/scripts.pory"
+# 91 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_21
 Route1_EncounterHikariWildBattle_Tile_17:
-# 98 "data/maps/Route101/scripts.pory"
+# 93 "data/maps/Route101/scripts.pory"
 	movenpc LOCALID_ROUTE1_HIKARI, Movement_HikariStepsBackwards
-# 99 "data/maps/Route101/scripts.pory"
+# 94 "data/maps/Route101/scripts.pory"
 	compare VAR_TEMP_1, 13
 	goto_if_eq Route1_EncounterHikariWildBattle_Tile_23
-# 101 "data/maps/Route101/scripts.pory"
+# 96 "data/maps/Route101/scripts.pory"
 	compare VAR_TEMP_1, 15
 	goto_if_eq Route1_EncounterHikariWildBattle_Tile_24
 Route1_EncounterHikariWildBattle_Tile_22:
-# 104 "data/maps/Route101/scripts.pory"
+# 99 "data/maps/Route101/scripts.pory"
 	moveplayer Movement_PlayerStepsForwards
-# 105 "data/maps/Route101/scripts.pory"
+# 100 "data/maps/Route101/scripts.pory"
 	createspobject OBJ_EVENT_GFX_SPECIES ( LYCANROC_MIDNIGHT ), 19, 22, 14, MOVEMENT_TYPE_WALK_IN_PLACE_LEFT
-# 106 "data/maps/Route101/scripts.pory"
+# 101 "data/maps/Route101/scripts.pory"
 	movenpc 19, Movement_Lycanroc_ExitBall
-# 107 "data/maps/Route101/scripts.pory"
+# 102 "data/maps/Route101/scripts.pory"
 	pause 20
-# 108 "data/maps/Route101/scripts.pory"
+# 103 "data/maps/Route101/scripts.pory"
 	setspeaker Route1_EncounterHikariWildBattle_Tile_Text_12
-# 109 "data/maps/Route101/scripts.pory"
+# 104 "data/maps/Route101/scripts.pory"
 	showmonmugshot SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_SOUTHEAST
-# 110 "data/maps/Route101/scripts.pory"
+# 105 "data/maps/Route101/scripts.pory"
 	msgbox Route1_EncounterHikariWildBattle_Tile_Text_13, MSGBOX_AUTOCLOSE
-# 111 "data/maps/Route101/scripts.pory"
+# 106 "data/maps/Route101/scripts.pory"
 	waitmoncry
-# 112 "data/maps/Route101/scripts.pory"
+# 107 "data/maps/Route101/scripts.pory"
 	hidemonmugshot
-# 113 "data/maps/Route101/scripts.pory"
+# 108 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 114 "data/maps/Route101/scripts.pory"
+# 109 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_29
-# 115 "data/maps/Route101/scripts.pory"
+# 110 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_30
-# 116 "data/maps/Route101/scripts.pory"
+# 111 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_31
 Route1_EncounterHikariWildBattle_Tile_27:
-# 118 "data/maps/Route101/scripts.pory"
+# 113 "data/maps/Route101/scripts.pory"
 	pause 20
-# 119 "data/maps/Route101/scripts.pory"
+# 114 "data/maps/Route101/scripts.pory"
 	movenpc 19, Movement_LycanrocAttack
-# 120 "data/maps/Route101/scripts.pory"
+# 115 "data/maps/Route101/scripts.pory"
 	playse SE_M_BITE
-# 121 "data/maps/Route101/scripts.pory"
+# 116 "data/maps/Route101/scripts.pory"
 	waitse
-# 122 "data/maps/Route101/scripts.pory"
+# 117 "data/maps/Route101/scripts.pory"
 	playse SE_NOT_EFFECTIVE
-# 123 "data/maps/Route101/scripts.pory"
+# 118 "data/maps/Route101/scripts.pory"
 	movenpc 19, Movement_LycanrocBack
-# 124 "data/maps/Route101/scripts.pory"
+# 119 "data/maps/Route101/scripts.pory"
 	waitse
-# 125 "data/maps/Route101/scripts.pory"
-	pause 20
-# 126 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_ABSOL, Movement_AbsolAttack
-# 127 "data/maps/Route101/scripts.pory"
-	playse SE_M_CUT
-# 128 "data/maps/Route101/scripts.pory"
-	waitse
-# 129 "data/maps/Route101/scripts.pory"
-	playse SE_EFFECTIVE
-# 130 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_ABSOL, Movement_AbsolBack
-# 131 "data/maps/Route101/scripts.pory"
-	waitse
-# 132 "data/maps/Route101/scripts.pory"
-	pause 20
-# 133 "data/maps/Route101/scripts.pory"
-	playse SE_PIN
-# 134 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_ABSOL, Common_Movement_EmojiAngry
-# 135 "data/maps/Route101/scripts.pory"
-	waitse
-# 136 "data/maps/Route101/scripts.pory"
-	pause 20
-# 137 "data/maps/Route101/scripts.pory"
+# 120 "data/maps/Route101/scripts.pory"
+	pause 12
+# 121 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 138 "data/maps/Route101/scripts.pory"
+# 122 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_34
-# 139 "data/maps/Route101/scripts.pory"
+# 123 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_35
-# 140 "data/maps/Route101/scripts.pory"
+# 124 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_36
 Route1_EncounterHikariWildBattle_Tile_32:
-# 142 "data/maps/Route101/scripts.pory"
-	pause 20
-# 143 "data/maps/Route101/scripts.pory"
-	playmoncry SPECIES_LYCANROC_MIDNIGHT, 0
-# 144 "data/maps/Route101/scripts.pory"
-	waitmoncry
-# 145 "data/maps/Route101/scripts.pory"
-	movenpc 19, Movement_LycanrocStoneAttack
-# 146 "data/maps/Route101/scripts.pory"
-	playse SE_M_ROCK_THROW
-# 147 "data/maps/Route101/scripts.pory"
-	setvar VAR_0x8000, LOCALID_ROUTE1_ABSOL
-# 148 "data/maps/Route101/scripts.pory"
-	callnative CreateStoneEdge
-# 149 "data/maps/Route101/scripts.pory"
+# 126 "data/maps/Route101/scripts.pory"
+	pause 10
+# 127 "data/maps/Route101/scripts.pory"
+	playmoncry SPECIES_ABSOL, 0
+# 128 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_ABSOL, Movement_AbsolAttack
+# 129 "data/maps/Route101/scripts.pory"
+	playse SE_M_CUT
+# 130 "data/maps/Route101/scripts.pory"
+	waitse
+# 131 "data/maps/Route101/scripts.pory"
 	playse SE_EFFECTIVE
-# 150 "data/maps/Route101/scripts.pory"
-	pause 30
-# 151 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_ABSOL, Movement_Absol_Hurt_AfterStoneEdge
-# 152 "data/maps/Route101/scripts.pory"
-	pause 20
-# 153 "data/maps/Route101/scripts.pory"
+# 132 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_ABSOL, Movement_AbsolBack
+# 133 "data/maps/Route101/scripts.pory"
+	movenpc 19, Movement_Lycanroc_Hurt
+# 134 "data/maps/Route101/scripts.pory"
+	waitse
+# 135 "data/maps/Route101/scripts.pory"
+	pause 12
+# 136 "data/maps/Route101/scripts.pory"
+	setspeaker Route1_EncounterHikariWildBattle_Tile_Text_12
+# 137 "data/maps/Route101/scripts.pory"
+	showmonmugshot SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_SOUTHEAST
+# 138 "data/maps/Route101/scripts.pory"
+	msgbox Route1_EncounterHikariWildBattle_Tile_Text_20, MSGBOX_AUTOCLOSE
+# 139 "data/maps/Route101/scripts.pory"
+	waitmoncry
+# 140 "data/maps/Route101/scripts.pory"
+	hidemonmugshot
+# 141 "data/maps/Route101/scripts.pory"
+	pause 10
+# 142 "data/maps/Route101/scripts.pory"
+	playse SE_PIN
+# 143 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_ABSOL, Common_Movement_EmojiAngry
+# 144 "data/maps/Route101/scripts.pory"
+	waitse
+# 145 "data/maps/Route101/scripts.pory"
+	pause 12
+# 146 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 154 "data/maps/Route101/scripts.pory"
+# 147 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_39
-# 155 "data/maps/Route101/scripts.pory"
+# 148 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_40
-# 156 "data/maps/Route101/scripts.pory"
+# 149 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_41
 Route1_EncounterHikariWildBattle_Tile_37:
-# 158 "data/maps/Route101/scripts.pory"
-	movenpc 19, Movement_Lycanroc_EnterBall
-# 159 "data/maps/Route101/scripts.pory"
-	removeobject 19
-# 160 "data/maps/Route101/scripts.pory"
+# 151 "data/maps/Route101/scripts.pory"
 	pause 20
+# 152 "data/maps/Route101/scripts.pory"
+	playmoncry SPECIES_LYCANROC_MIDNIGHT, 0
+# 153 "data/maps/Route101/scripts.pory"
+	waitmoncry
+# 154 "data/maps/Route101/scripts.pory"
+	movenpc 19, Movement_LycanrocStoneAttack
+# 155 "data/maps/Route101/scripts.pory"
+	playse SE_M_ROCK_THROW
+# 156 "data/maps/Route101/scripts.pory"
+	setvar VAR_0x8000, LOCALID_ROUTE1_ABSOL
+# 157 "data/maps/Route101/scripts.pory"
+	callnative CreateStoneEdge
+# 158 "data/maps/Route101/scripts.pory"
+	playse SE_EFFECTIVE
+# 159 "data/maps/Route101/scripts.pory"
+	pause 30
+# 160 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_ABSOL, Movement_Absol_Hurt_AfterStoneEdge
 # 161 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_HIKARI, Movement_HikariStepsForwards
+	playmoncry SPECIES_ABSOL, 0
 # 162 "data/maps/Route101/scripts.pory"
-	createspobject OBJ_EVENT_GFX_POKE_BALL, 20, 22, 14, MOVEMENT_TYPE_NONE
+	waitmoncry
 # 163 "data/maps/Route101/scripts.pory"
-	movenpc 20, Movement_Pokeball_Bounce_Againt_Absol
+	pause 15
 # 164 "data/maps/Route101/scripts.pory"
-	playse SE_BALL_THROW
+	switch VAR_LANGUAGE
 # 165 "data/maps/Route101/scripts.pory"
-	waitse
+	case PT, Route1_EncounterHikariWildBattle_Tile_44
 # 166 "data/maps/Route101/scripts.pory"
-	removeobject LOCALID_ROUTE1_ABSOL
+	case EN, Route1_EncounterHikariWildBattle_Tile_45
 # 167 "data/maps/Route101/scripts.pory"
-	playse SE_BALL_BOUNCE_1
-# 168 "data/maps/Route101/scripts.pory"
-	waitse
+	case ES, Route1_EncounterHikariWildBattle_Tile_46
+Route1_EncounterHikariWildBattle_Tile_42:
 # 169 "data/maps/Route101/scripts.pory"
-	playse SE_BALL_BOUNCE_2
+	movenpc 19, Movement_Lycanroc_EnterBall
 # 170 "data/maps/Route101/scripts.pory"
-	waitse
+	removeobject 19
 # 171 "data/maps/Route101/scripts.pory"
-	playse SE_BALL_BOUNCE_3
+	pause 15
 # 172 "data/maps/Route101/scripts.pory"
-	waitse
+	switch VAR_LANGUAGE
 # 173 "data/maps/Route101/scripts.pory"
-	playse SE_BALL_BOUNCE_4
+	case PT, Route1_EncounterHikariWildBattle_Tile_49
 # 174 "data/maps/Route101/scripts.pory"
-	waitse
+	case EN, Route1_EncounterHikariWildBattle_Tile_50
 # 175 "data/maps/Route101/scripts.pory"
-	playse MUS_RG_CAUGHT_INTRO
-# 176 "data/maps/Route101/scripts.pory"
-	waitse
+	case ES, Route1_EncounterHikariWildBattle_Tile_51
+Route1_EncounterHikariWildBattle_Tile_47:
 # 177 "data/maps/Route101/scripts.pory"
 	movenpc LOCALID_ROUTE1_HIKARI, Movement_HikariStepsForwards
 # 178 "data/maps/Route101/scripts.pory"
-	switch VAR_LANGUAGE
+	createspobject OBJ_EVENT_GFX_POKE_BALL, 20, 22, 14, MOVEMENT_TYPE_NONE
 # 179 "data/maps/Route101/scripts.pory"
-	case PT, Route1_EncounterHikariWildBattle_Tile_44
+	movenpc 20, Movement_Pokeball_Bounce_Againt_Absol
 # 180 "data/maps/Route101/scripts.pory"
-	case EN, Route1_EncounterHikariWildBattle_Tile_45
+	playse SE_BALL_THROW
 # 181 "data/maps/Route101/scripts.pory"
-	case ES, Route1_EncounterHikariWildBattle_Tile_46
-Route1_EncounterHikariWildBattle_Tile_42:
-# 183 "data/maps/Route101/scripts.pory"
-	pause 20
-# 184 "data/maps/Route101/scripts.pory"
-	removeobject 20
-# 185 "data/maps/Route101/scripts.pory"
-	pause 10
-# 186 "data/maps/Route101/scripts.pory"
-	switch VAR_LANGUAGE
-# 187 "data/maps/Route101/scripts.pory"
-	case PT, Route1_EncounterHikariWildBattle_Tile_49
-# 188 "data/maps/Route101/scripts.pory"
-	case EN, Route1_EncounterHikariWildBattle_Tile_50
-# 189 "data/maps/Route101/scripts.pory"
-	case ES, Route1_EncounterHikariWildBattle_Tile_51
-Route1_EncounterHikariWildBattle_Tile_47:
-# 191 "data/maps/Route101/scripts.pory"
-	pause 10
-# 192 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_FaceRight
-# 193 "data/maps/Route101/scripts.pory"
-	special SpawnCameraObject
-# 194 "data/maps/Route101/scripts.pory"
-	movecamera Movement_Camera_BackToPlayer
-# 195 "data/maps/Route101/scripts.pory"
-	special RemoveCameraObject
-# 196 "data/maps/Route101/scripts.pory"
-	playbgm MUS_ROUTE101, 0
-# 197 "data/maps/Route101/scripts.pory"
-	playse SE_PIN
-# 198 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiThinking
-# 199 "data/maps/Route101/scripts.pory"
 	waitse
-# 200 "data/maps/Route101/scripts.pory"
-	pause 10
-# 201 "data/maps/Route101/scripts.pory"
+# 182 "data/maps/Route101/scripts.pory"
+	removeobject LOCALID_ROUTE1_ABSOL
+# 183 "data/maps/Route101/scripts.pory"
+	playse SE_BALL_BOUNCE_1
+# 184 "data/maps/Route101/scripts.pory"
+	waitse
+# 185 "data/maps/Route101/scripts.pory"
+	playse SE_BALL_BOUNCE_2
+# 186 "data/maps/Route101/scripts.pory"
+	waitse
+# 187 "data/maps/Route101/scripts.pory"
+	playse SE_BALL_BOUNCE_3
+# 188 "data/maps/Route101/scripts.pory"
+	waitse
+# 189 "data/maps/Route101/scripts.pory"
+	playse SE_BALL_BOUNCE_4
+# 190 "data/maps/Route101/scripts.pory"
+	waitse
+# 191 "data/maps/Route101/scripts.pory"
+	playse MUS_RG_CAUGHT_INTRO
+# 192 "data/maps/Route101/scripts.pory"
+	waitse
+# 193 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_HIKARI, Movement_HikariStepsForwards
+# 194 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 202 "data/maps/Route101/scripts.pory"
+# 195 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_54
-# 203 "data/maps/Route101/scripts.pory"
+# 196 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_55
-# 204 "data/maps/Route101/scripts.pory"
+# 197 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_56
 Route1_EncounterHikariWildBattle_Tile_52:
-# 206 "data/maps/Route101/scripts.pory"
+# 199 "data/maps/Route101/scripts.pory"
 	pause 20
-# 207 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_HIKARI, Movement_HikariGoNextPlayer
-# 208 "data/maps/Route101/scripts.pory"
+# 200 "data/maps/Route101/scripts.pory"
+	removeobject 20
+# 201 "data/maps/Route101/scripts.pory"
+	pause 10
+# 202 "data/maps/Route101/scripts.pory"
 	switch VAR_LANGUAGE
-# 209 "data/maps/Route101/scripts.pory"
+# 203 "data/maps/Route101/scripts.pory"
 	case PT, Route1_EncounterHikariWildBattle_Tile_59
-# 210 "data/maps/Route101/scripts.pory"
+# 204 "data/maps/Route101/scripts.pory"
 	case EN, Route1_EncounterHikariWildBattle_Tile_60
-# 211 "data/maps/Route101/scripts.pory"
+# 205 "data/maps/Route101/scripts.pory"
 	case ES, Route1_EncounterHikariWildBattle_Tile_61
 Route1_EncounterHikariWildBattle_Tile_57:
+# 207 "data/maps/Route101/scripts.pory"
+	pause 10
+# 208 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_FaceRight
+# 209 "data/maps/Route101/scripts.pory"
+	special SpawnCameraObject
+# 210 "data/maps/Route101/scripts.pory"
+	movecamera Movement_Camera_BackToPlayer
+# 211 "data/maps/Route101/scripts.pory"
+	special RemoveCameraObject
+# 212 "data/maps/Route101/scripts.pory"
+	playbgm MUS_ROUTE1, 0
 # 213 "data/maps/Route101/scripts.pory"
 	playse SE_PIN
 # 214 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiSlithly
+	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiThinking
 # 215 "data/maps/Route101/scripts.pory"
 	waitse
 # 216 "data/maps/Route101/scripts.pory"
@@ -413,22 +413,52 @@ Route1_EncounterHikariWildBattle_Tile_57:
 	case ES, Route1_EncounterHikariWildBattle_Tile_66
 Route1_EncounterHikariWildBattle_Tile_62:
 # 222 "data/maps/Route101/scripts.pory"
-	movenpc LOCALID_ROUTE1_HIKARI, Movement_WalkBackToLab
+	pause 20
 # 223 "data/maps/Route101/scripts.pory"
-	removeobject LOCALID_ROUTE1_HIKARI
+	movenpc LOCALID_ROUTE1_HIKARI, Movement_HikariGoNextPlayer
 # 224 "data/maps/Route101/scripts.pory"
-	setvar VAR_ROUTE1_HIKARI_EVENT, 1
+	switch VAR_LANGUAGE
 # 225 "data/maps/Route101/scripts.pory"
-	setvar VAR_BIRCH_LAB_STATE, 1
+	case PT, Route1_EncounterHikariWildBattle_Tile_69
 # 226 "data/maps/Route101/scripts.pory"
-	setflag FLAG_HIKARI_ROUTE_1
+	case EN, Route1_EncounterHikariWildBattle_Tile_70
 # 227 "data/maps/Route101/scripts.pory"
-	moveplayer Movement_PlayerGoBackToLab
-# 228 "data/maps/Route101/scripts.pory"
-	warpsilent MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 14
+	case ES, Route1_EncounterHikariWildBattle_Tile_71
+Route1_EncounterHikariWildBattle_Tile_67:
 # 229 "data/maps/Route101/scripts.pory"
-	waitstate
+	playse SE_PIN
 # 230 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiSlithly
+# 231 "data/maps/Route101/scripts.pory"
+	waitse
+# 232 "data/maps/Route101/scripts.pory"
+	pause 10
+# 233 "data/maps/Route101/scripts.pory"
+	switch VAR_LANGUAGE
+# 234 "data/maps/Route101/scripts.pory"
+	case PT, Route1_EncounterHikariWildBattle_Tile_74
+# 235 "data/maps/Route101/scripts.pory"
+	case EN, Route1_EncounterHikariWildBattle_Tile_75
+# 236 "data/maps/Route101/scripts.pory"
+	case ES, Route1_EncounterHikariWildBattle_Tile_76
+Route1_EncounterHikariWildBattle_Tile_72:
+# 238 "data/maps/Route101/scripts.pory"
+	movenpc LOCALID_ROUTE1_HIKARI, Movement_WalkBackToLab
+# 239 "data/maps/Route101/scripts.pory"
+	removeobject LOCALID_ROUTE1_HIKARI
+# 240 "data/maps/Route101/scripts.pory"
+	setvar VAR_ROUTE1_HIKARI_EVENT, 1
+# 241 "data/maps/Route101/scripts.pory"
+	setvar VAR_BIRCH_LAB_STATE, 1
+# 242 "data/maps/Route101/scripts.pory"
+	setflag FLAG_HIKARI_ROUTE_1
+# 243 "data/maps/Route101/scripts.pory"
+	moveplayer Movement_PlayerGoBackToLab
+# 244 "data/maps/Route101/scripts.pory"
+	warpsilent MAP_PINEVEIL_TOWN_PROFESSOR_BIRCHS_LAB, 6, 14
+# 245 "data/maps/Route101/scripts.pory"
+	waitstate
+# 246 "data/maps/Route101/scripts.pory"
 	release
 	end
 
@@ -458,395 +488,437 @@ Route1_EncounterHikariWildBattle_Tile_11:
 	goto Route1_EncounterHikariWildBattle_Tile_7
 
 Route1_EncounterHikariWildBattle_Tile_14:
-# 86 "data/maps/Route101/scripts.pory"
+# 81 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_6, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_12
 
 Route1_EncounterHikariWildBattle_Tile_15:
-# 87 "data/maps/Route101/scripts.pory"
+# 82 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_7, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_12
 
 Route1_EncounterHikariWildBattle_Tile_16:
-# 88 "data/maps/Route101/scripts.pory"
+# 83 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_8, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_12
 
 Route1_EncounterHikariWildBattle_Tile_19:
-# 94 "data/maps/Route101/scripts.pory"
+# 89 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_9, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_17
 
 Route1_EncounterHikariWildBattle_Tile_20:
-# 95 "data/maps/Route101/scripts.pory"
+# 90 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_10, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_17
 
 Route1_EncounterHikariWildBattle_Tile_21:
-# 96 "data/maps/Route101/scripts.pory"
+# 91 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_11, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_17
 
 Route1_EncounterHikariWildBattle_Tile_23:
-# 100 "data/maps/Route101/scripts.pory"
+# 95 "data/maps/Route101/scripts.pory"
 	moveplayer Common_Movement_WalkDown
 	goto Route1_EncounterHikariWildBattle_Tile_22
 
 Route1_EncounterHikariWildBattle_Tile_24:
-# 102 "data/maps/Route101/scripts.pory"
+# 97 "data/maps/Route101/scripts.pory"
 	moveplayer Common_Movement_WalkUp
 	goto Route1_EncounterHikariWildBattle_Tile_22
 
 Route1_EncounterHikariWildBattle_Tile_29:
-# 114 "data/maps/Route101/scripts.pory"
+# 109 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_14, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_27
 
 Route1_EncounterHikariWildBattle_Tile_30:
-# 115 "data/maps/Route101/scripts.pory"
+# 110 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_15, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_27
 
 Route1_EncounterHikariWildBattle_Tile_31:
-# 116 "data/maps/Route101/scripts.pory"
+# 111 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_16, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_27
 
 Route1_EncounterHikariWildBattle_Tile_34:
-# 138 "data/maps/Route101/scripts.pory"
+# 122 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_17, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_32
 
 Route1_EncounterHikariWildBattle_Tile_35:
-# 139 "data/maps/Route101/scripts.pory"
+# 123 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_18, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_32
 
 Route1_EncounterHikariWildBattle_Tile_36:
-# 140 "data/maps/Route101/scripts.pory"
+# 124 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_19, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_32
 
 Route1_EncounterHikariWildBattle_Tile_39:
-# 154 "data/maps/Route101/scripts.pory"
-	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_20, MSGBOX_AUTOCLOSE
-	goto Route1_EncounterHikariWildBattle_Tile_37
-
-Route1_EncounterHikariWildBattle_Tile_40:
-# 155 "data/maps/Route101/scripts.pory"
+# 147 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_21, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_37
 
-Route1_EncounterHikariWildBattle_Tile_41:
-# 156 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_40:
+# 148 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_22, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_37
 
-Route1_EncounterHikariWildBattle_Tile_44:
-# 179 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_41:
+# 149 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_23, MSGBOX_AUTOCLOSE
-	goto Route1_EncounterHikariWildBattle_Tile_42
+	goto Route1_EncounterHikariWildBattle_Tile_37
 
-Route1_EncounterHikariWildBattle_Tile_45:
-# 180 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_44:
+# 165 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_24, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_42
 
-Route1_EncounterHikariWildBattle_Tile_46:
-# 181 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_45:
+# 166 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_25, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_42
 
-Route1_EncounterHikariWildBattle_Tile_49:
-# 187 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_46:
+# 167 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_26, MSGBOX_AUTOCLOSE
-	goto Route1_EncounterHikariWildBattle_Tile_47
+	goto Route1_EncounterHikariWildBattle_Tile_42
 
-Route1_EncounterHikariWildBattle_Tile_50:
-# 188 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_49:
+# 173 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_27, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_47
 
-Route1_EncounterHikariWildBattle_Tile_51:
-# 189 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_50:
+# 174 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_28, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_47
 
-Route1_EncounterHikariWildBattle_Tile_54:
-# 202 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_51:
+# 175 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_29, MSGBOX_AUTOCLOSE
-	goto Route1_EncounterHikariWildBattle_Tile_52
+	goto Route1_EncounterHikariWildBattle_Tile_47
 
-Route1_EncounterHikariWildBattle_Tile_55:
-# 203 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_54:
+# 195 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_30, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_52
 
-Route1_EncounterHikariWildBattle_Tile_56:
-# 204 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_55:
+# 196 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_31, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_52
 
-Route1_EncounterHikariWildBattle_Tile_59:
-# 209 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_56:
+# 197 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_32, MSGBOX_AUTOCLOSE
-	goto Route1_EncounterHikariWildBattle_Tile_57
+	goto Route1_EncounterHikariWildBattle_Tile_52
 
-Route1_EncounterHikariWildBattle_Tile_60:
-# 210 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_59:
+# 203 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_33, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_57
 
-Route1_EncounterHikariWildBattle_Tile_61:
-# 211 "data/maps/Route101/scripts.pory"
+Route1_EncounterHikariWildBattle_Tile_60:
+# 204 "data/maps/Route101/scripts.pory"
 	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_34, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_57
+
+Route1_EncounterHikariWildBattle_Tile_61:
+# 205 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_35, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_57
 
 Route1_EncounterHikariWildBattle_Tile_64:
 # 218 "data/maps/Route101/scripts.pory"
-	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_35, MSGBOX_AUTOCLOSE
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_36, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_62
 
 Route1_EncounterHikariWildBattle_Tile_65:
 # 219 "data/maps/Route101/scripts.pory"
-	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_36, MSGBOX_AUTOCLOSE
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_37, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_62
 
 Route1_EncounterHikariWildBattle_Tile_66:
 # 220 "data/maps/Route101/scripts.pory"
-	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_37, MSGBOX_AUTOCLOSE
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_38, MSGBOX_AUTOCLOSE
 	goto Route1_EncounterHikariWildBattle_Tile_62
 
+Route1_EncounterHikariWildBattle_Tile_69:
+# 225 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_39, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_67
 
+Route1_EncounterHikariWildBattle_Tile_70:
+# 226 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_40, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_67
+
+Route1_EncounterHikariWildBattle_Tile_71:
+# 227 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_41, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_67
+
+Route1_EncounterHikariWildBattle_Tile_74:
 # 234 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_42, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_72
+
+Route1_EncounterHikariWildBattle_Tile_75:
+# 235 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_43, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_72
+
+Route1_EncounterHikariWildBattle_Tile_76:
+# 236 "data/maps/Route101/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, Route1_EncounterHikariWildBattle_Tile_Text_0, Route1_EncounterHikariWildBattle_Tile_Text_44, MSGBOX_AUTOCLOSE
+	goto Route1_EncounterHikariWildBattle_Tile_72
+
+
+# 250 "data/maps/Route101/scripts.pory"
 Movement_PlayerGoBackToLab:
-# 235 "data/maps/Route101/scripts.pory"
+# 251 "data/maps/Route101/scripts.pory"
 	walk_right
-# 235 "data/maps/Route101/scripts.pory"
+# 251 "data/maps/Route101/scripts.pory"
 	walk_right
-# 235 "data/maps/Route101/scripts.pory"
+# 251 "data/maps/Route101/scripts.pory"
 	walk_right
-# 235 "data/maps/Route101/scripts.pory"
+# 251 "data/maps/Route101/scripts.pory"
 	walk_right
-# 236 "data/maps/Route101/scripts.pory"
+# 252 "data/maps/Route101/scripts.pory"
 	walk_down
-# 236 "data/maps/Route101/scripts.pory"
+# 252 "data/maps/Route101/scripts.pory"
 	walk_down
 	step_end
 
-# 239 "data/maps/Route101/scripts.pory"
-Movement_Absol_Hurt_AfterStoneEdge:
-# 240 "data/maps/Route101/scripts.pory"
-	walk_faster_left_backwards
-# 241 "data/maps/Route101/scripts.pory"
-	delay_16
-# 242 "data/maps/Route101/scripts.pory"
-	walk_right
-# 243 "data/maps/Route101/scripts.pory"
-	face_right
-	step_end
-
-# 246 "data/maps/Route101/scripts.pory"
-Movement_WalkBackToLab:
-# 247 "data/maps/Route101/scripts.pory"
-	walk_down
-# 248 "data/maps/Route101/scripts.pory"
-	walk_right
-# 248 "data/maps/Route101/scripts.pory"
-	walk_right
-# 248 "data/maps/Route101/scripts.pory"
-	walk_right
-# 248 "data/maps/Route101/scripts.pory"
-	walk_right
-# 248 "data/maps/Route101/scripts.pory"
-	walk_right
-# 249 "data/maps/Route101/scripts.pory"
-	walk_down
-# 249 "data/maps/Route101/scripts.pory"
-	walk_down
-# 250 "data/maps/Route101/scripts.pory"
-	walk_right
-# 250 "data/maps/Route101/scripts.pory"
-	walk_right
-# 250 "data/maps/Route101/scripts.pory"
-	walk_right
-# 250 "data/maps/Route101/scripts.pory"
-	walk_right
-# 250 "data/maps/Route101/scripts.pory"
-	walk_right
-	step_end
-
-# 253 "data/maps/Route101/scripts.pory"
-Movement_HikariGoNextPlayer:
-# 254 "data/maps/Route101/scripts.pory"
-	walk_right
-# 254 "data/maps/Route101/scripts.pory"
-	walk_right
 # 255 "data/maps/Route101/scripts.pory"
-	face_right
-	step_end
-
+Movement_Absol_Hurt_AfterStoneEdge:
+# 256 "data/maps/Route101/scripts.pory"
+	walk_faster_left_backwards
+# 257 "data/maps/Route101/scripts.pory"
+	delay_16
 # 258 "data/maps/Route101/scripts.pory"
-Movement_Pokeball_Bounce_Againt_Absol:
+	walk_right
 # 259 "data/maps/Route101/scripts.pory"
-	jump_2_left
+	face_right
 	step_end
 
 # 262 "data/maps/Route101/scripts.pory"
-Movement_HikariStepsForwards:
+Movement_WalkBackToLab:
 # 263 "data/maps/Route101/scripts.pory"
-	walk_left
+	walk_down
 # 264 "data/maps/Route101/scripts.pory"
-	face_left
-	step_end
-
-# 267 "data/maps/Route101/scripts.pory"
-Movement_LycanrocStoneAttack:
-# 268 "data/maps/Route101/scripts.pory"
-	jump_in_place_left
-# 268 "data/maps/Route101/scripts.pory"
-	jump_in_place_left
-	step_end
-
-# 271 "data/maps/Route101/scripts.pory"
-Movement_AbsolAttack:
-# 272 "data/maps/Route101/scripts.pory"
-	walk_faster_right
-# 272 "data/maps/Route101/scripts.pory"
-	walk_faster_right
-	step_end
-
-# 275 "data/maps/Route101/scripts.pory"
-Movement_LycanrocAttack:
-# 276 "data/maps/Route101/scripts.pory"
-	walk_faster_left
-# 276 "data/maps/Route101/scripts.pory"
-	walk_faster_left
-	step_end
-
-# 279 "data/maps/Route101/scripts.pory"
-Movement_LycanrocBack:
-# 280 "data/maps/Route101/scripts.pory"
-	jump_right_backwards
-# 281 "data/maps/Route101/scripts.pory"
 	walk_right
-# 282 "data/maps/Route101/scripts.pory"
-	face_left
+# 264 "data/maps/Route101/scripts.pory"
+	walk_right
+# 264 "data/maps/Route101/scripts.pory"
+	walk_right
+# 264 "data/maps/Route101/scripts.pory"
+	walk_right
+# 264 "data/maps/Route101/scripts.pory"
+	walk_right
+# 265 "data/maps/Route101/scripts.pory"
+	walk_down
+# 265 "data/maps/Route101/scripts.pory"
+	walk_down
+# 266 "data/maps/Route101/scripts.pory"
+	walk_right
+# 266 "data/maps/Route101/scripts.pory"
+	walk_right
+# 266 "data/maps/Route101/scripts.pory"
+	walk_right
+# 266 "data/maps/Route101/scripts.pory"
+	walk_right
+# 266 "data/maps/Route101/scripts.pory"
+	walk_right
 	step_end
 
-# 285 "data/maps/Route101/scripts.pory"
-Movement_AbsolBack:
-# 286 "data/maps/Route101/scripts.pory"
-	jump_left_backwards
-# 286 "data/maps/Route101/scripts.pory"
-	jump_left_backwards
-# 287 "data/maps/Route101/scripts.pory"
+# 269 "data/maps/Route101/scripts.pory"
+Movement_HikariGoNextPlayer:
+# 270 "data/maps/Route101/scripts.pory"
+	walk_right
+# 270 "data/maps/Route101/scripts.pory"
+	walk_right
+# 271 "data/maps/Route101/scripts.pory"
 	face_right
 	step_end
 
-# 290 "data/maps/Route101/scripts.pory"
-Movement_Lycanroc_ExitBall:
-# 291 "data/maps/Route101/scripts.pory"
-	exit_pokeball
+# 274 "data/maps/Route101/scripts.pory"
+Movement_Pokeball_Bounce_Againt_Absol:
+# 275 "data/maps/Route101/scripts.pory"
+	jump_2_left
 	step_end
 
-# 294 "data/maps/Route101/scripts.pory"
-Movement_Lycanroc_EnterBall:
-# 295 "data/maps/Route101/scripts.pory"
-	enter_pokeball
-	step_end
-
-# 298 "data/maps/Route101/scripts.pory"
-Movement_PlayerStepsForwards:
-# 299 "data/maps/Route101/scripts.pory"
+# 278 "data/maps/Route101/scripts.pory"
+Movement_HikariStepsForwards:
+# 279 "data/maps/Route101/scripts.pory"
 	walk_left
-# 299 "data/maps/Route101/scripts.pory"
-	walk_left
-# 300 "data/maps/Route101/scripts.pory"
+# 280 "data/maps/Route101/scripts.pory"
 	face_left
 	step_end
 
+# 283 "data/maps/Route101/scripts.pory"
+Movement_LycanrocStoneAttack:
+# 284 "data/maps/Route101/scripts.pory"
+	jump_in_place_left
+# 284 "data/maps/Route101/scripts.pory"
+	jump_in_place_left
+	step_end
+
+# 287 "data/maps/Route101/scripts.pory"
+Movement_AbsolAttack:
+# 288 "data/maps/Route101/scripts.pory"
+	walk_faster_right
+# 288 "data/maps/Route101/scripts.pory"
+	walk_faster_right
+	step_end
+
+# 291 "data/maps/Route101/scripts.pory"
+Movement_LycanrocAttack:
+# 292 "data/maps/Route101/scripts.pory"
+	walk_faster_left
+# 292 "data/maps/Route101/scripts.pory"
+	walk_faster_left
+	step_end
+
+# 295 "data/maps/Route101/scripts.pory"
+Movement_LycanrocBack:
+# 296 "data/maps/Route101/scripts.pory"
+	jump_right_backwards
+# 297 "data/maps/Route101/scripts.pory"
+	walk_right
+# 298 "data/maps/Route101/scripts.pory"
+	face_left
+	step_end
+
+# 301 "data/maps/Route101/scripts.pory"
+Movement_Lycanroc_Hurt:
+# 302 "data/maps/Route101/scripts.pory"
+	jump_right_backwards
 # 303 "data/maps/Route101/scripts.pory"
-Movement_HikariStepsBackwards:
+	delay_16
 # 304 "data/maps/Route101/scripts.pory"
-	walk_slow_right_backwards
+	walk_left
 # 305 "data/maps/Route101/scripts.pory"
 	face_left
 	step_end
 
 # 308 "data/maps/Route101/scripts.pory"
-Movement_Absol_MovesAngry_Clockwise:
+Movement_AbsolBack:
 # 309 "data/maps/Route101/scripts.pory"
-	walk_fast_right
+	jump_left_backwards
+# 309 "data/maps/Route101/scripts.pory"
+	jump_left_backwards
 # 310 "data/maps/Route101/scripts.pory"
-	walk_fast_up
-# 311 "data/maps/Route101/scripts.pory"
-	walk_fast_left
-# 312 "data/maps/Route101/scripts.pory"
-	walk_fast_down
+	face_right
+	step_end
+
 # 313 "data/maps/Route101/scripts.pory"
-	jump_in_place_right
+Movement_Lycanroc_ExitBall:
 # 314 "data/maps/Route101/scripts.pory"
-	jump_in_place_right
+	exit_pokeball
 	step_end
 
 # 317 "data/maps/Route101/scripts.pory"
-Movement_Absol_MovesAngry:
+Movement_Lycanroc_EnterBall:
 # 318 "data/maps/Route101/scripts.pory"
-	jump_in_place_right
-# 319 "data/maps/Route101/scripts.pory"
-	jump_in_place_right
+	enter_pokeball
 	step_end
 
+# 321 "data/maps/Route101/scripts.pory"
+Movement_PlayerStepsForwards:
 # 322 "data/maps/Route101/scripts.pory"
-Movement_Camera_GotoHikari_1:
+	walk_left
+# 322 "data/maps/Route101/scripts.pory"
+	walk_left
 # 323 "data/maps/Route101/scripts.pory"
-	walk_down
-# 324 "data/maps/Route101/scripts.pory"
-	walk_left
-# 324 "data/maps/Route101/scripts.pory"
-	walk_left
-# 324 "data/maps/Route101/scripts.pory"
-	walk_left
-# 324 "data/maps/Route101/scripts.pory"
-	walk_left
+	face_left
 	step_end
 
+# 326 "data/maps/Route101/scripts.pory"
+Movement_HikariStepsBackwards:
 # 327 "data/maps/Route101/scripts.pory"
-Movement_Camera_GotoHikari_2:
+	walk_slow_right_backwards
 # 328 "data/maps/Route101/scripts.pory"
-	walk_left
-# 328 "data/maps/Route101/scripts.pory"
-	walk_left
-# 328 "data/maps/Route101/scripts.pory"
-	walk_left
-# 328 "data/maps/Route101/scripts.pory"
-	walk_left
+	face_left
 	step_end
 
 # 331 "data/maps/Route101/scripts.pory"
-Movement_Camera_GotoHikari_3:
+Movement_Absol_MovesAngry_Clockwise:
 # 332 "data/maps/Route101/scripts.pory"
-	walk_up
+	walk_fast_right
 # 333 "data/maps/Route101/scripts.pory"
+	walk_fast_up
+# 334 "data/maps/Route101/scripts.pory"
+	walk_fast_left
+# 335 "data/maps/Route101/scripts.pory"
+	walk_fast_down
+# 336 "data/maps/Route101/scripts.pory"
+	jump_in_place_right
+# 337 "data/maps/Route101/scripts.pory"
+	jump_in_place_right
+	step_end
+
+# 340 "data/maps/Route101/scripts.pory"
+Movement_Absol_MovesAngry:
+# 341 "data/maps/Route101/scripts.pory"
+	jump_in_place_right
+# 342 "data/maps/Route101/scripts.pory"
+	jump_in_place_right
+	step_end
+
+# 345 "data/maps/Route101/scripts.pory"
+Movement_Camera_GotoHikari_1:
+# 346 "data/maps/Route101/scripts.pory"
+	walk_down
+# 347 "data/maps/Route101/scripts.pory"
 	walk_left
-# 333 "data/maps/Route101/scripts.pory"
+# 347 "data/maps/Route101/scripts.pory"
 	walk_left
-# 333 "data/maps/Route101/scripts.pory"
+# 347 "data/maps/Route101/scripts.pory"
 	walk_left
-# 333 "data/maps/Route101/scripts.pory"
+# 347 "data/maps/Route101/scripts.pory"
 	walk_left
 	step_end
 
-# 336 "data/maps/Route101/scripts.pory"
+# 350 "data/maps/Route101/scripts.pory"
+Movement_Camera_GotoHikari_2:
+# 351 "data/maps/Route101/scripts.pory"
+	walk_left
+# 351 "data/maps/Route101/scripts.pory"
+	walk_left
+# 351 "data/maps/Route101/scripts.pory"
+	walk_left
+# 351 "data/maps/Route101/scripts.pory"
+	walk_left
+	step_end
+
+# 354 "data/maps/Route101/scripts.pory"
+Movement_Camera_GotoHikari_3:
+# 355 "data/maps/Route101/scripts.pory"
+	walk_up
+# 356 "data/maps/Route101/scripts.pory"
+	walk_left
+# 356 "data/maps/Route101/scripts.pory"
+	walk_left
+# 356 "data/maps/Route101/scripts.pory"
+	walk_left
+# 356 "data/maps/Route101/scripts.pory"
+	walk_left
+	step_end
+
+# 359 "data/maps/Route101/scripts.pory"
 Movement_Camera_BackToPlayer:
-# 337 "data/maps/Route101/scripts.pory"
+# 360 "data/maps/Route101/scripts.pory"
 	walk_right
-# 337 "data/maps/Route101/scripts.pory"
+# 360 "data/maps/Route101/scripts.pory"
 	walk_right
-# 337 "data/maps/Route101/scripts.pory"
+# 360 "data/maps/Route101/scripts.pory"
 	walk_right
-# 337 "data/maps/Route101/scripts.pory"
+# 360 "data/maps/Route101/scripts.pory"
 	walk_right
 	step_end
 
@@ -923,129 +995,157 @@ Route1_EncounterHikariWildBattle_Tile_Text_5:
 	.string "Grrrrrrr!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_6:
-# 86 "data/maps/Route101/scripts.pory"
-	.string "Hm?\pVocê não deveria estar aqui\nsozinho.$"
+# 81 "data/maps/Route101/scripts.pory"
+	.string "Hm?\pVocê não deveria estar aqui\nsozinho!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_7:
-# 87 "data/maps/Route101/scripts.pory"
-	.string "Hm?\pYou shouldn't be here alone.$"
+# 82 "data/maps/Route101/scripts.pory"
+	.string "Hm?\pYou shouldn't be here alone!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_8:
-# 88 "data/maps/Route101/scripts.pory"
-	.string "¿Hm?\pNo deberías estar aquí solo.$"
+# 83 "data/maps/Route101/scripts.pory"
+	.string "¿Hm?\p¡No deberías estar aquí solo!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_9:
-# 94 "data/maps/Route101/scripts.pory"
+# 89 "data/maps/Route101/scripts.pory"
 	.string "Fique atrás de mim.$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_10:
-# 95 "data/maps/Route101/scripts.pory"
+# 90 "data/maps/Route101/scripts.pory"
 	.string "Stay behind me.$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_11:
-# 96 "data/maps/Route101/scripts.pory"
+# 91 "data/maps/Route101/scripts.pory"
 	.string "Quedate detrás de mí.$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_12:
-# 108 "data/maps/Route101/scripts.pory"
+# 103 "data/maps/Route101/scripts.pory"
 	.string "Lycanroc$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_13:
-# 110 "data/maps/Route101/scripts.pory"
-	.string "awooooo!$"
+# 105 "data/maps/Route101/scripts.pory"
+	.string "Awooooo!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_14:
-# 114 "data/maps/Route101/scripts.pory"
-	.string "Vai, Lycanroc!\pUse {COLOR}{RED}Mastigada{COLOR}{DARK_GRAY}.$"
+# 109 "data/maps/Route101/scripts.pory"
+	.string "Lycanroc, proteja-nos!\pUse {COLOR}{RED}Mastigada{COLOR}{DARK_GRAY}!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_15:
-# 115 "data/maps/Route101/scripts.pory"
-	.string "Go, Lycanroc!\pUse {COLOR}{RED}Crunch{COLOR}{DARK_GRAY}.$"
+# 110 "data/maps/Route101/scripts.pory"
+	.string "Lycanroc, protect us!\pUse {COLOR}{RED}Crunch{COLOR}{DARK_GRAY}!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_16:
-# 116 "data/maps/Route101/scripts.pory"
-	.string "Vamos, Lycanroc!\pUsa {COLOR}{RED}Triturar{COLOR}{DARK_GRAY}.$"
+# 111 "data/maps/Route101/scripts.pory"
+	.string "¡Lycanroc, protégenos!\p¡Usa {COLOR}{RED}Triturar{COLOR}{DARK_GRAY}!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_17:
-# 138 "data/maps/Route101/scripts.pory"
-	.string "Agora use {COLOR}{RED}Gume de Pedra{COLOR}{DARK_GRAY}, Lycanroc!$"
+# 122 "data/maps/Route101/scripts.pory"
+	.string "Ele resistiu ao golpe...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_18:
-# 139 "data/maps/Route101/scripts.pory"
-	.string "Now use {COLOR}{RED}Stone Edge{COLOR}{DARK_GRAY}, Lycanroc!$"
+# 123 "data/maps/Route101/scripts.pory"
+	.string "It withstood the attack...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_19:
-# 140 "data/maps/Route101/scripts.pory"
-	.string "¡Ahora usa {COLOR}{RED}Roca Afilada{COLOR}{DARK_GRAY}, Lycanroc!$"
+# 124 "data/maps/Route101/scripts.pory"
+	.string "¡Resistió el ataque...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_20:
-# 154 "data/maps/Route101/scripts.pory"
-	.string "Volte, Lycanroc!$"
+# 138 "data/maps/Route101/scripts.pory"
+	.string "Grrr...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_21:
-# 155 "data/maps/Route101/scripts.pory"
-	.string "Go back, Lycanroc!$"
+# 147 "data/maps/Route101/scripts.pory"
+	.string "Firme, Lycanroc!\pAgora, {COLOR}{RED}Gume de Pedra{COLOR}{DARK_GRAY}!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_22:
-# 156 "data/maps/Route101/scripts.pory"
-	.string "¡Vuelve, Lycanroc!$"
+# 148 "data/maps/Route101/scripts.pory"
+	.string "Hold your ground, Lycanroc!\pNow, {COLOR}{RED}Stone Edge{COLOR}{DARK_GRAY}!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_23:
-# 179 "data/maps/Route101/scripts.pory"
-	.string "Você quase matou a gente de susto,\nsabia?$"
+# 149 "data/maps/Route101/scripts.pory"
+	.string "¡Resiste, Lycanroc!\p¡Ahora, {COLOR}{RED}Roca Afilada{COLOR}{DARK_GRAY}!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_24:
-# 180 "data/maps/Route101/scripts.pory"
-	.string "You almost scared us to death, you\nknow?$"
+# 165 "data/maps/Route101/scripts.pory"
+	.string "Volte, Lycanroc!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_25:
-# 181 "data/maps/Route101/scripts.pory"
-	.string "Casi nos matas del susto, ¿sabías?$"
+# 166 "data/maps/Route101/scripts.pory"
+	.string "Go back, Lycanroc!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_26:
-# 187 "data/maps/Route101/scripts.pory"
-	.string "Um Absol aparecendo tão perto da\nvila…\pIsso não é normal.$"
+# 167 "data/maps/Route101/scripts.pory"
+	.string "¡Vuelve, Lycanroc!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_27:
-# 188 "data/maps/Route101/scripts.pory"
-	.string "An Absol showing up so close to\nthe village…\pThat's not normal.$"
+# 173 "data/maps/Route101/scripts.pory"
+	.string "Agora...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_28:
-# 189 "data/maps/Route101/scripts.pory"
-	.string "Un Absol apareciendo tan cerca de\nla aldea…\pEso no es normal.$"
+# 174 "data/maps/Route101/scripts.pory"
+	.string "Now...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_29:
-# 202 "data/maps/Route101/scripts.pory"
-	.string "E então ele começou a agir\nestranho quando viu você.\pCurioso...$"
+# 175 "data/maps/Route101/scripts.pory"
+	.string "¡Ahora...!$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_30:
-# 203 "data/maps/Route101/scripts.pory"
-	.string "And then it started acting\nstrangely when it saw you.\pCurious...$"
+# 195 "data/maps/Route101/scripts.pory"
+	.string "Você quase matou a gente de susto,\nsabia?$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_31:
-# 204 "data/maps/Route101/scripts.pory"
-	.string "Y entonces comenzó a actuar de\nforma extraña cuando te vio.\pCurioso...$"
+# 196 "data/maps/Route101/scripts.pory"
+	.string "You almost scared us to death, you\nknow?$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_32:
-# 209 "data/maps/Route101/scripts.pory"
-	.string "Ah, certo.\pVocê deve ser um dos novos\ntreinadores.\pEu sou a Professora Hikari.\pDesculpe por fazê-los esperar no\nlaboratório.\pEu estava investigando relatos\nsobre Pokémon agindo de forma\lincomum nesta rota.$"
+# 197 "data/maps/Route101/scripts.pory"
+	.string "Casi nos matas del susto, ¿sabías?$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_33:
-# 210 "data/maps/Route101/scripts.pory"
-	.string "Ah, right.\pYou must be one of the new\nTrainers.\pI'm Professor Hikari.\pSorry for making you wait at the\nlaboratory.\pI was investigating reports of\nPokémon behaving strangely on this\lroute.$"
+# 203 "data/maps/Route101/scripts.pory"
+	.string "Um Absol aparecendo tão perto da\nvila…\pIsso não é normal.$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_34:
-# 211 "data/maps/Route101/scripts.pory"
-	.string "Ah, cierto.\pDebes ser uno de los nuevos\nentrenadores.\pSoy la Profesora Hikari.\pPerdón por hacerlos esperar en el\nlaboratorio.\pEstaba investigando reportes sobre\nPokémon comportándose de forma\lextraña en esta ruta.$"
+# 204 "data/maps/Route101/scripts.pory"
+	.string "An Absol showing up so close to\nthe village…\pThat's not normal.$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_35:
-# 218 "data/maps/Route101/scripts.pory"
-	.string "Ultimamente… coisas estranhas têm\nacontecido em Aetheris.\p...\pMas esse não é o melhor lugar para\nconversar.\pVamos voltar para o laboratório.$"
+# 205 "data/maps/Route101/scripts.pory"
+	.string "Un Absol apareciendo tan cerca de\nla aldea…\pEso no es normal.$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_36:
-# 219 "data/maps/Route101/scripts.pory"
-	.string "Lately… strange things have been\nhappening in Aetheris.\p...\pBut this isn't the best place to\ntalk.\pLet's head back to the laboratory.$"
+# 218 "data/maps/Route101/scripts.pory"
+	.string "E então ele começou a agir\nestranho quando viu você.\pCurioso...$"
 
 Route1_EncounterHikariWildBattle_Tile_Text_37:
+# 219 "data/maps/Route101/scripts.pory"
+	.string "And then it started acting\nstrangely when it saw you.\pCurious...$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_38:
 # 220 "data/maps/Route101/scripts.pory"
+	.string "Y entonces comenzó a actuar de\nforma extraña cuando te vio.\pCurioso...$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_39:
+# 225 "data/maps/Route101/scripts.pory"
+	.string "Ah, certo.\pVocê deve ser um dos novos\ntreinadores.\pEu sou a Professora Hikari.\pDesculpe por fazê-los esperar no\nlaboratório.\pEu estava investigando relatos\nsobre Pokémon agindo de forma\lincomum nesta rota.$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_40:
+# 226 "data/maps/Route101/scripts.pory"
+	.string "Ah, right.\pYou must be one of the new\nTrainers.\pI'm Professor Hikari.\pSorry for making you wait at the\nlaboratory.\pI was investigating reports of\nPokémon behaving strangely on this\lroute.$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_41:
+# 227 "data/maps/Route101/scripts.pory"
+	.string "Ah, cierto.\pDebes ser uno de los nuevos\nentrenadores.\pSoy la Profesora Hikari.\pPerdón por hacerlos esperar en el\nlaboratorio.\pEstaba investigando reportes sobre\nPokémon comportándose de forma\lextraña en esta ruta.$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_42:
+# 234 "data/maps/Route101/scripts.pory"
+	.string "Ultimamente… coisas estranhas têm\nacontecido em Aetheris.\p...\pMas esse não é o melhor lugar para\nconversar.\pVamos voltar para o laboratório.$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_43:
+# 235 "data/maps/Route101/scripts.pory"
+	.string "Lately… strange things have been\nhappening in Aetheris.\p...\pBut this isn't the best place to\ntalk.\pLet's head back to the laboratory.$"
+
+Route1_EncounterHikariWildBattle_Tile_Text_44:
+# 236 "data/maps/Route101/scripts.pory"
 	.string "Últimamente… cosas extrañas han\nestado ocurriendo en Aetheris.\p...\pPero este no es el mejor lugar\npara hablar.\pVolvamos al laboratorio.$"

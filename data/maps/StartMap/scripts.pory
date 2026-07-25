@@ -199,7 +199,7 @@ script Story_Start_MinimalGrinding {
 
 script Story_Start_WarpToHouse {
     setvar(VAR_DW_START_STORY, 1)
-    warpsilent(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 7, 6)
+    warpsilent(MAP_PINEVEIL_TOWN_MAYS_HOUSE_2F, 7, 6)
     waitstate
 }
 

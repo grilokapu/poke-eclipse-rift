@@ -396,7 +396,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Woman2 = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ExpertM = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_4,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EXPERT_M,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 256,
     .width = 16,
@@ -414,7 +414,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ExpertM = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ExpertF = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_4,
+    .paletteTag = OBJ_EVENT_PAL_TAG_EXPERT_F,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 256,
     .width = 16,
@@ -432,7 +432,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ExpertF = {
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man2 = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_3,
+    .paletteTag = OBJ_EVENT_PAL_TAG_MAN_2,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 256,
     .width = 16,
@@ -540,7 +540,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LinkReceptionist =
 
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldMan = {
     .tileTag = TAG_NONE,
-    .paletteTag = OBJ_EVENT_PAL_TAG_NPC_4,
+    .paletteTag = OBJ_EVENT_PAL_TAG_OLDMAN,
     .reflectionPaletteTag = OBJ_EVENT_PAL_TAG_NONE,
     .size = 256,
     .width = 16,

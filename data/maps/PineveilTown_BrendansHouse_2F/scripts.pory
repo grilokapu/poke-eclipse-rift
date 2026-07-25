@@ -1,0 +1,47 @@
+mapscripts PineveilTown_BrendansHouse_2F_MapScripts {
+}
+
+script PineveilTown_RivalRoom_RivalConversation {
+    lock
+    faceplayer
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_LUCIEN, "????", "...\pVocê também vai ao laboratório?\pHm.\pEntão anda logo.\nA Professora Hikari odeia atrasos.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "????", "...\pYou're going to the laboratory\ntoo?\pHmm.\pThen hurry up.\nProfessor Hikari hates delays.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "????", "...\p¿Tú también vas al laboratorio?\pHmm.\pEntonces date prisa.\nLa Profesora Hikari odia los\lretrasos.", MSGBOX_AUTOCLOSE)
+    }
+    pause(20)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_LUCIEN, "????", "...\pNos vemos lá.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_LUCIEN, "????", "...\pSee you there.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_LUCIEN, "????", "...\pNos vemos allí.", MSGBOX_AUTOCLOSE)
+    }
+    if (var(VAR_FACING) == DIR_EAST) {
+        movenpc(LOCALID_LUCIEN_ROOM, Movement_Rival_Leaves_Room_2)
+    } else {
+        movenpc(LOCALID_LUCIEN_ROOM, Movement_Rival_Leaves_Room_1)
+    }
+    playse(SE_EXIT)
+    removeobject(LOCALID_LUCIEN_ROOM)
+    setflag(FLAG_RIVAL_LEAVE_HOUSE)
+    release
+    end
+}
+
+movement Movement_Rival_Leaves_Room_1 {
+    walk_left * 4
+    walk_up
+    walk_left
+    set_invisible
+    delay_16
+}
+
+movement Movement_Rival_Leaves_Room_2 {
+    walk_down
+    walk_left * 3
+    walk_up
+    walk_left
+    walk_up
+    walk_left
+    set_invisible
+    delay_16
+}

@@ -73,19 +73,14 @@ script Route1_EncounterHikariWildBattle_Tile {
     hidemonmugshot
     pause(20)
     movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_MovesAngry_Clockwise)
-    showmonmugshot(SPECIES_ABSOL, MUGSHOT_SOUTHEAST)
-    setspeaker("Absol")
-    msgbox("Grrrrrrr!", MSGBOX_AUTOCLOSE)
-    waitmoncry
-    hidemonmugshot
-    pause(30)
+    pause(15)
     playse(SE_PIN)
     movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_ExclaimFacingRight)
     waitse
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hm?\pVocê não deveria estar aqui\nsozinho.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hm?\pYou shouldn't be here alone.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¿Hm?\pNo deberías estar aquí solo.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hm?\pVocê não deveria estar aqui\nsozinho!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hm?\pYou shouldn't be here alone!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¿Hm?\p¡No deberías estar aquí solo!", MSGBOX_AUTOCLOSE)
     }
     pause(10)
     movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_ExclaimFacingLeft)
@@ -107,13 +102,13 @@ script Route1_EncounterHikariWildBattle_Tile {
     pause(20)
     setspeaker("Lycanroc")
     showmonmugshot(SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_SOUTHEAST)
-    msgbox("awooooo!", MSGBOX_AUTOCLOSE)
+    msgbox("Awooooo!", MSGBOX_AUTOCLOSE)
     waitmoncry
     hidemonmugshot
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Vai, Lycanroc!\pUse {COLOR}{RED}Mastigada{COLOR}{DARK_GRAY}.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Go, Lycanroc!\pUse {COLOR}{RED}Crunch{COLOR}{DARK_GRAY}.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Vamos, Lycanroc!\pUsa {COLOR}{RED}Triturar{COLOR}{DARK_GRAY}.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Lycanroc, proteja-nos!\pUse {COLOR}{RED}Mastigada{COLOR}{DARK_GRAY}!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Lycanroc, protect us!\pUse {COLOR}{RED}Crunch{COLOR}{DARK_GRAY}!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Lycanroc, protégenos!\p¡Usa {COLOR}{RED}Triturar{COLOR}{DARK_GRAY}!", MSGBOX_AUTOCLOSE)
     }
     pause(20)
     movenpc(LOCALID_ROUTE1_LYCANROC, Movement_LycanrocAttack)
@@ -122,22 +117,36 @@ script Route1_EncounterHikariWildBattle_Tile {
     playse(SE_NOT_EFFECTIVE)
     movenpc(LOCALID_ROUTE1_LYCANROC, Movement_LycanrocBack)
     waitse
-    pause(20)
+    pause(12)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ele resistiu ao golpe...!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "It withstood the attack...!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Resistió el ataque...!", MSGBOX_AUTOCLOSE)
+    }
+    pause(10)
+    playmoncry(SPECIES_ABSOL, 0)
     movenpc(LOCALID_ROUTE1_ABSOL, Movement_AbsolAttack)
     playse(SE_M_CUT)
     waitse
     playse(SE_EFFECTIVE)
     movenpc(LOCALID_ROUTE1_ABSOL, Movement_AbsolBack)
+    movenpc(LOCALID_ROUTE1_LYCANROC, Movement_Lycanroc_Hurt)
     waitse
-    pause(20)
+    pause(12)
+    setspeaker("Lycanroc")
+    showmonmugshot(SPECIES_LYCANROC_MIDNIGHT, MUGSHOT_SOUTHEAST)
+    msgbox("Grrr...!", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    pause(10)
     playse(SE_PIN)
     movenpc(LOCALID_ROUTE1_ABSOL, Common_Movement_EmojiAngry)
     waitse
-    pause(20)
+    pause(12)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Agora use {COLOR}{RED}Gume de Pedra{COLOR}{DARK_GRAY}, Lycanroc!", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Now use {COLOR}{RED}Stone Edge{COLOR}{DARK_GRAY}, Lycanroc!", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Ahora usa {COLOR}{RED}Roca Afilada{COLOR}{DARK_GRAY}, Lycanroc!", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Firme, Lycanroc!\pAgora, {COLOR}{RED}Gume de Pedra{COLOR}{DARK_GRAY}!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Hold your ground, Lycanroc!\pNow, {COLOR}{RED}Stone Edge{COLOR}{DARK_GRAY}!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Resiste, Lycanroc!\p¡Ahora, {COLOR}{RED}Roca Afilada{COLOR}{DARK_GRAY}!", MSGBOX_AUTOCLOSE)
     }
     pause(20)
     playmoncry(SPECIES_LYCANROC_MIDNIGHT, 0)
@@ -149,7 +158,9 @@ script Route1_EncounterHikariWildBattle_Tile {
     playse(SE_EFFECTIVE)
     pause(30)
     movenpc(LOCALID_ROUTE1_ABSOL, Movement_Absol_Hurt_AfterStoneEdge)
-    pause(20)
+    playmoncry(SPECIES_ABSOL, 0)
+    waitmoncry
+    pause(15)
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Volte, Lycanroc!", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Go back, Lycanroc!", MSGBOX_AUTOCLOSE)
@@ -157,7 +168,12 @@ script Route1_EncounterHikariWildBattle_Tile {
     }
     movenpc(LOCALID_ROUTE1_LYCANROC, Movement_Lycanroc_EnterBall)
     removeobject(LOCALID_ROUTE1_LYCANROC)
-    pause(20)
+    pause(15)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Agora...!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Now...!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Ahora...!", MSGBOX_AUTOCLOSE)
+    }
     movenpc(LOCALID_ROUTE1_HIKARI, Movement_HikariStepsForwards)
     createspobject(OBJ_EVENT_GFX_POKE_BALL, LOCALID_ROUTE1_POKEBALL, 22, 14, MOVEMENT_TYPE_NONE)
     movenpc(LOCALID_ROUTE1_POKEBALL, Movement_Pokeball_Bounce_Againt_Absol)
@@ -193,7 +209,7 @@ script Route1_EncounterHikariWildBattle_Tile {
     special(SpawnCameraObject)
     movecamera(Movement_Camera_BackToPlayer)
     special(RemoveCameraObject)
-    playbgm(MUS_ROUTE101, 0)
+    playbgm(MUS_ROUTE1, 0)
     playse(SE_PIN)
     movenpc(LOCALID_ROUTE1_HIKARI, Common_Movement_EmojiThinking)
     waitse
@@ -225,7 +241,7 @@ script Route1_EncounterHikariWildBattle_Tile {
     setvar(VAR_BIRCH_LAB_STATE, 1)
     setflag(FLAG_HIKARI_ROUTE_1)
     moveplayer(Movement_PlayerGoBackToLab)
-    warpsilent(MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 6, 14)
+    warpsilent(MAP_PINEVEIL_TOWN_PROFESSOR_BIRCHS_LAB, 6, 14)
     waitstate
     release
     end
@@ -279,6 +295,13 @@ movement Movement_LycanrocAttack {
 movement Movement_LycanrocBack {
     jump_right_backwards
     walk_right
+    face_left
+}
+
+movement Movement_Lycanroc_Hurt {
+    jump_right_backwards
+    delay_16
+    walk_left
     face_left
 }
 

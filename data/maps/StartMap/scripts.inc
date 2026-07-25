@@ -550,7 +550,7 @@ Story_Start_WarpToHouse::
 # 201 "data/maps/StartMap/scripts.pory"
 	setvar VAR_DW_START_STORY, 1
 # 202 "data/maps/StartMap/scripts.pory"
-	warpsilent MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F, 7, 6
+	warpsilent MAP_PINEVEIL_TOWN_MAYS_HOUSE_2F, 7, 6
 # 203 "data/maps/StartMap/scripts.pory"
 	waitstate
 	return

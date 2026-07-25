@@ -1,0 +1,94 @@
+mapscripts StonereachCity_Building1_1F_MapScripts {}
+
+script StonereachCity_Building1_1F_EventScript_Fisherman {
+    lock
+    faceplayer
+    if (flag(FLAG_STONEREACH_NPC_TRADE_COMPLETED)) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Seu antigo STARLY está muito bem!\pQuando ele abre as asas, este lugar\nparece pequeno demais para ele.\pCuide bem da STARAPTITE. Um dia,\nela poderá revelar a verdadeira\lforça de um STARAPTOR.", MSGBOX_DEFAULT)
+            case EN: msgbox("Your old STARLY is doing great!\pWhen it spreads its wings, this\nplace seems far too small for it.\pTake good care of the STARAPTITE.\nOne day, it may reveal a STARAPTOR's\ltrue strength.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Tu antiguo STARLY está muy bien!\pCuando abre las alas, este lugar\nparece demasiado pequeño para él.\pCuida bien la STARAPTITA. Algún día\npodrá revelar la verdadera fuerza\lde un STARAPTOR.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Há anos observo os Pokémon voadores\nque cruzam os penhascos de\lSTONEREACH.\pEncontrei esta pedra brilhando onde\num STARAPTOR pousava todas as\lmanhãs: uma STARAPTITE.\pEu gostaria de criar um STARLY e\nestudar como ele cresce.\pVocê aceitaria trocar um STARLY por\nesta STARAPTITE?", MSGBOX_YESNO)
+        case EN: msgbox("For years, I've watched the Flying\nPokémon crossing STONEREACH's\lcliffs.\pI found this stone shining where a\nSTARAPTOR landed every morning:\la STARAPTITE.\pI'd like to raise a STARLY and study\nhow it grows.\pWould you trade a STARLY for this\nSTARAPTITE?", MSGBOX_YESNO)
+        case ES: msgbox("Durante años observé a los Pokémon\nvoladores cruzar los riscos de\lSTONEREACH.\pEncontré esta piedra brillando donde\nun STARAPTOR aterrizaba cada mañana:\luna STARAPTITA.\pQuisiera criar un STARLY y estudiar\ncómo crece.\p¿Cambiarías un STARLY por esta\nSTARAPTITA?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Entendo. Uma parceria não deve ser\ndecidida com pressa.", MSGBOX_DEFAULT)
+            case EN: msgbox("I understand. A partnership should\nnever be decided in haste.", MSGBOX_DEFAULT)
+            case ES: msgbox("Lo entiendo. Una amistad no debe\ndecidirse con prisa.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+
+    specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+    if (var(VAR_RESULT) < 2) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Esse é o seu único Pokémon!\pNão posso deixá-lo seguir viagem\nsozinho. Volte com outra companhia.", MSGBOX_DEFAULT)
+            case EN: msgbox("That's your only Pokémon!\pI can't let you continue your\njourney alone. Return with another.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Ese es tu único Pokémon!\pNo puedo dejarte continuar solo.\nRegresa con otro compañero.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+
+    checkitemspace(ITEM_STARAPTITE)
+    if (var(VAR_RESULT) == FALSE) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sua Bolsa está cheia.\pAbra espaço antes de fazermos a\ntroca.", MSGBOX_DEFAULT)
+            case EN: msgbox("Your Bag is full.\pMake some room before we make the\ntrade.", MSGBOX_DEFAULT)
+            case ES: msgbox("Tu Bolsa está llena.\pHaz espacio antes de realizar el\ncambio.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+
+    special(ChoosePartyMon)
+    lock
+    faceplayer
+    if (var(VAR_0x8004) == PARTY_NOTHING_CHOSEN) {
+        release
+        end
+    }
+    specialvar(VAR_RESULT, ScriptGetPartyMonSpecies)
+    if (var(VAR_RESULT) != SPECIES_STARLY) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Este Pokémon não é um STARLY.\pMostre-me o STARLY que deseja\ntrocar.", MSGBOX_DEFAULT)
+            case EN: msgbox("This Pokémon isn't a STARLY.\pShow me the STARLY you wish to\ntrade.", MSGBOX_DEFAULT)
+            case ES: msgbox("Este Pokémon no es un STARLY.\pMuéstrame el STARLY que deseas\ncambiar.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+
+    specialvar(VAR_RESULT, ScriptTakeSelectedPartyMon)
+    if (var(VAR_RESULT) == FALSE) {
+        release
+        end
+    }
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Prometo cuidar muito bem dele.\pE esta pedra agora pertence a você.\nTalvez estivesse esperando pelo\ltreinador certo.", MSGBOX_DEFAULT)
+        case EN: msgbox("I promise I'll take very good care\nof it.\pAnd this stone now belongs to you.\nPerhaps it was waiting for the\lright Trainer.", MSGBOX_DEFAULT)
+        case ES: msgbox("Prometo que lo cuidaré muy bien.\pY esta piedra ahora te pertenece.\nQuizá esperaba al Entrenador\lindicado.", MSGBOX_DEFAULT)
+    }
+    giveitem(ITEM_STARAPTITE)
+    setflag(FLAG_STONEREACH_NPC_TRADE_COMPLETED)
+    release
+    end
+}
+
+script StonereachCity_Building1_1F_EventScript_Girl {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Do térreo, o barulho da fonte parece\numa chuva distante.\pÀs vezes fico aqui só para ouvir.\nSTONEREACH também sabe sussurrar.", MSGBOX_NPC)
+        case EN: msgbox("From down here, the fountain sounds\nlike distant rain.\pSometimes I stay just to listen.\nSTONEREACH knows how to whisper,\ltoo.", MSGBOX_NPC)
+        case ES: msgbox("Desde aquí, la fuente suena como\nlluvia distante.\pA veces me quedo solo para oírla.\nSTONEREACH también sabe susurrar.", MSGBOX_NPC)
+    }
+    end
+}

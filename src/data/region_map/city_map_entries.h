@@ -1,14 +1,14 @@
 static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
 {
     {
-        .mapSecId = MAPSEC_LITTLEROOT_TOWN,
+        .mapSecId = MAPSEC_PINEVEIL_TOWN,
         .index = 0,
-        .tilemap = gPokenavCityMap_Littleroot_0,
+        .tilemap = gPokenavCityMap_Pineveil_0,
     },
     {
-        .mapSecId = MAPSEC_OLDALE_TOWN,
+        .mapSecId = MAPSEC_SYLVARA_TOWN,
         .index = 0,
-        .tilemap = gPokenavCityMap_Oldale_0,
+        .tilemap = gPokenavCityMap_Sylvara_0,
     },
     {
         .mapSecId = MAPSEC_DEWFORD_TOWN,
@@ -61,14 +61,14 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Mauville_1,
     },
     {
-        .mapSecId = MAPSEC_RUSTBORO_CITY,
+        .mapSecId = MAPSEC_STONEREACH_CITY,
         .index = 0,
-        .tilemap = gPokenavCityMap_Rustboro_0,
+        .tilemap = gPokenavCityMap_Stonereach_0,
     },
     {
-        .mapSecId = MAPSEC_RUSTBORO_CITY,
+        .mapSecId = MAPSEC_STONEREACH_CITY,
         .index = 1,
-        .tilemap = gPokenavCityMap_Rustboro_1,
+        .tilemap = gPokenavCityMap_Stonereach_1,
     },
     {
         .mapSecId = MAPSEC_FORTREE_CITY,

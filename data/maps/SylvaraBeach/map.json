@@ -2,8 +2,8 @@
   "id": "MAP_SYLVARA_BEACH",
   "name": "SylvaraBeach",
   "layout": "LAYOUT_SYLVARA_BEACH",
-  "music": "MUS_OLDALE",
-  "region_map_section": "MAPSEC_OLDALE_TOWN",
+  "music": "MUS_SYLVARA",
+  "region_map_section": "MAPSEC_SYLVARA_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_ROUTE",
@@ -14,7 +14,7 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_OLDALE_TOWN",
+      "map": "MAP_SYLVARA_TOWN",
       "offset": 10,
       "direction": "up"
     }

@@ -1,0 +1,76 @@
+mapscripts StonereachCity_Building4_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_DEXNAV_ICONS_UNLOCKED)) {
+            setobjectmovementtype(LOCALID_QUIZ_MASTER, MOVEMENT_TYPE_FACE_LEFT)
+        }
+    }
+}
+
+script StonereachCity_Building4_1F_EventScript_QuizMaster {
+    if (flag(FLAG_DEXNAV_ICONS_UNLOCKED)) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Você já provou que sabe ler uma\nbatalha antes de vencê-la.\pA DEXNAV continuará revelando os\nPokémon de cada área para você.", MSGBOX_NPC)
+            case EN: msgbox("You proved you can read a battle\nbefore winning it.\pThe DEXNAV will keep revealing each\narea's Pokémon to you.", MSGBOX_NPC)
+            case ES: msgbox("Demostraste que puedes leer un\ncombate antes de ganarlo.\pLa DEXNAV seguirá revelando los\nPokémon de cada zona.", MSGBOX_NPC)
+        }
+        end
+    }
+
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Eu estudo decisões em batalha.\pVocê receberá apenas três Pokémon\npara enfrentar os meus seis.\pSua equipe verdadeira ficará segura.\nAqui, vencer depende de reconhecer\lvantagens e saber quando trocar.\pQuer tentar o Enigma Tático?", MSGBOX_YESNO)
+        case EN: msgbox("I study decisions made in battle.\pYou will receive only three Pokémon\nto face my six.\pYour real party will remain safe.\nVictory depends on recognizing an\ladvantage and knowing when to switch.\pTry the Tactical Riddle?", MSGBOX_YESNO)
+        case ES: msgbox("Estudio las decisiones en combate.\pRecibirás solo tres Pokémon para\nenfrentar a mis seis.\pTu equipo real estará seguro.\nVencer exige reconocer ventajas y\lsaber cuándo cambiar.\p¿Intentas el Enigma Táctico?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Uma boa resposta também pode ser\nesperar até estar preparado.", MSGBOX_NPC)
+            case EN: msgbox("Waiting until you are ready can be\na good answer, too.", MSGBOX_NPC)
+            case ES: msgbox("Esperar hasta estar listo también\npuede ser una buena respuesta.", MSGBOX_NPC)
+        }
+        end
+    }
+
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meus Pokémon rápidos atacarão antes.\pAlguns sobrevivem com 1 HP e usam\nENDEAVOR seguido de prioridade.\pSTURDY e BERRY JUICE também podem\nrenovar essa armadilha.\pGolpes múltiplos quebram essas\ndefesas. Prioridade encerra o plano\nantes do segundo movimento.", MSGBOX_NPC)
+        case EN: msgbox("My fast Pokémon will move first.\pSome endure at 1 HP, then use\nENDEAVOR followed by priority.\pSTURDY and BERRY JUICE can renew the\nsame trap.\pMulti-hit moves break those defenses.\nPriority ends the plan before its\nsecond move.", MSGBOX_NPC)
+        case ES: msgbox("Mis Pokémon rápidos atacarán antes.\pAlgunos resisten con 1 PS y usan\nENDEAVOR seguido de prioridad.\pSTURDY y BERRY JUICE pueden renovar\nla misma trampa.\pLos golpes múltiples rompen esas\ndefensas. La prioridad detiene el\nsegundo movimiento.", MSGBOX_NPC)
+    }
+
+    special(StonereachQuiz_PrepareParty)
+    cleartrainerflag(TRAINER_STONEREACH_BATTLE_QUIZ)
+    switch (var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_continue_lost(TRAINER_STONEREACH_BATTLE_QUIZ, "Seis desafios. Três respostas.\nEscolha cada uma com cuidado!", "Você encontrou resposta para todos…", StonereachCity_Building4_1F_EventScript_QuizBattleEnded)
+        case EN: trainerbattle_continue_lost(TRAINER_STONEREACH_BATTLE_QUIZ, "Six challenges. Three answers.\nChoose each one carefully!", "You found an answer for them all…", StonereachCity_Building4_1F_EventScript_QuizBattleEnded)
+        case ES: trainerbattle_continue_lost(TRAINER_STONEREACH_BATTLE_QUIZ, "Seis desafíos. Tres respuestas.\n¡Elige cada una con cuidado!", "Hallaste respuesta para todos…", StonereachCity_Building4_1F_EventScript_QuizBattleEnded)
+    }
+    goto(StonereachCity_Building4_1F_EventScript_QuizBattleEnded)
+}
+
+script StonereachCity_Building4_1F_EventScript_QuizBattleEnded {
+    specialvar(VAR_RESULT, StonereachQuiz_Finish)
+    cleartrainerflag(TRAINER_STONEREACH_BATTLE_QUIZ)
+
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_DEXNAV_ICONS_UNLOCKED)
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Perfeito. Você não venceu por acaso;\nvenceu porque compreendeu o fluxo.\pComo prêmio, liberei a leitura\navançada da sua DEXNAV!\pA partir de agora, os ícones dos\nPokémon de cada área serão visíveis,\nmesmo antes de encontrá-los.", MSGBOX_NPC)
+            case EN: msgbox("Perfect. You did not win by chance;\nyou understood the flow.\pAs your prize, I unlocked advanced\nscanning on your DEXNAV!\pFrom now on, each area's Pokémon\nicons are visible before you meet\nthem.", MSGBOX_NPC)
+            case ES: msgbox("Perfecto. No ganaste por azar;\ncomprendiste el flujo.\p¡Como premio, desbloqueé el análisis\navanzado de tu DEXNAV!\pAhora verás los iconos de cada zona\nantes de encontrar a sus Pokémon.", MSGBOX_NPC)
+        }
+    } else {
+        switch (var(VAR_LANGUAGE)) {
+            case PT: msgbox("Força sozinha não sustenta seis\nconfrontos.\pObserve os tipos antes de atacar e\ntroque antes que a vantagem desapareça.\pSua equipe original já foi\nrestaurada. Tente novamente.", MSGBOX_NPC)
+            case EN: msgbox("Strength alone cannot carry six\nmatchups.\pRead the types before attacking and\nswitch before your advantage is lost.\pYour original party is restored.\nTry again whenever you wish.", MSGBOX_NPC)
+            case ES: msgbox("La fuerza sola no supera seis\nenfrentamientos.\pObserva los tipos antes de atacar y\ncambia antes de perder la ventaja.\pTu equipo original fue restaurado.\nInténtalo de nuevo.", MSGBOX_NPC)
+        }
+    }
+    if (var(VAR_FACING) == DIR_SOUTH) {
+        setobjectmovementtype(LOCALID_QUIZ_MASTER, MOVEMENT_TYPE_FACE_UP)
+    } elif (var(VAR_FACING) == DIR_WEST) {
+        setobjectmovementtype(LOCALID_QUIZ_MASTER, MOVEMENT_TYPE_FACE_RIGHT)
+    } elif (var(VAR_FACING) == DIR_NORTH) {
+        setobjectmovementtype(LOCALID_QUIZ_MASTER, MOVEMENT_TYPE_FACE_DOWN)
+    }
+    release
+    end
+}

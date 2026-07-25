@@ -2,8 +2,7 @@
   "id": "MAP_ROUTE101",
   "name": "Route101",
   "layout": "LAYOUT_ROUTE101",
-  "music": "MUS_ROUTE101",
-  "region": "REGION_HOENN",
+  "music": "MUS_ROUTE1",
   "region_map_section": "MAPSEC_ROUTE_101",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -15,12 +14,12 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_LITTLEROOT_TOWN",
+      "map": "MAP_PINEVEIL_TOWN",
       "offset": -16,
       "direction": "right"
     },
     {
-      "map": "MAP_OLDALE_TOWN",
+      "map": "MAP_SYLVARA_TOWN",
       "offset": 0,
       "direction": "down"
     }
@@ -169,5 +168,6 @@
       "item": "ITEM_LAX_MINT",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_1_LAX_MINT"
     }
-  ]
+  ],
+  "region": "REGION_HOENN"
 }

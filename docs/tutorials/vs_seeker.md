@@ -76,9 +76,9 @@ The trainer's object needs to have a script that begins with a method to signify
 
 #### `trainerbattle`
 ```
-Route103_EventScript_Daisy::
-    trainerbattle_single TRAINER_DAISY, Route103_Text_DaisyIntro, Route103_Text_DaisyDefeated
-    msgbox Route103_Text_DaisyPostBattle, MSGBOX_AUTOCLOSE
+Route3_EventScript_Daisy::
+    trainerbattle_single TRAINER_DAISY, Route3_Text_DaisyIntro, Route3_Text_DaisyDefeated
+    msgbox Route3_Text_DaisyPostBattle, MSGBOX_AUTOCLOSE
     end
 ```
 
@@ -86,17 +86,17 @@ Daisy is using one of the `trainerbattle` macros, which has the trainer battle m
 
 ##### `vsseeker_rematchid`
 ```
-Route102_EventScript_Calvin::
+Route2_EventScript_Calvin::
     vsseeker_rematchid TRAINER_CALVIN_1
     applymovement LOCALID_CALVIN, CalvinMovementTest
     waitmovement 0
-    trainerbattle_single TRAINER_CALVIN_1, Route102_Text_CalvinIntro, Route102_Text_CalvinDefeated, Route102_EventScript_CalvinRegisterMatchCallAfterBattle
+    trainerbattle_single TRAINER_CALVIN_1, Route2_Text_CalvinIntro, Route2_Text_CalvinDefeated, Route2_EventScript_CalvinRegisterMatchCallAfterBattle
     specialvar VAR_RESULT, ShouldTryRematchBattle
-    goto_if_eq VAR_RESULT, TRUE, Route102_EventScript_CalvinRematch
+    goto_if_eq VAR_RESULT, TRUE, Route2_EventScript_CalvinRematch
     setvar VAR_0x8004, TRAINER_CALVIN_1
     specialvar VAR_RESULT, IsTrainerRegistered
-    goto_if_eq VAR_RESULT, FALSE, Route102_EventScript_CalvinTryRegister
-    msgbox Route102_Text_CalvinPostBattle, MSGBOX_DEFAULT
+    goto_if_eq VAR_RESULT, FALSE, Route2_EventScript_CalvinTryRegister
+    msgbox Route2_Text_CalvinPostBattle, MSGBOX_DEFAULT
     release
     end
 ```

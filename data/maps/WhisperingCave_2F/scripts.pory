@@ -1,5 +1,11 @@
 mapscripts WhisperingCave_2F_MapScripts {
-    
+    MAP_SCRIPT_ON_TRANSITION {
+        if (flag(FLAG_GIOVANNI_CAVE_SYMBOL)) {
+            setobjectxyperm(LOCALID_WHISPERING_HIKER, 14, 9)
+            setobjectmovementtype(LOCALID_WHISPERING_HIKER, MOVEMENT_TYPE_FACE_RIGHT)
+        }
+        end
+    }
 }
 
 const ID_GIOVANNI = LOCALID_WHISPERING_GIOVANNI
@@ -23,9 +29,9 @@ script WhisperingCave_2F_EventScript_Giovanni_LookingToSymbol_Trigger {
     waitmovementall
     pause(30)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "O que acha desse desenho?", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "What do you think of this drawing?", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "¿Qué te parece este dibujo?", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Olhe para a parede.\pEssa marca…\nVocê já viu algo parecido?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Look at the wall.\pThat mark…\nHave you ever seen anything like it?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Mira la pared.\pEsa marca…\n¿Has visto algo parecido?", MSGBOX_AUTOCLOSE)
     }
     pause(50)
     applymovement(ID_GIOVANNI, moves(face_left))
@@ -33,9 +39,9 @@ script WhisperingCave_2F_EventScript_Giovanni_LookingToSymbol_Trigger {
     waitmovementall
     pause(20)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Estranho…\pEu já passei por esta caverna\noutras vezes.\pMas nunca tinha reparado nele.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Strange…\pI've passed through this cave\nbefore.\pBut I've never noticed it.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Qué extraño…\pYa había pasado por esta cueva\nantes.\pPero nunca me había fijado en él.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Eu conheço cada curva desta\ncaverna.\pEssa marca não estava aqui antes.\pOu talvez estivesse…\ne não quisesse ser encontrada.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "I know every turn in this cave.\pThat mark wasn't here before.\pOr perhaps it was…\nand didn't want to be found.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Conozco cada rincón de esta cueva.\pEsa marca no estaba aquí antes.\pO quizá sí…\ny no quería ser encontrada.", MSGBOX_AUTOCLOSE)
     }
     pause(30)
     moveplayer(moves(walk_up, face_up))
@@ -45,33 +51,38 @@ script WhisperingCave_2F_EventScript_Giovanni_LookingToSymbol_Trigger {
     moveplayer(moves(emote_question_mark))
     waitse
     pause(20)
+    playse(SE_M_CONFUSE_RAY)
+    pause(24)
+    fadescreen(FADE_TO_WHITE)
     playse(SE_SHINY)
     callnative(CreateCaveSymbol)
-    pause(100)
+    pause(8)
+    fadescreen(FADE_FROM_WHITE)
+    pause(90)
     playse(SE_PIN)
     movenpc(ID_GIOVANNI, moves(emote_exclamation_mark, delay_16, walk_up, face_left))
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Você viu isso?", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Did you see that?", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "¿Viste eso?", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Aquilo não foi um reflexo.\pPor um instante…\npareceu que a caverna olhava de\lvolta para nós.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "That wasn't a reflection.\pFor an instant…\nit felt as though the cave was\llooking back at us.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Eso no fue un reflejo.\pPor un instante…\npareció que la cueva nos devolvía\lla mirada.", MSGBOX_AUTOCLOSE)
     }
     pause(30)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Isso só aconteceu quando você\nchegou.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "That only happened when you\narrived.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Eso solo ocurrió cuando llegaste.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Ela não reagiu quando você chegou.\pEsperou até você ficar diante dela.\pComo se tivesse reconhecido você.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "It didn't react when you arrived.\pIt waited until you stood before it.\pAs if it recognized you.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "No reaccionó cuando llegaste.\pEsperó hasta que te pusiste ante ella.\pComo si te hubiera reconocido.", MSGBOX_AUTOCLOSE)
     }
     pause(20)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interessante…", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interesting…", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Interesante…", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Não…\p“Interessante” não é suficiente.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "No…\p“Interesting” isn't enough.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "No…\p“Interesante” no es suficiente.", MSGBOX_AUTOCLOSE)
     }
     pause(30)
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Agora você me deixou curioso…\pQuem… ou o que é você?\pAcho que terei tempo de sobra para\ndescobrir.\pTenho a sensação de que nossos\ncaminhos ainda vão se cruzar\lmuitas vezes.", MSGBOX_AUTOCLOSE)
-        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Now you've made me curious…\pWho… or what are you?\pI suppose I'll have plenty of time\nto find out.\pI have a feeling our paths will\ncross many more times.", MSGBOX_AUTOCLOSE)
-        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Ahora has despertado mi\ncuriosidad…\p¿Quién… o qué eres?\pSupongo que tendré tiempo de sobra\npara descubrirlo.\pTengo el presentimiento de que\nnuestros caminos volverán a\lcruzarse muchas veces.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Há algo ligado a você que nem esta\npedra consegue esconder.\pAinda não sei o que é.\pMas segredos sempre deixam rastros.\pE eu sou muito bom em segui-los.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Something tied to you cannot be\nhidden even by this stone.\pI don't know what it is yet.\pBut secrets always leave traces.\pAnd I'm very good at following them.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Hay algo ligado a ti que ni esta\npiedra puede ocultar.\pAún no sé qué es.\pPero los secretos siempre dejan\nrastros.\pY soy muy bueno siguiéndolos.", MSGBOX_AUTOCLOSE)
     }
     pause(20)
     movenpc(ID_GIOVANNI, moves(face_up))
@@ -79,6 +90,8 @@ script WhisperingCave_2F_EventScript_Giovanni_LookingToSymbol_Trigger {
     movenpc(ID_GIOVANNI, moves(walk_down * 2, walk_left, walk_down, walk_left * 4, walk_down * 2, delay_16))
     setflag(FLAG_GIOVANNI_CAVE_SYMBOL)
     removeobject(ID_GIOVANNI)
+    setobjectxyperm(LOCALID_WHISPERING_HIKER, 14, 9)
+    turnobject(LOCALID_WHISPERING_HIKER, DIR_EAST)
     setvar(VAR_WHISPERING_CAVE_2F_EVENT, 1)
     updateowe
     release
@@ -156,6 +169,7 @@ script WhisperingCave_2F_EventScript_Hiker_Guard_Way {
     applymovement(LOCALID_PLAYER, moves(jump_2_down))
     waitmovementall
     movenpc(LOCALID_WHISPERING_HIKER, moves(walk_up, walk_left, face_down))
+    setvar(VAR_WHISPERING_CAVE_HIKER_EVENT, 1)
     release
     end
 }
@@ -185,13 +199,18 @@ script WhisperingCave_2F_EventScript_Rare_Bone_Get {
 
 script WhisperingCave_2F_EventScript_Fisherman_Talk {
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Muita gente acha que a Old Rod só\nserve para pescar Magikarp.\pMas um bom Pescador sempre\nencontra surpresas!c", MSGBOX_NPC)
+        case PT: msgbox("Muita gente acha que a Old Rod só\nserve para pescar Magikarp.\pMas um bom Pescador sempre\nencontra surpresas!", MSGBOX_NPC)
         case EN: msgbox("Lots of people think the Old Rod\nonly catches Magikarp.\pBut a skilled Fisher can always\nreel in a surprise!", MSGBOX_NPC)
         case ES: msgbox("Mucha gente cree que la Old Rod\nsolo sirve para pescar Magikarp.\p¡Pero un buen Pescador siempre\nencuentra alguna sorpresa!", MSGBOX_NPC)
     }
     end
 }
 
-script WhisperingCave_2F_EventScript_Hiker_Talk {
-
+script WhisperingCave_2F_EventScript_Cave_Symbol {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Um símbolo misterioso está gravado\nna parede.", MSGBOX_SIGN)
+        case EN: msgbox("A mysterious symbol is carved into\nthe wall.", MSGBOX_SIGN)
+        case ES: msgbox("Un símbolo misterioso está grabado\nen la pared.", MSGBOX_SIGN)
+    }
+    end
 }

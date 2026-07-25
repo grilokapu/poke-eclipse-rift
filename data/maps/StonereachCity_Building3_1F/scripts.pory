@@ -1,0 +1,28 @@
+mapscripts StonereachCity_Building3_1F_MapScripts {}
+
+script StonereachCity_Building3_1F_EventScript_Pokefan {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu SKITTY costumava se esconder\nquando ouvia o sino da cidade.\pAgora ele corre até a janela para\nescutar.\pPokémon também criam lembranças dos\nlugares onde vivem.", MSGBOX_NPC)
+        case EN: msgbox("My SKITTY used to hide whenever it\nheard the city's bell.\pNow it runs to the window to listen.\pPokémon make memories of the places\nthey live in, too.", MSGBOX_NPC)
+        case ES: msgbox("Mi SKITTY se escondía al escuchar la\ncampana de la ciudad.\pAhora corre a la ventana para oírla.\pLos Pokémon también crean recuerdos\nde los lugares donde viven.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Building3_1F_EventScript_LittleGirl {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estou treinando para ser Líder de\nGinásio!\pMinha especialidade será… todos os\ntipos!\pAssim ninguém vai conseguir\nadivinhar minha estratégia!", MSGBOX_NPC)
+        case EN: msgbox("I'm training to become a Gym\nLeader!\pMy specialty will be… every type!\pThat way, nobody will ever guess my\nstrategy!", MSGBOX_NPC)
+        case ES: msgbox("¡Entreno para ser Líder de\nGimnasio!\pMi especialidad será… ¡todos los\ntipos!\p¡Así nadie adivinará mi estrategia!", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Building3_1F_EventScript_OldMan {
+    switch (var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ajudei a erguer alguns dos primeiros\nprédios de STONEREACH.\pTodos pensam que o segredo está na\npedra.\pMas uma parede só permanece de pé\nquando cada peça aprende a sustentar\la outra.", MSGBOX_NPC)
+        case EN: msgbox("I helped raise some of STONEREACH's\nfirst buildings.\pEveryone thinks the secret lies in\nthe stone.\pBut a wall stands only when every\npiece learns to support the next.", MSGBOX_NPC)
+        case ES: msgbox("Ayudé a levantar algunos de los\nprimeros edificios de STONEREACH.\pTodos creen que el secreto está en\nla piedra.\pPero un muro sigue en pie cuando\ncada pieza sostiene a la siguiente.", MSGBOX_NPC)
+    }
+    end
+}

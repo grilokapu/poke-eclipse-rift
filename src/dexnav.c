@@ -53,6 +53,7 @@
 #include "constants/species.h"
 #include "constants/maps.h"
 #include "constants/field_effects.h"
+#include "constants/flags.h"
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "constants/abilities.h"
@@ -1010,7 +1011,8 @@ static void RevealHiddenMon(void)
     }
 
 
-    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+    if (!FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED)
+     && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
     {
         u8 index;
 
@@ -1133,7 +1135,9 @@ static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel)
 {
     bool8 hideName = FALSE;
 
-    if (sDexNavSearchDataPtr->hiddenSearch && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(sDexNavSearchDataPtr->species), FLAG_GET_SEEN))
+    if (sDexNavSearchDataPtr->hiddenSearch
+     && !FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED)
+     && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(sDexNavSearchDataPtr->species), FLAG_GET_SEEN))
         hideName = TRUE;    //if a detector mode hidden search and player hasn't seen the mon, hide info
 
     FillWindowPixelBuffer(sDexNavSearchDataPtr->windowId, PIXEL_FILL(1));   //clear window
@@ -1955,7 +1959,8 @@ static void TryDrawIconInSlot(enum Species species, s16 x, s16 y)
 {
     if (species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
-    else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+    else if (!FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED)
+          && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
         CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
     else
         CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
@@ -1989,7 +1994,7 @@ static void DrawSpeciesIcons(void)
         species = sDexNavUiDataPtr->hiddenSpecies[i];
         x = ROW_HIDDEN_ICON_X + 24 * i;
         y = ROW_HIDDEN_ICON_Y;
-        if (FlagGet(DN_FLAG_DETECTOR_MODE))
+        if (FlagGet(DN_FLAG_DETECTOR_MODE) || FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED))
             TryDrawIconInSlot(species, x, y);
        else if (species == SPECIES_NONE || species > NUM_SPECIES)
             CreateNoDataIcon(x, y);
@@ -2014,7 +2019,7 @@ static enum Species DexNavGetSpecies(void)
         species = sDexNavUiDataPtr->landSpecies[sDexNavUiDataPtr->cursorCol + COL_LAND_COUNT];
         break;
     case ROW_HIDDEN:
-        if (!FlagGet(DN_FLAG_DETECTOR_MODE))
+        if (!FlagGet(DN_FLAG_DETECTOR_MODE) && !FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED))
             species = SPECIES_NONE;
         else
             species = sDexNavUiDataPtr->hiddenSpecies[sDexNavUiDataPtr->cursorCol];
@@ -2023,7 +2028,8 @@ static enum Species DexNavGetSpecies(void)
         return SPECIES_NONE;
     }
 
-    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
+    if (!FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED)
+     && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
         return SPECIES_NONE;
 
     return species;
@@ -2078,7 +2084,8 @@ static void PrintCurrentSpeciesInfo(void)
     enum NationalDexOrder dexNum = SpeciesToNationalPokedexNum(species);
     enum Type type1, type2;
 
-    if (!GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
+    if (!FlagGet(FLAG_DEXNAV_ICONS_UNLOCKED)
+     && !GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
         species = SPECIES_NONE;
 
     // clear windows

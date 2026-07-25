@@ -1157,8 +1157,8 @@ static u32 Debug_GenerateListTrainerMenu(const struct DebugMenuOption *items)
 
 static const u16 sLocationFlags[] =
 {
-    FLAG_VISITED_LITTLEROOT_TOWN,
-    FLAG_VISITED_OLDALE_TOWN,
+    FLAG_VISITED_PINEVEIL_TOWN,
+    FLAG_VISITED_SYLVARA_TOWN,
     FLAG_VISITED_DEWFORD_TOWN,
     FLAG_VISITED_LAVARIDGE_TOWN,
     FLAG_VISITED_FALLARBOR_TOWN,
@@ -1167,7 +1167,7 @@ static const u16 sLocationFlags[] =
     FLAG_VISITED_PETALBURG_CITY,
     FLAG_VISITED_SLATEPORT_CITY,
     FLAG_VISITED_MAUVILLE_CITY,
-    FLAG_VISITED_RUSTBORO_CITY,
+    FLAG_VISITED_STONEREACH_CITY,
     FLAG_VISITED_FORTREE_CITY,
     FLAG_VISITED_LILYCOVE_CITY,
     FLAG_VISITED_MOSSDEEP_CITY,
@@ -4053,7 +4053,7 @@ static void DebugAction_DestroyFollowerNPC(u8 taskId)
 
 
 #define SOUND_LIST_BGM              \
-    X(MUS_LITTLEROOT_TEST)          \
+    X(MUS_PINEVEIL_TEST)          \
     X(MUS_GSC_ROUTE38)              \
     X(MUS_CAUGHT)                   \
     X(MUS_VICTORY_WILD)             \
@@ -4062,11 +4062,11 @@ static void DebugAction_DestroyFollowerNPC(u8 taskId)
     X(MUS_C_COMM_CENTER)            \
     X(MUS_GSC_PEWTER)               \
     X(MUS_C_VS_LEGEND_BEAST)        \
-    X(MUS_ROUTE101)                 \
+    X(MUS_ROUTE1)                 \
     X(MUS_ROUTE110)                 \
     X(MUS_ROUTE120)                 \
     X(MUS_PETALBURG)                \
-    X(MUS_OLDALE)                   \
+    X(MUS_SYLVARA)                   \
     X(MUS_GYM)                      \
     X(MUS_SURF)                     \
     X(MUS_PETALBURG_WOODS)          \
@@ -4102,13 +4102,13 @@ static void DebugAction_DestroyFollowerNPC(u8 taskId)
     X(MUS_LINK_CONTEST_P4)          \
     X(MUS_ENCOUNTER_RICH)           \
     X(MUS_VERDANTURF)               \
-    X(MUS_RUSTBORO)                 \
+    X(MUS_STONEREACH)                 \
     X(MUS_POKE_CENTER)              \
     X(MUS_ROUTE104)                 \
     X(MUS_ROUTE119)                 \
     X(MUS_CYCLING)                  \
     X(MUS_POKE_MART)                \
-    X(MUS_LITTLEROOT)               \
+    X(MUS_PINEVEIL)               \
     X(MUS_MT_CHIMNEY)               \
     X(MUS_ENCOUNTER_FEMALE)         \
     X(MUS_LILYCOVE)                 \

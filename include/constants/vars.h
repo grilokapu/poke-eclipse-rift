@@ -99,8 +99,8 @@
 #define VAR_POKELOT_PRIZE_PLACE                          0x404D
 #define VAR_DW_START_STORY                               0x404E // New added
 #define VAR_LOTAD_SIZE_RECORD                            0x404F
-#define VAR_LITTLEROOT_TOWN_STATE                        0x4050
-#define VAR_OLDALE_TOWN_STATE                            0x4051
+#define VAR_PINEVEIL_TOWN_STATE                        0x4050
+#define VAR_SYLVARA_TOWN_STATE                            0x4051
 #define VAR_LANGUAGE                                     0x4052 // New Added
 #define VAR_LAVARIDGE_TOWN_STATE                         0x4053
 #define VAR_CURRENT_SECRET_BASE                          0x4054 // was probably allocated for VAR_FALLARBOR_TOWN_STATE at one point
@@ -109,7 +109,7 @@
 #define VAR_PETALBURG_CITY_STATE                         0x4057
 #define VAR_SLATEPORT_CITY_STATE                         0x4058
 #define VAR_PLAYER_ROOM_2F_TILE                          0x4059 //News Added
-#define VAR_RUSTBORO_CITY_STATE                          0x405A
+#define VAR_STONEREACH_CITY_STATE                          0x405A
 #define VAR_PLAYERFACING_ROOM                            0x405B // New Added Var
 #define VAR_PLAYER_MOM_HOUSE_STATE                       0x405C // New Added Var
 #define VAR_MOSSDEEP_CITY_STATE                          0x405D
@@ -125,10 +125,10 @@
 #define VAR_RIVAL_HOUSE_STATE                            0x4067 // New Added Var
 #define VAR_ROUTE1_HIKARI_EVENT                          0x4068 // New Added Var
 #define VAR_ROUTE110_STATE                               0x4069
-#define VAR_ROUTE111_STATE                               0x406A // Unused Var
-#define VAR_ROUTE2_MEETING_GIOVANNI_STATE                0x406B // Unused Var
-#define VAR_WHISPERING_CAVE_2F_EVENT                     0x406C // Unused Var
-#define VAR_ROUTE114_STATE                               0x406D // Unused Var
+#define VAR_ROUTE111_STATE                               0x406A // New Added Var
+#define VAR_ROUTE2_MEETING_GIOVANNI_STATE                0x406B // New Added Var
+#define VAR_WHISPERING_CAVE_2F_EVENT                     0x406C // New Added Var
+#define VAR_WHISPERING_CAVE_HIKER_EVENT                  0x406D // Hiker ledge event
 #define VAR_ROUTE115_STATE                               0x406E // Unused Var
 #define VAR_ROUTE116_STATE                               0x406F
 #define VAR_ROUTE117_STATE                               0x4070 // Unused Var
@@ -149,7 +149,7 @@
 #define VAR_ROUTE132_STATE                               0x407F // Unused Var
 #define VAR_ROUTE133_STATE                               0x4080 // Unused Var
 #define VAR_ROUTE134_STATE                               0x4081 // Unused Var
-#define VAR_LITTLEROOT_HOUSES_STATE_MAY                  0x4082
+#define VAR_PINEVEIL_HOUSES_STATE_MAY                  0x4082
 #define VAR_UNUSED_0x4083                                0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE                              0x4084
 #define VAR_PETALBURG_GYM_STATE                          0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman
@@ -159,13 +159,13 @@
 #define VAR_SECRET_BASE_INITIALIZED                      0x4089
 #define VAR_CONTEST_PRIZE_PICKUP                         0x408A
 #define VAR_UNUSED_0x408B                                0x408B // Unused Var
-#define VAR_LITTLEROOT_HOUSES_STATE_BRENDAN              0x408C
-#define VAR_LITTLEROOT_RIVAL_STATE                       0x408D
+#define VAR_PINEVEIL_HOUSES_STATE_BRENDAN              0x408C
+#define VAR_PINEVEIL_RIVAL_STATE                       0x408D
 #define VAR_BOARD_BRINEY_BOAT_STATE                      0x408E
 #define VAR_DEVON_CORP_3F_STATE                          0x408F
 #define VAR_BRINEY_HOUSE_STATE                           0x4090
 #define VAR_UNUSED_0x4091                                0x4091 // Unused Var
-#define VAR_LITTLEROOT_INTRO_STATE                       0x4092
+#define VAR_PINEVEIL_INTRO_STATE                       0x4092
 #define VAR_MAUVILLE_GYM_STATE                           0x4093
 #define VAR_LILYCOVE_MUSEUM_2F_STATE                     0x4094
 #define VAR_LILYCOVE_FAN_CLUB_STATE                      0x4095
@@ -218,7 +218,7 @@
 #define VAR_FOSSIL_RESURRECTION_STATE                    0x40C4
 #define VAR_WHICH_FOSSIL_REVIVED                         0x40C5
 #define VAR_STEVENS_HOUSE_STATE                          0x40C6
-#define VAR_OLDALE_RIVAL_STATE                           0x40C7
+#define VAR_SYLVARA_RIVAL_STATE                           0x40C7
 #define VAR_JAGGED_PASS_STATE                            0x40C8
 #define VAR_SCOTT_PETALBURG_ENCOUNTER                    0x40C9
 #define VAR_SKY_PILLAR_STATE                             0x40CA

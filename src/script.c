@@ -802,10 +802,10 @@ void GetMapTVScript(void)
 {
     gSpecialVar_Result = 0;
 
-    if (MAP_IS(MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F)) {
+    if (MAP_IS(MAP_PINEVEIL_TOWN_MAYS_HOUSE_1F)) {
         gSpecialVar_Result = 1;
     }
-    else if (MAP_IS(MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F)) {
+    else if (MAP_IS(MAP_PINEVEIL_TOWN_BRENDANS_HOUSE_1F)) {
         gSpecialVar_Result = 2;
     }
 }
@@ -882,9 +882,11 @@ static const struct SpriteTemplate sSparkleTemplate =
 static void SpriteCB_Sparkle(struct Sprite *sprite)
 {
     if (sprite->animEnded)
+    {
+        FreeSpritePaletteByTag(12);
+        FreeSpriteTilesByTag(12);
         DestroySprite(sprite);
-    FreeSpritePaletteByTag(12);
-    FreeSpriteTilesByTag(12);
+    }
 }
 
 void CreateStarterSparkle(u8 localId)
@@ -992,7 +994,7 @@ void CreateWaterStarterEventObject(void)
 
 void ShowMonInsidePokeball(void)
 {
-    u16 map = MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB;
+    u16 map = MAP_PINEVEIL_TOWN_PROFESSOR_BIRCHS_LAB;
 
     RemoveObjectEventByLocalIdAndMap(LOCALID_LAB_BALL_1, MAP_NUM(map), MAP_GROUP(map));
     RemoveObjectEventByLocalIdAndMap(LOCALID_LAB_BALL_2, MAP_NUM(map), MAP_GROUP(map));
@@ -1014,7 +1016,7 @@ void ShowMonInsidePokeball(void)
 
 bool8 ShowMonMugshot(u16 species, u8 position)
 {
-    struct Pokemon* mon = &gPlayerParty[0];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
     bool8 isShiny = IsMonShiny(mon);
     u8 spriteId;
     u8 taskId;
@@ -1043,6 +1045,10 @@ bool8 ShowMonMugshot(u16 species, u8 position)
             spriteId = CreateMonSprite_PicBox2(species, TRUE, 8 * x + 40, 8 * y + 40, 0);
         else
             spriteId = CreateMonSprite_PicBox2(species, FALSE, 8 * x + 40, 8 * y + 40, 0);
+
+        if (spriteId == MAX_SPRITES)
+            return FALSE;
+
         taskId = CreateTask(Task_PokemonPicWindow, 80);
 
         gTasks[taskId].tState = 0;
@@ -1070,9 +1076,7 @@ void RemoveMonMugshot(void)
             struct Sprite *sprite = &gSprites[spriteId];
 
             FreeSpriteOamMatrix(sprite);
-            DestroySprite(sprite);
-            FreeSpriteTiles(sprite);
-            FreeSpritePalette(sprite);
+            FreeAndDestroyMonPicSprite(spriteId);
         }
         DestroyTask(taskId);
     }
@@ -1128,11 +1132,13 @@ void SpriteCB_ShakePokemonPic(struct Sprite *sprite)
 u8 CreateMonSprite_PicBox2(u16 species, bool8 isShiny, s16 x, s16 y, u8 subpriority)
 {
     s32 spriteId = CreateMonPicSprite(species, isShiny, 0x8000, TRUE, x, y, 0, species);
-    PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
+
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
-    else
-        return spriteId;
+
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(species) + 0x10);
+    gSprites[spriteId].subpriority = subpriority;
+    return spriteId;
 }
 
 const u8 gText_TypeGrass[] = _("Grass-Type");
@@ -1286,7 +1292,7 @@ void CreateMagnectPortal(void)
 }
 
 static const u16 gSprite_PlayerBrightMGfx[] = INCBIN_U16("graphics/field_effects/pics/player_bright_m.4bpp");
-static const u16 gSprite_PlayerBrightPal[] = INCBIN_U16("graphics/field_effects/pics/magnect_portal.gbapal");
+static const u16 gSprite_PlayerBrightPal[] = INCBIN_U16("graphics/field_effects/pics/player_bright_m.gbapal");
 static const u16 gSprite_PlayerBrightFGfx[] = INCBIN_U16("graphics/field_effects/pics/player_bright_f.4bpp");
 
 static const struct SpriteSheet sPlayerBrightMTileData =
@@ -1555,7 +1561,7 @@ void MissorMisterString(void)
 
 void GetFirstPartyMonGraphicsId(void)
 {
-    struct Pokemon *mon = &gPlayerParty[0];
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
 
     gSpecialVar_0x8000 = GetMonData(mon, MON_DATA_SPECIES) + OBJ_EVENT_MON;
 

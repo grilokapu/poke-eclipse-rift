@@ -1,0 +1,113 @@
+mapscripts StonereachCity_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        if (var(VAR_STONEREACH_CITY_STATE) >= 1) {
+            setobjectxyperm(LOCALID_STONEREACH_GYM_GUARDIAN, 40, 36)
+            setobjectmovementtype(LOCALID_STONEREACH_GYM_GUARDIAN, MOVEMENT_TYPE_FACE_DOWN)
+        }
+        end
+    }
+}
+
+script StonereachCity_Gentleman_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("STONEREACH cresceu entre pedras e\nmentes brilhantes.\pAlguns veem apenas uma cidade de\nrocha…\pEu vejo pessoas capazes de\ntransformar pedra em progresso.", MSGBOX_NPC)
+        case EN: msgbox("STONEREACH grew between stone and\nbrilliant minds.\pSome see only a city of rock…\pI see people capable of turning\nstone into progress.", MSGBOX_NPC)
+        case ES: msgbox("STONEREACH creció entre piedras y\nmentes brillantes.\pAlgunos solo ven una ciudad de\nroca…\pYo veo personas capaces de\nconvertir la piedra en progreso.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_FatMan_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estas ladeiras são um ótimo treino!\pSubo uma, descanso… subo outra,\ndescanso de novo…\pPensando bem, acho que estou\ntreinando mais o descanso.", MSGBOX_NPC)
+        case EN: msgbox("These slopes make great exercise!\pI climb one, take a rest… climb\nanother, then rest again…\pCome to think of it, I may be\ntraining my resting skills.", MSGBOX_NPC)
+        case ES: msgbox("¡Estas cuestas son un gran ejercicio!\pSubo una, descanso… subo otra y\nvuelvo a descansar…\pAhora que lo pienso, quizá estoy\nentrenando más el descanso.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Girl_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("À noite, as luzes de STONEREACH\nbrilham sobre as paredes de pedra.\pDe longe, parece que a própria\nmontanha abriu os olhos.", MSGBOX_NPC)
+        case EN: msgbox("At night, STONEREACH's lights glow\nagainst the stone walls.\pFrom far away, it looks as though\nthe mountain itself opened its eyes.", MSGBOX_NPC)
+        case ES: msgbox("Por la noche, las luces de\nSTONEREACH brillan sobre la piedra.\pDesde lejos, parece que la propia\nmontaña abrió los ojos.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Youngster_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ouvi dizer que Pokémon do tipo\nPedra são lentos.\pEntão desafiei um para uma corrida…\pEle não correu, mas eu tropecei\nnele. Acho que ele venceu.", MSGBOX_NPC)
+        case EN: msgbox("I heard Rock-type Pokémon are slow.\pSo I challenged one to a race…\pIt never ran, but I tripped over\nit. I guess it won.", MSGBOX_NPC)
+        case ES: msgbox("Oí que los Pokémon de tipo Roca\nson lentos.\pAsí que desafié a uno a una carrera…\pNo corrió, pero tropecé con él.\nSupongo que ganó.", MSGBOX_NPC)
+    }
+    end
+}
+
+const STONEREACH_ENTRY_PLAYER_X = VAR_0x8004
+
+script StonereachCity_GymGuardian_EntranceTrigger {
+    lockall
+    playse(SE_PIN)
+    movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(emote_exclamation_mark))
+    pause(50)
+    getplayerxy(STONEREACH_ENTRY_PLAYER_X, VAR_0x8005)
+    switch(var(STONEREACH_ENTRY_PLAYER_X)) {
+        case 38:
+            movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_up * 2, walk_left, face_up))
+        case 39:
+            movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_up * 2, face_up))
+        case 40:
+            movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_up * 2, walk_right, face_up))
+        case 41:
+            movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_up * 2, walk_right * 2, face_up))
+    }
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Bem-vindo a Stonereach City!\pSe veio desafiar o Ginásio, terá\nque esperar um pouco.\pO Líder está ajudando a Professora\nHikari no museu.")
+        case EN: msgbox("Welcome to Stonereach City!\pIf you came to challenge the Gym,\nyou'll have to wait a little while.\pThe Leader is helping Professor\nHikari at the museum.")
+        case ES: msgbox("¡Bienvenido a Ciudad Stonereach!\pSi vienes a desafiar el Gimnasio,\ntendrás que esperar un poco.\pEl Líder está ayudando a la\nProfesora Hikari en el museo.")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Vou esperar em frente ao Ginásio.\pEnquanto isso, fique à vontade para\nexplorar a cidade.\pSTONEREACH tem muito mais a oferecer\ndo que batalhas de Ginásio!\pQuando o Líder voltar, serei o\nprimeiro a saber.")
+        case EN: msgbox("I'll wait in front of the Gym.\pIn the meantime, feel free to\nexplore the city.\pSTONEREACH has much more to offer\nthan Gym battles!\pWhen the Leader returns, I'll be\nthe first to know.")
+        case ES: msgbox("Esperaré frente al Gimnasio.\pMientras tanto, siéntete libre de\nexplorar la ciudad.\p¡STONEREACH ofrece mucho más que\ncombates de Gimnasio!\pCuando vuelva el Líder, seré el\nprimero en saberlo.")
+    }
+    closemessage
+    playse(SE_PIN)
+    movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(emoji_smiley))
+    pause(20)
+    movenpc(LOCALID_STONEREACH_GYM_GUARDIAN, moves(face_down))
+    special(SpawnCameraObject)
+    switch(var(STONEREACH_ENTRY_PLAYER_X)) {
+        case 38:
+            applymovement(LOCALID_CAMERA, moves(walk_fast_down * 3, walk_fast_right * 8, walk_fast_down * 11, walk_fast_left * 2, walk_fast_down * 11))
+            applymovement(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_fast_right * 8, walk_fast_down * 13, walk_fast_left * 2, walk_fast_down * 13, walk_fast_left * 4, face_down))
+        case 39:
+            applymovement(LOCALID_CAMERA, moves(walk_fast_down * 3, walk_fast_right * 7, walk_fast_down * 11, walk_fast_left * 2, walk_fast_down * 11))
+            applymovement(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_fast_right * 7, walk_fast_down * 13, walk_fast_left * 2, walk_fast_down * 13, walk_fast_left * 4, face_down))
+        case 40:
+            applymovement(LOCALID_CAMERA, moves(walk_fast_down * 3, walk_fast_right * 6, walk_fast_down * 11, walk_fast_left * 2, walk_fast_down * 11))
+            applymovement(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_fast_right * 6, walk_fast_down * 13, walk_fast_left * 2, walk_fast_down * 13, walk_fast_left * 4, face_down))
+        case 41:
+            applymovement(LOCALID_CAMERA, moves(walk_fast_down * 3, walk_fast_right * 5, walk_fast_down * 11, walk_fast_left * 2, walk_fast_down * 11))
+            applymovement(LOCALID_STONEREACH_GYM_GUARDIAN, moves(walk_fast_right * 5, walk_fast_down * 13, walk_fast_left * 2, walk_fast_down * 13, walk_fast_left * 4, face_down))
+    }
+    waitmovementall
+    setobjectxyperm(LOCALID_STONEREACH_GYM_GUARDIAN, 40, 36)
+    setobjectmovementtype(LOCALID_STONEREACH_GYM_GUARDIAN, MOVEMENT_TYPE_FACE_DOWN)
+    setvar(VAR_STONEREACH_CITY_STATE, 1)
+    special(RemoveCameraObject)
+    warpsilent(MAP_STONEREACH_CITY, STONEREACH_ENTRY_PLAYER_X, VAR_0x8005)
+    waitstate
+    end
+}
+
+script StonereachCity_GymGuardian_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O Líder ainda não voltou do museu.\pA Professora Hikari deve ter\nencontrado algo que exige toda a\latenção dele.\pAssim que ele retornar, o Ginásio\nvoltará a receber desafiantes.", MSGBOX_NPC)
+        case EN: msgbox("The Leader still hasn't returned\nfrom the museum.\pProfessor Hikari must have found\nsomething requiring his full\lattention.\pThe Gym will welcome challengers\nagain as soon as he returns.", MSGBOX_NPC)
+        case ES: msgbox("El Líder aún no ha regresado del\nmuseo.\pLa Profesora Hikari debe haber\nencontrado algo que requiere toda\lsu atención.\pEl Gimnasio recibirá retadores de\nnuevo en cuanto vuelva.", MSGBOX_NPC)
+    }
+    end
+}

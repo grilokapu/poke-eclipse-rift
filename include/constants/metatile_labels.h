@@ -479,9 +479,9 @@
 #define METATILE_PalletTown_OaksLabDoor  0x2AC
 
 // gTileset_Petalburg
-#define METATILE_Petalburg_Door_BirchsLab   0x249
-#define METATILE_Petalburg_Door_Littleroot  0x248
-#define METATILE_Petalburg_Door_Oldale      0x287
+#define METATILE_Petalburg_Door_BirchsLab  0x249
+#define METATILE_Petalburg_Door_Pineveil   0x248
+#define METATILE_Petalburg_Door_Sylvara    0x287
 
 // gTileset_PetalburgGym
 #define METATILE_PetalburgGym_Door                0x224
@@ -597,10 +597,6 @@
 #define METATILE_PokemonMansion_Wall_EndCap_Basement                     0x2B0
 #define METATILE_PokemonMansion_Wall_EndPost_Bottom                      0x2AD
 #define METATILE_PokemonMansion_Wall_EndPost_Mid                         0x2A5
-
-// gTileset_Rustboro
-#define METATILE_Rustboro_Door_Gray  0x21F
-#define METATILE_Rustboro_Door_Tan   0x22F
 
 // gTileset_SSAnne
 #define METATILE_SSAnne_Door  0x281
@@ -978,6 +974,10 @@
 #define METATILE_SootopolisGym_Ice_Broken   0x206
 #define METATILE_SootopolisGym_Ice_Cracked  0x20E
 #define METATILE_SootopolisGym_Stairs       0x207
+
+// gTileset_Stonereach
+#define METATILE_Stonereach_Door_Gray  0x21F
+#define METATILE_Stonereach_Door_Tan   0x22F
 
 // gTileset_TrainerHill
 #define METATILE_TrainerHill_CounterDoor          0x334

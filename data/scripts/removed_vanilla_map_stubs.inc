@@ -1,0 +1,14 @@
+@ Compatibility symbols for shared code that still references removed Trick House maps.
+
+Route110_TrickHousePuzzle5_Movement_MechadollShake::
+	step_end
+
+Route110_TrickHousePuzzle1_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle2_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle3_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle4_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle5_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle6_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle7_Text_WroteSecretCodeLockOpened::
+Route110_TrickHousePuzzle8_Text_WroteSecretCodeLockOpened::
+	.string "$"

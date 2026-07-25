@@ -127,6 +127,65 @@ static EWRAM_DATA u8 sCurrentReflectionType = 0;
 static EWRAM_DATA u16 sCurrentSpecialObjectPaletteTag = 0;
 static EWRAM_DATA struct LockedAnimObjectEvents *sLockedAnimObjectEvents = {0};
 
+#define QUEST_ICON_SHEET_TAG 0xEC01
+
+#define sQuestLocalId  data[0]
+#define sQuestMapNum   data[1]
+#define sQuestMapGroup data[2]
+
+static const u8 sQuestExclamationMarkGfx[] = INCBIN_U8("graphics/field_effects/pics/quest_exclamation_mark.4bpp");
+
+static const struct SpriteSheet sQuestExclamationMarkSpriteSheet =
+{
+    .data = sQuestExclamationMarkGfx,
+    .size = sizeof(sQuestExclamationMarkGfx),
+    .tag = QUEST_ICON_SHEET_TAG,
+};
+
+static const struct OamData sQuestExclamationMarkOam =
+{
+    .y = 0,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = FALSE,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(16x32),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(16x32),
+    .tileNum = 0,
+    .priority = 1,
+    .paletteNum = 0,
+    .affineParam = 0,
+};
+
+static const union AnimCmd sQuestExclamationMarkAnim[] =
+{
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(8, 10),
+    ANIMCMD_FRAME(16, 10),
+    ANIMCMD_FRAME(8, 10),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd *const sQuestExclamationMarkAnims[] =
+{
+    sQuestExclamationMarkAnim,
+};
+
+static void SpriteCB_QuestExclamationMark(struct Sprite *sprite);
+
+static const struct SpriteTemplate sQuestExclamationMarkSpriteTemplate =
+{
+    .tileTag = QUEST_ICON_SHEET_TAG,
+    .paletteTag = OBJ_EVENT_PAL_TAG_WOMAN_2,
+    .oam = &sQuestExclamationMarkOam,
+    .anims = sQuestExclamationMarkAnims,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_QuestExclamationMark,
+};
+
 static void MoveCoordsInDirection(u32, s16 *, s16 *, s16, s16);
 static bool8 ObjectEventExecSingleMovementAction(struct ObjectEvent *, struct Sprite *);
 static bool32 UpdateMonMoveInPlace(struct ObjectEvent *, struct Sprite *);
@@ -349,6 +408,10 @@ static void (*const sMovementTypeCallbacks[])(struct Sprite *) =
     [MOVEMENT_TYPE_WATCH_PLAYER_OWE] = MovementType_OverworldWildEncounter_WatchPlayer,
     [MOVEMENT_TYPE_APPROACH_PLAYER_OWE] = MovementType_OverworldWildEncounter_ApproachPlayer,
     [MOVEMENT_TYPE_DESPAWN_OWE] = MovementType_OverworldWildEncounter_Despawn,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_DOWN] = MovementType_QuestIcon,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_UP] = MovementType_QuestIcon,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_LEFT] = MovementType_QuestIcon,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_RIGHT] = MovementType_QuestIcon,
 };
 
 static const bool8 sMovementTypeHasRange[NUM_MOVEMENT_TYPES] = {
@@ -407,6 +470,10 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
     [MOVEMENT_TYPE_FACE_DOWN] = DIR_SOUTH,
     [MOVEMENT_TYPE_FACE_LEFT] = DIR_WEST,
     [MOVEMENT_TYPE_FACE_RIGHT] = DIR_EAST,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_DOWN] = DIR_SOUTH,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_UP] = DIR_NORTH,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_LEFT] = DIR_WEST,
+    [MOVEMENT_TYPE_QUEST_ICON_FACE_RIGHT] = DIR_EAST,
     [MOVEMENT_TYPE_PLAYER] = DIR_SOUTH,
     [MOVEMENT_TYPE_BERRY_TREE_GROWTH] = DIR_SOUTH,
     [MOVEMENT_TYPE_FACE_DOWN_AND_UP] = DIR_SOUTH,
@@ -496,6 +563,10 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #include "data/object_events/object_event_graphics_info_followers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
+    {gObjectEventPal_OldMan,                OBJ_EVENT_PAL_TAG_OLDMAN},
+    {gObjectEventPal_ExpertF,               OBJ_EVENT_PAL_TAG_EXPERT_F},
+    {gObjectEventPal_ExpertM,               OBJ_EVENT_PAL_TAG_EXPERT_M},
+    {gObjectEventPal_Man2,                  OBJ_EVENT_PAL_TAG_MAN_2},
     {gObjectEventPal_Npc1,                  OBJ_EVENT_PAL_TAG_NPC_1},
     {gObjectEventPal_Npc2,                  OBJ_EVENT_PAL_TAG_NPC_2},
     {gObjectEventPal_Npc3,                  OBJ_EVENT_PAL_TAG_NPC_3},
@@ -2671,7 +2742,7 @@ void GetFollowerAction(struct ScriptContext *ctx) // Essentially a big switch fo
     {
         switch (gMapHeader.regionMapSectionId)
         {
-        case MAPSEC_RUSTBORO_CITY:
+        case MAPSEC_STONEREACH_CITY:
         case MAPSEC_PEWTER_CITY:
             multi = TYPE_ROCK;
             break;
@@ -4379,6 +4450,96 @@ bool8 MovementType_WanderLeftAndRight_Step6(struct ObjectEvent *objectEvent, str
 }
 
 movement_type_def(MovementType_FaceDirection, gMovementTypeFuncs_FaceDirection)
+
+static bool32 IsQuestIconMovementType(u8 movementType)
+{
+    return movementType >= MOVEMENT_TYPE_QUEST_ICON_FACE_DOWN
+        && movementType <= MOVEMENT_TYPE_QUEST_ICON_FACE_RIGHT;
+}
+
+static bool32 QuestIconAlreadyExists(const struct ObjectEvent *objectEvent)
+{
+    u32 i;
+
+    for (i = 0; i < MAX_SPRITES; i++)
+    {
+        const struct Sprite *sprite = &gSprites[i];
+
+        if (sprite->inUse
+         && sprite->callback == SpriteCB_QuestExclamationMark
+         && sprite->sQuestLocalId == objectEvent->localId
+         && sprite->sQuestMapNum == objectEvent->mapNum
+         && sprite->sQuestMapGroup == objectEvent->mapGroup)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+static void TryCreateQuestExclamationMark(const struct ObjectEvent *objectEvent)
+{
+    u8 spriteId;
+    const struct Sprite *objectSprite;
+
+    if (QuestIconAlreadyExists(objectEvent))
+        return;
+
+    LoadSpriteSheet(&sQuestExclamationMarkSpriteSheet);
+    LoadObjectEventPalette(OBJ_EVENT_PAL_TAG_WOMAN_2);
+
+    objectSprite = &gSprites[objectEvent->spriteId];
+    spriteId = CreateSprite(
+        &sQuestExclamationMarkSpriteTemplate,
+        objectSprite->x,
+        objectSprite->y - 24,
+        objectSprite->subpriority + 1);
+
+    if (spriteId != MAX_SPRITES)
+    {
+        struct Sprite *sprite = &gSprites[spriteId];
+
+        sprite->coordOffsetEnabled = TRUE;
+        sprite->sQuestLocalId = objectEvent->localId;
+        sprite->sQuestMapNum = objectEvent->mapNum;
+        sprite->sQuestMapGroup = objectEvent->mapGroup;
+        StartSpriteAnim(sprite, 0);
+    }
+}
+
+static void SpriteCB_QuestExclamationMark(struct Sprite *sprite)
+{
+    u8 objectEventId;
+
+    if (TryGetObjectEventIdByLocalIdAndMap(
+            sprite->sQuestLocalId,
+            sprite->sQuestMapNum,
+            sprite->sQuestMapGroup,
+            &objectEventId)
+     || !IsQuestIconMovementType(gObjectEvents[objectEventId].movementType))
+    {
+        DestroySprite(sprite);
+        return;
+    }
+
+    {
+        const struct ObjectEvent *objectEvent = &gObjectEvents[objectEventId];
+        const struct Sprite *objectSprite = &gSprites[objectEvent->spriteId];
+
+        sprite->x = objectSprite->x;
+        sprite->y = objectSprite->y - 24;
+        sprite->x2 = objectSprite->x2;
+        sprite->y2 = objectSprite->y2;
+        sprite->subpriority = objectSprite->subpriority + 1;
+        sprite->invisible = objectEvent->invisible || objectEvent->offScreen || objectSprite->invisible;
+    }
+}
+
+void MovementType_QuestIcon(struct Sprite *sprite)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[sprite->sObjEventId];
+
+    TryCreateQuestExclamationMark(objectEvent);
+    MovementType_FaceDirection(sprite);
+}
 
 bool8 MovementType_FaceDirection_Step0(struct ObjectEvent *objectEvent, struct Sprite *sprite)
 {

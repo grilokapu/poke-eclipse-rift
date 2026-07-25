@@ -1,7 +1,7 @@
 {
   "map_sections": [
     {
-      "id": "MAPSEC_LITTLEROOT_TOWN",
+      "id": "MAPSEC_PINEVEIL_TOWN",
       "name": "Pineveil Town",
       "x": 4,
       "y": 11,
@@ -11,7 +11,7 @@
       "namePt": "Vila Pineveil"
     },
     {
-      "id": "MAPSEC_OLDALE_TOWN",
+      "id": "MAPSEC_SYLVARA_TOWN",
       "name": "Sylvara Town",
       "x": 4,
       "y": 9,
@@ -85,7 +85,7 @@
       "height": 1
     },
     {
-      "id": "MAPSEC_RUSTBORO_CITY",
+      "id": "MAPSEC_STONEREACH_CITY",
       "name": "Stonereach City",
       "x": 0,
       "y": 5,

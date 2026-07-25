@@ -52,15 +52,15 @@ const struct Tileset gTileset_Petalburg =
     .callback = InitTilesetAnim_Petalburg,
 };
 
-const struct Tileset gTileset_Rustboro =
+const struct Tileset gTileset_Stonereach =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
-    .tiles = gTilesetTiles_Rustboro,
-    .palettes = gTilesetPalettes_Rustboro,
-    .metatiles = gMetatiles_Rustboro,
-    .metatileAttributes = gMetatileAttributes_Rustboro,
-    .callback = InitTilesetAnim_Rustboro,
+    .tiles = gTilesetTiles_Stonereach,
+    .palettes = gTilesetPalettes_Stonereach,
+    .metatiles = gMetatiles_Stonereach,
+    .metatileAttributes = gMetatileAttributes_Stonereach,
+    .callback = InitTilesetAnim_Stonereach,
 };
 
 const struct Tileset gTileset_Dewford =
@@ -558,14 +558,14 @@ const struct Tileset gTileset_MauvilleGameCorner =
     .callback = NULL,
 };
 
-const struct Tileset gTileset_RustboroGym =
+const struct Tileset gTileset_StonereachGym =
 {
     .isCompressed = TRUE,
     .isSecondary = TRUE,
-    .tiles = gTilesetTiles_RustboroGym,
-    .palettes = gTilesetPalettes_RustboroGym,
-    .metatiles = gMetatiles_RustboroGym,
-    .metatileAttributes = gMetatileAttributes_RustboroGym,
+    .tiles = gTilesetTiles_StonereachGym,
+    .palettes = gTilesetPalettes_StonereachGym,
+    .metatiles = gMetatiles_StonereachGym,
+    .metatileAttributes = gMetatileAttributes_StonereachGym,
     .callback = NULL,
 };
 
