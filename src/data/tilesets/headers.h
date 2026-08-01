@@ -1552,3 +1552,14 @@ const struct Tileset gTileset_HallOfFame =
 };
 
 #endif // IS_FRLG
+
+const struct Tileset gTileset_Stonereach_Museum =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Stonereach_Museum,
+    .palettes = gTilesetPalettes_Stonereach_Museum,
+    .metatiles = gMetatiles_Stonereach_Museum,
+    .metatileAttributes = gMetatileAttributes_Stonereach_Museum,
+    .callback = NULL,
+};

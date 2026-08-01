@@ -412,3 +412,6 @@ const u16 gMetatiles_HallOfFame[] = INCBIN_U16("data/tilesets/secondary/hall_of_
 const u16 gMetatileAttributes_HallOfFame[] = INCBIN_U16("data/tilesets/secondary/hall_of_fame_frlg/metatile_attributes.bin");
 
 #endif // IS_FRLG
+
+const u16 gMetatiles_Stonereach_Museum[] = INCBIN_U16("data/tilesets/secondary/stonereach_museum/metatiles.bin");
+const u16 gMetatileAttributes_Stonereach_Museum[] = INCBIN_U16("data/tilesets/secondary/stonereach_museum/metatile_attributes.bin");

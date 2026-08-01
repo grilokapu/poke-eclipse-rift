@@ -984,3 +984,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/StonereachCity_Building3_2F/scripts.inc"
 	.include "data/maps/StonereachCity_Building4_1F/scripts.inc"
 	.include "data/maps/StonereachCity_Building4_2F/scripts.inc"
+
+	.include "data/maps/StonereachCity_Museum/scripts.inc"

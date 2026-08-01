@@ -298,6 +298,16 @@
       "secondary_tileset": "gTileset_GenericBuilding",
       "border_filepath": "data/layouts/StonereachBuilding_2F/border.bin",
       "blockdata_filepath": "data/layouts/StonereachBuilding_2F/map.bin"
+    },
+    {
+      "id": "LAYOUT_STONEREACH_CITY_MUSEUM",
+      "name": "StonereachCity_Museum_Layout",
+      "width": 42,
+      "height": 36,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_Stonereach_Museum",
+      "border_filepath": "data/layouts/StonereachCity_Museum/border.bin",
+      "blockdata_filepath": "data/layouts/StonereachCity_Museum/map.bin"
     }
   ]
 }
