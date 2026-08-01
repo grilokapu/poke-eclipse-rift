@@ -3390,9 +3390,6 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .descricao = COMPOUND_STRING("Invoca luz solar em batalha."),
         .descripcion = COMPOUND_STRING("Invoca luz solar en batalla."),
         .aiRating = 8,
-        .cantBeSwapped = TRUE,
-        .cantBeCopied = TRUE,
-        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_HADRON_ENGINE] =
@@ -3404,9 +3401,6 @@ const struct AbilityInfo gAbilitiesInfo[ABILITIES_COUNT] =
         .descricao = COMPOUND_STRING("Terreno se torna Eletrico."),
         .descripcion = COMPOUND_STRING("El terreno se vuelve Eléctrico."),
         .aiRating = 8,
-        .cantBeSwapped = TRUE,
-        .cantBeCopied = TRUE,
-        .cantBeOverwritten = TRUE,
     },
 
     [ABILITY_OPPORTUNIST] =
