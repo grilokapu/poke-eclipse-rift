@@ -642,3 +642,4 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special StonereachQuiz_PrepareParty
 	def_special StonereachQuiz_Finish
+	def_special ShowHisuiMap, waitstate=1

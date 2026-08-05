@@ -1,1 +1,323 @@
 mapscripts StonereachCity_Museum_MapScripts {}
+
+const MUSEUM_PLAYER_X = VAR_0x8004
+
+script StonereachCity_Museum_EntranceTrigger {
+    if (flag(FLAG_STONEREACH_MUSEUM_ADMISSION_PAID)) {
+        end
+    }
+    lockall
+    playse(SE_PIN)
+    movenpc(LOCALID_MUSEUM_DOORMAN, moves(emote_exclamation_mark))
+    waitse
+    getplayerxy(MUSEUM_PLAYER_X, VAR_0x8005)
+    switch(var(MUSEUM_PLAYER_X)) {
+        case 18: moveplayer(moves(walk_right * 4, face_right))
+        case 19: moveplayer(moves(walk_right * 3, face_right))
+        case 20: moveplayer(moves(walk_right * 2, face_right))
+        case 21: moveplayer(moves(walk_right, face_right))
+        case 22: moveplayer(moves(face_right))
+    }
+    call(StonereachCity_Museum_Admission)
+    if (!flag(FLAG_STONEREACH_MUSEUM_ADMISSION_PAID)) {
+        moveplayer(moves(walk_down, face_up))
+    }
+    releaseall
+    end
+}
+
+script StonereachCity_Museum_Doorman_Talk {
+    lock
+    faceplayer
+    call(StonereachCity_Museum_Admission)
+    release
+    end
+}
+
+script StonereachCity_Museum_Admission {
+    if (flag(FLAG_STONEREACH_MUSEUM_ADMISSION_PAID)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Seu ingresso já está liberado.\pAproveite a visita ao museu!", MSGBOX_DEFAULT)
+            case EN: msgbox("Your admission is already cleared.\pEnjoy your visit to the museum!", MSGBOX_DEFAULT)
+            case ES: msgbox("Tu entrada ya está autorizada.\p¡Disfruta de tu visita al museo!", MSGBOX_DEFAULT)
+        }
+        return
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Bem-vindo ao Museu de Stonereach!\pA taxa de visitação é de ¥2.000.\nDeseja pagar para entrar?", MSGBOX_YESNO)
+        case EN: msgbox("Welcome to the Stonereach Museum!\pAdmission costs ¥2,000.\nWould you like to pay and enter?", MSGBOX_YESNO)
+        case ES: msgbox("¡Bienvenido al Museo de Stonereach!\pLa entrada cuesta ¥2.000.\n¿Quieres pagar para entrar?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sem o ingresso, não posso permitir\nsua entrada.", MSGBOX_DEFAULT)
+            case EN: msgbox("Without a ticket, I can't allow\nyou to enter.", MSGBOX_DEFAULT)
+            case ES: msgbox("Sin entrada, no puedo permitirte\nel acceso.", MSGBOX_DEFAULT)
+        }
+        return
+    }
+    checkmoney(2000)
+    if (var(VAR_RESULT) == FALSE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Você não tem ¥2.000.\pVolte quando tiver o valor da taxa.", MSGBOX_DEFAULT)
+            case EN: msgbox("You don't have ¥2,000.\pCome back when you have the fee.", MSGBOX_DEFAULT)
+            case ES: msgbox("No tienes ¥2.000.\pVuelve cuando tengas el importe.", MSGBOX_DEFAULT)
+        }
+        return
+    }
+    removemoney(2000)
+    setflag(FLAG_STONEREACH_MUSEUM_ADMISSION_PAID)
+    playse(SE_SHOP)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Pagamento recebido. Obrigado!\pAgora você tem livre acesso ao\nmuseu. Aproveite a visita!", MSGBOX_DEFAULT)
+        case EN: msgbox("Payment received. Thank you!\pYou now have free access to the\nmuseum. Enjoy your visit!", MSGBOX_DEFAULT)
+        case ES: msgbox("Pago recibido. ¡Gracias!\pYa tienes libre acceso al museo.\n¡Disfruta de la visita!", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script StonereachCity_Museum_Researcher_Talk {
+    lock
+    faceplayer
+    if (flag(FLAG_STONEREACH_MUSEUM_TRADE_DONE)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Esse Osso Raro será muito\nimportante para minha pesquisa.\pEspero que cuide bem do seu\lFóssil de Drake!", MSGBOX_DEFAULT)
+            case EN: msgbox("That Rare Bone will be very\nimportant to my research.\pI hope you take good care of your\lFossilized Drake!", MSGBOX_DEFAULT)
+            case ES: msgbox("Ese Hueso Raro será muy importante\npara mi investigación.\p¡Espero que cuides bien de tu\lDrake Fosilizado!", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estou procurando um Osso Raro\npara minha pesquisa.\pPosso oferecer um Fóssil de Drake\nem troca. Você aceita?", MSGBOX_YESNO)
+        case EN: msgbox("I'm looking for a Rare Bone for my\nresearch.\pI can offer a Fossilized Drake in\nexchange. Do you accept?", MSGBOX_YESNO)
+        case ES: msgbox("Busco un Hueso Raro para mi\ninvestigación.\pPuedo ofrecer un Drake Fosilizado a\ncambio. ¿Aceptas?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        release
+        end
+    }
+    checkitem(ITEM_RARE_BONE)
+    if (var(VAR_RESULT) == FALSE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Parece que você não tem um\nOsso Raro.", MSGBOX_DEFAULT)
+            case EN: msgbox("It looks like you don't have a\nRare Bone.", MSGBOX_DEFAULT)
+            case ES: msgbox("Parece que no tienes un\nHueso Raro.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    checkitemspace(ITEM_FOSSILIZED_DRAKE)
+    if (var(VAR_RESULT) == FALSE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sua Bolsa está cheia.\pAbra espaço e fale comigo novamente.", MSGBOX_DEFAULT)
+            case EN: msgbox("Your Bag is full.\pMake room and talk to me again.", MSGBOX_DEFAULT)
+            case ES: msgbox("Tu Bolsa está llena.\pHaz espacio y vuelve a hablar conmigo.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    removeitem(ITEM_RARE_BONE)
+    giveitem(ITEM_FOSSILIZED_DRAKE)
+    setflag(FLAG_STONEREACH_MUSEUM_TRADE_DONE)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Excelente! Aqui está o Fóssil de\nDrake que prometi.\pObrigado pela troca!", MSGBOX_DEFAULT)
+        case EN: msgbox("Excellent! Here's the Fossilized\nDrake I promised.\pThank you for the trade!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Excelente! Aquí tienes el Drake\nFosilizado que prometí.\p¡Gracias por el intercambio!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script StonereachCity_Museum_Sign_Armaldo {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fóssil de ARMALDO\pAs placas de sua carapaça e suas\ngrandes garras estão preservadas.", MSGBOX_SIGN)
+        case EN: msgbox("ARMALDO Fossil\pIts shell plates and massive claws\nremain remarkably preserved.", MSGBOX_SIGN)
+        case ES: msgbox("Fósil de ARMALDO\pLas placas de su caparazón y sus\ngrandes garras están conservadas.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_Cradily {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fóssil de CRADILY\pUm Pokémon marinho pré-histórico\nque se fixava ao fundo do oceano.", MSGBOX_SIGN)
+        case EN: msgbox("CRADILY Fossil\pA prehistoric marine Pokémon that\nanchored itself to the ocean floor.", MSGBOX_SIGN)
+        case ES: msgbox("Fósil de CRADILY\pUn Pokémon marino prehistórico que\nse aferraba al fondo oceánico.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_Cranidos {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dois CRANIDOS fossilizados no\ninstante em que golpeavam suas\lcabeças em uma disputa territorial.", MSGBOX_SIGN)
+        case EN: msgbox("Two CRANIDOS fossilized as they\nbutted heads in a territorial\lcontest.", MSGBOX_SIGN)
+        case ES: msgbox("Dos CRANIDOS fosilizados mientras\nchocaban sus cabezas en una disputa\lterritorial.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_HelixFossils {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fósseis Helix\pConchas espirais de antigos\nOMANYTE encontrados no leito\lmarinho.", MSGBOX_SIGN)
+        case EN: msgbox("Helix Fossils\pSpiral shells of ancient OMANYTE\nfound on the seabed.", MSGBOX_SIGN)
+        case ES: msgbox("Fósiles Helix\pConchas espirales de antiguos\nOMANYTE halladas en el fondo marino.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_DomeFossils {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fósseis Dome\pCarapaças de KABUTO que viveram\nhá centenas de milhões de anos.", MSGBOX_SIGN)
+        case EN: msgbox("Dome Fossils\pShells of KABUTO that lived\nhundreds of millions of years ago.", MSGBOX_SIGN)
+        case ES: msgbox("Fósiles Dome\pCaparazones de KABUTO que vivieron\nhace cientos de millones de años.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_AncientBirdWriting {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma escritura antiga retrata uma\ngrande ave abrindo as asas diante\ldo sol.", MSGBOX_SIGN)
+        case EN: msgbox("An ancient inscription depicts a\ngreat bird spreading its wings\lbefore the sun.", MSGBOX_SIGN)
+        case ES: msgbox("Una escritura antigua representa\nun gran ave extendiendo sus alas\lante el sol.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_AncientDragonWriting {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma escritura antiga retrata um\ndragão enrolado ao redor de uma\lmontanha.", MSGBOX_SIGN)
+        case EN: msgbox("An ancient inscription depicts a\ndragon coiled around a mountain.", MSGBOX_SIGN)
+        case ES: msgbox("Una escritura antigua representa\nun dragón enroscado alrededor de\luna montaña.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_HandledJar {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Jarro antigo com alças.\pMarcas internas indicam que era\nusado para armazenar grãos.", MSGBOX_SIGN)
+        case EN: msgbox("Ancient handled jar.\pTraces inside suggest it was used\nto store grain.", MSGBOX_SIGN)
+        case ES: msgbox("Jarra antigua con asas.\pLos restos internos indican que se\nusaba para almacenar grano.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_PlainJar {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Jarro antigo liso.\pSeu formato simples era comum em\nassentamentos da região.", MSGBOX_SIGN)
+        case EN: msgbox("Plain ancient jar.\pIts simple shape was common in the\nregion's early settlements.", MSGBOX_SIGN)
+        case ES: msgbox("Jarra antigua lisa.\pSu forma sencilla era común en los\nprimeros asentamientos de la región.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_PatternedJar {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Jarro antigo estampado.\pOs padrões geométricos parecem\nrepresentar rios e montanhas.", MSGBOX_SIGN)
+        case EN: msgbox("Patterned ancient jar.\pIts geometric designs appear to\ndepict rivers and mountains.", MSGBOX_SIGN)
+        case ES: msgbox("Jarra antigua decorada.\pSus motivos geométricos parecen\nrepresentar ríos y montañas.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_Aerodactyl {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fóssil de AERODACTYL\pAs asas abertas revelam a enorme\nenvergadura deste predador antigo.", MSGBOX_SIGN)
+        case EN: msgbox("AERODACTYL Fossil\pIts spread wings reveal this ancient\npredator's enormous wingspan.", MSGBOX_SIGN)
+        case ES: msgbox("Fósil de AERODACTYL\pSus alas abiertas revelan la gran\nenvergadura de este depredador.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_ClawFossil {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Claw Fossil\pParte de uma garra preservada de\nANORITH, um antigo Pokémon marinho.", MSGBOX_SIGN)
+        case EN: msgbox("Claw Fossil\pPart of a preserved ANORITH claw,\nan ancient marine Pokémon.", MSGBOX_SIGN)
+        case ES: msgbox("Fósil Garra\pParte de una garra conservada de\nANORITH, un antiguo Pokémon marino.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_OldAmber {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Old Amber\pUm fragmento de âmbar que conserva\nmaterial genético de AERODACTYL.", MSGBOX_SIGN)
+        case EN: msgbox("Old Amber\pA piece of amber preserving genetic\nmaterial from AERODACTYL.", MSGBOX_SIGN)
+        case ES: msgbox("Ámbar Viejo\pUn fragmento de ámbar que conserva\nmaterial genético de AERODACTYL.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_Tyrantrum {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fóssil de TYRANTRUM\pSeu crânio imponente pertenceu a\num dos maiores predadores de sua era.", MSGBOX_SIGN)
+        case EN: msgbox("TYRANTRUM Fossil\pIts imposing skull belonged to one\nof the greatest predators of its age.", MSGBOX_SIGN)
+        case ES: msgbox("Fósil de TYRANTRUM\pSu imponente cráneo perteneció a\nuno de los mayores depredadores.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script StonereachCity_Museum_Visitor_Gentleman_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Esses fósseis são verdadeiras\njanelas para o passado.\pUma coleção assim não tem preço!", MSGBOX_NPC)
+        case EN: msgbox("These fossils are true windows\ninto the past.\pA collection like this is priceless!", MSGBOX_NPC)
+        case ES: msgbox("Estos fósiles son auténticas\nventanas al pasado.\p¡Una colección así no tiene precio!", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Museum_Visitor_Pokefan_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Imaginar esses Pokémon caminhando\npelo mundo é fascinante!\pQueria ter visto um CRADILY vivo.", MSGBOX_NPC)
+        case EN: msgbox("Imagining these Pokémon roaming the\nworld is fascinating!\pI wish I could have seen a living\lCRADILY.", MSGBOX_NPC)
+        case ES: msgbox("¡Imaginar a estos Pokémon recorriendo\nel mundo es fascinante!\pOjalá hubiera visto un CRADILY vivo.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Museum_Visitor_Boy_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dois CRANIDOS batiam a cabeça um\nno outro por território?\pEu faço quase a mesma coisa quando\lmeu irmão pega meus brinquedos!", MSGBOX_NPC)
+        case EN: msgbox("Two CRANIDOS butted heads over\nterritory?\pI do almost the same thing when my\lbrother takes my toys!", MSGBOX_NPC)
+        case ES: msgbox("¿Dos CRANIDOS chocaban sus cabezas\npor el territorio?\p¡Yo hago casi lo mismo cuando mi\lhermano toma mis juguetes!", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Museum_Visitor_OldMan_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Esses jarros parecem simples, mas\ncarregam histórias de muitas vidas.\pObjetos comuns também merecem ser\llembrados.", MSGBOX_NPC)
+        case EN: msgbox("These jars look simple, but they\ncarry the stories of many lives.\pEveryday objects deserve to be\lremembered too.", MSGBOX_NPC)
+        case ES: msgbox("Estas jarras parecen sencillas, pero\nguardan historias de muchas vidas.\pLos objetos cotidianos también\lmerecen ser recordados.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Museum_Visitor_Girl_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A ave daquela escritura antiga\nparece estar protegendo o sol.\pSerá que ela representa um Pokémon\lque ainda existe?", MSGBOX_NPC)
+        case EN: msgbox("The bird in that ancient inscription\nlooks like it's guarding the sun.\pCould it depict a Pokémon that\lstill exists?", MSGBOX_NPC)
+        case ES: msgbox("El ave de esa escritura antigua\nparece proteger el sol.\p¿Representará a un Pokémon que\ltodavía existe?", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Museum_Visitor_Hiker_Talk {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Já encontrei fósseis durante minhas\ntrilhas, mas nenhum tão completo.\pA rocha guarda seus segredos com\lmuito cuidado.", MSGBOX_NPC)
+        case EN: msgbox("I've found fossils on my hikes, but\nnever one this complete.\pStone guards its secrets very\lcarefully.", MSGBOX_NPC)
+        case ES: msgbox("He encontrado fósiles en mis rutas,\npero ninguno tan completo.\pLa piedra guarda sus secretos con\lmucho cuidado.", MSGBOX_NPC)
+    }
+    end
+}
+
+script StonereachCity_Museum_Sign_HisuiMap {
+    lockall
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Mapa da antiga região de HISUI.\pTraçado em uma época em que vastas\nterras selvagens ainda separavam os\lprimeiros assentamentos humanos.\pMuitos dos lugares retratados aqui\nreceberiam novos nomes com o passar\ldos séculos.", MSGBOX_SIGN)
+        case EN: msgbox("Map of the ancient HISUI region.\pDrawn in an age when vast wildlands\nstill separated the first human\lsettlements.\pMany places depicted here would be\ngiven new names over the centuries.", MSGBOX_SIGN)
+        case ES: msgbox("Mapa de la antigua región de HISUI.\pTrazado cuando vastas tierras\nsalvajes aún separaban los primeros\lasentamientos humanos.\pMuchos lugares aquí representados\nrecibirían nuevos nombres con el\lpaso de los siglos.", MSGBOX_SIGN)
+    }
+    closemessage
+    special(ShowHisuiMap)
+    releaseall
+    end
+}

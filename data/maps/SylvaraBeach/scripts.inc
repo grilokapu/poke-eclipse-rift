@@ -223,39 +223,42 @@ SylvaraBeach_EventScript_Rival_Continue::
 	case ES, SylvaraBeach_EventScript_Rival_Continue_5
 SylvaraBeach_EventScript_Rival_Continue_1:
 # 103 "data/maps/SylvaraBeach/scripts.pory"
-	playse SE_PIN
-# 104 "data/maps/SylvaraBeach/scripts.pory"
-	movenpc VAR_LAST_TALKED, Common_Movement_EmojiConfident
-# 105 "data/maps/SylvaraBeach/scripts.pory"
-	waitse
-# 106 "data/maps/SylvaraBeach/scripts.pory"
-	pause 10
-# 107 "data/maps/SylvaraBeach/scripts.pory"
-	switch VAR_LANGUAGE
-# 108 "data/maps/SylvaraBeach/scripts.pory"
-	case PT, SylvaraBeach_EventScript_Rival_Continue_8
-# 109 "data/maps/SylvaraBeach/scripts.pory"
-	case EN, SylvaraBeach_EventScript_Rival_Continue_9
-# 110 "data/maps/SylvaraBeach/scripts.pory"
-	case ES, SylvaraBeach_EventScript_Rival_Continue_10
+	goto_if_unset FLAG_RECEIVED_EXP_SHARE, SylvaraBeach_EventScript_Rival_Continue_7
 SylvaraBeach_EventScript_Rival_Continue_6:
-# 112 "data/maps/SylvaraBeach/scripts.pory"
-	compare VAR_FACING, DIR_WEST
-	goto_if_eq SylvaraBeach_EventScript_Rival_Continue_12
-# 115 "data/maps/SylvaraBeach/scripts.pory"
-	movenpc VAR_LAST_TALKED, Movement_SylvaraBeach_Rival_GoAway_1
-SylvaraBeach_EventScript_Rival_Continue_11:
-# 117 "data/maps/SylvaraBeach/scripts.pory"
-	setflag FLAG_SYLVARA_TOWN_RIVAL_DONE
-# 118 "data/maps/SylvaraBeach/scripts.pory"
-	removeobject LOCALID_BEACH_RIVAL
 # 119 "data/maps/SylvaraBeach/scripts.pory"
-	fadedefaultbgm
+	playse SE_PIN
 # 120 "data/maps/SylvaraBeach/scripts.pory"
-	special HealPlayerParty
+	movenpc VAR_LAST_TALKED, Common_Movement_EmojiConfident
 # 121 "data/maps/SylvaraBeach/scripts.pory"
-	updateowe
+	waitse
 # 122 "data/maps/SylvaraBeach/scripts.pory"
+	pause 10
+# 123 "data/maps/SylvaraBeach/scripts.pory"
+	switch VAR_LANGUAGE
+# 124 "data/maps/SylvaraBeach/scripts.pory"
+	case PT, SylvaraBeach_EventScript_Rival_Continue_11
+# 125 "data/maps/SylvaraBeach/scripts.pory"
+	case EN, SylvaraBeach_EventScript_Rival_Continue_12
+# 126 "data/maps/SylvaraBeach/scripts.pory"
+	case ES, SylvaraBeach_EventScript_Rival_Continue_13
+SylvaraBeach_EventScript_Rival_Continue_9:
+# 128 "data/maps/SylvaraBeach/scripts.pory"
+	compare VAR_FACING, DIR_WEST
+	goto_if_eq SylvaraBeach_EventScript_Rival_Continue_20
+# 131 "data/maps/SylvaraBeach/scripts.pory"
+	movenpc VAR_LAST_TALKED, Movement_SylvaraBeach_Rival_GoAway_1
+SylvaraBeach_EventScript_Rival_Continue_19:
+# 133 "data/maps/SylvaraBeach/scripts.pory"
+	setflag FLAG_SYLVARA_TOWN_RIVAL_DONE
+# 134 "data/maps/SylvaraBeach/scripts.pory"
+	removeobject LOCALID_BEACH_RIVAL
+# 135 "data/maps/SylvaraBeach/scripts.pory"
+	fadedefaultbgm
+# 136 "data/maps/SylvaraBeach/scripts.pory"
+	special HealPlayerParty
+# 137 "data/maps/SylvaraBeach/scripts.pory"
+	updateowe
+# 138 "data/maps/SylvaraBeach/scripts.pory"
 	releaseall
 	end
 
@@ -274,121 +277,179 @@ SylvaraBeach_EventScript_Rival_Continue_5:
 	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_2, MSGBOX_AUTOCLOSE
 	goto SylvaraBeach_EventScript_Rival_Continue_1
 
-SylvaraBeach_EventScript_Rival_Continue_8:
-# 108 "data/maps/SylvaraBeach/scripts.pory"
-	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_3, MSGBOX_AUTOCLOSE
-	goto SylvaraBeach_EventScript_Rival_Continue_6
-
-SylvaraBeach_EventScript_Rival_Continue_9:
+SylvaraBeach_EventScript_Rival_Continue_7:
+# 104 "data/maps/SylvaraBeach/scripts.pory"
+	switch VAR_LANGUAGE
+# 105 "data/maps/SylvaraBeach/scripts.pory"
+	case PT, SylvaraBeach_EventScript_Rival_Continue_16
+# 106 "data/maps/SylvaraBeach/scripts.pory"
+	case EN, SylvaraBeach_EventScript_Rival_Continue_17
+# 107 "data/maps/SylvaraBeach/scripts.pory"
+	case ES, SylvaraBeach_EventScript_Rival_Continue_18
+SylvaraBeach_EventScript_Rival_Continue_14:
 # 109 "data/maps/SylvaraBeach/scripts.pory"
-	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_4, MSGBOX_AUTOCLOSE
+	giveitem ITEM_EXP_ALL
+# 110 "data/maps/SylvaraBeach/scripts.pory"
+	waitfanfare
+# 111 "data/maps/SylvaraBeach/scripts.pory"
+	pause 20
+# 112 "data/maps/SylvaraBeach/scripts.pory"
+	setflag FLAG_RECEIVED_EXP_SHARE
+# 113 "data/maps/SylvaraBeach/scripts.pory"
+	switch VAR_LANGUAGE
+# 114 "data/maps/SylvaraBeach/scripts.pory"
+	case PT, SylvaraBeach_EventScript_Rival_Continue_24
+# 115 "data/maps/SylvaraBeach/scripts.pory"
+	case EN, SylvaraBeach_EventScript_Rival_Continue_25
+# 116 "data/maps/SylvaraBeach/scripts.pory"
+	case ES, SylvaraBeach_EventScript_Rival_Continue_26
 	goto SylvaraBeach_EventScript_Rival_Continue_6
 
-SylvaraBeach_EventScript_Rival_Continue_10:
-# 110 "data/maps/SylvaraBeach/scripts.pory"
-	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_5, MSGBOX_AUTOCLOSE
-	goto SylvaraBeach_EventScript_Rival_Continue_6
+SylvaraBeach_EventScript_Rival_Continue_11:
+# 124 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_9, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_9
 
 SylvaraBeach_EventScript_Rival_Continue_12:
-# 113 "data/maps/SylvaraBeach/scripts.pory"
-	movenpc VAR_LAST_TALKED, Movement_SylvaraBeach_Rival_GoAway_2
-	goto SylvaraBeach_EventScript_Rival_Continue_11
+# 125 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_10, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_9
 
-
+SylvaraBeach_EventScript_Rival_Continue_13:
 # 126 "data/maps/SylvaraBeach/scripts.pory"
-Movement_SylvaraBeach_Rival_GoAway_1:
-# 127 "data/maps/SylvaraBeach/scripts.pory"
-	walk_right
-# 127 "data/maps/SylvaraBeach/scripts.pory"
-	walk_right
-# 127 "data/maps/SylvaraBeach/scripts.pory"
-	walk_right
-# 127 "data/maps/SylvaraBeach/scripts.pory"
-	walk_right
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
-# 128 "data/maps/SylvaraBeach/scripts.pory"
-	walk_up
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_11, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_9
+
+SylvaraBeach_EventScript_Rival_Continue_16:
+# 105 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_3, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_14
+
+SylvaraBeach_EventScript_Rival_Continue_17:
+# 106 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_4, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_14
+
+SylvaraBeach_EventScript_Rival_Continue_18:
+# 107 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_5, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_14
+
+SylvaraBeach_EventScript_Rival_Continue_20:
 # 129 "data/maps/SylvaraBeach/scripts.pory"
+	movenpc VAR_LAST_TALKED, Movement_SylvaraBeach_Rival_GoAway_2
+	goto SylvaraBeach_EventScript_Rival_Continue_19
+
+SylvaraBeach_EventScript_Rival_Continue_24:
+# 114 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_6, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_6
+
+SylvaraBeach_EventScript_Rival_Continue_25:
+# 115 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_7, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_6
+
+SylvaraBeach_EventScript_Rival_Continue_26:
+# 116 "data/maps/SylvaraBeach/scripts.pory"
+	msgminibox PSS_ICON_LUCIEN, SylvaraBeach_EventScript_Rival_Battle_Text_0, SylvaraBeach_EventScript_Rival_Continue_Text_8, MSGBOX_AUTOCLOSE
+	goto SylvaraBeach_EventScript_Rival_Continue_6
+
+
+# 142 "data/maps/SylvaraBeach/scripts.pory"
+Movement_SylvaraBeach_Rival_GoAway_1:
+# 143 "data/maps/SylvaraBeach/scripts.pory"
+	walk_right
+# 143 "data/maps/SylvaraBeach/scripts.pory"
+	walk_right
+# 143 "data/maps/SylvaraBeach/scripts.pory"
+	walk_right
+# 143 "data/maps/SylvaraBeach/scripts.pory"
+	walk_right
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 144 "data/maps/SylvaraBeach/scripts.pory"
+	walk_up
+# 145 "data/maps/SylvaraBeach/scripts.pory"
 	delay_16
 	step_end
 
-# 132 "data/maps/SylvaraBeach/scripts.pory"
+# 148 "data/maps/SylvaraBeach/scripts.pory"
 Movement_SylvaraBeach_Rival_GoAway_2:
-# 133 "data/maps/SylvaraBeach/scripts.pory"
+# 149 "data/maps/SylvaraBeach/scripts.pory"
 	walk_left
-# 134 "data/maps/SylvaraBeach/scripts.pory"
+# 150 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 134 "data/maps/SylvaraBeach/scripts.pory"
+# 150 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 135 "data/maps/SylvaraBeach/scripts.pory"
+# 151 "data/maps/SylvaraBeach/scripts.pory"
 	walk_right
-# 135 "data/maps/SylvaraBeach/scripts.pory"
+# 151 "data/maps/SylvaraBeach/scripts.pory"
 	walk_right
-# 135 "data/maps/SylvaraBeach/scripts.pory"
+# 151 "data/maps/SylvaraBeach/scripts.pory"
 	walk_right
-# 135 "data/maps/SylvaraBeach/scripts.pory"
+# 151 "data/maps/SylvaraBeach/scripts.pory"
 	walk_right
-# 135 "data/maps/SylvaraBeach/scripts.pory"
+# 151 "data/maps/SylvaraBeach/scripts.pory"
 	walk_right
-# 136 "data/maps/SylvaraBeach/scripts.pory"
+# 152 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 136 "data/maps/SylvaraBeach/scripts.pory"
+# 152 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 136 "data/maps/SylvaraBeach/scripts.pory"
+# 152 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 136 "data/maps/SylvaraBeach/scripts.pory"
+# 152 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 136 "data/maps/SylvaraBeach/scripts.pory"
+# 152 "data/maps/SylvaraBeach/scripts.pory"
 	walk_up
-# 137 "data/maps/SylvaraBeach/scripts.pory"
+# 153 "data/maps/SylvaraBeach/scripts.pory"
 	delay_16
 	step_end
 
 SylvaraBeach_EventScript_Tuber_M_Talk::
-# 141 "data/maps/SylvaraBeach/scripts.pory"
+# 157 "data/maps/SylvaraBeach/scripts.pory"
 	callnative MissorMisterString
-# 142 "data/maps/SylvaraBeach/scripts.pory"
+# 158 "data/maps/SylvaraBeach/scripts.pory"
 	switch VAR_LANGUAGE
-# 143 "data/maps/SylvaraBeach/scripts.pory"
+# 159 "data/maps/SylvaraBeach/scripts.pory"
 	case PT, SylvaraBeach_EventScript_Tuber_M_Talk_3
-# 144 "data/maps/SylvaraBeach/scripts.pory"
+# 160 "data/maps/SylvaraBeach/scripts.pory"
 	case EN, SylvaraBeach_EventScript_Tuber_M_Talk_4
-# 145 "data/maps/SylvaraBeach/scripts.pory"
+# 161 "data/maps/SylvaraBeach/scripts.pory"
 	case ES, SylvaraBeach_EventScript_Tuber_M_Talk_5
 SylvaraBeach_EventScript_Tuber_M_Talk_1:
 	end
 
 SylvaraBeach_EventScript_Tuber_M_Talk_3:
-# 143 "data/maps/SylvaraBeach/scripts.pory"
+# 159 "data/maps/SylvaraBeach/scripts.pory"
 	msgbox SylvaraBeach_EventScript_Tuber_M_Talk_Text_0, MSGBOX_NPC
 	goto SylvaraBeach_EventScript_Tuber_M_Talk_1
 
 SylvaraBeach_EventScript_Tuber_M_Talk_4:
-# 144 "data/maps/SylvaraBeach/scripts.pory"
+# 160 "data/maps/SylvaraBeach/scripts.pory"
 	msgbox SylvaraBeach_EventScript_Tuber_M_Talk_Text_1, MSGBOX_NPC
 	goto SylvaraBeach_EventScript_Tuber_M_Talk_1
 
 SylvaraBeach_EventScript_Tuber_M_Talk_5:
-# 145 "data/maps/SylvaraBeach/scripts.pory"
+# 161 "data/maps/SylvaraBeach/scripts.pory"
 	msgbox SylvaraBeach_EventScript_Tuber_M_Talk_Text_2, MSGBOX_NPC
 	goto SylvaraBeach_EventScript_Tuber_M_Talk_1
 
 
 SylvaraBeach_EventScript_Item_Potion::
-# 151 "data/maps/SylvaraBeach/scripts.pory"
+# 167 "data/maps/SylvaraBeach/scripts.pory"
 	finditem ITEM_POTION
 	end
 
@@ -482,25 +543,49 @@ SylvaraBeach_EventScript_Rival_Continue_Text_2:
 	.string "Vaya… esta batalla fue incluso\nmejor de lo que imaginaba.\pDe verdad eres increíble,\n{PLAYER}.\pSi esta fue nuestra primera\nbatalla, no puedo esperar a las\lpróximas.\pCreo que ambos tenemos un largo\ncamino por delante.\pHay muchos lugares por conocer,\nmuchos Pokémon por encontrar…\pY muchos desafíos esperándonos.\pSeguiré adelante y continuaré\nentrenando.\pAsí que no te quedes atrás, ¿de\nacuerdo?\p¡Hasta nuestra próxima batalla!$"
 
 SylvaraBeach_EventScript_Rival_Continue_Text_3:
-# 108 "data/maps/SylvaraBeach/scripts.pory"
-	.string "Outra coisa…\pTome cuidado com as pessoas que\nencontrar pelo caminho.\pNem todo sorriso é sincero.\pE nem toda mão estendida está\ntentando ajudar.\pEscolha bem quem vai caminhar ao\nseu lado.\pAs decisões que tomamos podem\nmudar mais do que imaginamos.\pAté a próxima, {PLAYER}.$"
+# 105 "data/maps/SylvaraBeach/scripts.pory"
+	.string "Ah, quase esqueci!\pLeve isto com você.\nVai facilitar os seus treinamentos!$"
 
 SylvaraBeach_EventScript_Rival_Continue_Text_4:
-# 109 "data/maps/SylvaraBeach/scripts.pory"
-	.string "One more thing…\pBe careful with the people you\nmeet along the way.\pNot every smile is genuine.\pAnd not every outstretched hand is\ntrying to help.\pChoose carefully who you walk\nbeside.\pThe choices we make can change\nmore than we realize.\pUntil next time, {PLAYER}.$"
+# 106 "data/maps/SylvaraBeach/scripts.pory"
+	.string "Oh, I almost forgot!\pTake this with you.\nIt'll make training much easier!$"
 
 SylvaraBeach_EventScript_Rival_Continue_Text_5:
-# 110 "data/maps/SylvaraBeach/scripts.pory"
+# 107 "data/maps/SylvaraBeach/scripts.pory"
+	.string "¡Ah, casi lo olvido!\pLlévate esto.\n¡Hará más fácil tu entrenamiento!$"
+
+SylvaraBeach_EventScript_Rival_Continue_Text_6:
+# 114 "data/maps/SylvaraBeach/scripts.pory"
+	.string "É um Exp. All.\pAbra a Bolsa, selecione o item\ne escolha DAR.\pO Pokémon que estiver segurando\nreceberá experiência nas batalhas,\lmesmo sem lutar.\pÉ ótimo para treinar os membros\nmais novos da equipe!$"
+
+SylvaraBeach_EventScript_Rival_Continue_Text_7:
+# 115 "data/maps/SylvaraBeach/scripts.pory"
+	.string "It's an Exp. All.\pOpen your Bag, select it,\nand choose GIVE.\pThe Pokémon holding it will earn\nExp. Points from battles,\leven if it doesn't fight.\pIt's great for training newer\nmembers of your team!$"
+
+SylvaraBeach_EventScript_Rival_Continue_Text_8:
+# 116 "data/maps/SylvaraBeach/scripts.pory"
+	.string "Es un Repartir Exp.\pAbre la Bolsa, selecciónalo\ny elige DAR.\pEl Pokémon que lo lleve ganará\nexperiencia en los combates,\launque no participe.\p¡Es ideal para entrenar a los\nmiembros nuevos del equipo!$"
+
+SylvaraBeach_EventScript_Rival_Continue_Text_9:
+# 124 "data/maps/SylvaraBeach/scripts.pory"
+	.string "Outra coisa…\pTome cuidado com as pessoas que\nencontrar pelo caminho.\pNem todo sorriso é sincero.\pE nem toda mão estendida está\ntentando ajudar.\pEscolha bem quem vai caminhar ao\nseu lado.\pAs decisões que tomamos podem\nmudar mais do que imaginamos.\pAté a próxima, {PLAYER}.$"
+
+SylvaraBeach_EventScript_Rival_Continue_Text_10:
+# 125 "data/maps/SylvaraBeach/scripts.pory"
+	.string "One more thing…\pBe careful with the people you\nmeet along the way.\pNot every smile is genuine.\pAnd not every outstretched hand is\ntrying to help.\pChoose carefully who you walk\nbeside.\pThe choices we make can change\nmore than we realize.\pUntil next time, {PLAYER}.$"
+
+SylvaraBeach_EventScript_Rival_Continue_Text_11:
+# 126 "data/maps/SylvaraBeach/scripts.pory"
 	.string "Una cosa más…\pTen cuidado con las personas que\nencuentres en tu camino.\pNo todas las sonrisas son\nsinceras.\pY no todas las manos extendidas\nintentan ayudar.\pElige bien quién caminará a tu\nlado.\pLas decisiones que tomamos pueden\ncambiar más de lo que imaginamos.\pHasta la próxima, {PLAYER}.$"
 
 SylvaraBeach_EventScript_Tuber_M_Talk_Text_0:
-# 143 "data/maps/SylvaraBeach/scripts.pory"
+# 159 "data/maps/SylvaraBeach/scripts.pory"
 	.string "Brincar aqui na Praia Sylvara é\nmuito divertido, {STR_VAR_1}!$"
 
 SylvaraBeach_EventScript_Tuber_M_Talk_Text_1:
-# 144 "data/maps/SylvaraBeach/scripts.pory"
+# 160 "data/maps/SylvaraBeach/scripts.pory"
 	.string "Playing here on Sylvara Beach is\nreally fun, {STR_VAR_1}!$"
 
 SylvaraBeach_EventScript_Tuber_M_Talk_Text_2:
-# 145 "data/maps/SylvaraBeach/scripts.pory"
+# 161 "data/maps/SylvaraBeach/scripts.pory"
 	.string "¡Jugar aquí en la Playa Sylvara es\nmuy divertido, {STR_VAR_1}!$"

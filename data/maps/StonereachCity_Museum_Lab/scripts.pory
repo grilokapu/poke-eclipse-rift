@@ -1,0 +1,503 @@
+mapscripts StonereachCity_Museum_Lab_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_TEMP_5)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_STONEREACH_CITY_STATE, 1: StonereachCity_Museum_Lab_EventScript_AldrenAndHikari
+    ]
+}
+
+const LOCALID_MUSEUM_LAB_SCIENTIST = 1
+const LOCALID_MUSEUM_LAB_REVIVED_MON = 2
+const LOCALID_MUSEUM_LAB_GALAR_SCIENTIST = 3
+const LOCALID_MUSEUM_LAB_ALDREN = 4
+const LOCALID_MUSEUM_LAB_HIKARI = 5
+const VAR_MUSEUM_LAB_REVIVED_SPECIES = VAR_TEMP_0
+const VAR_MUSEUM_LAB_GALAR_FOSSIL_1 = VAR_TEMP_1
+const VAR_MUSEUM_LAB_GALAR_FOSSIL_2 = VAR_TEMP_2
+
+script StonereachCity_Museum_Lab_EventScript_AldrenAndHikari {
+    lockall
+    pause(30)
+    special(SpawnCameraObject)
+    movecamera(moves(walk_left * 4, walk_up))
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "A leitura se repetiu.\pExatamente no mesmo ponto.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "The reading repeated.\pAt exactly the same point.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "La lectura se repitió.\pExactamente en el mismo punto.", MSGBOX_AUTOCLOSE)
+    }
+    playse(SE_PC_LOGIN)
+    pause(15)
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Então não é uma falha do aparelho.\pA rocha é comum à Whispering Cave.\nA gravação não.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Then it isn't an equipment failure.\pThe rock is common to Whispering\nCave. The engraving isn't.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Entonces no es un fallo del equipo.\pLa roca es común en Whispering Cave.\nEl grabado no.", MSGBOX_AUTOCLOSE)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "E não sabemos quando foi feito.\pO mais estranho é o desenho...", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "And we don't know when it was made.\pThe strangest part is the design...", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Y no sabemos cuándo fue hecho.\pLo más extraño es el dibujo...", MSGBOX_AUTOCLOSE)
+    }
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Há registros semelhantes em outros\npontos de Aetheris.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("There are similar records from other\nparts of Aetheris.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Hay registros similares en otros\npuntos de Aetheris.", MSGBOX_AUTOCLOSE)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ruínas, cavernas... até formações\nsem qualquer ligação conhecida.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ruins, caves... even formations with\nno known connection.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ruinas, cuevas... incluso formaciones\nsin ninguna relación conocida.", MSGBOX_AUTOCLOSE)
+    }
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Nenhuma que tenhamos demonstrado.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("None that we have demonstrated.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Ninguna que hayamos demostrado.", MSGBOX_AUTOCLOSE)
+    }
+    movecamera(moves(walk_right * 4, walk_down))
+    special(RemoveCameraObject)
+    moveplayer(moves(walk_left))
+    playse(SE_PIN)
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(emote_exclamation_mark, face_right))
+    waitse
+    pause(15)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ah! {PLAYER}!\pVocê chegou a Stonereach!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Oh! {PLAYER}!\pYou made it to Stonereach!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "¡Ah! ¡{PLAYER}!\p¡Llegaste a Stonereach!", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_MUSEUM_LAB_ALDREN, moves(face_right))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Desculpe. Quando começo uma análise,\nesqueço tudo ao redor.\pEste é Aldren, diretor do museu...\ne Líder do Ginásio.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Sorry. Once I begin an analysis, I\nforget everything around me.\pThis is Aldren, the museum director...\nand the Gym Leader.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Perdona. Cuando empiezo un análisis,\nolvido todo lo que me rodea.\pÉl es Aldren, director del museo...\ny Líder del Gimnasio.", MSGBOX_AUTOCLOSE)
+    }
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("E geólogo, sempre que ela permite.\pÉ um prazer, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("And a geologist, whenever she allows.\pIt's a pleasure, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Y geólogo, siempre que ella lo permite.\pEs un placer, {PLAYER}.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_right))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Já que está aqui...\nvenha ver nossa descoberta.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Since you're here...\ncome see what we found.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ya que estás aquí...\nven a ver lo que encontramos.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_up))
+    movenpc(LOCALID_MUSEUM_LAB_ALDREN, moves(face_up))
+    getplayerxy(VAR_TEMP_4, VAR_TEMP_5)
+    if (var(VAR_TEMP_5) == 6) {
+        moveplayer(moves(walk_left * 2, walk_up, walk_left, face_up))
+    } else {
+        moveplayer(moves(walk_left * 3, face_up))
+    }
+    pause(30)
+    playse(SE_NOTE_D)
+    pause(25)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O símbolo gravado na pedra parece\nestranhamente familiar...", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("The symbol carved into the stone\nseems strangely familiar...", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("El símbolo grabado en la piedra\nparece extrañamente familiar...", MSGBOX_AUTOCLOSE)
+    }
+    playse(SE_SHINY)
+    pause(8)
+    pause(12)
+    playse(SE_PC_LOGIN)
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(emote_exclamation_mark, face_up))
+    pause(15)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Espere...\pAldren, a leitura mudou.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Wait...\pAldren, the reading changed.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Espera...\pAldren, la lectura cambió.", MSGBOX_AUTOCLOSE)
+    }
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Intensidade e duração?", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Intensity and duration?", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("¿Intensidad y duración?", MSGBOX_AUTOCLOSE)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Baixa. Menos de um segundo.\pAconteceu quando {PLAYER}\nse aproximou.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Low. Less than one second.\pIt happened when {PLAYER}\ncame closer.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Baja. Menos de un segundo.\pOcurrió cuando {PLAYER}\nse acercó.", MSGBOX_AUTOCLOSE)
+    }
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Foi quando percebemos a mudança.\pIsso não significa que tenha sido\na causa.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("That is when we observed the change.\pIt doesn't mean that was\nthe cause.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Fue cuando observamos el cambio.\pEso no significa que haya sido\nla causa.", MSGBOX_AUTOCLOSE)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Correlação não é causa. Eu sei.\pMas ainda quero repetir o teste.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Correlation isn't causation. I know.\pBut I still want to repeat the test.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Correlación no implica causalidad.\pPero quiero repetir la prueba.", MSGBOX_AUTOCLOSE)
+    }
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Depois de verificarmos o ambiente.\pVibração, temperatura, eletricidade\nestática...", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("After we check the environment.\pVibration, temperature, static\nelectricity...", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Después de revisar el entorno.\pVibración, temperatura, electricidad\nestática...", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_down))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "E partículas trazidas da caverna.\pVocê atravessou a Whispering Cave,\nnão foi?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "And particles carried from the cave.\pYou came through Whispering Cave,\ndidn't you?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Y partículas traídas de la cueva.\pAtravesaste Whispering Cave,\n¿verdad?", MSGBOX_AUTOCLOSE)
+    }
+    moveplayer(moves(face_left, delay_16, face_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Imaginei. Há poeira clara\nnas suas botas.\pSe encontrar outro símbolo assim,\nlembre-se do lugar.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "I thought so. There's pale dust\non your boots.\pIf you find another symbol like this,\nremember the location.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Eso pensé. Hay polvo claro\nen tus botas.\pSi encuentras otro símbolo así,\nrecuerda el lugar.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_MUSEUM_LAB_ALDREN, moves(face_down))
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("E não toque nele sem necessidade.\pPor enquanto, temos formas parecidas\ne muitas perguntas.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("And don't touch it unnecessarily.\pFor now, we have similar shapes\nand many questions.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Y no lo toques sin necesidad.\pPor ahora tenemos formas parecidas\ny muchas preguntas.", MSGBOX_AUTOCLOSE)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "O que, para uma pesquisadora,\né um ótimo começo.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Which, for a researcher,\nis an excellent start.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Lo cual, para una investigadora,\nes un excelente comienzo.", MSGBOX_AUTOCLOSE)
+    }
+    movenpc(LOCALID_MUSEUM_LAB_ALDREN, moves(face_down))
+    setspeaker("Aldren")
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu trabalho no museu terminou\npor hoje.\pSe veio a Stonereach como Treinador,\nvisite o Ginásio.\pEstarei esperando por você lá,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("My work at the museum is finished\nfor today.\pIf you came to Stonereach as a\nTrainer, visit the Gym.\pI'll be waiting for you there,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Mi trabajo en el museo terminó\npor hoy.\pSi viniste a Stonereach como\nEntrenador, visita el Gimnasio.\pTe estaré esperando allí,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
+    }
+    closemessage
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_down))
+    moveplayer(moves(walk_down, face_up))
+    applymovement(LOCALID_MUSEUM_LAB_ALDREN, moves(walk_down, walk_right * 4, face_right))
+    waitmovement(LOCALID_MUSEUM_LAB_ALDREN)
+    setflag(FLAG_HIDE_MUSEUM_LAB_ALDREN)
+    removeobject(LOCALID_MUSEUM_LAB_ALDREN)
+    pause(20)
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_down))
+    if (!checkitem(ITEM_DOWSING_MACHINE)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Antes de voltar ao meu laboratório...\pLeve isto, {PLAYER}.\nVai ajudar nas suas explorações.", MSGBOX_AUTOCLOSE)
+            case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Before I return to my laboratory...\pTake this, {PLAYER}.\nIt will help with your explorations.", MSGBOX_AUTOCLOSE)
+            case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Antes de volver a mi laboratorio...\pToma esto, {PLAYER}.\nTe ayudará en tus exploraciones.", MSGBOX_AUTOCLOSE)
+        }
+        giveitem(ITEM_DOWSING_MACHINE)
+        waitfanfare
+        pause(20)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "É uma Máquina de Itens.\pAbra o bolso de Itens-Chave da Bolsa\ne escolha USAR.\pSe houver um item oculto por perto,\nela emitirá um sinal.\pVocê também olhará na direção dele.\nInvestigue bem aquele ponto!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "It's a Dowsing Machine.\pOpen the Key Items Pocket in your Bag\nand choose USE.\pIf a hidden item is nearby, the machine\nwill emit a signal.\pYou'll also turn toward it.\nSearch that spot carefully!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Es una Máquina de Objetos.\pAbre el bolsillo de Objetos Clave\ny elige USAR.\pSi hay un objeto oculto cerca,\nla máquina emitirá una señal.\pTambién mirarás hacia él.\n¡Examina bien ese punto!", MSGBOX_AUTOCLOSE)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Menos de um segundo...\pFoi pouco. Mas aconteceu.\pVou comparar estes dados com os do\nmeu laboratório.\pAté logo, {PLAYER}. E não se esqueça:\nse vir outro símbolo, me avise!", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Less than one second...\pIt was brief. But it happened.\pI'll compare these readings with the\ndata in my laboratory.\pSee you, {PLAYER}. And remember:\ntell me if you see another symbol!", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Menos de un segundo...\pFue muy breve. Pero ocurrió.\pCompararé estas lecturas con los datos\nde mi laboratorio.\pHasta luego, {PLAYER}. Y recuerda:\n¡avísame si ves otro símbolo!", MSGBOX_AUTOCLOSE)
+    }
+    closemessage
+    movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_down))
+    applymovement(LOCALID_MUSEUM_LAB_HIKARI, moves(walk_down, walk_right * 5, face_right))
+    waitmovement(LOCALID_MUSEUM_LAB_HIKARI)
+    setflag(FLAG_HIDE_MUSEUM_LAB_HIKARI)
+    removeobject(LOCALID_MUSEUM_LAB_HIKARI)
+    setflag(FLAG_HIDE_STONEREACH_GYM_GUARDIAN)
+    setvar(VAR_STONEREACH_CITY_STATE, 2)
+    releaseall
+    end
+}
+
+script StonereachCity_Museum_Lab_EventScript_Scientist {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Com esta máquina, posso trazer um\nPokémon fóssil de volta à vida!\pVocê tem algum fóssil que gostaria\nde reviver?", MSGBOX_YESNO)
+        case EN: msgbox("With this machine, I can bring a\nfossil Pokémon back to life!\pDo you have a fossil you would like\nme to revive?", MSGBOX_YESNO)
+        case ES: msgbox("¡Con esta máquina puedo devolver a\nla vida a un Pokémon fósil!\p¿Tienes algún fósil que quieras\nrevivir?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("A ciência pode esperar. Volte quando\nencontrar um fóssil!", MSGBOX_NPC)
+            case EN: msgbox("Science can wait. Come back when you\nfind a fossil!", MSGBOX_NPC)
+            case ES: msgbox("La ciencia puede esperar. ¡Vuelve\ncuando encuentres un fósil!", MSGBOX_NPC)
+        }
+        release
+        end
+    }
+
+StonereachCity_Museum_Lab_ChooseFossil:
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Excelente! Escolha o fóssil na sua\nBolsa.", MSGBOX_DEFAULT)
+        case EN: msgbox("Excellent! Choose the fossil from\nyour Bag.", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Excelente! Elige el fósil de tu\nBolsa.", MSGBOX_DEFAULT)
+    }
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_RESULT, FALSE)
+    special(Script_QuizLadyOpenBagMenu)
+    if (var(VAR_RESULT) == FALSE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Mudou de ideia? Sem problemas.\nEstarei aqui quando precisar.", MSGBOX_NPC)
+            case EN: msgbox("Changed your mind? No problem. I'll\nbe here when you need me.", MSGBOX_NPC)
+            case ES: msgbox("¿Cambiaste de idea? No pasa nada.\nEstaré aquí cuando me necesites.", MSGBOX_NPC)
+        }
+        release
+        end
+    }
+
+    switch(var(VAR_ITEM_ID)) {
+        case ITEM_HELIX_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_OMANYTE)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(OMANYTE))
+        case ITEM_DOME_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_KABUTO)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(KABUTO))
+        case ITEM_OLD_AMBER:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_AERODACTYL)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(AERODACTYL))
+        case ITEM_ROOT_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_LILEEP)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(LILEEP))
+        case ITEM_CLAW_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_ANORITH)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(ANORITH))
+        case ITEM_ARMOR_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_SHIELDON)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(SHIELDON))
+        case ITEM_SKULL_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_CRANIDOS)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(CRANIDOS))
+        case ITEM_COVER_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_TIRTOUGA)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(TIRTOUGA))
+        case ITEM_PLUME_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_ARCHEN)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(ARCHEN))
+        case ITEM_JAW_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_TYRUNT)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(TYRUNT))
+        case ITEM_SAIL_FOSSIL:
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_AMAURA)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(AMAURA))
+        default:
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("Hm... isso não é um fóssil que minha\nmáquina possa reviver.\pEscolha um fóssil completo.", MSGBOX_DEFAULT)
+                case EN: msgbox("Hm... that isn't a fossil my machine\ncan revive.\pPlease choose a complete fossil.", MSGBOX_DEFAULT)
+                case ES: msgbox("Mmm... mi máquina no puede revivir\nese objeto.\pElige un fósil completo.", MSGBOX_DEFAULT)
+            }
+            goto(StonereachCity_Museum_Lab_ChooseFossil)
+    }
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma escolha magnífica! Só preciso de\num momento para calibrar a máquina...", MSGBOX_DEFAULT)
+        case EN: msgbox("A magnificent choice! I just need a\nmoment to calibrate the machine...", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Una elección magnífica! Solo necesito\nun momento para calibrar la máquina...", MSGBOX_DEFAULT)
+    }
+    removeitem(VAR_ITEM_ID)
+    fadescreen(FADE_TO_BLACK)
+    pause(40)
+    clearflag(FLAG_TEMP_5)
+    addobject(LOCALID_MUSEUM_LAB_REVIVED_MON)
+    fadescreen(FADE_FROM_BLACK)
+    pause(30)
+    playmoncry(VAR_MUSEUM_LAB_REVIVED_SPECIES, 0)
+    waitmoncry
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Extraordinário! Os sinais vitais estão\nperfeitos. A ressurreição foi um sucesso!\pEste Pokémon pertence a você.\nCuide bem desta relíquia viva!", MSGBOX_DEFAULT)
+        case EN: msgbox("Extraordinary! Its vital signs are\nperfect. The revival was a success!\pThis Pokémon belongs to you. Take\ngood care of this living relic!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Extraordinario! Sus signos vitales\nson perfectos. ¡La resurrección funcionó!\pEste Pokémon es tuyo. ¡Cuida bien\nde esta reliquia viviente!", MSGBOX_DEFAULT)
+    }
+    givemon(VAR_MUSEUM_LAB_REVIVED_SPECIES, 20)
+    bufferspeciesname(STR_VAR_1, VAR_MUSEUM_LAB_REVIVED_SPECIES)
+    playfanfare(MUS_OBTAIN_ITEM)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("{PLAYER} recebeu um {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!")
+        case EN: msgbox("{PLAYER} received a {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!")
+        case ES: msgbox("¡{PLAYER} recibió un {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!")
+    }
+    waitfanfare
+    waitbuttonpress
+    closemessage
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Foi um privilégio testemunhar este\nreencontro com o passado.\pAté a próxima descoberta, {PLAYER}!", MSGBOX_NPC)
+        case EN: msgbox("It was a privilege to witness this\nreunion with the past.\pUntil the next discovery, {PLAYER}!", MSGBOX_NPC)
+        case ES: msgbox("Fue un privilegio presenciar este\nreencuentro con el pasado.\p¡Hasta el próximo hallazgo, {PLAYER}!", MSGBOX_NPC)
+    }
+    fadescreen(FADE_TO_BLACK)
+    setflag(FLAG_TEMP_5)
+    removeobject(LOCALID_MUSEUM_LAB_REVIVED_MON)
+    fadescreen(FADE_FROM_BLACK)
+    release
+    end
+}
+
+script StonereachCity_Museum_Lab_EventScript_GalarScientist {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Eu estudo os estranhos fósseis de\nGalar!\pEles só podem ser revividos quando\nduas partes compatíveis são combinadas.\pQuer tentar uma restauração?", MSGBOX_YESNO)
+        case EN: msgbox("I study the strange fossils of\nGalar!\pThey can only be revived by combining\ntwo compatible parts.\pWould you like to try a restoration?", MSGBOX_YESNO)
+        case ES: msgbox("¡Estudio los extraños fósiles de\nGalar!\pSolo pueden revivirse combinando dos\npartes compatibles.\p¿Quieres intentar una restauración?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Entendo. Montar o passado exige\npaciência e as peças certas.", MSGBOX_NPC)
+            case EN: msgbox("I understand. Reassembling the past\ntakes patience and the right pieces.", MSGBOX_NPC)
+            case ES: msgbox("Lo entiendo. Reconstruir el pasado\nrequiere paciencia y las piezas correctas.", MSGBOX_NPC)
+        }
+        release
+        end
+    }
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Primeiro, escolha uma das partes\nfósseis de Galar.", MSGBOX_DEFAULT)
+        case EN: msgbox("First, choose one of your Galarian\nfossil parts.", MSGBOX_DEFAULT)
+        case ES: msgbox("Primero, elige una de tus piezas\nfósiles de Galar.", MSGBOX_DEFAULT)
+    }
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_RESULT, FALSE)
+    special(Script_QuizLadyOpenBagMenu)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(StonereachCity_Museum_Lab_Galar_Cancelled)
+    }
+    copyvar(VAR_MUSEUM_LAB_GALAR_FOSSIL_1, VAR_ITEM_ID)
+    if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) < ITEM_FOSSILIZED_BIRD) {
+        goto(StonereachCity_Museum_Lab_Galar_NotGalarFossil)
+    }
+    if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) > ITEM_FOSSILIZED_DINO) {
+        goto(StonereachCity_Museum_Lab_Galar_NotGalarFossil)
+    }
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Agora escolha a segunda parte.\pSem as duas, não iniciarei o\nprocedimento.", MSGBOX_DEFAULT)
+        case EN: msgbox("Now choose the second part.\pI won't begin the procedure without\nboth of them.", MSGBOX_DEFAULT)
+        case ES: msgbox("Ahora elige la segunda pieza.\pNo iniciaré el procedimiento sin\ntener las dos.", MSGBOX_DEFAULT)
+    }
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_RESULT, FALSE)
+    special(Script_QuizLadyOpenBagMenu)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(StonereachCity_Museum_Lab_Galar_Cancelled)
+    }
+    copyvar(VAR_MUSEUM_LAB_GALAR_FOSSIL_2, VAR_ITEM_ID)
+    if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) < ITEM_FOSSILIZED_BIRD) {
+        goto(StonereachCity_Museum_Lab_Galar_NotGalarFossil)
+    }
+    if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) > ITEM_FOSSILIZED_DINO) {
+        goto(StonereachCity_Museum_Lab_Galar_NotGalarFossil)
+    }
+
+    setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_NONE)
+    if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) == ITEM_FOSSILIZED_BIRD) {
+        if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) == ITEM_FOSSILIZED_DRAKE) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_DRACOZOLT)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(DRACOZOLT))
+        } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) == ITEM_FOSSILIZED_DINO) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_ARCTOZOLT)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(ARCTOZOLT))
+        }
+    } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) == ITEM_FOSSILIZED_FISH) {
+        if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) == ITEM_FOSSILIZED_DRAKE) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_DRACOVISH)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(DRACOVISH))
+        } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) == ITEM_FOSSILIZED_DINO) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_ARCTOVISH)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(ARCTOVISH))
+        }
+    } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) == ITEM_FOSSILIZED_BIRD) {
+        if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) == ITEM_FOSSILIZED_DRAKE) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_DRACOZOLT)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(DRACOZOLT))
+        } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) == ITEM_FOSSILIZED_DINO) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_ARCTOZOLT)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(ARCTOZOLT))
+        }
+    } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_2) == ITEM_FOSSILIZED_FISH) {
+        if (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) == ITEM_FOSSILIZED_DRAKE) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_DRACOVISH)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(DRACOVISH))
+        } elif (var(VAR_MUSEUM_LAB_GALAR_FOSSIL_1) == ITEM_FOSSILIZED_DINO) {
+            setvar(VAR_MUSEUM_LAB_REVIVED_SPECIES, SPECIES_ARCTOVISH)
+            setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES(ARCTOVISH))
+        }
+    }
+
+    if (var(VAR_MUSEUM_LAB_REVIVED_SPECIES) == SPECIES_NONE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Essas duas partes não são compatíveis.\pA restauração foi cancelada e nenhum\nfóssil foi consumido.", MSGBOX_NPC)
+            case EN: msgbox("Those two parts aren't compatible.\pThe restoration was canceled, and no\nfossils were consumed.", MSGBOX_NPC)
+            case ES: msgbox("Esas dos piezas no son compatibles.\pLa restauración fue cancelada y no se\nconsumió ningún fósil.", MSGBOX_NPC)
+        }
+        release
+        end
+    }
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Sim... estas peças se encaixam!\pDê-me um momento. A ciência está\nprestes a desafiar o tempo!", MSGBOX_DEFAULT)
+        case EN: msgbox("Yes... these pieces fit!\pGive me a moment. Science is about to\ndefy time itself!", MSGBOX_DEFAULT)
+        case ES: msgbox("Sí... ¡estas piezas encajan!\pDame un momento. ¡La ciencia está a\npunto de desafiar al tiempo!", MSGBOX_DEFAULT)
+    }
+    removeitem(VAR_MUSEUM_LAB_GALAR_FOSSIL_1)
+    removeitem(VAR_MUSEUM_LAB_GALAR_FOSSIL_2)
+    fadescreen(FADE_TO_BLACK)
+    pause(40)
+    clearflag(FLAG_TEMP_5)
+    addobject(LOCALID_MUSEUM_LAB_REVIVED_MON)
+    fadescreen(FADE_FROM_BLACK)
+    pause(30)
+    playmoncry(VAR_MUSEUM_LAB_REVIVED_SPECIES, 0)
+    waitmoncry
+    pause(20)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Inacreditável! Duas eras perdidas agora\nrespiram como uma só!\pO Pokémon restaurado é seu. Tenho\ncerteza de que aprenderão muito juntos!", MSGBOX_DEFAULT)
+        case EN: msgbox("Incredible! Two lost eras now breathe\nas one!\pThe restored Pokémon is yours. I'm sure\nyou'll learn much from each other!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Increíble! ¡Dos eras perdidas ahora\nrespiran como una sola!\pEl Pokémon restaurado es tuyo. ¡Seguro\nque aprenderán mucho juntos!", MSGBOX_DEFAULT)
+    }
+    givemon(VAR_MUSEUM_LAB_REVIVED_SPECIES, 20)
+    bufferspeciesname(STR_VAR_1, VAR_MUSEUM_LAB_REVIVED_SPECIES)
+    playfanfare(MUS_OBTAIN_ITEM)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("{PLAYER} recebeu um {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!")
+        case EN: msgbox("{PLAYER} received a {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!")
+        case ES: msgbox("¡{PLAYER} recibió un {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!")
+    }
+    waitfanfare
+    waitbuttonpress
+    closemessage
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Duas relíquias se tornaram uma nova\nvida graças a você.\pVolte quando encontrar mais peças de\nGalar. Boa jornada, {PLAYER}!", MSGBOX_NPC)
+        case EN: msgbox("Two relics became a new life thanks\nto you.\pReturn if you find more pieces from\nGalar. Safe travels, {PLAYER}!", MSGBOX_NPC)
+        case ES: msgbox("Dos reliquias se convirtieron en una\nnueva vida gracias a ti.\pVuelve si encuentras más piezas de\nGalar. ¡Buen viaje, {PLAYER}!", MSGBOX_NPC)
+    }
+    fadescreen(FADE_TO_BLACK)
+    setflag(FLAG_TEMP_5)
+    removeobject(LOCALID_MUSEUM_LAB_REVIVED_MON)
+    fadescreen(FADE_FROM_BLACK)
+    release
+    end
+
+StonereachCity_Museum_Lab_Galar_NotGalarFossil:
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Esse não é um dos quatro fósseis de\nGalar que eu estudo.\pA transação foi cancelada. Nenhum item\nfoi consumido.", MSGBOX_NPC)
+        case EN: msgbox("That isn't one of the four Galarian\nfossils I study.\pThe transaction was canceled. No items\nwere consumed.", MSGBOX_NPC)
+        case ES: msgbox("Ese no es uno de los cuatro fósiles\nde Galar que estudio.\pLa transacción fue cancelada. No se\nconsumió ningún objeto.", MSGBOX_NPC)
+    }
+    release
+    end
+
+StonereachCity_Museum_Lab_Galar_Cancelled:
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Preciso das duas partes para começar.\pA transação foi cancelada e nenhum\nfóssil foi consumido.", MSGBOX_NPC)
+        case EN: msgbox("I need both parts before I can begin.\pThe transaction was canceled, and no\nfossils were consumed.", MSGBOX_NPC)
+        case ES: msgbox("Necesito las dos piezas para empezar.\pLa transacción fue cancelada y no se\nconsumió ningún fósil.", MSGBOX_NPC)
+    }
+    release
+    end
+}

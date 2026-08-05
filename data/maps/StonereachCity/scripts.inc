@@ -6,7 +6,7 @@ StonereachCity_MapScripts::
 StonereachCity_MapScripts_MAP_SCRIPT_ON_TRANSITION:
 # 3 "data/maps/StonereachCity/scripts.pory"
 	compare VAR_STONEREACH_CITY_STATE, 1
-	goto_if_ge StonereachCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
+	goto_if_eq StonereachCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_2
 StonereachCity_MapScripts_MAP_SCRIPT_ON_TRANSITION_1:
 	end
 

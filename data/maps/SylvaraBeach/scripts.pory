@@ -100,6 +100,22 @@ script SylvaraBeach_EventScript_Rival_Continue {
         case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Wow… that battle was even better\nthan I imagined.\pYou're really amazing, {PLAYER}.\pIf this was our first battle, I\ncan't wait for the next ones.\pI think both of us have a long\nroad ahead.\pThere are so many places to\nexplore, so many Pokémon to meet…\pAnd so many challenges waiting for\nus.\pI'll keep moving forward and\ntraining.\pSo don't fall behind, alright?\pUntil our next battle!", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Vaya… esta batalla fue incluso\nmejor de lo que imaginaba.\pDe verdad eres increíble,\n{PLAYER}.\pSi esta fue nuestra primera\nbatalla, no puedo esperar a las\lpróximas.\pCreo que ambos tenemos un largo\ncamino por delante.\pHay muchos lugares por conocer,\nmuchos Pokémon por encontrar…\pY muchos desafíos esperándonos.\pSeguiré adelante y continuaré\nentrenando.\pAsí que no te quedes atrás, ¿de\nacuerdo?\p¡Hasta nuestra próxima batalla!", MSGBOX_AUTOCLOSE)
     }
+    if (!flag(FLAG_RECEIVED_EXP_SHARE)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Ah, quase esqueci!\pLeve isto com você.\nVai facilitar os seus treinamentos!", MSGBOX_AUTOCLOSE)
+            case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Oh, I almost forgot!\pTake this with you.\nIt'll make training much easier!", MSGBOX_AUTOCLOSE)
+            case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "¡Ah, casi lo olvido!\pLlévate esto.\n¡Hará más fácil tu entrenamiento!", MSGBOX_AUTOCLOSE)
+        }
+        giveitem(ITEM_EXP_ALL)
+        waitfanfare
+        pause(20)
+        setflag(FLAG_RECEIVED_EXP_SHARE)
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "É um Exp. All.\pAbra a Bolsa, selecione o item\ne escolha DAR.\pO Pokémon que estiver segurando\nreceberá experiência nas batalhas,\lmesmo sem lutar.\pÉ ótimo para treinar os membros\nmais novos da equipe!", MSGBOX_AUTOCLOSE)
+            case EN: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "It's an Exp. All.\pOpen your Bag, select it,\nand choose GIVE.\pThe Pokémon holding it will earn\nExp. Points from battles,\leven if it doesn't fight.\pIt's great for training newer\nmembers of your team!", MSGBOX_AUTOCLOSE)
+            case ES: msgminibox(PSS_ICON_LUCIEN, "{RIVAL}", "Es un Repartir Exp.\pAbre la Bolsa, selecciónalo\ny elige DAR.\pEl Pokémon que lo lleve ganará\nexperiencia en los combates,\launque no participe.\p¡Es ideal para entrenar a los\nmiembros nuevos del equipo!", MSGBOX_AUTOCLOSE)
+        }
+    }
     playse(SE_PIN)
     movenpc(VAR_LAST_TALKED, Common_Movement_EmojiConfident)
     waitse

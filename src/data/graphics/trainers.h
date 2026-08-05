@@ -10,6 +10,9 @@ const u16 gTrainerPalette_Lucien[] = INCGFX_U16("graphics/trainers/palettes/luci
 const u32 gTrainerFrontPic_YoungGiovanni[] = INCGFX_U32("graphics/trainers/front_pics/young_giovanni.png", ".4bpp.smol");
 const u16 gTrainerPalette_YoungGiovanni[] = INCGFX_U16("graphics/trainers/palettes/young_giovanni.pal", ".gbapal");
 
+const u32 gTrainerFrontPic_Aldren[] = INCGFX_U32("graphics/trainers/front_pics/aldren.png", ".4bpp.smol");
+const u16 gTrainerPalette_Aldren[] = INCGFX_U16("graphics/trainers/palettes/aldren.pal", ".gbapal");
+
 const u32 gTrainerFrontPic_Hiker[] = INCGFX_U32("graphics/trainers/front_pics/hiker.png", ".4bpp.smol");
 const u16 gTrainerPalette_Hiker[] = INCGFX_U16("graphics/trainers/front_pics/hiker.png", ".gbapal");
 
@@ -1240,5 +1243,9 @@ const struct TrainerPicInfo gTrainerPicInfo[TRAINER_PIC_COUNT] =
     [TRAINER_PIC_YOUNG_GIOVANNI] =
     {
         .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_YoungGiovanni, gTrainerPalette_YoungGiovanni),
+    },
+    [TRAINER_PIC_ALDREN] =
+    {
+        .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_Aldren, gTrainerPalette_Aldren),
     },
 };

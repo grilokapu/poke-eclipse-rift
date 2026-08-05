@@ -22614,16 +22614,13 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "Electric bursts always go\n"
             "first and land a critical hit."),
-<<<<<<< HEAD
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Descargas elétricas sempre\n"
             "agem primeiro e são críti."),
         .descriptionEs = COMPOUND_STRING(
             "Ráfagas eléctricas siempre\n"
             "van primero y son críticas."),
-=======
-        #endif
->>>>>>> c828d127217b86f9afe09aec0c6faad1a643cfe6
         .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 80 : 50,
         .type = TYPE_ELECTRIC,

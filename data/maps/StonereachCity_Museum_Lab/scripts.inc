@@ -1,0 +1,2361 @@
+StonereachCity_Museum_Lab_MapScripts::
+# 2 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	map_script MAP_SCRIPT_ON_TRANSITION, StonereachCity_Museum_Lab_MapScripts_MAP_SCRIPT_ON_TRANSITION
+# 5 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, StonereachCity_Museum_Lab_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE
+	.byte 0
+
+StonereachCity_Museum_Lab_MapScripts_MAP_SCRIPT_ON_TRANSITION:
+# 3 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setflag FLAG_TEMP_5
+	return
+
+StonereachCity_Museum_Lab_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
+# 6 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	map_script_2 VAR_STONEREACH_CITY_STATE, 1, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari
+	.2byte 0
+
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari::
+# 20 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	lockall
+# 21 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 30
+# 22 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	special SpawnCameraObject
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movecamera StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_0
+# 24 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 20
+# 25 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 26 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_3
+# 27 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_4
+# 28 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_5
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_1:
+# 30 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playse SE_PC_LOGIN
+# 31 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 15
+# 32 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 33 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 34 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_8
+# 35 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_9
+# 36 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_10
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_6:
+# 38 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 39 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_13
+# 40 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_14
+# 41 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_15
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_11:
+# 43 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 44 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 45 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_18
+# 46 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_19
+# 47 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_20
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_16:
+# 49 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 50 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_23
+# 51 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_24
+# 52 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_25
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_21:
+# 54 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 55 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 56 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_28
+# 57 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_29
+# 58 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_30
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_26:
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movecamera StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_1
+# 61 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	special RemoveCameraObject
+# 62 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	moveplayer StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_2
+# 63 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playse SE_PIN
+# 64 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_3
+# 65 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitse
+# 66 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 15
+# 67 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 68 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_33
+# 69 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_34
+# 70 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_35
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_31:
+# 72 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 4, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_4
+# 73 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 74 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_38
+# 75 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_39
+# 76 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_40
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_36:
+# 78 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 79 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 80 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_43
+# 81 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_44
+# 82 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_45
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_41:
+# 84 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_4
+# 85 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 86 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_48
+# 87 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_49
+# 88 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_50
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_46:
+# 90 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_5
+# 91 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 4, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_5
+# 92 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	getplayerxy VAR_TEMP_4, VAR_TEMP_5
+# 93 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_5, 6
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_52
+# 96 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	moveplayer StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_7
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_51:
+# 98 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 30
+# 99 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playse SE_NOTE_D
+# 100 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 25
+# 101 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 102 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_57
+# 103 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_58
+# 104 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_59
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_55:
+# 106 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playse SE_SHINY
+# 107 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 8
+# 108 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 12
+# 109 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playse SE_PC_LOGIN
+# 110 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_8
+# 111 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 15
+# 112 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 113 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_62
+# 114 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_63
+# 115 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_64
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_60:
+# 117 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 118 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 119 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_67
+# 120 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_68
+# 121 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_69
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_65:
+# 123 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 124 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_72
+# 125 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_73
+# 126 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_74
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_70:
+# 128 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 129 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 130 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_77
+# 131 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_78
+# 132 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_79
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_75:
+# 134 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 135 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_82
+# 136 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_83
+# 137 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_84
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_80:
+# 139 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 140 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 141 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_87
+# 142 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_88
+# 143 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_89
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_85:
+# 145 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9
+# 146 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 147 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_92
+# 148 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_93
+# 149 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_94
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_90:
+# 151 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	moveplayer StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_10
+# 152 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 153 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_97
+# 154 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_98
+# 155 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_99
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_95:
+# 157 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 4, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9
+# 158 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 159 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 160 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_102
+# 161 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_103
+# 162 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_104
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_100:
+# 164 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 165 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_107
+# 166 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_108
+# 167 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_109
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_105:
+# 169 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 4, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9
+# 170 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setspeaker StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4
+# 171 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 172 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_112
+# 173 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_113
+# 174 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_114
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_110:
+# 176 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	closemessage
+# 177 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9
+# 178 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	moveplayer StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_11
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	applymovement 4, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_12
+# 180 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitmovement 4
+# 181 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setflag FLAG_HIDE_MUSEUM_LAB_ALDREN
+# 182 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeobject 4
+# 183 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 20
+# 184 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9
+	checkitem ITEM_DOWSING_MACHINE
+# 0 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_RESULT, 0
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_116
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_115:
+# 195 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 196 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_120
+# 197 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_121
+# 198 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_122
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_118:
+# 200 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 201 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_130
+# 202 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_131
+# 203 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_132
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_128:
+# 205 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	closemessage
+# 206 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	movenpc 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	applymovement 5, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_13
+# 208 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitmovement 5
+# 209 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setflag FLAG_HIDE_MUSEUM_LAB_HIKARI
+# 210 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeobject 5
+# 211 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setflag FLAG_HIDE_STONEREACH_GYM_GUARDIAN
+# 212 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_STONEREACH_CITY_STATE, 2
+# 213 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	releaseall
+	end
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_3:
+# 26 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_1, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_1
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_4:
+# 27 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_2, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_1
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_5:
+# 28 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_3, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_1
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_8:
+# 34 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_5, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_6
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_9:
+# 35 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_6, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_6
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_10:
+# 36 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_7, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_6
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_13:
+# 39 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_8, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_11
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_14:
+# 40 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_9, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_11
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_15:
+# 41 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_10, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_11
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_18:
+# 45 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_11, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_16
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_19:
+# 46 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_12, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_16
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_20:
+# 47 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_13, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_16
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_23:
+# 50 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_14, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_21
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_24:
+# 51 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_15, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_21
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_25:
+# 52 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_16, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_21
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_28:
+# 56 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_17, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_26
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_29:
+# 57 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_18, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_26
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_30:
+# 58 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_19, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_26
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_33:
+# 68 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_20, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_31
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_34:
+# 69 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_21, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_31
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_35:
+# 70 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_22, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_31
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_38:
+# 74 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_23, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_36
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_39:
+# 75 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_24, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_36
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_40:
+# 76 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_25, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_36
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_43:
+# 80 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_26, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_41
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_44:
+# 81 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_27, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_41
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_45:
+# 82 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_28, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_41
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_48:
+# 86 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_29, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_46
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_49:
+# 87 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_30, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_46
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_50:
+# 88 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_31, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_46
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_52:
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	moveplayer StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_6
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_51
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_57:
+# 102 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_32, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_55
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_58:
+# 103 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_33, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_55
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_59:
+# 104 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_34, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_55
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_62:
+# 113 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_35, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_60
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_63:
+# 114 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_36, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_60
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_64:
+# 115 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_37, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_60
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_67:
+# 119 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_38, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_65
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_68:
+# 120 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_39, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_65
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_69:
+# 121 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_40, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_65
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_72:
+# 124 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_41, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_70
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_73:
+# 125 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_42, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_70
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_74:
+# 126 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_43, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_70
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_77:
+# 130 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_44, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_75
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_78:
+# 131 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_45, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_75
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_79:
+# 132 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_46, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_75
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_82:
+# 135 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_47, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_80
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_83:
+# 136 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_48, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_80
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_84:
+# 137 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_49, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_80
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_87:
+# 141 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_50, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_85
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_88:
+# 142 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_51, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_85
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_89:
+# 143 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_52, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_85
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_92:
+# 147 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_53, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_90
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_93:
+# 148 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_54, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_90
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_94:
+# 149 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_55, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_90
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_97:
+# 153 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_56, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_95
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_98:
+# 154 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_57, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_95
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_99:
+# 155 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_58, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_95
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_102:
+# 160 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_59, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_100
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_103:
+# 161 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_60, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_100
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_104:
+# 162 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_61, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_100
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_107:
+# 165 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_62, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_105
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_108:
+# 166 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_63, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_105
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_109:
+# 167 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_64, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_105
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_112:
+# 172 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_65, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_110
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_113:
+# 173 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_66, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_110
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_114:
+# 174 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_67, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_110
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_116:
+# 186 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 187 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_125
+# 188 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_126
+# 189 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_127
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_123:
+# 191 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	giveitem ITEM_DOWSING_MACHINE
+# 192 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitfanfare
+# 193 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 20
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_115
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_120:
+# 196 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_71, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_118
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_121:
+# 197 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_72, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_118
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_122:
+# 198 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_73, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_118
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_125:
+# 187 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_68, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_123
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_126:
+# 188 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_69, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_123
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_127:
+# 189 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_70, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_123
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_130:
+# 201 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_74, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_128
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_131:
+# 202 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_75, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_128
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_132:
+# 203 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgminibox PSS_ICON_HIKARI, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0, StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_76, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_128
+
+
+StonereachCity_Museum_Lab_EventScript_Scientist::
+# 218 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	lock
+# 219 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	faceplayer
+# 220 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 221 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_3
+# 222 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_4
+# 223 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_5
+StonereachCity_Museum_Lab_EventScript_Scientist_1:
+# 225 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_RESULT, NO
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_Scientist_7
+# 235 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_ChooseFossil:
+# 236 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 237 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_11
+# 238 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_12
+# 239 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_13
+StonereachCity_Museum_Lab_EventScript_Scientist_9:
+# 241 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 242 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_RESULT, FALSE
+# 243 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	special Script_QuizLadyOpenBagMenu
+# 244 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_Scientist_20
+# 254 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_ITEM_ID
+# 255 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_HELIX_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_24
+# 258 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_DOME_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_25
+# 261 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_OLD_AMBER, StonereachCity_Museum_Lab_EventScript_Scientist_26
+# 264 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_ROOT_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_27
+# 267 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_CLAW_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_28
+# 270 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_ARMOR_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_29
+# 273 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_SKULL_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_30
+# 276 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_COVER_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_31
+# 279 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_PLUME_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_32
+# 282 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_JAW_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_33
+# 285 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ITEM_SAIL_FOSSIL, StonereachCity_Museum_Lab_EventScript_Scientist_34
+# 289 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 290 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_48
+# 291 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_49
+# 292 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_50
+StonereachCity_Museum_Lab_EventScript_Scientist_46:
+# 294 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_ChooseFossil
+StonereachCity_Museum_Lab_EventScript_Scientist_22:
+# 297 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 298 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_43
+# 299 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_44
+# 300 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_45
+StonereachCity_Museum_Lab_EventScript_Scientist_41:
+# 302 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeitem VAR_ITEM_ID
+# 303 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 304 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 40
+# 305 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	clearflag FLAG_TEMP_5
+# 306 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	addobject 2
+# 307 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 308 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 30
+# 309 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playmoncry VAR_TEMP_0, 0
+# 310 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitmoncry
+# 311 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 20
+# 312 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 313 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_53
+# 314 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_54
+# 315 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_55
+StonereachCity_Museum_Lab_EventScript_Scientist_51:
+# 317 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	givemon VAR_TEMP_0, 20
+# 318 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_TEMP_0
+# 319 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 320 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 321 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_58
+# 322 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_59
+# 323 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_60
+StonereachCity_Museum_Lab_EventScript_Scientist_56:
+# 325 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitfanfare
+# 326 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitbuttonpress
+# 327 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	closemessage
+# 328 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 329 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_63
+# 330 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_64
+# 331 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_65
+StonereachCity_Museum_Lab_EventScript_Scientist_61:
+# 333 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 334 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setflag FLAG_TEMP_5
+# 335 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeobject 2
+# 336 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 337 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+	end
+
+StonereachCity_Museum_Lab_EventScript_Scientist_3:
+# 221 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_0, MSGBOX_YESNO
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_1
+
+StonereachCity_Museum_Lab_EventScript_Scientist_4:
+# 222 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_1, MSGBOX_YESNO
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_1
+
+StonereachCity_Museum_Lab_EventScript_Scientist_5:
+# 223 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_2, MSGBOX_YESNO
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_1
+
+StonereachCity_Museum_Lab_EventScript_Scientist_7:
+# 226 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 227 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_16
+# 228 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_17
+# 229 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_18
+StonereachCity_Museum_Lab_EventScript_Scientist_14:
+# 231 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+	end
+
+StonereachCity_Museum_Lab_EventScript_Scientist_11:
+# 237 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_6, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_9
+
+StonereachCity_Museum_Lab_EventScript_Scientist_12:
+# 238 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_7, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_9
+
+StonereachCity_Museum_Lab_EventScript_Scientist_13:
+# 239 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_8, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_9
+
+StonereachCity_Museum_Lab_EventScript_Scientist_16:
+# 227 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_3, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_14
+
+StonereachCity_Museum_Lab_EventScript_Scientist_17:
+# 228 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_4, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_14
+
+StonereachCity_Museum_Lab_EventScript_Scientist_18:
+# 229 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_5, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_14
+
+StonereachCity_Museum_Lab_EventScript_Scientist_20:
+# 245 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 246 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_Scientist_38
+# 247 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_Scientist_39
+# 248 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_Scientist_40
+StonereachCity_Museum_Lab_EventScript_Scientist_36:
+# 250 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+	end
+
+StonereachCity_Museum_Lab_EventScript_Scientist_24:
+# 256 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_OMANYTE
+# 257 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( OMANYTE )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_25:
+# 259 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_KABUTO
+# 260 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( KABUTO )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_26:
+# 262 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_AERODACTYL
+# 263 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( AERODACTYL )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_27:
+# 265 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_LILEEP
+# 266 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( LILEEP )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_28:
+# 268 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_ANORITH
+# 269 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( ANORITH )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_29:
+# 271 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_SHIELDON
+# 272 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( SHIELDON )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_30:
+# 274 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_CRANIDOS
+# 275 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( CRANIDOS )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_31:
+# 277 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_TIRTOUGA
+# 278 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( TIRTOUGA )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_32:
+# 280 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_ARCHEN
+# 281 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( ARCHEN )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_33:
+# 283 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_TYRUNT
+# 284 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( TYRUNT )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_34:
+# 286 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_AMAURA
+# 287 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( AMAURA )
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_22
+
+StonereachCity_Museum_Lab_EventScript_Scientist_38:
+# 246 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_9, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_36
+
+StonereachCity_Museum_Lab_EventScript_Scientist_39:
+# 247 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_10, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_36
+
+StonereachCity_Museum_Lab_EventScript_Scientist_40:
+# 248 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_11, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_36
+
+StonereachCity_Museum_Lab_EventScript_Scientist_43:
+# 298 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_15, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_41
+
+StonereachCity_Museum_Lab_EventScript_Scientist_44:
+# 299 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_16, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_41
+
+StonereachCity_Museum_Lab_EventScript_Scientist_45:
+# 300 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_17, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_41
+
+StonereachCity_Museum_Lab_EventScript_Scientist_48:
+# 290 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_12, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_46
+
+StonereachCity_Museum_Lab_EventScript_Scientist_49:
+# 291 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_13, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_46
+
+StonereachCity_Museum_Lab_EventScript_Scientist_50:
+# 292 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_14, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_46
+
+StonereachCity_Museum_Lab_EventScript_Scientist_53:
+# 313 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_18, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_51
+
+StonereachCity_Museum_Lab_EventScript_Scientist_54:
+# 314 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_19, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_51
+
+StonereachCity_Museum_Lab_EventScript_Scientist_55:
+# 315 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_20, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_51
+
+StonereachCity_Museum_Lab_EventScript_Scientist_58:
+# 321 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_21
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_56
+
+StonereachCity_Museum_Lab_EventScript_Scientist_59:
+# 322 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_22
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_56
+
+StonereachCity_Museum_Lab_EventScript_Scientist_60:
+# 323 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_23
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_56
+
+StonereachCity_Museum_Lab_EventScript_Scientist_63:
+# 329 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_24, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_61
+
+StonereachCity_Museum_Lab_EventScript_Scientist_64:
+# 330 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_25, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_61
+
+StonereachCity_Museum_Lab_EventScript_Scientist_65:
+# 331 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_26, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_Scientist_61
+
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist::
+# 342 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	lock
+# 343 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	faceplayer
+# 344 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 345 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_3
+# 346 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_4
+# 347 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_5
+StonereachCity_Museum_Lab_EventScript_GalarScientist_1:
+# 349 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_RESULT, NO
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_7
+# 359 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 360 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_11
+# 361 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_12
+# 362 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_13
+StonereachCity_Museum_Lab_EventScript_GalarScientist_9:
+# 364 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 365 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_RESULT, FALSE
+# 366 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	special Script_QuizLadyOpenBagMenu
+# 367 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_20
+StonereachCity_Museum_Lab_EventScript_GalarScientist_19:
+# 370 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	copyvar VAR_TEMP_1, VAR_ITEM_ID
+# 371 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_BIRD
+	goto_if_lt StonereachCity_Museum_Lab_EventScript_GalarScientist_23
+StonereachCity_Museum_Lab_EventScript_GalarScientist_22:
+# 374 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_DINO
+	goto_if_gt StonereachCity_Museum_Lab_EventScript_GalarScientist_26
+StonereachCity_Museum_Lab_EventScript_GalarScientist_25:
+# 378 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 379 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_30
+# 380 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_31
+# 381 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_32
+StonereachCity_Museum_Lab_EventScript_GalarScientist_28:
+# 383 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 384 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_RESULT, FALSE
+# 385 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	special Script_QuizLadyOpenBagMenu
+# 386 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_RESULT, FALSE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_34
+StonereachCity_Museum_Lab_EventScript_GalarScientist_33:
+# 389 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	copyvar VAR_TEMP_2, VAR_ITEM_ID
+# 390 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_BIRD
+	goto_if_lt StonereachCity_Museum_Lab_EventScript_GalarScientist_37
+StonereachCity_Museum_Lab_EventScript_GalarScientist_36:
+# 393 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_DINO
+	goto_if_gt StonereachCity_Museum_Lab_EventScript_GalarScientist_40
+StonereachCity_Museum_Lab_EventScript_GalarScientist_39:
+# 397 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_NONE
+# 398 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_BIRD
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_43
+# 406 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_FISH
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_44
+# 414 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_BIRD
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_45
+# 422 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_FISH
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_46
+StonereachCity_Museum_Lab_EventScript_GalarScientist_42:
+# 432 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_0, SPECIES_NONE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_52
+# 442 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 443 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_72
+# 444 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_73
+# 445 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_74
+StonereachCity_Museum_Lab_EventScript_GalarScientist_70:
+# 447 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeitem VAR_TEMP_1
+# 448 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeitem VAR_TEMP_2
+# 449 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 450 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 40
+# 451 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	clearflag FLAG_TEMP_5
+# 452 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	addobject 2
+# 453 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 454 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 30
+# 455 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playmoncry VAR_TEMP_0, 0
+# 456 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitmoncry
+# 457 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	pause 20
+# 458 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 459 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_82
+# 460 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_83
+# 461 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_84
+StonereachCity_Museum_Lab_EventScript_GalarScientist_80:
+# 463 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	givemon VAR_TEMP_0, 20
+# 464 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	bufferspeciesname STR_VAR_1, VAR_TEMP_0
+# 465 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	playfanfare MUS_OBTAIN_ITEM
+# 466 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 467 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_87
+# 468 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_88
+# 469 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_89
+StonereachCity_Museum_Lab_EventScript_GalarScientist_85:
+# 471 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitfanfare
+# 472 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	waitbuttonpress
+# 473 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	closemessage
+# 474 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 475 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_92
+# 476 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_93
+# 477 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_94
+StonereachCity_Museum_Lab_EventScript_GalarScientist_90:
+# 479 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_TO_BLACK
+# 480 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setflag FLAG_TEMP_5
+# 481 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	removeobject 2
+# 482 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	fadescreen FADE_FROM_BLACK
+# 483 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+# 484 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	end
+# 486 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_Galar_NotGalarFossil:
+# 487 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 488 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_97
+# 489 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_98
+# 490 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_99
+StonereachCity_Museum_Lab_EventScript_GalarScientist_95:
+# 492 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+# 493 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	end
+# 495 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_Galar_Cancelled:
+# 496 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 497 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_102
+# 498 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_103
+# 499 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_104
+StonereachCity_Museum_Lab_EventScript_GalarScientist_100:
+# 501 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+	end
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_3:
+# 345 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_0, MSGBOX_YESNO
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_1
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_4:
+# 346 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_1, MSGBOX_YESNO
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_1
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_5:
+# 347 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_2, MSGBOX_YESNO
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_1
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_7:
+# 350 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 351 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_16
+# 352 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_17
+# 353 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_18
+StonereachCity_Museum_Lab_EventScript_GalarScientist_14:
+# 355 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+	end
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_11:
+# 360 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_6, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_9
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_12:
+# 361 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_7, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_9
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_13:
+# 362 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_8, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_9
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_16:
+# 351 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_3, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_14
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_17:
+# 352 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_4, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_14
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_18:
+# 353 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_5, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_14
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_20:
+# 368 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_Galar_Cancelled
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_19
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_23:
+# 372 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_Galar_NotGalarFossil
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_22
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_26:
+# 375 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_Galar_NotGalarFossil
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_25
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_30:
+# 379 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_9, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_28
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_31:
+# 380 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_10, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_28
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_32:
+# 381 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_11, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_28
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_34:
+# 387 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_Galar_Cancelled
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_33
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_37:
+# 391 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_Galar_NotGalarFossil
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_36
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_40:
+# 394 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	goto StonereachCity_Museum_Lab_Galar_NotGalarFossil
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_39
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_43:
+# 399 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_DRAKE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_54
+# 402 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_DINO
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_55
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_44:
+# 407 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_DRAKE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_58
+# 410 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_2, ITEM_FOSSILIZED_DINO
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_59
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_45:
+# 415 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_DRAKE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_62
+# 418 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_DINO
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_63
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_46:
+# 423 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_DRAKE
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_66
+# 426 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	compare VAR_TEMP_1, ITEM_FOSSILIZED_DINO
+	goto_if_eq StonereachCity_Museum_Lab_EventScript_GalarScientist_67
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_52:
+# 433 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	switch VAR_LANGUAGE
+# 434 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case PT, StonereachCity_Museum_Lab_EventScript_GalarScientist_77
+# 435 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case EN, StonereachCity_Museum_Lab_EventScript_GalarScientist_78
+# 436 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	case ES, StonereachCity_Museum_Lab_EventScript_GalarScientist_79
+StonereachCity_Museum_Lab_EventScript_GalarScientist_75:
+# 438 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	release
+	end
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_54:
+# 400 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_DRACOZOLT
+# 401 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( DRACOZOLT )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_55:
+# 403 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_ARCTOZOLT
+# 404 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( ARCTOZOLT )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_58:
+# 408 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_DRACOVISH
+# 409 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( DRACOVISH )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_59:
+# 411 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_ARCTOVISH
+# 412 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( ARCTOVISH )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_62:
+# 416 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_DRACOZOLT
+# 417 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( DRACOZOLT )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_63:
+# 419 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_ARCTOZOLT
+# 420 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( ARCTOZOLT )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_66:
+# 424 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_DRACOVISH
+# 425 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( DRACOVISH )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_67:
+# 427 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_TEMP_0, SPECIES_ARCTOVISH
+# 428 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_SPECIES ( ARCTOVISH )
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_42
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_72:
+# 443 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_15, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_70
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_73:
+# 444 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_16, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_70
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_74:
+# 445 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_17, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_70
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_77:
+# 434 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_12, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_75
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_78:
+# 435 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_13, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_75
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_79:
+# 436 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_14, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_75
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_82:
+# 459 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_18, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_80
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_83:
+# 460 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_19, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_80
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_84:
+# 461 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_20, MSGBOX_DEFAULT
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_80
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_87:
+# 467 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_21
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_85
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_88:
+# 468 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_22
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_85
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_89:
+# 469 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_Scientist_Text_23
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_85
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_92:
+# 475 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_21, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_90
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_93:
+# 476 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_22, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_90
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_94:
+# 477 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_23, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_90
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_97:
+# 488 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_24, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_95
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_98:
+# 489 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_25, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_95
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_99:
+# 490 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_26, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_95
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_102:
+# 497 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_27, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_100
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_103:
+# 498 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_28, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_100
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_104:
+# 499 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	msgbox StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_29, MSGBOX_NPC
+	goto StonereachCity_Museum_Lab_EventScript_GalarScientist_100
+
+
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_0:
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 23 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_up
+	step_end
+
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_1:
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 60 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_down
+	step_end
+
+# 62 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_2:
+# 62 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+	step_end
+
+# 64 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_3:
+# 64 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	emote_exclamation_mark
+# 64 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_right
+	step_end
+
+# 72 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_4:
+# 72 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_right
+	step_end
+
+# 90 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_5:
+# 90 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_up
+	step_end
+
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_6:
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_up
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 94 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_up
+	step_end
+
+# 96 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_7:
+# 96 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 96 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 96 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_left
+# 96 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_up
+	step_end
+
+# 110 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_8:
+# 110 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	emote_exclamation_mark
+# 110 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_up
+	step_end
+
+# 145 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_9:
+# 145 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_down
+	step_end
+
+# 151 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_10:
+# 151 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_left
+# 151 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	delay_16
+# 151 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_up
+	step_end
+
+# 178 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_11:
+# 178 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_down
+# 178 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_up
+	step_end
+
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_12:
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_down
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 179 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_right
+	step_end
+
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Movement_13:
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_down
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	walk_right
+# 207 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	face_right
+	step_end
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_0:
+# 26 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Hikari$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_1:
+# 26 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "A leitura se repetiu.\pExatamente no mesmo ponto.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_2:
+# 27 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "The reading repeated.\pAt exactly the same point.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_3:
+# 28 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "La lectura se repitió.\pExactamente en el mismo punto.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_4:
+# 32 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Aldren$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_5:
+# 34 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Então não é uma falha do aparelho.\pA rocha é comum à Whispering Cave.\nA gravação não.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_6:
+# 35 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Then it isn't an equipment failure.\pThe rock is common to Whispering\nCave. The engraving isn't.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_7:
+# 36 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Entonces no es un fallo del equipo.\pLa roca es común en Whispering Cave.\nEl grabado no.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_8:
+# 39 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "E não sabemos quando foi feito.\pO mais estranho é o desenho...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_9:
+# 40 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "And we don't know when it was made.\pThe strangest part is the design...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_10:
+# 41 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Y no sabemos cuándo fue hecho.\pLo más extraño es el dibujo...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_11:
+# 45 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Há registros semelhantes em outros\npontos de Aetheris.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_12:
+# 46 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "There are similar records from other\nparts of Aetheris.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_13:
+# 47 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Hay registros similares en otros\npuntos de Aetheris.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_14:
+# 50 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ruínas, cavernas... até formações\nsem qualquer ligação conhecida.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_15:
+# 51 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ruins, caves... even formations with\nno known connection.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_16:
+# 52 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ruinas, cuevas... incluso formaciones\nsin ninguna relación conocida.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_17:
+# 56 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Nenhuma que tenhamos demonstrado.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_18:
+# 57 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "None that we have demonstrated.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_19:
+# 58 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ninguna que hayamos demostrado.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_20:
+# 68 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ah! {PLAYER}!\pVocê chegou a Stonereach!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_21:
+# 69 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Oh! {PLAYER}!\pYou made it to Stonereach!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_22:
+# 70 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Ah! ¡{PLAYER}!\p¡Llegaste a Stonereach!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_23:
+# 74 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Desculpe. Quando começo uma análise,\nesqueço tudo ao redor.\pEste é Aldren, diretor do museu...\ne Líder do Ginásio.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_24:
+# 75 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Sorry. Once I begin an analysis, I\nforget everything around me.\pThis is Aldren, the museum director...\nand the Gym Leader.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_25:
+# 76 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Perdona. Cuando empiezo un análisis,\nolvido todo lo que me rodea.\pÉl es Aldren, director del museo...\ny Líder del Gimnasio.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_26:
+# 80 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "E geólogo, sempre que ela permite.\pÉ um prazer, {PLAYER}.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_27:
+# 81 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "And a geologist, whenever she allows.\pIt's a pleasure, {PLAYER}.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_28:
+# 82 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Y geólogo, siempre que ella lo permite.\pEs un placer, {PLAYER}.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_29:
+# 86 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Já que está aqui...\nvenha ver nossa descoberta.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_30:
+# 87 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Since you're here...\ncome see what we found.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_31:
+# 88 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ya que estás aquí...\nven a ver lo que encontramos.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_32:
+# 102 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "O símbolo gravado na pedra parece\nestranhamente familiar...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_33:
+# 103 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "The symbol carved into the stone\nseems strangely familiar...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_34:
+# 104 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "El símbolo grabado en la piedra\nparece extrañamente familiar...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_35:
+# 113 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Espere...\pAldren, a leitura mudou.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_36:
+# 114 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Wait...\pAldren, the reading changed.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_37:
+# 115 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Espera...\pAldren, la lectura cambió.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_38:
+# 119 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Intensidade e duração?$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_39:
+# 120 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Intensity and duration?$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_40:
+# 121 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¿Intensidad y duración?$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_41:
+# 124 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Baixa. Menos de um segundo.\pAconteceu quando {PLAYER}\nse aproximou.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_42:
+# 125 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Low. Less than one second.\pIt happened when {PLAYER}\ncame closer.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_43:
+# 126 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Baja. Menos de un segundo.\pOcurrió cuando {PLAYER}\nse acercó.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_44:
+# 130 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Foi quando percebemos a mudança.\pIsso não significa que tenha sido\na causa.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_45:
+# 131 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "That is when we observed the change.\pIt doesn't mean that was\nthe cause.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_46:
+# 132 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Fue cuando observamos el cambio.\pEso no significa que haya sido\nla causa.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_47:
+# 135 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Correlação não é causa. Eu sei.\pMas ainda quero repetir o teste.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_48:
+# 136 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Correlation isn't causation. I know.\pBut I still want to repeat the test.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_49:
+# 137 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Correlación no implica causalidad.\pPero quiero repetir la prueba.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_50:
+# 141 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Depois de verificarmos o ambiente.\pVibração, temperatura, eletricidade\nestática...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_51:
+# 142 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "After we check the environment.\pVibration, temperature, static\nelectricity...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_52:
+# 143 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Después de revisar el entorno.\pVibración, temperatura, electricidad\nestática...$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_53:
+# 147 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "E partículas trazidas da caverna.\pVocê atravessou a Whispering Cave,\nnão foi?$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_54:
+# 148 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "And particles carried from the cave.\pYou came through Whispering Cave,\ndidn't you?$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_55:
+# 149 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Y partículas traídas de la cueva.\pAtravesaste Whispering Cave,\n¿verdad?$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_56:
+# 153 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Imaginei. Há poeira clara\nnas suas botas.\pSe encontrar outro símbolo assim,\nlembre-se do lugar.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_57:
+# 154 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "I thought so. There's pale dust\non your boots.\pIf you find another symbol like this,\nremember the location.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_58:
+# 155 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Eso pensé. Hay polvo claro\nen tus botas.\pSi encuentras otro símbolo así,\nrecuerda el lugar.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_59:
+# 160 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "E não toque nele sem necessidade.\pPor enquanto, temos formas parecidas\ne muitas perguntas.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_60:
+# 161 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "And don't touch it unnecessarily.\pFor now, we have similar shapes\nand many questions.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_61:
+# 162 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Y no lo toques sin necesidad.\pPor ahora tenemos formas parecidas\ny muchas preguntas.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_62:
+# 165 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "O que, para uma pesquisadora,\né um ótimo começo.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_63:
+# 166 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Which, for a researcher,\nis an excellent start.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_64:
+# 167 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Lo cual, para una investigadora,\nes un excelente comienzo.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_65:
+# 172 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Meu trabalho no museu terminou\npor hoje.\pSe veio a Stonereach como Treinador,\nvisite o Ginásio.\pEstarei esperando por você lá,\n{PLAYER}.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_66:
+# 173 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "My work at the museum is finished\nfor today.\pIf you came to Stonereach as a\nTrainer, visit the Gym.\pI'll be waiting for you there,\n{PLAYER}.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_67:
+# 174 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Mi trabajo en el museo terminó\npor hoy.\pSi viniste a Stonereach como\nEntrenador, visita el Gimnasio.\pTe estaré esperando allí,\n{PLAYER}.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_68:
+# 187 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Antes de voltar ao meu laboratório...\pLeve isto, {PLAYER}.\nVai ajudar nas suas explorações.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_69:
+# 188 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Before I return to my laboratory...\pTake this, {PLAYER}.\nIt will help with your explorations.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_70:
+# 189 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Antes de volver a mi laboratorio...\pToma esto, {PLAYER}.\nTe ayudará en tus exploraciones.$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_71:
+# 196 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "É uma Máquina de Itens.\pAbra o bolso de Itens-Chave da Bolsa\ne escolha USAR.\pSe houver um item oculto por perto,\nela emitirá um sinal.\pVocê também olhará na direção dele.\nInvestigue bem aquele ponto!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_72:
+# 197 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "It's a Dowsing Machine.\pOpen the Key Items Pocket in your Bag\nand choose USE.\pIf a hidden item is nearby, the machine\nwill emit a signal.\pYou'll also turn toward it.\nSearch that spot carefully!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_73:
+# 198 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Es una Máquina de Objetos.\pAbre el bolsillo de Objetos Clave\ny elige USAR.\pSi hay un objeto oculto cerca,\nla máquina emitirá una señal.\pTambién mirarás hacia él.\n¡Examina bien ese punto!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_74:
+# 201 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Menos de um segundo...\pFoi pouco. Mas aconteceu.\pVou comparar estes dados com os do\nmeu laboratório.\pAté logo, {PLAYER}. E não se esqueça:\nse vir outro símbolo, me avise!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_75:
+# 202 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Less than one second...\pIt was brief. But it happened.\pI'll compare these readings with the\ndata in my laboratory.\pSee you, {PLAYER}. And remember:\ntell me if you see another symbol!$"
+
+StonereachCity_Museum_Lab_EventScript_AldrenAndHikari_Text_76:
+# 203 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Menos de un segundo...\pFue muy breve. Pero ocurrió.\pCompararé estas lecturas con los datos\nde mi laboratorio.\pHasta luego, {PLAYER}. Y recuerda:\n¡avísame si ves otro símbolo!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_0:
+# 221 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Com esta máquina, posso trazer um\nPokémon fóssil de volta à vida!\pVocê tem algum fóssil que gostaria\nde reviver?$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_1:
+# 222 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "With this machine, I can bring a\nfossil Pokémon back to life!\pDo you have a fossil you would like\nme to revive?$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_2:
+# 223 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Con esta máquina puedo devolver a\nla vida a un Pokémon fósil!\p¿Tienes algún fósil que quieras\nrevivir?$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_3:
+# 227 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "A ciência pode esperar. Volte quando\nencontrar um fóssil!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_4:
+# 228 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Science can wait. Come back when you\nfind a fossil!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_5:
+# 229 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "La ciencia puede esperar. ¡Vuelve\ncuando encuentres un fósil!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_6:
+# 237 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Excelente! Escolha o fóssil na sua\nBolsa.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_7:
+# 238 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Excellent! Choose the fossil from\nyour Bag.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_8:
+# 239 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Excelente! Elige el fósil de tu\nBolsa.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_9:
+# 246 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Mudou de ideia? Sem problemas.\nEstarei aqui quando precisar.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_10:
+# 247 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Changed your mind? No problem. I'll\nbe here when you need me.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_11:
+# 248 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¿Cambiaste de idea? No pasa nada.\nEstaré aquí cuando me necesites.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_12:
+# 290 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Hm... isso não é um fóssil que minha\nmáquina possa reviver.\pEscolha um fóssil completo.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_13:
+# 291 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Hm... that isn't a fossil my machine\ncan revive.\pPlease choose a complete fossil.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_14:
+# 292 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Mmm... mi máquina no puede revivir\nese objeto.\pElige un fósil completo.$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_15:
+# 298 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Uma escolha magnífica! Só preciso de\num momento para calibrar a máquina...$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_16:
+# 299 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "A magnificent choice! I just need a\nmoment to calibrate the machine...$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_17:
+# 300 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Una elección magnífica! Solo necesito\nun momento para calibrar la máquina...$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_18:
+# 313 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Extraordinário! Os sinais vitais estão\nperfeitos. A ressurreição foi um sucesso!\pEste Pokémon pertence a você.\nCuide bem desta relíquia viva!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_19:
+# 314 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Extraordinary! Its vital signs are\nperfect. The revival was a success!\pThis Pokémon belongs to you. Take\ngood care of this living relic!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_20:
+# 315 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Extraordinario! Sus signos vitales\nson perfectos. ¡La resurrección funcionó!\pEste Pokémon es tuyo. ¡Cuida bien\nde esta reliquia viviente!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_21:
+# 321 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "{PLAYER} recebeu um {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_22:
+# 322 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "{PLAYER} received a {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_23:
+# 323 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡{PLAYER} recibió un {COLOR}{BLUE}{STR_VAR_1}{COLOR}{DARK_GRAY}!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_24:
+# 329 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Foi um privilégio testemunhar este\nreencontro com o passado.\pAté a próxima descoberta, {PLAYER}!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_25:
+# 330 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "It was a privilege to witness this\nreunion with the past.\pUntil the next discovery, {PLAYER}!$"
+
+StonereachCity_Museum_Lab_EventScript_Scientist_Text_26:
+# 331 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Fue un privilegio presenciar este\nreencuentro con el pasado.\p¡Hasta el próximo hallazgo, {PLAYER}!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_0:
+# 345 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Eu estudo os estranhos fósseis de\nGalar!\pEles só podem ser revividos quando\nduas partes compatíveis são combinadas.\pQuer tentar uma restauração?$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_1:
+# 346 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "I study the strange fossils of\nGalar!\pThey can only be revived by combining\ntwo compatible parts.\pWould you like to try a restoration?$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_2:
+# 347 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Estudio los extraños fósiles de\nGalar!\pSolo pueden revivirse combinando dos\npartes compatibles.\p¿Quieres intentar una restauración?$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_3:
+# 351 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Entendo. Montar o passado exige\npaciência e as peças certas.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_4:
+# 352 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "I understand. Reassembling the past\ntakes patience and the right pieces.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_5:
+# 353 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Lo entiendo. Reconstruir el pasado\nrequiere paciencia y las piezas correctas.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_6:
+# 360 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Primeiro, escolha uma das partes\nfósseis de Galar.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_7:
+# 361 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "First, choose one of your Galarian\nfossil parts.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_8:
+# 362 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Primero, elige una de tus piezas\nfósiles de Galar.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_9:
+# 379 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Agora escolha a segunda parte.\pSem as duas, não iniciarei o\nprocedimento.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_10:
+# 380 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Now choose the second part.\pI won't begin the procedure without\nboth of them.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_11:
+# 381 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ahora elige la segunda pieza.\pNo iniciaré el procedimiento sin\ntener las dos.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_12:
+# 434 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Essas duas partes não são compatíveis.\pA restauração foi cancelada e nenhum\nfóssil foi consumido.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_13:
+# 435 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Those two parts aren't compatible.\pThe restoration was canceled, and no\nfossils were consumed.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_14:
+# 436 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Esas dos piezas no son compatibles.\pLa restauración fue cancelada y no se\nconsumió ningún fósil.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_15:
+# 443 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Sim... estas peças se encaixam!\pDê-me um momento. A ciência está\nprestes a desafiar o tempo!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_16:
+# 444 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Yes... these pieces fit!\pGive me a moment. Science is about to\ndefy time itself!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_17:
+# 445 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Sí... ¡estas piezas encajan!\pDame un momento. ¡La ciencia está a\npunto de desafiar al tiempo!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_18:
+# 459 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Inacreditável! Duas eras perdidas agora\nrespiram como uma só!\pO Pokémon restaurado é seu. Tenho\ncerteza de que aprenderão muito juntos!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_19:
+# 460 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Incredible! Two lost eras now breathe\nas one!\pThe restored Pokémon is yours. I'm sure\nyou'll learn much from each other!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_20:
+# 461 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "¡Increíble! ¡Dos eras perdidas ahora\nrespiran como una sola!\pEl Pokémon restaurado es tuyo. ¡Seguro\nque aprenderán mucho juntos!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_21:
+# 475 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Duas relíquias se tornaram uma nova\nvida graças a você.\pVolte quando encontrar mais peças de\nGalar. Boa jornada, {PLAYER}!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_22:
+# 476 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Two relics became a new life thanks\nto you.\pReturn if you find more pieces from\nGalar. Safe travels, {PLAYER}!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_23:
+# 477 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Dos reliquias se convirtieron en una\nnueva vida gracias a ti.\pVuelve si encuentras más piezas de\nGalar. ¡Buen viaje, {PLAYER}!$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_24:
+# 488 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Esse não é um dos quatro fósseis de\nGalar que eu estudo.\pA transação foi cancelada. Nenhum item\nfoi consumido.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_25:
+# 489 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "That isn't one of the four Galarian\nfossils I study.\pThe transaction was canceled. No items\nwere consumed.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_26:
+# 490 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Ese no es uno de los cuatro fósiles\nde Galar que estudio.\pLa transacción fue cancelada. No se\nconsumió ningún objeto.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_27:
+# 497 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Preciso das duas partes para começar.\pA transação foi cancelada e nenhum\nfóssil foi consumido.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_28:
+# 498 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "I need both parts before I can begin.\pThe transaction was canceled, and no\nfossils were consumed.$"
+
+StonereachCity_Museum_Lab_EventScript_GalarScientist_Text_29:
+# 499 "data/maps/StonereachCity_Museum_Lab/scripts.pory"
+	.string "Necesito las dos piezas para empezar.\pLa transacción fue cancelada y no se\nconsumió ningún fósil.$"

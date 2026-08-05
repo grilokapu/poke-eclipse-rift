@@ -1,6 +1,6 @@
 mapscripts StonereachCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-        if (var(VAR_STONEREACH_CITY_STATE) >= 1) {
+        if (var(VAR_STONEREACH_CITY_STATE) == 1) {
             setobjectxyperm(LOCALID_STONEREACH_GYM_GUARDIAN, 40, 36)
             setobjectmovementtype(LOCALID_STONEREACH_GYM_GUARDIAN, MOVEMENT_TYPE_FACE_DOWN)
         }

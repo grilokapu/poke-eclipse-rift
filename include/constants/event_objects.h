@@ -588,7 +588,8 @@
 #define OBJ_EVENT_GFX_PARK_BALL                     393
 #define OBJ_EVENT_GFX_BACKPACKER                    394
 #define OBJ_EVENT_GFX_YOUNG_GIOVANNI                395
-#define NUM_OBJ_EVENT_GFX                        396
+#define OBJ_EVENT_GFX_ALDREN                        396
+#define NUM_OBJ_EVENT_GFX                        397
 
 
 // These are dynamic object gfx ids.
@@ -808,6 +809,7 @@
 #define OBJ_EVENT_PAL_TAG_EXPERT_M                  0x117F
 #define OBJ_EVENT_PAL_TAG_EXPERT_F                  0x1180
 #define OBJ_EVENT_PAL_TAG_OLDMAN                    0x1181
+#define OBJ_EVENT_PAL_TAG_ALDREN                    0x1182
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001

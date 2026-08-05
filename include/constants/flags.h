@@ -65,8 +65,8 @@
 #define FLAG_STARTER_PALDEA     0x2B // New Added Flag
 #define FLAG_UNUSED_0x02C    0x2C // Inverse Battle Flag
 #define FLAG_UNUSED_0x02D    0x2D // Smart Wild AI Flag
-#define FLAG_UNUSED_0x02E    0x2E // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2F // Unused Flag
+#define FLAG_STONEREACH_MUSEUM_ADMISSION_PAID 0x2E
+#define FLAG_STONEREACH_MUSEUM_TRADE_DONE     0x2F
 #define FLAG_UNUSED_0x030    0x30 // Unused Flag
 #define FLAG_UNUSED_0x031    0x31 // Unused Flag
 #define FLAG_UNUSED_0x032    0x32 // Unused Flag
@@ -1318,9 +1318,9 @@
 #define FLAG_UNUSED_0x4EA                                           0x4EA // Unused Flag
 #define FLAG_UNUSED_0x4EB                                           0x4EB // Unused Flag
 #define FLAG_UNUSED_0x4EC                                           0x4EC // Unused Flag
-#define FLAG_UNUSED_0x4ED                                           0x4ED // Unused Flag
-#define FLAG_UNUSED_0x4EE                                           0x4EE // Unused Flag
-#define FLAG_UNUSED_0x4EF                                           0x4EF // Unused Flag
+#define FLAG_HIDE_MUSEUM_LAB_HIKARI                                0x4ED
+#define FLAG_HIDE_STONEREACH_GYM_GUARDIAN                          0x4EE
+#define FLAG_HIDE_MUSEUM_LAB_ALDREN                                0x4EF
 
 #define FLAG_DEFEATED_STONEREACH_GYM                                  0x4F0
 #define FLAG_DEFEATED_DEWFORD_GYM                                   0x4F1

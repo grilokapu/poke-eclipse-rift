@@ -125,7 +125,8 @@
     "StonereachCity_Building3_2F",
     "StonereachCity_Building4_1F",
     "StonereachCity_Building4_2F",
-    "StonereachCity_Museum"
+    "StonereachCity_Museum",
+    "StonereachCity_Museum_Lab"
   ],
   "gMapGroup_IndoorFortree": [],
   "gMapGroup_IndoorLilycove": [],
