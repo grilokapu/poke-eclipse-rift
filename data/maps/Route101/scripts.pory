@@ -8,7 +8,7 @@ script Route1_Youngster_battle {
             trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "Essa é minha primeira batalha de\nverdade com um Pokémon!", "Poxa vida!\nEu achei que tava pronto!")
             msgbox("Tenho treinado muito!\nDa próxima vez, eu vou vencer!")
         case EN:
-            trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "This is my first real\nPokemon battle!", "Aw man!\nI thought I was ready!")
+            trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "This is my first real\nPokémon battle!", "Aw man!\nI thought I was ready!")
             msgbox("I've been training hard!\nNext time, I'll win!")
         case ES:
             trainerbattle_single(TRAINER_YOUNGSTER_ROMULO, "¡Esta es mi primera batalla\nde verdad con un Pokémon!", "¡Rayos!\n¡Creí que estaba listo!")

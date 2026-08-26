@@ -645,6 +645,7 @@ const u32 gObjectEventPic_Player_M_Sleeping[] = INCGFX_U32("graphics/object_even
 const u32 gObjectEventPic_Lucien[] = INCGFX_U32("graphics/object_events/pics/people/lucien.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u32 gObjectEventPic_YoungGiovanni[] = INCGFX_U32("graphics/object_events/pics/people/young_giovanni.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u32 gObjectEventPic_Aldren[] = INCGFX_U32("graphics/object_events/pics/people/aldren.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u32 gObjectEventPic_RuinManiac[] = INCGFX_U32("graphics/object_events/pics/people/ruin_maniac.png", ".4bpp", "-mwidth 2 -mheight 4");
 
 const u16 gObjectEventPal_FatMan[] = INCGFX_U16("graphics/object_events/palettes/fat_man.pal", ".gbapal");
 const u16 gObjectEventPal_BugCatcher[] = INCGFX_U16("graphics/object_events/palettes/bug_catcher.pal", ".gbapal");
@@ -683,3 +684,4 @@ const u16 gObjectEventPal_ExpertM[] = INCBIN_U16("graphics/object_events/palette
 const u16 gObjectEventPal_ExpertF[] = INCBIN_U16("graphics/object_events/palettes/expert_f.gbapal");
 const u16 gObjectEventPal_OldMan[] = INCBIN_U16("graphics/object_events/palettes/old_man.gbapal");
 const u16 gObjectEventPal_Aldren[] = INCGFX_U16("graphics/object_events/palettes/aldren.pal", ".gbapal");
+const u16 gObjectEventPal_RuinManiac[] = INCGFX_U16("graphics/object_events/palettes/ruin_maniac.pal", ".gbapal");

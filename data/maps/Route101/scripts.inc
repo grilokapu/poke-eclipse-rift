@@ -936,7 +936,7 @@ Route1_Youngster_battle_Text_2:
 
 Route1_Youngster_battle_Text_3:
 # 11 "data/maps/Route101/scripts.pory"
-	.string "This is my first real\nPokemon battle!$"
+	.string "This is my first real\nPokémon battle!$"
 
 Route1_Youngster_battle_Text_4:
 # 11 "data/maps/Route101/scripts.pory"

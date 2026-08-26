@@ -180,8 +180,8 @@
     {
       "id": "LAYOUT_STONEREACH_CITY_GYM",
       "name": "StonereachCity_Gym_Layout",
-      "width": 11,
-      "height": 20,
+      "width": 12,
+      "height": 30,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_StonereachGym",
       "border_filepath": "data/layouts/StonereachCity_Gym/border.bin",

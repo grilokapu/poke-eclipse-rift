@@ -1,0 +1,213 @@
+mapscripts StonereachCity_Gym_MapScripts {}
+
+script StonereachCity_Gym_EventScript_Anorith {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_ANORITH, MUGSHOT_SOUTHEAST)
+    setspeaker("Anorith")
+    msgbox("Krii-krii!", MSGBOX_AUTOCLOSE)
+    waitmoncry
+    hidemonmugshot
+    release
+    end
+}
+
+script StonereachCity_Gym_EventScript_Roxanne {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_LEADER_ALDREN, "Que bom revê-lo, {PLAYER}.\pNo museu, estudamos as marcas que\no tempo deixa na pedra.\pAqui, estudamos as marcas que uma\ldecisão deixa numa batalha.\pEu sou Aldren, Líder de Stonereach.\nMostre-me o que sua jornada gravou\lem você!", "Excelente...\pVocê encontrou a fissura na minha\ndefesa.", StonereachCity_Gym_EventScript_RoxanneDefeated)
+        case EN: trainerbattle_single(TRAINER_LEADER_ALDREN, "Welcome, {PLAYER}.\pAt the museum, we study the marks\ntime leaves upon stone.\pHere, we study the marks a decision\lleaves upon a battle.\pI am Aldren, Leader of Stonereach.\nShow me what your journey has\lcarved into you!", "Excellent...\pYou found the fault line in my\ndefense.", StonereachCity_Gym_EventScript_RoxanneDefeated)
+        case ES: trainerbattle_single(TRAINER_LEADER_ALDREN, "Te doy la bienvenida, {PLAYER}.\pEn el museo estudiamos las marcas\nque el tiempo deja en la piedra.\pAquí estudiamos las marcas que una\ldecisión deja en un combate.\pSoy Aldren, Líder de Stonereach.\n¡Muéstrame lo que tu viaje ha\lgrabado en ti!", "Excelente...\pHallaste la falla en mi defensa.", StonereachCity_Gym_EventScript_RoxanneDefeated)
+    }
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    if (var(VAR_RESULT) == TRUE) {
+        goto(StonereachCity_Gym_EventScript_RoxanneRematch)
+    }
+    if (!flag(FLAG_RECEIVED_TM_ROCK_TOMB)) {
+        goto(StonereachCity_Gym_EventScript_GiveRockTomb)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A pedra resiste porque aprende com\ncada impacto.\pFaça o mesmo. Outros Líderes\ntestarão forças diferentes das\lque encontrou aqui.", MSGBOX_DEFAULT)
+        case EN: msgbox("Stone endures because it learns from\nevery impact.\pDo the same. Other Leaders will test\nstrengths unlike those you found\lhere.", MSGBOX_DEFAULT)
+        case ES: msgbox("La piedra resiste porque aprende de\ncada impacto.\pHaz lo mismo. Otros Líderes pondrán\na prueba fuerzas distintas a las\lde aquí.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script StonereachCity_Gym_EventScript_RoxanneDefeated {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: message("Aldren reconheceu sua vitória.\p{PLAYER} recebeu a\nINSÍGNIA ROCHAREACH!")
+        case EN: message("Aldren acknowledged your victory.\p{PLAYER} received the\nROCHAREACH BADGE!")
+        case ES: message("Aldren reconoció tu victoria.\p¡{PLAYER} recibió la\nMEDALLA ROCHAREACH!")
+    }
+    waitmessage
+    call(Common_EventScript_PlayGymBadgeFanfare)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A INSÍGNIA ROCHAREACH prova que\nvocê superou o Ginásio de\lStonereach.\pEla permite usar CUT fora das\nbatalhas.\pE leve isto. Até uma muralha pode\nse tornar uma arma.", MSGBOX_DEFAULT)
+        case EN: msgbox("The ROCHAREACH BADGE proves you\novercame Stonereach Gym.\pIt allows you to use CUT outside\nbattle.\pAnd take this. Even a wall can be\nturned into a weapon.", MSGBOX_DEFAULT)
+        case ES: msgbox("La MEDALLA ROCHAREACH demuestra\nque superaste el Gimnasio de\lStonereach.\pTe permite usar CORTE fuera de\ncombate.\pY toma esto. Hasta un muro puede\nconvertirse en arma.", MSGBOX_DEFAULT)
+    }
+    setflag(FLAG_DEFEATED_STONEREACH_GYM)
+    setflag(FLAG_BADGE01_GET)
+    setvar(VAR_STONEREACH_CITY_STATE, 1)
+    addvar(VAR_PETALBURG_GYM_STATE, 1)
+    setvar(VAR_0x8008, 1)
+    call(Common_EventScript_SetGymTrainers)
+    call_if_eq(VAR_PETALBURG_GYM_STATE, 6, Common_EventScript_ReadyPetalburgGymForBattle)
+    goto(StonereachCity_Gym_EventScript_GiveRockTomb)
+}
+
+script StonereachCity_Gym_EventScript_GiveRockTomb {
+    giveitem(ITEM_TM_ROCK_TOMB)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(Common_EventScript_ShowBagIsFull)
+    }
+    setflag(FLAG_RECEIVED_TM_ROCK_TOMB)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Essa TM contém ROCK TOMB.\pAlém de causar dano, as rochas\nreduzem a Velocidade do alvo.\pControle o ritmo, e até o oponente\nmais rápido perde o equilíbrio.", MSGBOX_DEFAULT)
+        case EN: msgbox("That TM contains ROCK TOMB.\pBesides dealing damage, its rocks\nlower the target's Speed.\pControl the pace, and even the\nfastest foe loses its footing.", MSGBOX_DEFAULT)
+        case ES: msgbox("Esa MT contiene TUMBA ROCAS.\pAdemás de causar daño, reduce la\nVelocidad del objetivo.\pControla el ritmo y hasta el rival\nmás veloz perderá el equilibrio.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script StonereachCity_Gym_EventScript_RoxanneRematch {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_rematch_double(TRAINER_ROXANNE_1, "{PLAYER}, cada batalha acrescentou\numa nova camada à nossa história.\pVamos descobrir qual de nós mudou\nmais desde o último encontro!", "Outra vitória sua...\nUma descoberta valiosa.", "Uma batalha em dupla exige ao menos\ndois Pokémon.\pVolte quando sua equipe estiver\npreparada.")
+        case EN: trainerbattle_rematch_double(TRAINER_ROXANNE_1, "{PLAYER}, every battle has added a\nnew layer to our history.\pLet us discover which of us has\nchanged more since we last met!", "Another victory for you...\nA valuable discovery.", "A Double Battle requires at least\ntwo Pokémon.\pReturn when your team is ready.")
+        case ES: trainerbattle_rematch_double(TRAINER_ROXANNE_1, "{PLAYER}, cada combate ha añadido\nuna capa nueva a nuestra historia.\p¡Veamos quién cambió más desde\nnuestro último encuentro!", "Otra victoria tuya...\nUn hallazgo valioso.", "Un Combate Doble requiere al menos\ndos Pokémon.\pRegresa cuando tu equipo esté listo.")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ainda tenho muito a aprender.\pÉ isso que torna cada reencontro\ntão valioso.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("I still have much to learn.\pThat is what makes every reunion\nso valuable.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Aún tengo mucho que aprender.\pEso hace que cada reencuentro sea\ntan valioso.", MSGBOX_AUTOCLOSE)
+    }
+    end
+}
+
+script StonereachCity_Gym_EventScript_Rick {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_RUIN_MANIAC_RICK, "Uma defesa só é forte até você\nencontrar a primeira rachadura!", "Você encontrou a minha...")
+        case EN: trainerbattle_single(TRAINER_RUIN_MANIAC_RICK, "A defense is only strong until you\nfind its first crack!", "You found mine...")
+        case ES: trainerbattle_single(TRAINER_RUIN_MANIAC_RICK, "¡Una defensa solo es fuerte hasta\nque hallas su primera grieta!", "Encontraste la mía...")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Aldren diz que perder revela coisas\nque a vitória consegue esconder.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Aldren says defeat reveals things\nthat victory can hide.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Aldren dice que perder revela cosas\nque la victoria puede ocultar.", MSGBOX_AUTOCLOSE)
+    }
+    end
+}
+
+script StonereachCity_Gym_EventScript_Tommy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_RUIN_MANIAC_TOMMY, "Pedra, peso e paciência!\nEssa é a fórmula de Stonereach!", "Minha fórmula falhou!")
+        case EN: trainerbattle_single(TRAINER_RUIN_MANIAC_TOMMY, "Stone, weight, and patience!\nThat is Stonereach's formula!", "My formula failed!")
+        case ES: trainerbattle_single(TRAINER_RUIN_MANIAC_TOMMY, "¡Piedra, peso y paciencia!\n¡Esa es la fórmula de Stonereach!", "¡Mi fórmula falló!")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Talvez eu tenha esquecido a parte\nmais importante: adaptação.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Perhaps I forgot the most important\npart: adaptation.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Quizá olvidé la parte más\nimportante: adaptarse.", MSGBOX_AUTOCLOSE)
+    }
+    end
+}
+
+script StonereachCity_Gym_EventScript_Marc {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_HIKER_MARC, "A montanha não sai do caminho.\nVocê é quem precisa superá-la!", "Escalou direto até o topo!")
+        case EN: trainerbattle_single(TRAINER_HIKER_MARC, "The mountain will not move aside.\nYou are the one who must overcome it!", "You climbed straight to the top!")
+        case ES: trainerbattle_single(TRAINER_HIKER_MARC, "La montaña no se apartará.\n¡Tú debes superarla!", "¡Subiste directo a la cima!")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Força sem leitura do terreno é só\npeso. Aldren nunca esquece disso.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Strength without reading the terrain\nis only weight. Aldren never forgets.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("La fuerza sin leer el terreno es solo\npeso. Aldren nunca lo olvida.", MSGBOX_AUTOCLOSE)
+    }
+    end
+}
+
+script StonereachCity_Gym_EventScript_GymGuide {
+    lock
+    faceplayer
+    if (flag(FLAG_DEFEATED_STONEREACH_GYM)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Que vitória!\pA INSÍGNIA ROCHAREACH no seu\nCartão de Treinador é a primeira\lmarca de uma história enorme!", MSGBOX_DEFAULT)
+            case EN: msgbox("What a victory!\pThe ROCHAREACH BADGE on your\nTrainer Card is the first mark\lof an enormous story!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Qué victoria!\p¡La MEDALLA ROCHAREACH en tu\nFicha de Entrenador es la primera\lmarca de una historia enorme!", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Aldren usa Pokémon do tipo PEDRA!\pÁGUA e PLANTA abrem caminho, mas\nnão confie só na vantagem.\pEle batalha como geólogo: observa\na pressão e espera a falha certa!", MSGBOX_DEFAULT)
+            case EN: msgbox("Aldren uses ROCK-type Pokémon!\pWATER and GRASS clear a path, but\ndo not rely on advantage alone.\pHe battles like a geologist: reading\npressure and awaiting the right fault!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Aldren usa Pokémon de tipo ROCA!\pAGUA y PLANTA abren camino, pero\nno dependas solo de la ventaja.\pCombate como geólogo: estudia la\npresión y espera la falla precisa.", MSGBOX_DEFAULT)
+        }
+    }
+    release
+    end
+}
+
+script StonereachCity_Gym_EventScript_RegisterRoxanne {
+    lockall
+    switch(var(VAR_LANGUAGE)) {
+        case PT: pokenavcall(StonereachCity_Gym_Text_AldrenRegisterCall_PT)
+        case EN: pokenavcall(StonereachCity_Gym_Text_AldrenRegisterCall_EN)
+        case ES: pokenavcall(StonereachCity_Gym_Text_AldrenRegisterCall_ES)
+    }
+    waitmessage
+    pause(30)
+    playfanfare(MUS_REGISTER_MATCH_CALL)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Aldren foi registrado no POKÉNAV!", MSGBOX_DEFAULT)
+        case EN: msgbox("Aldren was registered in the POKÉNAV!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Aldren fue registrado en el POKÉNAV!", MSGBOX_DEFAULT)
+    }
+    waitfanfare
+    closemessage
+    pause(30)
+    setflag(FLAG_ENABLE_ROXANNE_MATCH_CALL)
+    clearflag(FLAG_ENABLE_ROXANNE_FIRST_CALL)
+    releaseall
+    end
+}
+
+text StonereachCity_Gym_Text_AldrenRegisterCall_PT {
+    "Aldren: Olá, {PLAYER}.\pEstive comparando nossas batalhas\ncomo quem compara camadas de rocha.\pQuando quiser acrescentar uma nova\ncamada, estarei no Ginásio."
+}
+
+text StonereachCity_Gym_Text_AldrenRegisterCall_EN {
+    "Aldren: Hello, {PLAYER}.\pI've been comparing our battles as\none compares layers of stone.\pWhen you wish to add a new layer,\nI will be at the Gym."
+}
+
+text StonereachCity_Gym_Text_AldrenRegisterCall_ES {
+    "Aldren: Hola, {PLAYER}.\pHe comparado nuestros combates como\nquien compara capas de piedra.\pCuando quieras añadir una nueva,\nestaré en el Gimnasio."
+}
+
+script StonereachCity_Gym_EventScript_LeftGymStatue {
+    lockall
+    goto(StonereachCity_Gym_EventScript_GymStatue)
+}
+
+script StonereachCity_Gym_EventScript_RightGymStatue {
+    lockall
+    goto(StonereachCity_Gym_EventScript_GymStatue)
+}
+
+script StonereachCity_Gym_EventScript_GymStatue {
+    if (flag(FLAG_BADGE01_GET)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("GINÁSIO POKÉMON DE STONEREACH\pLÍDER: ALDREN\nTREINADOR CERTIFICADO: {PLAYER}", MSGBOX_DEFAULT)
+            case EN: msgbox("STONEREACH POKÉMON GYM\pLEADER: ALDREN\nCERTIFIED TRAINER: {PLAYER}", MSGBOX_DEFAULT)
+            case ES: msgbox("GIMNASIO POKÉMON STONEREACH\pLÍDER: ALDREN\nENTRENADOR CERTIFICADO: {PLAYER}", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("GINÁSIO POKÉMON DE STONEREACH\pLÍDER: ALDREN\n'O tempo revela o que a pedra guarda.'", MSGBOX_DEFAULT)
+            case EN: msgbox("STONEREACH POKÉMON GYM\pLEADER: ALDREN\n'Time reveals what stone keeps.'", MSGBOX_DEFAULT)
+            case ES: msgbox("GIMNASIO POKÉMON STONEREACH\pLÍDER: ALDREN\n'El tiempo revela lo que guarda la piedra.'", MSGBOX_DEFAULT)
+        }
+    }
+    releaseall
+    end
+}

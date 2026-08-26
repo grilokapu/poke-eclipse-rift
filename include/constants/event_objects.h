@@ -589,7 +589,8 @@
 #define OBJ_EVENT_GFX_BACKPACKER                    394
 #define OBJ_EVENT_GFX_YOUNG_GIOVANNI                395
 #define OBJ_EVENT_GFX_ALDREN                        396
-#define NUM_OBJ_EVENT_GFX                        397
+#define OBJ_EVENT_GFX_RUIN_MANIAC                   397
+#define NUM_OBJ_EVENT_GFX                        398
 
 
 // These are dynamic object gfx ids.
@@ -810,6 +811,7 @@
 #define OBJ_EVENT_PAL_TAG_EXPERT_F                  0x1180
 #define OBJ_EVENT_PAL_TAG_OLDMAN                    0x1181
 #define OBJ_EVENT_PAL_TAG_ALDREN                    0x1182
+#define OBJ_EVENT_PAL_TAG_RUIN_MANIAC               0x1183
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001

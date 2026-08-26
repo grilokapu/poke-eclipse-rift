@@ -258,7 +258,14 @@ def load_trainer_pic_paths() -> tuple[dict[str, Path], list[str]]:
     text = TRAINER_GRAPHICS.read_text()
     paths: dict[str, Path] = {}
     choices: list[str] = []
-    pattern = re.compile(r"\b(gTrainerFrontPic_[A-Za-z0-9_]+)\s*\[\]\s*=\s*INCBIN_U32\(\"([^\"]+)\"\);")
+    # Graphics declarations in current projects use INCGFX_U32(path, extension),
+    # while older bases used INCBIN_U32(path). Accept both formats so the
+    # preview list does not silently become empty after a graphics macro update.
+    pattern = re.compile(
+        r'\b(gTrainerFrontPic_[A-Za-z0-9_]+)\s*\[\]\s*=\s*'
+        r'(?:INCBIN_U32|INCGFX_U32)\(\s*"([^"]+)"'
+        r'(?:\s*,\s*"[^"]*"(?:\s*,\s*"[^"]*")?)?\s*\);'
+    )
     for symbol, rel_path in pattern.findall(text):
         label = title_from_symbol(symbol)
         png = png_for_incbin(ROOT / rel_path)
@@ -276,10 +283,24 @@ def load_species_choices() -> list[str]:
     text = strip_comments(SPECIES_HEADER.read_text())
     species: list[str] = []
     seen: set[str] = set()
-    for symbol in re.findall(r"^\s*#define\s+(SPECIES_[A-Z0-9_]+)\b", text, re.M):
-        if symbol in {"SPECIES_NONE", "SPECIES_EGG", "SPECIES_SHINY_TAG"}:
+    # Expansion species are declared in an enum. Older project versions used
+    # #defines, so accept both layouts. Reading only #defines leaves the
+    # combobox empty on current bases and also drops every alternate form.
+    symbols = re.findall(
+        r"^\s*(?:#define\s+)?(SPECIES_[A-Z0-9_]+)\b(?=\s*(?:=|,|\s))",
+        text,
+        re.M,
+    )
+    ignored = {
+        "SPECIES_NONE",
+        "SPECIES_EGG",
+        "SPECIES_SHINY_TAG",
+        "SPECIES_COUNT",
+    }
+    for symbol in symbols:
+        if symbol in ignored or symbol.startswith(("SPECIES_MAX_", "SPECIES_LAST_")):
             continue
-        if symbol.startswith("SPECIES_") and symbol not in seen:
+        if symbol not in seen:
             species.append(symbol_to_display_name(symbol, "SPECIES_"))
             seen.add(symbol)
     return species
@@ -365,6 +386,30 @@ def load_music_choices() -> list[str]:
             if name not in choices:
                 choices.append(name)
     for name in load_party_field_choices("Music"):
+        if name not in choices:
+            choices.append(name)
+    return choices
+
+
+def load_trainer_class_choices() -> list[str]:
+    choices: list[str] = []
+    if TRAINERS_HEADER.exists():
+        text = strip_comments(TRAINERS_HEADER.read_text())
+        match = re.search(
+            r"enum\s+TrainerClassID\s*\{(?P<body>.*?)\bTRAINER_CLASS_COUNT\b",
+            text,
+            re.S,
+        )
+        if match:
+            for symbol in re.findall(r"\b(TRAINER_CLASS_[A-Z0-9_]+)\b", match.group("body")):
+                name = symbol_to_display_name(symbol, "TRAINER_CLASS_")
+                name = re.sub(r"\bFrlg\b", "FRLG", name)
+                name = re.sub(r"^Rs\b", "RS", name)
+                if name not in choices:
+                    choices.append(name)
+    # Preserve compatibility with party files that contain a project-specific
+    # class not yet declared in the enum.
+    for name in load_party_field_choices("Class"):
         if name not in choices:
             choices.append(name)
     return choices
@@ -487,24 +532,71 @@ def format_stat_spread(values: dict[str, str]) -> str:
     return " / ".join(parts)
 
 
-def find_opponent_header_clone(trainer_id: str) -> str | None:
-    if not OPPONENTS_HEADER.exists():
-        return None
-    text = strip_comments(OPPONENTS_HEADER.read_text())
-    pattern = re.compile(r"^\s*#define\s+(TRAINER_[A-Z0-9_]+)\s+(TRAINER_[A-Z0-9_]+)\b", re.M)
-    for clone_header, source_header in pattern.findall(text):
-        if source_header == trainer_id and clone_header != trainer_id:
-            return clone_header
+def rename_trainer_symbol(old_symbol: str, new_symbol: str) -> int:
+    """Rename a trainer ID in source files without creating a preprocessor alias."""
+    changed = 0
+    token = re.compile(rf"\b{re.escape(old_symbol)}\b")
+    allowed_suffixes = {".c", ".h", ".s", ".inc", ".pory", ".party", ".json"}
+    for root in (ROOT / "include", ROOT / "src", ROOT / "data"):
+        for path in root.rglob("*"):
+            if not path.is_file() or path.suffix not in allowed_suffixes:
+                continue
+            if ".trainer_editor_" in path.name or path.name in {"trainers.h", "hardtrainers.h"}:
+                continue
+            try:
+                text = path.read_text()
+            except (OSError, UnicodeDecodeError):
+                continue
+            updated = token.sub(new_symbol, text)
+            if updated != text:
+                backup(path)
+                path.write_text(updated)
+                changed += 1
+    return changed
+
+
+def pokemon_asset_folder(species: str) -> Path | None:
+    """Resolve both flat species folders and expansion's nested form folders."""
+    slug = snake_name(species)
+    candidates = [POKEMON_DIR / slug]
+    parts = slug.split("_")
+    # Forms are generally stored as e.g. furfrou/dandy rather than
+    # furfrou_dandy. Try every split so multiword base species/forms work too.
+    for split_at in range(len(parts) - 1, 0, -1):
+        candidates.append(POKEMON_DIR / "_".join(parts[:split_at]) / "_".join(parts[split_at:]))
+    # A few canonical aliases explicitly call the base form "natural".
+    if parts and parts[-1] in {"natural", "normal", "standard"}:
+        candidates.append(POKEMON_DIR / "_".join(parts[:-1]))
+    for folder in candidates:
+        if folder.is_dir():
+            return folder
     return None
 
 
 def pokemon_preview_path(species: str) -> Path | None:
-    folder = POKEMON_DIR / snake_name(species)
+    folder = pokemon_asset_folder(species)
+    if folder is None:
+        return None
     for name in ("anim_front.png", "front.png", "icon.png"):
         path = folder / name
         if path.exists():
             return path
     return None
+
+
+def pokemon_shiny_palette_path(species: str) -> Path | None:
+    folder = pokemon_asset_folder(species)
+    if folder is None:
+        return None
+    for name in ("shiny.pal", "shiny_gba.pal"):
+        path = folder / name
+        if path.exists():
+            return path
+    return None
+
+
+def field_value_is_true(value: str) -> bool:
+    return value.strip().lower() in {"true", "yes", "1", "on"}
 
 
 class PartyRepository:
@@ -556,11 +648,12 @@ class PartyRepository:
 
 
 class PartyTab(ttk.Frame):
-    def __init__(self, parent: ttk.Notebook, title: str, path: Path, trainer_pics: dict[str, Path], pic_choices: list[str], species_choices: list[str], move_choices: list[str], item_choices: list[str], ability_choices: list[str], species_ability_choices: dict[str, list[str]], type_choices: list[str], nature_choices: list[str], ball_choices: list[str], music_choices: list[str], ai_choices: list[str]) -> None:
+    def __init__(self, parent: ttk.Notebook, title: str, path: Path, trainer_pics: dict[str, Path], pic_choices: list[str], trainer_class_choices: list[str], species_choices: list[str], move_choices: list[str], item_choices: list[str], ability_choices: list[str], species_ability_choices: dict[str, list[str]], type_choices: list[str], nature_choices: list[str], ball_choices: list[str], music_choices: list[str], ai_choices: list[str]) -> None:
         super().__init__(parent)
         self.repo = PartyRepository(path)
         self.trainer_pics = trainer_pics
         self.pic_choices = pic_choices
+        self.trainer_class_choices = trainer_class_choices
         self.species_choices = species_choices
         self.move_choices = move_choices
         self.item_choices = item_choices
@@ -630,8 +723,8 @@ class PartyTab(ttk.Frame):
         trainer_controls = ttk.Frame(top)
         trainer_controls.grid(row=0, column=0, columnspan=3, sticky="ew", padx=8, pady=(6, 2))
         ttk.Button(trainer_controls, text="Save trainer", command=self.save_current).pack(side=tk.LEFT)
-        self.clone_button = ttk.Button(trainer_controls, text="Clone", command=self.clone_opponent_header)
-        self.clone_button.pack(side=tk.LEFT, padx=6)
+        self.rename_button = ttk.Button(trainer_controls, text="Rename", command=self.rename_opponent_header)
+        self.rename_button.pack(side=tk.LEFT, padx=6)
 
         basics = ttk.LabelFrame(top, text="Basics")
         basics.grid(row=1, column=0, sticky="nsew", padx=8, pady=6)
@@ -652,7 +745,12 @@ class PartyTab(ttk.Frame):
         ttk.Radiobutton(basics, text="Male", variable=self.trainer_vars["Gender"], value="Male").grid(row=2, column=2, sticky="w")
         ttk.Radiobutton(basics, text="Female", variable=self.trainer_vars["Gender"], value="Female").grid(row=3, column=2, sticky="w")
         ttk.Label(basics, text="Class:").grid(row=4, column=1, sticky="w")
-        ttk.Entry(basics, textvariable=self.trainer_vars["Class"]).grid(row=4, column=2, sticky="ew")
+        ttk.Combobox(
+            basics,
+            textvariable=self.trainer_vars["Class"],
+            values=self.trainer_class_choices,
+            width=22,
+        ).grid(row=4, column=2, sticky="ew")
 
         items = ttk.LabelFrame(top, text="Items")
         items.grid(row=1, column=1, sticky="nsew", padx=8, pady=6)
@@ -702,6 +800,7 @@ class PartyTab(ttk.Frame):
         self.mon_title_combo = ttk.Combobox(mon_right, textvariable=self.mon_title, values=self.species_choices, width=16)
         self.mon_title_combo.grid(row=0, column=1, sticky="ew", padx=6, pady=3)
         self.mon_title_combo.bind("<<ComboboxSelected>>", lambda _event: self.update_mon_title_from_combo())
+        self.mon_title_combo.bind("<KeyRelease>", self.filter_species_choices)
         self.mon_preview = ttk.Label(mon_right, text="Sem preview", anchor=tk.CENTER, width=12)
         self.mon_preview.grid(row=0, column=4, rowspan=5, padx=8, pady=3)
 
@@ -782,7 +881,7 @@ class PartyTab(ttk.Frame):
     def reload(self) -> None:
         self.repo.load()
         self.refresh_trainers()
-        self.update_clone_button()
+        self.update_rename_button()
         messagebox.showinfo("Trainer Party Editor", "Arquivo recarregado.")
 
     def on_trainer_select(self, _event: object | None = None) -> None:
@@ -797,17 +896,13 @@ class PartyTab(ttk.Frame):
             var.set(items[index] if index < len(items) else "")
         self.refresh_party()
         self.update_trainer_preview()
-        self.update_clone_button()
+        self.update_rename_button()
 
-    def update_clone_button(self) -> None:
+    def update_rename_button(self) -> None:
         if self.current is None:
-            self.clone_button.configure(text="Clone", state=tk.DISABLED)
-            return
-        clone_header = find_opponent_header_clone(self.current.trainer_id)
-        if clone_header is None:
-            self.clone_button.configure(text="Clone", state=tk.NORMAL)
+            self.rename_button.configure(text="Rename", state=tk.DISABLED)
         else:
-            self.clone_button.configure(text=f"Cloned: {clone_header}", state=tk.DISABLED)
+            self.rename_button.configure(text="Rename", state=tk.NORMAL)
 
     def refresh_party(self) -> None:
         self.party_list.delete(0, tk.END)
@@ -920,19 +1015,19 @@ class PartyTab(ttk.Frame):
                 self.on_trainer_select()
                 break
 
-    def clone_opponent_header(self) -> None:
+    def rename_opponent_header(self) -> None:
+        # Modal dialogs must be transient to a toplevel window.  Using this
+        # PartyTab (a ttk.Frame) as their parent can leave Tk querying a stale
+        # child-window ID on X11 when one dialog closes and the next opens.
+        dialog_parent = self.winfo_toplevel()
         if self.current is None:
-            messagebox.showwarning("Trainer Party Editor", "Selecione um trainer primeiro.")
+            messagebox.showwarning("Trainer Party Editor", "Selecione um trainer primeiro.", parent=dialog_parent)
             return
-        clone_header = find_opponent_header_clone(self.current.trainer_id)
-        if clone_header is not None:
-            self.update_clone_button()
-            messagebox.showinfo("Clone", f"{self.current.trainer_id} ja foi clonado como {clone_header}.")
-            return
+        old_header = self.current.trainer_id
         new_header = simpledialog.askstring(
-            "Clone",
-            f"Novo HEADER para clonar {self.current.trainer_id}:",
-            parent=self,
+            "Rename",
+            f"Novo HEADER para {old_header}:",
+            parent=dialog_parent,
         )
         if not new_header:
             return
@@ -940,24 +1035,35 @@ class PartyTab(ttk.Frame):
         if not new_header.startswith("TRAINER_"):
             new_header = "TRAINER_" + new_header
         if not re.fullmatch(r"TRAINER_[A-Z0-9_]+", new_header):
-            messagebox.showerror("Clone", "Use um header como TRAINER_MY_CUSTOM_TRAINER_NAME.")
+            messagebox.showerror("Rename", "Use um header como TRAINER_MY_CUSTOM_TRAINER_NAME.", parent=dialog_parent)
+            return
+        if new_header == old_header:
             return
 
         text = OPPONENTS_HEADER.read_text()
         if re.search(rf"^\s*#define\s+{re.escape(new_header)}\b", text, re.M):
-            messagebox.showerror("Clone", f"{new_header} ja existe em opponents.h.")
+            messagebox.showerror("Rename", f"{new_header} ja existe em opponents.h.", parent=dialog_parent)
             return
-
-        line = f"#define {new_header} {self.current.trainer_id}\n"
-        marker = "#endif  // GUARD_CONSTANTS_OPPONENTS_H"
-        backup(OPPONENTS_HEADER)
-        if marker in text:
-            text = re.sub(rf"\n*\s*{re.escape(marker)}", "\n" + line + marker, text, count=1)
-        else:
-            text = text.rstrip() + "\n" + line
-        OPPONENTS_HEADER.write_text(text)
-        self.update_clone_button()
-        messagebox.showinfo("Clone", f"Adicionado em opponents.h:\n{line.strip()}")
+        if not re.search(rf"^\s*#define\s+{re.escape(old_header)}\s+\d+\b", text, re.M):
+            messagebox.showerror("Rename", f"A definição numérica de {old_header} não foi encontrada.", parent=dialog_parent)
+            return
+        dialog_parent.update_idletasks()
+        if not messagebox.askyesno("Rename", f"Renomear {old_header} para {new_header}?", parent=dialog_parent):
+            return
+        try:
+            changed_files = rename_trainer_symbol(old_header, new_header)
+        except Exception as exc:
+            messagebox.showerror("Rename", str(exc), parent=dialog_parent)
+            return
+        self.repo.load()
+        self.refresh_trainers()
+        for index, trainer in enumerate(self.visible_trainers):
+            if trainer.trainer_id == new_header:
+                self.trainer_list.selection_set(index)
+                self.trainer_list.see(index)
+                self.on_trainer_select()
+                break
+        messagebox.showinfo("Rename", f"Renomeado para {new_header} em {changed_files} arquivo(s).", parent=dialog_parent)
 
     def add_pokemon(self) -> None:
         if self.current is None:
@@ -1026,7 +1132,22 @@ class PartyTab(ttk.Frame):
         self.update_current_mon_from_form()
 
     def update_mon_title_from_combo(self) -> None:
+        self.restore_species_choices()
         self.update_current_mon_from_form()
+
+    def filter_species_choices(self, event: tk.Event) -> None:
+        """Filter alternate forms while keeping the species field editable."""
+        if event.keysym in {"Up", "Down", "Left", "Right", "Return", "Tab", "Escape"}:
+            return
+        query = normalize_name(self.mon_title.get())
+        if not query:
+            choices = self.species_choices
+        else:
+            choices = [choice for choice in self.species_choices if query in normalize_name(choice)]
+        self.mon_title_combo.configure(values=choices)
+
+    def restore_species_choices(self) -> None:
+        self.mon_title_combo.configure(values=self.species_choices)
 
     def make_palette_zero_transparent(self, image):
         if Image is None:
@@ -1050,12 +1171,32 @@ class PartyTab(ttk.Frame):
                     pixels[x, y] = (r, g, b, 0)
         return rgba
 
-    def load_photo(self, path: Path, max_size: int, crop_pokemon_frame: bool = False) -> tk.PhotoImage | None:
+    def apply_jasc_palette(self, image, palette_path: Path | None):
+        if Image is None or palette_path is None or not palette_path.exists():
+            return image
+        try:
+            lines = [line.strip() for line in palette_path.read_text().splitlines() if line.strip()]
+            if len(lines) < 4 or lines[0] != "JASC-PAL":
+                return image
+            color_count = int(lines[2])
+            colors: list[int] = []
+            for line in lines[3:3 + color_count]:
+                red, green, blue = (int(component) for component in line.split()[:3])
+                colors.extend((red, green, blue))
+            colors.extend([0] * (768 - len(colors)))
+            indexed = image.convert("P") if image.mode != "P" else image.copy()
+            indexed.putpalette(colors[:768])
+            return indexed
+        except (OSError, ValueError):
+            return image
+
+    def load_photo(self, path: Path, max_size: int, crop_pokemon_frame: bool = False, palette_path: Path | None = None) -> tk.PhotoImage | None:
         if Image is not None and ImageTk is not None:
             try:
                 image = Image.open(path)
                 if crop_pokemon_frame:
                     image = image.crop((0, 0, min(64, image.width), min(64, image.height)))
+                image = self.apply_jasc_palette(image, palette_path)
                 image = self.make_palette_zero_transparent(image)
                 width, height = image.size
                 scale = max(1, min(3, max_size // max(width, height, 1)))
@@ -1100,7 +1241,9 @@ class PartyTab(ttk.Frame):
         if path is None:
             self.mon_preview.configure(image="", text="Sem PNG")
             return
-        image = self.load_photo(path, 96, crop_pokemon_frame=True)
+        shiny = field_value_is_true(get_field_case_insensitive(mon.fields, "Shiny"))
+        palette_path = pokemon_shiny_palette_path(mon.species) if shiny else None
+        image = self.load_photo(path, 96, crop_pokemon_frame=True, palette_path=palette_path)
         if image is None:
             self.mon_preview.configure(image="", text="Erro")
             return
@@ -1128,7 +1271,9 @@ class PartyTab(ttk.Frame):
             frame.grid(row=0, column=index, padx=2, pady=3)
             frame.bind("<Button-1>", lambda _event, idx=index: self.select_party_index(idx))
             if path is not None:
-                image = self.load_photo(path, 32, crop_pokemon_frame=True)
+                shiny = field_value_is_true(get_field_case_insensitive(mon.fields, "Shiny"))
+                palette_path = pokemon_shiny_palette_path(mon.species) if shiny else None
+                image = self.load_photo(path, 32, crop_pokemon_frame=True, palette_path=palette_path)
                 if image is not None:
                     self.mon_images.append(image)
                     label = ttk.Label(frame, image=image, anchor=tk.CENTER)
@@ -1153,6 +1298,7 @@ class TrainerPartyEditor(tk.Tk):
         self.title("Trainer Party Editor")
         self.geometry("1280x820")
         trainer_pics, pic_choices = load_trainer_pic_paths()
+        trainer_class_choices = load_trainer_class_choices()
         species_choices = load_species_choices()
         move_choices = load_move_choices()
         item_choices = load_item_choices()
@@ -1165,9 +1311,9 @@ class TrainerPartyEditor(tk.Tk):
         ai_choices = load_ai_choices()
         notebook = ttk.Notebook(self)
         notebook.pack(fill=tk.BOTH, expand=True)
-        notebook.add(PartyTab(notebook, "Trainers", NORMAL_PARTY, trainer_pics, pic_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices, music_choices, ai_choices), text="Trainers")
+        notebook.add(PartyTab(notebook, "Trainers", NORMAL_PARTY, trainer_pics, pic_choices, trainer_class_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices, music_choices, ai_choices), text="Trainers")
         if HARD_PARTY.exists():
-            notebook.add(PartyTab(notebook, "Hard Trainers", HARD_PARTY, trainer_pics, pic_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices, music_choices, ai_choices), text="Hard Trainers")
+            notebook.add(PartyTab(notebook, "Hard Trainers", HARD_PARTY, trainer_pics, pic_choices, trainer_class_choices, species_choices, move_choices, item_choices, ability_choices, species_ability_choices, type_choices, nature_choices, ball_choices, music_choices, ai_choices), text="Hard Trainers")
 
 
 if __name__ == "__main__":

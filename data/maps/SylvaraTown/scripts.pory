@@ -71,7 +71,7 @@ script SylvaraTown_Girl_Talk {
 
 script SylvaraTown_Backpacker_Talk {
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry, do quê ele ser acertado por\lum tijolo?", MSGBOX_NPC)
+        case PT: msgbox("Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry do que deixá-lo ser acertado\lpor um tijolo?", MSGBOX_NPC)
         case EN: msgbox("Did you know it's much healthier\nfor your Pokémon to eat a Sitrus\lBerry than to get hit by a brick?", MSGBOX_NPC)
         case ES: msgbox("¿Sabías que es mucho más saludable\npara tu Pokémon comer una Baya\lZidra que recibir un ladrillazo?", MSGBOX_NPC)
     }

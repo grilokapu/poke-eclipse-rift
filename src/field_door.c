@@ -354,7 +354,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .metatileNum = METATILE_General_Door_Gym,
         .tileset = &gTileset_General,
         .sound = DOOR_SOUND_SLIDING,
-        .size = DOOR_SIZE_1x2,
+        .size = DOOR_SIZE_1x1,
         .tiles = sDoorAnimTiles_Gym,
         .palettes = sDoorAnimPalettes_Gym
     },

@@ -113,15 +113,15 @@ Route3_EventScript_TM_PoisonTail_Get::
 
 Route3_EventScript_RouteSign_Text_0:
 # 7 "data/maps/Route103/scripts.pory"
-	.string "Rota 3\nCaverna Sussuro {RIGHT_ARROW_2}\lCaverna Sussuro {LEFT_ARROW_2}$"
+	.string "Rota 3\nCaverna Sussurro {RIGHT_ARROW_2}\lStonereach City {DOWN_ARROW}$"
 
 Route3_EventScript_RouteSign_Text_1:
 # 8 "data/maps/Route103/scripts.pory"
-	.string "Route 3\nWhispering Cave {RIGHT_ARROW_2}\lWhispering Cave {LEFT_ARROW_2}$"
+	.string "Route 3\nWhispering Cave {RIGHT_ARROW_2}\lStonereach City {DOWN_ARROW}$"
 
 Route3_EventScript_RouteSign_Text_2:
 # 9 "data/maps/Route103/scripts.pory"
-	.string "Ruta 3\nCueva Susurro {RIGHT_ARROW_2}\lCueva Susurro {LEFT_ARROW_2}$"
+	.string "Ruta 3\nCueva Susurro {RIGHT_ARROW_2}\lCiudad Stonereach {DOWN_ARROW}$"
 
 Route3_EventScript_Lass_Talk_Text_0:
 # 15 "data/maps/Route103/scripts.pory"

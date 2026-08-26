@@ -446,7 +446,7 @@ SylvaraTown_Girl_Talk_Text_2:
 
 SylvaraTown_Backpacker_Talk_Text_0:
 # 74 "data/maps/SylvaraTown/scripts.pory"
-	.string "Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry, do quê ele ser acertado por\lum tijolo?$"
+	.string "Você sabia que é mais saudável\npara seu Pokémon dar uma Sitrus\lBerry do que deixá-lo ser acertado\lpor um tijolo?$"
 
 SylvaraTown_Backpacker_Talk_Text_1:
 # 75 "data/maps/SylvaraTown/scripts.pory"

@@ -52,7 +52,7 @@ SylvaraTown_EventScript_Arcanine::
 
 SylvaraTown_House2_EventScript_Woman_Talk_Text_0:
 # 7 "data/maps/SylvaraTown_House1/scripts.pory"
-	.string "Meu Arcanine adorava lutar, mas\nficava furioso quando reduziam\lseus atributos.\pEntão dei a ele um {COLOR}{BLUE}CLEAR AMULET{COLOR}{DARK_GRAY}.\pAgora ele ignora essas truques e\ncontinua atacando com tudo!$"
+	.string "Meu Arcanine adorava lutar, mas\nficava furioso quando reduziam\lseus atributos.\pEntão dei a ele um {COLOR}{BLUE}CLEAR AMULET{COLOR}{DARK_GRAY}.\pAgora ele ignora esses truques e\ncontinua atacando com tudo!$"
 
 SylvaraTown_House2_EventScript_Woman_Talk_Text_1:
 # 8 "data/maps/SylvaraTown_House1/scripts.pory"

@@ -637,6 +637,7 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Emojis,                OBJ_EVENT_PAL_TAG_EMOJIS},
     {gObjectEventPal_FatMan,                OBJ_EVENT_PAL_TAG_FAT_MAN},
     {gObjectEventPal_Aldren,                OBJ_EVENT_PAL_TAG_ALDREN},
+    {gObjectEventPal_RuinManiac,            OBJ_EVENT_PAL_TAG_RUIN_MANIAC},
 #if IS_FRLG
     {gObjectEventPal_PlayerFrlg,            OBJ_EVENT_PAL_TAG_PLAYER_RED},
     {gObjectEventPal_PlayerReflectionFrlg,  OBJ_EVENT_PAL_TAG_PLAYER_RED_REFLECTION},

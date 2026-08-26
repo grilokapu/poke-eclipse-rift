@@ -1475,7 +1475,7 @@ Route2_EventScript_BugCatcher_Battle_Text_4:
 
 Route2_EventScript_BugCatcher_Battle_Text_5:
 # 274 "data/maps/Route102/scripts.pory"
-	.string "If you're is searching for\nBug-type Pokémon, a Nest Ball can\lreally help!$"
+	.string "If you're searching for\nBug-type Pokémon, a Nest Ball can\lreally help!$"
 
 Route2_EventScript_BugCatcher_Battle_Text_6:
 # 276 "data/maps/Route102/scripts.pory"
@@ -1491,7 +1491,7 @@ Route2_EventScript_BugCatcher_Battle_Text_8:
 
 Route2_EventScript_Sign_Text_0:
 # 290 "data/maps/Route102/scripts.pory"
-	.string "Rota 2\nVila Sylvara {RIGHT_ARROW_2}\lCaverna Sussuro {LEFT_ARROW_2}$"
+	.string "Rota 2\nVila Sylvara {RIGHT_ARROW_2}\lCaverna Sussurro {LEFT_ARROW_2}$"
 
 Route2_EventScript_Sign_Text_1:
 # 291 "data/maps/Route102/scripts.pory"

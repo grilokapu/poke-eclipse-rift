@@ -78,6 +78,7 @@
 #include "constants/abilities.h"
 #include "constants/event_object_movement.h"
 #include "constants/event_objects.h"
+#include "constants/game_stat.h"
 #include "constants/layouts.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
@@ -393,6 +394,7 @@ static void (*const sMovementStatusHandler[])(struct LinkPlayerObjectEvent *, st
 // code
 void DoWhiteOut(void)
 {
+    IncrementGameStat(GAME_STAT_PLAYER_WHITEOUTS);
     RunScriptImmediately(EventScript_WhiteOut);
     HealPlayerParty();
     Overworld_ResetStateAfterWhiteOut();

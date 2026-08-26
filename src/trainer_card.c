@@ -33,6 +33,8 @@
 #include "constants/rgb.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
+#include "config/er_trainer_card.h"
+#include "er_trainer_card.h"
 
 enum {
     WIN_MSG,
@@ -118,7 +120,7 @@ static bool8 HasAllFrontierSymbols(void);
 static u8 GetRubyTrainerStars(struct TrainerCard *);
 static u16 GetCaughtMonsCount(void);
 static void SetPlayerCardData(struct TrainerCard *, u8);
-static void TrainerCard_GenerateCardForPlayer(struct TrainerCard *);
+static void UNUSED TrainerCard_GenerateCardForPlayer(struct TrainerCard *);
 static u8 VersionToCardType(enum GameVersion);
 static void SetDataFromTrainerCard(void);
 static void InitGpuRegs(void);
@@ -758,7 +760,7 @@ static void SetPlayerCardData(struct TrainerCard *trainerCard, u8 cardType)
     }
 }
 
-static void TrainerCard_GenerateCardForPlayer(struct TrainerCard *trainerCard)
+static void UNUSED TrainerCard_GenerateCardForPlayer(struct TrainerCard *trainerCard)
 {
     memset(trainerCard, 0, sizeof(struct TrainerCard));
     trainerCard->version = GAME_VERSION;
@@ -1799,6 +1801,9 @@ static bool8 Task_EndCardFlip(struct Task *task)
 
 void ShowPlayerTrainerCard(void (*callback)(void))
 {
+#if ER_TRAINER_CARD
+    ShowERTrainerCard(callback);
+#else
     sData = AllocZeroed(sizeof(*sData));
     sData->callback2 = callback;
     if (callback == CB2_ReshowFrontierPass)
@@ -1814,6 +1819,7 @@ void ShowPlayerTrainerCard(void (*callback)(void))
     sData->language = GAME_LANGUAGE;
     TrainerCard_GenerateCardForPlayer(&sData->trainerCard);
     SetMainCallback2(CB2_InitTrainerCard);
+#endif
 }
 
 void ShowTrainerCardInLink(u8 cardId, void (*callback)(void))

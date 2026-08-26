@@ -139,67 +139,6 @@ script PineveilTown_PlayerVideoGamePassword_QuickBalls {
     end
 }
 
-script SystemScript_Infinite_Repel_Off {
-    lockall
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgbox("Você gostaria de desativar o\nUltra Repel?", MSGBOX_YESNO)
-
-        case ENGLISH_LANGUAGE:
-            msgbox("Would you like to disable the\nUltra Repel?", MSGBOX_YESNO)
-
-        case SPANISH_LANGUAGE:
-            msgbox("¿Quieres desactivar el\nUltra Repel?", MSGBOX_YESNO)
-    }
-    if (var(VAR_RESULT) == FALSE)
-    {
-        goto(EndScript)
-    }
-    clearflag(FLAG_NO_RANDOM_WILD_ENCOUNTERS)
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgbox("Ultra Repel desativado!", MSGBOX_DEFAULT)
-        case ENGLISH_LANGUAGE:
-            msgbox("Ultra Repel disabled!", MSGBOX_DEFAULT)
-        case SPANISH_LANGUAGE:
-            msgbox("¡Ultra Repel desactivado!", MSGBOX_DEFAULT)
-    }
-    goto(EndScript)
-}
-
-script SystemScript_Infinite_Repel_On {
-    lockall
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgbox("Você gostaria de ativar o\nUltra Repel?", MSGBOX_YESNO)
-
-        case ENGLISH_LANGUAGE:
-            msgbox("Would you like to enable the\nUltra Repel?", MSGBOX_YESNO)
-
-        case SPANISH_LANGUAGE:
-            msgbox("¿Quieres activar el\nUltra Repel?", MSGBOX_YESNO)
-    }
-    if (var(VAR_RESULT) == FALSE)
-    {
-        goto(EndScript)
-    }
-    setflag(FLAG_NO_RANDOM_WILD_ENCOUNTERS)
-    switch(var(VAR_LANGUAGE)) {
-        case PORTUGUESE_LANGUAGE:
-            msgbox("Ultra Repel ativado!", MSGBOX_DEFAULT)
-        case ENGLISH_LANGUAGE:
-            msgbox("Ultra Repel enabled!", MSGBOX_DEFAULT)
-        case SPANISH_LANGUAGE:
-            msgbox("¡Ultra Repel activado!", MSGBOX_DEFAULT)
-    }
-    goto(EndScript)
-}
-
-script EndScript {
-    releaseall
-    end
-}
-
 script PineveilTown_PlayerVideoGamePassword_InfiniteRepel {
     goto_if_set(FLAG_RECEIVED_ULTRA_REPEL, PineveilTown_PlayerVideoGamePassword_AlreadyReceived)
     checkitemspace(ITEM_ULTRA_REPEL)

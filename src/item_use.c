@@ -1667,26 +1667,80 @@ void ItemUseOutOfBattle_TownMap(u8 taskId)
 
 // DW Custom Scripts
 
-extern const u8 SystemScript_Infinite_Repel_Off[];
-extern const u8 SystemScript_Infinite_Repel_On[];
+static const u8 sText_EnableUltraRepelPt[] = _("Você gostaria de ativar o\nUltra Repel?");
+static const u8 sText_EnableUltraRepelEn[] = _("Would you like to enable the\nUltra Repel?");
+static const u8 sText_EnableUltraRepelEs[] = _("¿Quieres activar el\nUltra Repel?");
+static const u8 sText_DisableUltraRepelPt[] = _("Você gostaria de desativar o\nUltra Repel?");
+static const u8 sText_DisableUltraRepelEn[] = _("Would you like to disable the\nUltra Repel?");
+static const u8 sText_DisableUltraRepelEs[] = _("¿Quieres desactivar el\nUltra Repel?");
+static const u8 sText_UltraRepelEnabledPt[] = _("Ultra Repel ativado!");
+static const u8 sText_UltraRepelEnabledEn[] = _("Ultra Repel enabled!");
+static const u8 sText_UltraRepelEnabledEs[] = _("¡Ultra Repel activado!");
+static const u8 sText_UltraRepelDisabledPt[] = _("Ultra Repel desativado!");
+static const u8 sText_UltraRepelDisabledEn[] = _("Ultra Repel disabled!");
+static const u8 sText_UltraRepelDisabledEs[] = _("¡Ultra Repel desactivado!");
 
-static void Task_UltraRepelField(u8 taskId)
+static const u8 *GetUltraRepelText(const u8 *portuguese, const u8 *english, const u8 *spanish)
 {
-    if (FlagGet(FLAG_NO_RANDOM_WILD_ENCOUNTERS))
+    switch (VarGet(VAR_LANGUAGE))
     {
-        ScriptContext_SetupScript(SystemScript_Infinite_Repel_Off);
+    case ENGLISH_LANGUAGE:
+        return english;
+    case SPANISH_LANGUAGE:
+        return spanish;
+    case PORTUGUESE_LANGUAGE:
+    default:
+        return portuguese;
+    }
+}
+
+static void Task_PlayUltraRepelSE(u8 taskId)
+{
+    PlaySE(SE_REPEL);
+    gTasks[taskId].func = CloseItemMessage;
+}
+
+static void Task_ToggleUltraRepel(u8 taskId)
+{
+    const u8 *message;
+    TaskFunc callback = CloseItemMessage;
+
+    if (FlagGet(WE_FLAG_NO_ENCOUNTER))
+    {
+        FlagClear(WE_FLAG_NO_ENCOUNTER);
+        message = GetUltraRepelText(sText_UltraRepelDisabledPt, sText_UltraRepelDisabledEn, sText_UltraRepelDisabledEs);
     }
     else
     {
-        ScriptContext_SetupScript(SystemScript_Infinite_Repel_On);
+        FlagSet(WE_FLAG_NO_ENCOUNTER);
+        message = GetUltraRepelText(sText_UltraRepelEnabledPt, sText_UltraRepelEnabledEn, sText_UltraRepelEnabledEs);
+        callback = Task_PlayUltraRepelSE;
     }
-    DestroyTask(taskId);
+
+    DisplayItemMessage(taskId, FONT_NORMAL, message, callback);
+}
+
+static const struct YesNoFuncTable sUltraRepelYesNoFuncTable =
+{
+    .yesFunc = Task_ToggleUltraRepel,
+    .noFunc = CloseItemMessage,
+};
+
+static void Task_AskToggleUltraRepel(u8 taskId)
+{
+    BagMenu_YesNo(taskId, ITEMWIN_YESNO_HIGH, &sUltraRepelYesNoFuncTable);
 }
 
 void FieldUseFunc_UltraRepel(u8 taskId)
 {
-    sItemUseOnFieldCB = Task_UltraRepelField;
-    SetUpItemUseOnFieldCallback(taskId);
+    const u8 *message;
+
+    if (FlagGet(WE_FLAG_NO_ENCOUNTER))
+        message = GetUltraRepelText(sText_DisableUltraRepelPt, sText_DisableUltraRepelEn, sText_DisableUltraRepelEs);
+    else
+        message = GetUltraRepelText(sText_EnableUltraRepelPt, sText_EnableUltraRepelEn, sText_EnableUltraRepelEs);
+
+    DisplayItemMessage(taskId, FONT_NORMAL, message, Task_AskToggleUltraRepel);
 }
 
 #undef tUsingRegisteredKeyItem

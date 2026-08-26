@@ -24143,7 +24143,7 @@ const struct ItemInfo gItemsInfo[] =
             "débiles."),
         .pocket = POCKET_KEY_ITEMS,
         .sortType = ITEM_TYPE_FIELD_USE,
-        .type = ITEM_USE_FIELD,
+        .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = FieldUseFunc_UltraRepel,
         .iconPic = gItemIcon_UltraRepel,
         .iconPalette = gItemIconPalette_UltraRepel,

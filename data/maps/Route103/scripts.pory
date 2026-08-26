@@ -4,9 +4,9 @@ mapscripts Route103_MapScripts {
 
 script Route3_EventScript_RouteSign {
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Rota 3\nCaverna Sussuro {RIGHT_ARROW_2}\lCaverna Sussuro {LEFT_ARROW_2}", MSGBOX_SIGN)
-        case EN: msgbox("Route 3\nWhispering Cave {RIGHT_ARROW_2}\lWhispering Cave {LEFT_ARROW_2}", MSGBOX_SIGN)
-        case ES: msgbox("Ruta 3\nCueva Susurro {RIGHT_ARROW_2}\lCueva Susurro {LEFT_ARROW_2}", MSGBOX_SIGN)
+        case PT: msgbox("Rota 3\nCaverna Sussurro {RIGHT_ARROW_2}\lStonereach City {DOWN_ARROW}", MSGBOX_SIGN)
+        case EN: msgbox("Route 3\nWhispering Cave {RIGHT_ARROW_2}\lStonereach City {DOWN_ARROW}", MSGBOX_SIGN)
+        case ES: msgbox("Ruta 3\nCueva Susurro {RIGHT_ARROW_2}\lCiudad Stonereach {DOWN_ARROW}", MSGBOX_SIGN)
     }
 }
 

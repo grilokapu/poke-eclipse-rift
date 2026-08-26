@@ -303,7 +303,7 @@
       "x": 40,
       "y": 35,
       "elevation": 0,
-      "dest_map": "MAP_STONEREACH_CITY",
+      "dest_map": "MAP_STONEREACH_CITY_GYM",
       "dest_warp_id": "0"
     },
     {

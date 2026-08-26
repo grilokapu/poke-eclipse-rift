@@ -412,6 +412,7 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Backpacker;
 
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_YoungGiovanni;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Aldren;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RuinManiac;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -812,6 +813,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_BACKPACKER] = &gObjectEventGraphicsInfo_Backpacker,
     [OBJ_EVENT_GFX_YOUNG_GIOVANNI] = &gObjectEventGraphicsInfo_YoungGiovanni,
     [OBJ_EVENT_GFX_ALDREN] = &gObjectEventGraphicsInfo_Aldren,
+    [OBJ_EVENT_GFX_RUIN_MANIAC] = &gObjectEventGraphicsInfo_RuinManiac,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
