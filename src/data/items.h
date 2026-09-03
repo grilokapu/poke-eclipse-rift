@@ -146,20 +146,6 @@ static const u8 sFigyBerryDesc[]      = _("A hold item that\n"
 
 const u8 gQuestionMarksItemName[] = _("????????");
 
-static const u8 sQuestionMarksDesc[]  = _("?????");
-
-static const u8 sKeyToRoomDesc[]      = _("A key that opens a\n"
-                                          "door inside the\n"
-                                          "Abandoned Ship.");
-
-static const u8 sTeraShardDesc[]      = _("These shards may\n"
-                                          "form when a Tera\n"
-                                          "Pokémon faints.");
-
-static const u8 sGenericMulchDesc[]   = _("A fertilizer that\n"
-                                          "is unsuitable for\n"
-                                          "local soil.");
-
 const struct ItemInfo gItemsInfo[] =
 {
     [ITEM_NONE] =
@@ -412,6 +398,9 @@ const struct ItemInfo gItemsInfo[] =
         .description = COMPOUND_STRING(
             "A Ball that works\n"
             "better on Pokémon\n"
+        #if B_DIVE_BALL_MODIFIER >= GEN_4
+            "in the water."),
+        #else
             "on the ocean floor."),
         .descricao = COMPOUND_STRING(
             "Uma bola que age\n"
@@ -658,8 +647,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("bola de amor"),
         .price = (I_PRICE >= GEN_7) ? 0 : 300,
         .description = COMPOUND_STRING(
-            "Works well on\n"
-            "Pokémon of the\n"
+            "A Ball that works\n"
+            "better on the\n"
             "opposite gender."),
         .descricao = COMPOUND_STRING(
             "Funciona bem em\n"
@@ -744,8 +733,9 @@ const struct ItemInfo gItemsInfo[] =
             "bien con Pokémon\n"
             "dormidos."),
         #else
-            "A Poké Ball used in\n"
-            "the Entree Forest."),
+            "A special Ball that\n"
+            "appears in the\n"
+            "Entree Forest."),
         #endif
         .pocket = POCKET_POKE_BALLS,
         .type = ITEM_USE_BAG_MENU,
@@ -1423,6 +1413,10 @@ const struct ItemInfo gItemsInfo[] =
         .price = 250,
     #endif
         .description = COMPOUND_STRING(
+        #if B_USE_FROSTBITE
+            "Heals Pokémon\n"
+            "of frostbite."),
+        #else
             "Defrosts a frozen\n"
             "Pokémon."),
         .descricao = COMPOUND_STRING(
@@ -1725,7 +1719,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_MaxHoney,
     },
 
-// Regional Specialties
+// Local specialties
 
     [ITEM_PEWTER_CRUNCHIES] =
     {
@@ -2928,7 +2922,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_YellowMint,
     },
 
-// Candy
+// Candies
 
     [ITEM_RARE_CANDY] =
     {
@@ -3472,7 +3466,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_EscapeRope,
     },
 
-// X Items
+// X items
 
     [ITEM_X_ATTACK] =
     {
@@ -4393,7 +4387,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 100,
     #endif
         .description = COMPOUND_STRING(
-            "Sweet honey that\n"
+            "A sweet honey that\n"
             "attracts wild\n"
             "Pokémon when used."),
         .descricao = COMPOUND_STRING(
@@ -5120,11 +5114,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "accelerates the\n"
-            "growth of Berries."),
+            "Speeds up Berry\n"
+            "growth, but dries\n"
+            "the soil faster."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5152,11 +5149,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "decelerates the\n"
-            "growth of Berries."),
+            "Causes the soil to\n"
+            "dry slower, but\n"
+            "slows Berry growth."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5184,11 +5184,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "ups the life time\n"
-            "of Berry trees."),
+            "Extends the time\n"
+            "ripened Berries\n"
+            "remain on plants."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5216,11 +5219,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "makes more Berries\n"
-            "regrow after fall."),
+            "Ups the times new\n"
+            "plants grow where\n"
+            "mature ones withered."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5248,11 +5254,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "ups the number of\n"
-            "Berries harvested."),
+            "A fertilizer for\n"
+            "growing Berries that\n"
+            "increases the harvest."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5280,11 +5289,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "ups the chance of\n"
-            "Berry mutations."),
+            "A fertilizer for\n"
+            "growing Berries that\n"
+            "causes mutations."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5312,11 +5324,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer that\n"
-            "ups the dry speed\n"
-            "of soft soil."),
+            "Increases the Berry\n"
+            "harvest that can be\n"
+            "grown by watering."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5344,11 +5359,14 @@ const struct ItemInfo gItemsInfo[] =
         .price = 200,
     #if OW_BERRY_MULCH_USAGE == TRUE
         .description = COMPOUND_STRING(
-            "A fertilizer Rich\n"
-            "Surprising and\n"
-            "Boosting as well."),
+            "A fertilizer with the\n"
+            "effects of Rich, Boost,\n"
+            "and Surprise Mulch."),
     #else
-        .description = sGenericMulchDesc,
+        .description = COMPOUND_STRING(
+            "It appears to be\n"
+            "unsuitable for\n"
+            "the soil."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -5369,13 +5387,13 @@ const struct ItemInfo gItemsInfo[] =
     },
 
 // Apricorns
-    #if (I_PRICE >= GEN_8 || I_PRICE <= GEN_2)
-        #define APRICORN_PRICE 200
-    #elif I_PRICE >= GEN_5
-        #define APRICORN_PRICE 20
-    #else
-        #define APRICORN_PRICE 0
-    #endif
+#if (I_PRICE >= GEN_8 || I_PRICE <= GEN_2)
+    #define APRICORN_PRICE 200
+#elif I_PRICE >= GEN_5
+    #define APRICORN_PRICE 20
+#else
+    #define APRICORN_PRICE 0
+#endif
 
     [ITEM_RED_APRICORN] =
     {
@@ -5508,7 +5526,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Albaricornio blanco"),
         .price = APRICORN_PRICE,
         .description = COMPOUND_STRING(
-            "A white apricorn.\n"
+            "A white Apricorn.\n"
             "It doesn't smell\n"
             "like anything."),
         .descricao = COMPOUND_STRING(
@@ -5977,7 +5995,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_RetroMail,
     },
 
-// Evolution Items
+// Evolution items
 
     [ITEM_FIRE_STONE] =
     {
@@ -6233,7 +6251,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("manzana dulce"),
         .price = 2200,
         .description = COMPOUND_STRING(
-            "A very sweet apple\n"
+            "A peculiar apple\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -6260,7 +6278,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("tarta de manzana"),
         .price = 2200,
         .description = COMPOUND_STRING(
-            "A very tart apple\n"
+            "A peculiar apple\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -6287,7 +6305,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Olla rota"),
         .price = 1600,
         .description = COMPOUND_STRING(
-            "A cracked teapot\n"
+            "A peculiar teapot\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -6314,7 +6332,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Olla astillada"),
         .price = 38000,
         .description = COMPOUND_STRING(
-            "A chipped teapot\n"
+            "A peculiar teapot\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -6644,8 +6662,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("bolsita"),
         .price = (I_PRICE >= GEN_7) ? 2000 * TREASURE_FACTOR : 2100,
         .description = COMPOUND_STRING(
-            "A sachet of strong\n"
-            "perfumes, loved by\n"
+            "A sachet with\n"
+            "perfumes loved by\n"
             "a certain Pokémon."),
         .descricao = COMPOUND_STRING(
             "Um sachê perfumes\n"
@@ -7008,8 +7026,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Fire-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7037,8 +7055,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Water-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7095,8 +7113,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Grass-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7124,8 +7142,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Ice-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7182,8 +7200,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Poison-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7211,8 +7229,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Ground-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7240,8 +7258,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Flying-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7298,8 +7316,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Bug-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7327,8 +7345,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Rock-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7356,8 +7374,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Ghost-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7385,8 +7403,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Dragon-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7414,8 +7432,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Dark-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7443,8 +7461,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Steel-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7472,8 +7490,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_PLATE,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A tablet that ups\n"
-            "the power of\n"
+            "A held item that\n"
+            "raises the power of\n"
             "Fairy-type moves."),
         .descricao = COMPOUND_STRING(
             "Um tablet que sobe\n"
@@ -7618,8 +7636,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Fire\n"
-            "type data. It swaps\n"
+            "Contains Fire-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7648,8 +7666,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Water\n"
-            "type data. It swaps\n"
+            "Contains Water-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7708,8 +7726,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Grass\n"
-            "type data. It swaps\n"
+            "Contains Grass-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7738,8 +7756,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Ice\n"
-            "type data. It swaps\n"
+            "Contains Ice-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7768,8 +7786,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "Disc with Fighting\n"
-            "type data. It swaps\n"
+            "Contains Fighting-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Disco com dados do\n"
@@ -7798,8 +7816,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Poison\n"
-            "type data. It swaps\n"
+            "Contains Poison-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7828,8 +7846,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Ground\n"
-            "type data. It swaps\n"
+            "Contains Ground-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7858,8 +7876,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Flying\n"
-            "type data. It swaps\n"
+            "Contains Flying-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7888,8 +7906,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Psychic\n"
-            "type data. It swaps\n"
+            "Contains Psychic-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7918,8 +7936,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Bug\n"
-            "type data. It swaps\n"
+            "Contains Bug-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7948,8 +7966,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Rock\n"
-            "type data. It swaps\n"
+            "Contains Rock-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -7978,8 +7996,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Ghost\n"
-            "type data. It swaps\n"
+            "Contains Ghost-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -8008,8 +8026,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Dragon\n"
-            "type data. It swaps\n"
+            "Contains Dragon-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -8038,8 +8056,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Dark\n"
-            "type data. It swaps\n"
+            "Contains Dark-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -8068,8 +8086,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Steel\n"
-            "type data. It swaps\n"
+            "Contains Steel-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -8098,8 +8116,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_MEMORY,
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
-            "A disc with Fairy\n"
-            "type data. It swaps\n"
+            "Contains Fairy-\n"
+            "type data. Changes\n"
             "Silvally's type."),
         .descricao = COMPOUND_STRING(
             "Um disco com dados\n"
@@ -8169,7 +8187,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_RustedWeapons,
     },
 
-// Colored Orbs
+// Colored orbs
 
     [ITEM_RED_ORB] =
     {
@@ -10674,13 +10692,13 @@ const struct ItemInfo gItemsInfo[] =
     },
 
 // Gems
-    #if I_PRICE >= GEN_9
-        #define GEM_PRICE 15000
-    #elif I_PRICE >= GEN_7
-        #define GEM_PRICE 4000
-    #else
-        #define GEM_PRICE 200
-    #endif
+#if I_PRICE >= GEN_9
+    #define GEM_PRICE 15000
+#elif I_PRICE >= GEN_7
+    #define GEM_PRICE 4000
+#else
+    #define GEM_PRICE 200
+#endif
 
     [ITEM_NORMAL_GEM] =
     {
@@ -11187,8 +11205,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Normal-\n"
-            "type moves into\n"
+            "Upgrades Normal-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11266,8 +11284,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Electric-\n"
-            "type moves into\n"
+            "Upgrades Electric-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11345,8 +11363,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Fighting-\n"
-            "type moves into\n"
+            "Upgrades Fighting-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11372,8 +11390,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Poison-\n"
-            "type moves into\n"
+            "Upgrades Poison-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11399,8 +11417,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Ground-\n"
-            "type moves into\n"
+            "Upgrades Ground-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11426,8 +11444,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Flying-\n"
-            "type moves into\n"
+            "Upgrades Flying-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11453,8 +11471,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Psychic-\n"
-            "type moves into\n"
+            "Upgrades Psychic-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11557,8 +11575,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Dragon-\n"
-            "type moves into\n"
+            "Upgrades Dragon-\n"
+            "type moves to\n"
             "Z-Moves."),
         .descricao = COMPOUND_STRING(
             "Atualize golpes do\n"
@@ -11677,7 +11695,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_PikaniumZ,
         .iconPalette = gItemIconPalette_PikaniumZ,
     },
@@ -11704,7 +11722,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_EeviumZ,
         .iconPalette = gItemIconPalette_EeviumZ,
     },
@@ -11731,7 +11749,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_SnorliumZ,
         .iconPalette = gItemIconPalette_SnorliumZ,
     },
@@ -11757,7 +11775,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_MewniumZ,
         .iconPalette = gItemIconPalette_MewniumZ,
     },
@@ -11784,7 +11802,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_DecidiumZ,
         .iconPalette = gItemIconPalette_DecidiumZ,
     },
@@ -11811,7 +11829,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_InciniumZ,
         .iconPalette = gItemIconPalette_InciniumZ,
     },
@@ -11838,7 +11856,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_PrimariumZ,
         .iconPalette = gItemIconPalette_PrimariumZ,
     },
@@ -11865,7 +11883,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_LycaniumZ,
         .iconPalette = gItemIconPalette_LycaniumZ,
     },
@@ -11892,7 +11910,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_MimikiumZ,
         .iconPalette = gItemIconPalette_MimikiumZ,
     },
@@ -11904,7 +11922,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Kommo-o's\n"
+            "Upgrades Kommo-o's\n"
             "Clanging Scales\n"
             "into a Z-Move."),
         .descricao = COMPOUND_STRING(
@@ -11919,7 +11937,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_KommoniumZ,
         .iconPalette = gItemIconPalette_KommoniumZ,
     },
@@ -11931,7 +11949,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade the tapus'\n"
+            "Upgrade the tapu's\n"
             "Nature's Madness\n"
             "into a Z-Move."),
         .descricao = COMPOUND_STRING(
@@ -11946,7 +11964,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  //signature z move
+        .secondaryId = 255,  //Signature Z-Move
         .iconPic = gItemIcon_TapuniumZ,
         .iconPalette = gItemIconPalette_TapuniumZ,
     },
@@ -11973,7 +11991,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_SolganiumZ,
         .iconPalette = gItemIconPalette_SolganiumZ,
     },
@@ -12000,7 +12018,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_LunaliumZ,
         .iconPalette = gItemIconPalette_LunaliumZ,
     },
@@ -12027,7 +12045,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_MarshadiumZ,
         .iconPalette = gItemIconPalette_MarshadiumZ,
     },
@@ -12054,7 +12072,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_AloraichiumZ,
         .iconPalette = gItemIconPalette_AloraichiumZ,
     },
@@ -12066,7 +12084,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_Z_CRYSTAL,
         .description = COMPOUND_STRING(
-            "Upgrade Pikachu w/\n"
+            "Upgrade Pikachu in\n"
             "a cap's Thunderbolt\n"
             "into a Z-Move."),
         .descricao = COMPOUND_STRING(
@@ -12081,7 +12099,7 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255,  // signature z move
+        .secondaryId = 255,  // Signature Z-Move
         .iconPic = gItemIcon_PikashuniumZ,
         .iconPalette = gItemIconPalette_PikashuniumZ,
     },
@@ -12108,12 +12126,12 @@ const struct ItemInfo gItemsInfo[] =
         .sortType = ITEM_TYPE_Z_CRYSTAL,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .secondaryId = 255, //signature z move
+        .secondaryId = 255, //Signature Z-Move
         .iconPic = gItemIcon_UltranecroziumZ,
         .iconPalette = gItemIconPalette_UltranecroziumZ,
     },
 
-// Species-specific Held Items
+// Species-specific Stat-enhancing items
 
     [ITEM_LIGHT_BALL] =
     {
@@ -12344,8 +12362,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffectParam = B_SOUL_DEW_BOOST >= GEN_7 ? 20 : 50,
         .description = COMPOUND_STRING(
         #if B_SOUL_DEW_BOOST >= GEN_7
-            "Powers up Latios' &\n"
-            "Latias' Psychic and\n"
+            "Boosts Latios or\n"
+            "Latias' Psychic- &\n"
             "Dragon-type moves."),
         .descricao = COMPOUND_STRING(
             "Aumenta os golpes\n"
@@ -12377,8 +12395,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_ADAMANT_ORB,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "Powers up Dialga's\n"
-            "Dragon and Steel-\n"
+            "Boosts Dialga's\n"
+            "Dragon- and Steel-\n"
             "type moves."),
         .descricao = COMPOUND_STRING(
             "Potencializa os\n"
@@ -12405,8 +12423,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_LUSTROUS_ORB,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "Powers up Palkia's\n"
-            "Dragon and Water-\n"
+            "Boosts Palkia's\n"
+            "Dragon- and Water-\n"
             "type moves."),
         .descricao = COMPOUND_STRING(
             "Potencializa os\n"
@@ -12434,7 +12452,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Boosts Giratina's\n"
-            "Dragon and Ghost-\n"
+            "Dragon- and Ghost-\n"
             "type moves."),
         .descricao = COMPOUND_STRING(
             "Aumenta os golpes\n"
@@ -12831,7 +12849,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_YellowScarf,
     },
 
-// EV Gain Modifiers
+// Power items
 
     [ITEM_MACHO_BRACE] =
     {
@@ -13035,14 +13053,14 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_PowerAnklet,
     },
 
-// Type-boosting Held Items
-    #if I_PRICE >= GEN_9
-        #define TYPE_BOOSTING_PRICE 3000
-    #elif I_PRICE >= GEN_7
-        #define TYPE_BOOSTING_PRICE 1000
-    #else
-        #define TYPE_BOOSTING_PRICE 100
-    #endif
+// Type-enhancing items
+#if I_PRICE >= GEN_9
+    #define TYPE_BOOSTING_PRICE 3000
+#elif I_PRICE >= GEN_7
+    #define TYPE_BOOSTING_PRICE 1000
+#else
+    #define TYPE_BOOSTING_PRICE 100
+#endif
 
     [ITEM_SILK_SCARF] =
     {
@@ -13146,7 +13164,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_TYPE_POWER,
         .holdEffectParam = TYPE_BOOST_PARAM,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "boosts Electric-\n"
             "type moves."),
         .descricao = COMPOUND_STRING(
@@ -13230,7 +13248,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_TYPE_POWER,
         .holdEffectParam = TYPE_BOOST_PARAM,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "boosts Fighting-\n"
             "type moves."),
         .descricao = COMPOUND_STRING(
@@ -13544,7 +13562,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_MetalCoat,
     },
 
-// Choice Items
+// Choice items
 
     [ITEM_CHOICE_BAND] =
     {
@@ -13593,8 +13611,8 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_CHOICE_SPECS,
         .description = COMPOUND_STRING(
-            "Boosts Sp. Atk, but\n"
-            "allows the use of\n"
+            "Boosts Sp. Atk,\n"
+            "but permits\n"
             "only one move."),
         .descricao = COMPOUND_STRING(
             "Aumenta Sp. Atk,\n"
@@ -13627,8 +13645,8 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_CHOICE_SCARF,
         .description = COMPOUND_STRING(
-            "Boosts Speed, but\n"
-            "allows the use of\n"
+            "Boosts Speed,\n"
+            "but permits\n"
             "only one move."),
         .descricao = COMPOUND_STRING(
             "Aumenta a Vel., mas\n"
@@ -13663,7 +13681,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_FLAME_ORB,
         .description = COMPOUND_STRING(
             "A bizarre orb that\n"
-            "inflicts a burn on\n"
+            "burns the\n"
             "holder in battle."),
         .descricao = COMPOUND_STRING(
             "Um orbe bizarro que\n"
@@ -13830,19 +13848,19 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_ICY_ROCK,
     #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL
         .description = COMPOUND_STRING(
-            "Extends the length\n"
-            "of the move Hail\n"
-            "used by the holder."),
+            "Extends a\n"
+            "hailstorm when the\n"
+            "holder summons it."),
     #elif B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
         .description = COMPOUND_STRING(
-            "Extends the length\n"
-            "of Snowscape if\n"
-            "used by the holder."),
+            "Extends a\n"
+            "snowstorm when the\n"
+            "holder summons it."),
     #else
         .description = COMPOUND_STRING(
-            "Extends the length\n"
-            "of cold weathers\n"
-            "used by the holder."),
+            "Extends hail or\n"
+            "snow when the\n"
+            "holder summons it."),
     #endif
 
         .descricao = COMPOUND_STRING(
@@ -13899,7 +13917,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_TERRAIN_SEED,
         .holdEffectParam = HOLD_EFFECT_PARAM_PSYCHIC_TERRAIN,
         .description = COMPOUND_STRING(
-            "Boosts Sp. Def. on\n"
+            "Raises Sp. Def on\n"
             "Psychic Terrain,\n"
             "but only one time."),
         .descricao = COMPOUND_STRING(
@@ -13975,7 +13993,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_GrassySeed,
     },
 
-// Type-activated Stat Modifiers
+// Type-activated stat modifiers
 
     [ITEM_ABSORB_BULB] =
     {
@@ -14115,7 +14133,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Snowball,
     },
 
-// Misc. Held Items
+// Miscellaneous Held items
 
     [ITEM_BRIGHT_POWDER] =
     {
@@ -14131,7 +14149,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_EVASION_UP,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "casts a glare to\n"
             "reduce acc."),
         .descricao = COMPOUND_STRING(
@@ -14190,6 +14208,10 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Exp. Compartir"),
         .holdEffect = HOLD_EFFECT_EXP_SHARE,
     #if I_EXP_SHARE_ITEM >= GEN_6
+        .description = COMPOUND_STRING(
+            "This device allows\n"
+            "all party members\n"
+            "to share in Exp."),
         .price = 0,
         .importance = 1,
         .description = COMPOUND_STRING(
@@ -14198,10 +14220,9 @@ const struct ItemInfo gItemsInfo[] =
             "members."),
         .pocket = POCKET_KEY_ITEMS,
     #else
-        .price = (I_PRICE == GEN_1) ? 1 : 3000,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "gets Exp. points\n"
+            "A held item that\n"
+            "gets Exp. Points\n"
             "from battles."),
         .descricao = COMPOUND_STRING(
             "Este dispositivo dá\n"
@@ -14212,8 +14233,8 @@ const struct ItemInfo gItemsInfo[] =
             "exp. a otros\n"
             "miembros del."),
         .pocket = POCKET_ITEMS,
-    #endif
         .sortType = ITEM_TYPE_HELD_ITEM,
+    #endif
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_ExpShare,
         .flingPower = 30,
@@ -14235,7 +14256,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_QUICK_CLAW,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "occasionally allows\n"
             "the first strike."),
         .descricao = COMPOUND_STRING(
@@ -14268,7 +14289,7 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_FRIENDSHIP_UP,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "calms spirits and\n"
             "fosters friendship."),
         .descricao = COMPOUND_STRING(
@@ -14314,9 +14335,9 @@ const struct ItemInfo gItemsInfo[] =
             "los efectos\n"
             "vinculación"),
         #else
-            "A hold item that\n"
+            "A held item that\n"
             "snaps Pokémon out\n"
-            "of infatuation."),
+            "of attraction once."),
         #endif
         .pocket = POCKET_ITEMS,
         .sortType = ITEM_TYPE_HELD_ITEM,
@@ -14426,7 +14447,7 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_CAN_ALWAYS_RUN,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "assures fleeing\n"
             "from wild Pokémon."),
         .descricao = COMPOUND_STRING(
@@ -14460,7 +14481,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_FOCUS_BAND,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "occasionally\n"
             "prevents fainting."),
         .descricao = COMPOUND_STRING(
@@ -14487,8 +14508,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = (I_PRICE >= GEN_7) ? 10000 : 200,
         .holdEffect = HOLD_EFFECT_LUCKY_EGG,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
-            "boosts Exp. points\n"
+            "A held item that\n"
+            "boosts Exp. Points\n"
             "earned in battle."),
         .descricao = COMPOUND_STRING(
             "Um item de retenção\n"
@@ -14521,7 +14542,7 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_SCOPE_LENS,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "improves the\n"
             "critical-hit rate."),
         .descricao = COMPOUND_STRING(
@@ -14727,8 +14748,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_EXPERT_BELT,
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
-            "A belt that boosts\n"
-            "the power of super\n"
+            "A well-worn belt\n"
+            "that boosts super\n"
             "effective moves."),
         .descricao = COMPOUND_STRING(
             "Um cinto que sobe o\n"
@@ -15058,8 +15079,8 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_BLACK_SLUDGE,
         .description = COMPOUND_STRING(
-            "Restores HP for\n"
-            "Poison-types.\n"
+            "Gradually restores\n"
+            "Poison-types' HP.\n"
             "Damages all others."),
         .descricao = COMPOUND_STRING(
             "Restaura HP para\n"
@@ -15157,7 +15178,7 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_SHED_SHELL,
         .description = COMPOUND_STRING(
-            "Allows the holder\n"
+            "Enables the holder\n"
             "to switch out\n"
             "without fail."),
         .descricao = COMPOUND_STRING(
@@ -15191,8 +15212,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_BIG_ROOT,
         .holdEffectParam = 30,
         .description = COMPOUND_STRING(
-            "A held item that\n"
-            "ups the power of\n"
+            "Boosts the amount\n"
+            "of HP restored from\n"
             "HP-stealing moves."),
         .descricao = COMPOUND_STRING(
             "Um item que sobe o\n"
@@ -15291,8 +15312,8 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffect = HOLD_EFFECT_EVIOLITE,
         .holdEffectParam = 50,
         .description = COMPOUND_STRING(
-            "Raises the Def and\n"
-            "Sp. Def of Pokémon\n"
+            "Ups the defensive\n"
+            "stats of Pokémon\n"
             "that can evolve."),
         .descricao = COMPOUND_STRING(
             "Aumenta a Def e Sp.\n"
@@ -15648,7 +15669,7 @@ const struct ItemInfo gItemsInfo[] =
     #endif
         .holdEffect = HOLD_EFFECT_ADRENALINE_ORB,
         .description = COMPOUND_STRING(
-            "This orb boosts\n"
+            "This orb raises\n"
             "Speed if the holder\n"
             "is intimidated."),
         .descricao = COMPOUND_STRING(
@@ -15730,7 +15751,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_THROAT_SPRAY,
         .description = COMPOUND_STRING(
-            "Raises Sp. Atk. if\n"
+            "Raises Sp. Atk if\n"
             "the holder uses a\n"
             "sound-based move."),
         .descricao = COMPOUND_STRING(
@@ -15785,7 +15806,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = (I_PRICE >= GEN_9) ? 20000 : 4000,
         .holdEffect = HOLD_EFFECT_HEAVY_DUTY_BOOTS,
         .description = COMPOUND_STRING(
-            "Boots that prevent\n"
+            "Protects from the\n"
             "effects of traps\n"
             "set in the field."),
         .descricao = COMPOUND_STRING(
@@ -15984,7 +16005,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_BRN,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "heals a burn in\n"
             "battle."),
         .descricao = COMPOUND_STRING(
@@ -16131,7 +16152,7 @@ const struct ItemInfo gItemsInfo[] =
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
         .holdEffect = HOLD_EFFECT_CURE_STATUS,
         .description = COMPOUND_STRING(
-            "A hold item that\n"
+            "A held item that\n"
             "heals any status\n"
             "problem in battle."),
         .descricao = COMPOUND_STRING(
@@ -16197,7 +16218,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Baya de higo"),
         .pluralName = ITEM_PLURAL_NAME("Figy Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_CONFUSE_SPICY,
+        .holdEffect = HOLD_EFFECT_CONFUSE_FLAVOR,
+        .secondaryId = FLAVOR_SPICY,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
         .descricao = COMPOUND_STRING(
@@ -16222,7 +16244,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Baya Wiki"),
         .pluralName = ITEM_PLURAL_NAME("Wiki Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_CONFUSE_DRY,
+        .holdEffect = HOLD_EFFECT_CONFUSE_FLAVOR,
+        .secondaryId = FLAVOR_DRY,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
         .descricao = COMPOUND_STRING(
@@ -16247,7 +16270,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Baya de Mago"),
         .pluralName = ITEM_PLURAL_NAME("Mago Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_CONFUSE_SWEET,
+        .holdEffect = HOLD_EFFECT_CONFUSE_FLAVOR,
+        .secondaryId = FLAVOR_SWEET,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
         .descricao = COMPOUND_STRING(
@@ -16272,7 +16296,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Baya de Aguav"),
         .pluralName = ITEM_PLURAL_NAME("Aguav Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_CONFUSE_BITTER,
+        .holdEffect = HOLD_EFFECT_CONFUSE_FLAVOR,
+        .secondaryId = FLAVOR_BITTER,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
         .descricao = COMPOUND_STRING(
@@ -16297,7 +16322,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Baya de yapapa"),
         .pluralName = ITEM_PLURAL_NAME("Iapapa Berries"),
         .price = (I_BERRY_PRICE >= GEN_8) ? 80 : 20,
-        .holdEffect = HOLD_EFFECT_CONFUSE_SOUR,
+        .holdEffect = HOLD_EFFECT_CONFUSE_FLAVOR,
+        .secondaryId = FLAVOR_SOUR,
         .holdEffectParam = CONFUSE_BERRY_HEAL_FRACTION,
         .description = sFigyBerryDesc,
         .descricao = COMPOUND_STRING(
@@ -20540,7 +20566,11 @@ const struct ItemInfo gItemsInfo[] =
         .description = COMPOUND_STRING(
             "Creates a huge\n"
             "wave, then crashes\n"
-            "it down on the foe."),
+        #if B_UPDATED_MOVE_DATA >= GEN_4
+            "it on all others."),
+        #else
+            "it down on foes."),
+        #endif
         .importance = 1,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -20616,7 +20646,6 @@ const struct ItemInfo gItemsInfo[] =
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
-
 
 // Charms
 
@@ -21026,7 +21055,7 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_DynamaxBand,
     },
 
-// Misc. Key Items
+// Miscellaneous Key Items
 
     [ITEM_BICYCLE] =
     {
@@ -21311,8 +21340,8 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("{PKMN} Box Link"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "This device grants\n"
-            "access to the {PKMN}\n"
+            "Allows access to\n"
+            "the Pokémon\n"
             "Storage System."),
         .descricao = COMPOUND_STRING(
             "Este dispositivo\n"
@@ -21410,7 +21439,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Poke radar"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "A tool used to\n"
+            "A tool that can\n"
             "search out Pokémon\n"
             "hiding in grass."),
         .descricao = COMPOUND_STRING(
@@ -22332,6 +22361,8 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_Sapphire,
     },
 
+// Gen 9 Items
+
     [ITEM_ABILITY_SHIELD] =
     {
         .name = ITEM_NAME("Ability Shield"),
@@ -22358,8 +22389,6 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_AbilityShield,
         .iconPalette = gItemIconPalette_AbilityShield,
     },
-
-// GEN 9 ITEMS
 
     [ITEM_CLEAR_AMULET] =
     {
@@ -22450,8 +22479,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 20000,
         .holdEffect = HOLD_EFFECT_LOADED_DICE,
         .description = COMPOUND_STRING(
-            "Rolls high numbers.\n"
-            "Multihit strikes\n"
+            "The holder's\n"
+            "multistrike moves\n"
             "hit more times."),
         .descricao = COMPOUND_STRING(
             "Rola números altos.\n"
@@ -22505,8 +22534,8 @@ const struct ItemInfo gItemsInfo[] =
         .price = 0,
         .holdEffect = HOLD_EFFECT_BOOSTER_ENERGY,
         .description = COMPOUND_STRING(
-            "Encapsuled energy\n"
-            "ups Pokémon with\n"
+            "Ups the strength\n"
+            "of Pokémon with\n"
             "certain Abilities."),
         .descricao = COMPOUND_STRING(
             "A energia\n"
@@ -22557,6 +22586,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Moneda Gimmighoul"),
         .price = 400,
         .description = COMPOUND_STRING(
+            "A dropped material\n"
             "Gimmighoul hoard\n"
             "and treasure these\n"
             "curious coins."),
@@ -23385,7 +23415,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Manzana almibarada"),
         .price = 2200,
         .description = COMPOUND_STRING(
-            "A very syrupy apple\n"
+            "A peculiar apple\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -23412,7 +23442,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Unremarkable Teacup"),
         .price = 1600,
         .description = COMPOUND_STRING(
-            "A cracked teacup\n"
+            "A peculiar teacup\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -23439,7 +23469,7 @@ const struct ItemInfo gItemsInfo[] =
         .nombre = ITEM_NAME("Masterpiece Teacup"),
         .price = 38000,
         .description = COMPOUND_STRING(
-            "A chipped teacup\n"
+            "A peculiar teacup\n"
             "that makes certain\n"
             "Pokémon evolve."),
         .descricao = COMPOUND_STRING(
@@ -23469,7 +23499,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Allows Ogerpon to\n"
-            "wield the Rock-\n"
+            "wield the Rock\n"
             "type in battle."),
         .descricao = COMPOUND_STRING(
             "Permite que Ogerpon\n"
@@ -23496,7 +23526,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Allows Ogerpon to\n"
-            "wield the Water-\n"
+            "wield the Water\n"
             "type in battle."),
         .descricao = COMPOUND_STRING(
             "Permite que Ogerpon\n"
@@ -23523,7 +23553,7 @@ const struct ItemInfo gItemsInfo[] =
         .holdEffectParam = 20,
         .description = COMPOUND_STRING(
             "Allows Ogerpon to\n"
-            "wield the Fire-\n"
+            "wield the Fire\n"
             "type in battle."),
         .descricao = COMPOUND_STRING(
             "Permite que Ogerpon\n"
@@ -23964,7 +23994,8 @@ const struct ItemInfo gItemsInfo[] =
             "defensas durante\n"
             "una batalla."),
         #else
-            "Raises defenses\n"
+            "Raises Defense\n"
+            "and Sp. Def\n"
             "during one battle."),
         #endif
         .pocket = POCKET_ITEMS,
@@ -23996,7 +24027,8 @@ const struct ItemInfo gItemsInfo[] =
             "ofensas durante una\n"
             "batalla."),
         #else
-            "Raises offenses\n"
+            "Raises Attack\n"
+            "and Sp. Atk\n"
             "during one battle."),
         #endif
         .pocket = POCKET_ITEMS,

@@ -44,7 +44,7 @@ void HealPlayerParty(void)
         HealPlayerBoxes();
 
     // Recharge Tera Orb, if possible.
-    if (B_FLAG_TERA_ORB_CHARGED != 0 && CheckBagHasItem(ITEM_TERA_ORB, 1))
+    if (!IsTeraOrbCharged() && CheckBagHasItem(ITEM_TERA_ORB, 1))
         FlagSet(B_FLAG_TERA_ORB_CHARGED);
 }
 
@@ -74,6 +74,12 @@ u8 ScriptGiveEgg(enum Species species)
     SetMonData(&mon, MON_DATA_IS_EGG, &isEgg);
 
     return GiveCapturedMonToPlayer(&mon);
+}
+
+// TODO verify that this is really always the same output as the script special variant
+u8 HasEnoughMonsForDoubleBattle2(void)
+{
+    return GetMonsStateToDoubles() == PLAYER_HAS_TWO_USABLE_MONS; 
 }
 
 void HasEnoughMonsForDoubleBattle(void)
@@ -359,11 +365,9 @@ void SetTeraType(struct ScriptContext *ctx)
  * if side/slot are assigned, it will create the mon at the assigned party location
  * if slot == PARTY_SIZE, it will give the mon to first available party or storage slot
  */
-static u32 ScriptGiveMonParameterized(u8 side, u8 slot, enum Species species, u8 level, enum Item item, enum PokeBall ball, u8 nature, u8 abilityNum, u8 gender, u16 *evs, u16 *ivs, enum Move *moves, enum ShinyMode shinyMode, bool8 gmaxFactor, enum Type teraType, u8 dmaxLevel)
+u32 ScriptGiveMonParameterized(u8 side, u8 slot, struct PokemonTemplate *monTemplate)
 {
     struct Pokemon mon;
-    u32 i;
-    bool32 isShiny;
 
     ResolveRandomMonGeneration(species, &ball, moves);
 
@@ -507,94 +511,68 @@ u32 ScriptGiveMon(enum Species species, u8 level, enum Item item)
 /* Give or create a mon to either player or opponent
  */
 
-
 void ScrCmd_createmon(struct ScriptContext *ctx)
 {
-    u8 side            = ScriptReadByte(ctx);
-    u8 slot            = ScriptReadByte(ctx);
-    enum Species species = VarGet(ScriptReadHalfword(ctx));
-    u8 level           = VarGet(ScriptReadHalfword(ctx));
-
-    u32 flags          = ScriptReadWord(ctx);
-    enum Item item     = PARSE_FLAG(0, ITEM_NONE);
-    enum PokeBall ball = PARSE_FLAG(1, BALL_POKE);
-    u8 nature          = PARSE_FLAG(2, NATURE_RANDOM);
-    u8 abilityNum      = PARSE_FLAG(3, NUM_ABILITY_PERSONALITY);
-    u8 gender          = PARSE_FLAG(4, MON_GENDER_RANDOM);
-
     u32 i;
-    u16 evs[NUM_STATS];
+    u8 side                   = ScriptReadByte(ctx);
+    u8 slot                   = ScriptReadByte(ctx);
+
+    struct PokemonTemplate monTemplate = {0};
+    monTemplate.species      = VarGet(ScriptReadHalfword(ctx));
+    monTemplate.level        = VarGet(ScriptReadHalfword(ctx));
+
+    u32 flags                 = ScriptReadWord(ctx);
+    monTemplate.heldItem     = PARSE_FLAG(0, ITEM_NONE);
+    if (flags & (1 << 1))
+    {
+        monTemplate.ball = VarGet(ScriptReadHalfword(ctx));
+        monTemplate.doNotUseDefaultBall = TRUE;
+    }
+    monTemplate.nature       = PARSE_FLAG(2, NATURE_RANDOM);
+    if (flags & (1 << 3))
+    {
+        monTemplate.abilityNum = VarGet(ScriptReadHalfword(ctx));
+        monTemplate.doNotUseDefaultAbility = TRUE;
+    }
+    monTemplate.gender       = PARSE_FLAG(4, MON_GENDER_RANDOM);
+
     for (i = 0; i < NUM_STATS; i++)
-    {
-        evs[i] = PARSE_FLAG(5 + i, 0);
-        assertf(evs[i] <= MAX_PER_STAT_EVS, "invalid ev value of %d above maximum of %d", evs[i], MAX_PER_STAT_EVS)
-        {
-            evs[i] = MAX_PER_STAT_EVS;
-        }
-    }
+        monTemplate.evs[i]   = PARSE_FLAG(5 + i, 0);
 
-    u16 ivs[NUM_STATS];
-    u32 nonFixedIvCount = 0;
-    enum Stat availableIVs[NUM_STATS];
-    enum Stat selectedIvs[NUM_STATS];
     for (i = 0; i < NUM_STATS; i++)
-    {
-        ivs[i] = PARSE_FLAG(11 + i, USE_RANDOM_IVS);
-        assertf(ivs[i] <= USE_RANDOM_IVS, "invalid iv value of %d above maximum of %d", ivs[i], MAX_PER_STAT_IVS)
-        {
-            ivs[i] = MAX_PER_STAT_IVS;
-        }
-        if (ivs[i] == USE_RANDOM_IVS)
-        {
-            availableIVs[nonFixedIvCount] = i;
-            ivs[i] = Random() % (MAX_PER_STAT_IVS + 1);
-            nonFixedIvCount++;
-        }
-    }
+        monTemplate.ivs[i]   = PARSE_FLAG(11 + i, USE_RANDOM_IVS);
 
-    // Perfect IV calculation
-    if (gSpeciesInfo[species].perfectIVCount != 0)
-    {
-        // Select the IVs that will be perfected.
-        for (i = 0; i < nonFixedIvCount && i < gSpeciesInfo[species].perfectIVCount; i++)
-        {
-            u8 index = Random() % (nonFixedIvCount - i);
-            selectedIvs[i] = availableIVs[index];
-            RemoveIVIndexFromList(availableIVs, index);
-        }
-        for (i = 0; i < nonFixedIvCount && i < gSpeciesInfo[species].perfectIVCount; i++)
-        {
-            ivs[selectedIvs[i]] = MAX_PER_STAT_IVS;
-        }
-    }
-
-    enum Move moves[MAX_MON_MOVES];
     for (i = 0; i < MAX_MON_MOVES; i++)
-        moves[i] = PARSE_FLAG(17 + i, MOVE_DEFAULT);
+        monTemplate.moves[i] = PARSE_FLAG(17 + i, MOVE_DEFAULT);
 
-    enum ShinyMode shinyMode = PARSE_FLAG(21, SHINY_MODE_RANDOM);
-    bool8 gmaxFactor         = PARSE_FLAG(22, FALSE);
-    enum Type teraType       = PARSE_FLAG(23, NUMBER_OF_MON_TYPES);
-    u8 dmaxLevel             = PARSE_FLAG(24, 0);
+    if (flags & (1 << 21))
+    {
+        monTemplate.isShiny = VarGet(ScriptReadHalfword(ctx));
+        monTemplate.doNotUseDefaultShinyness = TRUE;
+    }
 
-    enum GeneratedMonOrigin origin;
-    if (side == 0)
+    monTemplate.gmaxFactor   = PARSE_FLAG(22, FALSE);
+    if (flags & (1 << 23))
+    {
+        monTemplate.teraType = VarGet(ScriptReadHalfword(ctx));
+        monTemplate.doNotUseDefaultTeraType = TRUE;
+    }
+    monTemplate.dmaxLevel    = PARSE_FLAG(24, 0);
+    monTemplate.isEgg        = PARSE_FLAG(25, FALSE);
+    if (side == B_SIDE_PLAYER)
     {
         Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
-        origin = GIFTMON_ORIGIN;
+        monTemplate.origin = GIFTMON_ORIGIN;
     }
     else
     {
         Script_RequestEffects(SCREFF_V1);
-        origin = STATIC_WILDMON_ORIGIN;
+        monTemplate.origin = STATIC_WILDMON_ORIGIN;
     }
 
-    if (gender == MON_GENDER_MAY_CUTE_CHARM)
-        gender = GetSynchronizedGender(origin, species);
-    if (nature == NATURE_MAY_SYNCHRONIZE)
-        nature = GetSynchronizedNature(origin, species);
+    monTemplate.ignoreTotalEvCheck = flags >> 26;
 
-    gSpecialVar_Result = ScriptGiveMonParameterized(side, slot, species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, shinyMode, gmaxFactor, teraType, dmaxLevel);
+    gSpecialVar_Result = ScriptGiveMonParameterized(side, slot, &monTemplate);
 }
 
 #undef PARSE_FLAG
