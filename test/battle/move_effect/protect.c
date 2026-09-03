@@ -989,8 +989,6 @@ DOUBLE_BATTLE_TEST("Protect is not ignored after a new mon switched in because o
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_POUND, opponentRight);
     }
 }
-<<<<<<< HEAD
-=======
 
 SINGLE_BATTLE_TEST("Protect may fail if used consecutively - 2nd time has 1/2 or 1/3 odds")
 {
@@ -1062,4 +1060,3 @@ SINGLE_BATTLE_TEST("Protect doesn't fail if used consecutively if broken by Fein
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, player);
     }
 }
->>>>>>> expansion/1.16.0

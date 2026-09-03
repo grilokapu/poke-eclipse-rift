@@ -208,8 +208,6 @@ SINGLE_BATTLE_TEST("Hit Escape: U-turn will fail to switch if the user faints")
     }
 }
 
-<<<<<<< HEAD
-=======
 SINGLE_BATTLE_TEST("Hit Escape: U-Turn switches user out and target activates Pickpocket before replacement enters")
 {
     GIVEN {
@@ -226,7 +224,6 @@ SINGLE_BATTLE_TEST("Hit Escape: U-Turn switches user out and target activates Pi
     }
 }
 
->>>>>>> expansion/1.16.0
 SINGLE_BATTLE_TEST("Hit Escape: U-turn will switch if the target is behind a Substitute")
 {
     GIVEN {

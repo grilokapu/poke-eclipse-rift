@@ -2250,6 +2250,266 @@ static void UpdateSandstormSwirlSprite(struct Sprite *sprite)
 #undef tEntranceDelay
 
 //------------------------------------------------------------------------------
+// WEATHER_FIREFLY_SHADE
+//------------------------------------------------------------------------------
+
+#define NUM_FIREFLY_SPRITES 10
+
+static void CreateFireflySprites(void);
+static void DestroyFireflySprites(void);
+static void UpdateFireflySprite(struct Sprite *sprite);
+
+// Graphics and palette ported from Hubol FireRed Firefly Shade v7. The four
+// 8x8 tiles are the three glow sizes plus an intermediate flicker frame.
+static const u8 sFireflyTiles[] ALIGNED(4) =
+{
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x01, 0x00,
+    0x00, 0x21, 0x12, 0x00, 0x00, 0x21, 0x12, 0x00,
+    0x00, 0x10, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x01, 0x00,
+    0x00, 0x21, 0x12, 0x00, 0x10, 0x32, 0x23, 0x01,
+    0x10, 0x32, 0x23, 0x01, 0x00, 0x21, 0x12, 0x00,
+    0x00, 0x10, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x10, 0x01, 0x00, 0x00, 0x21, 0x12, 0x00,
+    0x10, 0x32, 0x23, 0x01, 0x21, 0x43, 0x34, 0x12,
+    0x21, 0x43, 0x34, 0x12, 0x10, 0x32, 0x23, 0x01,
+    0x00, 0x21, 0x12, 0x00, 0x00, 0x10, 0x01, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+static const u16 sFireflyPalette[] =
+{
+    RGB(0, 0, 0), RGB(29, 18, 14), RGB(31, 25, 17), RGB(31, 28, 22),
+    RGB(28, 30, 31), RGB(31, 27, 27), RGB(31, 24, 19), RGB(31, 20, 16),
+    RGB(31, 16, 12), RGB(31, 12, 8), RGB(31, 8, 5), RGB(31, 5, 3),
+    RGB(31, 3, 2), RGB(31, 2, 1), RGB(31, 1, 0), RGB(31, 0, 0),
+};
+
+static const struct SpriteSheet sFireflySpriteSheet =
+{
+    .data = sFireflyTiles,
+    .size = sizeof(sFireflyTiles),
+    .tag = GFXTAG_FIREFLY,
+};
+
+static const struct SpritePalette sFireflySpritePalette =
+{
+    .data = sFireflyPalette,
+    .tag = PALTAG_FIREFLY,
+};
+
+static const struct OamData sFireflyOamData =
+{
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_BLEND,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(8x8),
+    .size = SPRITE_SIZE(8x8),
+    .priority = 1,
+};
+
+static const union AnimCmd sFireflyAnim[] =
+{
+    ANIMCMD_FRAME(0, 18),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_FRAME(2, 18),
+    ANIMCMD_FRAME(1, 12),
+    ANIMCMD_JUMP(0),
+};
+
+static const union AnimCmd *const sFireflyAnims[] =
+{
+    sFireflyAnim,
+};
+
+static const struct SpriteTemplate sFireflySpriteTemplate =
+{
+    .tileTag = GFXTAG_FIREFLY,
+    .paletteTag = PALTAG_FIREFLY,
+    .oam = &sFireflyOamData,
+    .anims = sFireflyAnims,
+    .callback = UpdateFireflySprite,
+};
+
+static struct Sprite *sFireflySprites[NUM_FIREFLY_SPRITES];
+static bool8 sFireflySpritesCreated;
+
+#define tFireflyX       data[0]
+#define tFireflyY       data[1]
+#define tFireflyDeltaX  data[2]
+#define tFireflyDeltaY  data[3]
+#define tFireflyTimer   data[4]
+
+void FireflyShade_InitVars(void)
+{
+    // Map reloads reset the global sprite allocator without running a weather
+    // finish callback. Discard stale pointers in that case.
+    if (sFireflySpritesCreated && IndexOfSpriteTileTag(GFXTAG_FIREFLY) == 0xFF)
+    {
+        u16 i;
+
+        for (i = 0; i < NUM_FIREFLY_SPRITES; i++)
+            sFireflySprites[i] = NULL;
+        sFireflySpritesCreated = FALSE;
+    }
+
+    gWeatherPtr->initStep = 0;
+    gWeatherPtr->targetColorMapIndex = 3;
+    gWeatherPtr->colorMapStepDelay = 20;
+    gWeatherPtr->weatherGfxLoaded = FALSE;
+    if (!sFireflySpritesCreated)
+        Weather_SetBlendCoeffs(0, 16);
+    gWeatherPtr->noShadows = FALSE;
+}
+
+void FireflyShade_InitAll(void)
+{
+    FireflyShade_InitVars();
+    while (!gWeatherPtr->weatherGfxLoaded)
+        FireflyShade_Main();
+}
+
+void FireflyShade_Main(void)
+{
+    switch (gWeatherPtr->initStep)
+    {
+    case 0:
+        CreateFireflySprites();
+        Weather_SetTargetBlendCoeffs(8, BASE_SHADOW_INTENSITY, 1);
+        gWeatherPtr->initStep++;
+        break;
+    case 1:
+        if (Weather_UpdateBlend())
+        {
+            gWeatherPtr->weatherGfxLoaded = TRUE;
+            gWeatherPtr->initStep++;
+        }
+        break;
+    }
+}
+
+bool8 FireflyShade_Finish(void)
+{
+    switch (gWeatherPtr->finishStep)
+    {
+    case 0:
+        Weather_SetTargetBlendCoeffs(0, 16, 1);
+        gWeatherPtr->finishStep++;
+        return TRUE;
+    case 1:
+        if (Weather_UpdateBlend())
+        {
+            DestroyFireflySprites();
+            gWeatherPtr->finishStep++;
+        }
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void CreateFireflySprites(void)
+{
+    static const u8 sStartCoords[NUM_FIREFLY_SPRITES][2] =
+    {
+        {  8,  20}, { 48, 118}, { 82,  52}, {116, 142}, {145,  16},
+        {174,  91}, {205, 137}, {232,  44}, { 27,  76}, {134,  73},
+    };
+    u16 i;
+
+    if (sFireflySpritesCreated)
+        return;
+
+    LoadSpriteSheet(&sFireflySpriteSheet);
+    LoadSpritePalette(&sFireflySpritePalette);
+    PreservePaletteInWeather(IndexOfSpritePaletteTag(PALTAG_FIREFLY));
+
+    for (i = 0; i < NUM_FIREFLY_SPRITES; i++)
+    {
+        u8 spriteId = CreateSpriteAtEnd(&sFireflySpriteTemplate,
+                                       sStartCoords[i][0] - gSpriteCoordOffsetX,
+                                       sStartCoords[i][1] - gSpriteCoordOffsetY,
+                                       0x40 + i);
+        if (spriteId == MAX_SPRITES)
+        {
+            sFireflySprites[i] = NULL;
+            continue;
+        }
+
+        sFireflySprites[i] = &gSprites[spriteId];
+        sFireflySprites[i]->coordOffsetEnabled = TRUE;
+        sFireflySprites[i]->tFireflyX = sFireflySprites[i]->x << 4;
+        sFireflySprites[i]->tFireflyY = sFireflySprites[i]->y << 4;
+        sFireflySprites[i]->tFireflyDeltaX = (i & 1) ? 1 : -1;
+        sFireflySprites[i]->tFireflyDeltaY = (i & 2) ? 1 : -1;
+        sFireflySprites[i]->tFireflyTimer = i * 7;
+        sFireflySprites[i]->animCmdIndex = i % 4;
+        sFireflySprites[i]->animDelayCounter = i * 3;
+    }
+    sFireflySpritesCreated = TRUE;
+}
+
+static void DestroyFireflySprites(void)
+{
+    u16 i;
+
+    for (i = 0; i < NUM_FIREFLY_SPRITES; i++)
+    {
+        if (sFireflySprites[i] != NULL)
+        {
+            DestroySprite(sFireflySprites[i]);
+            sFireflySprites[i] = NULL;
+        }
+    }
+    FreeSpriteTilesByTag(GFXTAG_FIREFLY);
+    FreeSpritePaletteByTag(PALTAG_FIREFLY);
+    sFireflySpritesCreated = FALSE;
+}
+
+static void UpdateFireflySprite(struct Sprite *sprite)
+{
+    s16 screenX;
+    s16 screenY;
+
+    // Slow, independent drift. Direction changes occasionally rather than all
+    // particles moving as a single layer.
+    if (++sprite->tFireflyTimer >= 96)
+    {
+        sprite->tFireflyTimer = 0;
+        if (Random() & 1)
+            sprite->tFireflyDeltaX = -sprite->tFireflyDeltaX;
+        if (Random() & 1)
+            sprite->tFireflyDeltaY = -sprite->tFireflyDeltaY;
+    }
+    sprite->tFireflyX += sprite->tFireflyDeltaX;
+    sprite->tFireflyY += sprite->tFireflyDeltaY;
+    sprite->x = sprite->tFireflyX >> 4;
+    sprite->y = sprite->tFireflyY >> 4;
+
+    // Keep the particles anchored to map space and wrap seamlessly around the
+    // viewport as the camera or the particle itself moves.
+    screenX = sprite->x + gSpriteCoordOffsetX;
+    screenY = sprite->y + gSpriteCoordOffsetY;
+    if (screenX < -8)
+        sprite->tFireflyX += 256 << 4;
+    else if (screenX > DISPLAY_WIDTH + 8)
+        sprite->tFireflyX -= 256 << 4;
+    if (screenY < -8)
+        sprite->tFireflyY += 176 << 4;
+    else if (screenY > DISPLAY_HEIGHT + 8)
+        sprite->tFireflyY -= 176 << 4;
+}
+
+#undef tFireflyX
+#undef tFireflyY
+#undef tFireflyDeltaX
+#undef tFireflyDeltaY
+#undef tFireflyTimer
+
+//------------------------------------------------------------------------------
 // WEATHER_SHADE
 //------------------------------------------------------------------------------
 
@@ -2684,6 +2944,7 @@ static enum OverworldWeather TranslateWeatherNum(enum OverworldWeather weather)
     case WEATHER_DOWNPOUR:           return WEATHER_DOWNPOUR;
     case WEATHER_UNDERWATER_BUBBLES: return WEATHER_UNDERWATER_BUBBLES;
     case WEATHER_ABNORMAL:           return WEATHER_ABNORMAL;
+    case WEATHER_FIREFLY_SHADE:      return WEATHER_FIREFLY_SHADE;
     case WEATHER_ROUTE119_CYCLE:     return sWeatherCycleRoute119[gSaveBlock1Ptr->weatherCycleStage];
     case WEATHER_ROUTE123_CYCLE:     return sWeatherCycleRoute123[gSaveBlock1Ptr->weatherCycleStage];
     case WEATHER_DYNAMIC:            return GetDynamicWeather();

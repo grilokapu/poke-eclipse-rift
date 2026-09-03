@@ -25,6 +25,7 @@ Optional (but still recommended) fields for trainers:
           see "constants/battle_ai.h" for all flags)
     - Mugshot (enable Mugshots during battle transition
                set to one of Purple, Green, Pink, Blue or Yellow)
+    - Mugshot Style (Normal / Big, defaults to Normal)
     - Starting Status (see include/constants/battle.h for values)
     - Multi Party   (Half reduces two-trainer battle sides to 3 Pokemon each)
                     (defaults to Full but requires B_MULTI_HALF_TEAMS to be FALSE)
@@ -404,6 +405,8 @@ Gender: Male
 Music: Intense
 Double Battle: No
 AI: Smart Trainer
+Mugshot: Green
+Mugshot Style: Big
 
 Baltoy
 Level: 14
@@ -416,74 +419,103 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Anorith
 Level: 15
 
-=== TRAINER_GRUNT_SPACE_CENTER_1 ===
-Name: GRUNT
-Class: Team Magma
-Pic: Magma Grunt M
-Gender: Male
-Music: Magma
-Double Battle: No
-AI: Check Bad Move
-
-Numel
-Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MT_PYRE_1 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Zubat
-Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MT_PYRE_2 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Carvanha
-Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_MT_PYRE_3 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Aqua
-Double Battle: No
-AI: Check Bad Move
-
-Poochyena
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Carvanha
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GRUNT_WEATHER_INST_4 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt F
+=== TRAINER_PARASOL_LADY_CARMEM ===
+Name: Carmem
+Class: Parasol Lady
+Pic: Parasol Lady
 Gender: Female
-Music: Aqua
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Wingull
+Level: 16
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Rain Dance
+- Wing Attack
+- Water Gun
+- Roost
+
+Castform
+Level: 16
+- Rain Dance
+- Weather Ball
+- Body Slam
+- Work Up
+
+=== TRAINER_BIRD_KEEPER_LOHAN ===
+Name: Lohan
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Starly
+Level: 15
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Squawkabilly
+Level: 15
+
+Pikipek
+Level: 15
+
+=== TRAINER_YOUNGSTER_RENAN ===
+Name: Renan
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Carvanha
-Level: 28
+Lillipup
+Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Skwovet
+Level: 16
+
+=== TRAINER_POKEFAN_M_LEONEL ===
+Name: Leonel
+Class: Pokefan
+Pic: Pokefan M
+Gender: Male
+Music: Cool
+Double Battle: No
+AI: Basic Trainer
+
+Marill
+Level: 16
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Pachirisu
+Level: 17
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_BUG_CATCHER_ROMEU ===
+Name: Romeu
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sizzlipede
+Level: 14
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Paras
+Level: 14
+
+Joltik
+Level: 14
+
+Skorupi
+Level: 14
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_5 ===
 Name: GRUNT

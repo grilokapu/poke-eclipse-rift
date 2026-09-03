@@ -12,15 +12,15 @@ script StonereachCity_Gym_EventScript_Anorith {
     end
 }
 
-script StonereachCity_Gym_EventScript_Roxanne {
+script StonereachCity_Gym_EventScript_Aldren {
     switch(var(VAR_LANGUAGE)) {
-        case PT: trainerbattle_single(TRAINER_LEADER_ALDREN, "Que bom revê-lo, {PLAYER}.\pNo museu, estudamos as marcas que\no tempo deixa na pedra.\pAqui, estudamos as marcas que uma\ldecisão deixa numa batalha.\pEu sou Aldren, Líder de Stonereach.\nMostre-me o que sua jornada gravou\lem você!", "Excelente...\pVocê encontrou a fissura na minha\ndefesa.", StonereachCity_Gym_EventScript_RoxanneDefeated)
-        case EN: trainerbattle_single(TRAINER_LEADER_ALDREN, "Welcome, {PLAYER}.\pAt the museum, we study the marks\ntime leaves upon stone.\pHere, we study the marks a decision\lleaves upon a battle.\pI am Aldren, Leader of Stonereach.\nShow me what your journey has\lcarved into you!", "Excellent...\pYou found the fault line in my\ndefense.", StonereachCity_Gym_EventScript_RoxanneDefeated)
-        case ES: trainerbattle_single(TRAINER_LEADER_ALDREN, "Te doy la bienvenida, {PLAYER}.\pEn el museo estudiamos las marcas\nque el tiempo deja en la piedra.\pAquí estudiamos las marcas que una\ldecisión deja en un combate.\pSoy Aldren, Líder de Stonereach.\n¡Muéstrame lo que tu viaje ha\lgrabado en ti!", "Excelente...\pHallaste la falla en mi defensa.", StonereachCity_Gym_EventScript_RoxanneDefeated)
+        case PT: trainerbattle_single(TRAINER_LEADER_ALDREN, "Que bom revê-lo, {PLAYER}.\pNo museu, estudamos as marcas que\no tempo deixa na pedra.\pAqui, estudamos as marcas que uma\ldecisão deixa numa batalha.\pEu sou Aldren, Líder de Stonereach.\nMostre-me o que sua jornada gravou\lem você!", "Excelente...\pVocê encontrou a fissura na minha\ndefesa.", StonereachCity_Gym_EventScript_AldrenDefeated)
+        case EN: trainerbattle_single(TRAINER_LEADER_ALDREN, "Welcome, {PLAYER}.\pAt the museum, we study the marks\ntime leaves upon stone.\pHere, we study the marks a decision\lleaves upon a battle.\pI am Aldren, Leader of Stonereach.\nShow me what your journey has\lcarved into you!", "Excellent...\pYou found the fault line in my\ndefense.", StonereachCity_Gym_EventScript_AldrenDefeated)
+        case ES: trainerbattle_single(TRAINER_LEADER_ALDREN, "Te doy la bienvenida, {PLAYER}.\pEn el museo estudiamos las marcas\nque el tiempo deja en la piedra.\pAquí estudiamos las marcas que una\ldecisión deja en un combate.\pSoy Aldren, Líder de Stonereach.\n¡Muéstrame lo que tu viaje ha\lgrabado en ti!", "Excelente...\pHallaste la falla en mi defensa.", StonereachCity_Gym_EventScript_AldrenDefeated)
     }
     specialvar(VAR_RESULT, ShouldTryRematchBattle)
     if (var(VAR_RESULT) == TRUE) {
-        goto(StonereachCity_Gym_EventScript_RoxanneRematch)
+        goto(StonereachCity_Gym_EventScript_AldrenRematch)
     }
     if (!flag(FLAG_RECEIVED_TM_ROCK_TOMB)) {
         goto(StonereachCity_Gym_EventScript_GiveRockTomb)
@@ -34,14 +34,14 @@ script StonereachCity_Gym_EventScript_Roxanne {
     end
 }
 
-script StonereachCity_Gym_EventScript_RoxanneDefeated {
+script StonereachCity_Gym_EventScript_AldrenDefeated {
     switch(var(VAR_LANGUAGE)) {
         case PT: message("Aldren reconheceu sua vitória.\p{PLAYER} recebeu a\nINSÍGNIA ROCHAREACH!")
         case EN: message("Aldren acknowledged your victory.\p{PLAYER} received the\nROCHAREACH BADGE!")
         case ES: message("Aldren reconoció tu victoria.\p¡{PLAYER} recibió la\nMEDALLA ROCHAREACH!")
     }
     waitmessage
-    call(Common_EventScript_PlayGymBadgeFanfare)
+    call(Common_EventScript_PlayRochareachBadgeFanfare)
     switch(var(VAR_LANGUAGE)) {
         case PT: msgbox("A INSÍGNIA ROCHAREACH prova que\nvocê superou o Ginásio de\lStonereach.\pEla permite usar CUT fora das\nbatalhas.\pE leve isto. Até uma muralha pode\nse tornar uma arma.", MSGBOX_DEFAULT)
         case EN: msgbox("The ROCHAREACH BADGE proves you\novercame Stonereach Gym.\pIt allows you to use CUT outside\nbattle.\pAnd take this. Even a wall can be\nturned into a weapon.", MSGBOX_DEFAULT)
@@ -72,7 +72,7 @@ script StonereachCity_Gym_EventScript_GiveRockTomb {
     end
 }
 
-script StonereachCity_Gym_EventScript_RoxanneRematch {
+script StonereachCity_Gym_EventScript_AldrenRematch {
     switch(var(VAR_LANGUAGE)) {
         case PT: trainerbattle_rematch_double(TRAINER_ROXANNE_1, "{PLAYER}, cada batalha acrescentou\numa nova camada à nossa história.\pVamos descobrir qual de nós mudou\nmais desde o último encontro!", "Outra vitória sua...\nUma descoberta valiosa.", "Uma batalha em dupla exige ao menos\ndois Pokémon.\pVolte quando sua equipe estiver\npreparada.")
         case EN: trainerbattle_rematch_double(TRAINER_ROXANNE_1, "{PLAYER}, every battle has added a\nnew layer to our history.\pLet us discover which of us has\nchanged more since we last met!", "Another victory for you...\nA valuable discovery.", "A Double Battle requires at least\ntwo Pokémon.\pReturn when your team is ready.")

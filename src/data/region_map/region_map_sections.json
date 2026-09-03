@@ -166,11 +166,13 @@
     },
     {
       "id": "MAPSEC_ROUTE_104",
-      "name": "ROUTE 104",
+      "name": "Route 4",
       "x": 0,
       "y": 7,
       "width": 1,
-      "height": 3
+      "height": 3,
+      "nameEs": "Rota 4",
+      "namePt": "Ruta 4"
     },
     {
       "id": "MAPSEC_ROUTE_105",

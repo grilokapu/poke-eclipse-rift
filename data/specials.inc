@@ -641,4 +641,6 @@ gSpecials::
 	def_special CheckAddCoins
 	def_special StonereachQuiz_PrepareParty
 	def_special StonereachQuiz_Finish
+	def_special ShowERBadgeObtainSprite
+	def_special HideERBadgeObtainSprite
 	def_special ShowHisuiMap, waitstate=1

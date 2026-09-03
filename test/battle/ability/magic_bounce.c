@@ -222,8 +222,6 @@ SINGLE_BATTLE_TEST("Magic Bounce can't reflect back Stealth Rock from a semi-inv
         MESSAGE("Pointed stones float in the air on the opposing side!");
     }
 }
-<<<<<<< HEAD
-=======
 
 SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves before Magic Coat")
 {
@@ -268,4 +266,3 @@ DOUBLE_BATTLE_TEST("Magic Bounce will trigger after all valid targets have been 
         MESSAGE("Kadabra is switched out with the Eject Pack!");
     }
 }
->>>>>>> expansion/1.16.0

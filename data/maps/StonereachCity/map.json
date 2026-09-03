@@ -17,6 +17,11 @@
       "map": "MAP_ROUTE103",
       "offset": 34,
       "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE4",
+      "offset": 10,
+      "direction": "down"
     }
   ],
   "object_events": [

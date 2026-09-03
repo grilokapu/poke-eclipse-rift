@@ -1,0 +1,264 @@
+mapscripts Route4_MapScripts {}
+
+script Route4_EventScript_Sign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Rota 4\nCidade Stonereach {UP_ARROW_2}\lSantuário Verdante {DOWN_ARROW}", MSGBOX_SIGN)
+        case EN: msgbox("Route 4\nStonereach City {UP_ARROW_2}\lVerdant Sanctum {DOWN_ARROW}", MSGBOX_SIGN)
+        case ES: msgbox("Ruta 4\nCiudad Stonereach {UP_ARROW_2}\lSantuário Verdante {DOWN_ARROW}", MSGBOX_SIGN)
+    }
+    end
+}
+
+// A quiet first glimpse of the symbol away from ruins or ancient objects.
+script Route4_EventScript_AbsolSymbol {
+    if (!flag(FLAG_DEFEATED_STONEREACH_GYM)) {
+        end
+    }
+    if (flag(FLAG_ROUTE4_ABSOL_SYMBOL_EVENT_DONE)) {
+        end
+    }
+
+    lockall
+    moveplayer(moves(walk_down * 2, face_down))
+    special(SpawnCameraObject)
+    movecamera(moves(walk_down))
+    movenpc(LOCALID_ROUTE4_EVENT_ABSOL, moves(face_right))
+    pause(36)
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Absol parece estar observando\nalguma coisa...", MSGBOX_DEFAULT)
+        case EN: msgbox("Absol seems to be watching\nsomething...", MSGBOX_DEFAULT)
+        case ES: msgbox("Absol parece estar observando\nalgo...", MSGBOX_DEFAULT)
+    }
+    pause(45)
+
+    // Absol grows uneasy without turning away from the empty patch of ground.
+    movenpc(LOCALID_ROUTE4_EVENT_ABSOL, moves(face_up, delay_8, face_down, delay_8, face_right))
+    playse(SE_M_CONFUSE_RAY)
+    setvar(VAR_0x8004, 1)
+    setvar(VAR_0x8005, 1)
+    setvar(VAR_0x8006, 4)
+    setvar(VAR_0x8007, 4)
+    special(ShakeCamera)
+    setvar(VAR_0x8000, LOCALID_ROUTE4_EVENT_ABSOL)
+    callnative(CreateRoute4GroundSymbol)
+    waitstate
+    pause(8)
+
+    // It reacts while the mark is still glowing, then puts distance between them.
+    playse(SE_PIN)
+    movenpc(LOCALID_ROUTE4_EVENT_ABSOL, moves(emote_exclamation_mark, walk_fast_left))
+    waitse
+    pause(28)
+
+    // The mark has vanished. Absol checks whether the player saw it too.
+    movenpc(LOCALID_ROUTE4_EVENT_ABSOL, moves(face_up, delay_16))
+    pause(18)
+    movenpc(LOCALID_ROUTE4_EVENT_ABSOL, moves(walk_fast_left * 8))
+    removeobject(LOCALID_ROUTE4_EVENT_ABSOL)
+    setflag(FLAG_ROUTE4_ABSOL_SYMBOL_EVENT_DONE)
+
+    pause(30)
+    msgbox("...", MSGBOX_DEFAULT)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Não há nada ali.", MSGBOX_DEFAULT)
+        case EN: msgbox("There's nothing there.", MSGBOX_DEFAULT)
+        case ES: msgbox("No hay nada ahí.", MSGBOX_DEFAULT)
+    }
+
+    movecamera(moves(walk_up))
+    special(RemoveCameraObject)
+    releaseall
+    end
+}
+
+script Route4_EventScript_ParasolLady_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_PARASOL_LADY_CARMEM, "Não há uma nuvem no céu…\pMas meu Wingull pode resolver isso!", "A tempestade passou tão rápido…")
+            msgbox("Chuva ou sol, meu Wingull sempre\nestará pronto para voar!")
+        case EN:
+            trainerbattle_single(TRAINER_PARASOL_LADY_CARMEM, "There isn't a cloud in the sky…\pBut my Wingull can fix that!", "That storm passed so quickly…")
+            msgbox("Rain or shine, my Wingull will\nalways be ready to fly!")
+        case ES:
+            trainerbattle_single(TRAINER_PARASOL_LADY_CARMEM, "No hay ni una nube en el cielo…\p¡Pero mi Wingull puede arreglarlo!", "La tormenta pasó muy rápido…")
+            msgbox("¡Llueva o haga sol, mi Wingull\nsiempre estará listo para volar!")
+    }
+    release
+    end
+}
+
+script Route4_EventScript_TM_IceFang_Get {
+    finditem(ITEM_TM_ICE_FANG)
+    end
+}
+
+script Route4_EventScript_SuperPotion_Get {
+    finditem(ITEM_SUPER_POTION)
+    end
+}
+
+script Route4_EventScript_Revive_Get {
+    finditem(ITEM_REVIVE)
+    end
+}
+
+script Route4_EventScript_NetBall_Get {
+    finditem(ITEM_NET_BALL)
+    end
+}
+
+script Route4_EventScript_Youngster_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_YOUNGSTER_RENAN, "Meu Lillipup farejou um adversário!\pO problema é que ele também fareja\nqualquer lanche…", "Acho que ele estava pensando no\nlanche…")
+            msgbox("Vou treinar o faro dele.\pPrimeiro para batalhas, depois para\nachar minha merenda!", MSGBOX_NPC)
+        case EN:
+            trainerbattle_single(TRAINER_YOUNGSTER_RENAN, "My Lillipup sniffed out an opponent!\pThe problem is, he also sniffs out\nevery snack…", "I think he was thinking about the\nsnack…")
+            msgbox("I'll train his sense of smell.\pBattles first, then finding my\nlunch!", MSGBOX_NPC)
+        case ES:
+            trainerbattle_single(TRAINER_YOUNGSTER_RENAN, "¡Mi Lillipup olfateó a un rival!\pEl problema es que también olfatea\ncualquier bocadillo…", "Creo que estaba pensando en el\nbocadillo…")
+            msgbox("Entrenaré su olfato.\pPrimero para combatir, ¡y luego para\nencontrar mi merienda!", MSGBOX_NPC)
+    }
+    end
+}
+
+script Route4_EventScript_PokefanM_Leonel_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_POKEFAN_M_LEONEL, "Meus pequenos parceiros estão\ncheios de energia!\pVamos mostrar do que somos capazes!", "Vocês foram incríveis, meus\nqueridos!")
+            msgbox("Marill e Pachirisu podem parecer\nfofinhos, mas levam as batalhas\lmuito a sério!", MSGBOX_NPC)
+        case EN:
+            trainerbattle_single(TRAINER_POKEFAN_M_LEONEL, "My little partners are bursting\nwith energy!\pLet's show you what we can do!", "You were wonderful, my\ndarlings!")
+            msgbox("Marill and Pachirisu may look cute,\nbut they take battling very\lseriously!", MSGBOX_NPC)
+        case ES:
+            trainerbattle_single(TRAINER_POKEFAN_M_LEONEL, "¡Mis pequeños compañeros están\nllenos de energía!\p¡Mostremos lo que sabemos hacer!", "¡Estuvieron increíbles, mis\npequeños!")
+            msgbox("Marill y Pachirisu pueden parecer\nadorables, ¡pero se toman los\lcombates muy en serio!", MSGBOX_NPC)
+    }
+    release
+    end
+}
+
+script Route4_EventScript_BugCatcher_Romeu_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_BUG_CATCHER_ROMEU, "Encontrei insetos de todos os tipos\npor esta rota!\pQuer ver os melhores?", "Minha coleção ainda precisa de\ntreinamento...")
+            msgbox("Cada inseto tem um jeito diferente\nde lutar.\pÉ isso que torna treiná-los tão\ldivertido!", MSGBOX_NPC)
+        case EN:
+            trainerbattle_single(TRAINER_BUG_CATCHER_ROMEU, "I found all kinds of bugs along\nthis route!\pWant to see the best ones?", "My collection still needs more\ntraining...")
+            msgbox("Every bug has a different way of\nbattling.\pThat's what makes training them so\lmuch fun!", MSGBOX_NPC)
+        case ES:
+            trainerbattle_single(TRAINER_BUG_CATCHER_ROMEU, "¡Encontré insectos de todo tipo\npor esta ruta!\p¿Quieres ver los mejores?", "Mi colección aún necesita más\nentrenamiento...")
+            msgbox("Cada insecto tiene una forma\ndiferente de combatir.\p¡Por eso entrenarlos es tan\ldivertido!", MSGBOX_NPC)
+    }
+    release
+    end
+}
+
+script Route4_EventScript_Lass {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Dizem que mulheres treinadoras fazem\nmil coisas ao mesmo tempo.\pEu planejo a rota, cuido da equipe\ne esqueço onde guardei a Poké Bola…\ltudo em dez segundos!", MSGBOX_NPC)
+        case EN: msgbox("They say women Trainers can do a\nthousand things at once.\pI plan the route, care for my team,\nand forget where I put my Poké Ball…\lall in ten seconds!", MSGBOX_NPC)
+        case ES: msgbox("Dicen que las Entrenadoras hacemos\nmil cosas a la vez.\pPlaneo la ruta, cuido del equipo y\nolvido dónde guardé la Poké Ball…\l¡todo en diez segundos!", MSGBOX_NPC)
+    }
+    end
+}
+
+const LOCALID_ROUTE4_ARENA_SQUAWKABILLY = 16
+const LOCALID_ROUTE4_ARENA_PLAYER_MON = 17
+
+script Route4_EventScript_BirdKeeper_Challenge {
+    lockall
+    faceplayer
+
+    if (flag(FLAG_ROUTE4_BIRD_KEEPER_CHALLENGE_DONE)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("A arena ainda se lembra da sua\nvitória!\pContinue voando alto, campeão!", MSGBOX_DEFAULT)
+            case EN: msgbox("The arena still remembers your\nvictory!\pKeep flying high, Champion!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡La arena aún recuerda tu victoria!\p¡Sigue volando alto, Campeón!", MSGBOX_DEFAULT)
+        }
+        releaseall
+        end
+    }
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Bem-vindo à minha pequena arena!\pMeu Squawkabilly e eu desafiamos\ntreinadores que não têm medo de\lvoar alto.\pQuer aceitar o desafio?\nHá um prêmio para quem vencer!", MSGBOX_YESNO)
+        case EN: msgbox("Welcome to my little arena!\pMy Squawkabilly and I challenge\nTrainers who aren't afraid to\lfly high.\pWill you accept the challenge?\nThere's a prize if you win!", MSGBOX_YESNO)
+        case ES: msgbox("¡Bienvenido a mi pequeña arena!\pMi Squawkabilly y yo desafiamos a\nEntrenadores que no temen volar\lalto.\p¿Aceptas el desafío?\n¡Hay un premio si ganas!", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sem problema! Até os melhores\npássaros esperam o vento certo.", MSGBOX_DEFAULT)
+            case EN: msgbox("No problem! Even the best birds\nwait for the right wind.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡No hay problema! Hasta las mejores\naves voladoras esperan el viento\ladecuado.", MSGBOX_DEFAULT)
+        }
+        releaseall
+        end
+    }
+
+    checkitemspace(ITEM_STARAPTITE)
+    if (var(VAR_RESULT) == FALSE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sua Bolsa está cheia.\pAbra espaço para o prêmio e volte\npara aceitar o desafio!", MSGBOX_DEFAULT)
+            case EN: msgbox("Your Bag is full.\pMake room for the prize, then come\nback to accept the challenge!", MSGBOX_DEFAULT)
+            case ES: msgbox("Tu Bolsa está llena.\p¡Haz espacio para el premio y vuelve\npara aceptar el desafío!", MSGBOX_DEFAULT)
+        }
+        releaseall
+        end
+    }
+
+    hidefollower(1)
+    setobjectxy(LOCALID_PLAYER, 46, 27)
+    movenpc(LOCALID_ROUTE4_BIRD_KEEPER, moves(walk_left * 2, walk_up, face_down))
+    moveplayer(moves(walk_up, face_up))
+    pause(20)
+
+    createspobject(OBJ_EVENT_GFX_SPECIES(SQUAWKABILLY), LOCALID_ROUTE4_ARENA_SQUAWKABILLY, 46, 24, MOVEMENT_TYPE_FACE_DOWN)
+    callnative(GetFirstPartyMonGraphicsId)
+    createspobject(VAR_0x8000, LOCALID_ROUTE4_ARENA_PLAYER_MON, 46, 25, MOVEMENT_TYPE_FACE_UP)
+    movenpc(LOCALID_ROUTE4_ARENA_SQUAWKABILLY, moves(exit_pokeball, face_down))
+    movenpc(LOCALID_ROUTE4_ARENA_PLAYER_MON, moves(exit_pokeball, face_up))
+    pause(20)
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_BIRD_KEEPER_LOHAN, "As asas estão abertas.\nQue comece o desafio!", "Você dominou os céus!", Route4_EventScript_BirdKeeper_Victory)
+        case EN: trainerbattle_single(TRAINER_BIRD_KEEPER_LOHAN, "Our wings are spread.\nLet the challenge begin!", "You ruled the skies!", Route4_EventScript_BirdKeeper_Victory)
+        case ES: trainerbattle_single(TRAINER_BIRD_KEEPER_LOHAN, "Las alas están abiertas.\n¡Que comience el desafío!", "¡Dominaste los cielos!", Route4_EventScript_BirdKeeper_Victory)
+    }
+    releaseall
+    end
+}
+
+script Route4_EventScript_BirdKeeper_Victory {
+    applymovement(LOCALID_ROUTE4_ARENA_SQUAWKABILLY, moves(enter_pokeball))
+    applymovement(LOCALID_ROUTE4_ARENA_PLAYER_MON, moves(enter_pokeball))
+    waitmovementall
+    removeobject(LOCALID_ROUTE4_ARENA_SQUAWKABILLY)
+    removeobject(LOCALID_ROUTE4_ARENA_PLAYER_MON)
+    callnative(UpdateFollowingPokemon)
+
+    movenpc(LOCALID_ROUTE4_BIRD_KEEPER, moves(walk_down * 2, face_down))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Parabéns! Você e seu Pokémon\nformam uma dupla de primeira.\pComo prometido, este é o seu prêmio!", MSGBOX_DEFAULT)
+        case EN: msgbox("Congratulations! You and your\nPokémon make a first-class team.\pAs promised, here's your prize!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Felicidades! Tú y tu Pokémon\nforman un equipo de primera.\pComo prometí, ¡aquí está tu premio!", MSGBOX_DEFAULT)
+    }
+    giveitem(ITEM_STARAPTITE)
+    setflag(FLAG_ROUTE4_BIRD_KEEPER_CHALLENGE_DONE)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A Staraptite pertence a alguém que\nsabe alcançar novas alturas.\pNos vemos por aí, campeão!", MSGBOX_DEFAULT)
+        case EN: msgbox("The Staraptite belongs with someone\nwho can reach new heights.\pSee you around, Champion!", MSGBOX_DEFAULT)
+        case ES: msgbox("La Staraptita pertenece a quien sabe\nalcanzar nuevas alturas.\p¡Nos vemos, Campeón!", MSGBOX_DEFAULT)
+    }
+    releaseall
+    end
+}
+
+script Route4_EventScript_FatMan {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você sabia que Snorlax pode pesar\nmais de 450 quilos?\pEu também fico imóvel depois do\nalmoço, mas ninguém me chama de\lPokémon raro!", MSGBOX_NPC)
+        case EN: msgbox("Did you know Snorlax can weigh over\n450 kilograms?\pI also stop moving after lunch, but\nnobody calls me a rare Pokémon!", MSGBOX_NPC)
+        case ES: msgbox("¿Sabías que Snorlax puede pesar más\nde 450 kilos?\pYo tampoco me muevo después de\ncomer, ¡pero nadie me llama Pokémon\lraro!", MSGBOX_NPC)
+    }
+    end
+}

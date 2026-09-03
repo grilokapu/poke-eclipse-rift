@@ -170,15 +170,6 @@ SINGLE_BATTLE_TEST("(DYNAMAX) Dynamaxed Pokemon can be encored immediately after
     }
 }
 
-<<<<<<< HEAD
-TO_DO_BATTLE_TEST("Encore's effect ends if the encored move runs out of PP");
-TO_DO_BATTLE_TEST("Encore lasts for 2-6 turns (Gen 2-3)");
-TO_DO_BATTLE_TEST("Encore lasts for 3-7 turns (Gen 4)");
-TO_DO_BATTLE_TEST("Encore lasts for 3 turns (Gen 5+)");
-TO_DO_BATTLE_TEST("Encore randomly chooses an opponent target");
-
-=======
->>>>>>> expansion/1.16.0
 DOUBLE_BATTLE_TEST("Encore works even if the target's last move failed")
 {
     GIVEN {
@@ -218,8 +209,6 @@ SINGLE_BATTLE_TEST("Encore fails if target has not used any move yet")
         }
     }
 }
-<<<<<<< HEAD
-=======
 
 SINGLE_BATTLE_TEST("Encore's effect ends if the encored move runs out of PP")
 {
@@ -345,4 +334,3 @@ DOUBLE_BATTLE_TEST("Encore allows choosing an opponent target (Gen 5+)")
         HP_BAR(opponentRight);
     }
 }
->>>>>>> expansion/1.16.0

@@ -229,25 +229,15 @@ DOUBLE_BATTLE_TEST("Brick Break, Psychic Fangs, and Raging Bull can remove Light
     }
 }
 
-<<<<<<< HEAD
-SINGLE_BATTLE_TEST("Brick Break and Psychic Fangs can remove screens when the target is behind a Substitute")
-=======
 SINGLE_BATTLE_TEST("Brick Break, Psychic Fangs, and Raging Bull can remove screens when the target is behind a Substitute")
->>>>>>> expansion/1.16.0
 {
     enum Move move;
 
     PARAMETRIZE { move = MOVE_BRICK_BREAK; }
     PARAMETRIZE { move = MOVE_PSYCHIC_FANGS; }
-<<<<<<< HEAD
-
-    GIVEN {
-
-=======
     PARAMETRIZE { move = MOVE_RAGING_BULL; }
 
     GIVEN {
->>>>>>> expansion/1.16.0
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -257,12 +247,6 @@ SINGLE_BATTLE_TEST("Brick Break, Psychic Fangs, and Raging Bull can remove scree
         ANIMATION(ANIM_TYPE_MOVE, MOVE_REFLECT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUBSTITUTE, player);
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-<<<<<<< HEAD
-        MESSAGE("The wall shattered!");
-        SUB_HIT(player);
-    }
-}
-=======
         MESSAGE("Your team's Reflect wore off!");
         SUB_HIT(player);
     }
@@ -293,4 +277,3 @@ SINGLE_BATTLE_TEST("Brick Break, Psychic Fangs, and Raging Bull remove screens i
         MESSAGE("The opposing side's Aurora Veil wore off!");
     }
 }
->>>>>>> expansion/1.16.0

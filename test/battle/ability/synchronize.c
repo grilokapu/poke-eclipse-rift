@@ -160,8 +160,6 @@ SINGLE_BATTLE_TEST("Synchronize does not trigger from Toxic Orb or Flame Orb")
         }
     }
 }
-<<<<<<< HEAD
-=======
 
 DOUBLE_BATTLE_TEST("Synchronize will trigger on both targets")
 {
@@ -217,4 +215,3 @@ SINGLE_BATTLE_TEST("Synchronize can trigger again during the same attack if user
         STATUS_ICON(player, poison: TRUE);
     }
 }
->>>>>>> expansion/1.16.0

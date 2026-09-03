@@ -590,7 +590,9 @@
 #define OBJ_EVENT_GFX_YOUNG_GIOVANNI                395
 #define OBJ_EVENT_GFX_ALDREN                        396
 #define OBJ_EVENT_GFX_RUIN_MANIAC                   397
-#define NUM_OBJ_EVENT_GFX                        398
+#define OBJ_EVENT_GFX_PARASOL_LADY                  398
+#define OBJ_EVENT_GFX_MEGA_STONE                    399
+#define NUM_OBJ_EVENT_GFX                        400
 
 
 // These are dynamic object gfx ids.
@@ -812,6 +814,9 @@
 #define OBJ_EVENT_PAL_TAG_OLDMAN                    0x1181
 #define OBJ_EVENT_PAL_TAG_ALDREN                    0x1182
 #define OBJ_EVENT_PAL_TAG_RUIN_MANIAC               0x1183
+#define OBJ_EVENT_PAL_TAG_PARASOL_LADY               0x1184
+#define OBJ_EVENT_PAL_TAG_MEGA_STONE                  0x1185
+#define OBJ_EVENT_PAL_TAG_POKEFAN_M                   0x1186
 // Used as a placeholder follower graphic
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001

@@ -136,8 +136,9 @@ struct Trainer
     u16 gender:1;
     u16 battleType:2;
     u16 mugshotColor:3;
+    u16 mugshotStyle:1;
     u16 partySize:3;
-    u16 padding:2;
+    u16 padding:1;
     enum TrainerPicID trainerPic;
     u8 trainerName[TRAINER_NAME_LENGTH + 1];
     u8 poolSize;
@@ -338,6 +339,11 @@ static inline const bool32 DoesTrainerHaveMugshot(u16 trainerId)
 static inline const u8 GetTrainerMugshotColorFromId(u16 trainerId)
 {
     return GetTrainerStructFromId(trainerId)->mugshotColor;
+}
+
+static inline const u8 GetTrainerMugshotStyleFromId(u16 trainerId)
+{
+    return GetTrainerStructFromId(trainerId)->mugshotStyle;
 }
 
 static inline const enum Item *GetTrainerItemsFromId(u16 trainerId)

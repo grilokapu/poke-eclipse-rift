@@ -969,33 +969,7 @@ static u32 PpStallReduction(enum Move move, enum BattlerId battlerAtk, enum Batt
 
 static void DoAIScoreProcessing(enum BattlerId battlerAtk, enum BattlerId battlerDef)
 {
-    u8 currentMoveArray[MAX_MON_MOVES];
-    u8 consideredMoveArray[MAX_MON_MOVES];
-    u32 numOfBestMoves;
-    u64 flags = gAiThinkingStruct->aiFlags[battler];
-    enum BattlerId opposingBattler = GetOppositeBattler(battler);
-
-    if (StonereachQuiz_IsActive())
-    {
-        enum Species species = gBattleMons[battler].species;
-
-        // This battle is a tactical puzzle. Guarantee that its two FEAR-style
-        // Pokémon execute their intended plans instead of selecting raw damage.
-        if (species == SPECIES_DUGTRIO && IsWeatherActive(B_WEATHER_SANDSTORM) == WEATHER_INACTIVE)
-            return GetMoveSlot(gBattleMons[battler].moves, MOVE_SANDSTORM);
-        if (species == SPECIES_RATTATA)
-        {
-            if (gBattleMons[opposingBattler].hp <= 1)
-                return GetMoveSlot(gBattleMons[battler].moves, MOVE_QUICK_ATTACK);
-            return GetMoveSlot(gBattleMons[battler].moves, MOVE_ENDEAVOR);
-        }
-        if (species == SPECIES_ARON)
-        {
-            if (gBattleMons[opposingBattler].hp > gBattleMons[battler].hp)
-                return GetMoveSlot(gBattleMons[battler].moves, MOVE_ENDEAVOR);
-            return GetMoveSlot(gBattleMons[battler].moves, MOVE_PROTECT);
-        }
-    }
+    u64 flags = gAiThinkingStruct->aiFlags[battlerAtk];
 
     gAiThinkingStruct->aiLogicId = 0;
     gAiThinkingStruct->movesetIndex = 0;
@@ -1028,6 +1002,33 @@ static struct ChosenAction ChooseMoveOrAction_Singles(enum BattlerId battler)
     u8 consideredMoveArray[MAX_MON_MOVES];
     u32 numOfBestMoves;
     enum BattlerId opposingBattler = GetOppositeBattler(battler);
+
+    if (StonereachQuiz_IsActive())
+    {
+        enum Move forcedMove = MOVE_NONE;
+        enum Species species = gBattleMons[battler].species;
+
+        // This battle is a tactical puzzle. Guarantee that its two FEAR-style
+        // Pokémon execute their intended plans instead of selecting raw damage.
+        if (species == SPECIES_DUGTRIO && IsWeatherActive(B_WEATHER_SANDSTORM) == WEATHER_INACTIVE)
+            forcedMove = MOVE_SANDSTORM;
+        else if (species == SPECIES_RATTATA)
+            forcedMove = gBattleMons[opposingBattler].hp <= 1 ? MOVE_QUICK_ATTACK : MOVE_ENDEAVOR;
+        else if (species == SPECIES_ARON)
+            forcedMove = gBattleMons[opposingBattler].hp > gBattleMons[battler].hp ? MOVE_ENDEAVOR : MOVE_PROTECT;
+
+        if (forcedMove != MOVE_NONE)
+        {
+            struct ChosenAction chosen =
+            {
+                .moveIndex = GetMoveSlot(gBattleMons[battler].moves, forcedMove),
+                .target = opposingBattler,
+            };
+
+            return chosen;
+        }
+    }
+
     gAiLogicData->partnerMove = MOVE_NONE;   // no ally
 
     DoAIScoreProcessing(battler, opposingBattler);

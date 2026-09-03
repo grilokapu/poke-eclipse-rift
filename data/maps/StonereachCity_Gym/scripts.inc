@@ -22,102 +22,102 @@ StonereachCity_Gym_EventScript_Anorith::
 	end
 
 
-StonereachCity_Gym_EventScript_Roxanne::
+StonereachCity_Gym_EventScript_Aldren::
 # 16 "data/maps/StonereachCity_Gym/scripts.pory"
 	switch VAR_LANGUAGE
 # 17 "data/maps/StonereachCity_Gym/scripts.pory"
-	case PT, StonereachCity_Gym_EventScript_Roxanne_3
+	case PT, StonereachCity_Gym_EventScript_Aldren_3
 # 18 "data/maps/StonereachCity_Gym/scripts.pory"
-	case EN, StonereachCity_Gym_EventScript_Roxanne_4
+	case EN, StonereachCity_Gym_EventScript_Aldren_4
 # 19 "data/maps/StonereachCity_Gym/scripts.pory"
-	case ES, StonereachCity_Gym_EventScript_Roxanne_5
-StonereachCity_Gym_EventScript_Roxanne_1:
+	case ES, StonereachCity_Gym_EventScript_Aldren_5
+StonereachCity_Gym_EventScript_Aldren_1:
 # 21 "data/maps/StonereachCity_Gym/scripts.pory"
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 # 22 "data/maps/StonereachCity_Gym/scripts.pory"
 	compare VAR_RESULT, TRUE
-	goto_if_eq StonereachCity_Gym_EventScript_Roxanne_7
-StonereachCity_Gym_EventScript_Roxanne_6:
+	goto_if_eq StonereachCity_Gym_EventScript_Aldren_7
+StonereachCity_Gym_EventScript_Aldren_6:
 # 25 "data/maps/StonereachCity_Gym/scripts.pory"
-	goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB, StonereachCity_Gym_EventScript_Roxanne_10
-StonereachCity_Gym_EventScript_Roxanne_9:
+	goto_if_unset FLAG_RECEIVED_TM_ROCK_TOMB, StonereachCity_Gym_EventScript_Aldren_10
+StonereachCity_Gym_EventScript_Aldren_9:
 # 28 "data/maps/StonereachCity_Gym/scripts.pory"
 	switch VAR_LANGUAGE
 # 29 "data/maps/StonereachCity_Gym/scripts.pory"
-	case PT, StonereachCity_Gym_EventScript_Roxanne_14
+	case PT, StonereachCity_Gym_EventScript_Aldren_14
 # 30 "data/maps/StonereachCity_Gym/scripts.pory"
-	case EN, StonereachCity_Gym_EventScript_Roxanne_15
+	case EN, StonereachCity_Gym_EventScript_Aldren_15
 # 31 "data/maps/StonereachCity_Gym/scripts.pory"
-	case ES, StonereachCity_Gym_EventScript_Roxanne_16
-StonereachCity_Gym_EventScript_Roxanne_12:
+	case ES, StonereachCity_Gym_EventScript_Aldren_16
+StonereachCity_Gym_EventScript_Aldren_12:
 # 33 "data/maps/StonereachCity_Gym/scripts.pory"
 	release
 	end
 
-StonereachCity_Gym_EventScript_Roxanne_3:
+StonereachCity_Gym_EventScript_Aldren_3:
 # 17 "data/maps/StonereachCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_LEADER_ALDREN, StonereachCity_Gym_EventScript_Roxanne_Text_0, StonereachCity_Gym_EventScript_Roxanne_Text_1, StonereachCity_Gym_EventScript_RoxanneDefeated
-	goto StonereachCity_Gym_EventScript_Roxanne_1
+	trainerbattle_single TRAINER_LEADER_ALDREN, StonereachCity_Gym_EventScript_Aldren_Text_0, StonereachCity_Gym_EventScript_Aldren_Text_1, StonereachCity_Gym_EventScript_AldrenDefeated
+	goto StonereachCity_Gym_EventScript_Aldren_1
 
-StonereachCity_Gym_EventScript_Roxanne_4:
+StonereachCity_Gym_EventScript_Aldren_4:
 # 18 "data/maps/StonereachCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_LEADER_ALDREN, StonereachCity_Gym_EventScript_Roxanne_Text_2, StonereachCity_Gym_EventScript_Roxanne_Text_3, StonereachCity_Gym_EventScript_RoxanneDefeated
-	goto StonereachCity_Gym_EventScript_Roxanne_1
+	trainerbattle_single TRAINER_LEADER_ALDREN, StonereachCity_Gym_EventScript_Aldren_Text_2, StonereachCity_Gym_EventScript_Aldren_Text_3, StonereachCity_Gym_EventScript_AldrenDefeated
+	goto StonereachCity_Gym_EventScript_Aldren_1
 
-StonereachCity_Gym_EventScript_Roxanne_5:
+StonereachCity_Gym_EventScript_Aldren_5:
 # 19 "data/maps/StonereachCity_Gym/scripts.pory"
-	trainerbattle_single TRAINER_LEADER_ALDREN, StonereachCity_Gym_EventScript_Roxanne_Text_4, StonereachCity_Gym_EventScript_Roxanne_Text_5, StonereachCity_Gym_EventScript_RoxanneDefeated
-	goto StonereachCity_Gym_EventScript_Roxanne_1
+	trainerbattle_single TRAINER_LEADER_ALDREN, StonereachCity_Gym_EventScript_Aldren_Text_4, StonereachCity_Gym_EventScript_Aldren_Text_5, StonereachCity_Gym_EventScript_AldrenDefeated
+	goto StonereachCity_Gym_EventScript_Aldren_1
 
-StonereachCity_Gym_EventScript_Roxanne_7:
+StonereachCity_Gym_EventScript_Aldren_7:
 # 23 "data/maps/StonereachCity_Gym/scripts.pory"
-	goto StonereachCity_Gym_EventScript_RoxanneRematch
-	goto StonereachCity_Gym_EventScript_Roxanne_6
+	goto StonereachCity_Gym_EventScript_AldrenRematch
+	goto StonereachCity_Gym_EventScript_Aldren_6
 
-StonereachCity_Gym_EventScript_Roxanne_10:
+StonereachCity_Gym_EventScript_Aldren_10:
 # 26 "data/maps/StonereachCity_Gym/scripts.pory"
 	goto StonereachCity_Gym_EventScript_GiveRockTomb
-	goto StonereachCity_Gym_EventScript_Roxanne_9
+	goto StonereachCity_Gym_EventScript_Aldren_9
 
-StonereachCity_Gym_EventScript_Roxanne_14:
+StonereachCity_Gym_EventScript_Aldren_14:
 # 29 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_Roxanne_Text_6, MSGBOX_DEFAULT
-	goto StonereachCity_Gym_EventScript_Roxanne_12
+	msgbox StonereachCity_Gym_EventScript_Aldren_Text_6, MSGBOX_DEFAULT
+	goto StonereachCity_Gym_EventScript_Aldren_12
 
-StonereachCity_Gym_EventScript_Roxanne_15:
+StonereachCity_Gym_EventScript_Aldren_15:
 # 30 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_Roxanne_Text_7, MSGBOX_DEFAULT
-	goto StonereachCity_Gym_EventScript_Roxanne_12
+	msgbox StonereachCity_Gym_EventScript_Aldren_Text_7, MSGBOX_DEFAULT
+	goto StonereachCity_Gym_EventScript_Aldren_12
 
-StonereachCity_Gym_EventScript_Roxanne_16:
+StonereachCity_Gym_EventScript_Aldren_16:
 # 31 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_Roxanne_Text_8, MSGBOX_DEFAULT
-	goto StonereachCity_Gym_EventScript_Roxanne_12
+	msgbox StonereachCity_Gym_EventScript_Aldren_Text_8, MSGBOX_DEFAULT
+	goto StonereachCity_Gym_EventScript_Aldren_12
 
 
-StonereachCity_Gym_EventScript_RoxanneDefeated::
+StonereachCity_Gym_EventScript_AldrenDefeated::
 # 38 "data/maps/StonereachCity_Gym/scripts.pory"
 	switch VAR_LANGUAGE
 # 39 "data/maps/StonereachCity_Gym/scripts.pory"
-	case PT, StonereachCity_Gym_EventScript_RoxanneDefeated_3
+	case PT, StonereachCity_Gym_EventScript_AldrenDefeated_3
 # 40 "data/maps/StonereachCity_Gym/scripts.pory"
-	case EN, StonereachCity_Gym_EventScript_RoxanneDefeated_4
+	case EN, StonereachCity_Gym_EventScript_AldrenDefeated_4
 # 41 "data/maps/StonereachCity_Gym/scripts.pory"
-	case ES, StonereachCity_Gym_EventScript_RoxanneDefeated_5
-StonereachCity_Gym_EventScript_RoxanneDefeated_1:
+	case ES, StonereachCity_Gym_EventScript_AldrenDefeated_5
+StonereachCity_Gym_EventScript_AldrenDefeated_1:
 # 43 "data/maps/StonereachCity_Gym/scripts.pory"
 	waitmessage
 # 44 "data/maps/StonereachCity_Gym/scripts.pory"
-	call Common_EventScript_PlayGymBadgeFanfare
+	call Common_EventScript_PlayRochareachBadgeFanfare
 # 45 "data/maps/StonereachCity_Gym/scripts.pory"
 	switch VAR_LANGUAGE
 # 46 "data/maps/StonereachCity_Gym/scripts.pory"
-	case PT, StonereachCity_Gym_EventScript_RoxanneDefeated_8
+	case PT, StonereachCity_Gym_EventScript_AldrenDefeated_8
 # 47 "data/maps/StonereachCity_Gym/scripts.pory"
-	case EN, StonereachCity_Gym_EventScript_RoxanneDefeated_9
+	case EN, StonereachCity_Gym_EventScript_AldrenDefeated_9
 # 48 "data/maps/StonereachCity_Gym/scripts.pory"
-	case ES, StonereachCity_Gym_EventScript_RoxanneDefeated_10
-StonereachCity_Gym_EventScript_RoxanneDefeated_6:
+	case ES, StonereachCity_Gym_EventScript_AldrenDefeated_10
+StonereachCity_Gym_EventScript_AldrenDefeated_6:
 # 50 "data/maps/StonereachCity_Gym/scripts.pory"
 	setflag FLAG_DEFEATED_STONEREACH_GYM
 # 51 "data/maps/StonereachCity_Gym/scripts.pory"
@@ -136,35 +136,35 @@ StonereachCity_Gym_EventScript_RoxanneDefeated_6:
 	goto StonereachCity_Gym_EventScript_GiveRockTomb
 	return
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_3:
+StonereachCity_Gym_EventScript_AldrenDefeated_3:
 # 39 "data/maps/StonereachCity_Gym/scripts.pory"
-	message StonereachCity_Gym_EventScript_RoxanneDefeated_Text_0
-	goto StonereachCity_Gym_EventScript_RoxanneDefeated_1
+	message StonereachCity_Gym_EventScript_AldrenDefeated_Text_0
+	goto StonereachCity_Gym_EventScript_AldrenDefeated_1
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_4:
+StonereachCity_Gym_EventScript_AldrenDefeated_4:
 # 40 "data/maps/StonereachCity_Gym/scripts.pory"
-	message StonereachCity_Gym_EventScript_RoxanneDefeated_Text_1
-	goto StonereachCity_Gym_EventScript_RoxanneDefeated_1
+	message StonereachCity_Gym_EventScript_AldrenDefeated_Text_1
+	goto StonereachCity_Gym_EventScript_AldrenDefeated_1
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_5:
+StonereachCity_Gym_EventScript_AldrenDefeated_5:
 # 41 "data/maps/StonereachCity_Gym/scripts.pory"
-	message StonereachCity_Gym_EventScript_RoxanneDefeated_Text_2
-	goto StonereachCity_Gym_EventScript_RoxanneDefeated_1
+	message StonereachCity_Gym_EventScript_AldrenDefeated_Text_2
+	goto StonereachCity_Gym_EventScript_AldrenDefeated_1
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_8:
+StonereachCity_Gym_EventScript_AldrenDefeated_8:
 # 46 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_RoxanneDefeated_Text_3, MSGBOX_DEFAULT
-	goto StonereachCity_Gym_EventScript_RoxanneDefeated_6
+	msgbox StonereachCity_Gym_EventScript_AldrenDefeated_Text_3, MSGBOX_DEFAULT
+	goto StonereachCity_Gym_EventScript_AldrenDefeated_6
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_9:
+StonereachCity_Gym_EventScript_AldrenDefeated_9:
 # 47 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_RoxanneDefeated_Text_4, MSGBOX_DEFAULT
-	goto StonereachCity_Gym_EventScript_RoxanneDefeated_6
+	msgbox StonereachCity_Gym_EventScript_AldrenDefeated_Text_4, MSGBOX_DEFAULT
+	goto StonereachCity_Gym_EventScript_AldrenDefeated_6
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_10:
+StonereachCity_Gym_EventScript_AldrenDefeated_10:
 # 48 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_RoxanneDefeated_Text_5, MSGBOX_DEFAULT
-	goto StonereachCity_Gym_EventScript_RoxanneDefeated_6
+	msgbox StonereachCity_Gym_EventScript_AldrenDefeated_Text_5, MSGBOX_DEFAULT
+	goto StonereachCity_Gym_EventScript_AldrenDefeated_6
 
 
 StonereachCity_Gym_EventScript_GiveRockTomb::
@@ -210,56 +210,56 @@ StonereachCity_Gym_EventScript_GiveRockTomb_8:
 	goto StonereachCity_Gym_EventScript_GiveRockTomb_4
 
 
-StonereachCity_Gym_EventScript_RoxanneRematch::
+StonereachCity_Gym_EventScript_AldrenRematch::
 # 76 "data/maps/StonereachCity_Gym/scripts.pory"
 	switch VAR_LANGUAGE
 # 77 "data/maps/StonereachCity_Gym/scripts.pory"
-	case PT, StonereachCity_Gym_EventScript_RoxanneRematch_3
+	case PT, StonereachCity_Gym_EventScript_AldrenRematch_3
 # 78 "data/maps/StonereachCity_Gym/scripts.pory"
-	case EN, StonereachCity_Gym_EventScript_RoxanneRematch_4
+	case EN, StonereachCity_Gym_EventScript_AldrenRematch_4
 # 79 "data/maps/StonereachCity_Gym/scripts.pory"
-	case ES, StonereachCity_Gym_EventScript_RoxanneRematch_5
-StonereachCity_Gym_EventScript_RoxanneRematch_1:
+	case ES, StonereachCity_Gym_EventScript_AldrenRematch_5
+StonereachCity_Gym_EventScript_AldrenRematch_1:
 # 81 "data/maps/StonereachCity_Gym/scripts.pory"
 	switch VAR_LANGUAGE
 # 82 "data/maps/StonereachCity_Gym/scripts.pory"
-	case PT, StonereachCity_Gym_EventScript_RoxanneRematch_8
+	case PT, StonereachCity_Gym_EventScript_AldrenRematch_8
 # 83 "data/maps/StonereachCity_Gym/scripts.pory"
-	case EN, StonereachCity_Gym_EventScript_RoxanneRematch_9
+	case EN, StonereachCity_Gym_EventScript_AldrenRematch_9
 # 84 "data/maps/StonereachCity_Gym/scripts.pory"
-	case ES, StonereachCity_Gym_EventScript_RoxanneRematch_10
-StonereachCity_Gym_EventScript_RoxanneRematch_6:
+	case ES, StonereachCity_Gym_EventScript_AldrenRematch_10
+StonereachCity_Gym_EventScript_AldrenRematch_6:
 	end
 
-StonereachCity_Gym_EventScript_RoxanneRematch_3:
+StonereachCity_Gym_EventScript_AldrenRematch_3:
 # 77 "data/maps/StonereachCity_Gym/scripts.pory"
-	trainerbattle_rematch_double TRAINER_ROXANNE_1, StonereachCity_Gym_EventScript_RoxanneRematch_Text_0, StonereachCity_Gym_EventScript_RoxanneRematch_Text_1, StonereachCity_Gym_EventScript_RoxanneRematch_Text_2
-	goto StonereachCity_Gym_EventScript_RoxanneRematch_1
+	trainerbattle_rematch_double TRAINER_ROXANNE_1, StonereachCity_Gym_EventScript_AldrenRematch_Text_0, StonereachCity_Gym_EventScript_AldrenRematch_Text_1, StonereachCity_Gym_EventScript_AldrenRematch_Text_2
+	goto StonereachCity_Gym_EventScript_AldrenRematch_1
 
-StonereachCity_Gym_EventScript_RoxanneRematch_4:
+StonereachCity_Gym_EventScript_AldrenRematch_4:
 # 78 "data/maps/StonereachCity_Gym/scripts.pory"
-	trainerbattle_rematch_double TRAINER_ROXANNE_1, StonereachCity_Gym_EventScript_RoxanneRematch_Text_3, StonereachCity_Gym_EventScript_RoxanneRematch_Text_4, StonereachCity_Gym_EventScript_RoxanneRematch_Text_5
-	goto StonereachCity_Gym_EventScript_RoxanneRematch_1
+	trainerbattle_rematch_double TRAINER_ROXANNE_1, StonereachCity_Gym_EventScript_AldrenRematch_Text_3, StonereachCity_Gym_EventScript_AldrenRematch_Text_4, StonereachCity_Gym_EventScript_AldrenRematch_Text_5
+	goto StonereachCity_Gym_EventScript_AldrenRematch_1
 
-StonereachCity_Gym_EventScript_RoxanneRematch_5:
+StonereachCity_Gym_EventScript_AldrenRematch_5:
 # 79 "data/maps/StonereachCity_Gym/scripts.pory"
-	trainerbattle_rematch_double TRAINER_ROXANNE_1, StonereachCity_Gym_EventScript_RoxanneRematch_Text_6, StonereachCity_Gym_EventScript_RoxanneRematch_Text_7, StonereachCity_Gym_EventScript_RoxanneRematch_Text_8
-	goto StonereachCity_Gym_EventScript_RoxanneRematch_1
+	trainerbattle_rematch_double TRAINER_ROXANNE_1, StonereachCity_Gym_EventScript_AldrenRematch_Text_6, StonereachCity_Gym_EventScript_AldrenRematch_Text_7, StonereachCity_Gym_EventScript_AldrenRematch_Text_8
+	goto StonereachCity_Gym_EventScript_AldrenRematch_1
 
-StonereachCity_Gym_EventScript_RoxanneRematch_8:
+StonereachCity_Gym_EventScript_AldrenRematch_8:
 # 82 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_RoxanneRematch_Text_9, MSGBOX_AUTOCLOSE
-	goto StonereachCity_Gym_EventScript_RoxanneRematch_6
+	msgbox StonereachCity_Gym_EventScript_AldrenRematch_Text_9, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Gym_EventScript_AldrenRematch_6
 
-StonereachCity_Gym_EventScript_RoxanneRematch_9:
+StonereachCity_Gym_EventScript_AldrenRematch_9:
 # 83 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_RoxanneRematch_Text_10, MSGBOX_AUTOCLOSE
-	goto StonereachCity_Gym_EventScript_RoxanneRematch_6
+	msgbox StonereachCity_Gym_EventScript_AldrenRematch_Text_10, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Gym_EventScript_AldrenRematch_6
 
-StonereachCity_Gym_EventScript_RoxanneRematch_10:
+StonereachCity_Gym_EventScript_AldrenRematch_10:
 # 84 "data/maps/StonereachCity_Gym/scripts.pory"
-	msgbox StonereachCity_Gym_EventScript_RoxanneRematch_Text_11, MSGBOX_AUTOCLOSE
-	goto StonereachCity_Gym_EventScript_RoxanneRematch_6
+	msgbox StonereachCity_Gym_EventScript_AldrenRematch_Text_11, MSGBOX_AUTOCLOSE
+	goto StonereachCity_Gym_EventScript_AldrenRematch_6
 
 
 StonereachCity_Gym_EventScript_Rick::
@@ -634,63 +634,63 @@ StonereachCity_Gym_EventScript_Anorith_Text_1:
 # 8 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Krii-krii!$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_0:
+StonereachCity_Gym_EventScript_Aldren_Text_0:
 # 17 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Que bom revê-lo, {PLAYER}.\pNo museu, estudamos as marcas que\no tempo deixa na pedra.\pAqui, estudamos as marcas que uma\ldecisão deixa numa batalha.\pEu sou Aldren, Líder de Stonereach.\nMostre-me o que sua jornada gravou\lem você!$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_1:
+StonereachCity_Gym_EventScript_Aldren_Text_1:
 # 17 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Excelente...\pVocê encontrou a fissura na minha\ndefesa.$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_2:
+StonereachCity_Gym_EventScript_Aldren_Text_2:
 # 18 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Welcome, {PLAYER}.\pAt the museum, we study the marks\ntime leaves upon stone.\pHere, we study the marks a decision\lleaves upon a battle.\pI am Aldren, Leader of Stonereach.\nShow me what your journey has\lcarved into you!$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_3:
+StonereachCity_Gym_EventScript_Aldren_Text_3:
 # 18 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Excellent...\pYou found the fault line in my\ndefense.$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_4:
+StonereachCity_Gym_EventScript_Aldren_Text_4:
 # 19 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Te doy la bienvenida, {PLAYER}.\pEn el museo estudiamos las marcas\nque el tiempo deja en la piedra.\pAquí estudiamos las marcas que una\ldecisión deja en un combate.\pSoy Aldren, Líder de Stonereach.\n¡Muéstrame lo que tu viaje ha\lgrabado en ti!$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_5:
+StonereachCity_Gym_EventScript_Aldren_Text_5:
 # 19 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Excelente...\pHallaste la falla en mi defensa.$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_6:
+StonereachCity_Gym_EventScript_Aldren_Text_6:
 # 29 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "A pedra resiste porque aprende com\ncada impacto.\pFaça o mesmo. Outros Líderes\ntestarão forças diferentes das\lque encontrou aqui.$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_7:
+StonereachCity_Gym_EventScript_Aldren_Text_7:
 # 30 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Stone endures because it learns from\nevery impact.\pDo the same. Other Leaders will test\nstrengths unlike those you found\lhere.$"
 
-StonereachCity_Gym_EventScript_Roxanne_Text_8:
+StonereachCity_Gym_EventScript_Aldren_Text_8:
 # 31 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "La piedra resiste porque aprende de\ncada impacto.\pHaz lo mismo. Otros Líderes pondrán\na prueba fuerzas distintas a las\lde aquí.$"
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_Text_0:
+StonereachCity_Gym_EventScript_AldrenDefeated_Text_0:
 # 39 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Aldren reconheceu sua vitória.\p{PLAYER} recebeu a\nINSÍGNIA ROCHAREACH!$"
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_Text_1:
+StonereachCity_Gym_EventScript_AldrenDefeated_Text_1:
 # 40 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Aldren acknowledged your victory.\p{PLAYER} received the\nROCHAREACH BADGE!$"
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_Text_2:
+StonereachCity_Gym_EventScript_AldrenDefeated_Text_2:
 # 41 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Aldren reconoció tu victoria.\p¡{PLAYER} recibió la\nMEDALLA ROCHAREACH!$"
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_Text_3:
+StonereachCity_Gym_EventScript_AldrenDefeated_Text_3:
 # 46 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "A INSÍGNIA ROCHAREACH prova que\nvocê superou o Ginásio de\lStonereach.\pEla permite usar CUT fora das\nbatalhas.\pE leve isto. Até uma muralha pode\nse tornar uma arma.$"
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_Text_4:
+StonereachCity_Gym_EventScript_AldrenDefeated_Text_4:
 # 47 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "The ROCHAREACH BADGE proves you\novercame Stonereach Gym.\pIt allows you to use CUT outside\nbattle.\pAnd take this. Even a wall can be\nturned into a weapon.$"
 
-StonereachCity_Gym_EventScript_RoxanneDefeated_Text_5:
+StonereachCity_Gym_EventScript_AldrenDefeated_Text_5:
 # 48 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "La MEDALLA ROCHAREACH demuestra\nque superaste el Gimnasio de\lStonereach.\pTe permite usar CORTE fuera de\ncombate.\pY toma esto. Hasta un muro puede\nconvertirse en arma.$"
 
@@ -706,51 +706,51 @@ StonereachCity_Gym_EventScript_GiveRockTomb_Text_2:
 # 69 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Esa MT contiene TUMBA ROCAS.\pAdemás de causar daño, reduce la\nVelocidad del objetivo.\pControla el ritmo y hasta el rival\nmás veloz perderá el equilibrio.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_0:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_0:
 # 77 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "{PLAYER}, cada batalha acrescentou\numa nova camada à nossa história.\pVamos descobrir qual de nós mudou\nmais desde o último encontro!$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_1:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_1:
 # 77 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Outra vitória sua...\nUma descoberta valiosa.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_2:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_2:
 # 77 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Uma batalha em dupla exige ao menos\ndois Pokémon.\pVolte quando sua equipe estiver\npreparada.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_3:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_3:
 # 78 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "{PLAYER}, every battle has added a\nnew layer to our history.\pLet us discover which of us has\nchanged more since we last met!$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_4:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_4:
 # 78 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Another victory for you...\nA valuable discovery.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_5:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_5:
 # 78 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "A Double Battle requires at least\ntwo Pokémon.\pReturn when your team is ready.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_6:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_6:
 # 79 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "{PLAYER}, cada combate ha añadido\nuna capa nueva a nuestra historia.\p¡Veamos quién cambió más desde\nnuestro último encuentro!$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_7:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_7:
 # 79 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Otra victoria tuya...\nUn hallazgo valioso.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_8:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_8:
 # 79 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Un Combate Doble requiere al menos\ndos Pokémon.\pRegresa cuando tu equipo esté listo.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_9:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_9:
 # 82 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Ainda tenho muito a aprender.\pÉ isso que torna cada reencontro\ntão valioso.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_10:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_10:
 # 83 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "I still have much to learn.\pThat is what makes every reunion\nso valuable.$"
 
-StonereachCity_Gym_EventScript_RoxanneRematch_Text_11:
+StonereachCity_Gym_EventScript_AldrenRematch_Text_11:
 # 84 "data/maps/StonereachCity_Gym/scripts.pory"
 	.string "Aún tengo mucho que aprender.\pEso hace que cada reencuentro sea\ntan valioso.$"
 

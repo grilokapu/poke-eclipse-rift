@@ -537,8 +537,6 @@ DOUBLE_BATTLE_TEST("Spread Moves: Earthquake fails in order of ally, left foe, r
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, playerLeft);
     }
 }
-<<<<<<< HEAD
-=======
 
 DOUBLE_BATTLE_TEST("Spread Moves: Earthquake fails due to accuracy in order of ally, left foe, right foe")
 {
@@ -558,4 +556,3 @@ DOUBLE_BATTLE_TEST("Spread Moves: Earthquake fails due to accuracy in order of a
         MESSAGE("The opposing Wynaut avoided the attack!");
     }
 }
->>>>>>> expansion/1.16.0

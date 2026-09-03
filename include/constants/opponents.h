@@ -26,11 +26,11 @@
 #define TRAINER_RUIN_MANIAC_TOMMY         19
 #define TRAINER_HIKER_MARC               20
 #define TRAINER_LEADER_ALDREN               21
-#define TRAINER_GRUNT_SPACE_CENTER_1         22
-#define TRAINER_GRUNT_MT_PYRE_1              23
-#define TRAINER_GRUNT_MT_PYRE_2              24
-#define TRAINER_GRUNT_MT_PYRE_3              25
-#define TRAINER_GRUNT_WEATHER_INST_4         26
+#define TRAINER_PARASOL_LADY_CARMEM         22
+#define TRAINER_BIRD_KEEPER_LOHAN              23
+#define TRAINER_YOUNGSTER_RENAN              24
+#define TRAINER_POKEFAN_M_LEONEL              25
+#define TRAINER_BUG_CATCHER_ROMEU         26
 #define TRAINER_GRUNT_AQUA_HIDEOUT_5         27
 #define TRAINER_GRUNT_AQUA_HIDEOUT_6         28
 #define TRAINER_FREDRICK                     29

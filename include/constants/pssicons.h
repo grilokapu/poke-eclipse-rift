@@ -12,6 +12,7 @@ enum pssicons {
     PSS_ICON_SCIENTIST,
     PSS_ICON_JOY,
     PSS_ICON_GIOVANNI,
+    PSS_ICON_ALDREN,
 };
 
 #endif // GUARD_PSS_ICONS_CONST_H

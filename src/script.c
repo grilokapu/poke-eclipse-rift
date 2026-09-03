@@ -1686,4 +1686,91 @@ void CreateCaveSymbol(void)
     }
 }
 
+#define TAG_ROUTE4_GROUND_SYMBOL 0x3034
+
+static const u16 sRoute4GroundSymbolGfx[] = INCBIN_U16("graphics/field_effects/pics/route4_ground_symbol.4bpp");
+static const u16 sRoute4GroundSymbolPal[] = INCBIN_U16("graphics/field_effects/pics/route4_ground_symbol.gbapal");
+
+static const struct SpriteSheet sRoute4GroundSymbolSheet =
+{
+    .data = sRoute4GroundSymbolGfx,
+    .size = sizeof(sRoute4GroundSymbolGfx),
+    .tag = TAG_ROUTE4_GROUND_SYMBOL,
+};
+
+static const struct SpritePalette sRoute4GroundSymbolPalette =
+{
+    .data = sRoute4GroundSymbolPal,
+    .tag = TAG_ROUTE4_GROUND_SYMBOL,
+};
+
+static const union AnimCmd sRoute4GroundSymbolAnim[] =
+{
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_FRAME(32, 8),
+    ANIMCMD_FRAME(16, 8),
+    ANIMCMD_LOOP(1),
+    ANIMCMD_FRAME(0, 8),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd *const sRoute4GroundSymbolAnimTable[] =
+{
+    sRoute4GroundSymbolAnim,
+};
+
+static void SpriteCB_Route4GroundSymbol(struct Sprite *sprite)
+{
+    if (sprite->animEnded)
+    {
+        FreeSpritePaletteByTag(TAG_ROUTE4_GROUND_SYMBOL);
+        FreeSpriteTilesByTag(TAG_ROUTE4_GROUND_SYMBOL);
+        DestroySprite(sprite);
+    }
+}
+
+static const struct SpriteTemplate sRoute4GroundSymbolTemplate =
+{
+    .tileTag = TAG_ROUTE4_GROUND_SYMBOL,
+    .paletteTag = TAG_ROUTE4_GROUND_SYMBOL,
+    .oam = &sMagPortalOamData,
+    .anims = sRoute4GroundSymbolAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_Route4GroundSymbol,
+};
+
+void CreateRoute4GroundSymbol(void)
+{
+    u16 objectEventId = GetObjectEventIdByLocalId(gSpecialVar_0x8000);
+    u16 anchorSpriteId;
+    u8 symbolSpriteId;
+
+    if (objectEventId == OBJECT_EVENTS_COUNT)
+        return;
+
+    anchorSpriteId = gObjectEvents[objectEventId].spriteId;
+    LoadSpriteSheet(&sRoute4GroundSymbolSheet);
+    LoadSpritePalette(&sRoute4GroundSymbolPalette);
+
+    u16 posX = gSprites[anchorSpriteId].x - 16;
+    u16 posY = gSprites[anchorSpriteId].y - 16;
+
+    symbolSpriteId = CreateSprite(&sRoute4GroundSymbolTemplate,
+                                  posX,
+                                  posY,
+                                  0);
+    if (symbolSpriteId != MAX_SPRITES)
+    {
+        gSprites[symbolSpriteId].centerToCornerVecX = 0;
+        gSprites[symbolSpriteId].centerToCornerVecY = 0;
+        gSprites[symbolSpriteId].coordOffsetEnabled = TRUE;
+        gSprites[symbolSpriteId].oam.priority = gSprites[anchorSpriteId].oam.priority;
+        gSprites[symbolSpriteId].subpriority = gSprites[anchorSpriteId].subpriority + 1;
+    }
+}
+
+#undef TAG_ROUTE4_GROUND_SYMBOL
+
 // DW Scripts End

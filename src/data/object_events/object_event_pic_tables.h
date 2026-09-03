@@ -2573,3 +2573,11 @@ static const struct SpriteFrameImage sPicTable_Aldren[] = {
 static const struct SpriteFrameImage sPicTable_RuinManiac[] = {
     overworld_ascending_frames(gObjectEventPic_RuinManiac, 2, 4),
 };
+
+static const struct SpriteFrameImage sPicTable_ParasolLady[] = {
+    overworld_ascending_frames(gObjectEventPic_ParasolLady, 2, 4),
+};
+
+static const struct SpriteFrameImage sPicTable_MegaStone[] = {
+    obj_frame_tiles(gObjectEventPic_MegaStone),
+};

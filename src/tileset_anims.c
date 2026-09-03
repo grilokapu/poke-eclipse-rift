@@ -47,6 +47,7 @@ static void TilesetAnim_BattleDome(u16);
 static void QueueAnimTiles_General_Flower(u16);
 static void QueueAnimTiles_General_Flower2(u16);
 static void QueueAnimTiles_General_Water(u16);
+static void QueueAnimTiles_General_StoneWaterEdge(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
 static void QueueAnimTiles_General_Waterfall(u16);
 static void QueueAnimTiles_General_LandWaterEdge(u16);
@@ -118,6 +119,17 @@ const u16 *const gTilesetAnims_General_Water[] = {
     gTilesetAnims_General_Water_Frame5,
     gTilesetAnims_General_Water_Frame6,
     gTilesetAnims_General_Water_Frame7
+};
+
+const u16 gTilesetAnims_General_StoneWaterEdge_Frame0[] = INCGFX_U16("data/tilesets/primary/general/anim/stone_water_edge/0.png", ".4bpp");
+const u16 gTilesetAnims_General_StoneWaterEdge_Frame1[] = INCGFX_U16("data/tilesets/primary/general/anim/stone_water_edge/1.png", ".4bpp");
+const u16 gTilesetAnims_General_StoneWaterEdge_Frame2[] = INCGFX_U16("data/tilesets/primary/general/anim/stone_water_edge/2.png", ".4bpp");
+
+const u16 *const gTilesetAnims_General_StoneWaterEdge[] = {
+    gTilesetAnims_General_StoneWaterEdge_Frame0,
+    gTilesetAnims_General_StoneWaterEdge_Frame1,
+    gTilesetAnims_General_StoneWaterEdge_Frame2,
+    gTilesetAnims_General_StoneWaterEdge_Frame0
 };
 
 const u16 gTilesetAnims_General_SandWaterEdge_Frame0[] = INCGFX_U16("data/tilesets/primary/general/anim/sand_water_edge/0.png", ".4bpp");
@@ -689,6 +701,8 @@ static void TilesetAnim_General(u16 timer)
         QueueAnimTiles_General_Waterfall(timer / 16);
     if (timer % 16 == 5)
         QueueAnimTiles_General_LandWaterEdge(timer / 16);
+    if (timer % 16 == 6)
+        QueueAnimTiles_General_StoneWaterEdge(timer / 16);
 }
 
 static void TilesetAnim_Building(u16 timer)
@@ -713,6 +727,12 @@ static void QueueAnimTiles_General_Water(u16 timer)
 {
     u8 i = timer % ARRAY_COUNT(gTilesetAnims_General_Water);
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Water[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(432)), 30 * TILE_SIZE_4BPP);
+}
+
+static void QueueAnimTiles_General_StoneWaterEdge(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(gTilesetAnims_General_StoneWaterEdge);
+    AppendTilesetAnimToBuffer(gTilesetAnims_General_StoneWaterEdge[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x1A0)), 6 * TILE_SIZE_4BPP);
 }
 
 static void QueueAnimTiles_General_SandWaterEdge(u16 timer)

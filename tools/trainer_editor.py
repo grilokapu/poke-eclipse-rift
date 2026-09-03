@@ -43,9 +43,13 @@ TRAINER_FIELDS = [
     "Double Battle",
     "AI",
     "Mugshot",
+    "Mugshot Style",
     "Starting Status",
     "Difficulty",
 ]
+
+MUGSHOT_CHOICES = ["", "Purple", "Green", "Pink", "Blue", "Yellow"]
+MUGSHOT_STYLE_CHOICES = ["", "Normal", "Big"]
 
 MON_FIELDS = [
     "Ability",
@@ -766,13 +770,32 @@ class PartyTab(ttk.Frame):
         ttk.Label(options, text="AI:").grid(row=1, column=0, sticky="w")
         ttk.Combobox(options, textvariable=self.trainer_vars["AI"], values=self.ai_choices, width=16).grid(row=1, column=1, sticky="ew", pady=2)
         ttk.Checkbutton(options, text="Double Battle", variable=self.trainer_vars["Double Battle"], onvalue="Yes", offvalue="No").grid(row=2, column=0, columnspan=2, sticky="w")
-        for row, key in enumerate(["Battle Type", "Mugshot", "Starting Status", "Difficulty"], start=3):
+        option_fields = ["Battle Type", "Mugshot", "Mugshot Style", "Starting Status", "Difficulty"]
+        for row, key in enumerate(option_fields, start=3):
             ttk.Label(options, text=f"{key}:").grid(row=row, column=0, sticky="w")
-            ttk.Entry(options, textvariable=self.trainer_vars[key], width=16).grid(row=row, column=1, sticky="ew", pady=2)
+            if key == "Mugshot":
+                widget = ttk.Combobox(
+                    options,
+                    textvariable=self.trainer_vars[key],
+                    values=MUGSHOT_CHOICES,
+                    state="readonly",
+                    width=16,
+                )
+            elif key == "Mugshot Style":
+                widget = ttk.Combobox(
+                    options,
+                    textvariable=self.trainer_vars[key],
+                    values=MUGSHOT_STYLE_CHOICES,
+                    state="readonly",
+                    width=16,
+                )
+            else:
+                widget = ttk.Entry(options, textvariable=self.trainer_vars[key], width=16)
+            widget.grid(row=row, column=1, sticky="ew", pady=2)
 
         party_frame = ttk.LabelFrame(right, text="Party")
         party_frame.grid(row=1, column=0, sticky="nsew", pady=(8, 0))
-        party_frame.columnconfigure(0, weight=1)
+        party_frame.columnconfigure(0, weight=1, minsize=420)
         party_frame.columnconfigure(1, weight=1)
         party_frame.rowconfigure(1, weight=1)
 
@@ -797,16 +820,16 @@ class PartyTab(ttk.Frame):
         ttk.Label(mon_right, text="Species:").grid(row=0, column=0, sticky="w", padx=6, pady=3)
         self.mon_title = tk.StringVar()
         self.mon_title.trace_add("write", self.on_mon_form_change)
-        self.mon_title_combo = ttk.Combobox(mon_right, textvariable=self.mon_title, values=self.species_choices, width=16)
+        self.mon_title_combo = ttk.Combobox(mon_right, textvariable=self.mon_title, values=self.species_choices, width=12)
         self.mon_title_combo.grid(row=0, column=1, sticky="ew", padx=6, pady=3)
         self.mon_title_combo.bind("<<ComboboxSelected>>", lambda _event: self.update_mon_title_from_combo())
         self.mon_title_combo.bind("<KeyRelease>", self.filter_species_choices)
-        self.mon_preview = ttk.Label(mon_right, text="Sem preview", anchor=tk.CENTER, width=12)
+        self.mon_preview = ttk.Label(mon_right, text="Sem preview", anchor=tk.CENTER, width=9)
         self.mon_preview.grid(row=0, column=4, rowspan=5, padx=8, pady=3)
 
         ttk.Label(mon_right, text="Held Item:").grid(row=1, column=0, sticky="w", padx=6, pady=3)
         self.held_item_var.trace_add("write", self.on_mon_form_change)
-        ttk.Combobox(mon_right, textvariable=self.held_item_var, values=self.item_choices, width=16).grid(row=1, column=1, sticky="ew", padx=6, pady=3)
+        ttk.Combobox(mon_right, textvariable=self.held_item_var, values=self.item_choices, width=12).grid(row=1, column=1, sticky="ew", padx=6, pady=3)
 
         left_fields = ["Ability", "Level", "Ball", "Happiness", "Nature", "Shiny"]
         for index, key in enumerate(left_fields):
@@ -816,17 +839,17 @@ class PartyTab(ttk.Frame):
             row = 2 + index
             ttk.Label(mon_right, text=f"{key}:").grid(row=row, column=0, sticky="w", padx=6, pady=3)
             if key == "Ability":
-                self.ability_combo = ttk.Combobox(mon_right, textvariable=var, values=self.ability_choices, width=16)
+                self.ability_combo = ttk.Combobox(mon_right, textvariable=var, values=self.ability_choices, width=12)
                 self.ability_combo.grid(row=row, column=1, sticky="ew", padx=6, pady=3)
             elif key == "Ball":
-                ttk.Combobox(mon_right, textvariable=var, values=self.ball_choices, width=16).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
+                ttk.Combobox(mon_right, textvariable=var, values=self.ball_choices, width=12).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
             elif key == "Nature":
-                ttk.Combobox(mon_right, textvariable=var, values=self.nature_choices, width=16).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
+                ttk.Combobox(mon_right, textvariable=var, values=self.nature_choices, width=12).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
             elif key == "Shiny":
                 ttk.Radiobutton(mon_right, text="Yes", variable=var, value="Yes").grid(row=row, column=1, sticky="w", padx=6, pady=3)
                 ttk.Radiobutton(mon_right, text="No", variable=var, value="No").grid(row=row, column=1, sticky="e", padx=6, pady=3)
             else:
-                ttk.Entry(mon_right, textvariable=var, width=16).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
+                ttk.Entry(mon_right, textvariable=var, width=12).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
 
         for key, row in (("Dynamax Level", 2), ("Gigantamax", 3), ("Tera Type", 4)):
             var = tk.StringVar()
@@ -837,9 +860,9 @@ class PartyTab(ttk.Frame):
                 ttk.Radiobutton(mon_right, text="Yes", variable=var, value="Yes").grid(row=row, column=3, sticky="w", padx=4, pady=3)
                 ttk.Radiobutton(mon_right, text="No", variable=var, value="No").grid(row=row, column=3, sticky="e", padx=4, pady=3)
             elif key == "Tera Type":
-                ttk.Combobox(mon_right, textvariable=var, values=self.type_choices, width=14).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
+                ttk.Combobox(mon_right, textvariable=var, values=self.type_choices, width=10).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
             else:
-                ttk.Entry(mon_right, textvariable=var, width=14).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
+                ttk.Entry(mon_right, textvariable=var, width=10).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
 
         stats_frame = ttk.Frame(mon_right)
         stats_frame.grid(row=0, column=2, columnspan=2, sticky="w", padx=(12, 4), pady=3)
@@ -861,7 +884,7 @@ class PartyTab(ttk.Frame):
         for index in range(4):
             var = tk.StringVar()
             var.trace_add("write", self.on_mon_form_change)
-            combo = ttk.Combobox(mon_right, textvariable=var, values=self.move_choices, width=12)
+            combo = ttk.Combobox(mon_right, textvariable=var, values=self.move_choices, width=9)
             combo.grid(row=5 + (index // 2), column=3 + (index % 2), sticky="ew", padx=4, pady=3)
             self.move_vars.append(var)
         ttk.Button(mon_right, text="Aplicar edicao do Pokemon", command=self.apply_mon_edit).grid(row=8, column=4, sticky="e", padx=6, pady=6)
@@ -972,6 +995,9 @@ class PartyTab(ttk.Frame):
             return
         for key, var in self.trainer_vars.items():
             value = var.get().strip()
+            if key in {"Mugshot", "Mugshot Style"} and not value:
+                self.current.fields.pop(key, None)
+                continue
             if value or key in self.current.fields:
                 self.current.fields[key] = value
         items = [var.get().strip() for var in self.trainer_item_vars if var.get().strip()]
@@ -1268,12 +1294,12 @@ class PartyTab(ttk.Frame):
         for index, mon in enumerate(self.current.pokemon[:6]):
             path = pokemon_preview_path(mon.species)
             frame = ttk.Frame(self.party_preview_frame)
-            frame.grid(row=0, column=index, padx=2, pady=3)
+            frame.grid(row=0, column=index, padx=0, pady=3)
             frame.bind("<Button-1>", lambda _event, idx=index: self.select_party_index(idx))
             if path is not None:
                 shiny = field_value_is_true(get_field_case_insensitive(mon.fields, "Shiny"))
                 palette_path = pokemon_shiny_palette_path(mon.species) if shiny else None
-                image = self.load_photo(path, 32, crop_pokemon_frame=True, palette_path=palette_path)
+                image = self.load_photo(path, 64, crop_pokemon_frame=True, palette_path=palette_path)
                 if image is not None:
                     self.mon_images.append(image)
                     label = ttk.Label(frame, image=image, anchor=tk.CENTER)

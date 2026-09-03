@@ -2574,8 +2574,6 @@ AI_SINGLE_BATTLE_TEST("Rage Fist stacks are seen properly for switch logic")
     }
 }
 
-<<<<<<< HEAD
-=======
 AI_DOUBLE_BATTLE_TEST("AI can switch out both mons on the same turn in double battles")
 {
     PASSES_RANDOMLY(SHOULD_SWITCH_ALL_MOVES_BAD_PERCENTAGE, 100, RNG_AI_SWITCH_ALL_MOVES_BAD);
@@ -2650,7 +2648,6 @@ AI_SINGLE_BATTLE_TEST("AI_FLAG_SMART_MON_CHOICES: AI sees HP changes on switchin
     }
 }
 
->>>>>>> expansion/1.16.0
 AI_SINGLE_BATTLE_TEST("Retaliate sees damage correctly for post ko switch in")
 {
     GIVEN {
@@ -2663,8 +2660,6 @@ AI_SINGLE_BATTLE_TEST("Retaliate sees damage correctly for post ko switch in")
         TURN { MOVE(player, MOVE_TACKLE); EXPECT_SEND_OUT(opponent, 2); }
     }
 }
-<<<<<<< HEAD
-=======
 
 AI_DOUBLE_BATTLE_TEST("AI can switch out both mons on the same turn in double battles (reversed)")
 {
@@ -2712,4 +2707,3 @@ AI_SINGLE_BATTLE_TEST("AI can switch out if it loses the 1v1")
         TURN { EXPECT_SWITCH(opponent, 1); }
     }
 }
->>>>>>> expansion/1.16.0

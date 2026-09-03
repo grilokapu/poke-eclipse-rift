@@ -139,6 +139,9 @@ struct Trainer
     struct String mugshot;
     int mugshot_line;
 
+    struct String mugshot_style;
+    int mugshot_style_line;
+
     struct String starting_status[STARTING_STATUS_COUNT];
     int starting_status_n;
     int starting_status_line;
@@ -1271,6 +1274,13 @@ static bool parse_trainer(struct Parser *p, const struct Parsed *parsed, struct 
             trainer->mugshot_line = value.location.line;
             trainer->mugshot = token_string(&value);
         }
+        else if (is_literal_token(&key, "Mugshot Style"))
+        {
+            if (trainer->mugshot_style_line)
+                any_error = !set_show_parse_error(p, key.location, "duplicate 'Mugshot Style'");
+            trainer->mugshot_style_line = value.location.line;
+            trainer->mugshot_style = token_string(&value);
+        }
         else if (is_literal_token(&key, "Starting Status"))
         {
             if (trainer->starting_status_line)
@@ -1925,6 +1935,14 @@ static void fprint_trainers(const char *output_path, FILE *f, struct Parsed *par
             fprintf(f, "#line %d\n", trainer->mugshot_line);
             fprintf(f, "        .mugshotColor = ");
             fprint_constant(f, "MUGSHOT_COLOR", trainer->mugshot);
+            fprintf(f, ",\n");
+        }
+
+        if (!is_empty_string(trainer->mugshot_style))
+        {
+            fprintf(f, "#line %d\n", trainer->mugshot_style_line);
+            fprintf(f, "        .mugshotStyle = ");
+            fprint_constant(f, "MUGSHOT", trainer->mugshot_style);
             fprintf(f, ",\n");
         }
 

@@ -2,6 +2,8 @@
 Hard/Lunatic trainer overrides.
 
 This file uses the same trainer syntax as src/data/trainers.party.
+Mugshot accepts Purple, Green, Pink, Blue or Yellow. Mugshot Style
+accepts Normal or Big and defaults to Normal when it is omitted.
 Entries here default to Difficulty: Hard, so a trainer only needs the
 same identifier to override the Normal party when the current difficulty
 is DIFFICULTY_HARD or DIFFICULTY_LUNATIC.
@@ -34,7 +36,7 @@ Pic: Lucien
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Viability
+AI: Smart Trainer
 Mugshot: Blue
 
 Frigibax
@@ -64,7 +66,7 @@ Pic: Lucien
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Viability
+AI: Smart Trainer
 Mugshot: Blue
 
 Chikorita
@@ -94,7 +96,7 @@ Pic: Lucien
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Viability
+AI: Smart Trainer
 Mugshot: Blue
 
 Quaxly
@@ -124,7 +126,7 @@ Pic: Lucien
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Viability
+AI: Smart Trainer
 Mugshot: Blue
 
 Tepig
@@ -154,7 +156,7 @@ Pic: Young Giovanni
 Gender: Male
 Music: Suspicious
 Double Battle: No
-AI: Check Viability
+AI: Smart Trainer
 Mugshot: Blue
 
 Meowth
@@ -185,7 +187,6 @@ Nature: Brave
 - Round
 - Attract
 
-
 === TRAINER_PICNICKER_SARAH ===
 Name: Sarah
 Class: Picnicker
@@ -193,7 +194,7 @@ Pic: Picnicker
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Check Viability
+AI: Smart Trainer
 
 Shroomish @ Miracle Seed
 Level: 15
@@ -231,3 +232,142 @@ EVs: 10 HP / 10 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Play Nice
 - Icy Wind
 
+=== TRAINER_LEADER_ALDREN ===
+Name: Aldren
+Class: Leader
+Pic: Aldren
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Green
+Mugshot Style: Big
+
+Baltoy @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 0 Atk / 20 Def / 0 SpA / 20 SpD / 0 Spe
+Nature: Calm
+- Reflect
+- Light Screen
+- Mud Shot
+- Rapid Spin
+
+Tyrunt @ Dragon Fang
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 20 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Adamant
+- Rock Tomb
+- Dragon Tail
+- Bite
+- Stomping Tantrum
+
+Sandile @ Black Glasses
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Jolly
+- Bulldoze
+- Bite
+- Rock Tomb
+- Hone Claws
+
+Omanyte @ Mystic Water
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 0 Atk / 20 Def / 20 SpA / 0 SpD / 0 Spe
+Nature: Modest
+- Water Pulse
+- Ancient Power
+- Icy Wind
+- Toxic Spikes
+
+Archen @ Sharp Beak
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Jolly
+- Pluck
+- Rock Tomb
+- U-turn
+- Quick Attack
+
+Anorith @ Loaded Dice
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Adamant
+- Rock Blast
+- Fury Cutter
+- Aqua Jet
+- Swords Dance
+
+=== TRAINER_BIRD_KEEPER_LOHAN ===
+Name: Lohan
+Class: Bird Keeper
+Pic: Bird Keeper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Smart Trainer
+
+Squawkabilly @ Sharp Beak
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Jolly
+- Tailwind
+- Aerial Ace
+- Facade
+- Parting Shot
+
+Starly @ Silk Scarf
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Jolly
+- Wing Attack
+- Quick Attack
+- U-turn
+- Double Team
+
+Pikipek @ Loaded Dice
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Adamant
+- Rock Blast
+- Bullet Seed
+- Pluck
+- Roost
+
+Emolga @ Magnet
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 0 Atk / 0 Def / 20 SpA / 0 SpD / 20 Spe
+Nature: Timid
+- Electro Ball
+- Air Slash
+- Nuzzle
+- Volt Switch
+
+Murkrow @ Black Glasses
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Jolly
+- Wing Attack
+- Knock Off
+- Sucker Punch
+- Roost
+
+Gligar @ Soft Sand
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 20 Def / 0 SpA / 0 SpD / 0 Spe
+Nature: Impish
+- Bulldoze
+- Aerial Ace
+- Knock Off
+- Stealth Rock

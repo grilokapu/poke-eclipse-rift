@@ -16,6 +16,9 @@ $(FLDEFFGFXDIR)/quest_exclamation_mark.4bpp: %.4bpp: %.png
 $(FLDEFFGFXDIR)/cavesymbol.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(FLDEFFGFXDIR)/route4_ground_symbol.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(FLDEFFGFXDIR)/player_bright_m.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

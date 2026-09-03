@@ -2611,18 +2611,15 @@ static void PrintBattlerOnAbilityPopUp(enum BattlerId battler, u8 spriteId1, u8 
 
 static void PrintAbilityOnAbilityPopUp(enum Ability ability, u8 spriteId1, u8 spriteId2)
 {
-    PrintOnAbilityPopUp(COMPOUND_STRING("                    "),
-                        (void *)(OBJ_VRAM0) + TILE_OFFSET_4BPP(gSprites[spriteId1].oam.tileNum) + TILE_OFFSET_4BPP(8),
-                        (void *)(OBJ_VRAM0) + TILE_OFFSET_4BPP(gSprites[spriteId2].oam.tileNum) + TILE_OFFSET_4BPP(8),
-                        0, 4,
-                        ABILITY_POP_UP_ABILITY_BG_TXTCLR, ABILITY_POP_UP_ABILITY_FG_TXTCLR, ABILITY_POP_UP_ABILITY_SH_TXTCLR,
-                        FALSE, gSprites[spriteId1].sBattlerId);
-    PrintOnAbilityPopUp(GetAbilityName(ability),
-                        (void *)(OBJ_VRAM0) + TILE_OFFSET_4BPP(gSprites[spriteId1].oam.tileNum) + TILE_OFFSET_4BPP(8),
-                        (void *)(OBJ_VRAM0) + TILE_OFFSET_4BPP(gSprites[spriteId2].oam.tileNum) + TILE_OFFSET_4BPP(8),
-                        0, 4,
-                        ABILITY_POP_UP_ABILITY_BG_TXTCLR, ABILITY_POP_UP_ABILITY_FG_TXTCLR, ABILITY_POP_UP_ABILITY_SH_TXTCLR,
-                        FALSE, gSprites[spriteId1].sBattlerId);
+    u32 x;
+    u32 y = 12;
+
+    if (IsOnPlayerSide(gSprites[spriteId1].sBattlerId))
+        x = 16;
+    else
+        x = 8;
+
+    PrintOnAbilityPopUp(GetAbilityName(ability), spriteId1, spriteId2, x, y, FALSE);
 }
 
 static void PrintItemOnItemPopUp(enum Item item, u8 spriteId1, u8 spriteId2)

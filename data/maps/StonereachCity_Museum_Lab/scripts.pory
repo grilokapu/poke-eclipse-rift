@@ -29,33 +29,30 @@ script StonereachCity_Museum_Lab_EventScript_AldrenAndHikari {
     }
     playse(SE_PC_LOGIN)
     pause(15)
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Então não é uma falha do aparelho.\pA rocha é comum à Whispering Cave.\nA gravação não.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Then it isn't an equipment failure.\pThe rock is common to Whispering\nCave. The engraving isn't.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Entonces no es un fallo del equipo.\pLa roca es común en Whispering Cave.\nEl grabado no.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Então não é uma falha do aparelho.\pA rocha é comum à Whispering Cave.\nA gravação não.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "Then it isn't an equipment failure.\pThe rock is common to Whispering\nCave. The engraving isn't.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Entonces no es un fallo del equipo.\pLa roca es común en Whispering Cave.\nEl grabado no.", MSGBOX_AUTOCLOSE)
     }
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "E não sabemos quando foi feito.\pO mais estranho é o desenho...", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "And we don't know when it was made.\pThe strangest part is the design...", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Y no sabemos cuándo fue hecho.\pLo más extraño es el dibujo...", MSGBOX_AUTOCLOSE)
     }
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Há registros semelhantes em outros\npontos de Aetheris.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("There are similar records from other\nparts of Aetheris.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Hay registros similares en otros\npuntos de Aetheris.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Há registros semelhantes em outros\npontos de Aetheris.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "There are similar records from other\nparts of Aetheris.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Hay registros similares en otros\npuntos de Aetheris.", MSGBOX_AUTOCLOSE)
     }
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ruínas, cavernas... até formações\nsem qualquer ligação conhecida.", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ruins, caves... even formations with\nno known connection.", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Ruinas, cuevas... incluso formaciones\nsin ninguna relación conocida.", MSGBOX_AUTOCLOSE)
     }
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Nenhuma que tenhamos demonstrado.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("None that we have demonstrated.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Ninguna que hayamos demostrado.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Nenhuma que tenhamos demonstrado.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "None that we have demonstrated.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Ninguna que hayamos demostrado.", MSGBOX_AUTOCLOSE)
     }
     movecamera(moves(walk_right * 4, walk_down))
     special(RemoveCameraObject)
@@ -75,11 +72,10 @@ script StonereachCity_Museum_Lab_EventScript_AldrenAndHikari {
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Sorry. Once I begin an analysis, I\nforget everything around me.\pThis is Aldren, the museum director...\nand the Gym Leader.", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Perdona. Cuando empiezo un análisis,\nolvido todo lo que me rodea.\pÉl es Aldren, director del museo...\ny Líder del Gimnasio.", MSGBOX_AUTOCLOSE)
     }
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("E geólogo, sempre que ela permite.\pÉ um prazer, {PLAYER}.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("And a geologist, whenever she allows.\pIt's a pleasure, {PLAYER}.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Y geólogo, siempre que ella lo permite.\pEs un placer, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "E geólogo, sempre que ela permite.\pÉ um prazer, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "And a geologist, whenever she allows.\pIt's a pleasure, {PLAYER}.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Y geólogo, siempre que ella lo permite.\pEs un placer, {PLAYER}.", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_right))
     switch(var(VAR_LANGUAGE)) {
@@ -114,33 +110,30 @@ script StonereachCity_Museum_Lab_EventScript_AldrenAndHikari {
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Wait...\pAldren, the reading changed.", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Espera...\pAldren, la lectura cambió.", MSGBOX_AUTOCLOSE)
     }
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Intensidade e duração?", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("Intensity and duration?", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("¿Intensidad y duración?", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Intensidade e duração?", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "Intensity and duration?", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "¿Intensidad y duración?", MSGBOX_AUTOCLOSE)
     }
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Baixa. Menos de um segundo.\pAconteceu quando {PLAYER}\nse aproximou.", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Low. Less than one second.\pIt happened when {PLAYER}\ncame closer.", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Baja. Menos de un segundo.\pOcurrió cuando {PLAYER}\nse acercó.", MSGBOX_AUTOCLOSE)
     }
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Foi quando percebemos a mudança.\pIsso não significa que tenha sido\na causa.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("That is when we observed the change.\pIt doesn't mean that was\nthe cause.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Fue cuando observamos el cambio.\pEso no significa que haya sido\nla causa.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Foi quando percebemos a mudança.\pIsso não significa que tenha sido\na causa.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "That is when we observed the change.\pIt doesn't mean that was\nthe cause.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Fue cuando observamos el cambio.\pEso no significa que haya sido\nla causa.", MSGBOX_AUTOCLOSE)
     }
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "Correlação não é causa. Eu sei.\pMas ainda quero repetir o teste.", MSGBOX_AUTOCLOSE)
         case EN: msgminibox(PSS_ICON_HIKARI, "Hikari", "Correlation isn't causation. I know.\pBut I still want to repeat the test.", MSGBOX_AUTOCLOSE)
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Correlación no implica causalidad.\pPero quiero repetir la prueba.", MSGBOX_AUTOCLOSE)
     }
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Depois de verificarmos o ambiente.\pVibração, temperatura, eletricidade\nestática...", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("After we check the environment.\pVibration, temperature, static\nelectricity...", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Después de revisar el entorno.\pVibración, temperatura, electricidad\nestática...", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Depois de verificarmos o ambiente.\pVibração, temperatura, eletricidade\nestática...", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "After we check the environment.\pVibration, temperature, static\nelectricity...", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Después de revisar el entorno.\pVibración, temperatura, electricidad\nestática...", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_down))
     switch(var(VAR_LANGUAGE)) {
@@ -155,11 +148,10 @@ script StonereachCity_Museum_Lab_EventScript_AldrenAndHikari {
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Eso pensé. Hay polvo claro\nen tus botas.\pSi encuentras otro símbolo así,\nrecuerda el lugar.", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_MUSEUM_LAB_ALDREN, moves(face_down))
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("E não toque nele sem necessidade.\pPor enquanto, temos formas parecidas\ne muitas perguntas.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("And don't touch it unnecessarily.\pFor now, we have similar shapes\nand many questions.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Y no lo toques sin necesidad.\pPor ahora tenemos formas parecidas\ny muchas preguntas.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "E não toque nele sem necessidade.\pPor enquanto, temos formas parecidas\ne muitas perguntas.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "And don't touch it unnecessarily.\pFor now, we have similar shapes\nand many questions.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Y no lo toques sin necesidad.\pPor ahora tenemos formas parecidas\ny muchas preguntas.", MSGBOX_AUTOCLOSE)
     }
     switch(var(VAR_LANGUAGE)) {
         case PT: msgminibox(PSS_ICON_HIKARI, "Hikari", "O que, para uma pesquisadora,\né um ótimo começo.", MSGBOX_AUTOCLOSE)
@@ -167,11 +159,10 @@ script StonereachCity_Museum_Lab_EventScript_AldrenAndHikari {
         case ES: msgminibox(PSS_ICON_HIKARI, "Hikari", "Lo cual, para una investigadora,\nes un excelente comienzo.", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_MUSEUM_LAB_ALDREN, moves(face_down))
-    setspeaker("Aldren")
     switch(var(VAR_LANGUAGE)) {
-        case PT: msgbox("Meu trabalho no museu terminou\npor hoje.\pSe veio a Stonereach como Treinador,\nvisite o Ginásio.\pEstarei esperando por você lá,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
-        case EN: msgbox("My work at the museum is finished\nfor today.\pIf you came to Stonereach as a\nTrainer, visit the Gym.\pI'll be waiting for you there,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
-        case ES: msgbox("Mi trabajo en el museo terminó\npor hoy.\pSi viniste a Stonereach como\nEntrenador, visita el Gimnasio.\pTe estaré esperando allí,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
+        case PT: msgminibox(PSS_ICON_ALDREN, "Aldren", "Meu trabalho no museu terminou\npor hoje.\pSe veio a Stonereach como Treinador,\nvisite o Ginásio.\pEstarei esperando por você lá,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
+        case EN: msgminibox(PSS_ICON_ALDREN, "Aldren", "My work at the museum is finished\nfor today.\pIf you came to Stonereach as a\nTrainer, visit the Gym.\pI'll be waiting for you there,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
+        case ES: msgminibox(PSS_ICON_ALDREN, "Aldren", "Mi trabajo en el museo terminó\npor hoy.\pSi viniste a Stonereach como\nEntrenador, visita el Gimnasio.\pTe estaré esperando allí,\n{PLAYER}.", MSGBOX_AUTOCLOSE)
     }
     closemessage
     movenpc(LOCALID_MUSEUM_LAB_HIKARI, moves(face_down))

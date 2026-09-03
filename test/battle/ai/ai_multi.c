@@ -274,17 +274,6 @@ AI_MULTI_BATTLE_TEST("Battler 2 has AI flags set correctly (multi)")
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         BATTLER_AI_FLAGS(playerRight, aiFlags);
-<<<<<<< HEAD
-        MULTI_PLAYER(SPECIES_VOLTORB) { Moves(MOVE_CELEBRATE); HP(1); }
-        MULTI_PARTNER(SPECIES_ELECTRODE) { Moves(MOVE_EXPLOSION, MOVE_ELECTRO_BALL); HP(1); }
-        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
-        MULTI_OPPONENT_B(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
-    } WHEN {
-        if (aiFlags == 0)
-            TURN { EXPECT_MOVE(playerRight, MOVE_ELECTRO_BALL, target: opponentLeft); }
-        else
-            TURN { EXPECT_MOVE(playerRight, MOVE_EXPLOSION, target: opponentLeft); }
-=======
         PLAYER(SPECIES_VOLTORB) { Moves(MOVE_CELEBRATE); HP(1); }
         PARTNER(SPECIES_ELECTRODE) { Moves(MOVE_EXPLOSION, MOVE_ELECTRO_BALL); HP(1); }
         OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
@@ -294,7 +283,6 @@ AI_MULTI_BATTLE_TEST("Battler 2 has AI flags set correctly (multi)")
             TURN { EXPECT_MOVE(playerRight, MOVE_ELECTRO_BALL); }
         else
             TURN { EXPECT_MOVE(playerRight, MOVE_EXPLOSION); }
->>>>>>> expansion/1.16.0
     }
 }
 
@@ -312,17 +300,10 @@ AI_TWO_VS_ONE_BATTLE_TEST("Battler 2 has AI flags set correctly (2v1)")
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         BATTLER_AI_FLAGS(playerRight, aiFlags);
-<<<<<<< HEAD
-        MULTI_PLAYER(SPECIES_VOLTORB) { Moves(MOVE_CELEBRATE); HP(1); }
-        MULTI_PARTNER(SPECIES_ELECTRODE) { Moves(MOVE_EXPLOSION, MOVE_ELECTRO_BALL); HP(1); }
-        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
-        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
-=======
         PLAYER(SPECIES_VOLTORB) { Moves(MOVE_CELEBRATE); HP(1); }
         PARTNER(SPECIES_ELECTRODE) { Moves(MOVE_EXPLOSION, MOVE_ELECTRO_BALL); HP(1); }
         OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
         OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Moves(MOVE_CELEBRATE); }
->>>>>>> expansion/1.16.0
     } WHEN {
         if (aiFlags == 0)
             TURN { EXPECT_MOVE(playerRight, MOVE_ELECTRO_BALL, target: opponentLeft); }

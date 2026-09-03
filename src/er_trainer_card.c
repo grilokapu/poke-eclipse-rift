@@ -50,16 +50,10 @@ static const u32 sERCardTiles[] = INCGFX_U32("graphics/er_trainercard/tiles.png"
 static const u16 sERCardMap[] = INCBIN_U16("graphics/er_trainercard/map.bin");
 static const u16 sERCardPalette[] = INCGFX_U16("graphics/er_trainercard/palette.pal", ".gbapal");
 
-enum
-{
-    ER_BADGE_ROCHAREACH,
-    ER_BADGE_LEAFBOND,
-    ER_BADGE_MINDSEAL,
-    ER_BADGE_COUNT,
-};
-
 #define TAG_ER_BADGE_GFX_BASE 0xE100
 #define TAG_ER_BADGE_PAL_BASE 0xE110
+#define ER_BADGE_OBTAIN_X 104
+#define ER_BADGE_OBTAIN_Y 46
 
 static const u32 sLeafbondBadgeGfx[] = INCGFX_U32("graphics/er_trainercard/leafbond_badge.png", ".4bpp.smol");
 static const u32 sRochareachBadgeGfx[] = INCGFX_U32("graphics/er_trainercard/rochareach_badge.png", ".4bpp.smol");
@@ -104,6 +98,27 @@ static const union AnimCmd *const sERBadgeAnimTable[] =
     sERBadgeAnim,
 };
 
+static const union AffineAnimCmd sERBadgeObtainAffineAnim[] =
+{
+    AFFINEANIMCMD_FRAME(0, 0, 128, 1),
+    AFFINEANIMCMD_FRAME(16, 16, -8, 16),
+    AFFINEANIMCMD_FRAME(0, 0, -3, 8),
+    AFFINEANIMCMD_FRAME(0, 0, 3, 16),
+    AFFINEANIMCMD_FRAME(0, 0, -3, 16),
+    AFFINEANIMCMD_FRAME(0, 0, 3, 16),
+    AFFINEANIMCMD_FRAME(0, 0, -3, 8),
+    AFFINEANIMCMD_END,
+};
+
+static const union AffineAnimCmd *const sERBadgeObtainAffineAnimTable[] =
+{
+    sERBadgeObtainAffineAnim,
+};
+
+static EWRAM_DATA u8 sERBadgeObtainSpriteId = 0;
+static EWRAM_DATA u8 sERBadgeObtainId = 0;
+static EWRAM_DATA bool8 sERBadgeObtainShown = FALSE;
+
 static const struct SpriteTemplate sERBadgeTemplates[ER_BADGE_COUNT] =
 {
     {
@@ -134,6 +149,51 @@ static const struct SpriteTemplate sERBadgeTemplates[ER_BADGE_COUNT] =
         .callback = SpriteCallbackDummy,
     },
 };
+
+void ShowERBadgeObtainSprite(void)
+{
+    u8 matrixNum;
+    u8 badgeId = gSpecialVar_0x8004;
+
+    if (badgeId >= ER_BADGE_COUNT || sERBadgeObtainShown)
+        return;
+
+    LoadCompressedSpriteSheet(&sERBadgeSheets[badgeId]);
+    LoadSpritePalette(&sERBadgePalettes[badgeId]);
+    sERBadgeObtainSpriteId = CreateSprite(&sERBadgeTemplates[badgeId], ER_BADGE_OBTAIN_X, ER_BADGE_OBTAIN_Y, 0);
+    if (sERBadgeObtainSpriteId == MAX_SPRITES)
+    {
+        FreeSpriteTilesByTag(TAG_ER_BADGE_GFX_BASE + badgeId);
+        FreeSpritePaletteByTag(TAG_ER_BADGE_PAL_BASE + badgeId);
+        return;
+    }
+
+    sERBadgeObtainId = badgeId;
+    sERBadgeObtainShown = TRUE;
+    matrixNum = AllocOamMatrix();
+    if (matrixNum != 0xFF)
+    {
+        gSprites[sERBadgeObtainSpriteId].oam.affineMode = ST_OAM_AFFINE_DOUBLE;
+        gSprites[sERBadgeObtainSpriteId].oam.matrixNum = matrixNum;
+        gSprites[sERBadgeObtainSpriteId].affineAnims = sERBadgeObtainAffineAnimTable;
+        StartSpriteAffineAnim(&gSprites[sERBadgeObtainSpriteId], 0);
+    }
+}
+
+void HideERBadgeObtainSprite(void)
+{
+    if (!sERBadgeObtainShown)
+        return;
+
+    if (gSprites[sERBadgeObtainSpriteId].oam.affineMode != ST_OAM_AFFINE_OFF)
+        FreeSpriteOamMatrix(&gSprites[sERBadgeObtainSpriteId]);
+    DestroySprite(&gSprites[sERBadgeObtainSpriteId]);
+    FreeSpriteTilesByTag(TAG_ER_BADGE_GFX_BASE + sERBadgeObtainId);
+    FreeSpritePaletteByTag(TAG_ER_BADGE_PAL_BASE + sERBadgeObtainId);
+    sERBadgeObtainSpriteId = MAX_SPRITES;
+    sERBadgeObtainId = ER_BADGE_COUNT;
+    sERBadgeObtainShown = FALSE;
+}
 
 static const struct BgTemplate sERCardBgTemplates[] =
 {

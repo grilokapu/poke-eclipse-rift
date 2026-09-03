@@ -456,8 +456,6 @@ SINGLE_BATTLE_TEST("Competitive doesn't activate when Room Service lowers Speed"
         EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE);
     }
 }
-<<<<<<< HEAD
-=======
 
 SINGLE_BATTLE_TEST("Competitive doesn't activate when an opposing stat drop fails at minimum stage")
 {
@@ -485,4 +483,3 @@ SINGLE_BATTLE_TEST("Competitive doesn't activate when an opposing stat drop fail
         EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE);
     }
 }
->>>>>>> expansion/1.16.0

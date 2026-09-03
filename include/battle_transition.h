@@ -21,6 +21,12 @@ enum MugshotColor
     MUGSHOT_COLOR_COUNT
 };
 
+enum MugshotStyle
+{
+    MUGSHOT_NORMAL,
+    MUGSHOT_BIG,
+};
+
 enum BattleTransition
 {
     B_TRANSITION_BLUR,

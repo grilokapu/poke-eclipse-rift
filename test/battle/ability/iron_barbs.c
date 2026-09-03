@@ -29,8 +29,6 @@ SINGLE_BATTLE_TEST("Iron Barbs: Damages attackers that make contact")
     }
 }
 
-<<<<<<< HEAD
-=======
 SINGLE_BATTLE_TEST("Rough Skin and Iron Barbs cause the attacker to take damage when using a contact move")
 {
     enum Species species;
@@ -51,5 +49,4 @@ SINGLE_BATTLE_TEST("Rough Skin and Iron Barbs cause the attacker to take damage 
     }
 }
 
->>>>>>> expansion/1.16.0
 TO_DO_BATTLE_TEST("TODO: Write Iron Barbs (Ability) test titles")

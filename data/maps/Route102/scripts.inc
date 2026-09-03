@@ -566,10 +566,12 @@ Route2_EventScript_Meeting_Giovanni_End_21:
 # 225 "data/maps/Route102/scripts.pory"
 	movenpc LOCALID_ROUTE2_GIOVANNI, Route2_EventScript_Meeting_Giovanni_End_Movement_4
 # 226 "data/maps/Route102/scripts.pory"
-	setflag FLAG_ROUTE2_GIOVANNI
+	removeobject LOCALID_ROUTE2_GIOVANNI
 # 227 "data/maps/Route102/scripts.pory"
-	setvar VAR_ROUTE2_MEETING_GIOVANNI_STATE, 1
+	setflag FLAG_ROUTE2_GIOVANNI
 # 228 "data/maps/Route102/scripts.pory"
+	setvar VAR_ROUTE2_MEETING_GIOVANNI_STATE, 1
+# 229 "data/maps/Route102/scripts.pory"
 	release
 	end
 
@@ -650,147 +652,147 @@ Route2_EventScript_Meeting_Giovanni_End_25:
 
 
 Route2_EventScript_Potion_Get::
-# 233 "data/maps/Route102/scripts.pory"
+# 234 "data/maps/Route102/scripts.pory"
 	finditem ITEM_POTION, 1
 	end
 
 
 Route2_EventScript_ScapeRope_Get::
-# 238 "data/maps/Route102/scripts.pory"
+# 239 "data/maps/Route102/scripts.pory"
 	finditem ITEM_ESCAPE_ROPE
 	end
 
 
 Route2_EventScript_Youngster_Battle::
-# 243 "data/maps/Route102/scripts.pory"
-	switch VAR_LANGUAGE
 # 244 "data/maps/Route102/scripts.pory"
+	switch VAR_LANGUAGE
+# 245 "data/maps/Route102/scripts.pory"
 	case PT, Route2_EventScript_Youngster_Battle_3
-# 247 "data/maps/Route102/scripts.pory"
+# 248 "data/maps/Route102/scripts.pory"
 	case EN, Route2_EventScript_Youngster_Battle_4
-# 250 "data/maps/Route102/scripts.pory"
+# 251 "data/maps/Route102/scripts.pory"
 	case ES, Route2_EventScript_Youngster_Battle_5
 Route2_EventScript_Youngster_Battle_1:
-# 254 "data/maps/Route102/scripts.pory"
+# 255 "data/maps/Route102/scripts.pory"
 	release
 	end
 
 Route2_EventScript_Youngster_Battle_3:
-# 245 "data/maps/Route102/scripts.pory"
-	trainerbattle_single TRAINER_YOUNGSTER_ROBERTO, Route2_EventScript_Youngster_Battle_Text_0, Route2_EventScript_Youngster_Battle_Text_1
 # 246 "data/maps/Route102/scripts.pory"
+	trainerbattle_single TRAINER_YOUNGSTER_ROBERTO, Route2_EventScript_Youngster_Battle_Text_0, Route2_EventScript_Youngster_Battle_Text_1
+# 247 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_Youngster_Battle_Text_2
 	goto Route2_EventScript_Youngster_Battle_1
 
 Route2_EventScript_Youngster_Battle_4:
-# 248 "data/maps/Route102/scripts.pory"
-	trainerbattle_single TRAINER_YOUNGSTER_ROBERTO, Route2_EventScript_Youngster_Battle_Text_3, Route2_EventScript_Youngster_Battle_Text_4
 # 249 "data/maps/Route102/scripts.pory"
+	trainerbattle_single TRAINER_YOUNGSTER_ROBERTO, Route2_EventScript_Youngster_Battle_Text_3, Route2_EventScript_Youngster_Battle_Text_4
+# 250 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_Youngster_Battle_Text_5
 	goto Route2_EventScript_Youngster_Battle_1
 
 Route2_EventScript_Youngster_Battle_5:
-# 251 "data/maps/Route102/scripts.pory"
-	trainerbattle_single TRAINER_YOUNGSTER_ROBERTO, Route2_EventScript_Youngster_Battle_Text_6, Route2_EventScript_Youngster_Battle_Text_7
 # 252 "data/maps/Route102/scripts.pory"
+	trainerbattle_single TRAINER_YOUNGSTER_ROBERTO, Route2_EventScript_Youngster_Battle_Text_6, Route2_EventScript_Youngster_Battle_Text_7
+# 253 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_Youngster_Battle_Text_8
 	goto Route2_EventScript_Youngster_Battle_1
 
 
 Route2_EventScript_FatGuy_Talk::
-# 259 "data/maps/Route102/scripts.pory"
-	switch VAR_LANGUAGE
 # 260 "data/maps/Route102/scripts.pory"
-	case PT, Route2_EventScript_FatGuy_Talk_3
+	switch VAR_LANGUAGE
 # 261 "data/maps/Route102/scripts.pory"
-	case EN, Route2_EventScript_FatGuy_Talk_4
+	case PT, Route2_EventScript_FatGuy_Talk_3
 # 262 "data/maps/Route102/scripts.pory"
+	case EN, Route2_EventScript_FatGuy_Talk_4
+# 263 "data/maps/Route102/scripts.pory"
 	case ES, Route2_EventScript_FatGuy_Talk_5
 Route2_EventScript_FatGuy_Talk_1:
 	end
 
 Route2_EventScript_FatGuy_Talk_3:
-# 260 "data/maps/Route102/scripts.pory"
+# 261 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_FatGuy_Talk_Text_0, MSGBOX_NPC
 	goto Route2_EventScript_FatGuy_Talk_1
 
 Route2_EventScript_FatGuy_Talk_4:
-# 261 "data/maps/Route102/scripts.pory"
+# 262 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_FatGuy_Talk_Text_1, MSGBOX_NPC
 	goto Route2_EventScript_FatGuy_Talk_1
 
 Route2_EventScript_FatGuy_Talk_5:
-# 262 "data/maps/Route102/scripts.pory"
+# 263 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_FatGuy_Talk_Text_2, MSGBOX_NPC
 	goto Route2_EventScript_FatGuy_Talk_1
 
 
 Route2_EventScript_BugCatcher_Battle::
-# 268 "data/maps/Route102/scripts.pory"
-	switch VAR_LANGUAGE
 # 269 "data/maps/Route102/scripts.pory"
+	switch VAR_LANGUAGE
+# 270 "data/maps/Route102/scripts.pory"
 	case PT, Route2_EventScript_BugCatcher_Battle_3
-# 272 "data/maps/Route102/scripts.pory"
+# 273 "data/maps/Route102/scripts.pory"
 	case EN, Route2_EventScript_BugCatcher_Battle_4
-# 275 "data/maps/Route102/scripts.pory"
+# 276 "data/maps/Route102/scripts.pory"
 	case ES, Route2_EventScript_BugCatcher_Battle_5
 Route2_EventScript_BugCatcher_Battle_1:
-# 279 "data/maps/Route102/scripts.pory"
+# 280 "data/maps/Route102/scripts.pory"
 	release
 	end
 
 Route2_EventScript_BugCatcher_Battle_3:
-# 270 "data/maps/Route102/scripts.pory"
-	trainerbattle_single TRAINER_BUG_CATCHER_DECLAN, Route2_EventScript_BugCatcher_Battle_Text_0, Route2_EventScript_BugCatcher_Battle_Text_1
 # 271 "data/maps/Route102/scripts.pory"
+	trainerbattle_single TRAINER_BUG_CATCHER_DECLAN, Route2_EventScript_BugCatcher_Battle_Text_0, Route2_EventScript_BugCatcher_Battle_Text_1
+# 272 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_BugCatcher_Battle_Text_2
 	goto Route2_EventScript_BugCatcher_Battle_1
 
 Route2_EventScript_BugCatcher_Battle_4:
-# 273 "data/maps/Route102/scripts.pory"
-	trainerbattle_single TRAINER_BUG_CATCHER_DECLAN, Route2_EventScript_BugCatcher_Battle_Text_3, Route2_EventScript_BugCatcher_Battle_Text_4
 # 274 "data/maps/Route102/scripts.pory"
+	trainerbattle_single TRAINER_BUG_CATCHER_DECLAN, Route2_EventScript_BugCatcher_Battle_Text_3, Route2_EventScript_BugCatcher_Battle_Text_4
+# 275 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_BugCatcher_Battle_Text_5
 	goto Route2_EventScript_BugCatcher_Battle_1
 
 Route2_EventScript_BugCatcher_Battle_5:
-# 276 "data/maps/Route102/scripts.pory"
-	trainerbattle_single TRAINER_BUG_CATCHER_DECLAN, Route2_EventScript_BugCatcher_Battle_Text_6, Route2_EventScript_BugCatcher_Battle_Text_7
 # 277 "data/maps/Route102/scripts.pory"
+	trainerbattle_single TRAINER_BUG_CATCHER_DECLAN, Route2_EventScript_BugCatcher_Battle_Text_6, Route2_EventScript_BugCatcher_Battle_Text_7
+# 278 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_BugCatcher_Battle_Text_8
 	goto Route2_EventScript_BugCatcher_Battle_1
 
 
 Route2_EventScript_NestBall_Get::
-# 284 "data/maps/Route102/scripts.pory"
+# 285 "data/maps/Route102/scripts.pory"
 	finditem ITEM_NEST_BALL
 	end
 
 
 Route2_EventScript_Sign::
-# 289 "data/maps/Route102/scripts.pory"
-	switch VAR_LANGUAGE
 # 290 "data/maps/Route102/scripts.pory"
-	case PT, Route2_EventScript_Sign_3
+	switch VAR_LANGUAGE
 # 291 "data/maps/Route102/scripts.pory"
-	case EN, Route2_EventScript_Sign_4
+	case PT, Route2_EventScript_Sign_3
 # 292 "data/maps/Route102/scripts.pory"
+	case EN, Route2_EventScript_Sign_4
+# 293 "data/maps/Route102/scripts.pory"
 	case ES, Route2_EventScript_Sign_5
 Route2_EventScript_Sign_1:
 	end
 
 Route2_EventScript_Sign_3:
-# 290 "data/maps/Route102/scripts.pory"
+# 291 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_Sign_Text_0, MSGBOX_SIGN
 	goto Route2_EventScript_Sign_1
 
 Route2_EventScript_Sign_4:
-# 291 "data/maps/Route102/scripts.pory"
+# 292 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_Sign_Text_1, MSGBOX_SIGN
 	goto Route2_EventScript_Sign_1
 
 Route2_EventScript_Sign_5:
-# 292 "data/maps/Route102/scripts.pory"
+# 293 "data/maps/Route102/scripts.pory"
 	msgbox Route2_EventScript_Sign_Text_2, MSGBOX_SIGN
 	goto Route2_EventScript_Sign_1
 
@@ -1406,97 +1408,97 @@ Route2_EventScript_Meeting_Giovanni_End_Text_14:
 	.string "Volveremos a encontrarnos,\n{PLAYER}.\pLa próxima vez, estaré aún más\ncerca de mi objetivo.$"
 
 Route2_EventScript_Youngster_Battle_Text_0:
-# 245 "data/maps/Route102/scripts.pory"
+# 246 "data/maps/Route102/scripts.pory"
 	.string "Capturar Pokémon pode dar trabalho\nàs vezes, não acha?$"
 
 Route2_EventScript_Youngster_Battle_Text_1:
-# 245 "data/maps/Route102/scripts.pory"
+# 246 "data/maps/Route102/scripts.pory"
 	.string "Essa derrota não vai me impedir!$"
 
 Route2_EventScript_Youngster_Battle_Text_2:
-# 246 "data/maps/Route102/scripts.pory"
+# 247 "data/maps/Route102/scripts.pory"
 	.string "Capturar Pokémon só é difícil se\nvocê estiver atrás dos stats\lperfeitos!$"
 
 Route2_EventScript_Youngster_Battle_Text_3:
-# 248 "data/maps/Route102/scripts.pory"
+# 249 "data/maps/Route102/scripts.pory"
 	.string "Catching Pokémon can be tough\nsometimes, don't you think?$"
 
 Route2_EventScript_Youngster_Battle_Text_4:
-# 248 "data/maps/Route102/scripts.pory"
+# 249 "data/maps/Route102/scripts.pory"
 	.string "This loss won't stop me!$"
 
 Route2_EventScript_Youngster_Battle_Text_5:
-# 249 "data/maps/Route102/scripts.pory"
+# 250 "data/maps/Route102/scripts.pory"
 	.string "Catching Pokémon is only hard if\nyou're after perfect stats!$"
 
 Route2_EventScript_Youngster_Battle_Text_6:
-# 251 "data/maps/Route102/scripts.pory"
+# 252 "data/maps/Route102/scripts.pory"
 	.string "Atrapar Pokémon puede ser difícil\na veces, ¿no crees?$"
 
 Route2_EventScript_Youngster_Battle_Text_7:
-# 251 "data/maps/Route102/scripts.pory"
+# 252 "data/maps/Route102/scripts.pory"
 	.string "¡Esta derrota no me detendrá!$"
 
 Route2_EventScript_Youngster_Battle_Text_8:
-# 252 "data/maps/Route102/scripts.pory"
+# 253 "data/maps/Route102/scripts.pory"
 	.string "¡Atrapar Pokémon solo es difícil\nsi buscas stats perfectos!$"
 
 Route2_EventScript_FatGuy_Talk_Text_0:
-# 260 "data/maps/Route102/scripts.pory"
+# 261 "data/maps/Route102/scripts.pory"
 	.string "Dizem que a Caverna Sussurro fica\nlogo adiante.\pVou descansar mais um pouco antes\nde entrar.$"
 
 Route2_EventScript_FatGuy_Talk_Text_1:
-# 261 "data/maps/Route102/scripts.pory"
+# 262 "data/maps/Route102/scripts.pory"
 	.string "They say Whispering Cave is just\nahead.\pI'll rest a little longer before\ngoing in.$"
 
 Route2_EventScript_FatGuy_Talk_Text_2:
-# 262 "data/maps/Route102/scripts.pory"
+# 263 "data/maps/Route102/scripts.pory"
 	.string "Dicen que la Cueva Susurro está\njusto adelante.\pDescansaré un poco más antes de\nentrar.$"
 
 Route2_EventScript_BugCatcher_Battle_Text_0:
-# 270 "data/maps/Route102/scripts.pory"
+# 271 "data/maps/Route102/scripts.pory"
 	.string "Você sabe qual é a melhor forma de\ncapturar Pokémon do tipo Inseto?$"
 
 Route2_EventScript_BugCatcher_Battle_Text_1:
-# 270 "data/maps/Route102/scripts.pory"
+# 271 "data/maps/Route102/scripts.pory"
 	.string "Parece que ainda preciso treinar\nmais meus Pokémon…$"
 
 Route2_EventScript_BugCatcher_Battle_Text_2:
-# 271 "data/maps/Route102/scripts.pory"
+# 272 "data/maps/Route102/scripts.pory"
 	.string "Se estiver procurando Pokémon do\ntipo Inseto, uma Nest Ball pode\lajudar bastante!$"
 
 Route2_EventScript_BugCatcher_Battle_Text_3:
-# 273 "data/maps/Route102/scripts.pory"
+# 274 "data/maps/Route102/scripts.pory"
 	.string "Do you know the best way to catch\nBug-type Pokémon?$"
 
 Route2_EventScript_BugCatcher_Battle_Text_4:
-# 273 "data/maps/Route102/scripts.pory"
+# 274 "data/maps/Route102/scripts.pory"
 	.string "Looks like I still need to train\nmy Pokémon a bit more…$"
 
 Route2_EventScript_BugCatcher_Battle_Text_5:
-# 274 "data/maps/Route102/scripts.pory"
+# 275 "data/maps/Route102/scripts.pory"
 	.string "If you're searching for\nBug-type Pokémon, a Nest Ball can\lreally help!$"
 
 Route2_EventScript_BugCatcher_Battle_Text_6:
-# 276 "data/maps/Route102/scripts.pory"
+# 277 "data/maps/Route102/scripts.pory"
 	.string "¿Sabes cuál es la mejor forma de\natrapar a los Pokémon de tipo\lBicho?$"
 
 Route2_EventScript_BugCatcher_Battle_Text_7:
-# 276 "data/maps/Route102/scripts.pory"
+# 277 "data/maps/Route102/scripts.pory"
 	.string "Parece que aún necesito entrenar\nmás a mis Pokémon…$"
 
 Route2_EventScript_BugCatcher_Battle_Text_8:
-# 277 "data/maps/Route102/scripts.pory"
+# 278 "data/maps/Route102/scripts.pory"
 	.string "Si buscas Pokémon de tipo Bicho,\n¡una Nest Ball puede ser de gran\layuda!$"
 
 Route2_EventScript_Sign_Text_0:
-# 290 "data/maps/Route102/scripts.pory"
+# 291 "data/maps/Route102/scripts.pory"
 	.string "Rota 2\nVila Sylvara {RIGHT_ARROW_2}\lCaverna Sussurro {LEFT_ARROW_2}$"
 
 Route2_EventScript_Sign_Text_1:
-# 291 "data/maps/Route102/scripts.pory"
+# 292 "data/maps/Route102/scripts.pory"
 	.string "Route 2\nSylvara Town {RIGHT_ARROW_2}\lWhispering Cave {LEFT_ARROW_2}$"
 
 Route2_EventScript_Sign_Text_2:
-# 292 "data/maps/Route102/scripts.pory"
+# 293 "data/maps/Route102/scripts.pory"
 	.string "Ruta 2\nAldea Sylvara {RIGHT_ARROW_2}\lCueva Susurro {LEFT_ARROW_2}$"

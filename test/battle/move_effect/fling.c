@@ -622,8 +622,6 @@ SINGLE_BATTLE_TEST("Fling doesn't fail when holding a Booster Energy and the tar
     }
 }
 
-<<<<<<< HEAD
-=======
 SINGLE_BATTLE_TEST("Fling reveals the user's item before dealing damage")
 {
     GIVEN {
@@ -674,7 +672,6 @@ SINGLE_BATTLE_TEST("Fling doesn't reveal the user's item if it missed")
     }
 }
 
->>>>>>> expansion/1.16.0
 SINGLE_BATTLE_TEST("Fling - Mental Herb effect should not remove the target's held item")
 {
     GIVEN {
@@ -689,10 +686,6 @@ SINGLE_BATTLE_TEST("Fling - Mental Herb effect should not remove the target's he
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TAUNT, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
-<<<<<<< HEAD
-        MESSAGE("The opposing Wobbuffet's Taunt wore off!");
-=======
->>>>>>> expansion/1.16.0
     } THEN {
         EXPECT_EQ(opponent->item, ITEM_RAZOR_CLAW);
     }
@@ -701,11 +694,7 @@ SINGLE_BATTLE_TEST("Fling - Mental Herb effect should not remove the target's he
 SINGLE_BATTLE_TEST("Fling - White Herb effect should not remove the target's held item")
 {
     GIVEN {
-<<<<<<< HEAD
-        ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
-=======
         ASSUME_STAT_CHANGE(MOVE_GROWL, attack: -1);
->>>>>>> expansion/1.16.0
         ASSUME(GetItemHoldEffect(ITEM_WHITE_HERB) == HOLD_EFFECT_WHITE_HERB);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RAZOR_CLAW); }
@@ -716,10 +705,6 @@ SINGLE_BATTLE_TEST("Fling - White Herb effect should not remove the target's hel
         ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_FLING, player);
         HP_BAR(opponent);
-<<<<<<< HEAD
-        MESSAGE("The opposing Wobbuffet returned its stats to normal using its White Herb!");
-=======
->>>>>>> expansion/1.16.0
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
         EXPECT_EQ(opponent->item, ITEM_RAZOR_CLAW);

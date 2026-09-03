@@ -481,7 +481,3 @@ DOUBLE_BATTLE_TEST("Forecast: All Forecast mons revert on the field if Primal We
         EXPECT_EQ(playerRight->species, SPECIES_CASTFORM_NORMAL);
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> expansion/1.16.0

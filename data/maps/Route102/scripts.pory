@@ -223,6 +223,7 @@ script Route2_EventScript_Meeting_Giovanni_End {
         case ES: msgminibox(PSS_ICON_GIOVANNI, "Giovanni", "Volveremos a encontrarnos,\n{PLAYER}.\pLa próxima vez, estaré aún más\ncerca de mi objetivo.", MSGBOX_AUTOCLOSE)
     }
     movenpc(LOCALID_ROUTE2_GIOVANNI, moves(walk_left * 12))
+    removeobject(LOCALID_ROUTE2_GIOVANNI)
     setflag(FLAG_ROUTE2_GIOVANNI)
     setvar(VAR_ROUTE2_MEETING_GIOVANNI_STATE, 1)
     release

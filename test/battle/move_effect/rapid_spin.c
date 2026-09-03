@@ -143,8 +143,6 @@ SINGLE_BATTLE_TEST("Rapid Spin and Mortal Spin will remove hazards if the target
         NOT HP_BAR(opponent);
     }
 }
-<<<<<<< HEAD
-=======
 
 SINGLE_BATTLE_TEST("Rapid Spin and Mortal Spin remove Leech Seed")
 {
@@ -164,4 +162,3 @@ SINGLE_BATTLE_TEST("Rapid Spin and Mortal Spin remove Leech Seed")
         MESSAGE("Wobbuffet was freed from Leech Seed!");
     }
 }
->>>>>>> expansion/1.16.0

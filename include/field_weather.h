@@ -14,10 +14,12 @@ enum {
     GFXTAG_SANDSTORM,
     GFXTAG_BUBBLE,
     GFXTAG_RAIN,
+    GFXTAG_FIREFLY,
 };
 enum {
     PALTAG_WEATHER = TAG_WEATHER_START,
-    PALTAG_WEATHER_2
+    PALTAG_WEATHER_2,
+    PALTAG_FIREFLY
 };
 
 #define NUM_WEATHER_COLOR_MAPS 19
@@ -216,6 +218,10 @@ void Shade_InitVars(void);
 void Shade_Main(void);
 void Shade_InitAll(void);
 bool8 Shade_Finish(void);
+void FireflyShade_InitVars(void);
+void FireflyShade_Main(void);
+void FireflyShade_InitAll(void);
+bool8 FireflyShade_Finish(void);
 void Drought_InitVars(void);
 void Drought_Main(void);
 void Drought_InitAll(void);

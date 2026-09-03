@@ -298,6 +298,7 @@ static const u32 sBigPokeball_Tileset[] = INCGFX_U32("graphics/battle_transition
 static const u32 sPokeballTrail_Tileset[] = INCGFX_U32("graphics/battle_transitions/pokeball_trail.png", ".4bpp");
 static const u8 sPokeball_Gfx[] = INCGFX_U8("graphics/battle_transitions/pokeball.png", ".4bpp");
 static const u32 sEliteFour_Tileset[] = INCGFX_U32("graphics/battle_transitions/elite_four_bg.png", ".4bpp");
+static const u32 sBigMugshot_Tileset[] = INCBIN_U32("graphics/battle_transitions/big_mugshot_tiles.bin");
 static const u8 sUnusedBrendan_Gfx[] = INCGFX_U8("graphics/battle_transitions/unused_brendan.png", ".4bpp");
 static const u8 sUnusedLass_Gfx[] = INCGFX_U8("graphics/battle_transitions/unused_lass.png", ".4bpp");
 static const u32 sShrinkingBoxTileset[] = INCGFX_U32("graphics/battle_transitions/shrinking_box.png", ".4bpp");
@@ -871,6 +872,11 @@ static const u16 sMugshotPal_Blue[]   = INCGFX_U16("graphics/battle_transitions/
 static const u16 sMugshotPal_Yellow[] = INCGFX_U16("graphics/battle_transitions/yellow_bg.pal", ".gbapal");
 static const u16 sMugshotPal_Brendan[] = INCGFX_U16("graphics/battle_transitions/brendan_bg.pal", ".gbapal");
 static const u16 sMugshotPal_May[] = INCGFX_U16("graphics/battle_transitions/may_bg.pal", ".gbapal");
+static const u16 sBigMugshotPal_Purple[] = INCBIN_U16("graphics/battle_transitions/big_mugshot_purple_pal.bin");
+static const u16 sBigMugshotPal_Green[]  = INCBIN_U16("graphics/battle_transitions/big_mugshot_green_pal.bin");
+static const u16 sBigMugshotPal_Pink[]   = INCBIN_U16("graphics/battle_transitions/big_mugshot_pink_pal.bin");
+static const u16 sBigMugshotPal_Blue[]   = INCBIN_U16("graphics/battle_transitions/big_mugshot_blue_pal.bin");
+static const u16 sBigMugshotPal_Yellow[] = INCBIN_U16("graphics/battle_transitions/big_mugshot_yellow_pal.bin");
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOT_COLOR_COUNT] =
 {
@@ -887,11 +893,21 @@ static const u16 *const sPlayerMugshotsPals[GENDER_COUNT] =
     [FEMALE] = sMugshotPal_May
 };
 
+static const u16 *const sBigMugshotsPals[MUGSHOT_COLOR_COUNT] =
+{
+    [MUGSHOT_COLOR_PURPLE] = sBigMugshotPal_Purple,
+    [MUGSHOT_COLOR_GREEN]  = sBigMugshotPal_Green,
+    [MUGSHOT_COLOR_PINK]   = sBigMugshotPal_Pink,
+    [MUGSHOT_COLOR_BLUE]   = sBigMugshotPal_Blue,
+    [MUGSHOT_COLOR_YELLOW] = sBigMugshotPal_Yellow,
+};
+
 static const u16 sUnusedTrainerPalette[] = INCGFX_U16("graphics/battle_transitions/unused_trainer.pal", ".gbapal");
 static const struct SpritePalette sSpritePalette_UnusedTrainer = {sUnusedTrainerPalette, PALTAG_UNUSED_MUGSHOT};
 
 static const u16 sBigPokeball_Tilemap[] = INCBIN_U16("graphics/battle_transitions/big_pokeball_map.bin");
 static const u16 sMugshotsTilemap[] = INCBIN_U16("graphics/battle_transitions/elite_four_bg_map.bin");
+static const u16 sBigMugshotTilemap[] = INCBIN_U16("graphics/battle_transitions/big_mugshot_map.bin");
 
 static const TransitionStateFunc sFrontierLogoWiggle_Funcs[] =
 {
@@ -2279,15 +2295,29 @@ static bool8 Mugshot_SetGfx(struct Task *task)
     u16 *tilemap, *tileset;
     const u16 *mugshotsMap = sMugshotsTilemap;
     enum MugshotColor mugshotColor = GetTrainerMugshotColorFromId(TRAINER_BATTLE_PARAM.opponentA);
+    enum MugshotStyle mugshotStyle = GetTrainerMugshotStyleFromId(TRAINER_BATTLE_PARAM.opponentA);
 
     GetBg0TilesDst(&tilemap, &tileset);
-    CpuSet(sEliteFour_Tileset, tileset, 0xF0);
+    if (mugshotStyle == MUGSHOT_BIG)
+    {
+        mugshotsMap = sBigMugshotTilemap;
+        CpuCopy16(sBigMugshot_Tileset, tileset, sizeof(sBigMugshot_Tileset));
+    }
+    else
+    {
+        CpuSet(sEliteFour_Tileset, tileset, 0xF0);
+    }
 
     if (mugshotColor >= ARRAY_COUNT(sOpponentMugshotsPals))
         mugshotColor = MUGSHOT_COLOR_PURPLE;
 
-    LoadPalette(sOpponentMugshotsPals[mugshotColor], BG_PLTT_ID(15), PLTT_SIZE_4BPP);
-    LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
+    if (mugshotStyle == MUGSHOT_BIG)
+        LoadPalette(sBigMugshotsPals[mugshotColor], BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+    else
+    {
+        LoadPalette(sOpponentMugshotsPals[mugshotColor], BG_PLTT_ID(15), PLTT_SIZE_4BPP);
+        LoadPalette(sPlayerMugshotsPals[gSaveBlock2Ptr->playerGender], BG_PLTT_ID(15) + 10, PLTT_SIZEOF(6));
+    }
 
     for (i = 0; i < 20; i++)
     {
@@ -2587,6 +2617,13 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     struct Coords16 mugshotCoordsA = GetTrainerFrontPicMugshotCoords(trainerAPicId);
     s16 opponentARotationScales = 0;
     s16 opponentBRotationScales = 0;
+    enum MugshotStyle mugshotStyle = GetTrainerMugshotStyleFromId(TRAINER_BATTLE_PARAM.opponentA);
+    u8 mugshotShape = mugshotStyle == MUGSHOT_BIG ? SPRITE_SHAPE(64x64) : SPRITE_SHAPE(64x32);
+    u8 mugshotSize = mugshotStyle == MUGSHOT_BIG ? SPRITE_SIZE(64x64) : SPRITE_SIZE(64x32);
+    s16 opponentYOffset = mugshotStyle == MUGSHOT_BIG ? 48 : 42;
+    s16 playerY = mugshotStyle == MUGSHOT_BIG ? 42 : 106;
+    s16 opponentXOffset = mugshotStyle == MUGSHOT_BIG ? 64 : 32;
+    s16 playerX = DISPLAY_WIDTH + (mugshotStyle == MUGSHOT_BIG ? 64 : 32);
 
     gReservedSpritePaletteCount = 10;
     if (TRAINER_BATTLE_PARAM.opponentB != TRAINER_NONE && gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
@@ -2594,22 +2631,22 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
         struct Coords16 mugshotCoordsB = GetTrainerFrontPicMugshotCoords(trainerBPicId);
         task->tOpponentSpriteBId = CreateTrainerSprite(trainerBPicId,
                                                     mugshotCoordsB.x - 240,
-                                                    mugshotCoordsB.y + 42,
+                                                    mugshotCoordsB.y + opponentYOffset,
                                                     0, NULL);
         opponentSpriteB = &gSprites[task->tOpponentSpriteBId];
         opponentSpriteB->callback = SpriteCB_MugshotTrainerPicPartner;
         opponentSpriteB->oam.affineMode = ST_OAM_AFFINE_DOUBLE;
         opponentSpriteB->oam.matrixNum = AllocOamMatrix();
-        opponentSpriteB->oam.shape = SPRITE_SHAPE(64x32);
-        opponentSpriteB->oam.size = SPRITE_SIZE(64x32);
-        CalcCenterToCornerVec(opponentSpriteB, SPRITE_SHAPE(64x32), SPRITE_SIZE(64x32), ST_OAM_AFFINE_DOUBLE);
+        opponentSpriteB->oam.shape = mugshotShape;
+        opponentSpriteB->oam.size = mugshotSize;
+        CalcCenterToCornerVec(opponentSpriteB, mugshotShape, mugshotSize, ST_OAM_AFFINE_DOUBLE);
         opponentBRotationScales = GetTrainerFrontPicMugshotRotation(trainerBPicId);
         SetOamMatrixRotationScaling(opponentSpriteB->oam.matrixNum, opponentBRotationScales, opponentBRotationScales, 0);
     }
 
     task->tOpponentSpriteAId = CreateTrainerSprite(trainerAPicId,
-                                                  mugshotCoordsA.x - 32,
-                                                  mugshotCoordsA.y + 42,
+                                                  mugshotCoordsA.x - opponentXOffset,
+                                                  mugshotCoordsA.y + opponentYOffset,
                                                   0, NULL);
 
     gReservedSpritePaletteCount = 12;
@@ -2617,7 +2654,7 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     {
         task->tPartnerSpriteId = CreateTrainerSprite(partnerPicId,
                                                 DISPLAY_WIDTH + 240,
-                                                106,
+                                                playerY,
                                                 0, NULL);
         partnerSprite = &gSprites[task->tPartnerSpriteId];
         partnerSprite->callback = SpriteCB_MugshotTrainerPicPartner;
@@ -2630,8 +2667,8 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     }
 
     task->tPlayerSpriteId = CreateTrainerSprite(PlayerGenderToFrontTrainerPicId(gSaveBlock2Ptr->playerGender),
-                                                DISPLAY_WIDTH + 32,
-                                                106,
+                                                playerX,
+                                                playerY,
                                                 0, NULL);
 
     opponentSpriteA = &gSprites[task->tOpponentSpriteAId];
@@ -2646,14 +2683,14 @@ static void Mugshots_CreateTrainerPics(struct Task *task)
     opponentSpriteA->oam.matrixNum = AllocOamMatrix();
     playerSprite->oam.matrixNum = AllocOamMatrix();
 
-    opponentSpriteA->oam.shape = SPRITE_SHAPE(64x32);
-    playerSprite->oam.shape = SPRITE_SHAPE(64x32);
+    opponentSpriteA->oam.shape = mugshotShape;
+    playerSprite->oam.shape = mugshotShape;
 
-    opponentSpriteA->oam.size = SPRITE_SIZE(64x32);
-    playerSprite->oam.size = SPRITE_SIZE(64x32);
+    opponentSpriteA->oam.size = mugshotSize;
+    playerSprite->oam.size = mugshotSize;
 
-    CalcCenterToCornerVec(opponentSpriteA, SPRITE_SHAPE(64x32), SPRITE_SIZE(64x32), ST_OAM_AFFINE_DOUBLE);
-    CalcCenterToCornerVec(playerSprite, SPRITE_SHAPE(64x32), SPRITE_SIZE(64x32), ST_OAM_AFFINE_DOUBLE);
+    CalcCenterToCornerVec(opponentSpriteA, mugshotShape, mugshotSize, ST_OAM_AFFINE_DOUBLE);
+    CalcCenterToCornerVec(playerSprite, mugshotShape, mugshotSize, ST_OAM_AFFINE_DOUBLE);
 
     opponentARotationScales = GetTrainerFrontPicMugshotRotation(trainerAPicId);
 

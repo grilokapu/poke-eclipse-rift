@@ -232,8 +232,6 @@ SINGLE_BATTLE_TEST("Magician does not activate if user faints from Rocky Helmet 
     } THEN {
         EXPECT_EQ(player->item, ITEM_NONE);
         EXPECT_EQ(opponent->item, ITEM_ROCKY_HELMET);
-<<<<<<< HEAD
-=======
     }
 }
 
@@ -255,6 +253,5 @@ SINGLE_BATTLE_TEST("Magician allows activation of stolen Throat Spray")
         EXPECT_EQ(player->item, ITEM_NONE);
         EXPECT_EQ(opponent->item, ITEM_NONE);
         EXPECT_GT(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE);
->>>>>>> expansion/1.16.0
     }
 }

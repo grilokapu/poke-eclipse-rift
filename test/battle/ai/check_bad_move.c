@@ -333,8 +333,6 @@ AI_SINGLE_BATTLE_TEST("AI penalizes Yawn when target can self-status with Flame/
         }
     }
 }
-<<<<<<< HEAD
-=======
 
 AI_SINGLE_BATTLE_TEST("AI avoids Thunder Wave when it can not paralyse target")
 {
@@ -421,4 +419,3 @@ AI_SINGLE_BATTLE_TEST("AI avoids toxic when it can not poison target")
         TURN { SCORE_EQ(opponent, MOVE_CELEBRATE, MOVE_TOXIC); } // Both get -10
     }
 }
->>>>>>> expansion/1.16.0

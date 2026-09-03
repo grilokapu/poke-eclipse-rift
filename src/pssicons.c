@@ -30,6 +30,7 @@ static const struct PssIcons gCustomPicTable[] =
     [PSS_ICON_SCIENTIST] = {gPssIcon_ScientistGfx, gPssIcon_ScientistPal},
     [PSS_ICON_JOY] = {gPssIcon_JoyGfx, gPssIcon_JoyPal},
     [PSS_ICON_GIOVANNI] = {gPssIcon_GiovanniGfx, gPssIcon_GiovanniPal},
+    [PSS_ICON_ALDREN] = {gPssIcon_AldrenGfx, gPssIcon_AldrenPal},
 };
 
 static const struct OamData sOamData_PssIcon =

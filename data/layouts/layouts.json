@@ -318,6 +318,16 @@
       "secondary_tileset": "gTileset_Stonereach_Museum",
       "border_filepath": "data/layouts/StonereachCity_Museum_Lab/border.bin",
       "blockdata_filepath": "data/layouts/StonereachCity_Museum_Lab/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE4",
+      "name": "Route4_Layout",
+      "width": 70,
+      "height": 86,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Stonereach",
+      "border_filepath": "data/layouts/Route4/border.bin",
+      "blockdata_filepath": "data/layouts/Route4/map.bin"
     }
   ]
 }

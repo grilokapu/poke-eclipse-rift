@@ -63,11 +63,7 @@ DOUBLE_BATTLE_TEST("Throat Spray does not activate if both foes take no damage f
         NONE_OF {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
-<<<<<<< HEAD
-        }
-=======
 	}
->>>>>>> expansion/1.16.0
     }
 }
 
@@ -132,11 +128,7 @@ SINGLE_BATTLE_TEST("Throat Spray does not activate if move fails")
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_PARTING_SHOT); }
-<<<<<<< HEAD
-        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE);  }
-=======
 	TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE);  }
->>>>>>> expansion/1.16.0
         TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_TORCH_SONG); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_PROTECT, opponent);

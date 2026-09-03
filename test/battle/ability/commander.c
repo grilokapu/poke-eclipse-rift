@@ -484,11 +484,7 @@ DOUBLE_BATTLE_TEST("Commander Tatsugiri faints from Perish Song if it heard the 
 DOUBLE_BATTLE_TEST("Commander Tatsugiri is still affected by Haze while controlling Dondozo")
 {
     GIVEN {
-<<<<<<< HEAD
-        ASSUME(GetMoveEffect(MOVE_SWORDS_DANCE) == EFFECT_ATTACK_UP_2);
-=======
         ASSUME_STAT_CHANGE(MOVE_SWORDS_DANCE, attack: +2);
->>>>>>> expansion/1.16.0
         ASSUME(GetMoveEffect(MOVE_HAZE) == EFFECT_HAZE);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_COMMANDER); }

@@ -404,9 +404,23 @@ Common_EventScript_SetAbnormalWeather::
 	return
 
 Common_EventScript_PlayGymBadgeFanfare::
+	special ShowERBadgeObtainSprite
 	playfanfare MUS_OBTAIN_BADGE
 	waitfanfare
+	special HideERBadgeObtainSprite
 	return
+
+Common_EventScript_PlayRochareachBadgeFanfare::
+	setvar VAR_0x8004, 0
+	goto Common_EventScript_PlayGymBadgeFanfare
+
+Common_EventScript_PlayLeafbondBadgeFanfare::
+	setvar VAR_0x8004, 1
+	goto Common_EventScript_PlayGymBadgeFanfare
+
+Common_EventScript_PlayMindsealBadgeFanfare::
+	setvar VAR_0x8004, 2
+	goto Common_EventScript_PlayGymBadgeFanfare
 
 Common_EventScript_OutOfCenterPartyHeal::
 	fadescreenswapbuffers FADE_TO_BLACK
@@ -989,3 +1003,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/StonereachCity_Museum/scripts.inc"
 
 	.include "data/maps/StonereachCity_Museum_Lab/scripts.inc"
+
+	.include "data/maps/Route4/scripts.inc"

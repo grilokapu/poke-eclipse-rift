@@ -120,8 +120,6 @@ SINGLE_BATTLE_TEST("Thunder Wave prints an avoided attack message when it misses
         NOT MESSAGE("But it failed!");
     }
 }
-<<<<<<< HEAD
-=======
 
 SINGLE_BATTLE_TEST("Thunder Wave prints failure when the target already has a different non-volatile status")
 {
@@ -149,4 +147,3 @@ SINGLE_BATTLE_TEST("Thunder Wave prints already paralyzed message with the right
         NOT MESSAGE("Wobbuffet is already paralyzed!");
     }
 }
->>>>>>> expansion/1.16.0
