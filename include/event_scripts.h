@@ -1,6 +1,11 @@
 #ifndef GUARD_EVENT_SCRIPTS_H
 #define GUARD_EVENT_SCRIPTS_H
 
+extern const u8 VerdantSanctum_EventScript_ColumnA[];
+extern const u8 VerdantSanctum_EventScript_ColumnB[];
+extern const u8 VerdantSanctum_EventScript_ColumnC[];
+extern const u8 VerdantSanctum_EventScript_ColumnSimple[];
+
 extern const u8 EventScript_Follower[];
 extern const u8 EventScript_FollowerEnd[];
 extern const u8 EventScript_FollowerGeneric[];

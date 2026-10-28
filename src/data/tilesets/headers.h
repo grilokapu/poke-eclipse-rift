@@ -1563,3 +1563,47 @@ const struct Tileset gTileset_Stonereach_Museum =
     .metatileAttributes = gMetatileAttributes_Stonereach_Museum,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_MossvaleTown =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_MossvaleTown,
+    .palettes = gTilesetPalettes_MossvaleTown,
+    .metatiles = gMetatiles_MossvaleTown,
+    .metatileAttributes = gMetatileAttributes_MossvaleTown,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_LyndoraCity =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_LyndoraCity,
+    .palettes = gTilesetPalettes_LyndoraCity,
+    .metatiles = gMetatiles_LyndoraCity,
+    .metatileAttributes = gMetatileAttributes_LyndoraCity,
+    .callback = InitTilesetAnim_LyndoraCity,
+};
+
+const struct Tileset gTileset_FlowerShop =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_FlowerShop,
+    .palettes = gTilesetPalettes_FlowerShop,
+    .metatiles = gMetatiles_FlowerShop,
+    .metatileAttributes = gMetatileAttributes_FlowerShop,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_LyndoraGym =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_LyndoraGym,
+    .palettes = gTilesetPalettes_LyndoraGym,
+    .metatiles = gMetatiles_LyndoraGym,
+    .metatileAttributes = gMetatileAttributes_LyndoraGym,
+    .callback = NULL,
+};

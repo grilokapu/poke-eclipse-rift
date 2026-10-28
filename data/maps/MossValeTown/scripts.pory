@@ -1,0 +1,47 @@
+mapscripts MossValeTown_MapScripts {}
+
+script MossValeTown_EventScript_TownSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Vila Mossvale\pOnde a chuva encontra abrigo\ne a natureza cria raízes.", MSGBOX_SIGN)
+        case EN: msgbox("Mossvale Town\pWhere rain finds shelter\nand nature takes root.", MSGBOX_SIGN)
+        case ES: msgbox("Aldea Mossvale\pDonde la lluvia halla refugio\ny la naturaleza echa raíces.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script MossValeTown_EventScript_PokemonCenterSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Centro Pokémon\pUma pausa na jornada.\nCuidado e descanso para\lseus POKéMON.", MSGBOX_SIGN)
+        case EN: msgbox("Pokémon Center\pA break from your journey.\nCare and rest for\lyour POKéMON.", MSGBOX_SIGN)
+        case ES: msgbox("Centro Pokémon\pUna pausa en tu viaje.\nCuidado y descanso para\ltus POKéMON.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script MossValeTown_EventScript_NoticeSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Aviso aos visitantes\pCuide das plantas e mantenha\nos caminhos limpos.\pA lama nas botas já faz\nparte da visita!", MSGBOX_SIGN)
+        case EN: msgbox("Notice to visitors\pCare for the plants and keep\nthe paths clean.\pMuddy boots are already\npart of the visit!", MSGBOX_SIGN)
+        case ES: msgbox("Aviso a los visitantes\pCuida las plantas y mantén\nlos caminos limpios.\p¡El barro en las botas ya\nforma parte de la visita!", MSGBOX_SIGN)
+    }
+    end
+}
+
+script MossValeTown_EventScript_MartSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Loja Pokémon\pSuprimentos para explorar\nMossvale e seguir viagem.", MSGBOX_SIGN)
+        case EN: msgbox("Poké Mart\pSupplies to explore Mossvale\nand continue your journey.", MSGBOX_SIGN)
+        case ES: msgbox("Tienda Pokémon\pProvisiones para explorar\nMossvale y seguir tu viaje.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script MossValeTown_EventScript_FishermanSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Casa do Pescador\pLições de pesca para iniciantes.\nHistórias de pescador para todos.\pO tamanho dos peixes pode variar\na cada relato.", MSGBOX_SIGN)
+        case EN: msgbox("Fisherman's House\pFishing lessons for beginners.\nFishing stories for everyone.\pFish sizes may vary\nwith each telling.", MSGBOX_SIGN)
+        case ES: msgbox("Casa del Pescador\pClases de pesca para principiantes.\nHistorias de pesca para todos.\pEl tamaño de los peces puede\ncambiar con cada relato.", MSGBOX_SIGN)
+    }
+    end
+}
+

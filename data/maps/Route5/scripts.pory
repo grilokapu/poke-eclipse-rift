@@ -1,0 +1,250 @@
+// Both entrance tiles share a one-time, quiet introduction.
+mapscripts Route5_MapScripts {}
+
+script Route5_EventScript_MeetElowen {
+    lockall
+    // Normalize the upper trigger to (27, 22), two tiles from Elowen.
+    getplayerxy(VAR_0x8004, VAR_0x8005)
+    if (var(VAR_0x8005) == 21) {
+        moveplayer(moves(walk_down))
+    }
+    moveplayer(moves(face_right))
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(face_right))
+    pause(24)
+    movenpc(LOCALID_ROUTE_5_SHROOMISH, moves(emoji_doubt))
+    call(Route5_EventScript_ElowenCalm)
+    pause(24)
+    movenpc(LOCALID_ROUTE_5_SHROOMISH, moves(face_left))
+    call(Route5_EventScript_ElowenRest)
+    // Elowen has standard walking frames, not a crouching/bowing animation.
+    // A brief tending gesture and Shroomish's response suggest her care.
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(walk_in_place_slow_right, delay_8, face_right))
+    movenpc(LOCALID_ROUTE_5_SHROOMISH, moves(emoji_relaxed))
+    pause(16)
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(face_left))
+    pause(16)
+    call(Route5_EventScript_ElowenNotice)
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(face_right))
+    call(Route5_EventScript_ElowenFound)
+    pause(20)
+    call(Route5_EventScript_ElowenSanctum)
+    pause(16)
+    call(Route5_EventScript_ElowenNotFirst)
+    pause(20)
+    call(Route5_EventScript_ElowenLeaving)
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(face_left))
+    call(Route5_EventScript_ElowenQuestion)
+    // A small silent acknowledgement, retaining the player's position.
+    moveplayer(moves(walk_in_place_faster_right, face_right))
+    call(Route5_EventScript_ElowenUnderstand)
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(face_right))
+    call(Route5_EventScript_ElowenPhilosophy)
+    movenpc(LOCALID_ROUTE_5_SHROOMISH, moves(emoji_smiley))
+    call(Route5_EventScript_ElowenBetter)
+    // Look at Elowen, then step below her to see the player unobstructed.
+    movenpc(LOCALID_ROUTE_5_SHROOMISH, moves(face_left, delay_16, walk_down, face_left, delay_16))
+    // Head west over the bridge, going around Elowen, the player and the water.
+    movenpc(LOCALID_ROUTE_5_SHROOMISH, moves(walk_up * 2, walk_left * 4, walk_up * 2, walk_left * 12))
+    setflag(FLAG_HIDE_ROUTE5_SHROOMISH)
+    removeobject(LOCALID_ROUTE_5_SHROOMISH)
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(face_left))
+    call(Route5_EventScript_ElowenContinue)
+    pause(20)
+    call(Route5_EventScript_ElowenTown)
+    call(Route5_EventScript_ElowenAgain)
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(emoji_smiley))
+    call(Route5_EventScript_ElowenBye)
+    // Head east toward Lyndora City, beyond the camera's right edge.
+    movenpc(LOCALID_ROUTE_5_ELOWEN, moves(walk_right * 12))
+    setflag(FLAG_HIDE_ROUTE5_ELOWEN)
+    removeobject(LOCALID_ROUTE_5_ELOWEN)
+    setflag(FLAG_MET_ELOWEN_ROUTE5)
+    setvar(VAR_ROUTE5_STATE, 1)
+    releaseall
+    end
+}
+
+script Route5_EventScript_ElowenCalm {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Calma...\pVocê já está longe daquele lugar.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Easy now...\pYou are far from that place now.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Tranquilo...\pYa estás lejos de aquel lugar.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenRest {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Isso mesmo.\pDescanse um pouco.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "That is it.\pRest a little.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Eso es.\pDescansa un poco.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenNotice {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Oh!\pDesculpe. Nem percebi\nvocê chegando.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Oh!\pSorry. I did not notice\nyou arriving.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "¡Oh!\pPerdona. No me di cuenta\nde que llegabas.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenFound {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Encontrei este pequeno\nvagando sozinho.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "I found this little one\nwandering alone.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Encontré a este pequeño\nvagando solo.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenSanctum {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Ele veio correndo da direção\ndo Santuário Verde.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "It came running from the\ndirection of Verdant Sanctum.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Vino corriendo desde la\ndirección del Santuario Verde.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenNotFirst {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Não é o primeiro.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "It is not the first.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "No es el primero.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenLeaving {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Ultimamente, alguns Pokémon\nestão deixando aquela região\lsem motivo aparente.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Lately, some Pokémon have been\nleaving that area for\lno apparent reason.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Últimamente, algunos Pokémon\nestán dejando esa región\lsin motivo aparente.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenQuestion {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Você também veio de lá,\nnão veio?", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "You came from there too,\ndid you not?", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Tú también vienes de allí,\n¿verdad?", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenUnderstand {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Entendo...", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "I see...", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Entiendo...", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenPhilosophy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Pokémon percebem mudanças\nmuito antes de nós.\pÀs vezes, basta observar.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Pokémon sense changes\nlong before we do.\pSometimes, all we need\nto do is watch.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Los Pokémon perciben cambios\nmucho antes que nosotros.\pA veces, basta con observar.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenBetter {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Parece que você já está melhor.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "You seem to be feeling better.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Parece que ya te sientes mejor.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenContinue {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Eu também deveria continuar.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "I should be on my way too.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Yo también debería seguir.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenTown {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Estou voltando para\nLyndora City.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "I am heading back\nto Lyndora City.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Estoy volviendo\na Lyndora City.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenAgain {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Se estiver seguindo\nnaquela direção...\p...provavelmente nos\nveremos novamente.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "If you are heading\nthat way...\p...we will probably\nmeet again.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Si vas en\nesa dirección...\p...probablemente volvamos\na encontrarnos.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_ElowenBye {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Até lá.", MSGBOX_DEFAULT)
+        case EN: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Until then.", MSGBOX_DEFAULT)
+        case ES: msgminibox(PSS_ICON_ELOWEN, "Elowen", "Hasta entonces.", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script Route5_EventScript_BlackBelt_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_BLACK_BELT_SALATIEL, "Nem a chuva interrompe nosso\ntreino!\pMostre a força da sua equipe!", "Que golpe! Você nos superou!")
+            msgbox("Força não é tudo numa batalha.\pMeu próximo treino será aprender\ncom esta derrota!", MSGBOX_NPC)
+        case EN:
+            trainerbattle_single(TRAINER_BLACK_BELT_SALATIEL, "Even rain can't stop our\ntraining!\pShow me your team's strength!", "What a hit! You outmatched us!")
+            msgbox("Strength isn't everything in\na battle.\pMy next exercise is learning\nfrom this defeat!", MSGBOX_NPC)
+        case ES:
+            trainerbattle_single(TRAINER_BLACK_BELT_SALATIEL, "¡Ni la lluvia detiene nuestro\nentrenamiento!\p¡Muéstrame la fuerza de tu equipo!", "¡Qué golpe! ¡Nos superaste!")
+            msgbox("La fuerza no lo es todo en\nun combate.\p¡Mi próximo ejercicio será\naprender de esta derrota!", MSGBOX_NPC)
+    }
+    release
+    end
+}
+
+script Route5_EventScript_Picnicker_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_PICNICKER_RENATA, "A chuva estragou meu piquenique...\pMas uma batalha pode salvar o dia!", "Até perdi a vontade de comer!")
+            msgbox("Dolliv gosta desta chuvinha,\ne Castform já entrou no clima!\pAcho que só eu queria sol...", MSGBOX_NPC)
+        case EN:
+            trainerbattle_single(TRAINER_PICNICKER_RENATA, "The rain ruined my picnic...\pBut a battle could save the day!", "I even lost my appetite!")
+            msgbox("Dolliv likes this drizzle,\nand Castform feels right at home!\pI guess only I wanted sunshine...", MSGBOX_NPC)
+        case ES:
+            trainerbattle_single(TRAINER_PICNICKER_RENATA, "La lluvia arruinó mi picnic...\p¡Pero un combate alegrará el día!", "¡Hasta se me quitó el hambre!")
+            msgbox("A Dolliv le gusta esta lluvia,\n¡y Castform ya se ha adaptado!\pCreo que solo yo quería sol...", MSGBOX_NPC)
+    }
+    release
+    end
+}
+
+script Route5_EventScript_Man {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Eu gostaria de batalhar naquela\narena...\pMas não posso participar.\nAinda não tenho Pokémon\lsuficientes na minha equipe!", MSGBOX_NPC)
+        case EN: msgbox("I'd love to battle in that\narena...\pBut I can't take part.\nI don't have enough Pokémon\lon my team yet!", MSGBOX_NPC)
+        case ES: msgbox("Me gustaría combatir en aquella\narena...\pPero no puedo participar.\n¡Aún no tengo suficientes\lPokémon en mi equipo!", MSGBOX_NPC)
+    }
+    end
+}
+
+script Route5_EventScript_Backpacker {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estou indo para Lyndora City\npara curar meus Pokémon.\pA viagem foi puxada...\nMeus parceiros merecem\lum bom descanso!", MSGBOX_NPC)
+        case EN: msgbox("I'm heading to Lyndora City\nto heal my Pokémon.\pIt's been a tough journey...\nMy partners deserve\la good rest!", MSGBOX_NPC)
+        case ES: msgbox("Voy hacia Lyndora City\npara curar a mis Pokémon.\pEl viaje ha sido duro...\n¡Mis compañeros merecen\lun buen descanso!", MSGBOX_NPC)
+    }
+    end
+}

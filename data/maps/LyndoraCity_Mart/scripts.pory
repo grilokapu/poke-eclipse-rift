@@ -1,0 +1,80 @@
+mapscripts LyndoraCity_Mart_MapScripts {}
+
+script LyndoraCity_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: message(gText_HowMayIServeYouPt)
+        case EN: message(gText_HowMayIServeYou)
+        case ES: message(gText_HowMayIServeYouEs)
+    }
+    waitmessage
+    pokemart(LyndoraCity_Mart_Pokemart)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox(gText_PleaseComeAgainPt)
+        case EN: msgbox(gText_PleaseComeAgain)
+        case ES: msgbox(gText_PleaseComeAgainEs)
+    }
+    release
+    end
+}
+
+script LyndoraCity_Mart_EventScript_Woman {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Vim comprar remédios antes\nde desafiar o Ginásio.\pMeu Pokémon dorme até em pé...\nMelhor levar um Awakening!", MSGBOX_DEFAULT)
+        case EN: msgbox("I came for medicine before\nchallenging the Gym.\pMy Pokémon sleeps standing up...\nI'd better get an Awakening!", MSGBOX_DEFAULT)
+        case ES: msgbox("Vine por medicinas antes\nde desafiar el Gimnasio.\pMi Pokémon duerme hasta de pie...\n¡Mejor llevar un Awakening!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_Mart_EventScript_Boy {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Minha mãe pediu uma Potion.\pEu já estava escolhendo\na terceira Poké Ball...\pAinda bem que trouxe uma lista!", MSGBOX_DEFAULT)
+        case EN: msgbox("Mom asked me to get a Potion.\pI was already picking out\nmy third Poké Ball...\pGood thing I brought a list!", MSGBOX_DEFAULT)
+        case ES: msgbox("Mamá me pidió una Potion.\pYa estaba eligiendo\nmi tercera Poké Ball...\p¡Menos mal que traje una lista!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_Mart_EventScript_Fisherman {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Net Balls ajudam a capturar\nPokémon de Água e Inseto.\pVim preparado para pescar...\nMas saí com um inseto no chapéu!", MSGBOX_DEFAULT)
+        case EN: msgbox("Net Balls help catch\nWater and Bug Pokémon.\pI came ready to go fishing...\nBut left with a bug on my hat!", MSGBOX_DEFAULT)
+        case ES: msgbox("Las Net Balls ayudan a atrapar\nPokémon de Agua y Bicho.\pVine listo para pescar...\n¡Y salí con un bicho en el sombrero!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+mart LyndoraCity_Mart_Pokemart {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_NET_BALL
+    ITEM_NEST_BALL
+    ITEM_HEAL_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_ESCAPE_ROPE
+    ITEM_REPEL
+    ITEM_SUPER_REPEL
+    ITEM_X_SPEED
+    ITEM_X_ATTACK
+    ITEM_X_DEFENSE
+    ITEM_X_SP_ATK
+    ITEM_X_SP_DEF
+    ITEM_GUARD_SPEC
+}

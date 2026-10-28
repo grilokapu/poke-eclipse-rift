@@ -67,17 +67,17 @@
 #define FLAG_UNUSED_0x02D    0x2D // Smart Wild AI Flag
 #define FLAG_STONEREACH_MUSEUM_ADMISSION_PAID 0x2E
 #define FLAG_STONEREACH_MUSEUM_TRADE_DONE     0x2F
-#define FLAG_UNUSED_0x030    0x30 // Unused Flag
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
-#define FLAG_UNUSED_0x035    0x35 // Unused Flag
-#define FLAG_UNUSED_0x036    0x36 // Battle Flag End
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
-#define FLAG_UNUSED_0x039    0x39 // Unused Flag
-#define FLAG_UNUSED_0x03A    0x3A // Unused Flag
+#define FLAG_MET_ELOWEN_ROUTE5              0x30 // First meeting; reserved for the future reunion
+#define FLAG_HIDE_ROUTE5_ELOWEN             0x31
+#define FLAG_HIDE_ROUTE5_SHROOMISH          0x32
+#define FLAG_ROUTE5_HOUSE_RECEIVED_ORAN    0x33
+#define FLAG_ROUTE5_HOUSE_RECEIVED_PECHA   0x34
+#define FLAG_LYNDORA_MET_FOUNTAIN_RESIDENT 0x35 // Persistent first conversation in Lyndora's square
+#define FLAG_LYNDORA_PLANTS_EVENT_COMPLETE 0x36 // Reserved: set at the end of Elowen's future plants event
+#define FLAG_RECEIVED_SOOTHE_BELL_LYNDORA 0x37 // Lyndora House 1 gift
+#define FLAG_LYNDORA_HOUSE2_KECLEON_FOUND 0x38 // Lyndora House 2
+#define FLAG_LYNDORA_HOUSE2_REWARD_RECEIVED 0x39 // Lyndora House 2
+#define FLAG_HIDE_LYNDORA_HOUSE2_KECLEON 0x3A // Lyndora House 2
 #define FLAG_UNUSED_0x03B    0x3B // Unused Flag
 #define FLAG_UNUSED_0x03C    0x3C // Unused Flag
 #define FLAG_UNUSED_0x03D    0x3D // Unused Flag
@@ -728,11 +728,11 @@
 #define FLAG_ROUTE4_ABSOL_SYMBOL_EVENT_DONE  0x29B
 #define FLAG_ROUTE4_REVIVE_GET  0x29C
 #define FLAG_ROUTE4_NET_BALL_GET  0x29D
-#define FLAG_UNUSED_0x29E  0x29E // Unused Flag
-#define FLAG_UNUSED_0x29F  0x29F // Unused Flag
-#define FLAG_UNUSED_0x2A0  0x2A0 // Unused Flag
-#define FLAG_UNUSED_0x2A1  0x2A1 // Unused Flag
-#define FLAG_UNUSED_0x2A2  0x2A2 // Unused Flag
+#define FLAG_VERDANT_SANCTUM_ENTRANCE_DONE  0x29E
+#define FLAG_VERDANT_SANCTUM_INSCRIPTION_READ  0x29F
+#define FLAG_VERDANT_SANCTUM_ANOMALY  0x2A0
+#define FLAG_HIDE_VERDANT_SANCTUM_RESEARCHER  0x2A1
+#define FLAG_VERDANT_SANCTUM_ISLAND_LEAF_STONE_GET  0x2A2
 #define FLAG_UNUSED_0x2A3  0x2A3 // Unused Flag
 #define FLAG_UNUSED_0x2A4  0x2A4 // Unused Flag
 #define FLAG_UNUSED_0x2A5  0x2A5 // Unused Flag
@@ -1332,7 +1332,7 @@
 #define FLAG_DEFEATED_SOOTOPOLIS_GYM                                0x4F7
 #define FLAG_DEFEATED_METEOR_FALLS_STEVEN                           0x4F8
 
-#define FLAG_UNUSED_0x4F9                                           0x4F9 // Unused Flag
+#define FLAG_DEFEATED_LYNDORA_GYM                                   0x4F9
 #define FLAG_UNUSED_0x4FA                                           0x4FA // Unused Flag
 
 #define FLAG_DEFEATED_ELITE_4_SIDNEY                                0x4FB
@@ -2468,6 +2468,10 @@
 #define FLAG_HIDDEN_ITEM_AETHERIS_ROUTE4_POTION        (FLAG_HIDDEN_ITEMS_START + 0x0A)
 #define FLAG_HIDDEN_ITEM_AETHERIS_ROUTE4_ETHER         (FLAG_HIDDEN_ITEMS_START + 0x0B)
 #define FLAG_HIDDEN_ITEM_AETHERIS_ROUTE4_GREAT_BALL    (FLAG_HIDDEN_ITEMS_START + 0x0C)
+
+#define FLAG_HIDDEN_ITEM_VERDANT_SANCTUM_SUPER_POTION             (FLAG_HIDDEN_ITEMS_START + 0x0D)
+#define FLAG_HIDDEN_ITEM_VERDANT_SANCTUM_ETHER                    (FLAG_HIDDEN_ITEMS_START + 0x0E)
+#define FLAG_HIDDEN_ITEM_VERDANT_SANCTUM_GREAT_BALL               (FLAG_HIDDEN_ITEMS_START + 0x0F)
 
 //DW Hidden Items End (FLAG_HIDDEN_ITEMS_START + 0x6F)
 

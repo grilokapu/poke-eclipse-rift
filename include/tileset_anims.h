@@ -33,6 +33,7 @@ void InitTilesetAnim_BattleDome(void);
 void InitTilesetAnim_BattlePyramid(void);
 void InitTilesetAnim_PlayerHouseInside(void);
 void InitTilesetAnim_DarkForest(void);
+void InitTilesetAnim_LyndoraCity(void);
 
 // FRLG
 void InitTilesetAnim_General_Frlg(void);

@@ -415,3 +415,15 @@ const u16 gMetatileAttributes_HallOfFame[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatiles_Stonereach_Museum[] = INCBIN_U16("data/tilesets/secondary/stonereach_museum/metatiles.bin");
 const u16 gMetatileAttributes_Stonereach_Museum[] = INCBIN_U16("data/tilesets/secondary/stonereach_museum/metatile_attributes.bin");
+
+const u16 gMetatiles_MossvaleTown[] = INCBIN_U16("data/tilesets/secondary/mossvale_town/metatiles.bin");
+const u16 gMetatileAttributes_MossvaleTown[] = INCBIN_U16("data/tilesets/secondary/mossvale_town/metatile_attributes.bin");
+
+const u16 gMetatiles_LyndoraCity[] = INCBIN_U16("data/tilesets/secondary/lyndora_city/metatiles.bin");
+const u16 gMetatileAttributes_LyndoraCity[] = INCBIN_U16("data/tilesets/secondary/lyndora_city/metatile_attributes.bin");
+
+const u16 gMetatiles_FlowerShop[] = INCBIN_U16("data/tilesets/secondary/flower_shop/metatiles.bin");
+const u16 gMetatileAttributes_FlowerShop[] = INCBIN_U16("data/tilesets/secondary/flower_shop/metatile_attributes.bin");
+
+const u16 gMetatiles_LyndoraGym[] = INCBIN_U16("data/tilesets/secondary/lyndora_gym/metatiles.bin");
+const u16 gMetatileAttributes_LyndoraGym[] = INCBIN_U16("data/tilesets/secondary/lyndora_gym/metatile_attributes.bin");

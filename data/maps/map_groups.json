@@ -5,7 +5,10 @@
     "gMapGroup_IndoorSylvara",
     "gMapGroup_IndoorStonereach",
     "gMapGroup_Dungeons",
-    "gMapGroup_InsidePendantForest"
+    "gMapGroup_InsidePendantForest",
+    "gMapGroup_IndoorMossvale",
+    "gMapGroup_IndoorRoute5",
+    "gMapGroup_IndoorLyndoraCity"
   ],
   "gMapGroup_TownsAndRoutes": [
     "StonereachCity",
@@ -15,7 +18,11 @@
     "Route102",
     "Route103",
     "SylvaraBeach",
-    "Route4"
+    "Route4",
+    "VerdantSanctum",
+    "MossValeTown",
+    "Route5",
+    "LyndoraCity"
   ],
   "gMapGroup_IndoorPineveil": [
     "PineveilTown_BrendansHouse_1F",
@@ -56,6 +63,28 @@
     "WhisperingCave_2F"
   ],
   "gMapGroup_InsidePendantForest": [
-    "PendantForest"
+    "PendantForest",
+    "VerdantSanctum_Shrine"
+  ],
+  "gMapGroup_IndoorMossvale": [
+    "Mossvale_PokemonCenter",
+    "MossvaleTown_House_1",
+    "MossvaleTown_House2",
+    "MossvaleTown_House_3",
+    "MossvaleTown_House_4",
+    "MossvaleTown_Mart"
+  ],
+  "gMapGroup_IndoorRoute5": [
+    "Route5_House"
+  ],
+  "gMapGroup_IndoorLyndoraCity": [
+    "LyndoraCity_PokemonCenter",
+    "LyndoraCity_House1",
+    "LyndoraCity_House2",
+    "LyndoraCity_House3",
+    "LyndoraCity_Mart",
+    "LyndoraCity_FlowerShop",
+    "LyndoraCity_FlowerShop_Basement",
+    "LyndoraCity_Gym"
   ]
 }

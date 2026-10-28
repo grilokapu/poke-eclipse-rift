@@ -1,0 +1,369 @@
+{
+  "id": "MAP_VERDANT_SANCTUM",
+  "name": "VerdantSanctum",
+  "layout": "LAYOUT_VERDANT_SANCTUM",
+  "music": "MUS_RG_VIRIDIAN_FOREST",
+  "region_map_section": "MAPSEC_VERDANT_SANCTUM",
+  "requires_flash": false,
+  "weather": "WEATHER_FIREFLY_SHADE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "local_id": "LOCALID_VERDANT_SANCTUM_SHROOMISH",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
+      "x": 15,
+      "y": 21,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_Shroomish",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_VERDANT_SANCTUM_ISLAND_LEAF_STONE",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 32,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_IslandLeafStone",
+      "flag": "FLAG_VERDANT_SANCTUM_ISLAND_LEAF_STONE_GET"
+    },
+    {
+      "local_id": "LOCALID_VERDANT_SANCTUM_SOUTH_SHROOMISH_1",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
+      "x": 28,
+      "y": 71,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_SouthPassageShroomish",
+      "flag": "FLAG_VERDANT_SANCTUM_ANOMALY"
+    },
+    {
+      "local_id": "LOCALID_VERDANT_SANCTUM_SOUTH_SHROOMISH_2",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
+      "x": 29,
+      "y": 71,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_SouthPassageShroomish",
+      "flag": "FLAG_VERDANT_SANCTUM_ANOMALY"
+    },
+    {
+      "local_id": "LOCALID_VERDANT_SANCTUM_SOUTH_SHROOMISH_3",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
+      "x": 30,
+      "y": 71,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_SouthPassageShroomish",
+      "flag": "FLAG_VERDANT_SANCTUM_ANOMALY"
+    },
+    {
+      "local_id": "LOCALID_VERDANT_SANCTUM_SOUTH_SHROOMISH_4",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
+      "x": 31,
+      "y": 71,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_SouthPassageShroomish",
+      "flag": "FLAG_VERDANT_SANCTUM_ANOMALY"
+    },
+    {
+      "local_id": "LOCALID_VERDANT_PICKNICKER",
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
+      "x": 20,
+      "y": 25,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "VerdantSanctum_EventScript_PicnickerPaty",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEMON_RANGER_M",
+      "x": 23,
+      "y": 45,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "VerdantSanctum_EventScript_PokemonRangerM_Battle",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M",
+      "x": 42,
+      "y": 50,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "VerdantSanctum_EventScript_PsychicFredrick_Battle",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_F",
+      "x": 25,
+      "y": 61,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "VerdantSanctum_EventScript_AceTrainerAlma",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
+      "x": 25,
+      "y": 59,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "LIGHT_TYPE_BALL",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LIGHT_SPRITE",
+      "x": 30,
+      "y": 59,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "LIGHT_TYPE_BALL",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+      "x": 18,
+      "y": 10,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_ForestListener",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_1",
+      "x": 5,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_MushroomObserver",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_1",
+      "x": 29,
+      "y": 34,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_RuinResearcher",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "x": 19,
+      "y": 38,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_TrailExplorer",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_1",
+      "x": 18,
+      "y": 52,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_LightWatcher",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 32,
+      "y": 66,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_YoungExplorer",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SHROOMISH)",
+      "x": 4,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "VerdantSanctum_EventScript_Shroomish",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 16,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE4",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 17,
+      "y": 2,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE4",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 24,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_VERDANT_SANCTUM_SHRINE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 28,
+      "y": 72,
+      "elevation": 0,
+      "dest_map": "MAP_MOSS_VALE_TOWN",
+      "dest_warp_id": "10"
+    },
+    {
+      "x": 29,
+      "y": 72,
+      "elevation": 0,
+      "dest_map": "MAP_MOSS_VALE_TOWN",
+      "dest_warp_id": "11"
+    },
+    {
+      "x": 30,
+      "y": 72,
+      "elevation": 0,
+      "dest_map": "MAP_MOSS_VALE_TOWN",
+      "dest_warp_id": "12"
+    },
+    {
+      "x": 31,
+      "y": 72,
+      "elevation": 0,
+      "dest_map": "MAP_MOSS_VALE_TOWN",
+      "dest_warp_id": "13"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "VerdantSanctum_EventScript_Entrance"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 3,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": "0",
+      "script": "VerdantSanctum_EventScript_Entrance"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 12,
+      "y": 14,
+      "elevation": 3,
+      "item": "ITEM_SUPER_POTION",
+      "flag": "FLAG_HIDDEN_ITEM_VERDANT_SANCTUM_SUPER_POTION"
+    },
+    {
+      "type": "hidden_item",
+      "x": 20,
+      "y": 49,
+      "elevation": 3,
+      "item": "ITEM_ETHER",
+      "flag": "FLAG_HIDDEN_ITEM_VERDANT_SANCTUM_ETHER"
+    },
+    {
+      "type": "hidden_item",
+      "x": 43,
+      "y": 57,
+      "elevation": 3,
+      "item": "ITEM_GREAT_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_VERDANT_SANCTUM_GREAT_BALL"
+    }
+  ]
+}

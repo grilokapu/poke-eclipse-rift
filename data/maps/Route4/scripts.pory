@@ -164,6 +164,15 @@ script Route4_EventScript_Lass {
     end
 }
 
+script Route4_EventScript_ExpertF_StrangePokemon {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Há dias os Pokémon desta rota\nestão muito estranhos...\pAté minha Roselia parou de brincar.\nEla só encara o caminho ao sul,\lcomo se algo a chamasse de longe.\pSe for seguir até o Santuário\nVerdante, mantenha seus Pokémon\lpor perto.", MSGBOX_NPC)
+        case EN: msgbox("The Pokémon along this route have\nbeen acting strangely for days...\pEven my Roselia stopped playing.\nShe only stares at the path south,\las if something were calling her.\pIf you're heading to Verdant\nSanctum, keep your Pokémon close.", MSGBOX_NPC)
+        case ES: msgbox("Hace días que los Pokémon de esta\nruta se comportan de forma extraña...\pHasta mi Roselia dejó de jugar.\nSolo mira el camino hacia el sur,\lcomo si algo la estuviera llamando.\pSi vas al Santuario Verdante,\nmantén cerca a tus Pokémon.", MSGBOX_NPC)
+    }
+    end
+}
+
 const LOCALID_ROUTE4_ARENA_SQUAWKABILLY = 16
 const LOCALID_ROUTE4_ARENA_PLAYER_MON = 17
 

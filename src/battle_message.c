@@ -1394,7 +1394,7 @@ const u8 *const gBattleStringsTablePt[STRINGID_COUNT] =
     [STRINGID_SLOWSTARTENTERS]                      = COMPOUND_STRING("{B_SCR_NAME_WITH_PREFIX} demora para começar!"),
     [STRINGID_SLOWSTARTEND]                         = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} finalmente conseguiu agir!"),
     [STRINGID_SOLARPOWERHPDROP]                     = COMPOUND_STRING("O {B_ATK_ABILITY} de {B_ATK_NAME_WITH_PREFIX} cobra seu preço!"), // Not in Gen 5+
-    [STRINGID_AFTERMATHDMG]                         = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} ficou ferido!"),
+    [STRINGID_PKMNWASHURT]                          = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX} ficou ferido!"),
     [STRINGID_ANTICIPATIONACTIVATES]                = COMPOUND_STRING("{B_SCR_NAME_WITH_PREFIX} estremeceu!"),
     [STRINGID_FOREWARNACTIVATES]                    = COMPOUND_STRING("{B_SCR_ABILITY} alertou {B_SCR_NAME_WITH_PREFIX2} sobre o {B_BUFF1} de {B_EFF_NAME_WITH_PREFIX2}!"),
     [STRINGID_ICEBODYHPGAIN]                        = COMPOUND_STRING("O {B_ATK_ABILITY} de {B_ATK_NAME_WITH_PREFIX} curou um pouco!"), // Not in Gen 5+
@@ -1691,7 +1691,6 @@ const u8 *const gBattleStringsTablePt[STRINGID_COUNT] =
     [STRINGID_REFLECTWOREOFF]                       = COMPOUND_STRING("O Reflect da equipe {B_DEF_TEAM1} passou!"),
     [STRINGID_LIGHTSCREENWOREOFF]                   = COMPOUND_STRING("A tela de luz da equipe {B_DEF_TEAM1} passou!"),
     [STRINGID_AURORAVEILWOREOFF]                    = COMPOUND_STRING("O Aurora Veil da equipe {B_DEF_TEAM1} passou!"),
-    [STRINGID_STICKYWEBDISAPPEAREDFROMYOU]          = COMPOUND_STRING("A teia pegajosa desapareceu do chão ao seu redor!"),
 };
 
 const u8 *const gBattleStringsTableEs[STRINGID_COUNT] =
@@ -2093,7 +2092,7 @@ const u8 *const gBattleStringsTableEs[STRINGID_COUNT] =
     [STRINGID_SLOWSTARTENTERS]                      = COMPOUND_STRING("¡{B_SCR_NAME_WITH_PREFIX} tarda en ponerse en marcha!"),
     [STRINGID_SLOWSTARTEND]                         = COMPOUND_STRING("¡{B_ATK_NAME_WITH_PREFIX} finalmente se puso manos a la obra!"),
     [STRINGID_SOLARPOWERHPDROP]                     = COMPOUND_STRING("¡El {B_ATK_ABILITY} de {B_ATK_NAME_WITH_PREFIX} pasa factura!"), // Not in Gen 5+
-    [STRINGID_AFTERMATHDMG]                         = COMPOUND_STRING("¡{B_ATK_NAME_WITH_PREFIX} resultó herido!"),
+    [STRINGID_PKMNWASHURT]                          = COMPOUND_STRING("¡{B_ATK_NAME_WITH_PREFIX} resultó herido!"),
     [STRINGID_ANTICIPATIONACTIVATES]                = COMPOUND_STRING("¡{B_SCR_NAME_WITH_PREFIX} se estremeció!"),
     [STRINGID_FOREWARNACTIVATES]                    = COMPOUND_STRING("¡{B_SCR_ABILITY} alertó a {B_SCR_NAME_WITH_PREFIX2} sobre el {B_BUFF1} de {B_EFF_NAME_WITH_PREFIX2}!"),
     [STRINGID_ICEBODYHPGAIN]                        = COMPOUND_STRING("¡{B_ATK_ABILITY} de {B_ATK_NAME_WITH_PREFIX} lo curó un poco!"), // Not in Gen 5+
@@ -2390,7 +2389,6 @@ const u8 *const gBattleStringsTableEs[STRINGID_COUNT] =
     [STRINGID_REFLECTWOREOFF]                       = COMPOUND_STRING("¡El Reflect del equipo {B_DEF_TEAM1} desapareció!"),
     [STRINGID_LIGHTSCREENWOREOFF]                   = COMPOUND_STRING("¡La pantalla de luz del equipo {B_DEF_TEAM1} desapareció!"),
     [STRINGID_AURORAVEILWOREOFF]                    = COMPOUND_STRING("¡El Velo Aurora del equipo {B_DEF_TEAM1} desapareció!"),
-    [STRINGID_STICKYWEBDISAPPEAREDFROMYOU]          = COMPOUND_STRING("¡La red pegajosa ha desaparecido del suelo a tu alrededor!"),
 };
 
 const u8 *GetBattleString(u32 stringId)

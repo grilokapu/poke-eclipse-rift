@@ -1005,3 +1005,43 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/StonereachCity_Museum_Lab/scripts.inc"
 
 	.include "data/maps/Route4/scripts.inc"
+
+	.include "data/maps/VerdantSanctum/scripts.inc"
+
+	.include "data/maps/VerdantSanctum_Shrine/scripts.inc"
+
+	.include "data/maps/MossValeTown/scripts.inc"
+
+	.include "data/maps/MossvaleTown_House_1/scripts.inc"
+
+	.include "data/maps/Mossvale_PokemonCenter/scripts.inc"
+
+	.include "data/maps/MossvaleTown_Mart/scripts.inc"
+
+	.include "data/maps/MossvaleTown_House2/scripts.inc"
+
+	.include "data/maps/MossvaleTown_House_3/scripts.inc"
+
+	.include "data/maps/MossvaleTown_House_4/scripts.inc"
+
+	.include "data/maps/Route5/scripts.inc"
+
+	.include "data/maps/Route5_House/scripts.inc"
+
+	.include "data/maps/LyndoraCity/scripts.inc"
+
+	.include "data/maps/LyndoraCity_PokemonCenter/scripts.inc"
+
+	.include "data/maps/LyndoraCity_House3/scripts.inc"
+
+	.include "data/maps/LyndoraCity_House1/scripts.inc"
+
+	.include "data/maps/LyndoraCity_House2/scripts.inc"
+
+	.include "data/maps/LyndoraCity_Mart/scripts.inc"
+
+	.include "data/maps/LyndoraCity_FlowerShop/scripts.inc"
+
+	.include "data/maps/LyndoraCity_FlowerShop_Basement/scripts.inc"
+
+	.include "data/maps/LyndoraCity_Gym/scripts.inc"

@@ -1,0 +1,20 @@
+mapscripts MossvaleTown_House_3_MapScripts {}
+
+script MossvaleTown_House_3_EventScript_Reader {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Gosto de ler ouvindo a chuva.\pSó preciso tomar cuidado\npara não cochilar e perder\la página.\pMeu recorde é ler a mesma\npágina cinco vezes.", MSGBOX_NPC)
+        case EN: msgbox("I like reading to the sound\nof rain.\pI just have to avoid dozing\noff and losing my place.\pMy record is reading the\nsame page five times.", MSGBOX_NPC)
+        case ES: msgbox("Me gusta leer mientras\nescucho la lluvia.\pDebo evitar quedarme dormido\ny perder la página.\pMi récord es leer la misma\npágina cinco veces.", MSGBOX_NPC)
+    }
+    end
+}
+
+script MossvaleTown_House_3_EventScript_Boy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Quero desenhar todos os\nPOKéMON que vivem por aqui.\pAté agora desenhei três.\nMinha mãe acha que são\ltrês batatas.", MSGBOX_NPC)
+        case EN: msgbox("I want to draw every POKéMON\nthat lives around here.\pSo far, I have drawn three.\nMom thinks they are\lthree potatoes.", MSGBOX_NPC)
+        case ES: msgbox("Quiero dibujar a todos los\nPOKéMON que viven por aquí.\pHasta ahora dibujé tres.\nMi madre cree que son\ltres patatas.", MSGBOX_NPC)
+    }
+    end
+}
+

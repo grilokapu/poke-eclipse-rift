@@ -412,9 +412,18 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Backpacker;
 
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_YoungGiovanni;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Aldren;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Elowen;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Farmer;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RuinManiac;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ParasolLady;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MegaStone;
+
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PokemonRangerM;
+
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AceTrainerM;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AceTrainerF;
+
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SchoolKidF;
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -815,9 +824,15 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_BACKPACKER] = &gObjectEventGraphicsInfo_Backpacker,
     [OBJ_EVENT_GFX_YOUNG_GIOVANNI] = &gObjectEventGraphicsInfo_YoungGiovanni,
     [OBJ_EVENT_GFX_ALDREN] = &gObjectEventGraphicsInfo_Aldren,
+    [OBJ_EVENT_GFX_ELOWEN] = &gObjectEventGraphicsInfo_Elowen,
+    [OBJ_EVENT_GFX_FARMER] = &gObjectEventGraphicsInfo_Farmer,
+    [OBJ_EVENT_GFX_SCHOOL_KID_F] = &gObjectEventGraphicsInfo_SchoolKidF,
     [OBJ_EVENT_GFX_RUIN_MANIAC] = &gObjectEventGraphicsInfo_RuinManiac,
     [OBJ_EVENT_GFX_PARASOL_LADY] = &gObjectEventGraphicsInfo_ParasolLady,
     [OBJ_EVENT_GFX_MEGA_STONE] = &gObjectEventGraphicsInfo_MegaStone,
+    [OBJ_EVENT_GFX_POKEMON_RANGER_M] = &gObjectEventGraphicsInfo_PokemonRangerM,
+    [OBJ_EVENT_GFX_ACE_TRAINER_M] = &gObjectEventGraphicsInfo_AceTrainerM,
+    [OBJ_EVENT_GFX_ACE_TRAINER_F] = &gObjectEventGraphicsInfo_AceTrainerF,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

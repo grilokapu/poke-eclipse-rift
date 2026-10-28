@@ -1,0 +1,20 @@
+mapscripts MossvaleTown_House_1_MapScripts {}
+
+script MossvaleTown_House_1_EventScript_Woman {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Pode descansar um pouco.\nA chuva não tem pressa de parar.\pAqui em Mossvale, sempre deixo\numa toalha perto da porta\lpara os visitantes.", MSGBOX_NPC)
+        case EN: msgbox("You can rest for a while.\nThe rain is in no hurry to stop.\pHere in Mossvale, I always keep\na towel by the door\lfor visitors.", MSGBOX_NPC)
+        case ES: msgbox("Puedes descansar un rato.\nLa lluvia no tiene prisa.\pAquí en Mossvale, siempre dejo\nuna toalla junto a la puerta\lpara las visitas.", MSGBOX_NPC)
+    }
+    end
+}
+
+script MossvaleTown_House_1_EventScript_Man {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Comprei botas impermeáveis\npara enfrentar a chuva.\pFuncionam muito bem!\nA água que entra por cima\lnunca mais sai.", MSGBOX_NPC)
+        case EN: msgbox("I bought waterproof boots\nto deal with the rain.\pThey work perfectly!\nWater that gets in at the top\lnever comes out again.", MSGBOX_NPC)
+        case ES: msgbox("Compré botas impermeables\npara enfrentar la lluvia.\p¡Funcionan de maravilla!\nEl agua que entra por arriba\lya no vuelve a salir.", MSGBOX_NPC)
+    }
+    end
+}
+

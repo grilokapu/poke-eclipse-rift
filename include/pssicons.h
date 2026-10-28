@@ -32,6 +32,8 @@ static const u16 gPssIcon_GiovanniGfx[] = INCBIN_U16("graphics/pss_icons/giovann
 static const u16 gPssIcon_GiovanniPal[] = INCBIN_U16("graphics/pss_icons/giovanni.gbapal");
 static const u16 gPssIcon_AldrenGfx[] = INCBIN_U16("graphics/pss_icons/aldren.4bpp");
 static const u16 gPssIcon_AldrenPal[] = INCBIN_U16("graphics/pss_icons/aldren.gbapal");
+static const u16 gPssIcon_ElowenGfx[] = INCBIN_U16("graphics/pss_icons/elowen.4bpp");
+static const u16 gPssIcon_ElowenPal[] = INCBIN_U16("graphics/pss_icons/elowen.gbapal");
 
 #define GFXTAG_PSSICON 0x7000
 

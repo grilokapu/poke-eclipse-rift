@@ -350,279 +350,307 @@ Route4_EventScript_Lass_5:
 	goto Route4_EventScript_Lass_1
 
 
-Route4_EventScript_BirdKeeper_Challenge::
-# 171 "data/maps/Route4/scripts.pory"
-	lockall
-# 172 "data/maps/Route4/scripts.pory"
-	faceplayer
-# 174 "data/maps/Route4/scripts.pory"
-	goto_if_set FLAG_ROUTE4_BIRD_KEEPER_CHALLENGE_DONE, Route4_EventScript_BirdKeeper_Challenge_2
-# 184 "data/maps/Route4/scripts.pory"
+Route4_EventScript_ExpertF_StrangePokemon::
+# 168 "data/maps/Route4/scripts.pory"
 	switch VAR_LANGUAGE
-# 185 "data/maps/Route4/scripts.pory"
+# 169 "data/maps/Route4/scripts.pory"
+	case PT, Route4_EventScript_ExpertF_StrangePokemon_3
+# 170 "data/maps/Route4/scripts.pory"
+	case EN, Route4_EventScript_ExpertF_StrangePokemon_4
+# 171 "data/maps/Route4/scripts.pory"
+	case ES, Route4_EventScript_ExpertF_StrangePokemon_5
+Route4_EventScript_ExpertF_StrangePokemon_1:
+	end
+
+Route4_EventScript_ExpertF_StrangePokemon_3:
+# 169 "data/maps/Route4/scripts.pory"
+	msgbox Route4_EventScript_ExpertF_StrangePokemon_Text_0, MSGBOX_NPC
+	goto Route4_EventScript_ExpertF_StrangePokemon_1
+
+Route4_EventScript_ExpertF_StrangePokemon_4:
+# 170 "data/maps/Route4/scripts.pory"
+	msgbox Route4_EventScript_ExpertF_StrangePokemon_Text_1, MSGBOX_NPC
+	goto Route4_EventScript_ExpertF_StrangePokemon_1
+
+Route4_EventScript_ExpertF_StrangePokemon_5:
+# 171 "data/maps/Route4/scripts.pory"
+	msgbox Route4_EventScript_ExpertF_StrangePokemon_Text_2, MSGBOX_NPC
+	goto Route4_EventScript_ExpertF_StrangePokemon_1
+
+
+Route4_EventScript_BirdKeeper_Challenge::
+# 180 "data/maps/Route4/scripts.pory"
+	lockall
+# 181 "data/maps/Route4/scripts.pory"
+	faceplayer
+# 183 "data/maps/Route4/scripts.pory"
+	goto_if_set FLAG_ROUTE4_BIRD_KEEPER_CHALLENGE_DONE, Route4_EventScript_BirdKeeper_Challenge_2
+# 193 "data/maps/Route4/scripts.pory"
+	switch VAR_LANGUAGE
+# 194 "data/maps/Route4/scripts.pory"
 	case PT, Route4_EventScript_BirdKeeper_Challenge_6
-# 186 "data/maps/Route4/scripts.pory"
+# 195 "data/maps/Route4/scripts.pory"
 	case EN, Route4_EventScript_BirdKeeper_Challenge_7
-# 187 "data/maps/Route4/scripts.pory"
+# 196 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Challenge_8
 Route4_EventScript_BirdKeeper_Challenge_4:
-# 189 "data/maps/Route4/scripts.pory"
+# 198 "data/maps/Route4/scripts.pory"
 	compare VAR_RESULT, NO
 	goto_if_eq Route4_EventScript_BirdKeeper_Challenge_15
-# 199 "data/maps/Route4/scripts.pory"
+# 208 "data/maps/Route4/scripts.pory"
 	checkitemspace ITEM_STARAPTITE
-# 200 "data/maps/Route4/scripts.pory"
+# 209 "data/maps/Route4/scripts.pory"
 	compare VAR_RESULT, FALSE
 	goto_if_eq Route4_EventScript_BirdKeeper_Challenge_18
-# 210 "data/maps/Route4/scripts.pory"
-	hidefollower 1
-# 211 "data/maps/Route4/scripts.pory"
-	setobjectxy LOCALID_PLAYER, 46, 27
-# 212 "data/maps/Route4/scripts.pory"
-	movenpc LOCALID_ROUTE4_BIRD_KEEPER, Route4_EventScript_BirdKeeper_Challenge_Movement_0
-# 213 "data/maps/Route4/scripts.pory"
-	moveplayer Route4_EventScript_BirdKeeper_Challenge_Movement_1
-# 214 "data/maps/Route4/scripts.pory"
-	pause 20
-# 216 "data/maps/Route4/scripts.pory"
-	createspobject OBJ_EVENT_GFX_SPECIES ( SQUAWKABILLY ), 16, 46, 24, MOVEMENT_TYPE_FACE_DOWN
-# 217 "data/maps/Route4/scripts.pory"
-	callnative GetFirstPartyMonGraphicsId
-# 218 "data/maps/Route4/scripts.pory"
-	createspobject VAR_0x8000, 17, 46, 25, MOVEMENT_TYPE_FACE_UP
 # 219 "data/maps/Route4/scripts.pory"
-	movenpc 16, Route4_EventScript_BirdKeeper_Challenge_Movement_2
+	hidefollower 1
 # 220 "data/maps/Route4/scripts.pory"
-	movenpc 17, Route4_EventScript_BirdKeeper_Challenge_Movement_3
+	setobjectxy LOCALID_PLAYER, 46, 27
 # 221 "data/maps/Route4/scripts.pory"
-	pause 20
+	movenpc LOCALID_ROUTE4_BIRD_KEEPER, Route4_EventScript_BirdKeeper_Challenge_Movement_0
+# 222 "data/maps/Route4/scripts.pory"
+	moveplayer Route4_EventScript_BirdKeeper_Challenge_Movement_1
 # 223 "data/maps/Route4/scripts.pory"
-	switch VAR_LANGUAGE
-# 224 "data/maps/Route4/scripts.pory"
-	case PT, Route4_EventScript_BirdKeeper_Challenge_27
+	pause 20
 # 225 "data/maps/Route4/scripts.pory"
-	case EN, Route4_EventScript_BirdKeeper_Challenge_28
+	createspobject OBJ_EVENT_GFX_SPECIES ( SQUAWKABILLY ), 16, 46, 24, MOVEMENT_TYPE_FACE_DOWN
 # 226 "data/maps/Route4/scripts.pory"
+	callnative GetFirstPartyMonGraphicsId
+# 227 "data/maps/Route4/scripts.pory"
+	createspobject VAR_0x8000, 17, 46, 25, MOVEMENT_TYPE_FACE_UP
+# 228 "data/maps/Route4/scripts.pory"
+	movenpc 16, Route4_EventScript_BirdKeeper_Challenge_Movement_2
+# 229 "data/maps/Route4/scripts.pory"
+	movenpc 17, Route4_EventScript_BirdKeeper_Challenge_Movement_3
+# 230 "data/maps/Route4/scripts.pory"
+	pause 20
+# 232 "data/maps/Route4/scripts.pory"
+	switch VAR_LANGUAGE
+# 233 "data/maps/Route4/scripts.pory"
+	case PT, Route4_EventScript_BirdKeeper_Challenge_27
+# 234 "data/maps/Route4/scripts.pory"
+	case EN, Route4_EventScript_BirdKeeper_Challenge_28
+# 235 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Challenge_29
 Route4_EventScript_BirdKeeper_Challenge_25:
-# 228 "data/maps/Route4/scripts.pory"
+# 237 "data/maps/Route4/scripts.pory"
 	releaseall
 	end
 
 Route4_EventScript_BirdKeeper_Challenge_2:
-# 175 "data/maps/Route4/scripts.pory"
+# 184 "data/maps/Route4/scripts.pory"
 	switch VAR_LANGUAGE
-# 176 "data/maps/Route4/scripts.pory"
+# 185 "data/maps/Route4/scripts.pory"
 	case PT, Route4_EventScript_BirdKeeper_Challenge_11
-# 177 "data/maps/Route4/scripts.pory"
+# 186 "data/maps/Route4/scripts.pory"
 	case EN, Route4_EventScript_BirdKeeper_Challenge_12
-# 178 "data/maps/Route4/scripts.pory"
+# 187 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Challenge_13
 Route4_EventScript_BirdKeeper_Challenge_9:
-# 180 "data/maps/Route4/scripts.pory"
+# 189 "data/maps/Route4/scripts.pory"
 	releaseall
 	end
 
 Route4_EventScript_BirdKeeper_Challenge_6:
-# 185 "data/maps/Route4/scripts.pory"
+# 194 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_3, MSGBOX_YESNO
 	goto Route4_EventScript_BirdKeeper_Challenge_4
 
 Route4_EventScript_BirdKeeper_Challenge_7:
-# 186 "data/maps/Route4/scripts.pory"
+# 195 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_4, MSGBOX_YESNO
 	goto Route4_EventScript_BirdKeeper_Challenge_4
 
 Route4_EventScript_BirdKeeper_Challenge_8:
-# 187 "data/maps/Route4/scripts.pory"
+# 196 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_5, MSGBOX_YESNO
 	goto Route4_EventScript_BirdKeeper_Challenge_4
 
 Route4_EventScript_BirdKeeper_Challenge_11:
-# 176 "data/maps/Route4/scripts.pory"
+# 185 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_0, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_9
 
 Route4_EventScript_BirdKeeper_Challenge_12:
-# 177 "data/maps/Route4/scripts.pory"
+# 186 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_1, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_9
 
 Route4_EventScript_BirdKeeper_Challenge_13:
-# 178 "data/maps/Route4/scripts.pory"
+# 187 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_2, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_9
 
 Route4_EventScript_BirdKeeper_Challenge_15:
-# 190 "data/maps/Route4/scripts.pory"
+# 199 "data/maps/Route4/scripts.pory"
 	switch VAR_LANGUAGE
-# 191 "data/maps/Route4/scripts.pory"
+# 200 "data/maps/Route4/scripts.pory"
 	case PT, Route4_EventScript_BirdKeeper_Challenge_22
-# 192 "data/maps/Route4/scripts.pory"
+# 201 "data/maps/Route4/scripts.pory"
 	case EN, Route4_EventScript_BirdKeeper_Challenge_23
-# 193 "data/maps/Route4/scripts.pory"
+# 202 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Challenge_24
 Route4_EventScript_BirdKeeper_Challenge_20:
-# 195 "data/maps/Route4/scripts.pory"
+# 204 "data/maps/Route4/scripts.pory"
 	releaseall
 	end
 
 Route4_EventScript_BirdKeeper_Challenge_18:
-# 201 "data/maps/Route4/scripts.pory"
+# 210 "data/maps/Route4/scripts.pory"
 	switch VAR_LANGUAGE
-# 202 "data/maps/Route4/scripts.pory"
+# 211 "data/maps/Route4/scripts.pory"
 	case PT, Route4_EventScript_BirdKeeper_Challenge_32
-# 203 "data/maps/Route4/scripts.pory"
+# 212 "data/maps/Route4/scripts.pory"
 	case EN, Route4_EventScript_BirdKeeper_Challenge_33
-# 204 "data/maps/Route4/scripts.pory"
+# 213 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Challenge_34
 Route4_EventScript_BirdKeeper_Challenge_30:
-# 206 "data/maps/Route4/scripts.pory"
+# 215 "data/maps/Route4/scripts.pory"
 	releaseall
 	end
 
 Route4_EventScript_BirdKeeper_Challenge_22:
-# 191 "data/maps/Route4/scripts.pory"
+# 200 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_6, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_20
 
 Route4_EventScript_BirdKeeper_Challenge_23:
-# 192 "data/maps/Route4/scripts.pory"
+# 201 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_7, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_20
 
 Route4_EventScript_BirdKeeper_Challenge_24:
-# 193 "data/maps/Route4/scripts.pory"
+# 202 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_8, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_20
 
 Route4_EventScript_BirdKeeper_Challenge_27:
-# 224 "data/maps/Route4/scripts.pory"
+# 233 "data/maps/Route4/scripts.pory"
 	trainerbattle_single TRAINER_BIRD_KEEPER_LOHAN, Route4_EventScript_BirdKeeper_Challenge_Text_12, Route4_EventScript_BirdKeeper_Challenge_Text_13, Route4_EventScript_BirdKeeper_Victory
 	goto Route4_EventScript_BirdKeeper_Challenge_25
 
 Route4_EventScript_BirdKeeper_Challenge_28:
-# 225 "data/maps/Route4/scripts.pory"
+# 234 "data/maps/Route4/scripts.pory"
 	trainerbattle_single TRAINER_BIRD_KEEPER_LOHAN, Route4_EventScript_BirdKeeper_Challenge_Text_14, Route4_EventScript_BirdKeeper_Challenge_Text_15, Route4_EventScript_BirdKeeper_Victory
 	goto Route4_EventScript_BirdKeeper_Challenge_25
 
 Route4_EventScript_BirdKeeper_Challenge_29:
-# 226 "data/maps/Route4/scripts.pory"
+# 235 "data/maps/Route4/scripts.pory"
 	trainerbattle_single TRAINER_BIRD_KEEPER_LOHAN, Route4_EventScript_BirdKeeper_Challenge_Text_16, Route4_EventScript_BirdKeeper_Challenge_Text_17, Route4_EventScript_BirdKeeper_Victory
 	goto Route4_EventScript_BirdKeeper_Challenge_25
 
 Route4_EventScript_BirdKeeper_Challenge_32:
-# 202 "data/maps/Route4/scripts.pory"
+# 211 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_9, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_30
 
 Route4_EventScript_BirdKeeper_Challenge_33:
-# 203 "data/maps/Route4/scripts.pory"
+# 212 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_10, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_30
 
 Route4_EventScript_BirdKeeper_Challenge_34:
-# 204 "data/maps/Route4/scripts.pory"
+# 213 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Challenge_Text_11, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Challenge_30
 
 
 Route4_EventScript_BirdKeeper_Victory::
-# 233 "data/maps/Route4/scripts.pory"
-	applymovement 16, Route4_EventScript_BirdKeeper_Victory_Movement_0
-# 234 "data/maps/Route4/scripts.pory"
-	applymovement 17, Route4_EventScript_BirdKeeper_Victory_Movement_0
-# 235 "data/maps/Route4/scripts.pory"
-	waitmovementall
-# 236 "data/maps/Route4/scripts.pory"
-	removeobject 16
-# 237 "data/maps/Route4/scripts.pory"
-	removeobject 17
-# 238 "data/maps/Route4/scripts.pory"
-	callnative UpdateFollowingPokemon
-# 240 "data/maps/Route4/scripts.pory"
-	movenpc LOCALID_ROUTE4_BIRD_KEEPER, Route4_EventScript_AbsolSymbol_Movement_0
-# 241 "data/maps/Route4/scripts.pory"
-	switch VAR_LANGUAGE
 # 242 "data/maps/Route4/scripts.pory"
-	case PT, Route4_EventScript_BirdKeeper_Victory_3
+	applymovement 16, Route4_EventScript_BirdKeeper_Victory_Movement_0
 # 243 "data/maps/Route4/scripts.pory"
-	case EN, Route4_EventScript_BirdKeeper_Victory_4
+	applymovement 17, Route4_EventScript_BirdKeeper_Victory_Movement_0
 # 244 "data/maps/Route4/scripts.pory"
+	waitmovementall
+# 245 "data/maps/Route4/scripts.pory"
+	removeobject 16
+# 246 "data/maps/Route4/scripts.pory"
+	removeobject 17
+# 247 "data/maps/Route4/scripts.pory"
+	callnative UpdateFollowingPokemon
+# 249 "data/maps/Route4/scripts.pory"
+	movenpc LOCALID_ROUTE4_BIRD_KEEPER, Route4_EventScript_AbsolSymbol_Movement_0
+# 250 "data/maps/Route4/scripts.pory"
+	switch VAR_LANGUAGE
+# 251 "data/maps/Route4/scripts.pory"
+	case PT, Route4_EventScript_BirdKeeper_Victory_3
+# 252 "data/maps/Route4/scripts.pory"
+	case EN, Route4_EventScript_BirdKeeper_Victory_4
+# 253 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Victory_5
 Route4_EventScript_BirdKeeper_Victory_1:
-# 246 "data/maps/Route4/scripts.pory"
+# 255 "data/maps/Route4/scripts.pory"
 	giveitem ITEM_STARAPTITE
-# 247 "data/maps/Route4/scripts.pory"
+# 256 "data/maps/Route4/scripts.pory"
 	setflag FLAG_ROUTE4_BIRD_KEEPER_CHALLENGE_DONE
-# 248 "data/maps/Route4/scripts.pory"
+# 257 "data/maps/Route4/scripts.pory"
 	switch VAR_LANGUAGE
-# 249 "data/maps/Route4/scripts.pory"
+# 258 "data/maps/Route4/scripts.pory"
 	case PT, Route4_EventScript_BirdKeeper_Victory_8
-# 250 "data/maps/Route4/scripts.pory"
+# 259 "data/maps/Route4/scripts.pory"
 	case EN, Route4_EventScript_BirdKeeper_Victory_9
-# 251 "data/maps/Route4/scripts.pory"
+# 260 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_BirdKeeper_Victory_10
 Route4_EventScript_BirdKeeper_Victory_6:
-# 253 "data/maps/Route4/scripts.pory"
+# 262 "data/maps/Route4/scripts.pory"
 	releaseall
 	end
 
 Route4_EventScript_BirdKeeper_Victory_3:
-# 242 "data/maps/Route4/scripts.pory"
+# 251 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Victory_Text_0, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Victory_1
 
 Route4_EventScript_BirdKeeper_Victory_4:
-# 243 "data/maps/Route4/scripts.pory"
+# 252 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Victory_Text_1, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Victory_1
 
 Route4_EventScript_BirdKeeper_Victory_5:
-# 244 "data/maps/Route4/scripts.pory"
+# 253 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Victory_Text_2, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Victory_1
 
 Route4_EventScript_BirdKeeper_Victory_8:
-# 249 "data/maps/Route4/scripts.pory"
+# 258 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Victory_Text_3, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Victory_6
 
 Route4_EventScript_BirdKeeper_Victory_9:
-# 250 "data/maps/Route4/scripts.pory"
+# 259 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Victory_Text_4, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Victory_6
 
 Route4_EventScript_BirdKeeper_Victory_10:
-# 251 "data/maps/Route4/scripts.pory"
+# 260 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_BirdKeeper_Victory_Text_5, MSGBOX_DEFAULT
 	goto Route4_EventScript_BirdKeeper_Victory_6
 
 
 Route4_EventScript_FatMan::
-# 258 "data/maps/Route4/scripts.pory"
+# 267 "data/maps/Route4/scripts.pory"
 	switch VAR_LANGUAGE
-# 259 "data/maps/Route4/scripts.pory"
+# 268 "data/maps/Route4/scripts.pory"
 	case PT, Route4_EventScript_FatMan_3
-# 260 "data/maps/Route4/scripts.pory"
+# 269 "data/maps/Route4/scripts.pory"
 	case EN, Route4_EventScript_FatMan_4
-# 261 "data/maps/Route4/scripts.pory"
+# 270 "data/maps/Route4/scripts.pory"
 	case ES, Route4_EventScript_FatMan_5
 Route4_EventScript_FatMan_1:
 	end
 
 Route4_EventScript_FatMan_3:
-# 259 "data/maps/Route4/scripts.pory"
+# 268 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_FatMan_Text_0, MSGBOX_NPC
 	goto Route4_EventScript_FatMan_1
 
 Route4_EventScript_FatMan_4:
-# 260 "data/maps/Route4/scripts.pory"
+# 269 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_FatMan_Text_1, MSGBOX_NPC
 	goto Route4_EventScript_FatMan_1
 
 Route4_EventScript_FatMan_5:
-# 261 "data/maps/Route4/scripts.pory"
+# 270 "data/maps/Route4/scripts.pory"
 	msgbox Route4_EventScript_FatMan_Text_2, MSGBOX_NPC
 	goto Route4_EventScript_FatMan_1
 
@@ -705,45 +733,45 @@ Route4_EventScript_AbsolSymbol_Movement_7:
 	walk_up
 	step_end
 
-# 212 "data/maps/Route4/scripts.pory"
+# 221 "data/maps/Route4/scripts.pory"
 Route4_EventScript_BirdKeeper_Challenge_Movement_0:
-# 212 "data/maps/Route4/scripts.pory"
+# 221 "data/maps/Route4/scripts.pory"
 	walk_left
-# 212 "data/maps/Route4/scripts.pory"
+# 221 "data/maps/Route4/scripts.pory"
 	walk_left
-# 212 "data/maps/Route4/scripts.pory"
+# 221 "data/maps/Route4/scripts.pory"
 	walk_up
-# 212 "data/maps/Route4/scripts.pory"
+# 221 "data/maps/Route4/scripts.pory"
 	face_down
 	step_end
 
-# 213 "data/maps/Route4/scripts.pory"
+# 222 "data/maps/Route4/scripts.pory"
 Route4_EventScript_BirdKeeper_Challenge_Movement_1:
-# 213 "data/maps/Route4/scripts.pory"
+# 222 "data/maps/Route4/scripts.pory"
 	walk_up
-# 213 "data/maps/Route4/scripts.pory"
+# 222 "data/maps/Route4/scripts.pory"
 	face_up
 	step_end
 
-# 219 "data/maps/Route4/scripts.pory"
+# 228 "data/maps/Route4/scripts.pory"
 Route4_EventScript_BirdKeeper_Challenge_Movement_2:
-# 219 "data/maps/Route4/scripts.pory"
+# 228 "data/maps/Route4/scripts.pory"
 	exit_pokeball
-# 219 "data/maps/Route4/scripts.pory"
+# 228 "data/maps/Route4/scripts.pory"
 	face_down
 	step_end
 
-# 220 "data/maps/Route4/scripts.pory"
+# 229 "data/maps/Route4/scripts.pory"
 Route4_EventScript_BirdKeeper_Challenge_Movement_3:
-# 220 "data/maps/Route4/scripts.pory"
+# 229 "data/maps/Route4/scripts.pory"
 	exit_pokeball
-# 220 "data/maps/Route4/scripts.pory"
+# 229 "data/maps/Route4/scripts.pory"
 	face_up
 	step_end
 
-# 233 "data/maps/Route4/scripts.pory"
+# 242 "data/maps/Route4/scripts.pory"
 Route4_EventScript_BirdKeeper_Victory_Movement_0:
-# 233 "data/maps/Route4/scripts.pory"
+# 242 "data/maps/Route4/scripts.pory"
 	enter_pokeball
 	step_end
 
@@ -943,110 +971,122 @@ Route4_EventScript_Lass_Text_2:
 # 162 "data/maps/Route4/scripts.pory"
 	.string "Dicen que las Entrenadoras hacemos\nmil cosas a la vez.\pPlaneo la ruta, cuido del equipo y\nolvido dónde guardé la Poké Ball…\l¡todo en diez segundos!$"
 
+Route4_EventScript_ExpertF_StrangePokemon_Text_0:
+# 169 "data/maps/Route4/scripts.pory"
+	.string "Há dias os Pokémon desta rota\nestão muito estranhos...\pAté minha Roselia parou de brincar.\nEla só encara o caminho ao sul,\lcomo se algo a chamasse de longe.\pSe for seguir até o Santuário\nVerdante, mantenha seus Pokémon\lpor perto.$"
+
+Route4_EventScript_ExpertF_StrangePokemon_Text_1:
+# 170 "data/maps/Route4/scripts.pory"
+	.string "The Pokémon along this route have\nbeen acting strangely for days...\pEven my Roselia stopped playing.\nShe only stares at the path south,\las if something were calling her.\pIf you're heading to Verdant\nSanctum, keep your Pokémon close.$"
+
+Route4_EventScript_ExpertF_StrangePokemon_Text_2:
+# 171 "data/maps/Route4/scripts.pory"
+	.string "Hace días que los Pokémon de esta\nruta se comportan de forma extraña...\pHasta mi Roselia dejó de jugar.\nSolo mira el camino hacia el sur,\lcomo si algo la estuviera llamando.\pSi vas al Santuario Verdante,\nmantén cerca a tus Pokémon.$"
+
 Route4_EventScript_BirdKeeper_Challenge_Text_0:
-# 176 "data/maps/Route4/scripts.pory"
+# 185 "data/maps/Route4/scripts.pory"
 	.string "A arena ainda se lembra da sua\nvitória!\pContinue voando alto, campeão!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_1:
-# 177 "data/maps/Route4/scripts.pory"
+# 186 "data/maps/Route4/scripts.pory"
 	.string "The arena still remembers your\nvictory!\pKeep flying high, Champion!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_2:
-# 178 "data/maps/Route4/scripts.pory"
+# 187 "data/maps/Route4/scripts.pory"
 	.string "¡La arena aún recuerda tu victoria!\p¡Sigue volando alto, Campeón!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_3:
-# 185 "data/maps/Route4/scripts.pory"
+# 194 "data/maps/Route4/scripts.pory"
 	.string "Bem-vindo à minha pequena arena!\pMeu Squawkabilly e eu desafiamos\ntreinadores que não têm medo de\lvoar alto.\pQuer aceitar o desafio?\nHá um prêmio para quem vencer!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_4:
-# 186 "data/maps/Route4/scripts.pory"
+# 195 "data/maps/Route4/scripts.pory"
 	.string "Welcome to my little arena!\pMy Squawkabilly and I challenge\nTrainers who aren't afraid to\lfly high.\pWill you accept the challenge?\nThere's a prize if you win!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_5:
-# 187 "data/maps/Route4/scripts.pory"
+# 196 "data/maps/Route4/scripts.pory"
 	.string "¡Bienvenido a mi pequeña arena!\pMi Squawkabilly y yo desafiamos a\nEntrenadores que no temen volar\lalto.\p¿Aceptas el desafío?\n¡Hay un premio si ganas!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_6:
-# 191 "data/maps/Route4/scripts.pory"
+# 200 "data/maps/Route4/scripts.pory"
 	.string "Sem problema! Até os melhores\npássaros esperam o vento certo.$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_7:
-# 192 "data/maps/Route4/scripts.pory"
+# 201 "data/maps/Route4/scripts.pory"
 	.string "No problem! Even the best birds\nwait for the right wind.$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_8:
-# 193 "data/maps/Route4/scripts.pory"
+# 202 "data/maps/Route4/scripts.pory"
 	.string "¡No hay problema! Hasta las mejores\naves voladoras esperan el viento\ladecuado.$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_9:
-# 202 "data/maps/Route4/scripts.pory"
+# 211 "data/maps/Route4/scripts.pory"
 	.string "Sua Bolsa está cheia.\pAbra espaço para o prêmio e volte\npara aceitar o desafio!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_10:
-# 203 "data/maps/Route4/scripts.pory"
+# 212 "data/maps/Route4/scripts.pory"
 	.string "Your Bag is full.\pMake room for the prize, then come\nback to accept the challenge!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_11:
-# 204 "data/maps/Route4/scripts.pory"
+# 213 "data/maps/Route4/scripts.pory"
 	.string "Tu Bolsa está llena.\p¡Haz espacio para el premio y vuelve\npara aceptar el desafío!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_12:
-# 224 "data/maps/Route4/scripts.pory"
+# 233 "data/maps/Route4/scripts.pory"
 	.string "As asas estão abertas.\nQue comece o desafio!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_13:
-# 224 "data/maps/Route4/scripts.pory"
+# 233 "data/maps/Route4/scripts.pory"
 	.string "Você dominou os céus!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_14:
-# 225 "data/maps/Route4/scripts.pory"
+# 234 "data/maps/Route4/scripts.pory"
 	.string "Our wings are spread.\nLet the challenge begin!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_15:
-# 225 "data/maps/Route4/scripts.pory"
+# 234 "data/maps/Route4/scripts.pory"
 	.string "You ruled the skies!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_16:
-# 226 "data/maps/Route4/scripts.pory"
+# 235 "data/maps/Route4/scripts.pory"
 	.string "Las alas están abiertas.\n¡Que comience el desafío!$"
 
 Route4_EventScript_BirdKeeper_Challenge_Text_17:
-# 226 "data/maps/Route4/scripts.pory"
+# 235 "data/maps/Route4/scripts.pory"
 	.string "¡Dominaste los cielos!$"
 
 Route4_EventScript_BirdKeeper_Victory_Text_0:
-# 242 "data/maps/Route4/scripts.pory"
+# 251 "data/maps/Route4/scripts.pory"
 	.string "Parabéns! Você e seu Pokémon\nformam uma dupla de primeira.\pComo prometido, este é o seu prêmio!$"
 
 Route4_EventScript_BirdKeeper_Victory_Text_1:
-# 243 "data/maps/Route4/scripts.pory"
+# 252 "data/maps/Route4/scripts.pory"
 	.string "Congratulations! You and your\nPokémon make a first-class team.\pAs promised, here's your prize!$"
 
 Route4_EventScript_BirdKeeper_Victory_Text_2:
-# 244 "data/maps/Route4/scripts.pory"
+# 253 "data/maps/Route4/scripts.pory"
 	.string "¡Felicidades! Tú y tu Pokémon\nforman un equipo de primera.\pComo prometí, ¡aquí está tu premio!$"
 
 Route4_EventScript_BirdKeeper_Victory_Text_3:
-# 249 "data/maps/Route4/scripts.pory"
+# 258 "data/maps/Route4/scripts.pory"
 	.string "A Staraptite pertence a alguém que\nsabe alcançar novas alturas.\pNos vemos por aí, campeão!$"
 
 Route4_EventScript_BirdKeeper_Victory_Text_4:
-# 250 "data/maps/Route4/scripts.pory"
+# 259 "data/maps/Route4/scripts.pory"
 	.string "The Staraptite belongs with someone\nwho can reach new heights.\pSee you around, Champion!$"
 
 Route4_EventScript_BirdKeeper_Victory_Text_5:
-# 251 "data/maps/Route4/scripts.pory"
+# 260 "data/maps/Route4/scripts.pory"
 	.string "La Staraptita pertenece a quien sabe\nalcanzar nuevas alturas.\p¡Nos vemos, Campeón!$"
 
 Route4_EventScript_FatMan_Text_0:
-# 259 "data/maps/Route4/scripts.pory"
+# 268 "data/maps/Route4/scripts.pory"
 	.string "Você sabia que Snorlax pode pesar\nmais de 450 quilos?\pEu também fico imóvel depois do\nalmoço, mas ninguém me chama de\lPokémon raro!$"
 
 Route4_EventScript_FatMan_Text_1:
-# 260 "data/maps/Route4/scripts.pory"
+# 269 "data/maps/Route4/scripts.pory"
 	.string "Did you know Snorlax can weigh over\n450 kilograms?\pI also stop moving after lunch, but\nnobody calls me a rare Pokémon!$"
 
 Route4_EventScript_FatMan_Text_2:
-# 261 "data/maps/Route4/scripts.pory"
+# 270 "data/maps/Route4/scripts.pory"
 	.string "¿Sabías que Snorlax puede pesar más\nde 450 kilos?\pYo tampoco me muevo después de\ncomer, ¡pero nadie me llama Pokémon\lraro!$"

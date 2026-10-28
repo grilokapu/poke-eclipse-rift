@@ -2305,7 +2305,7 @@ static const struct SpritePalette sFireflySpritePalette =
 static const struct OamData sFireflyOamData =
 {
     .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_BLEND,
+    .objMode = ST_OAM_OBJ_NORMAL,
     .bpp = ST_OAM_4BPP,
     .shape = SPRITE_SHAPE(8x8),
     .size = SPRITE_SIZE(8x8),
@@ -2419,13 +2419,22 @@ static void CreateFireflySprites(void)
         {174,  91}, {205, 137}, {232,  44}, { 27,  76}, {134,  73},
     };
     u16 i;
+    u8 paletteIndex;
 
     if (sFireflySpritesCreated)
         return;
 
     LoadSpriteSheet(&sFireflySpriteSheet);
     LoadSpritePalette(&sFireflySpritePalette);
-    PreservePaletteInWeather(IndexOfSpritePaletteTag(PALTAG_FIREFLY));
+    paletteIndex = IndexOfSpritePaletteTag(PALTAG_FIREFLY);
+    if (paletteIndex == 0xFF)
+    {
+        FreeSpriteTilesByTag(GFXTAG_FIREFLY);
+        return;
+    }
+    // Weather indices cover BG palettes 0-15, then OBJ palettes 16-31.
+    // Preserving the raw OBJ slot would exempt a scenery palette from shade.
+    PreservePaletteInWeather(16 + paletteIndex);
 
     for (i = 0; i < NUM_FIREFLY_SPRITES; i++)
     {
@@ -2455,6 +2464,7 @@ static void CreateFireflySprites(void)
 static void DestroyFireflySprites(void)
 {
     u16 i;
+    u8 paletteIndex = IndexOfSpritePaletteTag(PALTAG_FIREFLY);
 
     for (i = 0; i < NUM_FIREFLY_SPRITES; i++)
     {
@@ -2464,6 +2474,8 @@ static void DestroyFireflySprites(void)
             sFireflySprites[i] = NULL;
         }
     }
+    if (paletteIndex != 0xFF)
+        ResetPaletteColorMapType(16 + paletteIndex);
     FreeSpriteTilesByTag(GFXTAG_FIREFLY);
     FreeSpritePaletteByTag(PALTAG_FIREFLY);
     sFireflySpritesCreated = FALSE;

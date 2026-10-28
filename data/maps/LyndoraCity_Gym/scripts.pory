@@ -1,0 +1,177 @@
+mapscripts LyndoraCity_Gym_MapScripts {}
+
+script LyndoraCity_Gym_EventScript_Doorman {
+    lock
+    faceplayer
+    if (flag(FLAG_BADGE02_GET)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Parabéns pela vitória!\pElowen ficou muito impressionada\ncom sua batalha.", MSGBOX_DEFAULT)
+            case EN: msgbox("Congratulations on your victory!\pElowen was very impressed by\nyour battle.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Felicidades por tu victoria!\pElowen quedó muy impresionada\ncon tu combate.", MSGBOX_DEFAULT)
+        }
+    } else {
+        if (!flag(FLAG_BADGE01_GET)) {
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("Bem-vindo ao Ginásio de Lyndora!\pElowen aceita desafios de quem já\nconquistou a primeira insígnia.\pVolte depois de vencer o Ginásio\nde Stonereach!", MSGBOX_DEFAULT)
+                case EN: msgbox("Welcome to Lyndora Gym!\pElowen accepts challenges from\ntrainers with the first Badge.\pReturn after winning at\nStonereach Gym!", MSGBOX_DEFAULT)
+                case ES: msgbox("¡Te damos la bienvenida al\nGimnasio de Lyndora!\pElowen acepta desafíos de quienes\nya tienen la primera medalla.\p¡Vuelve tras vencer el Gimnasio\nde Stonereach!", MSGBOX_DEFAULT)
+            }
+        } else {
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("Elowen é paciente, mas não\nsubestime sua estratégia.\pOs treinadores daqui vão testar\nsua capacidade de adaptação!", MSGBOX_DEFAULT)
+                case EN: msgbox("Elowen is patient, but do not\nunderestimate her strategy.\pThe trainers here will test your\nability to adapt!", MSGBOX_DEFAULT)
+                case ES: msgbox("Elowen es paciente, pero no\nsubestimes su estrategia.\p¡Los entrenadores pondrán a prueba\ntu capacidad de adaptarte!", MSGBOX_DEFAULT)
+            }
+        }
+    }
+    release
+    end
+}
+
+script LyndoraCity_Gym_EventScript_Leah {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_LASS_LEAH, "Elowen me ensinou que a natureza\nsempre encontra um caminho.\pVamos ver se você encontra o seu!", "Você encontrou uma boa\nestratégia!")
+        case EN: trainerbattle_single(TRAINER_LASS_LEAH, "Elowen taught me that nature\nalways finds a way.\pLet us see if you can find yours!", "You found a good strategy!")
+        case ES: trainerbattle_single(TRAINER_LASS_LEAH, "Elowen me enseñó que la naturaleza\nsiempre encuentra un camino.\p¡Veamos si encuentras el tuyo!", "¡Encontraste una buena estrategia!")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Elowen vai querer ver isso de\nperto!", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Elowen will want to see that\nfor herself!", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("¡Elowen querrá verlo de cerca!", MSGBOX_AUTOCLOSE)
+    }
+    release
+    end
+}
+
+script LyndoraCity_Gym_EventScript_Beauty {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_BEAUTY_ESTER, "Flores bonitas precisam de\ncuidados constantes.\pMeus Pokémon também!\pMostre como cuida dos seus\ncompanheiros!", "Que batalha encantadora!")
+        case EN: trainerbattle_single(TRAINER_BEAUTY_ESTER, "Beautiful flowers need constant\ncare.\pSo do my Pokémon!\pShow me how you care for your\ncompanions!", "What a lovely battle!")
+        case ES: trainerbattle_single(TRAINER_BEAUTY_ESTER, "Las flores bonitas necesitan\ncuidados constantes.\p¡Mis Pokémon también!\p¡Muéstrame cómo cuidas a tus\ncompañeros!", "¡Qué combate tan encantador!")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você e seus Pokémon formam uma\nótima equipe.", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("You and your Pokémon make a\ngreat team.", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("Tú y tus Pokémon forman un\nequipo excelente.", MSGBOX_AUTOCLOSE)
+    }
+    release
+    end
+}
+
+script LyndoraCity_Gym_EventScript_AromaLady {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_AROMA_LADY_DAISY, "Consegue sentir o perfume destas\nflores?\pNão se distraia com tanta beleza!\pMeus Pokémon estão prontos para\nbatalhar!", "Ah, que resultado inesperado!")
+        case EN: trainerbattle_single(TRAINER_AROMA_LADY_DAISY, "Can you smell these flowers?\pDo not get distracted by all\nthis beauty!\pMy Pokémon are ready to battle!", "Oh, what an unexpected result!")
+        case ES: trainerbattle_single(TRAINER_AROMA_LADY_DAISY, "¿Sientes el aroma de estas flores?\p¡No te distraigas con tanta\nbelleza!\p¡Mis Pokémon están listos para\ncombatir!", "¡Qué resultado tan inesperado!")
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Continue cuidando tão bem dos\nseus Pokémon!", MSGBOX_AUTOCLOSE)
+        case EN: msgbox("Keep taking such good care of\nyour Pokémon!", MSGBOX_AUTOCLOSE)
+        case ES: msgbox("¡Sigue cuidando tan bien a tus\nPokémon!", MSGBOX_AUTOCLOSE)
+    }
+    release
+    end
+}
+
+script LyndoraCity_Gym_EventScript_Elowen {
+    lock
+    faceplayer
+    if (flag(FLAG_DEFEATED_LYNDORA_GYM)) {
+        if (!flag(FLAG_RECEIVED_TM_BULLET_SEED)) {
+            goto(LyndoraCity_Gym_EventScript_GiveBulletSeed)
+        }
+        goto(LyndoraCity_Gym_EventScript_AfterVictory)
+    }
+    if (!flag(FLAG_BADGE01_GET)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Desculpe, mas o desafio do meu\nGinásio exige a insígnia de\nStonereach.", MSGBOX_DEFAULT)
+            case EN: msgbox("I am sorry, but my Gym challenge\nrequires the Stonereach Badge.", MSGBOX_DEFAULT)
+            case ES: msgbox("Lo siento, pero mi desafío exige\nla medalla de Stonereach.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    setspeaker("Elowen")
+    showpssicon(PSS_ICON_ELOWEN)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_LEADER_ELOWEN, "Oh! Você é aquele treinador da\nRota 5!\pQue bom ver você novamente.\nAquele Shroomish já está muito\nmelhor.\pAh, acho que ainda não me\napresentei.\nMeu nome é Elowen, Líder deste\nGinásio.\pEntão... veio me desafiar?\pÓtimo! Vamos ver como você e seus\nPokémon se saem!", "Impressionante! Você soube se\nadaptar quando a batalha apertou.", LyndoraCity_Gym_EventScript_ElowenDefeated)
+        case EN: trainerbattle_single(TRAINER_LEADER_ELOWEN, "Oh! You are that Trainer from\nRoute 5!\pIt is good to see you again.\nThat Shroomish is doing much\nbetter now.\pOh, I have not introduced myself.\nMy name is Elowen, Leader of this\nGym.\pSo... have you come to challenge\nme?\pWonderful! Let us see how you and\nyour Pokémon do!", "Impressive! You adapted even when\nthe battle got difficult.", LyndoraCity_Gym_EventScript_ElowenDefeated)
+        case ES: trainerbattle_single(TRAINER_LEADER_ELOWEN, "¡Oh! ¡Eres aquel entrenador de\nla Ruta 5!\pMe alegra volver a verte.\nAquel Shroomish está mucho mejor.\pAh, aún no me he presentado.\nSoy Elowen, Líder de este\nGimnasio.\pEntonces... ¿viniste a desafiarme?\p¡Muy bien! Veamos cómo les va a ti\ny a tus Pokémon.", "¡Impresionante! Supiste adaptarte\ncuando el combate se complicó.", LyndoraCity_Gym_EventScript_ElowenDefeated)
+    }
+    callnative(ClosePssIconPic)
+    release
+    end
+}
+
+script LyndoraCity_Gym_EventScript_ElowenDefeated {
+    setspeaker("Elowen")
+    showpssicon(PSS_ICON_ELOWEN)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: message("Impressionante!\pVocê merece a INSÍGNIA\nLEAFBOND!")
+        case EN: message("Impressive!\pYou deserve the LEAFBOND\nBADGE!")
+        case ES: message("¡Impresionante!\p¡Mereces la MEDALLA\nLEAFBOND!")
+    }
+    waitmessage
+    callnative(ClosePssIconPic)
+    call(Common_EventScript_PlayLeafbondBadgeFanfare)
+    setflag(FLAG_DEFEATED_LYNDORA_GYM)
+    setflag(FLAG_BADGE02_GET)
+    goto(LyndoraCity_Gym_EventScript_GiveBulletSeed)
+}
+
+script LyndoraCity_Gym_EventScript_GiveBulletSeed {
+    giveitem(ITEM_TM_BULLET_SEED)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(Common_EventScript_ShowBagIsFull)
+    }
+    setflag(FLAG_RECEIVED_TM_BULLET_SEED)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você recebeu uma TM50!\pEla contém BULLET SEED.", MSGBOX_DEFAULT)
+        case EN: msgbox("You received a TM50!\pIt contains BULLET SEED.", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Recibiste una MT50!\pContiene BULLET SEED.", MSGBOX_DEFAULT)
+    }
+    goto(LyndoraCity_Gym_EventScript_AfterVictory)
+}
+
+script LyndoraCity_Gym_EventScript_AfterVictory {
+    setspeaker("Elowen")
+    showpssicon(PSS_ICON_ELOWEN)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Continue confiando nos seus\nPokémon.\pCada batalha é uma chance de\ncrescerem juntos.", MSGBOX_DEFAULT)
+        case EN: msgbox("Keep trusting your Pokémon.\pEvery battle is a chance for you\nto grow together.", MSGBOX_DEFAULT)
+        case ES: msgbox("Sigue confiando en tus Pokémon.\pCada combate es una oportunidad\npara crecer juntos.", MSGBOX_DEFAULT)
+    }
+    callnative(ClosePssIconPic)
+    release
+    end
+}
+
+script LyndoraCity_Gym_EventScript_Dipplin {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_DIPPLIN, MUGSHOT_SOUTHEAST)
+    setspeaker("Dipplin")
+    if (flag(FLAG_BADGE02_GET)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Dipplin: Dipplin!\pDipplin parece feliz por você ter\nvencido Elowen.", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Dipplin: Dipplin!\pDipplin seems happy that you\ndefeated Elowen.", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("Dipplin: ¡Dipplin!\pDipplin parece feliz de que hayas\nvencido a Elowen.", MSGBOX_AUTOCLOSE)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Dipplin: Dipplin!\pO Pokémon parece aproveitar o\naroma das flores.", MSGBOX_AUTOCLOSE)
+            case EN: msgbox("Dipplin: Dipplin!\pThe Pokémon seems to be enjoying\nthe scent of the flowers.", MSGBOX_AUTOCLOSE)
+            case ES: msgbox("Dipplin: ¡Dipplin!\pEl Pokémon parece disfrutar del\naroma de las flores.", MSGBOX_AUTOCLOSE)
+        }
+    }
+    waitmoncry
+    hidemonmugshot
+    release
+    end
+}

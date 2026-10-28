@@ -146,6 +146,16 @@ static const u8 sFigyBerryDesc[]      = _("A hold item that\n"
 
 const u8 gQuestionMarksItemName[] = _("????????");
 
+static const u8 sQuestionMarksDesc[]  = _("?????");
+
+static const u8 sKeyToRoomDesc[]      = _("A key that opens a\n"
+                                          "door inside the\n"
+                                          "Abandoned Ship.");
+
+static const u8 sTeraShardDesc[]      = _("These shards may\n"
+                                          "form when a Tera\n"
+                                          "Pokémon faints.");
+
 const struct ItemInfo gItemsInfo[] =
 {
     [ITEM_NONE] =
@@ -402,6 +412,7 @@ const struct ItemInfo gItemsInfo[] =
             "in the water."),
         #else
             "on the ocean floor."),
+        #endif
         .descricao = COMPOUND_STRING(
             "Uma bola que age\n"
             "melhor em Pokémon\n"
@@ -1419,6 +1430,7 @@ const struct ItemInfo gItemsInfo[] =
         #else
             "Defrosts a frozen\n"
             "Pokémon."),
+        #endif
         .descricao = COMPOUND_STRING(
             "Descongela um\n"
             "Pokémon congelado."),

@@ -1,0 +1,246 @@
+mapscripts VerdantSanctum_MapScripts {}
+
+script VerdantSanctum_EventScript_PicnickerPaty {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_PICNICKER_PATY, "Vim explorar o santuário só\npor diversão!\pUma batalha vai deixar o passeio\nainda melhor!", "Perdi, mas me diverti muito!")
+            msgbox("Meu Smoliv adora o sol, e Shroomish\nprefere a sombra das árvores.\pAgora só falta achar um cantinho\npara o nosso piquenique!", MSGBOX_DEFAULT)
+        case EN:
+            trainerbattle_single(TRAINER_PICNICKER_PATY, "I came to explore the sanctuary\njust for fun!\pA battle will make this outing\neven better!", "I lost, but I had so much fun!")
+            msgbox("My Smoliv loves the sun, while\nShroomish prefers the trees' shade.\pNow we just need to find a spot\nfor our picnic!", MSGBOX_DEFAULT)
+        case ES:
+            trainerbattle_single(TRAINER_PICNICKER_PATY, "¡Vine a explorar el santuario\nsolo por diversión!\p¡Un combate hará que el paseo\nsea aún mejor!", "¡Perdí, pero me divertí mucho!")
+            msgbox("A mi Smoliv le encanta el sol,\ny Shroomish prefiere la sombra.\p¡Ahora solo falta encontrar\nun rincón para nuestro pícnic!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+// The south-passage Shroomish share FLAG_VERDANT_SANCTUM_ANOMALY as their
+// hide flag. They are gone on returning from the completed shrine scene.
+script VerdantSanctum_EventScript_SouthPassageShroomish {
+    lock
+    faceplayer
+    movenpc(VAR_LAST_TALKED, moves(emoji_doubt, face_left, delay_16, face_right, delay_16))
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Os SHROOMISH estão inquietos.\pEles se amontoam na passagem,\nsem sair do lugar.", MSGBOX_DEFAULT)
+        case EN: msgbox("The SHROOMISH are restless.\pThey huddle in the passage\nand refuse to move.", MSGBOX_DEFAULT)
+        case ES: msgbox("Los SHROOMISH están inquietos.\pSe amontonan en el paso\nsin moverse del sitio.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+// Optional Surf backtracking reward on the lake island.
+script VerdantSanctum_EventScript_IslandLeafStone {
+    finditem(ITEM_LEAF_STONE)
+    end
+}
+
+script VerdantSanctum_EventScript_Shroomish {
+    lockall
+    faceplayer
+    pause(20)
+    movenpc(LOCALID_VERDANT_SANCTUM_SHROOMISH, moves(emoji_doubt, face_left, delay_16, face_right, delay_16))
+    faceplayer
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O SHROOMISH parece\ndesorientado...\pEle parece não reconhecer\no lugar ao seu redor.", MSGBOX_DEFAULT)
+        case EN: msgbox("SHROOMISH seems disoriented...\pIt seems not to recognize\nits surroundings.", MSGBOX_DEFAULT)
+        case ES: msgbox("SHROOMISH parece desorientado...\pParece no reconocer\nel lugar que lo rodea.", MSGBOX_DEFAULT)
+    }
+
+    // Pace across the player's facing direction, then return so repeated
+    // interactions cannot gradually move Shroomish into scenery.
+    if (var(VAR_FACING) == DIR_NORTH || var(VAR_FACING) == DIR_SOUTH) {
+        movenpc(LOCALID_VERDANT_SANCTUM_SHROOMISH, moves(walk_right * 2, delay_16, walk_left * 2, face_down))
+    } else {
+        movenpc(LOCALID_VERDANT_SANCTUM_SHROOMISH, moves(walk_up * 2, delay_16, walk_down * 2, face_down))
+    }
+    releaseall
+    end
+}
+
+// Reusable inspection scripts: assign the same script to any matching column.
+script VerdantSanctum_EventScript_ColumnA {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A superfície está coberta de\npequenas marcas.\pSão antigas demais para serem\nreconhecidas.", MSGBOX_SIGN)
+        case EN: msgbox("The surface is covered in\nsmall marks.\pThey are too old to be\nrecognized.", MSGBOX_SIGN)
+        case ES: msgbox("La superficie está cubierta de\npequeñas marcas.\pSon demasiado antiguas para\nreconocerlas.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script VerdantSanctum_EventScript_ColumnB {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Parte da coluna parece ter sido\ncuidadosamente polida.\pApesar da idade, quase não\nexistem rachaduras.", MSGBOX_SIGN)
+        case EN: msgbox("Part of the column seems to have\nbeen carefully polished.\pDespite its age, there are\nalmost no cracks.", MSGBOX_SIGN)
+        case ES: msgbox("Parte de la columna parece haber\nsido pulida con cuidado.\pA pesar de su edad, casi no\nhay grietas.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script VerdantSanctum_EventScript_ColumnC {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Há um pequeno desenho gravado\nna pedra.\pNão se parece com o símbolo\nque você viu antes.", MSGBOX_SIGN)
+        case EN: msgbox("There is a small drawing carved\ninto the stone.\pIt does not look like the symbol\nyou saw before.", MSGBOX_SIGN)
+        case ES: msgbox("Hay un pequeño dibujo grabado\nen la piedra.\pNo se parece al símbolo\nque viste antes.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script VerdantSanctum_EventScript_ColumnSimple {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma antiga coluna de pedra.", MSGBOX_SIGN)
+        case EN: msgbox("An ancient stone column.", MSGBOX_SIGN)
+        case ES: msgbox("Una antigua columna de piedra.", MSGBOX_SIGN)
+    }
+    end
+}
+
+// The four entrance tiles share this scene and its persistent completion flag.
+script VerdantSanctum_EventScript_Entrance {
+    if (flag(FLAG_VERDANT_SANCTUM_ENTRANCE_DONE)) {
+        end
+    }
+
+    lockall
+    moveplayer(moves(walk_down * 3, face_down))
+    special(SpawnCameraObject)
+    movecamera(moves(walk_slow_down * 4))
+    pause(45)
+
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O ar aqui parece...\ndiferente.", MSGBOX_DEFAULT)
+        case EN: msgbox("The air here feels...\ndifferent.", MSGBOX_DEFAULT)
+        case ES: msgbox("El aire aquí se siente...\ndiferente.", MSGBOX_DEFAULT)
+    }
+    pause(30)
+
+    movecamera(moves(walk_slow_up * 4))
+    special(RemoveCameraObject)
+    releaseall
+    setflag(FLAG_VERDANT_SANCTUM_ENTRANCE_DONE)
+    end
+}
+
+script VerdantSanctum_EventScript_PsychicFredrick_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_PSYCHIC_FREDRICK, "Sinto algo incomum vindo\ndas ruínas...\pÉ como um pensamento distante\nque não consigo compreender.\pTalvez uma batalha me ajude\na clarear a mente. Vamos?", "Sua força me trouxe de volta!")
+            msgbox("Mesmo com a mente mais clara,\na sensação continua...\pEla vem e vai, como um eco\nentre aquelas pedras.\pSerá que os Pokémon daqui\ntambém conseguem senti-la?", MSGBOX_DEFAULT)
+        case EN:
+            trainerbattle_single(TRAINER_PSYCHIC_FREDRICK, "I sense something unusual\ncoming from the ruins...\pLike a distant thought\nI can't quite understand.\pPerhaps a battle will help\nclear my mind. Shall we?", "Your strength brought me back!")
+            msgbox("Even with my mind clearer,\nthe feeling remains...\pIt comes and goes, like an echo\namong those stones.\pI wonder if the Pokémon here\ncan sense it too?", MSGBOX_DEFAULT)
+        case ES:
+            trainerbattle_single(TRAINER_PSYCHIC_FREDRICK, "Siento algo inusual que viene\nde las ruinas...\pEs como un pensamiento lejano\nque no logro comprender.\pQuizá un combate me ayude\na despejar la mente. ¿Vamos?", "¡Tu fuerza me hizo reaccionar!")
+            msgbox("Incluso con la mente más clara,\nla sensación continúa...\pVa y viene, como un eco\nentre aquellas piedras.\p¿Los Pokémon de este lugar\ntambién podrán sentirla?", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_PokemonRangerM_Battle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_POKEMON_RANGER_EDU, "Sou Ranger. Estou observando\nos Pokémon deste santuário.\pOs Shroomish parecem perdidos,\nmesmo no próprio habitat...\pPreciso estar pronto para ajudar.\nQue tal uma batalha de treino?", "Você sabe agir sob pressão!")
+            msgbox("Os Pokémon percebem mudanças\nque nós nem conseguimos sentir.\pTalvez algo neste lugar esteja\ndeixando todos tão inquietos.\pVou continuar observando.\nEles precisam de cuidado.", MSGBOX_DEFAULT)
+        case EN:
+            trainerbattle_single(TRAINER_POKEMON_RANGER_EDU, "I'm a Ranger. I'm observing\nthe Pokémon in this sanctuary.\pThe Shroomish seem lost,\neven in their own habitat...\pI need to be ready to help.\nHow about a practice battle?", "You stay calm under pressure!")
+            msgbox("Pokémon can sense changes\nthat we don't even notice.\pPerhaps something here\nis making them all so restless.\pI'll keep watching over them.\nThey need someone looking out.", MSGBOX_DEFAULT)
+        case ES:
+            trainerbattle_single(TRAINER_POKEMON_RANGER_EDU, "Soy Ranger. Estoy observando\na los Pokémon del santuario.\pLos Shroomish parecen perdidos,\nincluso en su propio hábitat...\pDebo estar listo para ayudar.\n¿Qué tal un combate de práctica?", "¡Sabes actuar bajo presión!")
+            msgbox("Los Pokémon perciben cambios\nque nosotros ni notamos.\pQuizá algo en este lugar\nlos tenga tan inquietos.\pSeguiré observándolos.\nNecesitan que alguien los cuide.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_AceTrainerAlma {
+    switch(var(VAR_LANGUAGE)) {
+        case PT:
+            trainerbattle_single(TRAINER_ACE_TRAINER_ALMA, "Sou Alma! Vim pelas trilhas,\nmas fiquei pelos desafios!\pVocê chegou até aqui. Quero ver\ncomo se sai numa batalha!", "Isso sim foi um desafio!")
+            msgbox("Ganhar é bom, mas uma batalha\ndifícil me ensina muito mais!\pVou treinar com meu time.\nAinda temos muito a aprender!", MSGBOX_DEFAULT)
+        case EN:
+            trainerbattle_single(TRAINER_ACE_TRAINER_ALMA, "I'm Alma! I came for the trails,\nbut stayed for the challenges!\pYou made it this far. Let's see\nhow you do in a battle!", "Now that was a challenge!")
+            msgbox("Winning feels good, but a tough\nbattle teaches me so much more!\pI'll keep training with my team.\nWe still have plenty to learn!", MSGBOX_DEFAULT)
+        case ES:
+            trainerbattle_single(TRAINER_ACE_TRAINER_ALMA, "¡Soy Alma! Vine por los senderos,\n¡pero me quedé por los retos!\pLlegaste hasta aquí. ¡Veamos\ncómo te va en un combate!", "¡Eso sí que fue un reto!")
+            msgbox("¡Ganar está bien, pero un combate\ndifícil me enseña mucho más!\pSeguiré entrenando con mi equipo.\n¡Aún tenemos mucho que aprender!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_ForestListener {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O vento muda de voz entre\nas árvores e as colunas.\pFeche os olhos por um instante.\nQue som você ouviu primeiro?", MSGBOX_DEFAULT)
+        case EN: msgbox("The wind sounds different among\nthe trees and the columns.\pClose your eyes for a moment.\nWhich sound did you hear first?", MSGBOX_DEFAULT)
+        case ES: msgbox("El viento suena distinto entre\nlos árboles y las columnas.\pCierra los ojos un momento.\n¿Qué sonido oíste primero?", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_MushroomObserver {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estou desenhando os Shroomish.\nSó falta eles ficarem parados!\pToda vez que olho para o papel,\num deles muda de lugar.", MSGBOX_DEFAULT)
+        case EN: msgbox("I'm sketching the Shroomish.\nIf only they would stand still!\pWhenever I look at my paper,\none of them moves away.", MSGBOX_DEFAULT)
+        case ES: msgbox("Estoy dibujando a los Shroomish.\n¡Ojalá se quedaran quietos!\pCada vez que miro el papel,\nuno de ellos cambia de sitio.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_RuinResearcher {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estas colunas têm marcas\nembaixo do musgo.\pPrefiro copiar só o que vejo.\nNão vou arrancar o musgo\lpara completar meu desenho.", MSGBOX_DEFAULT)
+        case EN: msgbox("These columns have markings\nbeneath the moss.\pI only copy what I can see.\nI will not tear off the moss\ljust to finish my drawing.", MSGBOX_DEFAULT)
+        case ES: msgbox("Estas columnas tienen marcas\ndebajo del musgo.\pSolo copio lo que puedo ver.\nNo voy a arrancar el musgo\lpara terminar mi dibujo.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_TrailExplorer {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma vez perdi uma bota na lama.\nMeu Pokémon voltou para buscar!\pDesde então, levo uma escova.\nA bota voltou... a lama também.", MSGBOX_DEFAULT)
+        case EN: msgbox("I once lost a boot in the mud.\nMy Pokémon went back for it!\pNow I always carry a brush.\nThe boot came back...\land so did all the mud.", MSGBOX_DEFAULT)
+        case ES: msgbox("Una vez perdí una bota en el lodo.\n¡Mi Pokémon fue a buscarla!\pAhora siempre llevo un cepillo.\nLa bota volvió...\ly también todo el lodo.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_LightWatcher {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Eu ia embora, mas vi uma luz\npiscando entre as folhas.\pEsperei por outra. Depois outra.\nJá faz um bom tempo que\lestou quase indo embora!", MSGBOX_DEFAULT)
+        case EN: msgbox("I was leaving when I saw a light\nblinking among the leaves.\pI waited for another. Then more.\nI have been almost ready\lto leave for quite a while!", MSGBOX_DEFAULT)
+        case ES: msgbox("Iba a irme cuando vi una luz\nparpadear entre las hojas.\pEsperé otra. Y luego otra más.\n¡Llevo un buen rato\la punto de marcharme!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script VerdantSanctum_EventScript_YoungExplorer {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A Alma adora desafios! Eu disse\nque ia achar a maior folha daqui.\pAgora preciso de uma régua...\nEla quer conferir o resultado!", MSGBOX_DEFAULT)
+        case EN: msgbox("Alma loves challenges! I told her\nI would find the biggest leaf here.\pNow I need a ruler...\nShe wants to check the result!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡A Alma le encantan los retos!\nLe dije que hallaría la hoja mayor.\pAhora necesito una regla...\n¡Quiere comprobar el resultado!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}

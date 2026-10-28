@@ -1,0 +1,159 @@
+mapscripts VerdantSanctum_Shrine_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_HIDE_VERDANT_SANCTUM_RESEARCHER)
+        end
+    }
+    MAP_SCRIPT_ON_LOAD {
+        callnative(ResetVerdantSanctumRuins)
+        end
+    }
+}
+
+script VerdantSanctum_Shrine_EventScript_Inscription {
+    lockall
+    call(VerdantSanctum_Shrine_EventScript_ReadInscription)
+    releaseall
+    end
+}
+
+script VerdantSanctum_Shrine_EventScript_ReadInscription {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma antiga inscrição está\ngravada na pedra.\pGrande parte do texto foi\napagada pelo tempo.\pMas uma pequena frase ainda\npode ser lida...", MSGBOX_SIGN)
+        case EN: msgbox("An ancient inscription is\ncarved into the stone.\pMuch of the text has been\nerased by time.\pBut a short phrase can\nstill be read...", MSGBOX_SIGN)
+        case ES: msgbox("Una antigua inscripción está\ngrabada en la piedra.\pEl tiempo ha borrado gran\nparte del texto.\pPero aún se puede leer\nuna pequeña frase...", MSGBOX_SIGN)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("...quando o céu se partir...", MSGBOX_SIGN)
+        case EN: msgbox("...when the sky breaks...", MSGBOX_SIGN)
+        case ES: msgbox("...cuando el cielo se rompa...", MSGBOX_SIGN)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O restante da inscrição\ndesapareceu.", MSGBOX_SIGN)
+        case EN: msgbox("The rest of the inscription\nhas vanished.", MSGBOX_SIGN)
+        case ES: msgbox("El resto de la inscripción\nha desaparecido.", MSGBOX_SIGN)
+    }
+    setflag(FLAG_VERDANT_SANCTUM_INSCRIPTION_READ)
+    return
+}
+
+// Cover the doorway approach, before any exit warp. Entering is unaffected.
+script VerdantSanctum_Shrine_EventScript_Exit {
+    if (flag(FLAG_VERDANT_SANCTUM_ANOMALY)) {
+        end
+    }
+    // VAR_FACING belongs to the last interaction, not to coordinate triggers.
+    specialvar(VAR_RESULT, GetPlayerFacingDirection)
+    if (var(VAR_RESULT) == DIR_NORTH) {
+        end
+    }
+    lockall
+    if (!flag(FLAG_VERDANT_SANCTUM_INSCRIPTION_READ)) {
+        moveplayer(moves(walk_up, face_up))
+        releaseall
+        end
+    }
+
+    fadeoutbgm(1)
+    setvar(VAR_0x8004, 1)
+    setvar(VAR_0x8005, 1)
+    setvar(VAR_0x8006, 4)
+    setvar(VAR_0x8007, 4)
+    special(ShakeCamera)
+    // ShakeCamera starts its own SE; replace it with the Route 4 anomaly SE.
+    playse(SE_M_CONFUSE_RAY)
+    waitstate
+    fadescreenspeed(FADE_TO_WHITE, -8)
+    callnative(BeginVerdantSanctumAnomaly)
+    special(DrawWholeMapView)
+    fadescreenspeed(FADE_FROM_WHITE, -8)
+    pause(60)
+    fadescreenspeed(FADE_TO_WHITE, -8)
+    callnative(EndVerdantSanctumAnomaly)
+    special(DrawWholeMapView)
+    fadescreenspeed(FADE_FROM_WHITE, -8)
+    waitse
+    pause(30)
+    msgbox("...", MSGBOX_DEFAULT)
+    call(VerdantSanctum_Shrine_EventScript_Researcher)
+    setflag(FLAG_VERDANT_SANCTUM_ANOMALY)
+    fadeinbgm(1)
+    releaseall
+    end
+}
+
+// Called with the player still locked, after the ruins and symbol are restored.
+script VerdantSanctum_Shrine_EventScript_Researcher {
+    pause(40)
+    playse(SE_BRIDGE_WALK)
+    pause(10)
+    playse(SE_BRIDGE_WALK)
+    pause(8)
+    playse(SE_BRIDGE_WALK)
+    waitse
+
+    // Clear the doorway and use the player's lane for either entrance trigger.
+    getplayerxy(VAR_0x8008, VAR_0x8009)
+    moveplayer(moves(walk_up * 2, face_down))
+    if (var(VAR_0x8008) == 4) {
+        setobjectxyperm(LOCALID_VERDANT_SANCTUM_RESEARCHER, 4, 10)
+    } else {
+        setobjectxyperm(LOCALID_VERDANT_SANCTUM_RESEARCHER, 5, 10)
+    }
+    clearflag(FLAG_HIDE_VERDANT_SANCTUM_RESEARCHER)
+    addobject(LOCALID_VERDANT_SANCTUM_RESEARCHER)
+    movenpc(LOCALID_VERDANT_SANCTUM_RESEARCHER, moves(walk_fast_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ei!", MSGBOX_DEFAULT)
+        case EN: msgbox("Hey!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Eh!", MSGBOX_DEFAULT)
+    }
+    movenpc(LOCALID_VERDANT_SANCTUM_RESEARCHER, moves(walk_fast_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você estava aqui quando aconteceu?", MSGBOX_DEFAULT)
+        case EN: msgbox("Were you here when it happened?", MSGBOX_DEFAULT)
+        case ES: msgbox("¿Estabas aquí cuando ocurrió?", MSGBOX_DEFAULT)
+    }
+    pause(25)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Por um instante, meus equipamentos\nregistraram uma leitura absurda.", MSGBOX_DEFAULT)
+        case EN: msgbox("For an instant, my equipment\nrecorded an absurd reading.", MSGBOX_DEFAULT)
+        case ES: msgbox("Por un instante, mis equipos\nregistraron una lectura absurda.", MSGBOX_DEFAULT)
+    }
+    movenpc(LOCALID_VERDANT_SANCTUM_RESEARCHER, moves(face_left, delay_16, face_right, delay_16, face_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Mas agora...\p...não há nada.", MSGBOX_DEFAULT)
+        case EN: msgbox("But now...\p...there is nothing.", MSGBOX_DEFAULT)
+        case ES: msgbox("Pero ahora...\p...no hay nada.", MSGBOX_DEFAULT)
+    }
+    // A brief glance down at the equipment, followed by another doubtful check.
+    movenpc(LOCALID_VERDANT_SANCTUM_RESEARCHER, moves(face_down, delay_16, emoji_doubt, delay_16, face_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Isso não faz sentido.", MSGBOX_DEFAULT)
+        case EN: msgbox("This makes no sense.", MSGBOX_DEFAULT)
+        case ES: msgbox("Esto no tiene sentido.", MSGBOX_DEFAULT)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Preciso avisar a Professora Hikari.", MSGBOX_DEFAULT)
+        case EN: msgbox("I need to tell Professor Hikari.", MSGBOX_DEFAULT)
+        case ES: msgbox("Debo avisar a la Profesora Hikari.", MSGBOX_DEFAULT)
+    }
+    movenpc(LOCALID_VERDANT_SANCTUM_RESEARCHER, moves(walk_down, delay_16, face_up))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você também viu alguma coisa,\nnão viu?", MSGBOX_DEFAULT)
+        case EN: msgbox("You saw something too,\ndidn't you?", MSGBOX_DEFAULT)
+        case ES: msgbox("Tú también viste algo,\n¿verdad?", MSGBOX_DEFAULT)
+    }
+    pause(40)
+    msgbox("...", MSGBOX_DEFAULT)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Imaginei.\pSe estiver seguindo para o sul,\ntenha cuidado.\pOs Pokémon daqui estão agindo\nde maneira estranha desde\lesta manhã.", MSGBOX_DEFAULT)
+        case EN: msgbox("I thought so.\pIf you're heading south,\nbe careful.\pThe Pokémon here have been acting\nstrangely since this morning.", MSGBOX_DEFAULT)
+        case ES: msgbox("Me lo imaginaba.\pSi vas hacia el sur,\nten cuidado.\pLos Pokémon de aquí se comportan\nde forma extraña desde\lesta mañana.", MSGBOX_DEFAULT)
+    }
+    movenpc(LOCALID_VERDANT_SANCTUM_RESEARCHER, moves(walk_fast_down))
+    removeobject(LOCALID_VERDANT_SANCTUM_RESEARCHER)
+    setflag(FLAG_HIDE_VERDANT_SANCTUM_RESEARCHER)
+    return
+}

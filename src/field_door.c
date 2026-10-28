@@ -64,6 +64,8 @@ static const u8 sDoorAnimTiles_StonereachTan[] = INCGFX_U8("graphics/door_anims/
 static const u16 sDoorNullPalette7[16] = {};
 static const u8 sDoorAnimTiles_StonereachGray[] = INCGFX_U8("graphics/door_anims/stonereach_gray.png", ".4bpp");
 static const u16 sDoorNullPalette8[16] = {};
+static const u8 sDoorAnimTiles_MossvaleDoor1[] = INCGFX_U8("graphics/door_anims/mossvale_door1.png", ".4bpp");
+static const u8 sDoorAnimTiles_MossvaleDoor2[] = INCGFX_U8("graphics/door_anims/mossvale_door2.png", ".4bpp");
 static const u8 sDoorAnimTiles_Sylvara[] = INCGFX_U8("graphics/door_anims/sylvara.png", ".4bpp");
 static const u8 sFiller1[0x5900] = {};
 static const u8 sDoorAnimTiles_UnusedTops[] = INCGFX_U8("graphics/door_anims/unused_top.png", ".4bpp");
@@ -252,6 +254,8 @@ static const u8 sDoorAnimPalettes_StonereachTan[] = {9, 9, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_StonereachGray[] = {10, 10, 10, 10, 10, 10, 10, 10};
 static const u8 sDoorAnimPalettes_FallarborLightRoof[] = {7, 7, 7, 7, 7, 7, 7, 7};
 static const u8 sDoorAnimPalettes_Lilycove[] = {8, 8, 8, 8, 8, 8, 8, 8};
+static const u8 sDoorAnimPalettes_MossvaleDoor1[] = {6, 6, 6, 6, 6, 6, 6, 6};
+static const u8 sDoorAnimPalettes_MossvaleDoor2[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_Sylvara[] = {10, 10, 9, 9, 9, 9, 9, 9};
 static const u8 sDoorAnimPalettes_Mossdeep[] = {9, 9, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokemonLeague[] = {8, 8, 8, 8, 8, 8, 8, 8};
@@ -405,6 +409,22 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .size = DOOR_SIZE_1x2,
         .tiles = sDoorAnimTiles_FallarborLightRoof,
         .palettes = sDoorAnimPalettes_FallarborLightRoof
+    },
+    {
+        .metatileNum = METATILE_MossvaleTown_Door1,
+        .tileset = &gTileset_MossvaleTown,
+        .sound = DOOR_SOUND_NORMAL,
+        .size = DOOR_SIZE_1x1,
+        .tiles = sDoorAnimTiles_MossvaleDoor1,
+        .palettes = sDoorAnimPalettes_MossvaleDoor1
+    },
+    {
+        .metatileNum = METATILE_MossvaleTown_Door2,
+        .tileset = &gTileset_MossvaleTown,
+        .sound = DOOR_SOUND_NORMAL,
+        .size = DOOR_SIZE_1x1,
+        .tiles = sDoorAnimTiles_MossvaleDoor2,
+        .palettes = sDoorAnimPalettes_MossvaleDoor2
     },
     {
         .metatileNum = METATILE_Petalburg_Door_Sylvara,
@@ -694,7 +714,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
         .palettes = sDoorAnimPalettes_BattleDomeCorridor
     },
     {
-        .metatileNum = METATILE_BattleFrontier_Door_MultiCorridor,
+        .metatileNum = METATILE_BattleFrontier_Door_MultiCorridor_Left,
         .tileset = &gTileset_BattleFrontier,
         .sound = DOOR_SOUND_SLIDING,
         .size = DOOR_SIZE_2x2,

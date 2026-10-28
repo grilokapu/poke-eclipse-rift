@@ -563,6 +563,12 @@ const u8 gInitialMovementTypeFacingDirections[NUM_MOVEMENT_TYPES] = {
 #include "data/object_events/object_event_graphics_info_followers.h"
 
 static const struct SpritePalette sObjectEventSpritePalettes[] = {
+    {gObjectEventPal_LittleGirl,           OBJ_EVENT_PAL_TAG_LITTLE_GIRL},
+    {gObjectEventPal_AceTrainerM,           OBJ_EVENT_PAL_TAG_ACE_TRAINER_M},
+    {gObjectEventPal_AceTrainerF,           OBJ_EVENT_PAL_TAG_ACE_TRAINER_F},
+    {gObjectEventPal_PokemonRangerM,        OBJ_EVENT_PAL_TAG_POKEMON_RANGER_M},
+    {gObjectEventPal_OldWoman,              OBJ_EVENT_PAL_TAG_OLD_WOMAN},
+    {gObjectEventPal_LittleBoy,             OBJ_EVENT_PAL_TAG_LITTLE_BOY},
     {gObjectEventPal_OldMan,                OBJ_EVENT_PAL_TAG_OLDMAN},
     {gObjectEventPal_ExpertF,               OBJ_EVENT_PAL_TAG_EXPERT_F},
     {gObjectEventPal_ExpertM,               OBJ_EVENT_PAL_TAG_EXPERT_M},
@@ -637,6 +643,10 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Emojis,                OBJ_EVENT_PAL_TAG_EMOJIS},
     {gObjectEventPal_FatMan,                OBJ_EVENT_PAL_TAG_FAT_MAN},
     {gObjectEventPal_Aldren,                OBJ_EVENT_PAL_TAG_ALDREN},
+    {gObjectEventPal_Elowen,                OBJ_EVENT_PAL_TAG_ELOWEN},
+    {gObjectEventPal_Farmer,                OBJ_EVENT_PAL_TAG_FARMER},
+    {gObjectEventPal_SchoolKidF,            OBJ_EVENT_PAL_TAG_SCHOOL_KID_F},
+    {gObjectEventPal_BlackBelt,             OBJ_EVENT_PAL_TAG_BLACK_BELT},
     {gObjectEventPal_RuinManiac,            OBJ_EVENT_PAL_TAG_RUIN_MANIAC},
     {gObjectEventPal_ParasolLady,           OBJ_EVENT_PAL_TAG_PARASOL_LADY},
     {gObjectEventPal_MegaStone,             OBJ_EVENT_PAL_TAG_MEGA_STONE},
@@ -2900,6 +2910,12 @@ void UpdateLightSprite(struct Sprite *sprite)
     Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY);
 }
 
+static bool8 IsLanternLight(void)
+{
+    return MAP_IS(MAP_SYLVARA_BEACH)
+        || MAP_IS(MAP_VERDANT_SANCTUM);
+}
+
 // Spawn a light at a map coordinate
 static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
 {
@@ -2937,7 +2953,7 @@ static void SpawnLightSprite(s16 x, s16 y, s16 camX, s16 camY, u32 lightType)
         sprite->oam.objMode = ST_OAM_OBJ_BLEND;
         sprite->oam.affineMode = ST_OAM_AFFINE_NORMAL;
         sprite->x += 8;
-        if(MAP_IS(MAP_SYLVARA_BEACH))
+        if(IsLanternLight())
             sprite->y += 16 + sprite->centerToCornerVecY;
         else
             sprite->y += 22 + sprite->centerToCornerVecY;

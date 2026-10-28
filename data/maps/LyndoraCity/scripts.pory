@@ -1,0 +1,205 @@
+mapscripts LyndoraCity_MapScripts {}
+
+script LyndoraCity_EventScript_SchoolKidF {
+    lock
+    faceplayer
+    // Map-local first conversation; resets when the map is loaded again.
+    if (flag(FLAG_TEMP_1)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Será que um BULBASAUR\nprecisa de fertilizante?\pMelhor perguntar à Elowen!", MSGBOX_DEFAULT)
+            case EN: msgbox("Does a BULBASAUR\nneed fertilizer?\pI'd better ask Elowen!", MSGBOX_DEFAULT)
+            case ES: msgbox("¿Necesitará abono\nun BULBASAUR?\p¡Mejor le pregunto a Elowen!", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Hoje aprendemos que as plantas\nprecisam de água e luz\lpara crescer!\pEntão eu perguntei\nà professora...\pSe eu regar meu BULBASAUR,\nele vai crescer mais rápido?\pHehe! Ela não soube\no que responder!", MSGBOX_DEFAULT)
+            case EN: msgbox("Today we learned that plants\nneed water and light to grow!\pSo I asked my teacher...\pIf I water my BULBASAUR,\nwill it grow faster?\pHehe! She didn't know\nwhat to say!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Hoy aprendimos que las plantas\nnecesitan agua y luz\lpara crecer!\pEntonces le pregunté\na la profesora...\pSi riego a mi BULBASAUR,\n¿crecerá más rápido?\p¡Je, je! ¡No supo\nqué responder!", MSGBOX_DEFAULT)
+        }
+        setflag(FLAG_TEMP_1)
+    }
+    release
+    end
+}
+
+script LyndoraCity_EventScript_Girl {
+    lock
+    faceplayer
+    // Independent of the younger sister's conversation; also map-local.
+    if (flag(FLAG_TEMP_2)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Elowen diz que cuidar de um\nPokémon é como cultivar\luma planta.\pÉ preciso paciência,\ncarinho e atenção.", MSGBOX_DEFAULT)
+            case EN: msgbox("Elowen says caring for a Pokémon\nis like growing a plant.\pIt takes patience,\nlove, and attention.", MSGBOX_DEFAULT)
+            case ES: msgbox("Elowen dice que cuidar de un\nPokémon es como cultivar\luna planta.\pHace falta paciencia,\ncariño y atención.", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Minha irmãzinha acha que pode\nfazer um BULBASAUR crescer\lusando um regador!\pEu disse que Pokémon\nnão funcionam assim...\p...mas agora ela quer testar\ncom meu ODDISH!", MSGBOX_DEFAULT)
+            case EN: msgbox("My little sister thinks she can\nmake a BULBASAUR grow\lwith a watering can!\pI told her Pokémon\ndon't work that way...\p...but now she wants to try\nit on my ODDISH!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Mi hermanita cree que puede\nhacer crecer a un BULBASAUR\lcon una regadera!\pLe dije que los Pokémon\nno funcionan así...\p...¡pero ahora quiere probar\ncon mi ODDISH!", MSGBOX_DEFAULT)
+        }
+        setflag(FLAG_TEMP_2)
+    }
+    release
+    end
+}
+
+script LyndoraCity_EventScript_Fisherman {
+    lock
+    faceplayer
+    checktrainerflag(TRAINER_FISHERMAN_BIROLIRO)
+    goto_if_eq(TRUE, LyndoraCity_EventScript_Fisherman_AfterBattle)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Os Pokémon aquáticos parecem\ntranquilos nestes rios...\pMas são rápidos numa batalha!\nQuer enfrentar minha equipe?", MSGBOX_YESNO)
+        case EN: msgbox("Water Pokémon look so peaceful\nin these rivers...\pBut they're quick in battle!\nWant to take on my team?", MSGBOX_YESNO)
+        case ES: msgbox("Los Pokémon acuáticos parecen\ntranquilos en estos ríos...\p¡Pero son rápidos en combate!\n¿Quieres enfrentarte a mi equipo?", MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == NO) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sem pressa! Até para pescar\né preciso ter paciência.\pMeus Pokémon e eu\nficaremos por aqui!", MSGBOX_DEFAULT)
+            case EN: msgbox("No rush! Fishing takes\npatience, too.\pMy Pokémon and I\nwill be right here!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Sin prisa! Para pescar\ntambién hace falta paciencia.\p¡Mis Pokémon y yo\nseguiremos por aquí!", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: trainerbattle_single(TRAINER_FISHERMAN_BIROLIRO, "Vamos fazer ondas!", "Essa eu não consegui fisgar!")
+        case EN: trainerbattle_single(TRAINER_FISHERMAN_BIROLIRO, "Let's make some waves!", "That one got away!")
+        case ES: trainerbattle_single(TRAINER_FISHERMAN_BIROLIRO, "¡Vamos a levantar olas!", "¡Esta se me escapó!")
+    }
+    goto(LyndoraCity_EventScript_Fisherman_AfterBattle)
+}
+
+script LyndoraCity_EventScript_Fisherman_AfterBattle {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Você tem jeito para batalhas!\pOs Pokémon aquáticos precisam\nde rios limpos para viver.\pCuidar destas águas é cuidar\ndos nossos companheiros!", MSGBOX_DEFAULT)
+        case EN: msgbox("You've got a knack for battling!\pWater Pokémon need clean rivers\nto live in.\pCaring for these waters means\ncaring for our companions!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Se te dan bien los combates!\pLos Pokémon acuáticos necesitan\nríos limpios para vivir.\p¡Cuidar estas aguas es cuidar\na nuestros compañeros!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_EventScript_Psyduck {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_PSYDUCK, MUGSHOT_SOUTHEAST)
+    setspeaker("Psyduck")
+    msgbox("Psy... duck?", MSGBOX_DEFAULT)
+    waitmoncry
+    hidemonmugshot
+    release
+    end
+}
+
+script LyndoraCity_EventScript_OldMan {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Quando eu era menino, ajudava\na cuidar dos jardins daqui.\pHoje, meu POKéMON rega as flores\nenquanto eu descanso.\pHe, he! Ele nunca esquece\nde molhar meus sapatos!", MSGBOX_DEFAULT)
+        case EN: msgbox("As a boy, I used to help\ncare for the gardens here.\pNow my POKéMON waters the flowers\nwhile I take a rest.\pHeh, heh! It never forgets\nto soak my shoes!", MSGBOX_DEFAULT)
+        case ES: msgbox("De niño, ayudaba a cuidar\nlos jardines de aquí.\pAhora mi POKéMON riega las flores\nmientras yo descanso.\p¡Je, je! ¡Nunca se olvida\nde mojarme los zapatos!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_EventScript_GymSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ginásio Pokémon de Lyndora City\pLíder: Elowen\nEspecialista em Pokémon\ldo tipo Planta.\pA gentileza que faz\na força florescer!", MSGBOX_SIGN)
+        case EN: msgbox("Lyndora City Pokémon Gym\pLeader: Elowen\nGrass-type Pokémon specialist.\pThe kindness that makes\nstrength bloom!", MSGBOX_SIGN)
+        case ES: msgbox("Gimnasio Pokémon de Lyndora City\pLíder: Elowen\nEspecialista en Pokémon\lde tipo Planta.\p¡La dulzura que hace\nflorecer la fuerza!", MSGBOX_SIGN)
+    }
+    end
+}
+
+script LyndoraCity_EventScript_CitySign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Lyndora City\pOnde a amizade floresce\nàs margens dos rios.", MSGBOX_SIGN)
+        case EN: msgbox("Lyndora City\pWhere friendship blooms\nalong the rivers.", MSGBOX_SIGN)
+        case ES: msgbox("Lyndora City\pDonde la amistad florece\na orillas de los ríos.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script LyndoraCity_EventScript_FlowerShopSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Floricultura de Lyndora City\pFlores para alegrar seu dia!", MSGBOX_SIGN)
+        case EN: msgbox("Lyndora City Flower Shop\pFlowers to brighten your day!", MSGBOX_SIGN)
+        case ES: msgbox("Floristería de Lyndora City\p¡Flores para alegrar tu día!", MSGBOX_SIGN)
+    }
+    end
+}
+
+script LyndoraCity_EventScript_PokemonCenterSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Centro Pokémon\pUma pausa na jornada.\nCuidado e descanso para\lseus POKéMON.", MSGBOX_SIGN)
+        case EN: msgbox("Pokémon Center\pA break from your journey.\nCare and rest for\lyour POKéMON.", MSGBOX_SIGN)
+        case ES: msgbox("Centro Pokémon\pUna pausa en tu viaje.\nCuidado y descanso para\ltus POKéMON.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script LyndoraCity_EventScript_MartSign {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Loja Pokémon\pSuprimentos para explorar\nLyndora e seguir viagem.", MSGBOX_SIGN)
+        case EN: msgbox("Poké Mart\pSupplies to explore Lyndora\nand continue your journey.", MSGBOX_SIGN)
+        case ES: msgbox("Tienda Pokémon\pProvisiones para explorar\nLyndora y seguir tu viaje.", MSGBOX_SIGN)
+    }
+    end
+}
+
+script LyndoraCity_EventScript_FountainResident {
+    lock
+    faceplayer
+    if (flag(FLAG_LYNDORA_MET_FOUNTAIN_RESIDENT)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Esta fonte é o orgulho\nda nossa cidade!\pDizem que sua água vem das\nnascentes nas montanhas.", MSGBOX_DEFAULT)
+            case EN: msgbox("This fountain is the pride\nof our city!\pThey say its water comes from\nsprings in the mountains.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Esta fuente es el orgullo\nde nuestra ciudad!\pDicen que su agua viene de\nmanantiales en las montañas.", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Bem-vindo a Lyndora City!\pAqui, até as ruas parecem fazer\nparte de um grande jardim!\pBonito, não acha?", MSGBOX_DEFAULT)
+            case EN: msgbox("Welcome to Lyndora City!\pEven the streets here feel\nlike part of one big garden!\pLovely, isn't it?", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Bienvenido a Lyndora City!\p¡Aquí, hasta las calles parecen\nparte de un gran jardín!\pBonito, ¿verdad?", MSGBOX_DEFAULT)
+        }
+        setflag(FLAG_LYNDORA_MET_FOUNTAIN_RESIDENT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_EventScript_Gardener {
+    lock
+    faceplayer
+    // The plants event is not implemented yet. Its ending must set this flag.
+    if (flag(FLAG_LYNDORA_PLANTS_EVENT_COMPLETE)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Elowen está investigando o que\naconteceu com as flores.\pEspero que elas voltem\nao normal logo...", MSGBOX_DEFAULT)
+            case EN: msgbox("Elowen is looking into what\nhappened to the flowers.\pI hope they return\nto normal soon...", MSGBOX_DEFAULT)
+            case ES: msgbox("Elowen está investigando qué\nles pasó a las flores.\pEspero que pronto vuelvan\na la normalidad...", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Cuido destas flores\nhá muitos anos.\pMas ultimamente algumas têm\nflorescido antes da época...\pQue estranho, não acha?", MSGBOX_DEFAULT)
+            case EN: msgbox("I've cared for these flowers\nfor many years.\pBut lately, some have been\nblooming before their season...\pStrange, isn't it?", MSGBOX_DEFAULT)
+            case ES: msgbox("Cuido estas flores\ndesde hace muchos años.\pPero últimamente algunas\nflorecen antes de tiempo...\pQué extraño, ¿verdad?", MSGBOX_DEFAULT)
+        }
+    }
+    release
+    end
+}
+
+script LyndoraCity_EventScript_Gardener2 {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Cuido com muito carinho\ndestas flores à minha frente.\pQuando olho para elas,\nsinto que estão sorrindo para mim!", MSGBOX_DEFAULT)
+        case EN: msgbox("I take such good care\nof the flowers in front of me.\pWhen I look at them,\nI can feel them smiling!", MSGBOX_DEFAULT)
+        case ES: msgbox("Cuido con mucho cariño\nde estas flores que tengo delante.\pCuando las miro,\n¡siento que me sonríen!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}

@@ -1,0 +1,81 @@
+mapscripts Route5_House_MapScripts {}
+
+script Route5_House_EventScript_Farmer {
+    lock
+    faceplayer
+    if (!flag(FLAG_ROUTE5_HOUSE_RECEIVED_ORAN)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Entre, entre! Aqui a gente só\ndeixa a chuva do lado de fora.\pSou quem cuida do pomar.\nMeu segredo? Nunca trabalhar\lsem cuidar dos parceiros.\pLeve três Oran Berries.\nColhi antes da chuva apertar!", MSGBOX_DEFAULT)
+            case EN: msgbox("Come in! Rain is the only guest\nwe leave outside.\pI tend the orchard. My secret?\nAlways look after the partners\lwho work beside you.\pTake three Oran Berries.\nI picked them before the storm!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Pasa! Aquí solo dejamos\nla lluvia fuera de casa.\pYo cuido el huerto. ¿Mi secreto?\nCuidar siempre a los compañeros\lque trabajan a mi lado.\pLleva tres Bayas Oran.\n¡Las recogí antes de la tormenta!", MSGBOX_DEFAULT)
+        }
+        checkitemspace(ITEM_ORAN_BERRY, 3)
+        if (var(VAR_RESULT) == FALSE) {
+            call(Route5_House_EventScript_BagFull)
+            release
+            end
+        }
+        giveitem(ITEM_ORAN_BERRY, 3)
+        if (var(VAR_0x8007) == FALSE) {
+            release
+            end
+        }
+        setflag(FLAG_ROUTE5_HOUSE_RECEIVED_ORAN)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma Oran Berry recupera 10 PS.\pSe um Pokémon a segurar,\nele a come sozinho na batalha\lquando os PS ficam pela metade.\pDepois de usada, ela acaba.\nConfira o item antes de sair!\pSaco vazio não para em pé.\nVale para fazendeiro e Pokémon!", MSGBOX_DEFAULT)
+        case EN: msgbox("An Oran Berry restores 10 HP.\pIf a Pokémon holds one, it eats\nit during battle when its HP\ldrops to half or less.\pThe Berry is consumed.\nCheck held items before leaving!\pNobody works well on an empty\nstomach. Farmers or Pokémon!", MSGBOX_DEFAULT)
+        case ES: msgbox("Una Baya Oran restaura 10 PS.\pSi un Pokémon lleva una, la come\nen combate cuando sus PS bajan\la la mitad o menos.\pLa baya se consume.\n¡Revisa los objetos antes de salir!\p¡Nadie trabaja bien con hambre,\nni granjeros ni Pokémon!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script Route5_House_EventScript_Wife {
+    lock
+    faceplayer
+    if (!flag(FLAG_ROUTE5_HOUSE_RECEIVED_PECHA)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Meu marido conta as colheitas.\nEu conto quantas vezes ele volta\lcom os bolsos cheios de terra.\pTambém separo Pecha Berries\npara nossos Pokémon.\pLeve duas. No mato, nem todo\nencontro deixa só arranhões!", MSGBOX_DEFAULT)
+            case EN: msgbox("My husband counts the harvests.\nI count how often he comes home\lwith pockets full of dirt.\pI also set aside Pecha Berries\nfor our Pokémon.\pTake two. Out in the grass,\nscratches aren't the only risk!", MSGBOX_DEFAULT)
+            case ES: msgbox("Mi marido cuenta las cosechas.\nYo cuento cuántas veces vuelve\lcon tierra en los bolsillos.\pTambién guardo Bayas Pecha\npara nuestros Pokémon.\pLleva dos. ¡En la hierba hay\nmás peligros que los arañazos!", MSGBOX_DEFAULT)
+        }
+        checkitemspace(ITEM_PECHA_BERRY, 2)
+        if (var(VAR_RESULT) == FALSE) {
+            call(Route5_House_EventScript_BagFull)
+            release
+            end
+        }
+        giveitem(ITEM_PECHA_BERRY, 2)
+        if (var(VAR_0x8007) == FALSE) {
+            release
+            end
+        }
+        setflag(FLAG_ROUTE5_HOUSE_RECEIVED_PECHA)
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Pecha Berry cura envenenamento.\nEla não recupera os PS perdidos!\pÀs vezes é preciso cuidar\ndo veneno e dos ferimentos.\pA descrição de cada item ajuda\na escolher o tratamento certo.\pÉ como aqui em casa: uma coisa\né tirar a lama das botas...\loutra é consertar os furos!", MSGBOX_DEFAULT)
+        case EN: msgbox("A Pecha Berry cures poisoning.\nIt won't restore lost HP!\pSometimes you need to treat\nboth poison and injuries.\pRead each item's description\nto choose the right treatment.\pIt's like our boots: washing\noff the mud is one thing...\lfixing the holes is another!", MSGBOX_DEFAULT)
+        case ES: msgbox("Una Baya Pecha cura el veneno.\n¡No recupera los PS perdidos!\pA veces hay que tratar\nel veneno y las heridas.\pLee la descripción de cada\nobjeto para elegir bien.\pEs como con las botas: quitar\nel barro es una cosa...\l¡reparar los agujeros es otra!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script Route5_House_EventScript_Child {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Eu escolhia meus golpes\nsó pelo nome mais assustador!\pAí perdi pro Pokémon do vovô.\nEle nem largou a caneca...\pAgora leio o resumo dos golpes.\nOlho o tipo, a precisão\le se causam dano ou dão apoio.\pNa próxima, ele vai ter\nque largar essa caneca!", MSGBOX_NPC)
+        case EN: msgbox("I used to pick moves with\nthe scariest names!\pThen Grandpa's Pokémon beat me.\nHe didn't even put his mug down...\pNow I read the move summaries.\nI check type, accuracy, and\lwhether they deal damage or help.\pNext time, he'll have\nto put that mug down!", MSGBOX_NPC)
+        case ES: msgbox("¡Yo elegía los movimientos\ncon los nombres más temibles!\pLuego me ganó el Pokémon\ndel abuelo. ¡Ni soltó su taza!\pAhora leo los movimientos.\nMiro el tipo, la precisión\ly si hacen daño o dan apoyo.\p¡La próxima vez tendrá\nque soltar esa taza!", MSGBOX_NPC)
+    }
+    end
+}
+
+script Route5_House_EventScript_BagFull {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Não cabe na sua Bolsa?\nPode deixar que eu guardo.\pAbra espaço e volte\npara buscar suas Berries!", MSGBOX_DEFAULT)
+        case EN: msgbox("No room in your Bag?\nI'll keep these for you.\pMake some space and come back\nfor your Berries!", MSGBOX_DEFAULT)
+        case ES: msgbox("¿No caben en tu Bolsa?\nTe las guardaré.\p¡Haz espacio y vuelve\na buscar tus bayas!", MSGBOX_DEFAULT)
+    }
+    return
+}

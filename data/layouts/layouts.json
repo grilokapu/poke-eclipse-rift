@@ -328,6 +328,86 @@
       "secondary_tileset": "gTileset_Stonereach",
       "border_filepath": "data/layouts/Route4/border.bin",
       "blockdata_filepath": "data/layouts/Route4/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANT_SANCTUM",
+      "name": "VerdantSanctum_Layout",
+      "width": 60,
+      "height": 78,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianForest",
+      "border_filepath": "data/layouts/VerdantSanctum/border.bin",
+      "blockdata_filepath": "data/layouts/VerdantSanctum/map.bin"
+    },
+    {
+      "id": "LAYOUT_VERDANT_SANCTUM_SHRINE",
+      "name": "VerdantSanctum_Shrine_Layout",
+      "width": 10,
+      "height": 11,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_ViridianForest",
+      "border_filepath": "data/layouts/VerdantSanctum_Shrine/border.bin",
+      "blockdata_filepath": "data/layouts/VerdantSanctum_Shrine/map.bin"
+    },
+    {
+      "id": "LAYOUT_MOSS_VALE_TOWN",
+      "name": "MossValeTown_Layout",
+      "width": 40,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MossvaleTown",
+      "border_filepath": "data/layouts/MossValeTown/border.bin",
+      "blockdata_filepath": "data/layouts/MossValeTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE5",
+      "name": "Route5_Layout",
+      "width": 48,
+      "height": 48,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MossvaleTown",
+      "border_filepath": "data/layouts/Route5/border.bin",
+      "blockdata_filepath": "data/layouts/Route5/map.bin"
+    },
+    {
+      "id": "LAYOUT_LYNDORA_CITY",
+      "name": "LyndoraCity_Layout",
+      "width": 60,
+      "height": 55,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_LyndoraCity",
+      "border_filepath": "data/layouts/LyndoraCity/border.bin",
+      "blockdata_filepath": "data/layouts/LyndoraCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_LYNDORA_CITY_FLOWER_SHOP",
+      "name": "LyndoraCity_FlowerShop_Layout",
+      "width": 13,
+      "height": 11,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_FlowerShop",
+      "border_filepath": "data/layouts/LyndoraCity_FlowerShop/border.bin",
+      "blockdata_filepath": "data/layouts/LyndoraCity_FlowerShop/map.bin"
+    },
+    {
+      "id": "LAYOUT_LYNDORA_CITY_FLOWER_SHOP_BASEMENT",
+      "name": "LyndoraCity_FlowerShop_Basement_Layout",
+      "width": 9,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_FlowerShop",
+      "border_filepath": "data/layouts/LyndoraCity_FlowerShop_Basement/border.bin",
+      "blockdata_filepath": "data/layouts/LyndoraCity_FlowerShop_Basement/map.bin"
+    },
+    {
+      "id": "LAYOUT_LYNDORA_CITY_GYM",
+      "name": "LyndoraCity_Gym_Layout",
+      "width": 21,
+      "height": 25,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_LyndoraGym",
+      "border_filepath": "data/layouts/LyndoraCity_Gym/border.bin",
+      "blockdata_filepath": "data/layouts/LyndoraCity_Gym/map.bin"
     }
   ]
 }

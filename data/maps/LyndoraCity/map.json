@@ -1,0 +1,254 @@
+{
+  "id": "MAP_LYNDORA_CITY",
+  "name": "LyndoraCity",
+  "layout": "LAYOUT_LYNDORA_CITY",
+  "music": "MUS_FALLARBOR",
+  "region_map_section": "MAPSEC_LYNDORA_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE5",
+      "offset": -14,
+      "direction": "left"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 41,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_Gardener",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_2",
+      "x": 50,
+      "y": 22,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_FountainResident",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_LYNDORA_CITY_OLD_MAN",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN",
+      "x": 26,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_OldMan",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_LYNDORA_CITY_PSYDUCK",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PSYDUCK)",
+      "x": 29,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_Psyduck",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_LYNDORA_CITY_FISHERMAN",
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+      "x": 20,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_Fisherman",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_LYNDORA_CITY_SCHOOL_KID_F",
+      "graphics_id": "OBJ_EVENT_GFX_SCHOOL_KID_F",
+      "x": 10,
+      "y": 33,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_SchoolKidF",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_LYNDORA_CITY_GIRL",
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+      "x": 12,
+      "y": 44,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_Girl",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_LYNDORA_CITY_GARDENER_2",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
+      "x": 38,
+      "y": 36,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "LyndoraCity_EventScript_Gardener2",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "warp_id": "WARP_ID_LYNDORA_POKEMON_CENTER",
+      "x": 30,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_POKEMON_CENTER",
+      "dest_warp_id": "WARP_ID_LYNDORA_PC_EXIT"
+    },
+    {
+      "warp_id": "WARP_ID_LYNDORA_HOUSE1",
+      "x": 10,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_HOUSE1",
+      "dest_warp_id": "WARP_ID_LYNDORA_HOUSE1_EXIT_0"
+    },
+    {
+      "warp_id": "WARP_ID_LYNDORA_HOUSE2",
+      "x": 28,
+      "y": 21,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_HOUSE2",
+      "dest_warp_id": "WARP_ID_LYNDORA_HOUSE2_EXIT_0"
+    },
+    {
+      "warp_id": "WARP_ID_LYNDORA_HOUSE3",
+      "x": 54,
+      "y": 29,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_HOUSE3",
+      "dest_warp_id": "WARP_ID_LYNDORA_HOUSE3_EXIT_0"
+    },
+    {
+      "warp_id": "WARP_ID_LYNDORA_MART",
+      "x": 56,
+      "y": 12,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_MART",
+      "dest_warp_id": "WARP_ID_LYNDORA_MART_EXIT_0"
+    },
+    {
+      "warp_id": "WARP_ID_LYNDORA_FLOWER_SHOP_ENTRANCE",
+      "x": 5,
+      "y": 41,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_FLOWER_SHOP",
+      "dest_warp_id": "WARP_ID_LYNDORA_FLOWER_SHOP_EXIT"
+    },
+    {
+      "warp_id": "WARP_ID_LYNDORA_GYM",
+      "x": 45,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_LYNDORA_CITY_GYM",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 40,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_LYNDORA_CITY_STATE",
+      "var_value": "0",
+      "script": "NULL"
+    },
+    {
+      "type": "trigger",
+      "x": 40,
+      "y": 38,
+      "elevation": 0,
+      "var": "VAR_LYNDORA_CITY_STATE",
+      "var_value": "0",
+      "script": "NULL"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 32,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LyndoraCity_EventScript_PokemonCenterSign"
+    },
+    {
+      "type": "sign",
+      "x": 58,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LyndoraCity_EventScript_MartSign"
+    },
+    {
+      "type": "sign",
+      "x": 49,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LyndoraCity_EventScript_GymSign"
+    },
+    {
+      "type": "sign",
+      "x": 3,
+      "y": 42,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LyndoraCity_EventScript_FlowerShopSign"
+    },
+    {
+      "type": "sign",
+      "x": 46,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "LyndoraCity_EventScript_CitySign"
+    }
+  ]
+}

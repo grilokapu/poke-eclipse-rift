@@ -1,0 +1,58 @@
+mapscripts MossvaleTown_Mart_MapScripts {
+
+}
+
+script MossvaleTown_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: message(gText_HowMayIServeYouPt)
+        case EN: message(gText_HowMayIServeYou)
+        case ES: message(gText_HowMayIServeYouEs)
+    }
+    waitmessage
+    pokemart(MossvaleTown_Mart_Pokemart)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox(gText_PleaseComeAgainPt)
+        case EN: msgbox(gText_PleaseComeAgain)
+        case ES: msgbox(gText_PleaseComeAgainEs)
+    }
+    release
+    end
+}
+
+script MossvaleTown_Mart_EventScript_Boy {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Vim buscar Great Balls antes\nde explorar Mossvale.\pSe eu encontrar um POKéMON\nnovo entre as folhas, quero\lestar preparado!", MSGBOX_NPC)
+        case EN: msgbox("I came for Great Balls before\nexploring Mossvale.\pIf I find a new POKéMON\namong the leaves, I want\lto be ready!", MSGBOX_NPC)
+        case ES: msgbox("Vine por Great Balls antes\nde explorar Mossvale.\pSi encuentro un POKéMON nuevo\nentre las hojas, ¡quiero\lestar preparado!", MSGBOX_NPC)
+    }
+    end
+}
+
+script MossvaleTown_Mart_EventScript_Woman {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Eu levo Antidotes e Awakenings\nquando vou caminhar por aqui.\pMeu POKéMON adora enfiar o\nfocinho em cada moita...\lMelhor levar alguns extras!", MSGBOX_NPC)
+        case EN: msgbox("I pack Antidotes and Awakenings\nwhen I go walking around here.\pMy POKéMON loves poking its\nnose into every bush...\lBetter bring a few extras!", MSGBOX_NPC)
+        case ES: msgbox("Llevo Antidotes y Awakenings\ncuando salgo a caminar por aquí.\pA mi POKéMON le encanta meter\nel hocico en cada arbusto...\l¡Mejor llevar unos de más!", MSGBOX_NPC)
+    }
+    end
+}
+
+mart MossvaleTown_Mart_Pokemart {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_ESCAPE_ROPE
+    ITEM_REPEL
+    ITEM_SUPER_REPEL
+    ITEM_X_SPEED
+    ITEM_X_ATTACK
+    ITEM_X_DEFENSE
+}

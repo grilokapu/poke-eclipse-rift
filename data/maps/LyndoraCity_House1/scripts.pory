@@ -1,0 +1,92 @@
+mapscripts LyndoraCity_House1_MapScripts {}
+
+script LyndoraCity_House1_EventScript_RetiredTrainer {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_SOOTHE_BELL_LYNDORA)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Não importa quantas\nbatalhas você vença.\pUm Pokémon que confia em você\né seu maior companheiro.", MSGBOX_DEFAULT)
+            case EN: msgbox("It doesn't matter how many\nbattles you win.\pA Pokémon that trusts you\nis your greatest companion.", MSGBOX_DEFAULT)
+            case ES: msgbox("No importa cuántos\ncombates ganes.\pUn Pokémon que confía en ti\nes tu mejor compañero.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Quando era mais jovem, viajei\npor muitas regiões.\pParticipei de incontáveis\nbatalhas...\pMas sabe o que descobri?\pOs melhores momentos nem sempre\nacontecem em uma arena.\pÀs vezes, basta estar ao lado\ndos nossos Pokémon.", MSGBOX_DEFAULT)
+        case EN: msgbox("When I was younger, I traveled\nthrough many regions.\pI took part in countless\nbattles...\pBut do you know what I learned?\pThe best moments don't always\nhappen in an arena.\pSometimes, just being with\nour Pokémon is enough.", MSGBOX_DEFAULT)
+        case ES: msgbox("De joven, viajé\npor muchas regiones.\pParticipé en innumerables\ncombates...\p¿Pero sabes qué descubrí?\pLos mejores momentos no siempre\nocurren en una arena.\pA veces, basta con estar\njunto a nuestros Pokémon.", MSGBOX_DEFAULT)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ah! Tenho algo que talvez\nseja útil na sua jornada.", MSGBOX_DEFAULT)
+        case EN: msgbox("Oh! I have something that\nmight help on your journey.", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Ah! Tengo algo que quizás\nte sirva en tu viaje.", MSGBOX_DEFAULT)
+    }
+    checkitemspace(ITEM_SOOTHE_BELL, 1)
+    if (var(VAR_RESULT) == FALSE) {
+        call(LyndoraCity_House1_EventScript_BagFull)
+        release
+        end
+    }
+    giveitem(ITEM_SOOTHE_BELL, 1)
+    if (var(VAR_0x8007) == FALSE) {
+        release
+        end
+    }
+    setflag(FLAG_RECEIVED_SOOTHE_BELL_LYNDORA)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Se um Pokémon segurar esse sino,\nsua amizade crescerá mais rápido.\pCuide bem deles, está bem?", MSGBOX_DEFAULT)
+        case EN: msgbox("A Pokémon holding this bell\nwill grow friendly more quickly.\pTake good care of them, all right?", MSGBOX_DEFAULT)
+        case ES: msgbox("Un Pokémon que lleve esta campana\nganará amistad más rápido.\pCuida bien de ellos, ¿de acuerdo?", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_House1_EventScript_BagFull {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Sua Bolsa está cheia?\pVou guardar o sino para você.\nAbra espaço e volte depois!", MSGBOX_DEFAULT)
+        case EN: msgbox("Is your Bag full?\pI'll keep the bell for you.\nMake some room and come back!", MSGBOX_DEFAULT)
+        case ES: msgbox("¿Tu Bolsa está llena?\pTe guardaré la campana.\n¡Haz espacio y vuelve luego!", MSGBOX_DEFAULT)
+    }
+    return
+}
+
+script LyndoraCity_House1_EventScript_Woman {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu marido diz que se aposentou\ndas batalhas...\pMas ainda acorda cedo\npara treinar nosso BUDEW!\pHehe! Algumas coisas\nnunca mudam.", MSGBOX_DEFAULT)
+        case EN: msgbox("My husband says he's retired\nfrom battling...\pBut he still gets up early\nto train our BUDEW!\pHehe! Some things\nnever change.", MSGBOX_DEFAULT)
+        case ES: msgbox("Mi marido dice que se retiró\nde los combates...\p¡Pero aún madruga\npara entrenar a nuestro BUDEW!\p¡Je, je! Algunas cosas\nnunca cambian.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_House1_EventScript_Budew {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_BUDEW, MUGSHOT_SOUTHEAST)
+    msgbox("BUDEW: Budew!", MSGBOX_DEFAULT)
+    waitmoncry
+    hidemonmugshot
+    movenpc(LOCALID_LYNDORA_HOUSE1_BUDEW, moves(emoji_smiley))
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O BUDEW parece estar\naproveitando a luz do sol.", MSGBOX_DEFAULT)
+        case EN: msgbox("BUDEW seems to be\nenjoying the sunlight.", MSGBOX_DEFAULT)
+        case ES: msgbox("BUDEW parece estar\ndisfrutando de la luz del sol.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_House1_EventScript_Plant {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Uma pequena planta cresce\nperto da janela.\pSuas folhas estão\nverdes e saudáveis.", MSGBOX_SIGN)
+        case EN: msgbox("A small plant grows\nnear the window.\pIts leaves look\ngreen and healthy.", MSGBOX_SIGN)
+        case ES: msgbox("Una pequeña planta crece\ncerca de la ventana.\pSus hojas están\nverdes y sanas.", MSGBOX_SIGN)
+    }
+    end
+}

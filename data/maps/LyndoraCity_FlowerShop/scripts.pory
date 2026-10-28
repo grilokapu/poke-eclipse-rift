@@ -1,0 +1,43 @@
+mapscripts LyndoraCity_FlowerShop_MapScripts {}
+
+script LyndoraCity_FlowerShop_EventScript_Clerk {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Bem-vindo à nossa floricultura!\pTemos flores de várias cores e\nplantas para todos os gostos.\pElowen é uma das nossas clientes\nmais dedicadas.\pEla sempre diz que cuidar de uma\nplanta exige paciência!", MSGBOX_DEFAULT)
+        case EN: msgbox("Welcome to our flower shop!\pWe have flowers in many colors\nand plants for every taste.\pElowen is one of our most\ndedicated customers.\pShe always says caring for a plant\ntakes patience!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Bienvenido a nuestra floristería!\pTenemos flores de muchos colores\ny plantas para todos los gustos.\pElowen es una de nuestras clientas\nmás dedicadas.\p¡Siempre dice que cuidar una planta\nrequiere paciencia!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_FlowerShop_EventScript_Customer {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Estou procurando flores para\ndecorar minha casa.\pÉ difícil escolher! Todas são\ntão bonitas!\pTalvez eu leve algumas rosas...\pAh, preciso decidir logo!", MSGBOX_DEFAULT)
+        case EN: msgbox("I'm looking for flowers to\ndecorate my home.\pIt's hard to choose! They're all\nso beautiful!\pMaybe I'll get some roses...\pOh, I should decide soon!", MSGBOX_DEFAULT)
+        case ES: msgbox("Busco flores para decorar\nmi casa.\p¡Es difícil elegir! Todas son\ntan bonitas.\pQuizás lleve unas rosas...\p¡Ay, debo decidirme pronto!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_FlowerShop_EventScript_PlantCustomer {
+    lock
+    faceplayer
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Quero colocar algumas plantas\nna minha sala.\pMas sempre esqueço de regá-las...\pTalvez eu devesse começar\ncom um CACTURNE!", MSGBOX_DEFAULT)
+        case EN: msgbox("I want some plants for my\nliving room.\pBut I always forget to water them...\pMaybe I should start with\na CACTURNE!", MSGBOX_DEFAULT)
+        case ES: msgbox("Quiero poner algunas plantas\nen mi sala.\pPero siempre olvido regarlas...\p¡Quizás debería empezar\ncon un CACTURNE!", MSGBOX_DEFAULT)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("...Espera, acho que esse não é\no tipo de planta vendido aqui!", MSGBOX_DEFAULT)
+        case EN: msgbox("...Wait, I don't think that's the\nkind of plant they sell here!", MSGBOX_DEFAULT)
+        case ES: msgbox("...Espera, ¡creo que ese no es\nel tipo de planta que venden aquí!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}

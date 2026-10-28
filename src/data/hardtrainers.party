@@ -371,3 +371,219 @@ Nature: Impish
 - Aerial Ace
 - Knock Off
 - Stealth Rock
+
+=== TRAINER_POKEMON_RANGER_EDU ===
+Name: Edu
+Class: Pkmn Ranger
+Pic: Pokemon Ranger M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Smart Trainer
+
+Teddiursa @ Silk Scarf
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 16 Spe
+Nature: Adamant
+- Covet
+- Lick
+- Fury Swipes
+- Baby-Doll Eyes
+
+Meditite @ Black Belt
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Jolly
+- Force Palm
+- Rock Tomb
+- Confusion
+- Detect
+
+Maractus @ Miracle Seed
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 0 Atk / 0 Def / 20 SpA / 20 SpD / 0 Spe
+Nature: Modest
+- Mega Drain
+- Pin Missile
+- Growth
+- Synthesis
+
+Growlithe @ Oran Berry
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 16 Spe
+Nature: Adamant
+- Flame Wheel
+- Bite
+- Leer
+- Roar
+
+Wooper @ Oran Berry
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 0 Atk / 20 Def / 16 SpA / 0 SpD / 0 Spe
+Nature: Bold
+- Water Pulse
+- Mud Shot
+- Yawn
+- Haze
+
+Hoothoot @ Chesto Berry
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 20 HP / 0 Atk / 0 Def / 20 SpA / 20 SpD / 0 Spe
+Nature: Calm
+- Confusion
+- Echoed Voice
+- Reflect
+- Hypnosis
+
+=== TRAINER_ACE_TRAINER_ALMA ===
+Name: Alma
+Class: Ace Trainer
+Pic: Ace Trainer F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Smart Trainer
+
+Ivysaur @ Miracle Seed
+Level: 18
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 0 Atk / 0 Def / 24 SpA / 0 SpD / 24 Spe
+Nature: Modest
+- Magical Leaf
+- Acid Spray
+- Sleep Powder
+- Leech Seed
+
+Nidorina @ Oran Berry
+Level: 18
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 24 Atk / 0 Def / 0 SpA / 0 SpD / 24 Spe
+Nature: Adamant
+- Poison Tail
+- Dig
+- Aerial Ace
+- Toxic Spikes
+
+Growlithe @ Charcoal
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 24 Atk / 0 Def / 0 SpA / 0 SpD / 20 Spe
+Nature: Adamant
+- Flame Wheel
+- Bite
+- Howl
+- Roar
+
+Chinchou @ Oran Berry
+Level: 17
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 0 Atk / 0 Def / 24 SpA / 0 SpD / 20 Spe
+Nature: Modest
+- Water Pulse
+- Electro Ball
+- Thunder Wave
+- Confuse Ray
+
+Meditite @ Black Belt
+Level: 18
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 24 Atk / 0 Def / 0 SpA / 0 SpD / 24 Spe
+Nature: Jolly
+- Force Palm
+- Rock Tomb
+- Confusion
+- Detect
+
+Staravia @ Sharp Beak
+Level: 18
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 24 Atk / 0 Def / 0 SpA / 0 SpD / 24 Spe
+Nature: Jolly
+- Wing Attack
+- Quick Attack
+- U-turn
+- Endeavor
+
+=== TRAINER_LEADER_ELOWEN ===
+Name: Elowen
+Class: Leader
+Pic: Elowen
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Smart Trainer
+Mugshot: Yellow
+
+Breloom @ Loaded Dice
+Ability: Technician
+Level: 25
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 34 Atk / 0 Def / 0 SpA / 0 SpD / 34 Spe
+Nature: Jolly
+- Bullet Seed
+- Rock Blast
+- Mach Punch
+- Spore
+
+Weepinbell @ Black Sludge
+Ability: Chlorophyll
+Level: 25
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 0 Atk / 0 Def / 24 SpA / 0 SpD / 24 Spe
+Nature: Timid
+- Sleep Power
+- Sludge
+- Mega Drain
+- Synthesis
+
+Leavanny @ Expert Belt
+Ability: Chlorophyll
+Level: 25
+IVs: 31 HP / 3131 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 0 HP / 34 Atk / 0 Def / 0 SpA / 0 SpD / 34 Spe
+Nature: Adamant
+- Knock Off
+- Leaf Blade
+- Pounce
+- Synthesis
+
+Dipplin @ Eviolite
+Ability: Sticky Hold
+Level: 25
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 0 Atk / 24 Def / 0 SpA / 24 SpD / 0 Spe
+Nature: Careful
+- Mega Drain
+- Dragon Tail
+- Infestation
+- Protect
+
+Foongus @ Leftovers
+Ability: Contrary
+Level: 25
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 24 HP / 24 Atk / 0 Def / 0 SpA / 24 SpD / 0 Spe
+Nature: Bold
+- Substitute
+- Leech Seed
+- Protect
+- Toxic
+
+Sinistcha @ Leftovers
+Ability: Heatproof
+Level: 25
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 34 HP / 24 Atk / 0 Def / 0 SpA / 0 SpD / 14 Spe
+Nature: Bold
+Tera Type: Ghost
+- Calm Mind
+- Hex
+- Stun Spore
+- Strength Sap
+

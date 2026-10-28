@@ -1,0 +1,65 @@
+mapscripts MossvaleTown_House_4_MapScripts {}
+
+script MossvaleTown_House_4_EventScript_Girl {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Ele diz que pegou um peixe\nmaior que esta casa.\pToda vez que conta a história,\na casa fica menor.", MSGBOX_NPC)
+        case EN: msgbox("He says he caught a fish\nbigger than this house.\pEvery time he tells the story,\nthe house gets smaller.", MSGBOX_NPC)
+        case ES: msgbox("Dice que pescó un pez\nmás grande que esta casa.\pCada vez que lo cuenta,\nla casa se hace más pequeña.", MSGBOX_NPC)
+    }
+    end
+}
+
+script MossvaleTown_House_4_EventScript_Fisherman {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_OLD_ROD)) {
+        call(MossvaleTown_House_4_EventScript_FishingLesson)
+        release
+        end
+    }
+    checkitem(ITEM_OLD_ROD)
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_RECEIVED_OLD_ROD)
+        call(MossvaleTown_House_4_EventScript_FishingLesson)
+        release
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Pescar é minha especialidade!\nEsperar também.\pÀs vezes espero tanto que\nesqueço qual das duas\lestou praticando.", MSGBOX_DEFAULT)
+        case EN: msgbox("Fishing is my specialty!\nSo is waiting.\pSometimes I wait so long\nthat I forget which one\lI am practicing.", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Pescar es mi especialidad!\nEsperar también.\pA veces espero tanto que\nolvido cuál de las dos\lestoy practicando.", MSGBOX_DEFAULT)
+    }
+    call(MossvaleTown_House_4_EventScript_FishingLesson)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Agora só falta uma vara!\pPode ficar com esta Old Rod.\nEla já me rendeu boas histórias.\lAgora é a sua vez!", MSGBOX_DEFAULT)
+        case EN: msgbox("Now you just need a rod!\pYou can have this Old Rod.\nIt gave me plenty of stories.\lNow it is your turn!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Ahora solo te falta una caña!\pPuedes quedarte esta Old Rod.\nMe dio muchas buenas historias.\l¡Ahora te toca a ti!", MSGBOX_DEFAULT)
+    }
+    giveitem(ITEM_OLD_ROD)
+    if (var(VAR_RESULT) == FALSE) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Sua Bolsa está cheia.\nAbra espaço e volte aqui.\lVou guardar a vara para você.", MSGBOX_DEFAULT)
+            case EN: msgbox("Your Bag is full.\nMake room and come back.\lI will keep the rod for you.", MSGBOX_DEFAULT)
+            case ES: msgbox("Tu Bolsa está llena.\nHaz espacio y vuelve.\lTe guardaré la caña.", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    setflag(FLAG_RECEIVED_OLD_ROD)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("A vara ajuda, mas não pesca\nsozinha. Lembre-se da lição!", MSGBOX_DEFAULT)
+        case EN: msgbox("The rod helps, but it cannot\nfish on its own. Remember\lthe lesson!", MSGBOX_DEFAULT)
+        case ES: msgbox("La caña ayuda, pero no pesca\nsola. ¡Recuerda la lección!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script MossvaleTown_House_4_EventScript_FishingLesson {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Fique na margem, olhando\npara a água, e use uma vara\lpela Bolsa.\pEspere um POKéMON fisgar\na isca. Quando isso acontecer,\laperte o botão A!\pSe ele escapar, tente de novo.\nPaciência também faz parte\lda pescaria.", MSGBOX_DEFAULT)
+        case EN: msgbox("Stand at the shore, face\nthe water, and use a rod\lfrom your Bag.\pWait for a POKéMON to bite.\nWhen it does, press\lthe A Button!\pIf it gets away, try again.\nPatience is part of\lfishing too.", MSGBOX_DEFAULT)
+        case ES: msgbox("Ponte en la orilla, mirando\nal agua, y usa una caña\ldesde la Bolsa.\pEspera a que pique un POKéMON.\nCuando lo haga, ¡pulsa\lel botón A!\pSi se escapa, vuelve a intentar.\nLa paciencia también forma\lparte de la pesca.", MSGBOX_DEFAULT)
+    }
+    return
+}

@@ -3516,6 +3516,20 @@ bool8 ScrCmd_getbraillestringwidth(struct ScriptContext * ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_signmsg(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+    gMsgIsSignPost = TRUE;
+    return FALSE;
+}
+
+bool8 ScrCmd_normalmsg(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+    gMsgIsSignPost = FALSE;
+    return FALSE;
+}
+
 bool8 ScrCmd_ShowPssIcon(struct ScriptContext *ctx)
 {
     u8 id = ScriptReadByte(ctx);

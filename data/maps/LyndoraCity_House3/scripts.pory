@@ -1,0 +1,68 @@
+mapscripts LyndoraCity_House3_MapScripts {}
+
+script LyndoraCity_House3_EventScript_OldWoman {
+    lock
+    faceplayer
+    // First conversation lasts for this map visit; no persistent story flag.
+    if (flag(FLAG_TEMP_1)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Os Pokémon são criaturas\nextraordinárias...\pÀs vezes, acho que entendem\neste mundo melhor do que nós.", MSGBOX_DEFAULT)
+            case EN: msgbox("Pokémon are extraordinary\ncreatures...\pSometimes, I think they know\nthis world better than we do.", MSGBOX_DEFAULT)
+            case ES: msgbox("Los Pokémon son criaturas\nextraordinarias...\pA veces, creo que entienden\neste mundo mejor que nosotros.", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Ah, um jovem treinador!\pFaz muito tempo que não vejo\nalguém tão animado para viajar.\pQuando eu era criança, minha avó\ncontava histórias sobre\las florestas de Aetheris.\pEla dizia que, às vezes,\nos Pokémon percebiam coisas\lque nós não podíamos enxergar...", MSGBOX_DEFAULT)
+            case EN: msgbox("Ah, a young Trainer!\pIt's been a long time since\nI saw someone so eager to travel.\pWhen I was a child, my grandma\ntold stories about\lthe forests of Aetheris.\pShe said Pokémon sometimes\nnoticed things\lwe couldn't see...", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Ah, un joven Entrenador!\pHacía mucho que no veía a alguien\ncon tantas ganas de viajar.\pDe niña, mi abuela contaba\nhistorias sobre los bosques\lde Aetheris.\pDecía que, a veces, los Pokémon\npercibían cosas que nosotros\lno podíamos ver...", MSGBOX_DEFAULT)
+        }
+        pause(30)
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Hehe! Talvez fossem apenas\nhistórias para nos fazer dormir.", MSGBOX_DEFAULT)
+            case EN: msgbox("Hehe! Perhaps they were just\nstories to help us fall asleep.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Je, je! Quizás solo eran cuentos\npara ayudarnos a dormir.", MSGBOX_DEFAULT)
+        }
+        setflag(FLAG_TEMP_1)
+    }
+    release
+    end
+}
+
+script LyndoraCity_House3_EventScript_LittleGirl {
+    lock
+    faceplayer
+    // Independent of Grandma; resets when this map is loaded again.
+    if (flag(FLAG_TEMP_2)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Quando eu crescer,\nvou viajar por Aetheris!\pQuero descobrir se as histórias\nda vovó são verdadeiras!", MSGBOX_DEFAULT)
+            case EN: msgbox("When I grow up,\nI'll travel across Aetheris!\pI want to find out if Grandma's\nstories are true!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Cuando sea mayor,\nviajaré por Aetheris!\p¡Quiero descubrir si las historias\nde la abuela son ciertas!", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Minha avó adora contar\nhistórias antigas!\pOntem ela disse que algumas\nárvores conseguem ouvir\los Pokémon!\pMas árvores nem têm orelhas!\pHehe!", MSGBOX_DEFAULT)
+            case EN: msgbox("My grandma loves telling\nold stories!\pYesterday she said some trees\ncan hear Pokémon!\pBut trees don't even have ears!\pHehe!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡A mi abuela le encanta\ncontar historias antiguas!\p¡Ayer dijo que algunos árboles\npueden oír a los Pokémon!\p¡Pero los árboles no tienen orejas!\p¡Je, je!", MSGBOX_DEFAULT)
+        }
+        setflag(FLAG_TEMP_2)
+    }
+    release
+    end
+}
+
+script LyndoraCity_House3_EventScript_Hoothoot {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_HOOTHOOT, MUGSHOT_SOUTHEAST)
+    msgbox("HOOTHOOT: Hoo! Hoo!", MSGBOX_DEFAULT)
+    waitmoncry
+    hidemonmugshot
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("O HOOTHOOT observa\nvocê atentamente.", MSGBOX_DEFAULT)
+        case EN: msgbox("HOOTHOOT watches\nyou closely.", MSGBOX_DEFAULT)
+        case ES: msgbox("HOOTHOOT te observa\ncon atención.", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}

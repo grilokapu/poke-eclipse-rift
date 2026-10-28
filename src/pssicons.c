@@ -31,6 +31,7 @@ static const struct PssIcons gCustomPicTable[] =
     [PSS_ICON_JOY] = {gPssIcon_JoyGfx, gPssIcon_JoyPal},
     [PSS_ICON_GIOVANNI] = {gPssIcon_GiovanniGfx, gPssIcon_GiovanniPal},
     [PSS_ICON_ALDREN] = {gPssIcon_AldrenGfx, gPssIcon_AldrenPal},
+    [PSS_ICON_ELOWEN] = {gPssIcon_ElowenGfx, gPssIcon_ElowenPal},
 };
 
 static const struct OamData sOamData_PssIcon =

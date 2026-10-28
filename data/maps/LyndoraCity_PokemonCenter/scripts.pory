@@ -1,0 +1,53 @@
+mapscripts LyndoraCity_PokemonCenter_MapScripts {
+    MAP_SCRIPT_ON_RESUME: CableClub_OnResume
+    MAP_SCRIPT_ON_LOAD {
+        sethealingplacePC(MAP_LYNDORA_CITY_POKEMON_CENTER)
+        end
+    }
+}
+
+script LyndoraCity_PokemonCenter_EventScript_Nurse {
+	setvar(VAR_0x800B, LOCALID_LYNDORA_NURSE)
+	call(Common_EventScript_PkmnCenterNurse)
+	waitmessage
+	waitbuttonpress
+	release
+	end
+}
+
+script LyndoraCity_PokemonCenter_EventScript_OldWoman {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu POKéMON conhece o caminho\npara este Centro de cor.\pÀs vezes acho que ele vem só\npara receber carinho da Joy!", MSGBOX_NPC)
+        case EN: msgbox("My POKéMON knows the way\nto this Center by heart.\pSometimes I think it comes\njust to get a hug from Joy!", MSGBOX_NPC)
+        case ES: msgbox("Mi POKéMON se sabe de memoria\nel camino a este Centro.\p¡A veces creo que viene solo\npara que Joy lo mime!", MSGBOX_NPC)
+    }
+    end
+}
+
+script LyndoraCity_PokemonCenter_EventScript_Trainer {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Cheguei pela Rota 5 e vim\ndireto cuidar da minha equipe.\pAntes de seguir viagem, vou\nrepor meus itens aqui mesmo.", MSGBOX_NPC)
+        case EN: msgbox("I arrived from Route 5 and\ncame to heal my team first.\pBefore moving on, I will\nrestock my items right here.", MSGBOX_NPC)
+        case ES: msgbox("Llegué por la Ruta 5 y vine\nprimero a curar a mi equipo.\pAntes de seguir, compraré\nmás objetos aquí mismo.", MSGBOX_NPC)
+    }
+    end
+}
+
+script LyndoraCity_PokemonCenter_EventScript_LittleGirl {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Meu POKéMON dormiu no meu colo\nenquanto esperávamos a Joy.\pAgora minhas pernas dormiram\ntambém... Como vou levantar?", MSGBOX_NPC)
+        case EN: msgbox("My POKéMON fell asleep on\nmy lap while we waited for Joy.\pNow my legs are asleep too...\nHow am I supposed to get up?", MSGBOX_NPC)
+        case ES: msgbox("Mi POKéMON se durmió en mi\nregazo mientras esperábamos.\pAhora mis piernas también...\n¿Cómo voy a levantarme?", MSGBOX_NPC)
+    }
+    end
+}
+
+script LyndoraCity_PokemonCenter_EventScript_Teala_BlockStairs {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Sinto muito.\pEstamos trabalhando no subsolo\nagora.\pO acesso ao público está proibido.\pPor favor, tente novamente mais\ntarde.", MSGBOX_NPC)
+        case EN: msgbox("Sorry.\pWe are working in the basement\nnow.\pPublic access is prohibited.\pPlease try again later.", MSGBOX_NPC)
+        case ES: msgbox("Lo siento.\pEstamos trabajando en el sótano\nahora.\pEl acceso al público está\nprohibido.\pPor favor, inténtelo de nuevo más\ntarde.", MSGBOX_NPC)
+    }
+    end
+}
+

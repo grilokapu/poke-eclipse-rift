@@ -303,6 +303,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_TEAM_AQUA] = { _("TEAM AQUA") },
     [TRAINER_CLASS_PKMN_BREEDER] = { _("{PKMN} BREEDER"), 10, B_TRAINER_CLASS_POKE_BALLS >= GEN_8 ? BALL_HEAL : BALL_FRIEND },
     [TRAINER_CLASS_COOLTRAINER] = { _("COOLTRAINER"), 12, BALL_ULTRA },
+    [TRAINER_CLASS_ACE_TRAINER] = { _("ACE TRAINER"), 12, BALL_ULTRA },
     [TRAINER_CLASS_BIRD_KEEPER] = { _("BIRD KEEPER"), 8 },
     [TRAINER_CLASS_COLLECTOR] = { _("COLLECTOR"), 15, BALL_PREMIER },
     [TRAINER_CLASS_SWIMMER_M] = { _("SWIMMER♂"), 2, BALL_DIVE },
@@ -1800,6 +1801,7 @@ void ModifyPersonalityForNature(u32 *personality, u32 newNature)
     *personality -= (diff * sign);
 }
 
+#if 0 // Obsolete trainer-party implementation; the current implementation is in battle_setup.c/trainer_util.c.
 u32 GeneratePersonalityForGender(u32 gender, enum Species species)
 {
     const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[species];
@@ -2032,6 +2034,7 @@ void CreateTrainerPartyForPlayer(void)
     gPartnerTrainerId = gSpecialVar_0x8004;
     CreateNPCTrainerPartyFromTrainer(gParties[B_TRAINER_PLAYER], GetTrainerStructFromId(gSpecialVar_0x8004), TRUE, BATTLE_TYPE_TRAINER);
 }
+#endif
 
 void VBlankCB_Battle(void)
 {
@@ -5396,13 +5399,6 @@ static void HandleEndTurn_BattleLost(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = 1; // Dont do white out text
             else
                 gBattleCommunication[MULTISTRING_CHOOSER] = 2; // Do white out text
-            gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
-        }
-        else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
-              && (GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST
-               || GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE))
-        {
-            gBattleCommunication[MULTISTRING_CHOOSER] = 1; // Print trainer win text without white out text
             gBattlerAttacker = GetBattlerAtPosition(B_POSITION_OPPONENT_LEFT);
         }
         else

@@ -1213,17 +1213,22 @@ static bool16 IsInfiltratedSpaceCenter(struct WarpData *warp)
     return FALSE;
 }
 
-static const u16 sNightMusicTable[END_MUS - START_MUS] =
+#define FIRST_MUSIC_ID MUS_PINEVEIL_TEST
+#define LAST_MUSIC_ID  MUS_RG_TEACHY_TV_MENU
+
+static const u16 sNightMusicTable[LAST_MUSIC_ID - FIRST_MUSIC_ID + 1] =
 {
-    // example usage: [MUS_SOOTOPOLIS - START_MUS] = MUS_LITTLEROOT,
+    // example usage: [MUS_SOOTOPOLIS - FIRST_MUSIC_ID] = MUS_PINEVEIL,
 };
 
 static u16 GetNightMusicFromTrack(u16 track)
 {
     if (GetTimeOfDay() != TIME_NIGHT)
         return track;
-    if (sNightMusicTable[track - START_MUS] >= START_MUS && sNightMusicTable[track - START_MUS] <= END_MUS)
-        return sNightMusicTable[track - START_MUS];
+    if (track >= FIRST_MUSIC_ID && track <= LAST_MUSIC_ID
+     && sNightMusicTable[track - FIRST_MUSIC_ID] >= FIRST_MUSIC_ID
+     && sNightMusicTable[track - FIRST_MUSIC_ID] <= LAST_MUSIC_ID)
+        return sNightMusicTable[track - FIRST_MUSIC_ID];
     return track;
 }
 
@@ -3742,7 +3747,6 @@ bool8 GetSetItemObtained(enum Item item, enum ItemObtainFlags caseId)
 
 EWRAM_DATA static u8 sHeaderBoxWindowId = 0;
 EWRAM_DATA u8 sItemIconSpriteId = 0;
-EWRAM_DATA u8 sItemIconSpriteId2 = 0;
 EWRAM_DATA static bool8 sItemPictureShown = FALSE;
 EWRAM_DATA static bool8 sItemDescriptionShown = FALSE;
 
@@ -3865,17 +3869,7 @@ static void ShowItemIconSprite(enum Item item, bool8 flash)
         gSprites[iconSpriteId].oam.priority = 0;
     }
 
-    if (spriteId2 != MAX_SPRITES)
-    {
-        StartObtainItemAffineAnim(&gSprites[spriteId2]);
-        gSprites[spriteId2].x2 = x;
-        gSprites[spriteId2].y2 = y;
-        gSprites[spriteId2].oam.priority = 0;
-        gSprites[spriteId2].oam.objMode = ST_OAM_OBJ_WINDOW;
-    }
-
     sItemIconSpriteId = iconSpriteId;
-    sItemIconSpriteId2 = spriteId2;
 }
 
 static void DestroyItemIconSprite(void)
@@ -3889,12 +3883,6 @@ static void DestroyItemIconSprite(void)
         sItemIconSpriteId = MAX_SPRITES;
     }
 
-    if (sItemIconSpriteId2 != MAX_SPRITES)
-    {
-        FreeSpriteOamMatrix(&gSprites[sItemIconSpriteId2]);
-        DestroySprite(&gSprites[sItemIconSpriteId2]);
-        sItemIconSpriteId2 = MAX_SPRITES;
-    }
 }
 
 // returns old sHoursOverride

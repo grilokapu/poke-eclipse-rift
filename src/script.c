@@ -57,6 +57,12 @@ enum {
 
 extern const u8 *gRamScriptRetAddr;
 
+void InitScriptStack(struct ScriptStack *stk)
+{
+    stk->stackDepth = 0;
+    memset(stk->stack, 0, ARRAY_COUNT(stk->stack) * sizeof(*stk->stack));
+}
+
 static u8 sGlobalScriptContextStatus;
 static struct ScriptContext sGlobalScriptContext;
 static struct ScriptContext sImmediateScriptContext;
@@ -1769,6 +1775,97 @@ void CreateRoute4GroundSymbol(void)
         gSprites[symbolSpriteId].oam.priority = gSprites[anchorSpriteId].oam.priority;
         gSprites[symbolSpriteId].subpriority = gSprites[anchorSpriteId].subpriority + 1;
     }
+}
+
+// This room briefly regains the missing paving in front of its stone plate.
+// Keep full map entries, including collision/elevation, out of the save data.
+#define VERDANT_PAVING_X 3
+#define VERDANT_PAVING_Y 7
+#define VERDANT_PAVING_WIDTH 4
+#define VERDANT_PAVING_HEIGHT 2
+#define VERDANT_PAVING_COUNT (VERDANT_PAVING_WIDTH * VERDANT_PAVING_HEIGHT)
+#define VERDANT_RESTORED_PAVING 0x024 // Existing stone path used at the shrine entrance.
+
+static EWRAM_DATA u16 sVerdantOriginalPaving[VERDANT_PAVING_COUNT] = {0};
+static EWRAM_DATA bool8 sVerdantPavingActive = FALSE;
+static EWRAM_DATA u8 sVerdantSymbolSpriteId = 0;
+
+void ResetVerdantSanctumRuins(void)
+{
+    u32 i;
+
+    // ON_LOAD also runs after loading a save. Always use the authored layout,
+    // never a temporary restored tile from a saved map-view buffer.
+    for (i = 0; i < VERDANT_PAVING_COUNT; i++)
+    {
+        u32 x = VERDANT_PAVING_X + i % VERDANT_PAVING_WIDTH;
+        u32 y = VERDANT_PAVING_Y + i / VERDANT_PAVING_WIDTH;
+        MapGridSetMetatileEntryAt(x + MAP_OFFSET, y + MAP_OFFSET,
+                                 gMapHeader.mapLayout->map[y * gMapHeader.mapLayout->width + x]);
+    }
+    sVerdantPavingActive = FALSE;
+    sVerdantSymbolSpriteId = MAX_SPRITES;
+}
+
+void BeginVerdantSanctumAnomaly(void)
+{
+    u32 i;
+    s16 x, y;
+    struct Sprite *sprite;
+
+    if (sVerdantPavingActive)
+        return;
+
+    for (i = 0; i < VERDANT_PAVING_COUNT; i++)
+    {
+        u32 mapX = VERDANT_PAVING_X + i % VERDANT_PAVING_WIDTH + MAP_OFFSET;
+        u32 mapY = VERDANT_PAVING_Y + i / VERDANT_PAVING_WIDTH + MAP_OFFSET;
+        sVerdantOriginalPaving[i] = gBackupMapLayout.map[mapY * gBackupMapLayout.width + mapX];
+        MapGridSetMetatileEntryAt(mapX, mapY,
+                                 (sVerdantOriginalPaving[i] & ~MAPGRID_METATILE_ID_MASK) | VERDANT_RESTORED_PAVING);
+    }
+    sVerdantPavingActive = TRUE;
+
+    // Reuse Route 4's graphics, palette and animation, but let the script
+    // remove the sprite with the second flash instead of its animation end.
+    LoadSpriteSheet(&sRoute4GroundSymbolSheet);
+    LoadSpritePalette(&sRoute4GroundSymbolPalette);
+    SetSpritePosToMapCoords(4 + MAP_OFFSET, 7 + MAP_OFFSET, &x, &y);
+    // Keep the mark above the floor (BG priority 2), but behind Object Events
+    // in the sprite ordering, like the project's other ground-level sprites.
+    sVerdantSymbolSpriteId = CreateSpriteAtEnd(&sRoute4GroundSymbolTemplate, x, y, 0xFF);
+    if (sVerdantSymbolSpriteId == MAX_SPRITES)
+    {
+        FreeSpritePaletteByTag(TAG_ROUTE4_GROUND_SYMBOL);
+        FreeSpriteTilesByTag(TAG_ROUTE4_GROUND_SYMBOL);
+        return;
+    }
+    sprite = &gSprites[sVerdantSymbolSpriteId];
+    sprite->callback = SpriteCallbackDummy;
+    sprite->centerToCornerVecX = 0;
+    sprite->centerToCornerVecY = 0;
+    sprite->coordOffsetEnabled = TRUE;
+    sprite->oam.priority = 2;
+}
+
+void EndVerdantSanctumAnomaly(void)
+{
+    u32 i;
+
+    if (!sVerdantPavingActive)
+        return;
+    for (i = 0; i < VERDANT_PAVING_COUNT; i++)
+        MapGridSetMetatileEntryAt(VERDANT_PAVING_X + i % VERDANT_PAVING_WIDTH + MAP_OFFSET,
+                                 VERDANT_PAVING_Y + i / VERDANT_PAVING_WIDTH + MAP_OFFSET,
+                                 sVerdantOriginalPaving[i]);
+    if (sVerdantSymbolSpriteId != MAX_SPRITES)
+    {
+        DestroySprite(&gSprites[sVerdantSymbolSpriteId]);
+        FreeSpritePaletteByTag(TAG_ROUTE4_GROUND_SYMBOL);
+        FreeSpriteTilesByTag(TAG_ROUTE4_GROUND_SYMBOL);
+    }
+    sVerdantSymbolSpriteId = MAX_SPRITES;
+    sVerdantPavingActive = FALSE;
 }
 
 #undef TAG_ROUTE4_GROUND_SYMBOL

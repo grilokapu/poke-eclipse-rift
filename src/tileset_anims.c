@@ -1520,3 +1520,73 @@ void InitTilesetAnim_CeladonGym(void)
     sSecondaryTilesetAnimCounterMax = 256;
     sSecondaryTilesetAnimCallback = TilesetAnim_CeladonGym;
 }
+
+// Fountain frames retain the blank tiles from the original 5 x 7 layout.
+static const u16 sTilesetAnims_LyndoraCity_Fountain_Frame0[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/fountain/0.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_Fountain_Frame1[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/fountain/1.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_Fountain_Frame2[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/fountain/2.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_Fountain_Frame3[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/fountain/3.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_Fountain_Frame4[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/fountain/4.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_Fountain_Frame5[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/fountain/5.png", ".4bpp");
+
+static const u16 *const sTilesetAnims_LyndoraCity_Fountain[] = {
+    sTilesetAnims_LyndoraCity_Fountain_Frame0,
+    sTilesetAnims_LyndoraCity_Fountain_Frame1,
+    sTilesetAnims_LyndoraCity_Fountain_Frame2,
+    sTilesetAnims_LyndoraCity_Fountain_Frame3,
+    sTilesetAnims_LyndoraCity_Fountain_Frame4,
+    sTilesetAnims_LyndoraCity_Fountain_Frame5,
+};
+
+static const u16 sTilesetAnims_LyndoraCity_SpecialFlowers_Frame0[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/flowers/0.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_SpecialFlowers_Frame1[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/flowers/1.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_SpecialFlowers_Frame2[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/flowers/2.png", ".4bpp");
+static const u16 sTilesetAnims_LyndoraCity_SpecialFlowers_Frame3[] = INCGFX_U16("data/tilesets/secondary/lyndora_city/anims/flowers/3.png", ".4bpp");
+
+static const u16 *const sTilesetAnims_LyndoraCity_SpecialFlowers[] = {
+    sTilesetAnims_LyndoraCity_SpecialFlowers_Frame0,
+    sTilesetAnims_LyndoraCity_SpecialFlowers_Frame1,
+    sTilesetAnims_LyndoraCity_SpecialFlowers_Frame2,
+    sTilesetAnims_LyndoraCity_SpecialFlowers_Frame3
+};
+
+static void QueueAnimTiles_LyndoraCity_Fountain(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(sTilesetAnims_LyndoraCity_Fountain);
+    const u16 *frame = sTilesetAnims_LyndoraCity_Fountain[i];
+    // The source frames use a 5 x 7 layout with blank tiles; pack its 22 occupied tiles into VRAM.
+    static const u8 srcOffsets[] = {4, 8, 12, 16, 21, 26, 31};
+    static const u8 tileCounts[] = {1, 2, 3, 4, 4, 4, 4};
+    u16 destTile = 0x311;
+    u32 j;
+
+    for (j = 0; j < ARRAY_COUNT(srcOffsets); j++)
+    {
+        AppendTilesetAnimToBuffer(frame + srcOffsets[j] * (TILE_SIZE_4BPP / sizeof(u16)),
+            (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(destTile)), tileCounts[j] * TILE_SIZE_4BPP);
+        destTile += tileCounts[j];
+    }
+}
+
+static void QueueAnimTiles_LyndoraCity_SpecialFlowers(u16 timer)
+{
+    u16 i = timer % ARRAY_COUNT(sTilesetAnims_LyndoraCity_SpecialFlowers);
+
+    AppendTilesetAnimToBuffer(sTilesetAnims_LyndoraCity_SpecialFlowers[i],
+        (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(0x3D0)), 6 * TILE_SIZE_4BPP);
+}
+
+static void TilesetAnim_LyndoraCity(u16 timer)
+{
+    if (timer % 12 == 0)
+        QueueAnimTiles_LyndoraCity_Fountain(timer / 12);
+    if (timer % 16 == 0)
+        QueueAnimTiles_LyndoraCity_SpecialFlowers(timer / 16);
+}
+
+void InitTilesetAnim_LyndoraCity(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 256;
+    sSecondaryTilesetAnimCallback = TilesetAnim_LyndoraCity;
+}

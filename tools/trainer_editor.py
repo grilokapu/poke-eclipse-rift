@@ -24,10 +24,13 @@ TRAINER_GRAPHICS = ROOT / "src/data/graphics/trainers.h"
 POKEMON_DIR = ROOT / "graphics/pokemon"
 MOVES_HEADER = ROOT / "include/constants/moves.h"
 ITEMS_HEADER = ROOT / "include/constants/items.h"
+ITEMS_DATA = ROOT / "src/data/items.h"
+ITEM_GRAPHICS = ROOT / "src/data/graphics/items.h"
 SPECIES_HEADER = ROOT / "include/constants/species.h"
 ABILITIES_HEADER = ROOT / "include/constants/abilities.h"
 POKEMON_HEADER = ROOT / "include/constants/pokemon.h"
 TRAINERS_HEADER = ROOT / "include/constants/trainers.h"
+MUGSHOT_CHOICES = ["", "Purple", "Green", "Pink", "Blue", "Yellow"]
 BATTLE_AI_HEADER = ROOT / "include/constants/battle_ai.h"
 SPECIES_INFO_DIR = ROOT / "src/data/pokemon/species_info"
 SPECIES_INFO_MAIN = ROOT / "src/data/pokemon/species_info.h"
@@ -43,13 +46,9 @@ TRAINER_FIELDS = [
     "Double Battle",
     "AI",
     "Mugshot",
-    "Mugshot Style",
     "Starting Status",
     "Difficulty",
 ]
-
-MUGSHOT_CHOICES = ["", "Purple", "Green", "Pink", "Blue", "Yellow"]
-MUGSHOT_STYLE_CHOICES = ["", "Normal", "Big"]
 
 MON_FIELDS = [
     "Ability",
@@ -193,6 +192,16 @@ def parse_party_file(path: Path) -> tuple[str, list[TrainerBlock]]:
     return text, trainers
 
 
+def parse_trainer_items(value: str) -> list[str]:
+    """Accept both legacy comma lists and trainerproc's slash-separated format."""
+    return [item.strip() for item in re.split(r"[,/]", value) if item.strip()]
+
+
+def format_trainer_items(items: list[str]) -> str:
+    """Serialize trainer items using the separator required by trainerproc."""
+    return " / ".join(item.strip() for item in items if item.strip())
+
+
 def format_mon(mon: PokemonEntry) -> str:
     lines = [mon.title.strip() or "Poochyena"]
     for key in MON_FIELDS:
@@ -214,7 +223,10 @@ def format_trainer_block(trainer: TrainerBlock) -> str:
         lines.append(trainer.raw_prefix.strip())
     for key in TRAINER_FIELDS:
         if key in trainer.fields:
-            lines.append(f"{key}: {trainer.fields.get(key, '').strip()}")
+            value = trainer.fields.get(key, "").strip()
+            if key == "Items":
+                value = format_trainer_items(parse_trainer_items(value))
+            lines.append(f"{key}: {value}")
     for key in sorted(k for k in trainer.fields if k not in TRAINER_FIELDS):
         lines.append(f"{key}: {trainer.fields[key].strip()}")
     if trainer.pokemon:
@@ -363,6 +375,29 @@ def load_item_choices() -> list[str]:
         seen.add(symbol)
         items.append(symbol_to_display_name(symbol, "ITEM_"))
     return items
+
+
+def load_item_icon_paths() -> dict[str, Path]:
+    """Map item display names to the icon graphics used by the game."""
+    if not ITEMS_DATA.exists() or not ITEM_GRAPHICS.exists():
+        return {}
+    graphics = {
+        symbol: ROOT / path
+        for symbol, path in re.findall(
+            r'\b(gItemIcon_[A-Za-z0-9_]+)\s*\[\]\s*=\s*INCGFX_U32\("([^"]+)"',
+            ITEM_GRAPHICS.read_text(),
+        )
+    }
+    result: dict[str, Path] = {}
+    text = ITEMS_DATA.read_text()
+    for match in re.finditer(r'^\s*\[(ITEM_[A-Z0-9_]+)\]\s*=\s*\{(.*?)^\s*\},', text, re.M | re.S):
+        item_symbol, body = match.groups()
+        icon = re.search(r'\.iconPic\s*=\s*(gItemIcon_[A-Za-z0-9_]+)', body)
+        path = graphics.get(icon.group(1)) if icon else None
+        if path is not None and path.exists():
+            display_name = symbol_to_display_name(item_symbol, "ITEM_")
+            result[normalize_name(display_name)] = path
+    return result
 
 
 def load_ball_choices(item_choices: list[str]) -> list[str]:
@@ -661,6 +696,7 @@ class PartyTab(ttk.Frame):
         self.species_choices = species_choices
         self.move_choices = move_choices
         self.item_choices = item_choices
+        self.item_icon_paths = load_item_icon_paths()
         self.ability_choices = ability_choices
         self.species_ability_choices = species_ability_choices
         self.type_choices = type_choices
@@ -770,32 +806,22 @@ class PartyTab(ttk.Frame):
         ttk.Label(options, text="AI:").grid(row=1, column=0, sticky="w")
         ttk.Combobox(options, textvariable=self.trainer_vars["AI"], values=self.ai_choices, width=16).grid(row=1, column=1, sticky="ew", pady=2)
         ttk.Checkbutton(options, text="Double Battle", variable=self.trainer_vars["Double Battle"], onvalue="Yes", offvalue="No").grid(row=2, column=0, columnspan=2, sticky="w")
-        option_fields = ["Battle Type", "Mugshot", "Mugshot Style", "Starting Status", "Difficulty"]
-        for row, key in enumerate(option_fields, start=3):
+        for row, key in enumerate(["Battle Type", "Mugshot", "Starting Status", "Difficulty"], start=3):
             ttk.Label(options, text=f"{key}:").grid(row=row, column=0, sticky="w")
             if key == "Mugshot":
-                widget = ttk.Combobox(
+                ttk.Combobox(
                     options,
                     textvariable=self.trainer_vars[key],
                     values=MUGSHOT_CHOICES,
-                    state="readonly",
                     width=16,
-                )
-            elif key == "Mugshot Style":
-                widget = ttk.Combobox(
-                    options,
-                    textvariable=self.trainer_vars[key],
-                    values=MUGSHOT_STYLE_CHOICES,
                     state="readonly",
-                    width=16,
-                )
+                ).grid(row=row, column=1, sticky="ew", pady=2)
             else:
-                widget = ttk.Entry(options, textvariable=self.trainer_vars[key], width=16)
-            widget.grid(row=row, column=1, sticky="ew", pady=2)
+                ttk.Entry(options, textvariable=self.trainer_vars[key], width=16).grid(row=row, column=1, sticky="ew", pady=2)
 
         party_frame = ttk.LabelFrame(right, text="Party")
         party_frame.grid(row=1, column=0, sticky="nsew", pady=(8, 0))
-        party_frame.columnconfigure(0, weight=1, minsize=420)
+        party_frame.columnconfigure(0, weight=1)
         party_frame.columnconfigure(1, weight=1)
         party_frame.rowconfigure(1, weight=1)
 
@@ -820,16 +846,16 @@ class PartyTab(ttk.Frame):
         ttk.Label(mon_right, text="Species:").grid(row=0, column=0, sticky="w", padx=6, pady=3)
         self.mon_title = tk.StringVar()
         self.mon_title.trace_add("write", self.on_mon_form_change)
-        self.mon_title_combo = ttk.Combobox(mon_right, textvariable=self.mon_title, values=self.species_choices, width=12)
+        self.mon_title_combo = ttk.Combobox(mon_right, textvariable=self.mon_title, values=self.species_choices, width=16)
         self.mon_title_combo.grid(row=0, column=1, sticky="ew", padx=6, pady=3)
         self.mon_title_combo.bind("<<ComboboxSelected>>", lambda _event: self.update_mon_title_from_combo())
         self.mon_title_combo.bind("<KeyRelease>", self.filter_species_choices)
-        self.mon_preview = ttk.Label(mon_right, text="Sem preview", anchor=tk.CENTER, width=9)
+        self.mon_preview = ttk.Label(mon_right, text="Sem preview", anchor=tk.CENTER, width=12)
         self.mon_preview.grid(row=0, column=4, rowspan=5, padx=8, pady=3)
 
         ttk.Label(mon_right, text="Held Item:").grid(row=1, column=0, sticky="w", padx=6, pady=3)
         self.held_item_var.trace_add("write", self.on_mon_form_change)
-        ttk.Combobox(mon_right, textvariable=self.held_item_var, values=self.item_choices, width=12).grid(row=1, column=1, sticky="ew", padx=6, pady=3)
+        ttk.Combobox(mon_right, textvariable=self.held_item_var, values=self.item_choices, width=16).grid(row=1, column=1, sticky="ew", padx=6, pady=3)
 
         left_fields = ["Ability", "Level", "Ball", "Happiness", "Nature", "Shiny"]
         for index, key in enumerate(left_fields):
@@ -839,17 +865,17 @@ class PartyTab(ttk.Frame):
             row = 2 + index
             ttk.Label(mon_right, text=f"{key}:").grid(row=row, column=0, sticky="w", padx=6, pady=3)
             if key == "Ability":
-                self.ability_combo = ttk.Combobox(mon_right, textvariable=var, values=self.ability_choices, width=12)
+                self.ability_combo = ttk.Combobox(mon_right, textvariable=var, values=self.ability_choices, width=16)
                 self.ability_combo.grid(row=row, column=1, sticky="ew", padx=6, pady=3)
             elif key == "Ball":
-                ttk.Combobox(mon_right, textvariable=var, values=self.ball_choices, width=12).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
+                ttk.Combobox(mon_right, textvariable=var, values=self.ball_choices, width=16).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
             elif key == "Nature":
-                ttk.Combobox(mon_right, textvariable=var, values=self.nature_choices, width=12).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
+                ttk.Combobox(mon_right, textvariable=var, values=self.nature_choices, width=16).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
             elif key == "Shiny":
                 ttk.Radiobutton(mon_right, text="Yes", variable=var, value="Yes").grid(row=row, column=1, sticky="w", padx=6, pady=3)
                 ttk.Radiobutton(mon_right, text="No", variable=var, value="No").grid(row=row, column=1, sticky="e", padx=6, pady=3)
             else:
-                ttk.Entry(mon_right, textvariable=var, width=12).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
+                ttk.Entry(mon_right, textvariable=var, width=16).grid(row=row, column=1, sticky="ew", padx=6, pady=3)
 
         for key, row in (("Dynamax Level", 2), ("Gigantamax", 3), ("Tera Type", 4)):
             var = tk.StringVar()
@@ -860,9 +886,9 @@ class PartyTab(ttk.Frame):
                 ttk.Radiobutton(mon_right, text="Yes", variable=var, value="Yes").grid(row=row, column=3, sticky="w", padx=4, pady=3)
                 ttk.Radiobutton(mon_right, text="No", variable=var, value="No").grid(row=row, column=3, sticky="e", padx=4, pady=3)
             elif key == "Tera Type":
-                ttk.Combobox(mon_right, textvariable=var, values=self.type_choices, width=10).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
+                ttk.Combobox(mon_right, textvariable=var, values=self.type_choices, width=14).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
             else:
-                ttk.Entry(mon_right, textvariable=var, width=10).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
+                ttk.Entry(mon_right, textvariable=var, width=14).grid(row=row, column=3, sticky="ew", padx=4, pady=3)
 
         stats_frame = ttk.Frame(mon_right)
         stats_frame.grid(row=0, column=2, columnspan=2, sticky="w", padx=(12, 4), pady=3)
@@ -884,7 +910,7 @@ class PartyTab(ttk.Frame):
         for index in range(4):
             var = tk.StringVar()
             var.trace_add("write", self.on_mon_form_change)
-            combo = ttk.Combobox(mon_right, textvariable=var, values=self.move_choices, width=9)
+            combo = ttk.Combobox(mon_right, textvariable=var, values=self.move_choices, width=12)
             combo.grid(row=5 + (index // 2), column=3 + (index % 2), sticky="ew", padx=4, pady=3)
             self.move_vars.append(var)
         ttk.Button(mon_right, text="Aplicar edicao do Pokemon", command=self.apply_mon_edit).grid(row=8, column=4, sticky="e", padx=6, pady=6)
@@ -914,7 +940,7 @@ class PartyTab(ttk.Frame):
         self.current = self.visible_trainers[selection[0]]
         for key in TRAINER_FIELDS:
             self.trainer_vars[key].set(self.current.fields.get(key, ""))
-        items = [item.strip() for item in re.split(r"[,/]", self.current.fields.get("Items", "")) if item.strip()]
+        items = parse_trainer_items(self.current.fields.get("Items", ""))
         for index, var in enumerate(self.trainer_item_vars):
             var.set(items[index] if index < len(items) else "")
         self.refresh_party()
@@ -995,14 +1021,11 @@ class PartyTab(ttk.Frame):
             return
         for key, var in self.trainer_vars.items():
             value = var.get().strip()
-            if key in {"Mugshot", "Mugshot Style"} and not value:
-                self.current.fields.pop(key, None)
-                continue
             if value or key in self.current.fields:
                 self.current.fields[key] = value
         items = [var.get().strip() for var in self.trainer_item_vars if var.get().strip()]
         if items or "Items" in self.current.fields:
-            self.current.fields["Items"] = ", ".join(items)
+            self.current.fields["Items"] = format_trainer_items(items)
 
     def save_current(self) -> None:
         if self.current is None:
@@ -1042,18 +1065,14 @@ class PartyTab(ttk.Frame):
                 break
 
     def rename_opponent_header(self) -> None:
-        # Modal dialogs must be transient to a toplevel window.  Using this
-        # PartyTab (a ttk.Frame) as their parent can leave Tk querying a stale
-        # child-window ID on X11 when one dialog closes and the next opens.
-        dialog_parent = self.winfo_toplevel()
         if self.current is None:
-            messagebox.showwarning("Trainer Party Editor", "Selecione um trainer primeiro.", parent=dialog_parent)
+            messagebox.showwarning("Trainer Party Editor", "Selecione um trainer primeiro.")
             return
         old_header = self.current.trainer_id
         new_header = simpledialog.askstring(
             "Rename",
             f"Novo HEADER para {old_header}:",
-            parent=dialog_parent,
+            parent=self,
         )
         if not new_header:
             return
@@ -1061,25 +1080,24 @@ class PartyTab(ttk.Frame):
         if not new_header.startswith("TRAINER_"):
             new_header = "TRAINER_" + new_header
         if not re.fullmatch(r"TRAINER_[A-Z0-9_]+", new_header):
-            messagebox.showerror("Rename", "Use um header como TRAINER_MY_CUSTOM_TRAINER_NAME.", parent=dialog_parent)
+            messagebox.showerror("Rename", "Use um header como TRAINER_MY_CUSTOM_TRAINER_NAME.")
             return
         if new_header == old_header:
             return
 
         text = OPPONENTS_HEADER.read_text()
         if re.search(rf"^\s*#define\s+{re.escape(new_header)}\b", text, re.M):
-            messagebox.showerror("Rename", f"{new_header} ja existe em opponents.h.", parent=dialog_parent)
+            messagebox.showerror("Rename", f"{new_header} ja existe em opponents.h.")
             return
         if not re.search(rf"^\s*#define\s+{re.escape(old_header)}\s+\d+\b", text, re.M):
-            messagebox.showerror("Rename", f"A definição numérica de {old_header} não foi encontrada.", parent=dialog_parent)
+            messagebox.showerror("Rename", f"A definição numérica de {old_header} não foi encontrada.")
             return
-        dialog_parent.update_idletasks()
-        if not messagebox.askyesno("Rename", f"Renomear {old_header} para {new_header}?", parent=dialog_parent):
+        if not messagebox.askyesno("Rename", f"Renomear {old_header} para {new_header}?", parent=self):
             return
         try:
             changed_files = rename_trainer_symbol(old_header, new_header)
         except Exception as exc:
-            messagebox.showerror("Rename", str(exc), parent=dialog_parent)
+            messagebox.showerror("Rename", str(exc))
             return
         self.repo.load()
         self.refresh_trainers()
@@ -1089,7 +1107,7 @@ class PartyTab(ttk.Frame):
                 self.trainer_list.see(index)
                 self.on_trainer_select()
                 break
-        messagebox.showinfo("Rename", f"Renomeado para {new_header} em {changed_files} arquivo(s).", parent=dialog_parent)
+        messagebox.showinfo("Rename", f"Renomeado para {new_header} em {changed_files} arquivo(s).")
 
     def add_pokemon(self) -> None:
         if self.current is None:
@@ -1276,6 +1294,30 @@ class PartyTab(ttk.Frame):
         self.mon_current_image = image
         self.mon_preview.configure(image=self.mon_current_image, text="")
 
+    def load_mon_photo_with_item(self, path: Path, held_item: str, palette_path: Path | None, max_size: int) -> tk.PhotoImage | None:
+        if Image is None or ImageTk is None:
+            return self.load_photo(path, max_size, crop_pokemon_frame=True, palette_path=palette_path)
+        try:
+            image = Image.open(path)
+            image = image.crop((0, 0, min(64, image.width), min(64, image.height)))
+            image = self.apply_jasc_palette(image, palette_path)
+            image = self.make_palette_zero_transparent(image)
+            item_path = self.item_icon_paths.get(normalize_name(held_item))
+            if item_path is not None:
+                icon = Image.open(item_path)
+                icon = self.make_palette_zero_transparent(icon)
+                icon_size = 24
+                if icon.size != (icon_size, icon_size):
+                    icon = icon.resize((icon_size, icon_size), getattr(getattr(Image, "Resampling", Image), "NEAREST"))
+                image.alpha_composite(icon.convert("RGBA"), (image.width - icon_size, image.height - icon_size))
+            nearest = getattr(getattr(Image, "Resampling", Image), "NEAREST")
+            factor = max(1, min(3, max_size // max(image.width, image.height, 1)))
+            if factor > 1:
+                image = image.resize((image.width * factor, image.height * factor), nearest)
+            return ImageTk.PhotoImage(image)
+        except Exception:
+            return self.load_photo(path, 96, crop_pokemon_frame=True, palette_path=palette_path)
+
     def select_party_index(self, index: int) -> None:
         if self.current is None or index >= len(self.current.pokemon):
             return
@@ -1294,12 +1336,12 @@ class PartyTab(ttk.Frame):
         for index, mon in enumerate(self.current.pokemon[:6]):
             path = pokemon_preview_path(mon.species)
             frame = ttk.Frame(self.party_preview_frame)
-            frame.grid(row=0, column=index, padx=0, pady=3)
+            frame.grid(row=0, column=index, padx=2, pady=3)
             frame.bind("<Button-1>", lambda _event, idx=index: self.select_party_index(idx))
             if path is not None:
                 shiny = field_value_is_true(get_field_case_insensitive(mon.fields, "Shiny"))
                 palette_path = pokemon_shiny_palette_path(mon.species) if shiny else None
-                image = self.load_photo(path, 64, crop_pokemon_frame=True, palette_path=palette_path)
+                image = self.load_mon_photo_with_item(path, mon.held_item, palette_path, 32)
                 if image is not None:
                     self.mon_images.append(image)
                     label = ttk.Label(frame, image=image, anchor=tk.CENTER)

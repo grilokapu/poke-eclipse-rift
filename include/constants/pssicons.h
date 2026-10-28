@@ -13,6 +13,7 @@ enum pssicons {
     PSS_ICON_JOY,
     PSS_ICON_GIOVANNI,
     PSS_ICON_ALDREN,
+    PSS_ICON_ELOWEN,
 };
 
 #endif // GUARD_PSS_ICONS_CONST_H

@@ -129,8 +129,8 @@
 #define VAR_ROUTE2_MEETING_GIOVANNI_STATE                0x406B // New Added Var
 #define VAR_WHISPERING_CAVE_2F_EVENT                     0x406C // New Added Var
 #define VAR_WHISPERING_CAVE_HIKER_EVENT                  0x406D // Hiker ledge event
-#define VAR_ROUTE115_STATE                               0x406E // Unused Var
-#define VAR_ROUTE116_STATE                               0x406F
+#define VAR_ROUTE5_STATE                                 0x406E // Meet Elowen event
+#define VAR_LYNDORA_CITY_STATE                           0x406F
 #define VAR_ROUTE117_STATE                               0x4070 // Unused Var
 #define VAR_ROUTE118_STATE                               0x4071
 #define VAR_ROUTE119_STATE                               0x4072

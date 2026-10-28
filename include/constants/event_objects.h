@@ -423,7 +423,6 @@
 #define OBJ_EVENT_GFX_OW_MON                     240
 #define OBJ_EVENT_GFX_LIGHT_SPRITE               241
 #define OBJ_EVENT_GFX_APRICORN_TREE              242
-#define OBJ_EVENT_GFX_ACE_TRAINER_F              243
 
 // FRLG objects
 #define OBJ_EVENT_GFX_RED_NORMAL                 243
@@ -592,7 +591,13 @@
 #define OBJ_EVENT_GFX_RUIN_MANIAC                   397
 #define OBJ_EVENT_GFX_PARASOL_LADY                  398
 #define OBJ_EVENT_GFX_MEGA_STONE                    399
-#define NUM_OBJ_EVENT_GFX                        400
+#define OBJ_EVENT_GFX_POKEMON_RANGER_M              400
+#define OBJ_EVENT_GFX_ACE_TRAINER_M                 401
+#define OBJ_EVENT_GFX_ACE_TRAINER_F                 402
+#define OBJ_EVENT_GFX_ELOWEN                       403
+#define OBJ_EVENT_GFX_FARMER                       404
+#define OBJ_EVENT_GFX_SCHOOL_KID_F                 405
+#define NUM_OBJ_EVENT_GFX                        406
 
 
 // These are dynamic object gfx ids.
@@ -817,7 +822,18 @@
 #define OBJ_EVENT_PAL_TAG_PARASOL_LADY               0x1184
 #define OBJ_EVENT_PAL_TAG_MEGA_STONE                  0x1185
 #define OBJ_EVENT_PAL_TAG_POKEFAN_M                   0x1186
+#define OBJ_EVENT_PAL_TAG_POKEMON_RANGER_M          0x1187
+#define OBJ_EVENT_PAL_TAG_ACE_TRAINER_M             0x1188
+#define OBJ_EVENT_PAL_TAG_ACE_TRAINER_F             0x1189
 // Used as a placeholder follower graphic
+#define OBJ_EVENT_PAL_TAG_OLD_WOMAN                 0x118A
+#define OBJ_EVENT_PAL_TAG_ELOWEN                    0x118B
+#define OBJ_EVENT_PAL_TAG_LITTLE_BOY                0x118C
+#define OBJ_EVENT_PAL_TAG_FARMER                    0x118D
+#define OBJ_EVENT_PAL_TAG_BLACK_BELT                0x118E
+#define OBJ_EVENT_PAL_TAG_LITTLE_GIRL               0x118F
+#define OBJ_EVENT_PAL_TAG_SCHOOL_KID_F              0x1190
+
 #define OBJ_EVENT_PAL_TAG_SUBSTITUTE              0x7611
 #define OBJ_EVENT_PAL_TAG_LIGHT                   0x8001
 #define OBJ_EVENT_PAL_TAG_LIGHT_2                 0x8002

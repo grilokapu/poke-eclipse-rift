@@ -2,7 +2,7 @@
   "id": "MAP_STONEREACH_CITY_MUSEUM",
   "name": "StonereachCity_Museum",
   "layout": "LAYOUT_STONEREACH_CITY_MUSEUM",
-  "music": "MUS_STONEREACH",
+  "music": "MUS_RG_SILPH",
   "region_map_section": "MAPSEC_STONEREACH_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

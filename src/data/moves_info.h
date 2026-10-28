@@ -2635,7 +2635,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe la\n"
             "mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 20,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -2667,7 +2667,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe la\n"
             "mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 40,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -4650,6 +4650,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     #else
             "Tucks in the head, then\n"
             "attacks on the next turn."),
+    #endif
         .descriptionPt = COMPOUND_STRING(
             "Enfia a cabeça e ataca no\n"
             "próximo turno."),
@@ -5038,7 +5039,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que roba la mitad\n"
             "del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 80 : 20,
         .type = TYPE_BUG,
         .accuracy = 100,
@@ -5876,8 +5877,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #endif
         .power = 50,
         .type = TYPE_NORMAL,
-        .accuracy = B_UPDATED_MOVE_DATA >= GEN_4 ? 0 : 100,
-        .pp = B_UPDATED_MOVE_DATA >= GEN_2 ? 1: 10,
         .target = TARGET_SELECTED,
         .priority = 0,
         .category = DAMAGE_CATEGORY_PHYSICAL,
@@ -7140,7 +7139,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que roba la mitad\n"
             "del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 75 : 60,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -8312,10 +8311,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .description = COMPOUND_STRING(
             "The effectiveness varies\n"
             "with the user."),
-        #else
-            "The type and effectiveness\n"
-            "vary with the user."),
-        #endif
         .descriptionPt = COMPOUND_STRING(
             "O tipo varia de acordo com o\n"
             "usuário."),
@@ -8916,6 +8911,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             "3 turns. Raises defenses."),
         #else
             "3 turns."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Carrega energia por até 3\n"
             "turnos."),
@@ -9050,6 +9046,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     {
         .name = COMPOUND_STRING("Hail"),
         .nameEs = COMPOUND_STRING("Granizo"),
+        .description = COMPOUND_STRING(
         #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
             "Boosts the Defense of Ice-\n"
             "type Pokémon for 5 turns."),
@@ -9403,6 +9400,16 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "Charges power to boost the\n"
             "Electric move used next."),
+        #endif
+    #else
+        #if B_CHARGE_SPDEF_RAISE >= GEN_5
+            "Ups the user's next move if\n"
+            "Electric. Also raises Sp. Def."),
+        #else
+            "Charges power to boost the\n"
+            "Electric move used next turn."),
+        #endif
+    #endif
         .descriptionPt = COMPOUND_STRING(
             "Carrega poder para aumentar\n"
             "o próximo golpe Elétrico."),
@@ -9878,6 +9885,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "Knocks down the foe's held\n"
             "item to prevent its use."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Derruba o item segurado pelo\n"
             "inimigo para evitar seu uso."),
@@ -10272,6 +10280,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "Flashes a light that sharply\n"
             "raises Sp. Atk."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Luz intensa que aumenta\n"
             "muito o Atq. Esp."),
@@ -10485,6 +10494,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "Covers the user in mud to\n"
             "weaken all Electric moves."),
+        #endif
         // in theory this should mention 5 turns (gen 6+)
         .descriptionPt = COMPOUND_STRING(
             "Cobre com lama para enfraq.\n"
@@ -10722,6 +10732,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #if B_SKIP_RECHARGE != GEN_1
             "Powerful, but leaves the\n"
             "user immobile the next turn."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Poderoso, mas deixa usuário\n"
             "imóvel no próximo turno."),
@@ -10756,6 +10767,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #if B_SKIP_RECHARGE != GEN_1
             "Powerful, but leaves the\n"
             "user immobile the next turn."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Poderoso, mas deixa usuário\n"
             "imóvel no próximo turno."),
@@ -11476,6 +11488,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "A chilling attack that\n"
             "causes fainting if it hits."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Um ataque arrepiante que\n"
             "causa desmaios se acertar."),
@@ -11702,6 +11715,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #if B_UPDATED_MOVE_DATA >= GEN_8
             "Howls to raise the spirit\n"
             "and boosts Attack."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Uiva para elevar o ânimo e\n"
             "aumentar o Ataque."),
@@ -11773,6 +11787,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #if B_SKIP_RECHARGE != GEN_1
             "Powerful, but leaves the\n"
             "user immobile the next turn."),
+        #endif
         .descriptionPt = COMPOUND_STRING(
             "Poderoso, mas deixa usuário\n"
             "imóvel no próximo turno."),
@@ -11983,7 +11998,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     {
         .name = COMPOUND_STRING("Volt Tackle"),
         .nameEs = COMPOUND_STRING("Placaje Eléc"),
-        #if B_UPDATED_MOVE_DATA >= GEN_4
         .description = COMPOUND_STRING(
     #if B_UPDATED_MOVE_DATA >= GEN_4
             "A life-risking tackle that\n"
@@ -12060,6 +12074,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         #else
             "The user becomes soaked to\n"
             "weaken all Fire moves."),
+        #endif
         // in theory this should mention 5 turns (gen6+)
         .descriptionPt = COMPOUND_STRING(
             "Usuário fica encharcado p/\n"
@@ -14039,7 +14054,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe la\n"
             "mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_5 ? 75 : 60,
         .type = TYPE_FIGHTING,
         .accuracy = 100,
@@ -17938,7 +17953,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe la\n"
             "mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 75,
         .type = TYPE_GRASS,
         .accuracy = 100,
@@ -19171,7 +19186,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Daña a Pokémon adyacentes y\n"
             "cura a mitad."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_7 ? 65 : 50,
         .type = TYPE_ELECTRIC,
         .accuracy = 100,
@@ -19403,7 +19418,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe más de\n"
             "la mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 50,
         .type = TYPE_FAIRY,
         .accuracy = 100,
@@ -19506,7 +19521,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "El suelo se convie. en\n"
             "hierba por 5 turnos. HP."),
-        .effect = EFFECT_GRASSY_TERRAIN,
+        .effect = EFFECT_TERRAIN,
         .power = 0,
         .type = TYPE_GRASS,
         .accuracy = 0,
@@ -19539,7 +19554,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Cubre suelo con niebla por 5\n"
             "turnos. Bloqueia estados."),
-        .effect = EFFECT_MISTY_TERRAIN,
+        .effect = EFFECT_TERRAIN,
         .power = 0,
         .type = TYPE_FAIRY,
         .accuracy = 0,
@@ -19751,9 +19766,11 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .nameEs = COMPOUND_STRING("Escudo Real"),
         .description = COMPOUND_STRING(
         #if B_KINGS_SHIELD_LOWER_ATK >= GEN_8
-            "Evades damage and\n"
+            "Evades damage, reducing\n"
+            "Attack if struck."),
         #else
-            "Evades damage and harshly\n"
+            "Evades damage, and sharply\n"
+            "reduces Attack if struck."),
         #endif
         .descriptionPt = COMPOUND_STRING(
             "Evita o dano e reduz muito\n"
@@ -20316,7 +20333,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Electrifica el suelo durante\n"
             "5 vueltas. Impide el sueño."),
-        .effect = EFFECT_ELECTRIC_TERRAIN,
+        .effect = EFFECT_TERRAIN,
         .power = 0,
         .type = TYPE_ELECTRIC,
         .accuracy = 0,
@@ -20612,7 +20629,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe más de\n"
             "la mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 80,
         .type = TYPE_FLYING,
         .accuracy = 100,
@@ -21515,7 +21532,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "El suelo se vuelve por 5\n"
             "turnos. Bloquea priori."),
-        .effect = EFFECT_PSYCHIC_TERRAIN,
+        .effect = EFFECT_TERRAIN,
         .power = 0,
         .type = TYPE_PSYCHIC,
         .accuracy = 0,
@@ -22018,7 +22035,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     {
         .name = COMPOUND_STRING("Aurora Veil"),
         .nameEs = COMPOUND_STRING("Velo Aurora"),
-        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
         .description = COMPOUND_STRING(
         #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_SNOW
             "Weakens all attacks, but\n"
@@ -22781,7 +22797,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe todo\n"
             "el daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = B_UPDATED_MOVE_DATA >= GEN_8 ? 60 : 90,
         .type = TYPE_WATER,
         .accuracy = 100,
@@ -26724,7 +26740,6 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     {
         .name = COMPOUND_STRING("Chilly Reception"),
         .nameEs = COMPOUND_STRING("Fría Acogida"),
-        #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL
         .description = COMPOUND_STRING(
         #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL
             "Bad joke summons hailstorm.\n"
@@ -26791,6 +26806,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
     {
         .name = COMPOUND_STRING("Snowscape"),
         .nameEs = COMPOUND_STRING("Paisaje Nevado"),
+        .description = COMPOUND_STRING(
         #if B_PREFERRED_ICE_WEATHER == B_ICE_WEATHER_HAIL
             "Summons a hailstorm that\n"
             "strikes every turn."),
@@ -27050,7 +27066,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Un ataque que absorbe la\n"
             "mitad del daño infligido."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 90,
         .type = TYPE_FIRE,
         .accuracy = 100,
@@ -27438,7 +27454,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .descriptionEs = COMPOUND_STRING(
             "Absorbe mitad daño inflig.\n"
             "Puede causar quemad."),
-        .effect = EFFECT_ABSORB,
+        .effect = EFFECT_HIT,
         .power = 80,
         .type = TYPE_GRASS,
         .accuracy = 90,

@@ -4,5 +4,6 @@
 void ScriptHatchMon(void);
 void EggHatch(void);
 u16 CountPartyAliveNonEggMons(void);
+u8 GetEggHatchCyclesToSubtract(void);
 
 #endif // GUARD_EGG_HATCH_H

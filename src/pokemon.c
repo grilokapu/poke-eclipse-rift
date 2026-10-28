@@ -5327,7 +5327,7 @@ u8 GetLevelUpMovesBySpecies(enum Species species, u16 *moves)
     int i;
     const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
 
-    for (i = 0; i < MAX_LEVEL_UP_MOVES && learnset[i].move != LEVEL_UP_MOVE_END; i++)
+    for (i = 0; learnset[i].move != LEVEL_UP_MOVE_END; i++)
     {
         if (!IsMoveBannedFromLunaticLearnset(learnset[i].move))
             moves[numMoves++] = learnset[i].move;

@@ -1,0 +1,20 @@
+mapscripts MossvaleTown_House2_MapScripts {}
+
+script MossvaleTown_House2_EventScript_Gardener {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("As plantas gostam de água,\nmas também precisam de cuidado.\pTodo dia olho as folhas.\nÉ assim que percebo quando\lalguma não está bem.", MSGBOX_NPC)
+        case EN: msgbox("Plants like water, but they\nneed care as well.\pI check their leaves each day.\nThat is how I notice when\none is not doing well.", MSGBOX_NPC)
+        case ES: msgbox("A las plantas les gusta el agua,\npero también necesitan cuidados.\pReviso sus hojas cada día.\nAsí me doy cuenta cuando\lalguna no está bien.", MSGBOX_NPC)
+    }
+    end
+}
+
+script MossvaleTown_House2_EventScript_Girl {
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Disseram que conversar com\nas plantas ajuda a crescer.\pContei minhas notas da escola.\nAcho que a samambaia\ldesmaiou.", MSGBOX_NPC)
+        case EN: msgbox("They said talking to plants\nhelps them grow.\pI told them my school grades.\nI think the fern\ljust fainted.", MSGBOX_NPC)
+        case ES: msgbox("Dicen que hablar con las\nplantas las ayuda a crecer.\pLes conté mis notas de clase.\nCreo que el helecho\lse desmayó.", MSGBOX_NPC)
+    }
+    end
+}
+

@@ -3159,7 +3159,7 @@ static u8 GetPPFontColorIndexForMove(struct Pokemon *mon, enum Move move, int m)
     u8 currentPP = GetMonData(mon, MON_DATA_PP1 + m);
     u8 ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
     u8 maxPP = CalculatePPWithBonus(move, ppBonuses, m);
-    u8 ppState = GetCurrentPpToMaxPpState(currentPP, maxPP);
+    u8 ppState = GetCurrentPPToMaxPPState(currentPP, maxPP);
 
     return 7 + ppState;
 }
@@ -3666,7 +3666,10 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 
     if (P_SUMMARY_SCREEN_MOVE_RELEARNER
         && GetMonData(&mons[slotId], MON_DATA_SPECIES)
-        && CanBoxMonRelearnAnyMove(&mons[slotId].box))
+        && (CanBoxMonRelearnMoves(&mons[slotId].box, MOVE_RELEARNER_LEVEL_UP_MOVES)
+         || CanBoxMonRelearnMoves(&mons[slotId].box, MOVE_RELEARNER_EGG_MOVES)
+         || CanBoxMonRelearnMoves(&mons[slotId].box, MOVE_RELEARNER_TM_MOVES)
+         || CanBoxMonRelearnMoves(&mons[slotId].box, MOVE_RELEARNER_TUTOR_MOVES)))
     {
         AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUB_MOVES);
     }

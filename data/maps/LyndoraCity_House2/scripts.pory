@@ -1,0 +1,150 @@
+mapscripts LyndoraCity_House2_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_LYNDORA_HOUSE2_KECLEON_FOUND)) {
+            clearflag(FLAG_HIDE_LYNDORA_HOUSE2_KECLEON)
+        } else {
+            setflag(FLAG_HIDE_LYNDORA_HOUSE2_KECLEON)
+        }
+        end
+    }
+}
+
+script LyndoraCity_House2_EventScript_Researcher {
+    lock
+    faceplayer
+    if (!flag(FLAG_LYNDORA_HOUSE2_KECLEON_FOUND)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Estou estudando como alguns\nPokémon conseguem se camuflar.\pMeu KECLEON é especialmente\ntalentoso nisso!", MSGBOX_DEFAULT)
+            case EN: msgbox("I study how some Pokémon\ncamouflage themselves.\pMy KECLEON is especially\ngood at it!", MSGBOX_DEFAULT)
+            case ES: msgbox("Estudio cómo algunos Pokémon\nconsiguen camuflarse.\p¡Mi KECLEON tiene\nun talento especial!", MSGBOX_DEFAULT)
+        }
+        pause(30)
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Na verdade...\pEle estava aqui\nhá alguns minutos.\pMas agora não consigo\nencontrá-lo!", MSGBOX_DEFAULT)
+            case EN: msgbox("Actually...\pIt was here\na few minutes ago.\pBut now I can't\nfind it!", MSGBOX_DEFAULT)
+            case ES: msgbox("En realidad...\pEstaba aquí\nhace unos minutos.\p¡Pero ahora no consigo\nencontrarlo!", MSGBOX_DEFAULT)
+        }
+        release
+        end
+    }
+    if (!flag(FLAG_LYNDORA_HOUSE2_REWARD_RECEIVED)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Ah! Então era ali que ele estava!\pHehe! Ele sempre encontra novos\nlugares para se esconder.\pVocê encontrou meu KECLEON!\nObrigada! Você tem bons olhos\lpara observar Pokémon.\pQuero lhe dar isto.", MSGBOX_DEFAULT)
+            case EN: msgbox("Oh! So that's where it was!\pHehe! It always finds new\nplaces to hide.\pYou found my KECLEON!\nThank you! You've got a good eye\lfor observing Pokémon.\pI'd like you to have this.", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Ah! ¡Así que estaba allí!\p¡Je, je! Siempre encuentra\nnuevos lugares para esconderse.\p¡Encontraste a mi KECLEON!\n¡Gracias! Tienes buen ojo\lpara observar Pokémon.\pQuiero darte esto.", MSGBOX_DEFAULT)
+        }
+        checkitemspace(ITEM_WIDE_LENS, 1)
+        if (var(VAR_RESULT) == FALSE) {
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("Sua Bolsa está cheia?\pVou guardar o presente.\nAbra espaço e volte depois!", MSGBOX_DEFAULT)
+                case EN: msgbox("Is your Bag full?\pI'll keep your gift safe.\nMake some room and come back!", MSGBOX_DEFAULT)
+                case ES: msgbox("¿Tu Bolsa está llena?\pTe guardaré el regalo.\n¡Haz espacio y vuelve luego!", MSGBOX_DEFAULT)
+            }
+            release
+            end
+        }
+        giveitem(ITEM_WIDE_LENS, 1)
+        if (var(VAR_0x8007) == FALSE) {
+            release
+            end
+        }
+        setflag(FLAG_LYNDORA_HOUSE2_REWARD_RECEIVED)
+        release
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("KECLEON consegue mudar a cor\ndo corpo para se camuflar.\pMas aquela faixa em sua\nbarriga continua visível!", MSGBOX_DEFAULT)
+        case EN: msgbox("KECLEON can change its body\ncolor to blend in.\pBut that stripe on its belly\nstays visible!", MSGBOX_DEFAULT)
+        case ES: msgbox("KECLEON puede cambiar de color\npara camuflarse.\p¡Pero la franja de su barriga\nsigue siendo visible!", MSGBOX_DEFAULT)
+    }
+    release
+    end
+}
+
+script LyndoraCity_House2_EventScript_SchoolKid {
+    lock
+    faceplayer
+    if (!flag(FLAG_LYNDORA_HOUSE2_KECLEON_FOUND)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Minha irmã vive dizendo que\nKECLEON é um mestre\lda camuflagem!\pMas aposto que consigo\nencontrá-lo antes dela!", MSGBOX_DEFAULT)
+            case EN: msgbox("My sister keeps saying KECLEON\nis a master of camouflage!\pBut I bet I can\nfind it before she does!", MSGBOX_DEFAULT)
+            case ES: msgbox("¡Mi hermana siempre dice que\nKECLEON es un maestro\ldel camuflaje!\p¡Pero apuesto a que puedo\nencontrarlo antes que ella!", MSGBOX_DEFAULT)
+        }
+        pause(30)
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Hmm...\pVocê viu alguma coisa\nse mexendo por aqui?", MSGBOX_DEFAULT)
+            case EN: msgbox("Hmm...\pHave you seen anything\nmoving around here?", MSGBOX_DEFAULT)
+            case ES: msgbox("Mmm...\p¿Has visto algo\nmoviéndose por aquí?", MSGBOX_DEFAULT)
+        }
+    } else {
+        // Local reaction resets on map reload; no extra persistent flag.
+        if (!flag(FLAG_TEMP_1)) {
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("Ahhh! Você encontrou primeiro!\pNa próxima vez, eu ganho!", MSGBOX_DEFAULT)
+                case EN: msgbox("Awww! You found it first!\pNext time, I win!", MSGBOX_DEFAULT)
+                case ES: msgbox("¡Ahhh! ¡Lo encontraste primero!\p¡La próxima vez gano yo!", MSGBOX_DEFAULT)
+            }
+            setflag(FLAG_TEMP_1)
+        } else {
+            switch(var(VAR_LANGUAGE)) {
+                case PT: msgbox("Se eu tivesse um KECLEON,\nbrincaria de esconde-esconde\ltodos os dias!", MSGBOX_DEFAULT)
+                case EN: msgbox("If I had a KECLEON,\nI'd play hide-and-seek\levery day!", MSGBOX_DEFAULT)
+                case ES: msgbox("¡Si tuviera un KECLEON,\njugaría al escondite\ltodos los días!", MSGBOX_DEFAULT)
+            }
+        }
+    }
+    release
+    end
+}
+
+script LyndoraCity_House2_EventScript_HiddenKecleon {
+    lockall
+    if (flag(FLAG_LYNDORA_HOUSE2_KECLEON_FOUND)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Não há mais nada\nescondido atrás do vaso.", MSGBOX_DEFAULT)
+            case EN: msgbox("There's nothing else\nhiding behind the pot.", MSGBOX_DEFAULT)
+            case ES: msgbox("Ya no hay nada\nescondido detrás de la maceta.", MSGBOX_DEFAULT)
+        }
+        releaseall
+        end
+    }
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Há algo estranho\natrás deste vaso...", MSGBOX_DEFAULT)
+        case EN: msgbox("Something looks odd\nbehind this pot...", MSGBOX_DEFAULT)
+        case ES: msgbox("Hay algo extraño\ndetrás de esta maceta...", MSGBOX_DEFAULT)
+    }
+    pause(30)
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Parece que alguma coisa\nestá se mexendo!", MSGBOX_DEFAULT)
+        case EN: msgbox("It looks like something\nis moving!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Parece que algo\nse está moviendo!", MSGBOX_DEFAULT)
+    }
+    setflag(FLAG_LYNDORA_HOUSE2_KECLEON_FOUND)
+    clearflag(FLAG_HIDE_LYNDORA_HOUSE2_KECLEON)
+    addobject(LOCALID_LYNDORA_HOUSE2_KECLEON)
+    playse(SE_PIN)
+    movenpc(LOCALID_LYNDORA_HOUSE2_KECLEON, moves(emote_exclamation_mark))
+    waitse
+    showmonmugshot(SPECIES_KECLEON, MUGSHOT_SOUTHEAST)
+    msgbox("KECLEON: Kecleon!", MSGBOX_DEFAULT)
+    waitmoncry
+    hidemonmugshot
+    switch(var(VAR_LANGUAGE)) {
+        case PT: msgbox("Um KECLEON estava\nescondido atrás do vaso!", MSGBOX_DEFAULT)
+        case EN: msgbox("A KECLEON was\nhiding behind the pot!", MSGBOX_DEFAULT)
+        case ES: msgbox("¡Un KECLEON estaba\nescondido detrás de la maceta!", MSGBOX_DEFAULT)
+    }
+    releaseall
+    end
+}
+
+script LyndoraCity_House2_EventScript_Kecleon {
+    lock
+    faceplayer
+    showmonmugshot(SPECIES_KECLEON, MUGSHOT_SOUTHEAST)
+    msgbox("KECLEON: Kecleon!", MSGBOX_DEFAULT)
+    waitmoncry
+    hidemonmugshot
+    release
+    end
+}

@@ -843,11 +843,13 @@
     },
     {
       "id": "MAPSEC_ROUTE_5",
-      "name": "ROUTE 5",
+      "name": "Route 5",
       "x": 14,
       "y": 4,
       "width": 1,
-      "height": 2
+      "height": 2,
+      "nameEs": "Ruta 5",
+      "namePt": "Rota 5"
     },
     {
       "id": "MAPSEC_ROUTE_6",
@@ -1646,6 +1648,22 @@
       "name": "Whispering Cave",
       "nameEs": "Cueva Susurro",
       "namePt": "Caverna Sussurro"
+    },
+    {
+      "id": "MAPSEC_VERDANT_SANCTUM",
+      "name": "Verdant Sanctum",
+      "nameEs": "Santuário Verde",
+      "namePt": "Santuario Verde"
+    },
+    {
+      "id": "MAPSEC_MOSSVALE_TOWN",
+      "name": "Mossvale Town",
+      "nameEs": "Aldea Mossvale",
+      "namePt": "Vila Mossvale"
+    },
+    {
+      "id": "MAPSEC_LYNDORA_CITY",
+      "name": "Lyndora City"
     }
   ]
 }

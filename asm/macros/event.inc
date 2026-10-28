@@ -800,9 +800,9 @@
 	@ The player's party is not healed automatically after losing.
 	.macro trainerbattle_continue_lost trainer:req, win_text:req, lose_text:req, event_script:req, music=TRUE
 	.if \music == TRUE
-	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, NULL, FALSE, TRUE, FALSE, FALSE
+	trainerbattle LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, NULL, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE
 	.else
-	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, NULL, FALSE, FALSE, FALSE, FALSE
+	trainerbattle LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, NULL, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE
 	.endif
 	.endm
 
@@ -822,9 +822,9 @@
 	@ The player's party is not healed automatically after losing.
 	.macro trainerbattle_double_continue_lost trainer:req, win_text:req, lose_text:req, not_enough_pkmn_text:req, event_script:req, music=TRUE
 	.if \music == TRUE
-	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE
+	trainerbattle LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, \not_enough_pkmn_text, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE
 	.else
-	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE, LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE
+	trainerbattle LOCALID_NONE, \trainer, NULL, \win_text, \event_script, LOCALID_NONE, TRAINER_NONE, NULL, NULL, NULL, \lose_text, \not_enough_pkmn_text, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE
 	.endif
 	.endm
 
@@ -1747,12 +1747,12 @@
 	.endm
 
 	@ Destroys the window created by showcoins.
-	.macro hidecoinsbox
+	.macro hidecoinsbox unusedX=0, unusedY=0
 	.byte SCR_OP_HIDECOINSBOX
 	.endm
 
 	@ Updates the window created by showcoins.
-	.macro updatecoinsbox
+	.macro updatecoinsbox unusedX=0, unusedY=0
 	.byte SCR_OP_UPDATECOINSBOX
 	.endm
 

@@ -1648,7 +1648,7 @@ const u16 gTilesetPalettes_ViridianForest[][16] =
     INCBIN_U16("data/tilesets/secondary/viridian_forest_frlg/palettes/15.gbapal"),
 };
 
-#if IS_FRLG
+#else
 
 const u32 gTilesetTiles_Building_Frlg[] = INCGFX_U32("data/tilesets/primary/building_frlg/tiles.png", ".4bpp.smol");
 
@@ -3080,3 +3080,79 @@ const u16 gTilesetPalettes_Stonereach_Museum[][16] =
 };
 
 const u32 gTilesetTiles_Stonereach_Museum[] = INCBIN_U32("data/tilesets/secondary/stonereach_museum/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_MossvaleTown[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/mossvale_town/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_MossvaleTown[] = INCBIN_U32("data/tilesets/secondary/mossvale_town/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_LyndoraCity[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_city/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_LyndoraCity[] = INCBIN_U32("data/tilesets/secondary/lyndora_city/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_FlowerShop[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/flower_shop/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_FlowerShop[] = INCBIN_U32("data/tilesets/secondary/flower_shop/tiles.4bpp.lz");
+
+const u16 gTilesetPalettes_LyndoraGym[][16] =
+{
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/00.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/01.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/02.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/03.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/04.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/05.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/06.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/07.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/08.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/09.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/10.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/11.gbapal"),
+    INCBIN_U16("data/tilesets/secondary/lyndora_gym/palettes/12.gbapal"),
+};
+
+const u32 gTilesetTiles_LyndoraGym[] = INCBIN_U32("data/tilesets/secondary/lyndora_gym/tiles.4bpp.lz");

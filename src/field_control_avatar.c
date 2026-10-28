@@ -498,6 +498,18 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 {
     s8 elevation;
 
+    switch (metatileBehavior)
+    {
+    case MB_VERDANT_COLUMN_A:
+        return VerdantSanctum_EventScript_ColumnA;
+    case MB_VERDANT_COLUMN_B:
+        return VerdantSanctum_EventScript_ColumnB;
+    case MB_VERDANT_COLUMN_C:
+        return VerdantSanctum_EventScript_ColumnC;
+    case MB_VERDANT_COLUMN_SIMPLE:
+        return VerdantSanctum_EventScript_ColumnSimple;
+    }
+
     if (MetatileBehavior_IsPlayerFacingTVScreen(metatileBehavior, direction) == TRUE)
     {
         if (IS_FRLG)

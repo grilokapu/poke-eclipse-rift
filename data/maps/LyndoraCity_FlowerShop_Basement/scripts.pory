@@ -1,0 +1,22 @@
+mapscripts LyndoraCity_FlowerShop_Basement_MapScripts {}
+
+script LyndoraCity_FlowerShop_Basement_EventScript_Stockkeeper {
+    lock
+    faceplayer
+    if (flag(FLAG_TEMP_3)) {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Cada planta precisa das condições\ncertas para crescer.\pAté mesmo as que parecem\nmais resistentes!", MSGBOX_DEFAULT)
+            case EN: msgbox("Every plant needs the right\nconditions to grow.\pEven the ones that seem\nthe hardiest!", MSGBOX_DEFAULT)
+            case ES: msgbox("Cada planta necesita las\ncondiciones adecuadas para crecer.\p¡Incluso las que parecen\nmás resistentes!", MSGBOX_DEFAULT)
+        }
+    } else {
+        switch(var(VAR_LANGUAGE)) {
+            case PT: msgbox("Este é o nosso depósito.\pGuardamos aqui vasos, sementes\ne plantas que ainda não foram\npara a loja.\pÉ preciso manter tudo organizado!", MSGBOX_DEFAULT)
+            case EN: msgbox("This is our stockroom.\pWe keep pots, seeds and plants\nhere until they go to the shop.\pEverything must stay organized!", MSGBOX_DEFAULT)
+            case ES: msgbox("Este es nuestro depósito.\pAquí guardamos macetas, semillas\ny plantas que aún no han ido\na la tienda.\p¡Hay que mantener todo ordenado!", MSGBOX_DEFAULT)
+        }
+        setflag(FLAG_TEMP_3)
+    }
+    release
+    end
+}

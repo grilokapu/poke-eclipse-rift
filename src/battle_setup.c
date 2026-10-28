@@ -159,7 +159,7 @@ static const u8 sBattleTransitionTable_BattleDome[] =
 
 const struct RematchTrainer gRematchTable[REMATCH_TABLE_ENTRIES] =
 {
-    [REMATCH_ROSE] = REMATCH(TRAINER_ROSE_1, TRAINER_ROSE_2, TRAINER_ROSE_3, TRAINER_ROSE_4, TRAINER_ROSE_5, MAP_ROUTE118),
+    [REMATCH_ROSE] = REMATCH(TRAINER_LEADER_ELOWEN, TRAINER_ROSE_2, TRAINER_ROSE_3, TRAINER_ROSE_4, TRAINER_ROSE_5, MAP_ROUTE118),
     [REMATCH_ANDRES] = REMATCH(TRAINER_ANDRES_1, TRAINER_ANDRES_2, TRAINER_ANDRES_3, TRAINER_ANDRES_4, TRAINER_ANDRES_5, MAP_ROUTE105),
     [REMATCH_DUSTY] = REMATCH(TRAINER_DUSTY_1, TRAINER_DUSTY_2, TRAINER_DUSTY_3, TRAINER_DUSTY_4, TRAINER_DUSTY_5, MAP_ROUTE111),
     [REMATCH_LOLA] = REMATCH(TRAINER_LOLA_1, TRAINER_LOLA_2, TRAINER_LOLA_3, TRAINER_LOLA_4, TRAINER_LOLA_5, MAP_ROUTE109),
@@ -1125,6 +1125,7 @@ void SetMapVarsToTrainerB(void)
     }
 }
 
+#if 0 // Legacy dispatcher superseded by the ScriptStack-based trainer battle configuration below.
 // expects parameters have been loaded correctly with TrainerBattleLoadArgs
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 {
@@ -1178,6 +1179,15 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
         }
         return EventScript_TryDoNormalTrainerBattle;
     }
+}
+#endif
+
+#define PUSH(script) ScriptStackPush(scrStack, script);
+
+#define PUSH_IF_SET(script, cond) \
+if (cond)           \
+{                   \
+    PUSH(script)    \
 }
 
 #define PUSH_IF_ELSE(script, alt, cond) \
@@ -1650,13 +1660,6 @@ static void CB2_EndTrainerBattle(void)
         SetBattledTrainerFlag();
     }
     else if (TRAINER_BATTLE_PARAM.opponentA == TRAINER_SECRET_BASE)
-    {
-        DowngradeBadPoison();
-        SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
-    }
-    else if ((GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST
-           || GetTrainerBattleMode() == TRAINER_BATTLE_CONTINUE_SCRIPT_LOST_DOUBLE)
-          && IsPlayerDefeated(gBattleOutcome) == TRUE)
     {
         DowngradeBadPoison();
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
